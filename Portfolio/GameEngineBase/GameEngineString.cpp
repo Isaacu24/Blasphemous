@@ -32,7 +32,6 @@ void GameEngineString::AnsiToUnicode(const std::string& _Text, std::wstring& _Ou
 	}
 }
 
-// u8""
 
 void GameEngineString::UniCodeToUTF8(const std::wstring& _Text, std::string& _Out)
 {

@@ -6,18 +6,29 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngineBase", "GameEngineBase\GameEngineBase.vcxproj", "{FB60201A-DBFB-46A6-A811-61CDE49B1C5C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngineApp", "GameEngineApp\GameEngineApp.vcxproj", "{D11BC525-EB7D-4DC3-ACDF-36535AAB4CDF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2D1F0D70-6255-47AF-BDDB-8765B46F82B1} = {2D1F0D70-6255-47AF-BDDB-8765B46F82B1}
+		{F6967BE0-E1F7-46F2-9879-CB0ACF348971} = {F6967BE0-E1F7-46F2-9879-CB0ACF348971}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Level0", "Level0", "{53857818-4A40-4AA2-93D9-ECF310CDE2FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Level5", "Level5", "{1CC1E989-ECBA-48A5-B361-E1FEA0E428D7}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngineCore", "GameEngineCore\GameEngineCore.vcxproj", "{F6967BE0-E1F7-46F2-9879-CB0ACF348971}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FB60201A-DBFB-46A6-A811-61CDE49B1C5C} = {FB60201A-DBFB-46A6-A811-61CDE49B1C5C}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Level1", "Level1", "{2B1ECD09-515E-4B46-99EF-AE3F5C9F9319}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Level2", "Level2", "{F3B37CD3-71F8-4F58-987A-725DBFF044E3}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngineContents", "GameEngineContents\GameEngineContents.vcxproj", "{2D1F0D70-6255-47AF-BDDB-8765B46F82B1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FB60201A-DBFB-46A6-A811-61CDE49B1C5C} = {FB60201A-DBFB-46A6-A811-61CDE49B1C5C}
+		{F6967BE0-E1F7-46F2-9879-CB0ACF348971} = {F6967BE0-E1F7-46F2-9879-CB0ACF348971}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
