@@ -10,14 +10,14 @@ OwlBoy::~OwlBoy()
 {
 }
 
-void OwlBoy::UserGameStart()
+void OwlBoy::UserStart()
 {
 }
 
-void OwlBoy::UserGameUpdate()
+void OwlBoy::UserUpdate()
 {
 }
 
-void OwlBoy::UserGameEnd()
+void OwlBoy::UserEnd()
 {
 }

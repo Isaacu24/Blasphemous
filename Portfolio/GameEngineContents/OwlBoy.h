@@ -20,9 +20,9 @@ public:
 	}
 
 protected:
-	void UserGameStart() override;
-	void UserGameUpdate() override;
-	void UserGameEnd() override;
+	void UserStart() override;
+	void UserUpdate() override;
+	void UserEnd() override;
 
 private:
 
