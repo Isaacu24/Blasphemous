@@ -1,8 +1,11 @@
 #pragma once
 #include <GameEngineBase/GameEngineNameObject.h>
 #include <GameEngineBase/GameEngineUpdateObject.h>
+#include <list>
+#include <map>
 
-// 설명 :
+// 설명 : 화면(타이틀 화면, 플레이 화면, 인벤토리 화면)
+class GameEngineActor;
 class GameEngineLevel :
 	public GameEngineNameObject,
 	public GameEngineUpdateObject
@@ -22,14 +25,42 @@ public:
 	GameEngineLevel& operator=(GameEngineLevel&& _Other) noexcept = delete;
 
 protected:
-	virtual void UserStart() = 0;
-	virtual void UserUpdate() = 0;
-	virtual void UserEnd() = 0;
+	//template<typename ReturnType, typename ActorType, typename GroupIndexType>
+	//ReturnType* CreateActor(GroupIndexType _ObjectGroupIndex)
+	//{
+	//	return CreateActor<ActorType>(static_cast<int>(_ObjectGroupIndex));
+	//}
 
-	//virtual void OnEvent() override;
-	//virtual void OffEvent() override;
+	template<typename ActorType, typename GroupIndexType>
+	GameEngineActor* CreateActor(GroupIndexType _ObjectGroupIndex)
+	{
+		return CreateActor<ActorType>(static_cast<int>(_ObjectGroupIndex));
+	}
+
+	template<typename ActorType>
+	GameEngineActor* CreateActor(int _ObjectGroupIndex = 0)
+	{
+		GameEngineActor* NewActor = new ActorType();
+
+		// AllActors[_ObjectGroupIndex]게 사용하면
+		// 없으면 만들어버리고 있으면
+		// 찾아서 리턴해준다.
+		std::list<GameEngineActor*>& Group = AllActors[_ObjectGroupIndex];
+
+		Group.push_back(NewActor);
+
+		return NewActor;
+	}
+
+
 
 private:
+	// 0번 그룹 플레이어
+	// 1번 그룹 몬스터
+	// 2번 그룹
+	std::map<int, std::list<GameEngineActor*>> AllActors;
+
+	void ActorUpdate(float _DelataTime);
 
 };
 

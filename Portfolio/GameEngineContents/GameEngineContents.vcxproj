@@ -155,16 +155,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DungeonVellie.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="OwlBoy.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Title.h">
       <SubType>
       </SubType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DungeonVellie.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="OwlBoy.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Title.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

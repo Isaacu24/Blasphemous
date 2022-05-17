@@ -1,4 +1,6 @@
 #include "OwlBoy.h"
+#include "Title.h"
+#include "DungeonVellie.h"
 
 #pragma comment(lib, "GameEngineBase.lib")
 
@@ -12,9 +14,13 @@ OwlBoy::~OwlBoy()
 
 void OwlBoy::UserStart()
 {
+	CreateLevel<Title>("Title");
+	CreateLevel<DungeonVellie>("DungeonVellie");
+
+	ChangeLevel("Title");
 }
 
-void OwlBoy::UserUpdate()
+void OwlBoy::UserUpdate(float _DeltaTime)
 {
 }
 
