@@ -22,6 +22,8 @@ protected:
 	void UserUpdate(float _DeltaTime) override;
 	void UserEnd() override;
 
+	void ResourceInit();
+
 private:
 
 };

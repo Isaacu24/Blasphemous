@@ -8,6 +8,12 @@
     <ClInclude Include="DungeonVellie.h">
       <Filter>Level</Filter>
     </ClInclude>
+    <ClInclude Include="Thrower.h">
+      <Filter>Actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Flyer.h">
+      <Filter>Actor\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OwlBoy.cpp" />
@@ -16,6 +22,12 @@
     </ClCompile>
     <ClCompile Include="DungeonVellie.cpp">
       <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Thrower.cpp">
+      <Filter>Actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Flyer.cpp">
+      <Filter>Actor\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

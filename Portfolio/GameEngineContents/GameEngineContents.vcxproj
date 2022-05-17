@@ -159,7 +159,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Flyer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="OwlBoy.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Thrower.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -173,7 +181,15 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Flyer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="OwlBoy.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Thrower.cpp">
       <SubType>
       </SubType>
     </ClCompile>
