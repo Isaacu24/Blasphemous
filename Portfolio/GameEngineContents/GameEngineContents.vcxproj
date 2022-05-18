@@ -159,7 +159,15 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Flyer.h">
+    <ClInclude Include="Gawk.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MaskedTortoise.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Otus.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -167,11 +175,11 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Thrower.h">
+    <ClInclude Include="Title.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Title.h">
+    <ClInclude Include="Torque.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -181,7 +189,15 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Flyer.cpp">
+    <ClCompile Include="Gawk.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MaskedTortoise.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Otus.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -189,11 +205,11 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Thrower.cpp">
+    <ClCompile Include="Title.cpp" />
+    <ClCompile Include="Torque.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Title.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

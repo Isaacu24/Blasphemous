@@ -8,10 +8,16 @@
     <ClInclude Include="DungeonVellie.h">
       <Filter>Level</Filter>
     </ClInclude>
-    <ClInclude Include="Thrower.h">
+    <ClInclude Include="Torque.h">
       <Filter>Actor\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Flyer.h">
+    <ClInclude Include="Gawk.h">
+      <Filter>Actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Otus.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="MaskedTortoise.h">
       <Filter>Actor\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
@@ -23,10 +29,16 @@
     <ClCompile Include="DungeonVellie.cpp">
       <Filter>Level</Filter>
     </ClCompile>
-    <ClCompile Include="Thrower.cpp">
+    <ClCompile Include="Torque.cpp">
       <Filter>Actor\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Flyer.cpp">
+    <ClCompile Include="Gawk.cpp">
+      <Filter>Actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Otus.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="MaskedTortoise.cpp">
       <Filter>Actor\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
