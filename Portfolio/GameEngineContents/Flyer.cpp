@@ -8,14 +8,14 @@ Flyer::~Flyer()
 {
 }
 
-void Flyer::UserStart()
+void Flyer::Start()
 {
 }
 
-void Flyer::UserUpdate(float _DeltaTime)
+void Flyer::Update(float _DeltaTime)
 {
 }
 
-void Flyer::UserEnd()
+void Flyer::End()
 {
 }

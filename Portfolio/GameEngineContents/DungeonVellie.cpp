@@ -8,14 +8,15 @@ DungeonVellie::~DungeonVellie()
 {
 }
 
-void DungeonVellie::UserStart()
+
+void DungeonVellie::Start()
 {
 }
 
-void DungeonVellie::UserUpdate(float _DeltaTime)
+void DungeonVellie::Update(float _DeltaTime)
 {
 }
 
-void DungeonVellie::UserEnd()
+void DungeonVellie::End()
 {
 }

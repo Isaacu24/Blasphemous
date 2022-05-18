@@ -14,7 +14,8 @@ OwlBoy::~OwlBoy()
 {
 }
 
-void OwlBoy::UserStart()
+
+void OwlBoy::Start()
 {
 	CreateLevel<Title>("Title");
 	CreateLevel<DungeonVellie>("DungeonVellie");
@@ -22,11 +23,11 @@ void OwlBoy::UserStart()
 	ChangeLevel("Title");
 }
 
-void OwlBoy::UserUpdate(float _DeltaTime)
+void OwlBoy::Update(float _DeltaTime)
 {
 }
 
-void OwlBoy::UserEnd()
+void OwlBoy::End()
 {
 }
 

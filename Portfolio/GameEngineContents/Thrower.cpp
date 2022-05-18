@@ -8,15 +8,14 @@ Thrower::~Thrower()
 {
 }
 
-void Thrower::UserStart()
-{
-
-}
-
-void Thrower::UserUpdate(float _DeltaTime)
+void Thrower::Start()
 {
 }
 
-void Thrower::UserEnd()
+void Thrower::Update(float _DeltaTime)
+{
+}
+
+void Thrower::End()
 {
 }

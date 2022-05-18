@@ -8,14 +8,14 @@ Title::~Title()
 {
 }
 
-void Title::UserStart()
+void Title::Start()
 {
 }
 
-void Title::UserUpdate(float _DeltaTime)
+void Title::Update(float _DeltaTime)
 {
 }
 
-void Title::UserEnd()
+void Title::End()
 {
 }
