@@ -77,21 +77,50 @@ public:
 		return { cosf(_Radian) , sinf(_Radian) };
 	}
 
-	static float4 VectorRotationToDegreeZ(const float4& _Value, float _Degree)
+	static float4 VectorRotationToDegreeZAxis(const float4& _Value, float _Degree)
 	{
-		return VectorRotationToRadianZ(_Value, _Degree * GameEngineMath::DegreeToRadian);
+		return VectorRotationToRadianZAxis(_Value, _Degree * GameEngineMath::DegreeToRadian);
 	}
 
-	static float4 VectorRotationToRadianZ(const float4& _Value, float _Radian)
+	static float4 VectorRotationToRadianZAxis(const float4& _Value, float _Radian)
 	{
 		float4 Rot;
 		Rot.x = _Value.x * cosf(_Radian) - _Value.y * sinf(_Radian);
 		Rot.y = _Value.x * sinf(_Radian) + _Value.y * cosf(_Radian);
-
-		//Rot.x = cosf(_Radian) - sinf(_Radian);
-		//Rot.y = sinf(_Radian) + cosf(_Radian);
+		Rot.z = _Value.z;
 		return Rot;
 	}
+
+	static float4 VectorRotationToDegreeYAxis(const float4& _Value, float _Degree)
+	{
+		return VectorRotationToRadianYAxis(_Value, _Degree * GameEngineMath::DegreeToRadian);
+	}
+
+	static float4 VectorRotationToRadianYAxis(const float4& _Value, float _Radian)
+	{
+		float4 Rot;
+		Rot.x = _Value.x * cosf(_Radian) - _Value.z * sinf(_Radian);
+		Rot.z = _Value.x * sinf(_Radian) + _Value.z * cosf(_Radian);
+		Rot.y = _Value.y;
+		return Rot;
+	}
+
+
+	static float4 VectorRotationToDegreeXAxis(const float4& _Value, float _Degree)
+	{
+		return VectorRotationToRadianXAxis(_Value, _Degree * GameEngineMath::DegreeToRadian);
+	}
+
+	static float4 VectorRotationToRadianXAxis(const float4& _Value, float _Radian)
+	{
+		float4 Rot;
+		Rot.z = _Value.z * cosf(_Radian) - _Value.y * sinf(_Radian);
+		Rot.y = _Value.z * sinf(_Radian) + _Value.y * cosf(_Radian);
+		Rot.x = _Value.x;
+		return Rot;
+	}
+
+
 
 	static float4 Lerp(float4 p1, float4 p2, float Time)
 	{
@@ -294,12 +323,12 @@ public:
 
 	float4 RotationToDegreeZ(float _Degree)
 	{
-		return RotationToRadianZ(_Degree * GameEngineMath::DegreeToRadian);
+		return RotationToRadianZAXis(_Degree * GameEngineMath::DegreeToRadian);
 	}
 
-	float4 RotationToRadianZ(float _Radian)
+	float4 RotationToRadianZAXis(float _Radian)
 	{
-		*this = VectorRotationToRadianZ(*this, _Radian);
+		*this = VectorRotationToRadianZAxis(*this, _Radian);
 		return *this;
 	}
 
@@ -415,4 +444,13 @@ public:
 	{
 
 	}
+};
+
+class float4x4
+{
+	union
+	{
+		float Arr1D[16];
+		float Arr2D[4][4];
+	};
 };
