@@ -4,6 +4,9 @@
 #include <Windows.h>
 #include <GameEngineBase/GameEngineWindow.h>
 
+#include "GameEngineVertexBuffer.h"
+#include "GameEngineIndexBuffer.h"
+
 GameEngineRenderer::GameEngineRenderer()
 {
 }
@@ -18,25 +21,76 @@ void GameEngineRenderer::Start()
 	GetActor()->GetLevel()->PushRenderer(this);
 }
 
+float4 XDir = { 1, 0 };
+float4 YDir = { 0, -1 };
+
+float Angle = 0.0f;
+float Dis = 0.0f;
+float4 Postion;
+
+
 void GameEngineRenderer::Render(float _DeltaTime)
 {
+	// 방향을 정했고.
+	// 나아가는 크기가 1이 아니라는 겁니다.
+	// _DeltaTime *= 200.0f;	
 
-	POINT Vertex[4];
+	// 
 
-	Vertex[0].x = -50 * GetActor()->GetTransform().GetScale().ix() + GetActor()->GetTransform().GetPosition().ix();
-	Vertex[0].y = -50 * GetActor()->GetTransform().GetScale().iy() + GetActor()->GetTransform().GetPosition().iy();
+	// x 100.0f = cosf(각도) * 빗변의 길이
+	// y 100.0f = sinf(각도) * 빗변의 길이
 
-	Vertex[1].x = 50 * GetActor()->GetTransform().GetScale().ix() + GetActor()->GetTransform().GetPosition().ix();
-	Vertex[1].y = -50 * GetActor()->GetTransform().GetScale().iy() + GetActor()->GetTransform().GetPosition().iy();
+	//float4 Dir = {100.0f, 100.0f, 0.0f};
 
-	Vertex[2].x = 50 * GetActor()->GetTransform().GetScale().ix() + GetActor()->GetTransform().GetPosition().ix();
-	Vertex[2].y = 50 * GetActor()->GetTransform().GetScale().iy() + GetActor()->GetTransform().GetPosition().iy();
+	//float4::VectorRotationToRadianZ(Dir);
 
-	Vertex[3].x = -50 * GetActor()->GetTransform().GetScale().ix() + GetActor()->GetTransform().GetPosition().ix();
-	Vertex[3].y = 50 * GetActor()->GetTransform().GetScale().iy() + GetActor()->GetTransform().GetPosition().iy();
+	Angle += _DeltaTime * 360.0f;
+	Dis += _DeltaTime * 10.0f;
+
+	//float4 Dir = float4::DegreeToDirection2D(Angle);
 
 
-	Polygon(GameEngineWindow::GetHDC(), Vertex, 4);
+
+	// GetActor()->GetTransform().SetMove(Dir * _DeltaTime * 200.0f);
+
+	// 랜더링
+	GameEngineVertexBuffer* Vertex = GameEngineVertexBuffer::Find("Rect");
+	GameEngineIndexBuffer* Index = GameEngineIndexBuffer::Find("Rect");
+
+	std::vector<POINT> DrawVertex;
+	DrawVertex.resize(Index->Indexs.size());
+
+	std::vector<float4> CopyBuffer;
+	CopyBuffer.resize(Index->Indexs.size());
+
+	for (size_t i = 0; i < Index->Indexs.size(); i++)
+	{
+		int TriIndex = Index->Indexs[i];
+
+		// 0 번째 순서의 점이 됩니다.
+		CopyBuffer[i] = Vertex->Vertexs[TriIndex];
+
+		// [0.5f] [0.5f] []                  [100] [100] [] 
+		// 크
+		CopyBuffer[i] *= GetActor()->GetTransform().GetScale();
+
+		// 자전
+		// CopyBuffer[TriIndex] *= GetActor()->GetTransform().GetScale();
+		CopyBuffer[i] = float4::VectorRotationToRadianZ(CopyBuffer[i], Dis);
+
+		// 이동
+		CopyBuffer[i] += GetActor()->GetTransform().GetPosition();
+
+
+
+
+		DrawVertex[i] = CopyBuffer[i].GetConvertWindowPOINT();
+	}
+
+	for (size_t i = 0; i < DrawVertex.size(); i += 3)
+	{
+		Polygon(GameEngineWindow::GetHDC(), &DrawVertex[i], 3);
+	}
 
 
 	// Rectangle(GameEngineWindow::GetHDC(), LeftTop.ix(), LeftTop.iy(), RightBot.ix(), RightBot.iy());
