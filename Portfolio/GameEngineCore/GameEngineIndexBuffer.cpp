@@ -17,7 +17,7 @@ GameEngineIndexBuffer* GameEngineIndexBuffer::CreateRes(const std::vector<int>& 
 	GameEngineIndexBuffer* NewMesh = new GameEngineIndexBuffer();
 	NewMesh->SetName(Name);
 	NewMesh->Indexs = _Indexs;
-	return NewMesh; 
+	return NewMesh;
 }
 
 void GameEngineIndexBuffer::Create(const std::string& _Name, const std::vector<int>& _Indexs)

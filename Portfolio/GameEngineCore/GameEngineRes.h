@@ -11,9 +11,11 @@ class GameEngineRes : public GameEngineNameObject
 {
 
 public:
+	// constrcuter destructer
 	GameEngineRes() {}
 	~GameEngineRes() {}
 
+	// delete Function
 	GameEngineRes(const GameEngineRes& _Other) = delete;
 	GameEngineRes(GameEngineRes&& _Other) noexcept = delete;
 	GameEngineRes& operator=(const GameEngineRes& _Other) = delete;
