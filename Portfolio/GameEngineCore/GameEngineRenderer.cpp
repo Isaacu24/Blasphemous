@@ -21,7 +21,6 @@ void GameEngineRenderer::Start()
 	GetActor()->GetLevel()->PushRenderer(this);
 }
 
-
 void GameEngineRenderer::Render(float _DeltaTime)
 {
 	// 랜더링
@@ -44,7 +43,7 @@ void GameEngineRenderer::Render(float _DeltaTime)
 		// 최초에 원본 매쉬의 점을 복사합니다.
 		CopyBuffer[i] = Vertex->Vertexs[TriIndex];
 
-		CopyBuffer[i] = CopyBuffer[i] * GetTransform().GetWorldWorld();
+		CopyBuffer[i] = CopyBuffer[i] * GetTransform().GetWorldViewProjection();
 
 		DrawVertex[i] = CopyBuffer[i].GetConvertWindowPOINT();
 	}
@@ -54,7 +53,4 @@ void GameEngineRenderer::Render(float _DeltaTime)
 	{
 		Polygon(GameEngineWindow::GetHDC(), &DrawVertex[i], 3);
 	}
-
-
-	// Rectangle(GameEngineWindow::GetHDC(), LeftTop.ix(), LeftTop.iy(), RightBot.ix(), RightBot.iy());
 }
