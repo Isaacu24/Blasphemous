@@ -1,32 +1,41 @@
-#include "GameEngineMesh.h"
-#include "GameEngineBase/GameEngineString.h"
+#pragma once
+#include <GameEngineBase/GameEngineMath.h>
+#include <GameEngineBase/GameEngineNameObject.h>
+#include <vector>
+#include <string>
+#include <map>
+#include <list>
 
-GameEngineMesh::GameEngineMesh()
+// Ό³Έν :
+class GameEngineMesh : public GameEngineNameObject
 {
-}
+private:
+	static std::map<std::string, GameEngineMesh*> NamedRes;
+	static std::list<GameEngineMesh*> UnNamedRes;
+	static GameEngineMesh* CreateRes(const std::vector<float4>& _Vertex, const std::string& _Name = "");
 
-GameEngineMesh::~GameEngineMesh()
-{
-}
+public:
+	static void Create(const std::string& _Name, const std::vector<float4>& _Vertex);
+	static void Create(const std::vector<float4>& _Vertex);
 
-GameEngineMesh* GameEngineMesh::CreateRes(const std::vector<float4>& _Vertex, const std::string& _Name /*= ""*/)
-{
-	std::string Name = GameEngineString::ToUpperReturn(_Name);
 
-	GameEngineMesh* NewMesh = new GameEngineMesh();
-	NewMesh->SetName(Name);
-	NewMesh->Vertex = _Vertex;
-	return NewMesh;
-}
 
-void GameEngineMesh::Create(const std::string& _Name, const std::vector<float4>& _Vertex)
-{
-	GameEngineMesh* NewMesh = CreateRes(_Vertex, _Name);
-	NamedRes.insert(std::make_pair(NewMesh->GetNameCopy(), NewMesh));
-}
+private:
+	// constrcuter destructer
+	GameEngineMesh();
+	~GameEngineMesh();
 
-void GameEngineMesh::Create(const std::vector<float4>& _Vertex)
-{
-	GameEngineMesh* NewMesh = CreateRes(_Vertex);
-	UnNamedRes.push_back(NewMesh);
-}
+	// delete Function
+	GameEngineMesh(const GameEngineMesh& _Other) = delete;
+	GameEngineMesh(GameEngineMesh&& _Other) noexcept = delete;
+	GameEngineMesh& operator=(const GameEngineMesh& _Other) = delete;
+	GameEngineMesh& operator=(GameEngineMesh&& _Other) noexcept = delete;
+
+protected:
+
+
+private:
+	std::vector<float4> Vertex;
+
+};
+

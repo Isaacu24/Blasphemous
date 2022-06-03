@@ -64,7 +64,7 @@ void GameEngineCore::CoreUpdate(GameEngineCore* _UserCore)
 		Rectangle(GameEngineWindow::GetInst()->GetHDC()
 			, 0
 			, 0
-			, GameEngineWindow::GetInst()->GetScale().x, GameEngineWindow::GetInst()->GetScale().y);
+			, GameEngineWindow::GetInst()->GetScale().ix(), GameEngineWindow::GetInst()->GetScale().iy());
 
 		if (nullptr != CurrentLevel)
 		{
@@ -126,7 +126,7 @@ void GameEngineCore::CoreEnd(GameEngineCore* _UserCore)
 void GameEngineCore::WindowCreate(const std::string& _Name, GameEngineCore* _UserCore)
 {
 	GameEngineWindow::GetInst()->CreateGameWindow(nullptr, _Name.c_str());
-	GameEngineWindow::GetInst()->SetWindowScaleAndPosition({ 300, 200 }, { 1280, 720 });
+	GameEngineWindow::GetInst()->SetWindowScaleAndPosition({ 300 , 200 }, { 1280, 720 });
 	GameEngineWindow::GetInst()->ShowGameWindow();
 	GameEngineWindow::GetInst()->MessageLoop(
 		std::bind(&GameEngineCore::CoreStart, _UserCore),
