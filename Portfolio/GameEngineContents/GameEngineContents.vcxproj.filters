@@ -1,56 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="OwlBoy.h" />
-    <ClInclude Include="Title.h">
-      <Filter>Level</Filter>
-    </ClInclude>
-    <ClInclude Include="DungeonVellie.h">
-      <Filter>Level</Filter>
-    </ClInclude>
-    <ClInclude Include="Torque.h">
-      <Filter>Actor\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Gawk.h">
-      <Filter>Actor\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Otus.h">
-      <Filter>Actor</Filter>
-    </ClInclude>
-    <ClInclude Include="MaskedTortoise.h">
-      <Filter>Actor\Enemy</Filter>
-    </ClInclude>
+    <ClInclude Include="Blasphemous.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="OwlBoy.cpp" />
-    <ClCompile Include="Title.cpp">
-      <Filter>Level</Filter>
-    </ClCompile>
-    <ClCompile Include="DungeonVellie.cpp">
-      <Filter>Level</Filter>
-    </ClCompile>
-    <ClCompile Include="Torque.cpp">
-      <Filter>Actor\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Gawk.cpp">
-      <Filter>Actor\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Otus.cpp">
-      <Filter>Actor</Filter>
-    </ClCompile>
-    <ClCompile Include="MaskedTortoise.cpp">
-      <Filter>Actor\Enemy</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Actor">
-      <UniqueIdentifier>{dc017ecf-dead-4149-bf8b-689ca8e79a0c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Level">
-      <UniqueIdentifier>{4df0f227-cb61-4354-9585-a2acf62b1cd5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\Enemy">
-      <UniqueIdentifier>{3a8f17cc-9f42-4ef5-b584-b1b3720ea4bd}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="Blasphemous.cpp" />
   </ItemGroup>
 </Project>

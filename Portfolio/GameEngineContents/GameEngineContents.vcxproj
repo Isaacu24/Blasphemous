@@ -18,6 +18,18 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Blasphemous.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Blasphemous.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -154,63 +166,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="DungeonVellie.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Gawk.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="MaskedTortoise.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Otus.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="OwlBoy.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Title.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Torque.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="DungeonVellie.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Gawk.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="MaskedTortoise.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Otus.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="OwlBoy.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Title.cpp" />
-    <ClCompile Include="Torque.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

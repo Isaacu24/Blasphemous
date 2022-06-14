@@ -118,6 +118,7 @@ void GameEngineCore::CoreEnd(GameEngineCore* _UserCore)
 
 	GameEngineWindow::Destroy();
 	GameEngineInput::Destroy();
+	GameEngineDebug::Destroy();
 	GameEngineTime::Destroy();
 
 }
@@ -126,7 +127,7 @@ void GameEngineCore::CoreEnd(GameEngineCore* _UserCore)
 void GameEngineCore::WindowCreate(const std::string& _Name, GameEngineCore* _UserCore)
 {
 	GameEngineWindow::GetInst()->CreateGameWindow(nullptr, _Name.c_str());
-	GameEngineWindow::GetInst()->SetWindowScaleAndPosition({ 300 , 200 }, { 1280, 720 });
+	GameEngineWindow::GetInst()->SetWindowScaleAndPosition({ 0,0 }, { 1280, 720 });
 	GameEngineWindow::GetInst()->ShowGameWindow();
 	GameEngineWindow::GetInst()->MessageLoop(
 		std::bind(&GameEngineCore::CoreStart, _UserCore),
