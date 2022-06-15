@@ -2,8 +2,31 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="Blasphemous.h" />
+    <ClInclude Include="Titile.h">
+      <Filter>Level\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Level\MainMenu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
+    <ClCompile Include="Titile.cpp">
+      <Filter>Level\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Level\MainMenu</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Level">
+      <UniqueIdentifier>{8503fe28-021f-4bcf-b07f-0ef62807fce0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Title">
+      <UniqueIdentifier>{3c3b6f00-6787-47bd-ac30-287d11debd50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\MainMenu">
+      <UniqueIdentifier>{38743332-4c96-472e-9fe9-b78eb9d55704}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

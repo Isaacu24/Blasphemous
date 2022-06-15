@@ -23,9 +23,25 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Titile.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Titile.cpp">
       <SubType>
       </SubType>
     </ClCompile>
