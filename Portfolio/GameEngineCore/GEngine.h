@@ -7,7 +7,7 @@ class GEngine
 {
 public:
 	static void ChangeLevel(std::string _Name);
-
+	
 
 protected:
 

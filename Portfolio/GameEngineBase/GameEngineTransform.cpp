@@ -1,6 +1,7 @@
+#include "PreCompile.h"
 #include "GameEngineTransform.h"
 
-GameEngineTransform::GameEngineTransform()
+GameEngineTransform::GameEngineTransform() 
 	: LocalScale(float4::ONE)
 	, LocalPosition(float4::ZERO)
 	, LocalRotation(float4::ZERO)
@@ -8,20 +9,22 @@ GameEngineTransform::GameEngineTransform()
 	, WorldPosition(float4::ZERO)
 	, WorldRotation(float4::ZERO)
 	, Parent(nullptr)
+	, CollisionDataObject()
 {
+	CollisionDataSetting();
 }
 
-GameEngineTransform::~GameEngineTransform()
+GameEngineTransform::~GameEngineTransform() 
 {
 }
 
 
 void GameEngineTransform::CalculateWorld()
 {
-	if (IsDebug())
-	{
-		int a = 0;
-	}
+	//if (IsDebug())
+	//{
+	//	int a = 0;
+	//}
 
 	LocalWorldMat = LocalScaleMat * LocalRotateMat * LocalPositionMat;
 
@@ -30,7 +33,7 @@ void GameEngineTransform::CalculateWorld()
 		// Parent 컴포넌트일 경우에는 액터의 트랜스폼을 부모로 가지게 된다.
 		WorldWorldMat = LocalWorldMat * Parent->GetWorldWorld();
 	}
-	else
+	else 
 	{
 		WorldWorldMat = LocalWorldMat;
 	}
@@ -47,7 +50,19 @@ void GameEngineTransform::CalculateWorldViewProjection()
 	WorldViewProjectMat = WorldViewMat * Projection;
 }
 
-void GameEngineTransform::SetParent(GameEngineTransform& _Parent)
+void GameEngineTransform::DetachTransform()
+{
+	if (nullptr == Parent)
+	{
+		return;
+	}
+
+	Parent->Childs.remove(this);
+	Parent = nullptr;
+
+}
+
+void GameEngineTransform::SetParentTransform(GameEngineTransform& _Parent)
 {
 	if (nullptr != Parent)
 	{
@@ -58,6 +73,8 @@ void GameEngineTransform::SetParent(GameEngineTransform& _Parent)
 
 	Parent = &_Parent;
 	_Parent.Childs.push_back(this);
+
+	SetLocalScale(LocalScale);
+	SetLocalRotation(LocalRotation);
+	SetLocalPosition(LocalPosition);
 }
-
-

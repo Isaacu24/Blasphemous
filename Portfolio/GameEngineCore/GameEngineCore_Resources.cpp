@@ -1,3 +1,4 @@
+#include "PreCompile.h"
 #include "GameEngineCore.h"
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineInput.h>
@@ -19,7 +20,7 @@ void GameEngineCore::EngineResourcesInitialize()
 		// 0       1
 
 		//    ¿øÁ¡
-
+		
 		// 3       2
 
 		std::vector<float4> Vertex;

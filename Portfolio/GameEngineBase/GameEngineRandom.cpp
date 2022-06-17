@@ -1,4 +1,5 @@
-﻿#include "GameEngineRandom.h"
+﻿#include "PreCompile.h"
+#include "GameEngineRandom.h"
 #include <chrono>
 
 GameEngineRandom GameEngineRandom::MainRandom;
@@ -9,7 +10,7 @@ GameEngineRandom::GameEngineRandom()
 
 }
 
-GameEngineRandom::~GameEngineRandom()
+GameEngineRandom::~GameEngineRandom() 
 {
 }
 

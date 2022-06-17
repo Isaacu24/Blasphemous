@@ -1,48 +1,68 @@
-#pragma once
-#include "GameEnginePath.h"
+#include "PreCompile.h"
+#include "GameEngineFile.h"
+#include "GameEngineDebug.h"
 
-enum class OpenMode
+GameEngineFile::GameEngineFile() 
+	: FilePtr(nullptr)
 {
-	Read,
-	Write,
-};
 
-// 설명 :
-class GameEngineFile : public GameEnginePath
+}
+
+GameEngineFile::GameEngineFile(const char* _Path)
+	: FilePtr(nullptr)
 {
-public:
-	// constrcuter destructer
-	GameEngineFile();
-	GameEngineFile(const char* _Path);
-	GameEngineFile(std::filesystem::path _Path);
-	GameEngineFile(const GameEngineFile& _Other);
-	~GameEngineFile();
+	Path_ = _Path;
+}
 
-	// delete Function
-	void Open(OpenMode _Mode);
+GameEngineFile::GameEngineFile(std::filesystem::path _Path)
+	: FilePtr(nullptr)
+{
+	Path_ = _Path;
+}
 
-	void ReadOpen()
+GameEngineFile::GameEngineFile(const GameEngineFile& _Other) 
+	: FilePtr(nullptr)
+{
+	Path_ = _Other.Path_;
+}
+
+GameEngineFile::~GameEngineFile() 
+{
+	GameEngineFile::Close();
+}
+
+void GameEngineFile::Close()
+{
+	if (nullptr != FilePtr)
 	{
-		Open(OpenMode::Read);
+		fclose(FilePtr);
+		FilePtr = nullptr;
+	}
+}
+
+// "text"
+// 
+
+void GameEngineFile::Open(OpenMode _Mode)
+{
+	// b냐 t냐에 따라서 파일이 저장되었을때의 최종적인 형식이 달라지게 된다.
+	std::string OpenMode = "";
+	switch (_Mode)
+	{
+	case OpenMode::Read:
+		OpenMode = "rb";
+		break;
+	case OpenMode::Write:
+		OpenMode = "wb";
+		break;
+	default:
+		break;
 	}
 
-	void WriteOpen()
+	fopen_s(&FilePtr, Path_.string().c_str(), OpenMode.c_str());
+
+	if (nullptr == FilePtr)
 	{
-		Open(OpenMode::Write);
+		MsgBoxAssert("파일이 정상적으로 열리지 않았습니다.");
 	}
-
-	void Close();
-
-	void Create()
-	{
-		Open(OpenMode::Write);
-		Close();
-	}
-
-protected:
-
-
-private:
-	FILE* FilePtr;
-};
-
+}

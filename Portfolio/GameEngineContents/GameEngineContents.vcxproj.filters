@@ -8,6 +8,12 @@
     <ClInclude Include="MainMenu.h">
       <Filter>Level\MainMenu</Filter>
     </ClInclude>
+    <ClInclude Include="PreCompile.h">
+      <Filter>PreCompile</Filter>
+    </ClInclude>
+    <ClInclude Include="Penintent.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -16,6 +22,12 @@
     </ClCompile>
     <ClCompile Include="MainMenu.cpp">
       <Filter>Level\MainMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="PreCompile.cpp">
+      <Filter>PreCompile</Filter>
+    </ClCompile>
+    <ClCompile Include="Penintent.cpp">
+      <Filter>Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -27,6 +39,12 @@
     </Filter>
     <Filter Include="Level\MainMenu">
       <UniqueIdentifier>{38743332-4c96-472e-9fe9-b78eb9d55704}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PreCompile">
+      <UniqueIdentifier>{a7e9afa6-7013-454b-9488-49ab8d0bee3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor">
+      <UniqueIdentifier>{8c6635e8-ce8f-4e65-8daf-333020d7840f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

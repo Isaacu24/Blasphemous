@@ -1,15 +1,16 @@
+#include "PreCompile.h"
 #include "GameEngineCameraActor.h"
 
-GameEngineCameraActor::GameEngineCameraActor()
+GameEngineCameraActor::GameEngineCameraActor() 
 	: CameraComponent(nullptr)
 {
 }
 
-GameEngineCameraActor::~GameEngineCameraActor()
+GameEngineCameraActor::~GameEngineCameraActor() 
 {
 }
 
-void GameEngineCameraActor::Start()
+void GameEngineCameraActor::Start() 
 {
 	CameraComponent = CreateComponent<GameEngineCamera>();
 }
@@ -19,7 +20,7 @@ void GameEngineCameraActor::Update(float _DeltaTime)
 
 }
 
-void GameEngineCameraActor::End()
+void GameEngineCameraActor::End() 
 {
 
 }
