@@ -11,8 +11,29 @@
     <ClInclude Include="PreCompile.h">
       <Filter>PreCompile</Filter>
     </ClInclude>
-    <ClInclude Include="Penintent.h">
+    <ClInclude Include="Penitent.h">
       <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="ElderBrother.h">
+      <Filter>Actor\BossMonster</Filter>
+    </ClInclude>
+    <ClInclude Include="TenPiedad.h">
+      <Filter>Actor\BossMonster</Filter>
+    </ClInclude>
+    <ClInclude Include="Pilgrimage.h">
+      <Filter>Level\Pilgrimage</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage01.h">
+      <Filter>Actor\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Actor\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>Actor\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="BossMonster.h">
+      <Filter>Actor\BossMonster</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -26,11 +47,35 @@
     <ClCompile Include="PreCompile.cpp">
       <Filter>PreCompile</Filter>
     </ClCompile>
-    <ClCompile Include="Penintent.cpp">
+    <ClCompile Include="Penitent.cpp">
       <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="ElderBrother.cpp">
+      <Filter>Actor\BossMonster</Filter>
+    </ClCompile>
+    <ClCompile Include="TenPiedad.cpp">
+      <Filter>Actor\BossMonster</Filter>
+    </ClCompile>
+    <ClCompile Include="Pilgrimage.cpp">
+      <Filter>Level\Pilgrimage</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage01.cpp">
+      <Filter>Actor\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Actor\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>Actor\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="BossMonster.cpp">
+      <Filter>Actor\BossMonster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <Filter Include="PreCompile">
+      <UniqueIdentifier>{a7e9afa6-7013-454b-9488-49ab8d0bee3d}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Level">
       <UniqueIdentifier>{8503fe28-021f-4bcf-b07f-0ef62807fce0}</UniqueIdentifier>
     </Filter>
@@ -40,11 +85,23 @@
     <Filter Include="Level\MainMenu">
       <UniqueIdentifier>{38743332-4c96-472e-9fe9-b78eb9d55704}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PreCompile">
-      <UniqueIdentifier>{a7e9afa6-7013-454b-9488-49ab8d0bee3d}</UniqueIdentifier>
+    <Filter Include="Level\Pilgrimage">
+      <UniqueIdentifier>{676fb5cd-6bd0-48f9-89cc-fb141ce9d7a0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Actor">
       <UniqueIdentifier>{8c6635e8-ce8f-4e65-8daf-333020d7840f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Monster">
+      <UniqueIdentifier>{46ee28c6-fdf0-48d5-8bf4-9c4e0d879fed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\BossMonster">
+      <UniqueIdentifier>{45b6904e-ed28-4a07-848c-db98f48a9d0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Stage">
+      <UniqueIdentifier>{cbe1167a-cb27-49be-ade8-7252ed0e6056}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\UI">
+      <UniqueIdentifier>{19b99546-139a-46db-a446-c8fbed27406e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

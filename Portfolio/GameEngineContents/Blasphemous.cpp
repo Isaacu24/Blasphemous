@@ -1,5 +1,7 @@
 #include "Blasphemous.h"
 #include "Titile.h"
+#include "MainMenu.h"
+#include "Pilgrimage.h"
 
 #pragma comment(lib, "GameEngineBase.lib")
 
@@ -14,7 +16,9 @@ Blasphemous::~Blasphemous()
 
 void Blasphemous::Start()
 {
-	CreateLevel<Titile>("Title");
+	CreateLevel<Titile>("Title"); 
+	CreateLevel<MainMenu>("MainMenu");
+	CreateLevel<Pilgrimage>("Pilgrimage");
 	ChangeLevel("Title");
 }
 

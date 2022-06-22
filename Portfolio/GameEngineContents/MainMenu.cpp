@@ -9,3 +9,14 @@ MainMenu::~MainMenu()
 {
 }
 
+void MainMenu::Start()
+{
+}
+
+void MainMenu::Update(float _DeltaTime)
+{
+}
+
+void MainMenu::End()
+{
+}

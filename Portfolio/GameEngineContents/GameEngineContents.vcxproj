@@ -23,15 +23,43 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="BossMonster.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ElderBrother.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MainMenu.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Penintent.h">
+    <ClInclude Include="Monster.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Penitent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Pilgrimage.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="PreCompile.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage01.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TenPiedad.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -45,15 +73,43 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="BossMonster.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ElderBrother.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="MainMenu.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Penintent.cpp">
+    <ClCompile Include="Monster.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Penitent.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Pilgrimage.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="PreCompile.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage01.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TenPiedad.cpp">
       <SubType>
       </SubType>
     </ClCompile>

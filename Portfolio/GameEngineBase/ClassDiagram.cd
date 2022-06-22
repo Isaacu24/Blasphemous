@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GameEngineDebug" Collapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAgABCAgAAIAAgABAAAAA=</HashCode>
+      <FileName>GameEngineDebug.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineDirectory" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAgAAAAAAQAIABAAAAAAAAAQAAAEAAAQA=</HashCode>
+      <FileName>GameEngineDirectory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineFile" Collapsed="true">
+    <Position X="4" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACEAAAAAIAAAABIAAAAAAAABAEAAAAAAAACAAAA=</HashCode>
+      <FileName>GameEngineFile.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEnginePath" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAASAAQAQAAQAAABAAAgIAIAAAA=</HashCode>
+      <FileName>GameEnginePath.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineReadFile" Collapsed="true">
+    <Position X="2.5" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAIAAAAA=</HashCode>
+      <FileName>GameEngineReadFile.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineWriteFile" Collapsed="true">
+    <Position X="5.25" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAQAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>GameEngineWriteFile.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineMath" Collapsed="true">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAQAAAABAAAAAAAgCAgAACABAA=</HashCode>
+      <FileName>GameEngineMath.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="float4" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gACAAAACAIACAgICEQEFAQFAAAtCQMAskSTgQAAAATA=</HashCode>
+      <FileName>GameEngineMath.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="float4x4" Collapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAARAAAAAAABAgAEIAIoAAAAAECAgAIEAggAgAEAA=</HashCode>
+      <FileName>GameEngineMath.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineRandom" Collapsed="true">
+    <Position X="11.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAQAAAAAAAAAAAAAIAAAAAAAgACCAgAAAAAAA=</HashCode>
+      <FileName>GameEngineRandom.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineTime" Collapsed="true">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAABQAAAQJQAAAAAAhAAEAAAAAgECAQAAI=</HashCode>
+      <FileName>GameEngineTime.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CollisionData" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameEngineTransform.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineTransform">
+    <Position X="0.5" Y="5.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>EQZCBARSUGEQgoAkIAAQQkAgIQwZQgKwBEAgYgIwkEg=</HashCode>
+      <FileName>GameEngineTransform.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineDebugObject" Collapsed="true">
+    <Position X="2" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAIAAAJAAAAgAIAAAgAAAAAAA=</HashCode>
+      <FileName>GameEngineDebugObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineNameObject" Collapsed="true">
+    <Position X="9.25" Y="8.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>gAABAAAEAAQAAAAAAQAAAAAAAABAAAAAAAAgQAAAAAA=</HashCode>
+      <FileName>GameEngineNameObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineUpdateObject" Collapsed="true">
+    <Position X="3.75" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>UAeAEYABACgFAIAEAEAgQAgAEBAQADAgAkAgCAQAAIA=</HashCode>
+      <FileName>GameEngineUpdateObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineInput" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CQQAAIAQAgAABBAAAAFQAAAAAChAAAAAAAkgEAAAAAA=</HashCode>
+      <FileName>GameEngineInput.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineWindow" Collapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAQIABAAAAAkAAgAYAQAAAAghIAAAAIAAgFAQAAAA=</HashCode>
+      <FileName>GameEngineWindow.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineString" Collapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASwAAAAABAAAAAEAAAAAAAAAAAAAEIAAAAgAgAAAAA=</HashCode>
+      <FileName>GameEngineString.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoundSystemCreater" Collapsed="true">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameEngineSound.cpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineSound" Collapsed="true">
+    <Position X="9.25" Y="10.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAgAAAAAIAAAgSAAABAAAAAAAAABAAgAAAAIAI=</HashCode>
+      <FileName>GameEngineSound.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineSoundPlayer" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAJAIgCAAAEAA=</HashCode>
+      <FileName>GameEngineSound.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="GameEngineRect" Collapsed="true">
+    <Position X="7.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAABAAAIAAAIAQIAAAAIAICAAAAgABAAAAAAQAA=</HashCode>
+      <FileName>GameEngineMath.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="OpenMode" Collapsed="true">
+    <Position X="9.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>GameEngineFile.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CollisionType" Collapsed="true">
+    <Position X="7.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>GameEngineTransform.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

@@ -1,8 +1,8 @@
 #pragma once
 #include "GameEngineMath.h"
 #include <DirectXCollision.h>
-#include "GameEngineDebugObject.h"
-#include "GameEngineUpdateObject.h"
+#include <GameEngineBase/GameEngineDebugObject.h>
+#include <GameEngineBase/GameEngineUpdateObject.h>
 #include <list>
 
 enum CollisionType
@@ -51,20 +51,12 @@ public:
 	{
 		CalculateWorldScale(_Value);
 		CalculateWorld();
-
-		for (GameEngineTransform* Child : Childs)
-		{
-			Child->CalculateWorldScale(Child->LocalScale);
-			Child->CalculateWorldPosition(Child->LocalPosition);
-		}
-
 	}
 
 	inline void SetLocalRotation(const float4& _Value)
 	{
 		CalculateWorldRotation(_Value);
 		CalculateWorld();
-
 	}
 
 	inline void SetLocalPosition(const float4& _Value)

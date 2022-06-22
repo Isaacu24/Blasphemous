@@ -72,6 +72,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GameEngineTransformBase.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameEngineTransformComponent.h">
       <SubType>
       </SubType>
@@ -143,6 +147,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameEngineTransformBase.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameEngineTransformComponent.cpp">
       <SubType>
       </SubType>
@@ -165,7 +173,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{056025fa-ee6b-4d5a-a2f0-ca4fc17c0c6e}</ProjectGuid>
+    <ProjectGuid>{F6967BE0-E1F7-46F2-9879-CB0ACF348971}</ProjectGuid>
     <RootNamespace>GameEngineCore</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
