@@ -38,7 +38,6 @@ void GameEngineRenderer::Render(float _DeltaTime)
 	CopyBuffer.resize(Index->Indexs.size());
 
 
-
 	for (size_t i = 0; i < Index->Indexs.size(); i++)
 	{
 		int TriIndex = Index->Indexs[i];

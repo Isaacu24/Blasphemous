@@ -9,6 +9,7 @@
 // Resources Header
 #include "GameEngineVertexBuffer.h"
 #include "GameEngineIndexBuffer.h"
+#include "GameEngineTexture.h"
 
 
 void GameEngineCore::EngineResourcesInitialize()
@@ -131,6 +132,7 @@ void GameEngineCore::EngineResourcesDestroy()
 {
 	GameEngineVertexBuffer::ResourcesDestroy();
 	GameEngineIndexBuffer::ResourcesDestroy();
+	GameEngineTexture::ResourcesDestroy();
 
 	GameEngineDevice::Destroy();
 }

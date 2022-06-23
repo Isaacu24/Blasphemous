@@ -115,7 +115,7 @@ public:
 
 	inline void SetWorldMove(const float4& _Value)
 	{
-		SetLocalPosition(WorldPosition + _Value);
+		SetWorldPosition(WorldPosition + _Value);
 	}
 
 	inline float4 GetLocalScale() const
