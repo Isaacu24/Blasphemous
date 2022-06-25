@@ -19,6 +19,6 @@ protected:
 	void End();
 
 private:
-
+	 
 };
 
