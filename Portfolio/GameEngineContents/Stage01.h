@@ -19,7 +19,7 @@ protected:
 	void End() override;
 
 private:
-	class BossMonster* BossMonster_;
-	std::vector<class Monster*> MonsterList_;
+	class BossMonsterBase* BossMonster_;
+	std::vector<class MonsterBase*> MonsterList_;
 };
 

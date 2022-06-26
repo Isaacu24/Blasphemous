@@ -23,7 +23,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="BossMonster.h">
+    <ClInclude Include="BossMonsterBase.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -39,7 +39,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Monster.h">
+    <ClInclude Include="MonsterBase.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -48,6 +48,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Pilgrimage.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Pontiff.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Pope.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -73,7 +81,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="BossMonster.cpp">
+    <ClCompile Include="BossMonsterBase.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -89,7 +97,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Monster.cpp">
+    <ClCompile Include="MonsterBase.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -98,6 +106,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Pilgrimage.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Pontiff.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Pope.cpp">
       <SubType>
       </SubType>
     </ClCompile>
