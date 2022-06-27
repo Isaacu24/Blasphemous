@@ -19,7 +19,7 @@ void Blasphemous::Start()
 	CreateLevel<Titile>("Title"); 
 	CreateLevel<MainMenu>("MainMenu");
 	CreateLevel<Pilgrimage>("Pilgrimage");
-	ChangeLevel("Title");
+	ChangeLevel("Pilgrimage");
 }
 
 void Blasphemous::Update(float _DeltaTime)

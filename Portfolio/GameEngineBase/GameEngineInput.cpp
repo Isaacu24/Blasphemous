@@ -3,6 +3,8 @@
 #include "GameEngineDebug.h"
 #include "GameEngineString.h"
 
+#pragma comment(lib, "xinput.lib")
+
 //////////////////////////////////////////////////////////////////
 
 void GameEngineInput::GameEngineKey::Update(float _DeltaTime)
@@ -120,6 +122,45 @@ void GameEngineInput::Update(float _DeltaTime)
 		GameEngineKey& CurrentKey = KeyUpdateStart->second;
 
 		CurrentKey.Update(_DeltaTime);
+	}
+
+	DWORD dwResult;
+	for (DWORD i = 0; i < XUSER_MAX_COUNT; i++)
+	{
+		XINPUT_STATE state;
+		ZeroMemory(&state, sizeof(XINPUT_STATE)); //컨트롤러 상태 초기화
+		dwResult = XInputGetState(i, &state); //컨트롤러 상태 얻어오기
+
+		if (dwResult == ERROR_SUCCESS)
+		{
+			if (state.Gamepad.wButtons & XINPUT_GAMEPAD_X) 
+			{
+				int a = 0;
+			}
+
+			if (state.Gamepad.wButtons & XINPUT_GAMEPAD_A)
+			{
+				int a = 0;
+			}
+
+			if (state.Gamepad.wButtons & XINPUT_GAMEPAD_Y)
+			{
+				int a = 0;
+			}
+
+			if (state.Gamepad.wButtons & XINPUT_GAMEPAD_B)
+			{
+				int a = 0;
+			}
+
+			Sleep(30); //Cpu 점유율 100% 방지
+			dwResult = XInputGetState(0, &state); //다음 상태 얻어오기
+		}
+
+		else
+		{
+			// Controller is not connected
+		}
 	}
 }
 

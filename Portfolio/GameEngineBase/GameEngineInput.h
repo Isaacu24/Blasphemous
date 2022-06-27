@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include <map>
 #include <string>
+#include <Xinput.h>
 
 class GameEngineInput
 {
@@ -81,6 +82,8 @@ public:
 	{
 		return CurWheelValue;
 	}
+
+	void ControllerCheck();
 
 protected:
 	

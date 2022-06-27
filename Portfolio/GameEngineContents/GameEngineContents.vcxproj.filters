@@ -11,9 +11,6 @@
     <ClInclude Include="PreCompile.h">
       <Filter>PreCompile</Filter>
     </ClInclude>
-    <ClInclude Include="Penitent.h">
-      <Filter>Actor</Filter>
-    </ClInclude>
     <ClInclude Include="ElderBrother.h">
       <Filter>Actor\BossMonster</Filter>
     </ClInclude>
@@ -26,10 +23,7 @@
     <ClInclude Include="Stage01.h">
       <Filter>Actor\Stage</Filter>
     </ClInclude>
-    <ClInclude Include="Inventory.h">
-      <Filter>Actor\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="BossMonsterBase.h">
+    <ClInclude Include="BossMonster.h">
       <Filter>Actor\MonsterBase</Filter>
     </ClInclude>
     <ClInclude Include="MonsterBase.h">
@@ -40,6 +34,15 @@
     </ClInclude>
     <ClInclude Include="Pontiff.h">
       <Filter>Actor\BossMonster</Filter>
+    </ClInclude>
+    <ClInclude Include="Penitent.h">
+      <Filter>Actor\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalMonster.h">
+      <Filter>Actor\MonsterBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>Actor\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -53,9 +56,6 @@
     <ClCompile Include="PreCompile.cpp">
       <Filter>PreCompile</Filter>
     </ClCompile>
-    <ClCompile Include="Penitent.cpp">
-      <Filter>Actor</Filter>
-    </ClCompile>
     <ClCompile Include="ElderBrother.cpp">
       <Filter>Actor\BossMonster</Filter>
     </ClCompile>
@@ -68,10 +68,7 @@
     <ClCompile Include="Stage01.cpp">
       <Filter>Actor\Stage</Filter>
     </ClCompile>
-    <ClCompile Include="Inventory.cpp">
-      <Filter>Actor\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="BossMonsterBase.cpp">
+    <ClCompile Include="BossMonster.cpp">
       <Filter>Actor\MonsterBase</Filter>
     </ClCompile>
     <ClCompile Include="MonsterBase.cpp">
@@ -82,6 +79,15 @@
     </ClCompile>
     <ClCompile Include="Pontiff.cpp">
       <Filter>Actor\BossMonster</Filter>
+    </ClCompile>
+    <ClCompile Include="Penitent.cpp">
+      <Filter>Actor\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalMonster.cpp">
+      <Filter>Actor\MonsterBase</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>Actor\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +123,9 @@
     </Filter>
     <Filter Include="Actor\Monster">
       <UniqueIdentifier>{46ee28c6-fdf0-48d5-8bf4-9c4e0d879fed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Player">
+      <UniqueIdentifier>{de8841d7-2ef7-407f-8ef8-9469bc98f610}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

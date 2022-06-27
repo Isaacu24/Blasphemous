@@ -13,6 +13,7 @@ Stage01::~Stage01()
 void Stage01::Start()
 {
 	GetLevel()->CreateActor<TenPiedad>(0);
+
 }
 
 void Stage01::Update(float _DeltaTime)

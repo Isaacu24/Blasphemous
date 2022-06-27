@@ -1,8 +1,8 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
-#include "BossMonsterBase.h"
+#include "BossMonster.h"
 
-class TenPiedad : public GameEngineActor, public BossMonsterBase
+class TenPiedad : public GameEngineActor, public BossMonster
 {
 public:
 	TenPiedad();

@@ -30,6 +30,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngineContents", "GameE
 		{056025FA-EE6B-4D5A-A2F0-CA4FC17C0C6E} = {056025FA-EE6B-4D5A-A2F0-CA4FC17C0C6E}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "솔루션 항목", "솔루션 항목", "{BCB7BB51-F35D-4C71-8968-0E590C113BDE}"
+	ProjectSection(SolutionItems) = preProject
+		GameEngineContents\roomtexture.dds = GameEngineContents\roomtexture.dds
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

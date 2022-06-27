@@ -23,7 +23,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="BossMonsterBase.h">
+    <ClInclude Include="BossMonster.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -40,6 +40,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="MonsterBase.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="NormalMonster.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -81,7 +85,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="BossMonsterBase.cpp">
+    <ClCompile Include="BossMonster.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -98,6 +102,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MonsterBase.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="NormalMonster.cpp">
       <SubType>
       </SubType>
     </ClCompile>

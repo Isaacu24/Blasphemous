@@ -1,9 +1,9 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
-#include "BossMonsterBase.h"
+#include "BossMonster.h"
 
 //첫 번째 교황
-class Pope : public GameEngineActor, public BossMonsterBase
+class Pope : public GameEngineActor, public BossMonster
 {
 public:
 	Pope();

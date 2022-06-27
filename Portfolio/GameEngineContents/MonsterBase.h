@@ -1,16 +1,6 @@
 #pragma once
 
-enum class MonsterFSM
-{
-	Idle, //이동 상태
-	Move, //플레이어 추적 상태
-	//공격 준비 상태?
-	Attack, //플레이어 공격 상태
-	Hit, //피격 상태
-	Death //죽음 상태
-};
-
-//일반 몬스터의 기본적인 정보를 가진 클래스
+//몬스터의 기본적인 클래스
 class MonsterBase
 {
 public:
@@ -37,11 +27,14 @@ public:
 		Money_ = _Value;
 	}
 
+	inline int GetMoney()
+	{
+		return Money_;
+	}
+
 protected:
 
 private:
-	MonsterFSM CurrentState_;
-
 	int HP_;
 	int Speed_;
 
