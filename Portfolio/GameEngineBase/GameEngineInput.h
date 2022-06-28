@@ -7,7 +7,6 @@
 class GameEngineInput
 {
 private:
-
 	class GameEngineKey
 	{
 		friend GameEngineInput;
@@ -18,7 +17,7 @@ private:
 		bool Free_; // 안누르고 있을때.
 
 		float Time_;
-		int Key_; // 이키가 눌렸다면,, 
+		int Key_; // 이 키가 눌렸다면,, 
 
 		bool KeyCheck()
 		{
@@ -46,6 +45,32 @@ private:
 		//}
 	};
 
+private:
+	class GameEngineButton
+	{
+		friend GameEngineInput;
+	
+		bool Down_;
+		bool Press_;
+		bool Up_;
+		bool Free_;
+
+		float Time_;
+		int Button_;
+
+		bool ButtonCheck(XINPUT_STATE _State);
+		void Update(float _DeltaTime);
+		void Reset()
+		{
+			Down_ = false;
+			Press_ = false;
+			Up_ = false;
+			Free_ = true;
+		}
+
+
+	};
+
 	friend class GameEngineWindow;
 
 private:
@@ -70,6 +95,7 @@ public:
 	void Reset();
 	void Update(float _DeltaTime = 0.0f);
 	void CreateKey(const std::string& _Name, int _Key);
+	void CreateButton(const std::string& _Name, int _Button);
 
 	float GetTime(const std::string& _Name);
 	bool IsDown(const std::string& _Name);
@@ -78,27 +104,105 @@ public:
 	bool IsFree(const std::string& _Name);
 	bool IsKey(const std::string& _Name);
 
+	bool IsDownButton(const std::string& _Name);
+	bool IsUpButton(const std::string& _Name);
+	bool IsPressButton(const std::string& _Name);
+	bool IsFreeButton(const std::string& _Name);
+	bool IsButton(const std::string& _Name);
+
+	inline void VibrationOn(float _Time = 1.0f)
+	{
+		IsVibration_ = true;
+		VibrationTime_ = 0.f;
+		LitmitVibrationTime_ = _Time;
+	}
+
+	void Vibration();
+	void ThumbUpdate();
+
 	inline int GetMouseWheel()
 	{
 		return CurWheelValue;
 	}
 
-	void ControllerCheck();
+	//왼쪽 아날로그 스틱 X축
+	inline SHORT GetThumbLX()
+	{
+		return ThumbLX_;
+	}
+
+	// 왼쪽 아날로그 스틱 Y축
+	inline SHORT GetThumbLY()
+	{
+		return ThumbLY_;
+	}
+
+	// 오른쪽 아날로그 스틱 X축
+	inline SHORT GetThumbRX()
+	{
+		return ThumbRX_;
+	}
+
+	// 오른쪽 아날로그 스틱 Y축
+	inline SHORT GetThumbRY()
+	{
+		return ThumbRY_;
+	}
+
+	inline BYTE GetLeftTrigger()
+	{
+		return LeftTrigger_;
+	}
+
+	inline BYTE GetRightTrigger()
+	{
+		return RightTrigger_;
+	}
+
+	inline float GetMagnitudeL()
+	{
+		return sqrt(ThumbLX_ * ThumbLX_ + ThumbLY_ * ThumbLY_);
+	}
+
+	inline float GetMagnitudeR()
+	{
+		return sqrt(ThumbRX_ * ThumbRX_ + ThumbRY_ * ThumbRY_);
+	}
+
+
+	inline XINPUT_STATE GetInputState()
+	{
+		return InputState_;
+	}
 
 protected:
 	
 
 private:
+	XINPUT_STATE InputState_;
+
 	int WheelValue;
 	int CurWheelValue;
 
+	bool IsVibration_;
+	float VibrationTime_;
+	float LitmitVibrationTime_;
+
+	SHORT ThumbLX_;
+	SHORT ThumbLY_;
+	SHORT ThumbRX_;
+	SHORT ThumbRY_;
+
+	BYTE LeftTrigger_;
+	BYTE RightTrigger_;
+
 	std::map<std::string, GameEngineKey> AllInputKey_;
+	std::map<std::string, GameEngineButton> AllInputButton_;
 
 	// constrcuter destructer
 	GameEngineInput();
 	~GameEngineInput();
 
-	// delete Function
 	GameEngineInput(const GameEngineInput& _Other) = delete;
 	GameEngineInput(GameEngineInput&& _Other) noexcept = delete;
 	GameEngineInput& operator=(const GameEngineInput& _Other) = delete;
