@@ -101,8 +101,8 @@ GameEngineInput::GameEngineInput()
 	, LeftTrigger_(0)
 	, RightTrigger_(0)
 	, AllInputButton_{}
-{ 
-}	  
+{
+}
 
 GameEngineInput::~GameEngineInput()
 {
@@ -186,7 +186,7 @@ void GameEngineInput::Vibration()
 	if (true == IsVibration_)
 	{
 		VibrationTime_ += GameEngineTime::GetDeltaTime();
-		
+
 		XINPUT_VIBRATION Vibration;
 		ZeroMemory(&Vibration, sizeof(XINPUT_VIBRATION));
 
@@ -238,7 +238,7 @@ void GameEngineInput::CreateButton(const std::string& _Name, int _Button)
 	AllInputButton_[UpperButton].Reset();
 }
 
-void GameEngineInput::Reset() 
+void GameEngineInput::Reset()
 {
 	CurWheelValue = 0;
 	CurWheelValue = WheelValue;
@@ -295,7 +295,7 @@ void GameEngineInput::Update(float _DeltaTime)
 	ThumbUpdate();
 }
 
-float GameEngineInput::GetTime(const std::string& _Name) 
+float GameEngineInput::GetTime(const std::string& _Name)
 {
 	std::string UpperKey = GameEngineString::ToUpperReturn(_Name);
 
@@ -370,56 +370,53 @@ bool GameEngineInput::GameEngineButton::ButtonCheck(const XINPUT_STATE _State)
 void GameEngineInput::GameEngineButton::Update(float _DeltaTime)
 {
 	DWORD DwResult;
-	for (DWORD i = 0; i < XUSER_MAX_COUNT; i++)
+	XINPUT_STATE State_;
+	ZeroMemory(&State_, sizeof(XINPUT_STATE)); //컨트롤러 상태 초기화
+	DwResult = XInputGetState(0, &State_); //컨트롤러 상태 얻어오기
+
+	if (DwResult == ERROR_SUCCESS)
 	{
-		XINPUT_STATE State_;
-		ZeroMemory(&State_, sizeof(XINPUT_STATE)); //컨트롤러 상태 초기화
-		DwResult = XInputGetState(i, &State_); //컨트롤러 상태 얻어오기
-
-		if (DwResult == ERROR_SUCCESS)
+		if (true == ButtonCheck(State_))
 		{
-			if (true == ButtonCheck(State_))
+			if (true == Free_)
 			{
-				if (true == Free_)
-				{
-					Down_ = true;
-					Press_ = true;
-					Up_ = false;
-					Free_ = false;
-					Time_ = 0.0f;
-					Time_ += _DeltaTime;
-				}
-				else if (true == Press_)
-				{
-					Down_ = false;
-					Press_ = true;
-					Up_ = false;
-					Free_ = false;
-					Time_ += _DeltaTime;
-				}
+				Down_ = true;
+				Press_ = true;
+				Up_ = false;
+				Free_ = false;
+				Time_ = 0.0f;
+				Time_ += _DeltaTime;
 			}
-			else
+			else if (true == Press_)
 			{
-				if (true == Press_)
-				{
-					Down_ = false;
-					Press_ = false;
-					Up_ = true;
-					Free_ = false;
-					Time_ = 0.0f;
-				}
-				else if (true == Up_)
-				{
-					Down_ = false;
-					Press_ = false;
-					Up_ = false;
-					Free_ = true;
-				}
+				Down_ = false;
+				Press_ = true;
+				Up_ = false;
+				Free_ = false;
+				Time_ += _DeltaTime;
 			}
-
-			//Sleep(30); //Cpu 점유율 100% 방지
-			DwResult = XInputGetState(0, &State_); //다음 상태 얻어오기
 		}
+		else
+		{
+			if (true == Press_)
+			{
+				Down_ = false;
+				Press_ = false;
+				Up_ = true;
+				Free_ = false;
+				Time_ = 0.0f;
+			}
+			else if (true == Up_)
+			{
+				Down_ = false;
+				Press_ = false;
+				Up_ = false;
+				Free_ = true;
+			}
+		}
+
+		//Sleep(30); //Cpu 점유율 100% 방지
+		DwResult = XInputGetState(0, &State_); //다음 상태 얻어오기
 	}
 }
 
@@ -427,25 +424,22 @@ void GameEngineInput::GameEngineButton::Update(float _DeltaTime)
 void GameEngineInput::ThumbUpdate()
 {
 	DWORD DwResult;
-	for (DWORD i = 0; i < XUSER_MAX_COUNT; i++)
+	ZeroMemory(&InputState_, sizeof(XINPUT_STATE)); //컨트롤러 상태 초기화
+	DwResult = XInputGetState(0, &InputState_); //컨트롤러 상태 얻어오기
+
+	InputState_.Gamepad.bLeftTrigger;
+
+	if (DwResult == ERROR_SUCCESS)
 	{
-		ZeroMemory(&InputState_, sizeof(XINPUT_STATE)); //컨트롤러 상태 초기화
-		DwResult = XInputGetState(i, &InputState_); //컨트롤러 상태 얻어오기
+		ThumbLX_ = InputState_.Gamepad.sThumbLX;
+		ThumbLY_ = InputState_.Gamepad.sThumbLY;
+		ThumbRX_ = InputState_.Gamepad.sThumbRX;
+		ThumbRY_ = InputState_.Gamepad.sThumbRY;
 
-		InputState_.Gamepad.bLeftTrigger;
+		LeftTrigger_ = InputState_.Gamepad.bLeftTrigger;
+		RightTrigger_ = InputState_.Gamepad.bRightTrigger;
 
-		if (DwResult == ERROR_SUCCESS)
-		{
-			ThumbLX_ = InputState_.Gamepad.sThumbLX;
-			ThumbLY_ = InputState_.Gamepad.sThumbLY;
-			ThumbRX_ = InputState_.Gamepad.sThumbRX;
-			ThumbRY_ = InputState_.Gamepad.sThumbRY;
-
-			LeftTrigger_ = InputState_.Gamepad.bLeftTrigger;
-			RightTrigger_ = InputState_.Gamepad.bRightTrigger;
-
-			DwResult = XInputGetState(0, &InputState_);
-		}
+		DwResult = XInputGetState(0, &InputState_);
 	}
 }
 

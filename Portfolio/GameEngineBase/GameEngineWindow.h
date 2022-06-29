@@ -46,11 +46,6 @@ public:
 		return Inst_->hWnd_;
 	}
 
-	static inline HINSTANCE GetHINSTANCE()
-	{
-		return Inst_->hInst_;
-	}
-
 	static inline float4 GetScale()
 	{
 		return Inst_->Scale_;

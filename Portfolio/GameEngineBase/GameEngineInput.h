@@ -49,7 +49,7 @@ private:
 	class GameEngineButton
 	{
 		friend GameEngineInput;
-	
+
 		bool Down_;
 		bool Press_;
 		bool Up_;
@@ -176,7 +176,7 @@ public:
 	}
 
 protected:
-	
+
 
 private:
 	XINPUT_STATE InputState_;
