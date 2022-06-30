@@ -30,10 +30,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngineContents", "GameE
 		{056025FA-EE6B-4D5A-A2F0-CA4FC17C0C6E} = {056025FA-EE6B-4D5A-A2F0-CA4FC17C0C6E}
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "솔루션 항목", "솔루션 항목", "{BCB7BB51-F35D-4C71-8968-0E590C113BDE}"
-	ProjectSection(SolutionItems) = preProject
-		GameEngineContents\roomtexture.dds = GameEngineContents\roomtexture.dds
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Shader", "Shader\Shader\Shader.vcxproj", "{28788D48-624B-457B-B681-46283ED89D33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +72,14 @@ Global
 		{2D1F0D70-6255-47AF-BDDB-8765B46F82B1}.Release|x64.Build.0 = Release|x64
 		{2D1F0D70-6255-47AF-BDDB-8765B46F82B1}.Release|x86.ActiveCfg = Release|Win32
 		{2D1F0D70-6255-47AF-BDDB-8765B46F82B1}.Release|x86.Build.0 = Release|Win32
+		{28788D48-624B-457B-B681-46283ED89D33}.Debug|x64.ActiveCfg = Debug|x64
+		{28788D48-624B-457B-B681-46283ED89D33}.Debug|x64.Build.0 = Debug|x64
+		{28788D48-624B-457B-B681-46283ED89D33}.Debug|x86.ActiveCfg = Debug|Win32
+		{28788D48-624B-457B-B681-46283ED89D33}.Debug|x86.Build.0 = Debug|Win32
+		{28788D48-624B-457B-B681-46283ED89D33}.Release|x64.ActiveCfg = Release|x64
+		{28788D48-624B-457B-B681-46283ED89D33}.Release|x64.Build.0 = Release|x64
+		{28788D48-624B-457B-B681-46283ED89D33}.Release|x86.ActiveCfg = Release|Win32
+		{28788D48-624B-457B-B681-46283ED89D33}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +89,7 @@ Global
 		{D11BC525-EB7D-4DC3-ACDF-36535AAB4CDF} = {1CC1E989-ECBA-48A5-B361-E1FEA0E428D7}
 		{056025FA-EE6B-4D5A-A2F0-CA4FC17C0C6E} = {2B1ECD09-515E-4B46-99EF-AE3F5C9F9319}
 		{2D1F0D70-6255-47AF-BDDB-8765B46F82B1} = {F3B37CD3-71F8-4F58-987A-725DBFF044E3}
+		{28788D48-624B-457B-B681-46283ED89D33} = {1CC1E989-ECBA-48A5-B361-E1FEA0E428D7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9AC5A571-0BCC-4704-B8E6-50C90C0F6636}
