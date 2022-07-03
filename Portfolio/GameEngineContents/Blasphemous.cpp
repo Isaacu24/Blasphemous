@@ -1,5 +1,5 @@
 #include "Blasphemous.h"
-#include "Titile.h"
+#include "Title.h"
 #include "MainMenu.h"
 #include "Pilgrimage.h"
 
@@ -16,7 +16,7 @@ Blasphemous::~Blasphemous()
 
 void Blasphemous::Start()
 {
-	CreateLevel<Titile>("Title"); 
+	CreateLevel<Title>("Title"); 
 	CreateLevel<MainMenu>("MainMenu");
 	CreateLevel<Pilgrimage>("Pilgrimage");
 	ChangeLevel("Pilgrimage");

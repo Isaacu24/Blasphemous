@@ -1,24 +1,24 @@
-#include "Titile.h"
+#include "Title.h"
 #include "PreCompile.h"
 #include <GameEngineCore/GameEngineCameraActor.h>
 
-Titile::Titile()
+Title::Title()
 {
 }
 
-Titile::~Titile()
+Title::~Title()
 {
 }
 
-void Titile::Start()
+void Title::Start()
 {
 	CreateActor<GameEngineCameraActor>(0);
 }
 
-void Titile::Update(float _DeltaTime)
+void Title::Update(float _DeltaTime)
 {
 }
 
-void Titile::End()
+void Title::End()
 {
 }

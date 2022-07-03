@@ -75,7 +75,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Titile.h">
+    <ClInclude Include="Title.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -137,7 +137,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Titile.cpp">
+    <ClCompile Include="Title.cpp">
       <SubType>
       </SubType>
     </ClCompile>

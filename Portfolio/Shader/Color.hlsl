@@ -34,7 +34,7 @@ Output Color_VS(Input _Input)
     Output NewOutPut = (Output)0;
     NewOutPut.Pos = _Input.Pos;
     NewOutPut.Color = _Input.Color;
-    
+
     return NewOutPut;
 }
 

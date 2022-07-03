@@ -6,6 +6,8 @@ enum class MonsterFSM
 	Idle, //이동 혹은 정지 상태
 	Follow, //플레이어 추적 상태
 	Attack, //플레이어 공격 상태
+	Parring,
+	Execution,
 	Hit, //피격 상태
 	Death //죽음 상태
 };
