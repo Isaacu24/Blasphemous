@@ -333,8 +333,6 @@ bool GameEngineInput::IsUp(const std::string& _Name)
 	return AllInputKey_[UpperKey].Up_;
 }
 
-a = 10;
-
 bool GameEngineInput::IsPress(const std::string& _Name)
 {
 	std::string UpperKey = GameEngineString::ToUpperReturn(_Name);
