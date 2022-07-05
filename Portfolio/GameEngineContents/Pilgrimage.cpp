@@ -5,6 +5,7 @@
 #include "Stage01.h"
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineInput.h>
+#include <GameEngineCore/GameEngineDefaultRenderer.h>
 
 Pilgrimage::Pilgrimage() 
 {
@@ -18,7 +19,10 @@ void Pilgrimage::Start()
 {
 	//스테이지 초기화(카메라
 	CreateActor<GameEngineCameraActor>();
-	CreateActor<Penitent>(1);
+	Penitent* Player = CreateActor<Penitent>(1);
+
+	GameEngineDefaultRenderer* PlayerRenderer = Player->CreateComponent<GameEngineDefaultRenderer>();
+	PlayerRenderer->SetPipeLine("Color");
 
 	GameEngineInput::GetInst()->CreateButton("X", GAMEPAD_X);
 }
