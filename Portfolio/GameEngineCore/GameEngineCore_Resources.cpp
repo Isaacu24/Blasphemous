@@ -5,6 +5,7 @@
 #include <GameEngineBase/GameEngineTime.h>
 #include "GameEngineLevel.h"
 #include "GameEngineVertexs.h"
+#include "GameEngineConstantBuffer.h"
 #include <math.h>
 
 
@@ -55,10 +56,10 @@ void EngineMesh()
 
 	{
 		std::vector<GameEngineVertex> Vertex;
-		Vertex.push_back({ float4(-0.5f, 0.5f), float4()});
-		Vertex.push_back({ float4(0.5f, 0.5f), float4(1.0f, 0.0f, 0.0f, 1.0f) });
-		Vertex.push_back({ float4(0.5f, -0.5f), float4() });
-		Vertex.push_back({ float4(-0.5f, -0.5f), float4() });
+		Vertex.push_back({ float4(-0.5f, 0.5f), float4(1.0f, 0.0f, 0.0f, 1.0f) });
+		Vertex.push_back({ float4(0.5f, 0.5f), float4(0.0f, 1.0f, 0.0f, 1.0f) });
+		Vertex.push_back({ float4(0.5f, -0.5f), float4(0.0f, 0.0f, 1.0f, 1.0f) });
+		Vertex.push_back({ float4(-0.5f, -0.5f), float4(0.25f, 0.25f, 0.25f, 1.0f) });
 		GameEngineVertexBuffer::Create("Rect", Vertex);
 	}
 
@@ -218,6 +219,7 @@ void GameEngineCore::EngineResourcesDestroy()
 	GameEngineRenderTarget::ResourcesDestroy();
 	GameEngineTexture::ResourcesDestroy();
 	GameEngineRasterizer::ResourcesDestroy();
+	GameEngineConstantBuffer::ResourcesDestroy();
 
 	GameEngineDevice::Destroy();
 }

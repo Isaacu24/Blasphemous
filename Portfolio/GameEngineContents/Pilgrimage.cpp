@@ -21,8 +21,8 @@ void Pilgrimage::Start()
 	CreateActor<GameEngineCameraActor>();
 	Penitent* Player = CreateActor<Penitent>(1);
 
-	GameEngineDefaultRenderer* PlayerRenderer = Player->CreateComponent<GameEngineDefaultRenderer>();
-	PlayerRenderer->SetPipeLine("Color");
+	//GameEngineDefaultRenderer* PlayerRenderer = Player->CreateComponent<GameEngineDefaultRenderer>();
+	//PlayerRenderer->SetPipeLine("Color");
 
 	GameEngineInput::GetInst()->CreateButton("X", GAMEPAD_X);
 }

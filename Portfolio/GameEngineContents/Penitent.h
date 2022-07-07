@@ -6,38 +6,14 @@ enum class PlayerFSM
 	Idle, //유저가 조작하지 않는 상태
 	Move, //유저가 움직이는 상태(더 세분화될 가능성이 높다(Jump, Climb...)
 	Attack, //유저가 무기를 휘두른 상태(더 세분화될 가능성이 높다(처형)
+	Parring,
 	Hit, //플레이어가 적 몬스터에게 맞은 상태
 	Death //플레이어가 죽은 상태
 };
 
-// 플레이어는 Static이 편하다
+class GameEngineDefaultRenderer;
 class Penitent : public GameEngineActor
 {
-public:
-	static Penitent* Player_;
-
-	friend class Flask;
-
-	class Flask 
-	{
-	public:
-		Flask()
-		: Value_(0) 
-		{
-
-		}
-		~Flask() 
-		{
-
-		}
-
-		void SetValue();	
-		void Recovery();
-
-	private:
-		int Value_;
-	};
-
 public:
 	Penitent();
 	~Penitent();
@@ -68,6 +44,9 @@ protected:
 	void End() override;
 
 private:
+
+	GameEngineDefaultRenderer* DefaultRenderer_;
+
 	PlayerFSM PrevState_;
 	PlayerFSM CurrentState_;
 
@@ -78,7 +57,7 @@ private:
 	int Money_; 
 
 	//플라스크
-	Flask Flasks_[2];
+	std::vector<bool> Flasks_;
 
 	//아이템 리스트
 };
