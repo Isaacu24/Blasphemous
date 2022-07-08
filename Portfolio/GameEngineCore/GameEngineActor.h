@@ -5,7 +5,6 @@
 #include "GameEngineTransformBase.h"
 
 
-// 설명 : 화면에 등장하는 모든것을 표현하기 위한 클래스
 class GameEngineComponent;
 class GameEngineTransformComponent;
 class GameEngineActor :
@@ -16,11 +15,9 @@ class GameEngineActor :
 	friend class GameEngineLevel;
 
 public:
-	// constrcuter destructer
 	GameEngineActor();
 	virtual ~GameEngineActor() = 0;
 
-	// delete Function
 	GameEngineActor(const GameEngineActor& _Other) = delete;
 	GameEngineActor(GameEngineActor&& _Other) noexcept = delete;
 	GameEngineActor& operator=(const GameEngineActor& _Other) = delete;

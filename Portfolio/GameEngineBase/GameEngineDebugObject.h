@@ -1,14 +1,11 @@
 #pragma once
 
-// Ό³Έν :
 class GameEngineDebugObject
 {
 public:
-	// constrcuter destructer
 	GameEngineDebugObject();
 	~GameEngineDebugObject();
 
-	// delete Function
 	GameEngineDebugObject(const GameEngineDebugObject& _Other) = delete;
 	GameEngineDebugObject(GameEngineDebugObject&& _Other) noexcept = delete;
 	GameEngineDebugObject& operator=(const GameEngineDebugObject& _Other) = delete;

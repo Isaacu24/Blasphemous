@@ -127,7 +127,7 @@
     <Filter Include="Actor\Player">
       <UniqueIdentifier>{de8841d7-2ef7-407f-8ef8-9469bc98f610}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Compnent">
+    <Filter Include="Component">
       <UniqueIdentifier>{51f521ab-75fe-402f-9a13-f3cbde072a4b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

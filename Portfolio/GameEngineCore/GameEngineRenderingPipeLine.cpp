@@ -151,6 +151,8 @@ void GameEngineRenderingPipeLine::SetOutputMergerBlend(const std::string& _Name)
 
 void GameEngineRenderingPipeLine::Rendering()
 {
+	//세팅 함수의 순서는 중요치 않음.
+
 	InputAssembler1VertexBufferSetting();
 
 	VertexShaderSetting();
@@ -166,17 +168,11 @@ void GameEngineRenderingPipeLine::Rendering()
 	OutputMergerDepthStencilSetting();
 
 	Draw();
-
 }
-
-// 실직적으로 세팅의 순서는 그다지 중요하지 않다.
 
 void GameEngineRenderingPipeLine::InputAssembler1VertexBufferSetting()
 {
-	// 그래픽리소스에 Setting이라는 함수가 존재한다면
-	// 그건 이제부터 그 설정으로 랜더링 파이프라인이 돌아가게 된다는 뜻이 됩니다.
 	InputLayOut->Setting();
-	// 버텍스 버퍼는 세팅할게 없다.
 	VertexBuffer->Setting();
 }
 
@@ -211,7 +207,6 @@ void GameEngineRenderingPipeLine::OutputMergerDepthStencilSetting()
 {
 
 }
-
 
 void GameEngineRenderingPipeLine::Draw()
 {

@@ -56,9 +56,6 @@ private:
 
 	int Money_; 
 
-	//플라스크
 	std::vector<bool> Flasks_;
-
-	//아이템 리스트
 };
 

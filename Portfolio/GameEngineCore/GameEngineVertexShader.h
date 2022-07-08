@@ -2,7 +2,6 @@
 #include "GameEngineShader.h"
 #include "GameEngineRes.h"
 
-// Ό³Έν :
 class GameEngineInputLayOut;
 class GameEngineVertexShader
 	: public GameEngineShader
@@ -14,11 +13,9 @@ class GameEngineVertexShader
 	friend GameEngineRes<GameEngineVertexShader>;
 
 private:
-	// constrcuter destructer
 	GameEngineVertexShader();
 	~GameEngineVertexShader();
 
-	// delete Function
 	GameEngineVertexShader(const GameEngineVertexShader& _Other) = delete;
 	GameEngineVertexShader(GameEngineVertexShader&& _Other) noexcept = delete;
 	GameEngineVertexShader& operator=(const GameEngineVertexShader& _Other) = delete;
@@ -37,6 +34,5 @@ protected:
 
 private:
 	ID3D11VertexShader* ShaderPtr;
-
 };
 

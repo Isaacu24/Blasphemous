@@ -33,16 +33,6 @@ private:
 			Up_ = false;
 			Free_ = true;
 		}
-
-		// 생성자 주석걸어두기
-		//GameEngineKey(int _Key) 
-		//	: Key_(_Key)
-		//	, Down_(false)
-		//	, Press_(false)
-		//	, Up_(false)
-		//	, Free_(true)
-		//{
-		//}
 	};
 
 private:

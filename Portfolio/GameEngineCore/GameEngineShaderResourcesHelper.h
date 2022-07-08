@@ -2,18 +2,16 @@
 #include "GameEngineRenderingPipeLine.h"
 #include "GameEngineShader.h"
 
-// 설명 :
+//셰이더의 상수버퍼 텍스쳐 등등 한번 감싼 인터페이스
 class GameEngineShader;
 class GameEngineShaderResourcesHelper
 {
 	friend GameEngineShader;
 
 public:
-	// constrcuter destructer
 	GameEngineShaderResourcesHelper();
 	~GameEngineShaderResourcesHelper();
 
-	// delete Function
 	GameEngineShaderResourcesHelper(const GameEngineShaderResourcesHelper& _Other) = delete;
 	GameEngineShaderResourcesHelper(GameEngineShaderResourcesHelper&& _Other) noexcept = delete;
 	GameEngineShaderResourcesHelper& operator=(const GameEngineShaderResourcesHelper& _Other) = delete;
@@ -21,7 +19,7 @@ public:
 
 	void ResourcesCheck(GameEngineRenderingPipeLine* _Line);
 
-	bool IsConstantBufferSetter(std::string _Name);
+	bool IsConstantBufferSetter(const std::string& _Name);
 
 protected:
 	void ShaderCheck(GameEngineShader* _Shader);

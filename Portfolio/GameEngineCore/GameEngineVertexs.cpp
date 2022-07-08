@@ -149,7 +149,7 @@ void GameEngineLayOutDesc::AddInputLayOut(
 	// unsigned int _AlignedByteOffset,
 	DXGI_FORMAT _Format,
 	unsigned int _Index,
-	D3D11_INPUT_CLASSIFICATION _inputClass,
+	D3D11_INPUT_CLASSIFICATION _InputClass,
 	unsigned int _InputSlot,
 	unsigned int _InstanceDataStepRate
 ) 
@@ -170,14 +170,14 @@ void GameEngineLayOutDesc::AddInputLayOut(
 
 	LayOutDesc.SemanticName = _SemanticName; // "POSITION" "COLOR" "TANGENT" "NORMAL"
 	LayOutDesc.SemanticIndex = Index; // "POSITION0" , "POSITION1" ,
-	LayOutDesc.Format = _Format; // DXGI_FORMAT_R32G32B32A32_FLOAT // 16바이트가 4바이트다 8바이트
+	LayOutDesc.Format = _Format; // DXGI_FORMAT_R32G32B32A32_FLOAT // 읽어들일 바이트 포맷
 	LayOutDesc.AlignedByteOffset = LayOutOffset;
-	LayOutDesc.InputSlotClass = _inputClass;
+	LayOutDesc.InputSlotClass = _InputClass;
 
 	// 인스턴스 버퍼용
 	LayOutDesc.InputSlot = _InputSlot;
 	LayOutDesc.InstanceDataStepRate = _InstanceDataStepRate; 
-	LayOutOffset += FormatToByteScale(LayOutDesc.Format); //바이트 크기만큼 더해줌
+	LayOutOffset += FormatToByteScale(LayOutDesc.Format); //바이트 크기만큼 더하기
 
 	InputLayOutDesc.push_back(LayOutDesc);
 }

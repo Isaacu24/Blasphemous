@@ -17,13 +17,11 @@ GameEngineVertexBuffer::~GameEngineVertexBuffer()
 	}
 }
 
-
 GameEngineVertexBuffer* GameEngineVertexBuffer::Create(
 	const std::string& _Name, 
 	const void* _Data, UINT _VertexSize,
 	UINT _VertexCount,
-	const GameEngineLayOutDesc& _LayOut
-)
+	const GameEngineLayOutDesc& _LayOut)
 {
 	GameEngineVertexBuffer* NewRes = CreateResName(_Name);
 	NewRes->LayOutDesc = &_LayOut;
@@ -55,9 +53,9 @@ void GameEngineVertexBuffer::BufferCreate(const void* _Data, UINT _VertexSize, U
 	// BufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_READ;
 	BufferDesc.CPUAccessFlags = 0;
 
-	// 추가 옵션인데 쓰지 않을겁니다.
+	// 추가 옵션(사용 안함)
 	BufferDesc.MiscFlags = 0;
-	// 버텍스 버퍼에서는 세팅해줄 필요도 없다.
+	// 버텍스 버퍼에서는 세팅해줄 필요 없음
 	BufferDesc.StructureByteStride = 0;
 
 	if (S_OK != GameEngineDevice::GetDevice()->CreateBuffer(&BufferDesc, &Data, &Buffer))
@@ -66,7 +64,6 @@ void GameEngineVertexBuffer::BufferCreate(const void* _Data, UINT _VertexSize, U
 	}
 }
 
-// 이 세팅은 1개의 매쉬를 그리는 세팅 세팅
 void GameEngineVertexBuffer::Setting()
 {
 	if (nullptr == Buffer)
@@ -74,21 +71,13 @@ void GameEngineVertexBuffer::Setting()
 		MsgBoxAssert("버텍스 버퍼에 문제가 있습니다.");
 	}
 
-	// 0, 1,
-
-	// [버텍스버퍼] 0번부터 쓰겠다. 32바이트
-	// [버텍스버퍼]                10
-	// [버텍스버퍼]                
-	// [버텍스버퍼]
-	// [버텍스버퍼]
-	// [버텍스버퍼]
-
-	//             
-	// [버텍스버퍼] [32][32][32][32]
-	//              128, 
-
-	// 나눠서 그릴수 있는 기능을 지원하지만
 	GameEngineDevice::GetContext()->IASetVertexBuffers(
-		0, // 버텍스 버퍼를 이중포인터로 세팅해줬을대의 사용시작 인덱스
+		0, // 버텍스 버퍼의 사용시작 인덱스
 		1, &Buffer, &VertexSize, &OffSet);
 }
+
+
+
+
+
+

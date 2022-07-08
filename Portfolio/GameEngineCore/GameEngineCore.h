@@ -56,10 +56,9 @@ private:
 	static void CoreUpdate(GameEngineCore* _UserCore); // 프로그램 업데이트
 	static void CoreEnd(GameEngineCore* _UserCore); // 프로그램 종료
 
-	// 헤더 추가하기 싫어서 초기화를 CPP에서 하기 위한 함수.
+	// 헤더 추가를 줄이기 위해 초기화를 CPP에서 하기 위한 함수
 	static void InitializeLevel(GameEngineLevel* _Level, const std::string _Name);
 
-	// delete Function
 	GameEngineCore(const GameEngineCore& _Other) = delete;
 	GameEngineCore(GameEngineCore&& _Other) noexcept = delete;
 	GameEngineCore& operator=(const GameEngineCore& _Other) = delete;

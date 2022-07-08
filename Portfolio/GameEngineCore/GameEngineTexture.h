@@ -1,7 +1,6 @@
 #pragma once
 #include <GameEngineBase/GameEngineMath.h>
 #include "GameEngineRes.h"
-
 #include "../GameEngineCore/ThirdPaty/inc/DirectXTex.h"
 
 #pragma comment(lib, "DirectXTex.lib")

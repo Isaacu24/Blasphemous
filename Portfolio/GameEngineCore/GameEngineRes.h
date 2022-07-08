@@ -8,7 +8,6 @@
 template<typename ResType>
 class GameEngineRes : public GameEngineNameObject
 {
-
 public:
 	GameEngineRes() {}
 	virtual ~GameEngineRes() {}

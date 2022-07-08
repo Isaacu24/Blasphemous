@@ -1,7 +1,7 @@
 #pragma once
 #include <GameEngineCore/GameEngineLevel.h>
 
-// 설명 :
+//플레이 레벨
 class Pilgrimage : public GameEngineLevel
 {
 public:

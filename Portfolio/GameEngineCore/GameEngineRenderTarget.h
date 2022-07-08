@@ -2,15 +2,13 @@
 #include "GameEngineTexture.h"
 #include <vector>
 
-// Ό³Έν :
 class GameEngineRenderTarget : public GameEngineRes <GameEngineRenderTarget>
 {
+
 public:
-	// constrcuter destructer
 	GameEngineRenderTarget();
 	~GameEngineRenderTarget();
 
-	// delete Function
 	GameEngineRenderTarget(const GameEngineRenderTarget& _Other) = delete;
 	GameEngineRenderTarget(GameEngineRenderTarget&& _Other) noexcept = delete;
 	GameEngineRenderTarget& operator=(const GameEngineRenderTarget& _Other) = delete;
@@ -28,10 +26,10 @@ protected:
 	std::vector<GameEngineTexture*> RenderTargets;
 	std::vector<ID3D11RenderTargetView*> RenderTargetViews;
 	std::vector<float4> ClearColors;
-	 
 
 	ID3D11DepthStencilView* DepthStencilView;
 
 private:
+
 };
 

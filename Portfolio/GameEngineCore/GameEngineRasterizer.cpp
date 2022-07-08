@@ -1,6 +1,8 @@
 #include "PreCompile.h"
 #include "GameEngineRasterizer.h"
 
+
+
 GameEngineRasterizer::GameEngineRasterizer() 
 	: Desc{}
 {
@@ -14,10 +16,8 @@ GameEngineRasterizer::~GameEngineRasterizer()
 	}
 }
 
-
 void GameEngineRasterizer::Setting() 
 {
-
 	if (nullptr == State)
 	{
 		MsgBoxAssert("레스터라이저가 nullptr 입니다. 세팅할수 없습니다.");
@@ -25,12 +25,10 @@ void GameEngineRasterizer::Setting()
 	}
 
 	GameEngineDevice::GetContext()->RSSetState(State);
-
 }
 
 GameEngineRasterizer* GameEngineRasterizer::Create(
-	const std::string& _Name, const D3D11_RASTERIZER_DESC& _Desc
-)
+	const std::string& _Name, const D3D11_RASTERIZER_DESC& _Desc)
 {
 	GameEngineRasterizer* NewRes = CreateResName(_Name);
 	NewRes->Create(_Desc);

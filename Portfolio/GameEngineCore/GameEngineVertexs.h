@@ -3,8 +3,6 @@
 
 class GameEngineLayOutDesc 
 {
-	// 일반적인 맴버변수를 가지면 안됩니다.
-
 	friend class GameEngineInputLayOut;
 
 public:
@@ -19,8 +17,7 @@ public:
 		unsigned int _Index = -1,
 		D3D11_INPUT_CLASSIFICATION _inputClass = D3D11_INPUT_PER_VERTEX_DATA,
 		unsigned int _InputSlot = 0,
-		unsigned int _InstanceDataStepRate = 0
-	);
+		unsigned int _InstanceDataStepRate = 0);
 
 public:
 	GameEngineLayOutDesc()

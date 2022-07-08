@@ -29,15 +29,13 @@ void Penitent::Start()
 void Penitent::Update(float _DeltaTime)
 {
 
-	//GameEngineConstantBufferSetter& Data = DefaultRenderer_->GetPipeLine()->GetVertexShader()->GetConstantBufferSetter("TransformData");
+	GameEngineConstantBufferSetter& Data = DefaultRenderer_->GetPipeLine()->GetVertexShader()->GetConstantBufferSetter("TransformData");
 
-	//const TransformData& DataRef = DefaultRenderer_->GetTransformData();
+	const TransformData& DataRef = DefaultRenderer_->GetTransformData();
 
-	//Data.Buffer->ChangeData(&DataRef, sizeof(TransformData));
+	Data.Buffer->ChangeData(&DataRef, sizeof(TransformData));
 
-	//GameEngineDevice::GetContext()->VSSetConstantBuffers(Data.BindPoint, 1, &Data.Buffer->Buffer);
-
-
+	GameEngineDevice::GetContext()->VSSetConstantBuffers(Data.BindPoint, 1, &Data.Buffer->Buffer);
 }
 
 void Penitent::End()

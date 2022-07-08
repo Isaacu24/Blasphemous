@@ -14,8 +14,6 @@ GameEngineDefaultRenderer::~GameEngineDefaultRenderer()
 void GameEngineDefaultRenderer::Start()
 {
 	GameEngineRenderer::Start();
-
-	// 뭔가 또 할일이 있다면 여기서 해라.
 }
 
 void GameEngineDefaultRenderer::SetPipeLine(const std::string& _Name)
@@ -28,6 +26,7 @@ void GameEngineDefaultRenderer::SetPipeLine(const std::string& _Name)
 		return;
 	}
 
+	//셰이더 파이프라인 헬퍼가 렌더링 파이프라인을 체크
 	PipeLineHelper.ResourcesCheck(PipeLine);
 
 	if (true == PipeLineHelper.IsConstantBufferSetter("TRANSFORMDATA"))

@@ -55,10 +55,6 @@ void GameEngineIndexBuffer::Setting()
 		MsgBoxAssert("버텍스 버퍼에 문제가 있습니다.");
 	}
 
-	// 0, 1,
-
-	// [0][1][2][2][3][2][]
-
 	// GameEngineDevice::GetContext()->RSSetViewports()
 
 	// 나눠서 그릴수 있는 기능을 지원하지만
