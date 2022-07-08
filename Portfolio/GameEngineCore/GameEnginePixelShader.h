@@ -3,9 +3,9 @@
 #include "GameEngineRes.h"
 
 // Ό³Έν :
-class GameEnginePixelShader 
-	: public GameEngineRes<GameEnginePixelShader>
-	, public GameEngineShader
+class GameEnginePixelShader
+	: public GameEngineShader
+	, public GameEngineRes<GameEnginePixelShader>
 {
 	friend GameEngineShader;
 	friend GameEngineRes<GameEnginePixelShader>;

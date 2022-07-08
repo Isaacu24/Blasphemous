@@ -167,7 +167,6 @@ void GameEngineLayOutDesc::AddInputLayOut(
 
 		Index = ++SemanticIndexData[_SemanticName];
 	}
-	
 
 	LayOutDesc.SemanticName = _SemanticName; // "POSITION" "COLOR" "TANGENT" "NORMAL"
 	LayOutDesc.SemanticIndex = Index; // "POSITION0" , "POSITION1" ,
@@ -178,7 +177,7 @@ void GameEngineLayOutDesc::AddInputLayOut(
 	// 인스턴스 버퍼용
 	LayOutDesc.InputSlot = _InputSlot;
 	LayOutDesc.InstanceDataStepRate = _InstanceDataStepRate; 
-	LayOutOffset += FormatToByteScale(LayOutDesc.Format);
+	LayOutOffset += FormatToByteScale(LayOutDesc.Format); //바이트 크기만큼 더해줌
 
 	InputLayOutDesc.push_back(LayOutDesc);
 }

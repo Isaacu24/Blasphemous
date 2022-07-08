@@ -2,14 +2,22 @@
 #include <string>
 #include <map>
 
+
+enum class ShaderType
+{
+	Vertex,
+	Pixel,
+};
+
 class ConstantBuffer
 {
 
 };
 
-class ShaderResSetter 
+class ShaderResSetter
 {
 public:
+	ShaderType ShaderType;
 	int BindPoint;
 	std::string* Name;
 };
@@ -26,9 +34,10 @@ class GameEngineTextureSetter : public ShaderResSetter
 {
 };
 
+
 // Ό³Έν :
 class GameEngineShaderResourcesHelper;
-class GameEngineShader 
+class GameEngineShader
 {
 	friend GameEngineShaderResourcesHelper;
 
@@ -38,7 +47,7 @@ public:
 public:
 	// constrcuter destructer
 	GameEngineShader();
-	~GameEngineShader();
+	virtual ~GameEngineShader();
 
 	// delete Function
 	GameEngineShader(const GameEngineShader& _Other) = delete;
@@ -61,6 +70,8 @@ protected:
 
 	void ShaderResCheck();
 
+	ShaderType ShaderSettingType;
+
 private:
 	std::map<std::string, GameEngineConstantBufferSetter> ConstantBufferMap;
 	std::map<std::string, GameEngineTextureSetter> TextureSetterMap;
@@ -69,7 +80,7 @@ private:
 
 	// std::map<unsigned int, ConstantBuffer> 
 
-	
+
 
 };
 

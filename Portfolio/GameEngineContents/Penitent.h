@@ -6,7 +6,7 @@ enum class PlayerFSM
 	Idle, //유저가 조작하지 않는 상태
 	Move, //유저가 움직이는 상태(더 세분화될 가능성이 높다(Jump, Climb...)
 	Attack, //유저가 무기를 휘두른 상태(더 세분화될 가능성이 높다(처형)
-	Parring,
+	Parring, 
 	Hit, //플레이어가 적 몬스터에게 맞은 상태
 	Death //플레이어가 죽은 상태
 };

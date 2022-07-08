@@ -16,15 +16,10 @@ struct Output
 
 Output Color_VS(Input _Input)
 {
-    // 쉐이더의 경우에는 대부분의 상황에서 형변환이 가능하다.
-    // 0
     Output NewOutPut = (Output)0;
     NewOutPut.Pos = _Input.Pos;
     NewOutPut.Pos.w = 1.0f;
-    //NewOutPut.Pos = mul(NewOutPut.Pos, WorldViewProjection);
-    
     NewOutPut.Pos2 = _Input.Pos;
-    // NewOutPut.Pos.w = 1.0f;
     NewOutPut.Color = _Input.Color;
     
     return NewOutPut;

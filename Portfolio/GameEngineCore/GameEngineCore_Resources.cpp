@@ -34,7 +34,6 @@ void EngineRasterizer()
 	Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
 
 	GameEngineRasterizer::Create("EngineRasterizer", Desc);
-	
 }
 
 
@@ -192,18 +191,12 @@ void ShaderCompile()
 
 void GameEngineCore::EngineResourcesInitialize()
 {
-	// 사각형 박스 에러용 텍스처 등등
-	// 엔진수준에서 기본적으로 지원줘야 한다고 생각하는
-	// 리소스들을 이니셜라이즈하는 단계
-	EngineInputLayOut();
+	EngineInputLayOut(); //
 	EngineMesh();
 	EngineRasterizer();
 	ShaderCompile();
 
 	EngineRenderingPipeLine();
-
-	// 쉐이더 로드
-
 }
 
 

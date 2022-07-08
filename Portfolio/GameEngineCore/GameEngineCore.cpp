@@ -62,8 +62,6 @@ void GameEngineCore::CoreUpdate(GameEngineCore* _UserCore)
 {
 	if (nullptr != NextLevel)
 	{
-		
-
 		Rectangle(GameEngineWindow::GetInst()->GetHDC()
 			, 0
 			, 0
@@ -133,10 +131,7 @@ void GameEngineCore::WindowCreate(const std::string& _Name, GameEngineCore* _Use
 	GameEngineWindow::GetInst()->ShowGameWindow();
 	GameEngineDevice::Initialize();
 
-
-
-
-	// 엔진의 실행인데.
+	//엔진 실행
 	GameEngineWindow::GetInst()->MessageLoop(
 		std::bind(&GameEngineCore::CoreStart, _UserCore),
 		std::bind(&GameEngineCore::CoreUpdate, _UserCore),

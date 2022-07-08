@@ -11,6 +11,7 @@ public:
 	unsigned int LayOutOffset;
 	std::map<const char*, int> SemanticIndexData;
 	std::vector<D3D11_INPUT_ELEMENT_DESC> InputLayOutDesc;
+
 	void AddInputLayOut(
 		const char* _SemanticName,
 		// unsigned int _AlignedByteOffset,

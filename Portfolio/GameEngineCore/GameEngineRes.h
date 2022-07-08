@@ -5,17 +5,14 @@
 #include <GameEngineBase/GameEngineNameObject.h>
 #include <GameEngineBase/GameEngineString.h>
 
-// Ό³Έν :
 template<typename ResType>
 class GameEngineRes : public GameEngineNameObject
 {
 
 public:
-	// constrcuter destructer
 	GameEngineRes() {}
-	~GameEngineRes() {}
+	virtual ~GameEngineRes() {}
 
-	// delete Function
 	GameEngineRes(const GameEngineRes& _Other) = delete;
 	GameEngineRes(GameEngineRes&& _Other) noexcept = delete;
 	GameEngineRes& operator=(const GameEngineRes& _Other) = delete;
@@ -25,17 +22,17 @@ public:
 	{
 		std::string UpperName = GameEngineString::ToUpperReturn(_Name);
 
-		typename std::map<std::string, ResType*>::iterator Iter =  NamedRes.find(UpperName);
+		typename std::map<std::string, ResType*>::iterator Iter = NamedRes.find(UpperName);
 
 		if (NamedRes.end() == Iter)
 		{
 			return nullptr;
 		}
-		
+
 		return Iter->second;
 	}
 
-	static void ResourcesDestroy() 
+	static void ResourcesDestroy()
 	{
 		for (auto& Res : UnNamedRes)
 		{
@@ -52,7 +49,7 @@ protected:
 	static std::map<std::string, ResType*> NamedRes;
 	static std::list<ResType*> UnNamedRes;
 
-	static ResType* CreateResName(const std::string& _Name = "") 
+	static ResType* CreateResName(const std::string& _Name = "")
 	{
 		ResType* Res = CreateRes(_Name);
 		NamedRes.insert(std::make_pair(Res->GetNameCopy(), Res));
