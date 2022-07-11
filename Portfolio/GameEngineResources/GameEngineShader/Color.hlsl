@@ -27,9 +27,8 @@ cbuffer ResultColor : register(b0)
 Output Color_VS(Input _Input)
 {
     Output NewOutPut = (Output) 0;
-    NewOutPut.Pos = _Input.Pos;
     NewOutPut.Pos.w = 1.0f;
-    NewOutPut.Pos = mul(NewOutPut.Pos, WorldViewProjection);
+    NewOutPut.Pos = mul(_Input.Pos, WorldViewProjection);
     
     NewOutPut.Pos2 = _Input.Pos;
     NewOutPut.Color = _Input.Color;
@@ -39,10 +38,13 @@ Output Color_VS(Input _Input)
 
 float4 Color_PS(Output _Input) : SV_Target0
 {
-    if (length(float2(_Input.Pos2.x, _Input.Pos2.y)) < 0.5f)
+    float4 s = { 640.0f, 360.0f, 0.0f, 1.0f };
+    float4 d = _Input.Pos;
+    float Len3 = length(float2(d.x, d.y));
+    if (Len3 <= 700.0f)
     {
         clip(-1);
     }
-        
-    return _Input.Color/* * MultyplyColor + PlusColor*/;
+
+    return _Input.Color;
 }

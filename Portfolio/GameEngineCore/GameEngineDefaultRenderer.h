@@ -2,6 +2,7 @@
 #include "GameEngineRenderer.h"
 #include "GameEngineShaderResourcesHelper.h"
 
+// 설명 :
 class GameEngineRenderingPipeLine;
 class GameEngineDefaultRenderer : public GameEngineRenderer
 {
@@ -11,6 +12,8 @@ class GameEngineDefaultRenderer : public GameEngineRenderer
 	// 하나의 랜더타겟
 
 public:
+	GameEngineShaderResourcesHelper PipeLineHelper;
+
 	GameEngineRenderingPipeLine* GetPipeLine()
 	{
 		return PipeLine;
@@ -33,11 +36,9 @@ protected:
 	virtual void Update(float _DeltaTime) {}
 	virtual void End() {}
 
+
 private:
-	// 공통적인 메모리 공유하는 파이프라인
 	GameEngineRenderingPipeLine* PipeLine;
 
-	// 렌더링 파이프라인 셰이더 속성 변경을 도와주는 클래스
-	GameEngineShaderResourcesHelper PipeLineHelper;
 };
 

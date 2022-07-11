@@ -4,11 +4,10 @@
 
 enum class CAMERAPROJECTIONMODE
 {
-	PersPective,
-	Orthographic,
+	PersPective, //원근
+	Orthographic, //직교
 };
 
-// 설명 :
 class GameEngineLevel;
 class GameEngineCamera;
 class GameEngineCamera : public GameEngineTransformComponent
@@ -16,11 +15,9 @@ class GameEngineCamera : public GameEngineTransformComponent
 	friend GameEngineLevel;
 
 public:
-	// constrcuter destructer
 	GameEngineCamera();
 	~GameEngineCamera();
 
-	// delete Function
 	GameEngineCamera(const GameEngineCamera& _Other) = delete;
 	GameEngineCamera(GameEngineCamera&& _Other) noexcept = delete;
 	GameEngineCamera& operator=(const GameEngineCamera& _Other) = delete;

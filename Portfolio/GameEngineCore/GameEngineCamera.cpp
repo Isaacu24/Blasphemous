@@ -7,7 +7,6 @@
 
 GameEngineCamera::GameEngineCamera() 
 {
-	// 윈도우가 여러분들 생각하기 가장 쉬운 비율이라서 여기서 하는거고.
 	Size = GameEngineWindow::GetInst()->GetScale();
 	Mode = CAMERAPROJECTIONMODE::PersPective;
 	Near = 0.1f;
@@ -20,8 +19,6 @@ GameEngineCamera::GameEngineCamera()
 	ViewPortDesc.Height = Size.y;
 	ViewPortDesc.MinDepth = 0.0f;
 	ViewPortDesc.MaxDepth = 0.0f;
-
-	
 }
 
 GameEngineCamera::~GameEngineCamera() 

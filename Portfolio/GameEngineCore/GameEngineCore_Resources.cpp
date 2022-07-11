@@ -20,7 +20,7 @@
 #include "GameEngineRasterizer.h"
 #include "GameEngineRenderingPipeLine.h"
 
-void EngineInputLayOut() 
+void EngineInputLayOut()
 {
 	GameEngineVertex::LayOut.AddInputLayOut("POSITION", DXGI_FORMAT::DXGI_FORMAT_R32G32B32A32_FLOAT);
 	GameEngineVertex::LayOut.AddInputLayOut("COLOR", DXGI_FORMAT::DXGI_FORMAT_R32G32B32A32_FLOAT);
@@ -34,6 +34,7 @@ void EngineRasterizer()
 	Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
 
 	GameEngineRasterizer::Create("EngineRasterizer", Desc);
+
 }
 
 
@@ -50,15 +51,15 @@ void EngineRenderingPipeLine()
 	}
 }
 
-void EngineMesh() 
+void EngineMesh()
 {
 
 	{
 		std::vector<GameEngineVertex> Vertex;
-		Vertex.push_back({ float4(-0.5f, 0.5f), float4(1.0f, 0.0f, 0.0f, 1.0f) });
-		Vertex.push_back({ float4(0.5f, 0.5f), float4(0.0f, 1.0f, 0.0f, 1.0f) });
-		Vertex.push_back({ float4(0.5f, -0.5f), float4(0.0f, 0.0f, 1.0f, 1.0f) });
-		Vertex.push_back({ float4(-0.5f, -0.5f), float4(0.25f, 0.25f, 0.25f, 1.0f) });
+		Vertex.push_back({ float4(-0.5f, 0.5f), float4() });
+		Vertex.push_back({ float4(0.5f, 0.5f), float4(1.0f, 0.0f, 0.0f, 1.0f) });
+		Vertex.push_back({ float4(0.5f, -0.5f), float4() });
+		Vertex.push_back({ float4(-0.5f, -0.5f), float4() });
 		GameEngineVertexBuffer::Create("Rect", Vertex);
 	}
 
@@ -101,33 +102,33 @@ void EngineMesh()
 		Vertex[3] = { float4(-0.5f, -0.5f, 0.5f) };
 
 		// 뒷면
-		Vertex[4] = {float4::VectorRotationToDegreeXAxis(Vertex[0].POSITION, 180.f)};
-		Vertex[5] = {float4::VectorRotationToDegreeXAxis(Vertex[1].POSITION, 180.f)};
-		Vertex[6] = {float4::VectorRotationToDegreeXAxis(Vertex[2].POSITION, 180.f)};
-		Vertex[7] = {float4::VectorRotationToDegreeXAxis(Vertex[3].POSITION, 180.f)};
+		Vertex[4] = { float4::VectorRotationToDegreeXAxis(Vertex[0].POSITION, 180.f) };
+		Vertex[5] = { float4::VectorRotationToDegreeXAxis(Vertex[1].POSITION, 180.f) };
+		Vertex[6] = { float4::VectorRotationToDegreeXAxis(Vertex[2].POSITION, 180.f) };
+		Vertex[7] = { float4::VectorRotationToDegreeXAxis(Vertex[3].POSITION, 180.f) };
 
 		// 왼쪽
-		Vertex[8] = {float4::VectorRotationToDegreeYAxis(Vertex[0].POSITION, -90.f) };
-		Vertex[9] = {float4::VectorRotationToDegreeYAxis(Vertex[1].POSITION, -90.f) };
+		Vertex[8] = { float4::VectorRotationToDegreeYAxis(Vertex[0].POSITION, -90.f) };
+		Vertex[9] = { float4::VectorRotationToDegreeYAxis(Vertex[1].POSITION, -90.f) };
 		Vertex[11] = { float4::VectorRotationToDegreeYAxis(Vertex[3].POSITION, -90.f) };
-		Vertex[10] ={ float4::VectorRotationToDegreeYAxis(Vertex[2].POSITION, -90.f) };
+		Vertex[10] = { float4::VectorRotationToDegreeYAxis(Vertex[2].POSITION, -90.f) };
 
 		// 오른쪽
-		Vertex[12] = {float4::VectorRotationToDegreeYAxis(Vertex[0].POSITION, 90.f)};
-		Vertex[13] = {float4::VectorRotationToDegreeYAxis(Vertex[1].POSITION, 90.f)};
-		Vertex[14] = {float4::VectorRotationToDegreeYAxis(Vertex[2].POSITION, 90.f)};
-		Vertex[15] = {float4::VectorRotationToDegreeYAxis(Vertex[3].POSITION, 90.f)};
+		Vertex[12] = { float4::VectorRotationToDegreeYAxis(Vertex[0].POSITION, 90.f) };
+		Vertex[13] = { float4::VectorRotationToDegreeYAxis(Vertex[1].POSITION, 90.f) };
+		Vertex[14] = { float4::VectorRotationToDegreeYAxis(Vertex[2].POSITION, 90.f) };
+		Vertex[15] = { float4::VectorRotationToDegreeYAxis(Vertex[3].POSITION, 90.f) };
 
 		// 위
-		Vertex[16] = {float4::VectorRotationToDegreeXAxis(Vertex[0].POSITION, -90.f)};
-		Vertex[17] = {float4::VectorRotationToDegreeXAxis(Vertex[1].POSITION, -90.f)};
-		Vertex[18] = {float4::VectorRotationToDegreeXAxis(Vertex[2].POSITION, -90.f)};
+		Vertex[16] = { float4::VectorRotationToDegreeXAxis(Vertex[0].POSITION, -90.f) };
+		Vertex[17] = { float4::VectorRotationToDegreeXAxis(Vertex[1].POSITION, -90.f) };
+		Vertex[18] = { float4::VectorRotationToDegreeXAxis(Vertex[2].POSITION, -90.f) };
 		Vertex[19] = { float4::VectorRotationToDegreeXAxis(Vertex[3].POSITION, -90.f) };
 
 		// 아래
-		Vertex[20] = {float4::VectorRotationToDegreeXAxis(Vertex[0].POSITION, 90.f)};
-		Vertex[21] = {float4::VectorRotationToDegreeXAxis(Vertex[1].POSITION, 90.f)};
-		Vertex[22] = {float4::VectorRotationToDegreeXAxis(Vertex[2].POSITION, 90.f)};
+		Vertex[20] = { float4::VectorRotationToDegreeXAxis(Vertex[0].POSITION, 90.f) };
+		Vertex[21] = { float4::VectorRotationToDegreeXAxis(Vertex[1].POSITION, 90.f) };
+		Vertex[22] = { float4::VectorRotationToDegreeXAxis(Vertex[2].POSITION, 90.f) };
 		Vertex[23] = { float4::VectorRotationToDegreeXAxis(Vertex[3].POSITION, 90.f) };
 
 
@@ -151,12 +152,13 @@ void EngineMesh()
 	}
 }
 
-void ShaderCompile() 
+void ShaderCompile()
 {
 	GameEngineDirectory Dir;
 
-	Dir.MoveParentToExitsChildDirectory("Shader");
-	Dir.Move("Shader");
+	Dir.MoveParentToExitsChildDirectory("GameEngineResources");
+	Dir.Move("GameEngineResources");
+	Dir.Move("GameEngineShader");
 
 	std::vector<GameEngineFile> Shaders = Dir.GetAllFile("hlsl");
 
@@ -191,12 +193,18 @@ void ShaderCompile()
 
 void GameEngineCore::EngineResourcesInitialize()
 {
-	EngineInputLayOut(); //
+	// 사각형 박스 에러용 텍스처 등등
+	// 엔진수준에서 기본적으로 지원줘야 한다고 생각하는
+	// 리소스들을 이니셜라이즈하는 단계
+	EngineInputLayOut();
 	EngineMesh();
 	EngineRasterizer();
 	ShaderCompile();
 
 	EngineRenderingPipeLine();
+
+	// 쉐이더 로드
+
 }
 
 

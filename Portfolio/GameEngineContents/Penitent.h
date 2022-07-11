@@ -50,6 +50,10 @@ private:
 	PlayerFSM PrevState_;
 	PlayerFSM CurrentState_;
 
+	GameEngineDefaultRenderer* Renderer;
+
+	float4 Color;
+
 	int HP_;
 	int MP_;
 	int Speed_;

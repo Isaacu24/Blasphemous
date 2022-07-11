@@ -12,6 +12,7 @@
 
 
 Penitent::Penitent() 
+	: Speed_(50.0f)
 {
 }
 
@@ -21,21 +22,63 @@ Penitent::~Penitent()
 
 void Penitent::Start()
 {
-	DefaultRenderer_ = CreateComponent<GameEngineDefaultRenderer>();
-	DefaultRenderer_->GetTransform().SetLocalScale({ 100, 100, 100 });
-	DefaultRenderer_->SetPipeLine("Color");
+	if (false == GameEngineInput::GetInst()->IsKey("PlayerLeft"))
+	{
+		GameEngineInput::GetInst()->CreateKey("PlayerLeft", VK_NUMPAD4);
+		GameEngineInput::GetInst()->CreateKey("PlayerRight", VK_NUMPAD6);
+		GameEngineInput::GetInst()->CreateKey("PlayerUp", VK_NUMPAD9);
+		GameEngineInput::GetInst()->CreateKey("PlayerDown", VK_NUMPAD7);
+		GameEngineInput::GetInst()->CreateKey("PlayerForward", VK_NUMPAD8);
+		GameEngineInput::GetInst()->CreateKey("PlayerBack", VK_NUMPAD5);
+		GameEngineInput::GetInst()->CreateKey("Rot+", VK_NUMPAD1);
+		GameEngineInput::GetInst()->CreateKey("Rot-", VK_NUMPAD2);
+	}
+
+
+	GetTransform().SetLocalScale({1, 1, 1});
+
+	{
+		Renderer = CreateComponent<GameEngineDefaultRenderer>();
+		Renderer->GetTransform().SetLocalScale({ 100, 100, 100 });
+		Renderer->SetPipeLine("Color");
+		// 내 맴버변수가 아니라 다른객체의 맴버변수를 사용했다면.
+		// 이건 터질수 있다.
+		Renderer->PipeLineHelper.SetConstantBufferLink("ResultColor", Color);
+	}
 }
 
 void Penitent::Update(float _DeltaTime)
 {
+	if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft"))
+	{
+		Color.b += 1.0f * _DeltaTime;
 
-	GameEngineConstantBufferSetter& Data = DefaultRenderer_->GetPipeLine()->GetVertexShader()->GetConstantBufferSetter("TransformData");
+		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ * _DeltaTime);
+	}
 
-	const TransformData& DataRef = DefaultRenderer_->GetTransformData();
+	if (true == GameEngineInput::GetInst()->IsPress("PlayerRight"))
+	{
+		Color.b -= 1.0f * _DeltaTime;
 
-	Data.Buffer->ChangeData(&DataRef, sizeof(TransformData));
+		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * _DeltaTime);
+	}
+	if (true == GameEngineInput::GetInst()->IsPress("PlayerUp"))
+	{
+		GetTransform().SetWorldMove(GetTransform().GetUpVector() * Speed_ * _DeltaTime);
+	}
+	if (true == GameEngineInput::GetInst()->IsPress("PlayerDown"))
+	{
+		GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed_ * _DeltaTime);
+	}
 
-	GameEngineDevice::GetContext()->VSSetConstantBuffers(Data.BindPoint, 1, &Data.Buffer->Buffer);
+	if (true == GameEngineInput::GetInst()->IsPress("PlayerForward"))
+	{
+		GetTransform().SetWorldMove(GetTransform().GetForwardVector() * Speed_ * _DeltaTime);
+	}
+	if (true == GameEngineInput::GetInst()->IsPress("PlayerBack"))
+	{
+		GetTransform().SetWorldMove(GetTransform().GetBackVector() * Speed_ * _DeltaTime);
+	}
 }
 
 void Penitent::End()
