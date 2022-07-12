@@ -270,8 +270,14 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="ThirdPaty\bin\Debug\DirectXTex.lib" />
-    <Library Include="ThirdPaty\bin\Release\DirectXTex.lib" />
+    <CopyFileToFolders Include="ThirdParty\bin\Debug\DirectXTex.lib">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\bin\Release\DirectXTex.lib">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </CopyFileToFolders>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

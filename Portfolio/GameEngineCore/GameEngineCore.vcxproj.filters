@@ -256,11 +256,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="ThirdPaty\bin\Release\DirectXTex.lib">
+    <Library Include="ThirdParty\bin\Release\DirectXTex.lib">
       <Filter>ThirdParty\bin\Release</Filter>
     </Library>
-    <Library Include="ThirdPaty\bin\Debug\DirectXTex.lib">
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="ThirdParty\bin\Debug\DirectXTex.lib">
       <Filter>ThirdParty\bin\Debug</Filter>
-    </Library>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>
