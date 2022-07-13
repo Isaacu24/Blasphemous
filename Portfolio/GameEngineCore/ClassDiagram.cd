@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GameEngineActor" Collapsed="true">
+    <Position X="7.25" Y="5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAYCAAAAACAAgAAAAAAQAAABEAAAAAAAAEAgAAAABBE=</HashCode>
+      <FileName>GameEngineActor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineLevel" Collapsed="true">
+    <Position X="36.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAQAAAAAACAAEAAAIAAQgAAAAgQAFEABGgIBAAAAA=</HashCode>
+      <FileName>GameEngineLevel.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineComponent" Collapsed="true">
+    <Position X="29.5" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAACEAAAAAAAAAAAAABAAAAAAAAEAgAAAAAAA=</HashCode>
+      <FileName>GameEngineComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineTransformBase" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAABAAAQAAAAAAAEAAAAwAAAAAAA=</HashCode>
+      <FileName>GameEngineTransformBase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineTransformComponent" Collapsed="true">
+    <Position X="3" Y="4.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAEAAAAACAAEAgAACAAAA=</HashCode>
+      <FileName>GameEngineTransformComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineCamera" Collapsed="true">
+    <Position X="3.5" Y="6.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAhKAAgAEAAQAAAAAAIAAFAABAABAgAFAQAAA=</HashCode>
+      <FileName>GameEngineCamera.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineCameraActor" Collapsed="true">
+    <Position X="7.25" Y="7" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAgAACgAIAAAAAAAAAAAACAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>GameEngineCameraActor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineDefaultRenderer" Collapsed="true">
+    <Position X="0.5" Y="8.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAYABAAAACAAAAAAAACIAAAAAAAAAAAAABQgAIAAAAg=</HashCode>
+      <FileName>GameEngineDefaultRenderer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineRenderer" Collapsed="true">
+    <Position X="0.75" Y="6.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgYAAAAAACAAAAAAAQAAAAAAAAAAAAAAABAgAAAAAAA=</HashCode>
+      <FileName>GameEngineRenderer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineShaderResourcesHelper">
+    <Position X="33" Y="6.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQSAAAAAAAAAAAAAwAAAAAgAQIAgAAAAgQA=</HashCode>
+      <FileName>GameEngineShaderResourcesHelper.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineCollision" Collapsed="true">
+    <Position X="32.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAQAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>GameEngineCollision.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineRenderingPipeLine" Collapsed="true">
+    <Position X="3.75" Y="2" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>EgEQkAACAAAAAgAADABCEBAAACACAMAFEAAwAgABEBg=</HashCode>
+      <FileName>GameEngineRenderingPipeLine.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineRes&lt;ResType&gt;" Collapsed="true">
+    <Position X="14.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgEAAAAEAAAABAAAQCAAgAAAAAAIAAAAAAggAAAAAAA=</HashCode>
+      <FileName>GameEngineRes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineTexture" Collapsed="true">
+    <Position X="11.75" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AIAAgAAAIAgIAAAAAAAAAAAAAAAAANQAAAAhAAAGACA=</HashCode>
+      <FileName>GameEngineTexture.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEnginePixelShader" Collapsed="true">
+    <Position X="14.25" Y="4" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAkBABAAAA=</HashCode>
+      <FileName>GameEnginePixelShader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShaderResSetter" Collapsed="true">
+    <Position X="13" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAE=</HashCode>
+      <FileName>GameEngineShader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineConstantBufferSetter">
+    <Position X="11" Y="6.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAIAggAAAAAAAAAAAAAAAAAAAAAAAABAIAA=</HashCode>
+      <FileName>GameEngineShader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineTextureSetter">
+    <Position X="14.25" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameEngineShader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineShader" Collapsed="true">
+    <Position X="1.25" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IAIBAAAAAAAAAAAhQAAAAAABogAAAAAAAIAhAAAAAQA=</HashCode>
+      <FileName>GameEngineShader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineVertexShader" Collapsed="true">
+    <Position X="17.25" Y="2" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAgAAAQAAgAAAAAAAAAAAAAkAABAAAA=</HashCode>
+      <FileName>GameEngineVertexShader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineRasterizer" Collapsed="true">
+    <Position X="22.75" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAEAAAAAAAAAAAAAAAAAAAAAEAAAAAgRABAAAA=</HashCode>
+      <FileName>GameEngineRasterizer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineBlend" Collapsed="true">
+    <Position X="28.5" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAABAAAAgAAAAAAA=</HashCode>
+      <FileName>GameEngineBlend.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineDepthStencil" Collapsed="true">
+    <Position X="7" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAACAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>GameEngineDepthStencil.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineRenderTarget" Collapsed="true">
+    <Position X="9.5" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAEgAAAAQAAAAAAAAAAAAAAAAUAEAAAgAABAAAA=</HashCode>
+      <FileName>GameEngineRenderTarget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineIndexBuffer" Collapsed="true">
+    <Position X="14" Y="2" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAQAAAAAAQAAAIAAACAQAAAFAAAAAgAABAwAA=</HashCode>
+      <FileName>GameEngineIndexBuffer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineInputLayOut" Collapsed="true">
+    <Position X="20.25" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAiAgBEAAA=</HashCode>
+      <FileName>GameEngineInputLayOut.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineVertexBuffer" Collapsed="true">
+    <Position X="25.5" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>BiCAAAAAQAAAAAAAIAAAAAEgAAAAAEAAAAAgAABAQAg=</HashCode>
+      <FileName>GameEngineVertexBuffer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineLayOutDesc" Collapsed="true">
+    <Position X="33" Y="1.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAEAAAAAAAAAAAAAAAAAAgAAAAQAAACAAAAAAAAA=</HashCode>
+      <FileName>GameEngineVertexs.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineConstantBuffer">
+    <Position X="30.25" Y="6.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAYAgABAAAACAAAAAkABEIEEAAAAggAAAAQAA=</HashCode>
+      <FileName>GameEngineConstantBuffer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineCore" Collapsed="true">
+    <Position X="35.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AQYAAAAkACAABAABACAAiABAAQIEAAAACAAgAACQAAI=</HashCode>
+      <FileName>GameEngineCore.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineStateManager" Collapsed="true">
+    <Position X="34" Y="2.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAgAAAABAA=</HashCode>
+      <FileName>GameEngineStateManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngineDevice" Collapsed="true">
+    <Position X="35.5" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>BAABAAAAAiAAJQAAAAAABAAAAABAAAgoACggAAAAAAA=</HashCode>
+      <FileName>GameEngineDevice.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GEngine" Collapsed="true">
+    <Position X="36.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAAQAAAAAAAAAgACAAAAA=</HashCode>
+      <FileName>GEngine.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="GameEngineVertex" Collapsed="true">
+    <Position X="33" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAgAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>GameEngineVertexs.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="CAMERAPROJECTIONMODE" Collapsed="true">
+    <Position X="33" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameEngineCamera.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ShaderType" Collapsed="true">
+    <Position X="34.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameEngineShader.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

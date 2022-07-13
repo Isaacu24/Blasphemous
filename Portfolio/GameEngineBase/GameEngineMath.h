@@ -68,6 +68,7 @@ public:
 
 	// Color
 	static const float4 BLUE;
+	static const float4 BLACK;
 	static const float4 RED;
 
 public:
@@ -225,6 +226,11 @@ public:
 	// 보통 누적된 시간을 Time
 	static float4 LerpLimit(const float4& p1, const float4& p2, float Time)
 	{
+		if (0.0f >= Time)
+		{
+			Time = 0.0f;
+		}
+
 		if (1.0f <= Time)
 		{
 			Time = 1.0f;

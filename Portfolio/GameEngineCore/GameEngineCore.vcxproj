@@ -100,6 +100,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GameEngineSampler.h" />
     <ClInclude Include="GameEngineShader.h">
       <SubType>
       </SubType>
@@ -225,6 +226,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameEngineSampler.cpp" />
     <ClCompile Include="GameEngineShader.cpp">
       <SubType>
       </SubType>

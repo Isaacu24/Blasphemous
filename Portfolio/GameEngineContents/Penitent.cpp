@@ -39,27 +39,28 @@ void Penitent::Start()
 
 	{
 		Renderer = CreateComponent<GameEngineDefaultRenderer>();
-		Renderer->GetTransform().SetLocalScale({ 100, 100, 100 });
-		Renderer->SetPipeLine("Color");
+		Renderer->GetTransform().SetLocalScale({ 2000, 1000, 100 });
+		Renderer->SetPipeLine("Texture");
+		Renderer->PipeLineHelper.SetConstantBufferLink("TimeData", Time_);
+
 		// 내 맴버변수가 아니라 다른객체의 맴버변수를 사용했다면.
 		// 이건 터질수 있다.
-		Renderer->PipeLineHelper.SetConstantBufferLink("ResultColor", Color);
 	}
 }
 
 void Penitent::Update(float _DeltaTime)
 {
+	Time_ += _DeltaTime;
+
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft"))
 	{
-		Color.b += 1.0f * _DeltaTime;
+		Renderer->PipeLineHelper.SetConstantBufferLink("TimeData", Time_);
 
 		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ * _DeltaTime);
 	}
 
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerRight"))
 	{
-		Color.b -= 1.0f * _DeltaTime;
-
 		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * _DeltaTime);
 	}
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerUp"))
@@ -79,6 +80,7 @@ void Penitent::Update(float _DeltaTime)
 	{
 		GetTransform().SetWorldMove(GetTransform().GetBackVector() * Speed_ * _DeltaTime);
 	}
+
 }
 
 void Penitent::End()

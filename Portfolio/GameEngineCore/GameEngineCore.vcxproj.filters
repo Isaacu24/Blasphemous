@@ -96,6 +96,9 @@
     <ClInclude Include="ThirdPaty\inc\DirectXTex.h">
       <Filter>ThirdParty\inc</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineSampler.h">
+      <Filter>Resources\Texture</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineActor.cpp">
@@ -192,6 +195,9 @@
     <ClCompile Include="GameEngineShaderResourcesHelper.cpp">
       <Filter>Object\Component\Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineSampler.cpp">
+      <Filter>Resources\Texture</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -256,13 +262,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="ThirdParty\bin\Release\DirectXTex.lib">
-      <Filter>ThirdParty\bin\Release</Filter>
-    </Library>
-  </ItemGroup>
-  <ItemGroup>
     <CopyFileToFolders Include="ThirdParty\bin\Debug\DirectXTex.lib">
       <Filter>ThirdParty\bin\Debug</Filter>
     </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\bin\Release\DirectXTex.lib" />
   </ItemGroup>
 </Project>

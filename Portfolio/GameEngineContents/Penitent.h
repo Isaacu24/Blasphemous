@@ -52,7 +52,7 @@ private:
 
 	GameEngineDefaultRenderer* Renderer;
 
-	float4 Color;
+	float4 Time_;
 
 	int HP_;
 	int MP_;

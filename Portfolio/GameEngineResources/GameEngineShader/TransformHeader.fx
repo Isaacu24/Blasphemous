@@ -1,3 +1,5 @@
+
+//트랜스폼 정보
 cbuffer TransformData : register(b0)
 {
     float4 LocalPosition;
@@ -20,3 +22,10 @@ cbuffer TransformData : register(b0)
     float4x4 WorldView;
     float4x4 WorldViewProjection;
 };
+
+
+//시간 정보
+cbuffer TimeData : register(b1)
+{
+    float4 DeltaTime_;
+}

@@ -37,7 +37,6 @@ void Pilgrimage::Start()
 
 		GameEngineInput::GetInst()->CreateKey("CamRotY+", 'R');
 		GameEngineInput::GetInst()->CreateKey("CamRotY-", 'T');
-
 	}
 }
 
