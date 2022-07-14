@@ -14,3 +14,37 @@
 #define GAMEPAD_B						 0x2000
 #define GAMEPAD_X						 0x4000
 #define GAMEPAD_Y                        0x8000
+
+
+// std and direct
+#include <string>
+
+#include <map>
+#include <list>
+#include <set>
+#include <vector>
+#include <chrono>
+
+#include <Windows.h>
+
+#include <d3d11_4.h>
+#include <d3dcompiler.h>
+#include <DirectXPackedVector.h>
+
+#include <DirectXCollision.h>
+
+#pragma comment(lib, "d3d11")
+#pragma comment(lib, "d3dcompiler")
+#pragma comment(lib, "dxguid")
+
+// base
+#include <GameEngineBase/GameEngineWindow.h>
+#include <GameEngineBase/GameEngineDebug.h>
+#include <GameEngineBase/GameEngineDirectory.h>
+#include <GameEngineBase/GameEngineFile.h>
+
+// core
+#include <GameEngineCore/CoreMinimal.h>
+#include <GameEngineCore/GameEngineTextureRenderer.h>
+
+

@@ -1,24 +1,12 @@
 #pragma once
 #include <random>
 
-// 00000000
-// 10110010
-
-// 제네레이터
-// uniform 규격으로 
-
-// 제네레이터 클래스가 있다.
-
-// 유니폼 클래스가 있고
-
-// 설명 :
 class GameEngineRandom
 {
 public:
 	static GameEngineRandom MainRandom;
 
 private:
-	// 제네레이터
 	// 메르헨 트위스터의 알고리즘으로 비트를 뒤섞는 녀석.
 	std::mt19937_64 mt_;
 
@@ -37,7 +25,7 @@ public:
 
 public:
 	// constrcuter destructer
-	GameEngineRandom();
+	GameEngineRandom(long long _Seed = -1);
 	~GameEngineRandom();
 
 	// delete Function

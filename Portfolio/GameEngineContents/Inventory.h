@@ -12,6 +12,8 @@ enum class InventoryType
 	Collectibles //¼öÁýÇ°
 };
 
+
+class GameEngineTextureRenderer;
 class Inventory : public GameEngineActor
 {
 public:
@@ -24,9 +26,17 @@ public:
 	Inventory& operator=(Inventory&& _Other) noexcept = delete;
 
 protected:
+	void Start() override;
+	void Update(float _DeltaTime) override;
+	void End() override;
+
+	void ChangeInventoryIndex();
+	void ChangeInventory();
 
 private:
 	InventoryType InventoryType_;
-
+	
+	GameEngineTextureRenderer* InventoryRenderer_;
+	int InventoryIndex_;
 };
 

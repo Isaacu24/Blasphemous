@@ -88,10 +88,10 @@ public:
 	void CreateButton(const std::string& _Name, int _Button);
 
 	float GetTime(const std::string& _Name);
-	bool IsDown(const std::string& _Name);
-	bool IsUp(const std::string& _Name);
-	bool IsPress(const std::string& _Name);
-	bool IsFree(const std::string& _Name);
+	bool IsDownKey(const std::string& _Name);
+	bool IsUpKey(const std::string& _Name);
+	bool IsPressKey(const std::string& _Name);
+	bool IsFreeKey(const std::string& _Name);
 	bool IsKey(const std::string& _Name);
 
 	bool IsDownButton(const std::string& _Name);

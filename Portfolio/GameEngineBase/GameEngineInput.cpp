@@ -308,7 +308,7 @@ float GameEngineInput::GetTime(const std::string& _Name)
 	return AllInputKey_[UpperKey].Time_;
 }
 
-bool GameEngineInput::IsDown(const std::string& _Name)
+bool GameEngineInput::IsDownKey(const std::string& _Name)
 {
 	std::string UpperKey = GameEngineString::ToUpperReturn(_Name);
 
@@ -321,7 +321,7 @@ bool GameEngineInput::IsDown(const std::string& _Name)
 	return AllInputKey_[UpperKey].Down_;
 }
 
-bool GameEngineInput::IsUp(const std::string& _Name)
+bool GameEngineInput::IsUpKey(const std::string& _Name)
 {
 	std::string UpperKey = GameEngineString::ToUpperReturn(_Name);
 
@@ -333,7 +333,7 @@ bool GameEngineInput::IsUp(const std::string& _Name)
 	return AllInputKey_[UpperKey].Up_;
 }
 
-bool GameEngineInput::IsPress(const std::string& _Name)
+bool GameEngineInput::IsPressKey(const std::string& _Name)
 {
 	std::string UpperKey = GameEngineString::ToUpperReturn(_Name);
 
@@ -345,7 +345,7 @@ bool GameEngineInput::IsPress(const std::string& _Name)
 	return AllInputKey_[UpperKey].Press_;
 }
 
-bool GameEngineInput::IsFree(const std::string& _Name)
+bool GameEngineInput::IsFreeKey(const std::string& _Name)
 {
 	std::string UpperKey = GameEngineString::ToUpperReturn(_Name);
 

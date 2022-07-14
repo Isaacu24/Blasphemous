@@ -9,11 +9,14 @@ class GameEngineDefaultRenderer : public GameEngineRenderer
 	// 하나의 랜더링 파이프라인은
 	// 하나의 매쉬
 	// 하나의 메테리얼
+
 	// 하나의 랜더타겟
 
-public:
-	GameEngineShaderResourcesHelper PipeLineHelper;
 
+public:
+	GameEngineShaderResourcesHelper ShaderResources;
+
+	// constrcuter destructer
 	GameEngineRenderingPipeLine* GetPipeLine()
 	{
 		return PipeLine;
@@ -22,6 +25,7 @@ public:
 	GameEngineDefaultRenderer();
 	~GameEngineDefaultRenderer();
 
+	// delete Function
 	GameEngineDefaultRenderer(const GameEngineDefaultRenderer& _Other) = delete;
 	GameEngineDefaultRenderer(GameEngineDefaultRenderer&& _Other) noexcept = delete;
 	GameEngineDefaultRenderer& operator=(const GameEngineDefaultRenderer& _Other) = delete;
@@ -38,6 +42,7 @@ protected:
 
 
 private:
+	// 공통적인 메모리 공유하는 메로리들을 들고 있고
 	GameEngineRenderingPipeLine* PipeLine;
 
 };

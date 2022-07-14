@@ -17,7 +17,7 @@ public:
 	GameEngineComponent& operator=(const GameEngineComponent& _Other) = delete;
 	GameEngineComponent& operator=(GameEngineComponent&& _Other) noexcept = delete;
 
-	void SetParent(GameEngineUpdateObject*) override;
+	void SetParent(GameEngineUpdateObject* _Parent) override;
 
 protected:
 	virtual void Start() {}

@@ -27,7 +27,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Crosscrawler.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ElderBrother.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Fool_knife.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -36,6 +44,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="MainMenu.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MainMenuActor.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -48,10 +60,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Penitent.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Pilgrimage.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -71,11 +79,35 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Stage02.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage03.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage04.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage05.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TenPiedad.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="Title.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TitleActor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TitleLogo.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -89,7 +121,15 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Crosscrawler.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ElderBrother.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Fool_knife.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -98,6 +138,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MainMenu.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MainMenuActor.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -110,10 +154,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Penitent.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Pilgrimage.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -133,11 +173,35 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Stage02.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage03.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage04.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage05.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TenPiedad.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="Title.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TitleActor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TitleLogo.cpp">
       <SubType>
       </SubType>
     </ClCompile>

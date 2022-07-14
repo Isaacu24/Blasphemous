@@ -1,8 +1,8 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
+#include <GameEngineCore/GameEngineLevel.h>
 
 //플레이어가 게임을 시작하는 스테이지
-class Stage01 : public GameEngineActor
+class Stage01 : public GameEngineLevel
 {
 public:
 	Stage01();
@@ -20,6 +20,6 @@ protected:
 
 private:
 	class BossMonster* BossMonster_;
-	std::vector<class MonsterBase*> MonsterList_;
+	std::list<class MonsterBase*> MonsterList_;
 };
 

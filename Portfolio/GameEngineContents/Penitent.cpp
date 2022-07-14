@@ -9,6 +9,7 @@
 #include <GameEngineCore/GameEngineVertexShader.h>
 #include <GameEngineCore/GameEngineConstantBuffer.h>
 #include <GameEngineCore/GameEngineDevice.h>
+#include <GameEngineCore/GameEngineTextureRenderer.h>
 
 
 Penitent::Penitent() 
@@ -38,10 +39,11 @@ void Penitent::Start()
 	GetTransform().SetLocalScale({1, 1, 1});
 
 	{
-		Renderer = CreateComponent<GameEngineDefaultRenderer>();
-		Renderer->GetTransform().SetLocalScale({ 2000, 1000, 100 });
-		Renderer->SetPipeLine("Texture");
-		Renderer->PipeLineHelper.SetConstantBufferLink("TimeData", Time_);
+		Renderer = CreateComponent<GameEngineTextureRenderer>();
+		//Renderer->GetTransform().SetLocalScale({ 3000, 1700, 100 });
+		Renderer->GetTransform().SetLocalScale({ 3300, 1600, 100 });
+		//Renderer->getre
+		//Renderer->PipeLineHelper.SetConstantBufferLink("TimeData", Time_);
 
 		// 내 맴버변수가 아니라 다른객체의 맴버변수를 사용했다면.
 		// 이건 터질수 있다.
@@ -49,34 +51,34 @@ void Penitent::Start()
 }
 
 void Penitent::Update(float _DeltaTime)
-{
+{ 
 	Time_ += _DeltaTime;
 
-	if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft"))
+	if (true == GameEngineInput::GetInst()->IsPressKey("PlayerLeft"))
 	{
-		Renderer->PipeLineHelper.SetConstantBufferLink("TimeData", Time_);
+		Renderer->ShaderResources.SetConstantBufferLink("TimeData", Time_);
 
 		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ * _DeltaTime);
 	}
 
-	if (true == GameEngineInput::GetInst()->IsPress("PlayerRight"))
+	if (true == GameEngineInput::GetInst()->IsPressKey("PlayerRight"))
 	{
 		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * _DeltaTime);
 	}
-	if (true == GameEngineInput::GetInst()->IsPress("PlayerUp"))
+	if (true == GameEngineInput::GetInst()->IsPressKey("PlayerUp"))
 	{
 		GetTransform().SetWorldMove(GetTransform().GetUpVector() * Speed_ * _DeltaTime);
 	}
-	if (true == GameEngineInput::GetInst()->IsPress("PlayerDown"))
+	if (true == GameEngineInput::GetInst()->IsPressKey("PlayerDown"))
 	{
 		GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed_ * _DeltaTime);
 	}
 
-	if (true == GameEngineInput::GetInst()->IsPress("PlayerForward"))
+	if (true == GameEngineInput::GetInst()->IsPressKey("PlayerForward"))
 	{
 		GetTransform().SetWorldMove(GetTransform().GetForwardVector() * Speed_ * _DeltaTime);
 	}
-	if (true == GameEngineInput::GetInst()->IsPress("PlayerBack"))
+	if (true == GameEngineInput::GetInst()->IsPressKey("PlayerBack"))
 	{
 		GetTransform().SetWorldMove(GetTransform().GetBackVector() * Speed_ * _DeltaTime);
 	}

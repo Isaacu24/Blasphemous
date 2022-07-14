@@ -137,6 +137,7 @@ void GameEngineShader::ShaderResCheck()
 		{
 		case D3D_SIT_CBUFFER:
 		{
+
 			// 리소스가 상수버퍼라면
 			ID3D11ShaderReflectionConstantBuffer* CBufferPtr = CompileInfo->GetConstantBufferByName(ResInfo.Name);
 
@@ -164,10 +165,10 @@ void GameEngineShader::ShaderResCheck()
 			GameEngineTextureSetter NewSetter;
 			NewSetter.ParentShader = this;
 			NewSetter.SetName(Name);
-			NewSetter.BindPoint = ResInfo.BindPoint;
 			NewSetter.ShaderType = ShaderSettingType;
-			NewSetter.Res = GameEngineTexture::Find("Map.png");
-			TextureSetterMap.insert(std::make_pair(Name, NewSetter));
+			NewSetter.Res = GameEngineTexture::Find("NSet.png");
+			NewSetter.BindPoint = ResInfo.BindPoint;
+			TextureMap.insert(std::make_pair(Name, NewSetter));
 			break;
 		}
 		case D3D_SIT_SAMPLER:
@@ -175,31 +176,18 @@ void GameEngineShader::ShaderResCheck()
 			GameEngineSamplerSetter NewSetter;
 			NewSetter.ParentShader = this;
 			NewSetter.SetName(Name);
-			NewSetter.BindPoint = ResInfo.BindPoint;
 			NewSetter.ShaderType = ShaderSettingType;
 			NewSetter.Res = GameEngineSampler::Find("EngineSampler");
-			SamplerSetterMap.insert(std::make_pair(Name, NewSetter));
+			NewSetter.BindPoint = ResInfo.BindPoint;
+			SamplerMap.insert(std::make_pair(Name, NewSetter));
 			break;
 		}
 		default:
 			MsgBoxAssert("아직 처리하지 않은 쉐이더 리소스");
 			break;
 		}
-
-
-		// 이 순간 상수버퍼가 만들어져야 합니다.
-
-		int a = 0;
-
 	}
 
-	ConstantBufferMap;
-	TextureSetterMap;
-
-	// 상수버는 몇개 쓰는지 크기는 얼마인지 이런것들을 알아내줍니다.
-	// CompileInfo
-
-	// CompileInfo->Release();
 }
 
 GameEngineConstantBufferSetter& GameEngineShader::GetConstantBufferSetter(std::string _Name)

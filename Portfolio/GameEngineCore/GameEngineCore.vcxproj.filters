@@ -99,6 +99,9 @@
     <ClInclude Include="GameEngineSampler.h">
       <Filter>Resources\Texture</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineTextureRenderer.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineActor.cpp">
@@ -198,6 +201,9 @@
     <ClCompile Include="GameEngineSampler.cpp">
       <Filter>Resources\Texture</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineTextureRenderer.cpp">
+      <Filter>Contents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -265,6 +271,8 @@
     <CopyFileToFolders Include="ThirdParty\bin\Debug\DirectXTex.lib">
       <Filter>ThirdParty\bin\Debug</Filter>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="ThirdParty\bin\Release\DirectXTex.lib" />
+    <CopyFileToFolders Include="ThirdParty\bin\Release\DirectXTex.lib">
+      <Filter>ThirdParty\bin\Release</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>

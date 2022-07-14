@@ -17,12 +17,6 @@
     <ClInclude Include="TenPiedad.h">
       <Filter>Actor\BossMonster</Filter>
     </ClInclude>
-    <ClInclude Include="Pilgrimage.h">
-      <Filter>Level\Pilgrimage</Filter>
-    </ClInclude>
-    <ClInclude Include="Stage01.h">
-      <Filter>Actor\Stage</Filter>
-    </ClInclude>
     <ClInclude Include="BossMonster.h">
       <Filter>Actor\MonsterBase</Filter>
     </ClInclude>
@@ -44,6 +38,36 @@
     <ClInclude Include="Inventory.h">
       <Filter>Actor\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Stage01.h">
+      <Filter>Level\Pilgrimage\01Brotherhood</Filter>
+    </ClInclude>
+    <ClInclude Include="Crosscrawler.h">
+      <Filter>Actor\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Fool_knife.h">
+      <Filter>Actor\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage02.h">
+      <Filter>Level\Pilgrimage\01Brotherhood</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleLogo.h">
+      <Filter>Actor\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuActor.h">
+      <Filter>Actor\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage03.h">
+      <Filter>Level\Pilgrimage\01Brotherhood</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage04.h">
+      <Filter>Level\Pilgrimage\01Brotherhood</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage05.h">
+      <Filter>Level\Pilgrimage\01Brotherhood</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleActor.h">
+      <Filter>Actor\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -61,12 +85,6 @@
     </ClCompile>
     <ClCompile Include="TenPiedad.cpp">
       <Filter>Actor\BossMonster</Filter>
-    </ClCompile>
-    <ClCompile Include="Pilgrimage.cpp">
-      <Filter>Level\Pilgrimage</Filter>
-    </ClCompile>
-    <ClCompile Include="Stage01.cpp">
-      <Filter>Actor\Stage</Filter>
     </ClCompile>
     <ClCompile Include="BossMonster.cpp">
       <Filter>Actor\MonsterBase</Filter>
@@ -89,6 +107,36 @@
     <ClCompile Include="Inventory.cpp">
       <Filter>Actor\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Stage01.cpp">
+      <Filter>Level\Pilgrimage\01Brotherhood</Filter>
+    </ClCompile>
+    <ClCompile Include="Crosscrawler.cpp">
+      <Filter>Actor\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Fool_knife.cpp">
+      <Filter>Actor\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage02.cpp">
+      <Filter>Level\Pilgrimage\01Brotherhood</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleLogo.cpp">
+      <Filter>Actor\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuActor.cpp">
+      <Filter>Actor\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage03.cpp">
+      <Filter>Level\Pilgrimage\01Brotherhood</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage04.cpp">
+      <Filter>Level\Pilgrimage\01Brotherhood</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage05.cpp">
+      <Filter>Level\Pilgrimage\01Brotherhood</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleActor.cpp">
+      <Filter>Actor\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -109,9 +157,6 @@
     <Filter Include="Actor">
       <UniqueIdentifier>{8c6635e8-ce8f-4e65-8daf-333020d7840f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\Stage">
-      <UniqueIdentifier>{cbe1167a-cb27-49be-ade8-7252ed0e6056}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Actor\UI">
       <UniqueIdentifier>{19b99546-139a-46db-a446-c8fbed27406e}</UniqueIdentifier>
     </Filter>
@@ -129,6 +174,18 @@
     </Filter>
     <Filter Include="Component">
       <UniqueIdentifier>{51f521ab-75fe-402f-9a13-f3cbde072a4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Pilgrimage\01Brotherhood">
+      <UniqueIdentifier>{5e63ddf3-b5ff-4ce4-ab81-24d661849da6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Pilgrimage\02Bridge">
+      <UniqueIdentifier>{460736eb-08a1-406c-89fa-01f6a1bb31be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Pilgrimage\03Deambulatory">
+      <UniqueIdentifier>{37bc6771-28e9-40ad-9f33-3532bc4efc9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Pilgrimage\04Dream">
+      <UniqueIdentifier>{b17ccfec-c3ec-4d53-8614-290090d4d012}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
