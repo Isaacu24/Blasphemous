@@ -14,15 +14,15 @@ Inventory::~Inventory()
 
 void Inventory::Start()
 {
-	//InventoryRenderer_ = CreateComponent<GameEngineTextureRenderer>();
-	//InventoryRenderer_->GetTransform().SetWorldScale({1280, 800});
-	//InventoryRenderer_->SetTexture("Inventory_0.png");
+	InventoryRenderer_ = CreateComponent<GameEngineTextureRenderer>();
+	InventoryRenderer_->GetTransform().SetWorldScale({1280, 800});
+	InventoryRenderer_->SetTexture("Inventory_0.png");
 
-	//GameEngineInput::GetInst()->CreateButton("InventoryLeftButton", GAMEPAD_LEFT_SHOULDER);
-	//GameEngineInput::GetInst()->CreateButton("InventoryRightButton", GAMEPAD_RIGHT_SHOULDER);
+	GameEngineInput::GetInst()->CreateButton("InventoryLeftButton", GAMEPAD_LEFT_SHOULDER);
+	GameEngineInput::GetInst()->CreateButton("InventoryRightButton", GAMEPAD_RIGHT_SHOULDER);
 
-	//GameEngineInput::GetInst()->CreateKey("InventoryLeftKey", VK_LEFT);
-	//GameEngineInput::GetInst()->CreateKey("InventoryRightKey", VK_RIGHT);
+	GameEngineInput::GetInst()->CreateKey("InventoryLeftKey", VK_LEFT);
+	GameEngineInput::GetInst()->CreateKey("InventoryRightKey", VK_RIGHT);
 }
 
 void Inventory::Update(float _DeltaTime)

@@ -56,7 +56,7 @@ private:
 
 	int HP_;
 	int MP_;
-	int Speed_;
+	float Speed_;
 
 	int Money_; 
 

@@ -1,6 +1,13 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 
+enum class MainMenuType
+{
+	Pilgrimage,
+	Option_,
+	Exit_
+};
+
 class GameEngineTextureRenderer;
 class MainMenuActor : public GameEngineActor
 {
@@ -24,6 +31,13 @@ private:
 	GameEngineTextureRenderer* Petal_;
 	GameEngineTextureRenderer* Crisanta_;
 
+	GameEngineTextureRenderer* Pilgrimage_;
+	GameEngineTextureRenderer* Option_;
+	GameEngineTextureRenderer* Exit_;
+
+	MainMenuType CurrentType_;
+	int MenuIndex_;
+
 	float BackgroundTime_;
 	float PetalTime_;
 	float BigPetalTime_;
@@ -39,5 +53,8 @@ private:
 	void PetalAnimation(float _DeltaTime);
 	void BigPetalAnimation(float _DeltaTime);
 	void CrisantaAnimation(float _DeltaTime);
+
+	void ChangeMenuIndex();
+	void ChangeMenuSelect();
 };
 

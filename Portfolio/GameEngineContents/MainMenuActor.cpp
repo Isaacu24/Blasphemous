@@ -1,11 +1,13 @@
 #include "PreCompile.h"
 #include "MainMenuActor.h"
+#include "Stage01.h"
 
 MainMenuActor::MainMenuActor() 
 	: Background_(nullptr)
 	, BigPetal_(nullptr)
 	, Petal_(nullptr)
 	, Crisanta_(nullptr)
+	, MenuIndex_(1)
 	, BackgroundTime_(0.0f)
 	, PetalTime_(0.0f)
 	, BigPetalTime_(0.0f)
@@ -20,6 +22,7 @@ MainMenuActor::MainMenuActor()
 
 MainMenuActor::~MainMenuActor() 
 {
+
 }
 
 void MainMenuActor::Start()
@@ -40,6 +43,24 @@ void MainMenuActor::Start()
 	BigPetal_ = CreateComponent<GameEngineTextureRenderer>();
 	BigPetal_->GetTransform().SetWorldScale(GameEngineWindow::GetScale());
 	BigPetal_->SetTexture("Crisanta_BigPetal_0.png");
+
+	Pilgrimage_ = CreateComponent<GameEngineTextureRenderer>();
+	Pilgrimage_->GetTransform().SetWorldScale({ 50, 25 });
+	Pilgrimage_->GetTransform().SetLocalPosition({ 450, -50 });
+	Pilgrimage_->SetTexture("Pilgrimage.png");
+
+	Option_ = CreateComponent<GameEngineTextureRenderer>();
+	Option_->GetTransform().SetWorldScale({ 50, 25 });
+	Option_->GetTransform().SetLocalPosition({ 450, -125 });
+	Option_->SetTexture("Option.png");
+
+	Exit_ = CreateComponent<GameEngineTextureRenderer>();
+	Exit_->GetTransform().SetWorldScale({ 75, 25 });
+	Exit_->GetTransform().SetLocalPosition({ 450, -200 });
+	Exit_->SetTexture("Exit.png");
+
+	GameEngineInput::GetInst()->CreateKey("MainMenUpKey", VK_UP);
+	GameEngineInput::GetInst()->CreateKey("MainMenuDownKey", VK_DOWN);
 }
 
 void MainMenuActor::Update(float _DeltaTime)
@@ -48,6 +69,32 @@ void MainMenuActor::Update(float _DeltaTime)
 	PetalAnimation(_DeltaTime);
 	CrisantaAnimation(_DeltaTime);
 	BigPetalAnimation(_DeltaTime);
+
+	if (true == GameEngineInput::GetInst()->IsDownKey("MainMenUpKey"))
+	{
+		if (1 == MenuIndex_)
+		{
+			MenuIndex_ = 3;
+			ChangeMenuIndex();
+			return;
+		}
+
+		--MenuIndex_;
+		ChangeMenuIndex();
+	}
+
+	else if (true == GameEngineInput::GetInst()->IsDownKey("MainMenuDownKey"))
+	{
+		if (3 == MenuIndex_)
+		{
+			MenuIndex_ = 1;
+			ChangeMenuIndex();
+			return;
+		}
+		
+		++MenuIndex_;
+		ChangeMenuIndex();
+	}
 }
 
 void MainMenuActor::End()
@@ -123,5 +170,43 @@ void MainMenuActor::CrisantaAnimation(float _DeltaTime)
 		}
 
 		Crisanta_->SetTexture("Crisanta_" + std::to_string(CrisantaFrame_) + ".png");
+	}
+}
+
+void MainMenuActor::ChangeMenuIndex()
+{
+	switch (MenuIndex_)
+	{
+	case 1:
+		CurrentType_ = MainMenuType::Pilgrimage;
+		break;
+	case 2:
+		CurrentType_ = MainMenuType::Option_;
+		break;
+	case 3:
+		CurrentType_ = MainMenuType::Exit_;
+		break;
+	default:
+		MenuIndex_ = 1;
+		break;
+	}
+
+	ChangeMenuSelect();
+}
+
+void MainMenuActor::ChangeMenuSelect()
+{
+	switch (CurrentType_)
+	{
+	case MainMenuType::Pilgrimage:
+		//셰이더 처리 혹은 텍스쳐 변경
+		break;
+	case MainMenuType::Option_:
+		break;
+	case MainMenuType::Exit_:
+		//프로그램 종료
+		break;
+	default:
+		break;
 	}
 }

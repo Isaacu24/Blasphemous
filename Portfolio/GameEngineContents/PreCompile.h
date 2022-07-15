@@ -44,6 +44,7 @@
 #include <GameEngineBase/GameEngineFile.h>
 
 // core
+#include <GameEngineCore/GEngine.h>
 #include <GameEngineCore/CoreMinimal.h>
 #include <GameEngineCore/GameEngineTextureRenderer.h>
 

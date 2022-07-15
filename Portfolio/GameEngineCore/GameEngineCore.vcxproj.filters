@@ -102,6 +102,9 @@
     <ClInclude Include="GameEngineTextureRenderer.h">
       <Filter>Contents</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineFolderTexture.h">
+      <Filter>Resources\Texture</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineActor.cpp">
@@ -203,6 +206,9 @@
     </ClCompile>
     <ClCompile Include="GameEngineTextureRenderer.cpp">
       <Filter>Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineFolderTexture.cpp">
+      <Filter>Resources\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

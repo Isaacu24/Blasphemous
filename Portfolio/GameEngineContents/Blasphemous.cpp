@@ -2,6 +2,11 @@
 #include "Title.h"
 #include "MainMenu.h"
 #include "PreCompile.h"
+#include "Stage01.h"
+#include "Stage02.h"
+#include "Stage03.h"
+#include "Stage04.h"
+#include "Stage05.h"
 
 #pragma comment(lib, "GameEngineBase.lib")
 
@@ -20,6 +25,14 @@ void Blasphemous::Start()
 
 	CreateLevel<Title>("Title"); 
 	CreateLevel<MainMenu>("MainMenu");
+
+	//형제단 본부
+	CreateLevel<Stage01>("Stage01");
+	CreateLevel<Stage02>("Stage02");
+	CreateLevel<Stage03>("Stage03");
+	CreateLevel<Stage04>("Stage04");
+	CreateLevel<Stage05>("Stage05");
+
 	ChangeLevel("MainMenu");
 }
 

@@ -28,9 +28,6 @@ void GameEngineShader::AutoCompile(const std::string& _Path)
 	File.Open(OpenMode::Read, FileMode::Text);
 
 	std::string AllHlslCode = File.GetString();
-	AllHlslCode.resize(File.GetFileSize());
-
-	File.Read(&AllHlslCode[0], AllHlslCode.size(), AllHlslCode.size());
 
 	size_t VSEntryIndex = AllHlslCode.find("_VS(");
 	// 0123456789
@@ -186,8 +183,21 @@ void GameEngineShader::ShaderResCheck()
 			MsgBoxAssert("아직 처리하지 않은 쉐이더 리소스");
 			break;
 		}
+
+
+		// 이 순간 상수버퍼가 만들어져야 합니다.
+
+		int a = 0;
+
 	}
 
+	ConstantBufferMap;
+	TextureMap;
+
+	// 상수버는 몇개 쓰는지 크기는 얼마인지 이런것들을 알아내줍니다.
+	// CompileInfo
+
+	// CompileInfo->Release();
 }
 
 GameEngineConstantBufferSetter& GameEngineShader::GetConstantBufferSetter(std::string _Name)
