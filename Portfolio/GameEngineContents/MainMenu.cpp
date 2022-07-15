@@ -1,6 +1,5 @@
 #include "MainMenu.h"
 #include "PreCompile.h"
-#include <GameEngineCore/GameEngineCameraActor.h>
 #include "MainMenuActor.h"
 
 MainMenu::MainMenu() 

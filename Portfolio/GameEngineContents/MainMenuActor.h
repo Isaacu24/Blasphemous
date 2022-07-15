@@ -56,5 +56,7 @@ private:
 
 	void ChangeMenuIndex();
 	void ChangeMenuSelect();
+
+	void SelectMenu();
 };
 

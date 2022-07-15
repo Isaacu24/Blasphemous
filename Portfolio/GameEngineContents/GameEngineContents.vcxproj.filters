@@ -68,6 +68,9 @@
     <ClInclude Include="TitleActor.h">
       <Filter>Actor\UI</Filter>
     </ClInclude>
+    <ClInclude Include="StageActor.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -136,6 +139,9 @@
     </ClCompile>
     <ClCompile Include="TitleActor.cpp">
       <Filter>Actor\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="StageActor.cpp">
+      <Filter>Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

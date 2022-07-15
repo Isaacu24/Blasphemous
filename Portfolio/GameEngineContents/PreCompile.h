@@ -47,5 +47,8 @@
 #include <GameEngineCore/GEngine.h>
 #include <GameEngineCore/CoreMinimal.h>
 #include <GameEngineCore/GameEngineTextureRenderer.h>
+#include <GameEngineCore/GameEngineCameraActor.h>
 
 
+//Contents
+#include <GameEngineContents/StageActor.h>

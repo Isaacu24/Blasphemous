@@ -18,6 +18,9 @@ protected:
 	void End() override;
 
 private:
+	GameEngineActor* Stage_;
 
+	class BossMonster* BossMonster_;
+	std::list<class MonsterBase*> MonsterList_;
 };
 

@@ -2,11 +2,15 @@
 #include "MainMenuActor.h"
 #include "Stage01.h"
 
-MainMenuActor::MainMenuActor() 
+MainMenuActor::MainMenuActor()
 	: Background_(nullptr)
 	, BigPetal_(nullptr)
 	, Petal_(nullptr)
 	, Crisanta_(nullptr)
+	, Pilgrimage_(nullptr)
+	, Option_(nullptr)
+	, Exit_(nullptr)
+	, CurrentType_(MainMenuType::Pilgrimage)
 	, MenuIndex_(1)
 	, BackgroundTime_(0.0f)
 	, PetalTime_(0.0f)
@@ -61,6 +65,7 @@ void MainMenuActor::Start()
 
 	GameEngineInput::GetInst()->CreateKey("MainMenUpKey", VK_UP);
 	GameEngineInput::GetInst()->CreateKey("MainMenuDownKey", VK_DOWN);
+	GameEngineInput::GetInst()->CreateKey("MainMenSelectKey", VK_SPACE);
 }
 
 void MainMenuActor::Update(float _DeltaTime)
@@ -69,6 +74,8 @@ void MainMenuActor::Update(float _DeltaTime)
 	PetalAnimation(_DeltaTime);
 	CrisantaAnimation(_DeltaTime);
 	BigPetalAnimation(_DeltaTime);
+
+	SelectMenu();
 
 	if (true == GameEngineInput::GetInst()->IsDownKey("MainMenUpKey"))
 	{
@@ -116,7 +123,6 @@ void MainMenuActor::BackgroundAnimation(float _DeltaTime)
 		}
 		Background_->SetTexture("TitleBackgorund_" + std::to_string(BackgroundFrame_) + ".png");
 	}
-
 }
 
 void MainMenuActor::PetalAnimation(float _DeltaTime)
@@ -196,17 +202,35 @@ void MainMenuActor::ChangeMenuIndex()
 
 void MainMenuActor::ChangeMenuSelect()
 {
+	//셰이더 처리 혹은 텍스쳐 변경
 	switch (CurrentType_)
 	{
 	case MainMenuType::Pilgrimage:
-		//셰이더 처리 혹은 텍스쳐 변경
 		break;
 	case MainMenuType::Option_:
 		break;
 	case MainMenuType::Exit_:
-		//프로그램 종료
 		break;
 	default:
 		break;
+	}
+}
+
+void MainMenuActor::SelectMenu()
+{
+	if (true == GameEngineInput::GetInst()->IsDownKey("MainMenSelectKey"))
+	{
+		switch (CurrentType_)
+		{
+		case MainMenuType::Pilgrimage:
+			GEngine::ChangeLevel("Stage01");
+			break;
+		case MainMenuType::Option_:
+			break;
+		case MainMenuType::Exit_:
+			break;
+		default:
+			break;
+		}
 	}
 }
