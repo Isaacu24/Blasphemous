@@ -15,7 +15,7 @@ void Stage02::Start()
 	CameraActor->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
 
 	Stage_ = CreateActor<StageActor>();
-	Stage_->GetTransform().SetLocalPosition({ 1300, 100, 0 });
+	Stage_->GetTransform().SetLocalPosition({ 1300, 125, 0 });
 
 	GameEngineTextureRenderer* StageRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	StageRendrer->GetTransform().SetWorldScale({ 3840, 2054 });
