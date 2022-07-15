@@ -20,7 +20,24 @@ protected:
 
 private:
 	GameEngineTextureRenderer* Background_;
-		;
+	GameEngineTextureRenderer* BigPetal_;
+	GameEngineTextureRenderer* Petal_;
+	GameEngineTextureRenderer* Crisanta_;
 
+	float BackgroundTime_;
+	float PetalTime_;
+	float BigPetalTime_;
+	float CrisantaTime_;
+
+	int BackgroundFrame_;
+	int PetalFrame_;
+	int BigPetalFrame_;
+	int CrisantaFrame_;
+
+private:
+	void BackgroundAnimation(float _DeltaTime);
+	void PetalAnimation(float _DeltaTime);
+	void BigPetalAnimation(float _DeltaTime);
+	void CrisantaAnimation(float _DeltaTime);
 };
 

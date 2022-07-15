@@ -20,7 +20,7 @@ void Blasphemous::Start()
 
 	CreateLevel<Title>("Title"); 
 	CreateLevel<MainMenu>("MainMenu");
-	ChangeLevel("Title");
+	ChangeLevel("MainMenu");
 }
 
 void Blasphemous::Update(float _DeltaTime)
