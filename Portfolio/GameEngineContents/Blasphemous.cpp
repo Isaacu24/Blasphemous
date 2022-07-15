@@ -167,7 +167,7 @@ void Blasphemous::LoadResources()
 			GameEngineTexture::Load(Shaders[i].GetFullPath());
 		}
 	}
-
+}
 
 //¸Ê ÅØ½ºÃÄ
 void Blasphemous::LoadMap(const std::string& _Level, int _Room, int _Index)
