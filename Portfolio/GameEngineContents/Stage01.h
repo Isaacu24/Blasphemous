@@ -23,5 +23,7 @@ private:
 
 	class BossMonster* BossMonster_;
 	std::list<class MonsterBase*> MonsterList_;
+
+	class CutScenePlayer* CutScenePlayer_;
 };
 

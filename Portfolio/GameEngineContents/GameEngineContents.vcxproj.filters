@@ -71,6 +71,9 @@
     <ClInclude Include="StageActor.h">
       <Filter>Actor</Filter>
     </ClInclude>
+    <ClInclude Include="CutScenePlayer.h">
+      <Filter>Actor\CutScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -143,6 +146,9 @@
     <ClCompile Include="StageActor.cpp">
       <Filter>Actor</Filter>
     </ClCompile>
+    <ClCompile Include="CutScenePlayer.cpp">
+      <Filter>Actor\CutScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -192,6 +198,9 @@
     </Filter>
     <Filter Include="Level\Pilgrimage\04Dream">
       <UniqueIdentifier>{b17ccfec-c3ec-4d53-8614-290090d4d012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\CutScene">
+      <UniqueIdentifier>{5a407c1a-a702-446b-a37f-398b9a3c8f10}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -52,3 +52,4 @@
 
 //Contents
 #include <GameEngineContents/StageActor.h>
+#include "CutScenePlayer.h"

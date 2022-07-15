@@ -169,8 +169,6 @@ void Blasphemous::LoadResources()
 	}
 
 
-}
-
 //¸Ê ÅØ½ºÃÄ
 void Blasphemous::LoadMap(const std::string& _Level, int _Room, int _Index)
 {
