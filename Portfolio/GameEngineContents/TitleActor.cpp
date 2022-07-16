@@ -17,7 +17,7 @@ void TitleActor::Start()
 
 	GameEngineTextureRenderer* DescRenderer = CreateComponent<GameEngineTextureRenderer>();
 	DescRenderer->SetTexture("StartCopyRight.png");
-	DescRenderer->GetTransform().SetWorldPosition({30.f, -200.f, 0 });
+	DescRenderer->GetTransform().SetWorldMove({0.f, -270.f, 0 });
 	DescRenderer->GetTransform().SetWorldScale({ 900, 124 });
 
 }

@@ -154,7 +154,12 @@ void MainMenuActor::BigPetalAnimation(float _DeltaTime)
 
 		if (6 == BigPetalFrame_)
 		{
-			BigPetalFrame_ = 0;
+			BigPetalFrame_ = -30;
+		}
+
+		if (0 > BigPetalFrame_)
+		{
+			return;
 		}
 
 		BigPetal_->SetTexture("Crisanta_BigPetal_" + std::to_string(BigPetalFrame_) + ".png");

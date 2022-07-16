@@ -35,6 +35,8 @@ void Blasphemous::Start()
 
 	ChangeLevel("MainMenu");
 
+	GameEngineInput::GetInst()->CreateKey("GotoTitle", 'T');
+	GameEngineInput::GetInst()->CreateKey("GotoMainMenu", 'M');
 	GameEngineInput::GetInst()->CreateKey("GotoStage0", VK_NUMPAD0);
 	GameEngineInput::GetInst()->CreateKey("GotoStage1", VK_NUMPAD1);
 	GameEngineInput::GetInst()->CreateKey("GotoStage2", VK_NUMPAD2);
@@ -50,6 +52,16 @@ void Blasphemous::Start()
 
 void Blasphemous::Update(float _DeltaTime)
 {
+	if (true == GameEngineInput::GetInst()->IsDownKey("GotoTitle"))
+	{
+		ChangeLevel("Title");
+	}
+
+	if (true == GameEngineInput::GetInst()->IsDownKey("GotoMainMenu"))
+	{
+		ChangeLevel("MainMenu");
+	}
+
 	if (true == GameEngineInput::GetInst()->IsDownKey("GotoStage0"))
 	{
 		ChangeLevel("Stage01");
