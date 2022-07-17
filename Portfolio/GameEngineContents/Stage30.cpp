@@ -1,15 +1,16 @@
 #include "PreCompile.h"
-#include "Stage02.h"
+#include "Stage30.h"
+#include "CutScenePlayer.h"
 
-Stage02::Stage02() 
+Stage30::Stage30() 
 {
 }
 
-Stage02::~Stage02() 
+Stage30::~Stage30() 
 {
 }
 
-void Stage02::Start()
+void Stage30::Start()
 {
 	GameEngineCameraActor* CameraActor = CreateActor<GameEngineCameraActor>();
 	CameraActor->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
@@ -17,8 +18,8 @@ void Stage02::Start()
 	Stage_ = CreateActor<StageActor>();
 
 	GameEngineTextureRenderer* StageRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	StageRendrer->GetTransform().SetWorldScale({ 3840, 2054 });
-	StageRendrer->SetTexture("1-2_Tile.png");
+	StageRendrer->GetTransform().SetWorldScale({ 3840, 1500 });
+	StageRendrer->SetTexture("13-1_Tile.png");
 
 	float OffsetX = StageRendrer->GetTransform().GetLocalScale().x / 2;
 	float OffsetY = StageRendrer->GetTransform().GetLocalScale().y / 2;
@@ -27,12 +28,13 @@ void Stage02::Start()
 
 	Stage_->GetTransform().SetLocalMove(Offset);
 
+	CutScenePlayer* Player = CreateActor<CutScenePlayer>();
 }
 
-void Stage02::Update(float _DeltaTime)
+void Stage30::Update(float _DeltaTime)
 {
 }
 
-void Stage02::End()
+void Stage30::End()
 {
 }

@@ -56,6 +56,11 @@ public:
 
 	void TextureLoad(const std::string& _Path);
 
+	const DirectX::TexMetadata& GetMetadata()
+	{
+		return Metadata;
+	}
+
 protected:
 
 private:

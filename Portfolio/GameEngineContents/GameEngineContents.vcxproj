@@ -99,6 +99,22 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Stage10.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage20.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage21.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage30.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="StageActor.h">
       <SubType>
       </SubType>
@@ -198,6 +214,22 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Stage05.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage10.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage20.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage21.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage30.cpp">
       <SubType>
       </SubType>
     </ClCompile>

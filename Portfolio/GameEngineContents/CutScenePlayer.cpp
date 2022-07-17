@@ -16,9 +16,11 @@ CutScenePlayer::~CutScenePlayer()
 
 void CutScenePlayer::Start()
 {
-	//CutRenderer_ = CreateComponent<GameEngineTextureRenderer>();
-	//CutRenderer_->GetTransform().SetWorldScale({GameEngineWindow::GetScale()});
-	//CutRenderer_->SetTexture("CutScene003_0.png");
+	CutRenderer_ = CreateComponent<GameEngineTextureRenderer>();
+	CutRenderer_->GetTransform().SetWorldScale({GameEngineWindow::GetScale()});
+	CutRenderer_->SetTexture("CutScene_0.png");
+
+	CurrentType_ = CutSceneType::DeadBrotherhood;
 }
 
 void CutScenePlayer::Update(float _DeltaTime)
@@ -30,6 +32,9 @@ void CutScenePlayer::Update(float _DeltaTime)
 		break;
 	case CutSceneType::FallPenitent:
 		break;
+	case CutSceneType::DeadBrotherhood:
+		PalyIntro(_DeltaTime);
+		break;
 	}
 }
 
@@ -39,21 +44,20 @@ void CutScenePlayer::End()
 
 void CutScenePlayer::PalyIntro(float DeltaTime_)
 {
-	//PlayTime_ += DeltaTime_;
+	PlayTime_ += DeltaTime_;
 
-	//if (0.1f <= PlayTime_)
-	//{
-	//	PlayTime_ -= 0.1f;
+	if (0.02f <= PlayTime_)
+	{
+		PlayTime_ -= 0.02f;
 
-	//	++CurrentFrame_;
+		++CurrentFrame_;
 
-	//	if (1104 == CurrentFrame_)
-	//	{
-	//		//다음 레벨로 이동(함수 포인터)
-	//		CurrentFrame_ = 0;
-	//		return;
-	//	}
+		if (664 == CurrentFrame_)
+		{
+			Death();
+			return;
+		}
 
-	//	CutRenderer_->SetTexture("CutScene003_" + std::to_string(CurrentFrame_) + ".png");
-	//}
+		CutRenderer_->SetTexture("CutScene_" + std::to_string(CurrentFrame_) + ".png");
+	}
 }

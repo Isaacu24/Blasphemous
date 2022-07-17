@@ -39,15 +39,15 @@ float4 TextureAtlas_PS(Output _Input) : SV_Target0
 {
     float4 TextureColor = Tex.Sample(Sam, _Input.Tex.xy);
    
-    if (TextureColor.r >= 0.9f)
-    {
-        discard;
-    }
+    //if (TextureColor.r >= 0.9f)
+    //{
+    //    discard;
+    //}
     
-    if (TextureColor.r <= 0.1f)
-    {
-        discard;
-    }
+    //if (TextureColor.r <= 0.1f)
+    //{
+    //    discard;
+    //}
     
     return TextureColor;
 

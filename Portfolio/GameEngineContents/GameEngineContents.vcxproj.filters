@@ -74,6 +74,18 @@
     <ClInclude Include="CutScenePlayer.h">
       <Filter>Actor\CutScene</Filter>
     </ClInclude>
+    <ClInclude Include="Stage10.h">
+      <Filter>Level\Pilgrimage\02Bridge</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage20.h">
+      <Filter>Level\Pilgrimage\03Deambulatory</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage30.h">
+      <Filter>Level\Pilgrimage\04OtherSideoftheDream</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage21.h">
+      <Filter>Level\Pilgrimage\03Deambulatory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -149,6 +161,18 @@
     <ClCompile Include="CutScenePlayer.cpp">
       <Filter>Actor\CutScene</Filter>
     </ClCompile>
+    <ClCompile Include="Stage10.cpp">
+      <Filter>Level\Pilgrimage\02Bridge</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage20.cpp">
+      <Filter>Level\Pilgrimage\03Deambulatory</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage30.cpp">
+      <Filter>Level\Pilgrimage\04OtherSideoftheDream</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage21.cpp">
+      <Filter>Level\Pilgrimage\03Deambulatory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -196,11 +220,11 @@
     <Filter Include="Level\Pilgrimage\03Deambulatory">
       <UniqueIdentifier>{37bc6771-28e9-40ad-9f33-3532bc4efc9c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Level\Pilgrimage\04Dream">
-      <UniqueIdentifier>{b17ccfec-c3ec-4d53-8614-290090d4d012}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Actor\CutScene">
       <UniqueIdentifier>{5a407c1a-a702-446b-a37f-398b9a3c8f10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Pilgrimage\04OtherSideoftheDream">
+      <UniqueIdentifier>{b17ccfec-c3ec-4d53-8614-290090d4d012}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

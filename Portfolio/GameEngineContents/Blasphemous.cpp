@@ -2,11 +2,20 @@
 #include "Title.h"
 #include "MainMenu.h"
 #include "PreCompile.h"
+
 #include "Stage01.h"
 #include "Stage02.h"
 #include "Stage03.h"
 #include "Stage04.h"
 #include "Stage05.h"
+
+#include "Stage10.h"
+
+#include "Stage20.h"
+#include "Stage21.h"
+
+#include "Stage30.h"
+
 
 #pragma comment(lib, "GameEngineBase.lib")
 
@@ -32,6 +41,16 @@ void Blasphemous::Start()
 	CreateLevel<Stage03>("Stage03");
 	CreateLevel<Stage04>("Stage04");
 	CreateLevel<Stage05>("Stage05");
+
+	// 파묻힌 교회의 황무지
+	CreateLevel<Stage10>("Stage10");
+
+	// 교황 성하의 회랑
+	CreateLevel<Stage20>("Stage20");
+	CreateLevel<Stage21>("Stage21");
+
+	//꿈의 저편
+	CreateLevel<Stage30>("Stage30");
 
 	ChangeLevel("MainMenu");
 
@@ -82,7 +101,6 @@ void Blasphemous::Update(float _DeltaTime)
 		ChangeLevel("Stage04");
 	}
 
-
 	if (true == GameEngineInput::GetInst()->IsDownKey("GotoStage4"))
 	{
 		ChangeLevel("Stage05");
@@ -90,22 +108,22 @@ void Blasphemous::Update(float _DeltaTime)
 
 	if (true == GameEngineInput::GetInst()->IsDownKey("GotoStage5"))
 	{
-		//ChangeLevel("Stage06");
+		ChangeLevel("Stage10");
 	}
 
 	if (true == GameEngineInput::GetInst()->IsDownKey("GotoStage6"))
 	{
-		//ChangeLevel("Stage07");
+		ChangeLevel("Stage20");
 	}
 
 	if (true == GameEngineInput::GetInst()->IsDownKey("GotoStage7"))
 	{
-		//ChangeLevel("Stage08");
+		ChangeLevel("Stage21");
 	}
 
 	if (true == GameEngineInput::GetInst()->IsDownKey("GotoStage8"))
 	{
-		//ChangeLevel("Stage09");
+		ChangeLevel("Stage30");
 	}
 
 	if (true == GameEngineInput::GetInst()->IsDownKey("GotoStage9"))
@@ -126,6 +144,13 @@ void Blasphemous::LoadResources()
 	LoadMap("Brotherhood", 1, 3);
 	LoadMap("Brotherhood", 1, 4);
 	LoadMap("Brotherhood", 1, 5);
+
+	LoadMap("BuriedChurches", 2, 1);
+
+	LoadMap("DeambulatoryOfHisHoliness", 12, 2);
+	LoadMap("DeambulatoryOfHisHoliness", 12, 3);
+
+	LoadMap("OtherSideoftheDream", 13, 1);
 
 	//UI 이미지
 	{
@@ -179,6 +204,25 @@ void Blasphemous::LoadResources()
 			GameEngineTexture::Load(Shaders[i].GetFullPath());
 		}
 	}
+
+
+	//UI Inventory
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory("GameEngineResources");
+		Dir.Move("GameEngineResources");
+		Dir.Move("Resources");
+		Dir.Move("VideoImage");
+		Dir.Move("FirstBoss");
+
+		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Shaders.size(); i++)
+		{
+			GameEngineTexture::Load(Shaders[i].GetFullPath());
+		}
+	}
 }
 
 //맵 텍스쳐
@@ -201,5 +245,4 @@ void Blasphemous::LoadMap(const std::string& _Level, int _Room, int _Index)
 			GameEngineTexture::Load(Shaders[i].GetFullPath());
 		}
 	}
-
 }

@@ -15,11 +15,17 @@ void Stage04::Start()
 	CameraActor->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
 
 	Stage_ = CreateActor<StageActor>();
-	Stage_->GetTransform().SetLocalPosition({ 1200, 200, 0 });
 
 	GameEngineTextureRenderer* StageRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	StageRendrer->GetTransform().SetWorldScale({ 3840, 2054 });
 	StageRendrer->SetTexture("1_4_Tile.png");
+
+	float OffsetX = StageRendrer->GetTransform().GetLocalScale().x / 2;
+	float OffsetY = StageRendrer->GetTransform().GetLocalScale().y / 2;
+
+	float4 Offset = { OffsetX , -OffsetY };
+
+	Stage_->GetTransform().SetLocalMove(Offset);
 }
 
 void Stage04::Update(float _DeltaTime)
