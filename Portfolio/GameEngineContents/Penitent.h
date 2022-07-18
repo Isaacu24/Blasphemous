@@ -11,7 +11,7 @@ enum class PlayerFSM
 	Death //플레이어가 죽은 상태
 };
 
-class GameEngineDefaultRenderer;
+class GameEngineTextureRenderer;
 class Penitent : public GameEngineActor
 {
 public:
@@ -45,12 +45,10 @@ protected:
 
 private:
 
-	GameEngineDefaultRenderer* DefaultRenderer_;
-
 	PlayerFSM PrevState_;
 	PlayerFSM CurrentState_;
 
-	GameEngineDefaultRenderer* Renderer;
+	GameEngineTextureRenderer* Renderer;
 
 	float4 Time_;
 

@@ -1,7 +1,6 @@
 #pragma once
 #include "GameEngineDefaultRenderer.h"
 
-
 class FrameAnimation_DESC
 {
 public:
@@ -92,6 +91,9 @@ public:
 	GameEngineTextureRenderer& operator=(const GameEngineTextureRenderer& _Other) = delete;
 	GameEngineTextureRenderer& operator=(GameEngineTextureRenderer&& _Other) noexcept = delete;
 
+	void SetSamplingModePoint();
+	void SetSamplingModeLiner();
+
 	void SetTexture(GameEngineTexture* _Texture);
 
 	void SetTexture(const std::string& _Name);
@@ -115,11 +117,6 @@ public:
 	void AnimationBindFrame(const std::string& _AnimationName, std::function<void(const FrameAnimation_DESC&)> Function);
 	// Update
 	void AnimationBindTime(const std::string& _AnimationName, std::function<void(const FrameAnimation_DESC&, float)> Function);
-
-	GameEngineTexture* GetTexture()
-	{
-		return CurTex;
-	}
 
 protected:
 	void Start() override;

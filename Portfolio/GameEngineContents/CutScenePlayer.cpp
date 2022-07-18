@@ -16,11 +16,11 @@ CutScenePlayer::~CutScenePlayer()
 
 void CutScenePlayer::Start()
 {
-	CutRenderer_ = CreateComponent<GameEngineTextureRenderer>();
-	CutRenderer_->GetTransform().SetWorldScale({GameEngineWindow::GetScale()});
-	CutRenderer_->SetTexture("CutScene_0.png");
+	//CutRenderer_ = CreateComponent<GameEngineTextureRenderer>();
+	//CutRenderer_->GetTransform().SetWorldScale({GameEngineWindow::GetScale()});
+	//CutRenderer_->SetTexture("CutScene_0.png");
 
-	CurrentType_ = CutSceneType::DeadBrotherhood;
+	//CurrentType_ = CutSceneType::DeadBrotherhood;
 }
 
 void CutScenePlayer::Update(float _DeltaTime)
@@ -28,12 +28,12 @@ void CutScenePlayer::Update(float _DeltaTime)
 	switch (CurrentType_)
 	{
 	case CutSceneType::Intro:
-		PalyIntro(_DeltaTime);
+		//PalyIntro(_DeltaTime);
 		break;
 	case CutSceneType::FallPenitent:
 		break;
 	case CutSceneType::DeadBrotherhood:
-		PalyIntro(_DeltaTime);
+		//PalyIntro(_DeltaTime);
 		break;
 	}
 }

@@ -51,7 +51,7 @@ void MainMenuActor::Start()
 	Pilgrimage_ = CreateComponent<GameEngineTextureRenderer>();
 	Pilgrimage_->GetTransform().SetWorldScale({ 50, 25 });
 	Pilgrimage_->GetTransform().SetLocalPosition({ 450, -50 });
-	Pilgrimage_->SetTexture("Pilgrimage.png");
+	Pilgrimage_->SetTexture("Pilgrimage_Select.png");
 
 	Option_ = CreateComponent<GameEngineTextureRenderer>();
 	Option_->GetTransform().SetWorldScale({ 50, 25 });
@@ -211,10 +211,19 @@ void MainMenuActor::ChangeMenuSelect()
 	switch (CurrentType_)
 	{
 	case MainMenuType::Pilgrimage:
+		Pilgrimage_->SetTexture("Pilgrimage_Select.png");
+		Option_->SetTexture("Option.png");
+		Exit_->SetTexture("Exit.png");
 		break;
 	case MainMenuType::Option_:
+		Option_->SetTexture("Option_Select.png");
+		Pilgrimage_->SetTexture("Pilgrimage.png");
+		Exit_->SetTexture("Exit.png");
 		break;
 	case MainMenuType::Exit_:
+		Exit_->SetTexture("Exit_Select.png");
+		Pilgrimage_->SetTexture("Pilgrimage.png");
+		Option_->SetTexture("Option.png");
 		break;
 	default:
 		break;

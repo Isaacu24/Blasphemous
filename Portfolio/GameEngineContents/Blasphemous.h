@@ -27,5 +27,7 @@ private:
 	void LoadResources();
 	void LoadMap(const std::string& _Level, int _Room, int _Index);
 
+	void CutTexture();
+
 };
 

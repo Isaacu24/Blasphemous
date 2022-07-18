@@ -174,7 +174,7 @@ void GameEngineShader::ShaderResCheck()
 			NewSetter.ParentShader = this;
 			NewSetter.SetName(Name);
 			NewSetter.ShaderType = ShaderSettingType;
-			NewSetter.Res = GameEngineSampler::Find("EngineSampler");
+			NewSetter.Res = GameEngineSampler::Find("EngineSamplerLinear");
 			NewSetter.BindPoint = ResInfo.BindPoint;
 			SamplerMap.insert(std::make_pair(Name, NewSetter));
 			break;
@@ -183,21 +183,7 @@ void GameEngineShader::ShaderResCheck()
 			MsgBoxAssert("아직 처리하지 않은 쉐이더 리소스");
 			break;
 		}
-
-
-		// 이 순간 상수버퍼가 만들어져야 합니다.
-
-		int a = 0;
-
 	}
-
-	ConstantBufferMap;
-	TextureMap;
-
-	// 상수버는 몇개 쓰는지 크기는 얼마인지 이런것들을 알아내줍니다.
-	// CompileInfo
-
-	// CompileInfo->Release();
 }
 
 GameEngineConstantBufferSetter& GameEngineShader::GetConstantBufferSetter(std::string _Name)

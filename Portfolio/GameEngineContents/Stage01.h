@@ -21,6 +21,9 @@ protected:
 private:
 	GameEngineActor* Stage_;
 
+	class GameEngineCameraActor* CameraActor_;
+	class Penitent* Penitent_;
+
 	class BossMonster* BossMonster_;
 	std::list<class MonsterBase*> MonsterList_;
 

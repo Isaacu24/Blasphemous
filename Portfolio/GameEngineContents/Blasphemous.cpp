@@ -31,6 +31,7 @@ Blasphemous::~Blasphemous()
 void Blasphemous::Start()
 {
 	LoadResources();
+	CutTexture();
 
 	CreateLevel<Title>("Title"); 
 	CreateLevel<MainMenu>("MainMenu");
@@ -206,15 +207,16 @@ void Blasphemous::LoadResources()
 	}
 
 
-	//UI Inventory
+	//Player
 	{
 		GameEngineDirectory Dir;
 
 		Dir.MoveParentToExitsChildDirectory("GameEngineResources");
 		Dir.Move("GameEngineResources");
 		Dir.Move("Resources");
-		Dir.Move("VideoImage");
-		Dir.Move("FirstBoss");
+		Dir.Move("Sprite");
+		Dir.Move("Unorganized");
+		Dir.Move("Player");
 
 		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
 
@@ -223,6 +225,24 @@ void Blasphemous::LoadResources()
 			GameEngineTexture::Load(Shaders[i].GetFullPath());
 		}
 	}
+
+
+	//{
+	//	GameEngineDirectory Dir;
+
+	//	Dir.MoveParentToExitsChildDirectory("GameEngineResources");
+	//	Dir.Move("GameEngineResources");
+	//	Dir.Move("Resources");
+	//	Dir.Move("VideoImage");
+	//	Dir.Move("FirstBoss");
+
+	//	std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+
+	//	for (size_t i = 0; i < Shaders.size(); i++)
+	//	{
+	//		GameEngineTexture::Load(Shaders[i].GetFullPath());
+	//	}
+	//}
 }
 
 //¸Ê ÅØ½ºÃÄ
@@ -245,4 +265,9 @@ void Blasphemous::LoadMap(const std::string& _Level, int _Room, int _Index)
 			GameEngineTexture::Load(Shaders[i].GetFullPath());
 		}
 	}
+}
+
+void Blasphemous::CutTexture()
+{
+	GameEngineTexture::Cut("penintent_idle_anim_1.png", 8, 2);
 }

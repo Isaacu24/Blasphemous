@@ -19,6 +19,6 @@ protected:
 	void End() override;
 
 private:
-	
+	GameEngineTextureRenderer* ButttonShadow_;
 };
 
