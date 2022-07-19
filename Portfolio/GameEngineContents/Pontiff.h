@@ -2,6 +2,13 @@
 #include <GameEngineCore/GameEngineActor.h>
 #include "BossMonster.h"
 
+enum class PontiffState
+{
+	OpenIdle,
+	CloseIdle,
+	Death
+};
+
 //두번째 교황
 class Pontiff : public GameEngineActor, public BossMonster
 {
@@ -17,6 +24,7 @@ public:
 protected:
 
 private:
+
 
 };
 

@@ -26,7 +26,7 @@ void Stage20::Start()
 	StageRenderer->ScaleToTexture();
 
 	Penitent_ = CreateActor<Penitent>();
-	Penitent_->GetTransform().SetWorldMove({ 0, 0 });
+	Penitent_->GetTransform().SetWorldMove({ 300, -1650 });
 
 	GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	AfterLayerRenderer->SetTexture("12_2_AfterLayer.png");

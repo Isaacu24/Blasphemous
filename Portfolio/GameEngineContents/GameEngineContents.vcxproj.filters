@@ -26,9 +26,6 @@
     <ClInclude Include="Pope.h">
       <Filter>Actor\BossMonster</Filter>
     </ClInclude>
-    <ClInclude Include="Pontiff.h">
-      <Filter>Actor\BossMonster</Filter>
-    </ClInclude>
     <ClInclude Include="Penitent.h">
       <Filter>Actor\Player</Filter>
     </ClInclude>
@@ -89,6 +86,21 @@
     <ClInclude Include="StageBase.h">
       <Filter>Level\Pilgrimage</Filter>
     </ClInclude>
+    <ClInclude Include="Deogracias.h">
+      <Filter>Actor\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="GravityComponent.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Pontiff.h">
+      <Filter>Actor\BossMonster\Pontiff</Filter>
+    </ClInclude>
+    <ClInclude Include="GiantSword.h">
+      <Filter>Actor\BossMonster\Pontiff</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform.h">
+      <Filter>Actor\BossMonster\Pontiff</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -114,9 +126,6 @@
       <Filter>Actor\MonsterBase</Filter>
     </ClCompile>
     <ClCompile Include="Pope.cpp">
-      <Filter>Actor\BossMonster</Filter>
-    </ClCompile>
-    <ClCompile Include="Pontiff.cpp">
       <Filter>Actor\BossMonster</Filter>
     </ClCompile>
     <ClCompile Include="Penitent.cpp">
@@ -179,6 +188,21 @@
     <ClCompile Include="StageBase.cpp">
       <Filter>Level\Pilgrimage</Filter>
     </ClCompile>
+    <ClCompile Include="Deogracias.cpp">
+      <Filter>Actor\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="GravityComponent.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Pontiff.cpp">
+      <Filter>Actor\BossMonster\Pontiff</Filter>
+    </ClCompile>
+    <ClCompile Include="GiantSword.cpp">
+      <Filter>Actor\BossMonster\Pontiff</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp">
+      <Filter>Actor\BossMonster\Pontiff</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -231,6 +255,24 @@
     </Filter>
     <Filter Include="Level\Pilgrimage\04OtherSideoftheDream">
       <UniqueIdentifier>{b17ccfec-c3ec-4d53-8614-290090d4d012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\NPC">
+      <UniqueIdentifier>{ad5f0184-1ee4-4a74-9ed1-99f793f53d93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Effect">
+      <UniqueIdentifier>{558e3a7c-5ad1-45c7-a6e6-a91603674cd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Effect\Player">
+      <UniqueIdentifier>{0b8da80a-45a8-4ddd-89ad-92be69611e60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\BossMonster\Pontiff">
+      <UniqueIdentifier>{d4b3495a-bac9-46fc-9168-5e0dee44a911}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Effect\Pontiff">
+      <UniqueIdentifier>{4893c782-f708-4a9c-8c8f-30b54220c896}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Effect\Pope">
+      <UniqueIdentifier>{0ef6ce20-1a40-4e6a-ab4c-b4d20606baf6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

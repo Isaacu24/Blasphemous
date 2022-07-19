@@ -30,7 +30,7 @@ void Stage21::Start()
 
 	Penitent_ = CreateActor<Penitent>();
 
-	Penitent_->GetTransform().SetWorldMove({ 0, 0 });
+	Penitent_->GetTransform().SetWorldMove({ 1480, -940 });
 }
 
 void Stage21::Update(float _DeltaTime)

@@ -1,5 +1,6 @@
 #include "Penitent.h"
 #include "PreCompile.h"
+#include "GravityComponent.h"
 
 Penitent::Penitent() 
 	: Speed_(250.0f)
@@ -30,6 +31,8 @@ void Penitent::Start()
 		GameEngineInput::GetInst()->CreateKey("PenitentAnimation", '1');
 	}
 
+	//GravityComponent* Gravity = CreateComponent<GravityComponent>();
+
 	GetTransform().SetLocalScale({1, 1, 1});
 
 	{
@@ -38,7 +41,7 @@ void Penitent::Start()
 		Renderer->GetTransform().SetWorldScale({250, 250 });
 		Renderer->CreateFrameAnimation("penintent_idle_anim", { "penintent_idle_anim.png", 0, 12, 0.1f, true });
 		Renderer->CreateFrameAnimation("penitent_sheathedIdle", { "penitent_sheathedIdle.png", 0, 45, 0.1f, true });
-		Renderer->CreateFrameAnimation("penitent_verticalattack_LVL3_anim", { "penitent_verticalattack_LVL3_anim.png", 0, 23, 0.1f, true });
+		Renderer->CreateFrameAnimation("penitent_verticalattack_LVL3_anim", { "penitent_verticalattack_LVL3_anim.png", 0, 23, 0.05f, true });
 		Renderer->CreateFrameAnimation("penitent_climbledge_reviewed", { "penitent_climbledge_reviewed.png", 0, 11, 0.1f, true });
 		//Renderer->CreateFrameAnimation("penitent_respawning_hw", { "penitent_respawning_hw.png", 0, 31, 0.1f, true });
 		Renderer->ChangeFrameAnimation("penintent_idle_anim");
@@ -74,6 +77,9 @@ void Penitent::Update(float _DeltaTime)
 	}
 
 	ButtonCheck();
+
+	GameEngineDebug::OutPutString("x : " + std::to_string(GetTransform().GetLocalPosition().x));
+	GameEngineDebug::OutPutString("y : " + std::to_string(GetTransform().GetLocalPosition().y));
 }
 
 

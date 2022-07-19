@@ -17,12 +17,16 @@ void Stage30::Start()
 
 	Stage_ = CreateActor<StageActor>();
 
-	GameEngineTextureRenderer* StageRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	StageRendrer->SetTexture("13-1_Tile.png");
-	StageRendrer->ScaleToTexture();
+	GameEngineTextureRenderer* BeforeParallaxRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	BeforeParallaxRendrer->SetTexture("13-1_BeforeParallax_1.png");
+	BeforeParallaxRendrer->ScaleToTexture();
 
-	float OffsetX = StageRendrer->GetTransform().GetLocalScale().x / 2;
-	float OffsetY = StageRendrer->GetTransform().GetLocalScale().y / 2;
+	GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	StageRenderer->SetTexture("13-1_Tile.png");
+	StageRenderer->ScaleToTexture();
+
+	float OffsetX = StageRenderer->GetTransform().GetLocalScale().x / 2;
+	float OffsetY = StageRenderer->GetTransform().GetLocalScale().y / 2;
 
 	float4 Offset = { OffsetX , -OffsetY };
 
@@ -32,7 +36,7 @@ void Stage30::Start()
 
 	Penitent_ = CreateActor<Penitent>();
 
-	Penitent_->GetTransform().SetWorldMove({ 0, 0 });
+	Penitent_->GetTransform().SetWorldMove({ 1280, -1940 });
 }
 
 void Stage30::Update(float _DeltaTime)

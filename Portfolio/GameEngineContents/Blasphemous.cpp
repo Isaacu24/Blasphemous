@@ -215,7 +215,6 @@ void Blasphemous::LoadResources()
 		Dir.Move("GameEngineResources");
 		Dir.Move("Resources");
 		Dir.Move("Sprite");
-		Dir.Move("Unorganized");
 		Dir.Move("Player");
 
 		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
@@ -225,6 +224,28 @@ void Blasphemous::LoadResources()
 			GameEngineTexture::Load(Shaders[i].GetFullPath());
 		}
 	}
+
+
+
+	//NPC
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory("GameEngineResources");
+		Dir.Move("GameEngineResources");
+		Dir.Move("Resources");
+		Dir.Move("Sprite");
+		Dir.Move("NPC");
+		Dir.Move("Deosgracias");
+
+		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Shaders.size(); i++)
+		{
+			GameEngineTexture::Load(Shaders[i].GetFullPath());
+		}
+	}
+
 
 
 	//{
@@ -269,9 +290,14 @@ void Blasphemous::LoadMap(const std::string& _Level, int _Room, int _Index)
 
 void Blasphemous::CutTexture()
 {
+	//Player
 	GameEngineTexture::Cut("penintent_idle_anim.png", 8, 2);
 	GameEngineTexture::Cut("penitent_sheathedIdle.png", 7, 7);
 	GameEngineTexture::Cut("penitent_verticalattack_LVL3_anim.png", 8, 3);
 	GameEngineTexture::Cut("penitent_climbledge_reviewed.png", 4, 3);
 	//GameEngineTexture::Cut("penitent_respawning_hw.png", 6, 6);
+
+	//NPC
+	GameEngineTexture::Cut("Deosgracias_idle.png", 7, 3);
+
 }

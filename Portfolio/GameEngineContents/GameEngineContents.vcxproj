@@ -35,11 +35,23 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Deogracias.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ElderBrother.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="Fool_knife.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="GiantSword.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="GravityComponent.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -64,6 +76,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Penitent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Platform.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -157,11 +173,23 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Deogracias.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ElderBrother.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="Fool_knife.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="GiantSword.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="GravityComponent.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -186,6 +214,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Penitent.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp">
       <SubType>
       </SubType>
     </ClCompile>
