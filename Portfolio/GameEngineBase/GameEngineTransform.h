@@ -126,6 +126,7 @@ public:
 	inline void SetWorldPosition(const float4& _World)
 	{
 		float4 Local = _World;
+
 		if (nullptr != Parent)
 		{
 			// 부모의 역행렬을 곱해서 

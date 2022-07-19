@@ -86,6 +86,9 @@
     <ClInclude Include="Stage21.h">
       <Filter>Level\Pilgrimage\03Deambulatory</Filter>
     </ClInclude>
+    <ClInclude Include="StageBase.h">
+      <Filter>Level\Pilgrimage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -172,6 +175,9 @@
     </ClCompile>
     <ClCompile Include="Stage21.cpp">
       <Filter>Level\Pilgrimage\03Deambulatory</Filter>
+    </ClCompile>
+    <ClCompile Include="StageBase.cpp">
+      <Filter>Level\Pilgrimage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

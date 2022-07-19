@@ -1,8 +1,9 @@
 #pragma once
 #include <GameEngineCore/GameEngineLevel.h>
+#include "StageBase.h"
 
 //플레이어가 게임을 시작하는 스테이지
-class Stage01 : public GameEngineLevel
+class Stage01 : public GameEngineLevel, public StageBase
 {
 public:
 	Stage01();
@@ -19,14 +20,5 @@ protected:
 	void End() override;
 
 private:
-	GameEngineActor* Stage_;
-
-	class GameEngineCameraActor* CameraActor_;
-	class Penitent* Penitent_;
-
-	class BossMonster* BossMonster_;
-	std::list<class MonsterBase*> MonsterList_;
-
-	class CutScenePlayer* CutScenePlayer_;
 };
 

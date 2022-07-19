@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "Stage05.h"
+#include "Penitent.h"
 
 Stage05::Stage05() 
 {
@@ -11,17 +12,24 @@ Stage05::~Stage05()
 
 void Stage05::Start()
 {
-	GameEngineCameraActor* CameraActor = CreateActor<GameEngineCameraActor>();
-	CameraActor->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
+	CameraActor_ = CreateActor<GameEngineCameraActor>();
+	CameraActor_->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
 
 	Stage_ = CreateActor<StageActor>();
 	 
-	GameEngineTextureRenderer* StageRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	StageRendrer->GetTransform().SetWorldScale({ 3840, 2054 });
-	StageRendrer->SetTexture("1_5_Tile.png");	
+	GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	StageRenderer->SetTexture("1_5_Tile.png");
+	StageRenderer->ScaleToTexture();
+
+	Penitent_ = CreateActor<Penitent>();
+	Penitent_->GetTransform().SetWorldMove({ 0, 0 });
+
+	GameEngineTextureRenderer* DoorRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	DoorRendrer->SetTexture("1_5_Door.png");
+	DoorRendrer->ScaleToTexture();
 	
-	float OffsetX = StageRendrer->GetTransform().GetLocalScale().x / 2;
-	float OffsetY = StageRendrer->GetTransform().GetLocalScale().y / 2;
+	float OffsetX = StageRenderer->GetTransform().GetLocalScale().x / 2;
+	float OffsetY = StageRenderer->GetTransform().GetLocalScale().y / 2;
 
 	float4 Offset = { OffsetX , -OffsetY };
 
@@ -30,7 +38,10 @@ void Stage05::Start()
 
 void Stage05::Update(float _DeltaTime)
 {
+	CameraActor_->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition());
 }
+
+
 
 void Stage05::End()
 {

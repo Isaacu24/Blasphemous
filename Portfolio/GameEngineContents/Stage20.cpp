@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "Stage20.h"
+#include "Penitent.h"
 
 Stage20::Stage20() 
 {
@@ -11,17 +12,28 @@ Stage20::~Stage20()
 
 void Stage20::Start()
 {
-	GameEngineCameraActor* CameraActor = CreateActor<GameEngineCameraActor>();
-	CameraActor->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
+	CameraActor_ = CreateActor<GameEngineCameraActor>();
+	CameraActor_->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
 
 	Stage_ = CreateActor<StageActor>();
 
-	GameEngineTextureRenderer* StageRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	StageRendrer->GetTransform().SetWorldScale({ 3840, 2054 });
-	StageRendrer->SetTexture("12_2_Tile.png");
+	GameEngineTextureRenderer* BeforePrallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	BeforePrallaxRenderer->SetTexture("12_2_BeforeParallax_0.png");
 
-	float OffsetX = StageRendrer->GetTransform().GetLocalScale().x / 2;
-	float OffsetY = StageRendrer->GetTransform().GetLocalScale().y / 2;
+	BeforePrallaxRenderer->ScaleToTexture();
+	GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	StageRenderer->SetTexture("12_2_Tile.png");
+	StageRenderer->ScaleToTexture();
+
+	Penitent_ = CreateActor<Penitent>();
+	Penitent_->GetTransform().SetWorldMove({ 0, 0 });
+
+	GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	AfterLayerRenderer->SetTexture("12_2_AfterLayer.png");
+	AfterLayerRenderer->ScaleToTexture();
+
+	float OffsetX = StageRenderer->GetTransform().GetLocalScale().x / 2;
+	float OffsetY = StageRenderer->GetTransform().GetLocalScale().y / 2;
 
 	float4 Offset = { OffsetX , -OffsetY };
 
@@ -30,6 +42,7 @@ void Stage20::Start()
 
 void Stage20::Update(float _DeltaTime)
 {
+	CameraActor_->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition());
 }
 
 void Stage20::End()

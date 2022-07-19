@@ -1,7 +1,8 @@
 #pragma once
 #include <GameEngineCore/GameEngineLevel.h>
+#include "StageBase.h"
 
-class Stage02 : public GameEngineLevel
+class Stage02 : public GameEngineLevel, public StageBase
 {
 public:
 	Stage02();
@@ -18,9 +19,5 @@ protected:
 	void End() override;
 
 private:
-	GameEngineActor* Stage_;
-
-	class BossMonster* BossMonster_;
-	std::list<class MonsterBase*> MonsterList_;
 };
 

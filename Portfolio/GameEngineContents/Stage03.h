@@ -1,7 +1,8 @@
 #pragma once
 #include <GameEngineCore/GameEngineLevel.h>
+#include "StageBase.h"
 
-class Stage03 : public GameEngineLevel
+class Stage03 : public GameEngineLevel, public StageBase
 {
 public:
 	Stage03();
@@ -19,8 +20,4 @@ protected:
 
 
 private:
-	GameEngineActor* Stage_;
-
-	class BossMonster* BossMonster_;
-	std::list<class MonsterBase*> MonsterList_;
 };

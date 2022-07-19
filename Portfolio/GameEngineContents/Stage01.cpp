@@ -18,20 +18,31 @@ void Stage01::Start()
 	
 	Stage_ = CreateActor<StageActor>();
 
-	GameEngineTextureRenderer* StageRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	StageRendrer->GetTransform().SetWorldScale({ 3840, 2054 });
-	StageRendrer->SetTexture("1_1_Tile.png");
+	GameEngineTextureRenderer* BeforeParallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	BeforeParallaxRenderer->SetTexture("1_1_BeforeParallax_0.png");
+	BeforeParallaxRenderer->ScaleToTexture();
 
-	float OffsetX = StageRendrer->GetTransform().GetLocalScale().x / 2;
-	float OffsetY = StageRendrer->GetTransform().GetLocalScale().y / 2;
+	GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	StageRenderer->SetTexture("1_1_Tile.png");
+	StageRenderer->ScaleToTexture();
+
+	Penitent_ = CreateActor<Penitent>();
+	Penitent_->GetTransform().SetWorldMove({ 0, 0 });
+
+	GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	DoorRenderer->SetTexture("1_1_Door.png");
+	DoorRenderer->ScaleToTexture();
+
+	GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	AfterLayerRenderer->SetTexture("1_1_AfterLayer.png");
+	AfterLayerRenderer->ScaleToTexture();
+
+	float OffsetX = StageRenderer->GetTransform().GetLocalScale().x / 2;
+	float OffsetY = StageRenderer->GetTransform().GetLocalScale().y / 2;
 
 	float4 Offset = { OffsetX , -OffsetY };
 
 	Stage_->GetTransform().SetLocalMove(Offset);
-
-	Penitent_ = CreateActor<Penitent>();
-
-	Penitent_->GetTransform().SetWorldMove({0, 0});
 }
 
 void Stage01::Update(float _DeltaTime)

@@ -43,6 +43,8 @@ protected:
 	void Update(float _DeltaTime) override;
 	void End() override;
 
+	void ButtonCheck();
+
 private:
 
 	PlayerFSM PrevState_;
