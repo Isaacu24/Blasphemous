@@ -17,14 +17,14 @@ class CollisionData
 {
 	friend class GameEngineTransform;
 
-	union 
+	union
 	{
 		DirectX::BoundingSphere SPHERE;
 		DirectX::BoundingBox AABB;
 		DirectX::BoundingOrientedBox OBB;
 	};
 
-	CollisionData() 
+	CollisionData()
 		: OBB()
 	{
 
@@ -126,12 +126,12 @@ public:
 	inline void SetWorldPosition(const float4& _World)
 	{
 		float4 Local = _World;
-
 		if (nullptr != Parent)
 		{
 			// 부모의 역행렬을 곱해서 
 			Local = _World * Parent->Data.WorldWorldMatrix.InverseReturn();
 		}
+
 
 		CalculateWorldPosition(Local);
 		CalculateWorld();
@@ -218,6 +218,10 @@ public:
 
 	void SetParentTransform(GameEngineTransform& _Child);
 
+	void PixLocalNegativeX();
+
+	void PixLocalPositiveX();
+
 	// void PushChild(GameEngineTransform* _Child);
 
 	void SetView(const float4x4& _Mat)
@@ -230,7 +234,7 @@ public:
 		Data.ProjectionMatrix = _Mat;
 	}
 
-	const TransformData& GetTransformData() 
+	const TransformData& GetTransformData()
 	{
 		return Data;
 	}
@@ -331,7 +335,7 @@ private:
 	virtual void End() {}
 
 
-/////////////////////////// 충돌관련
+	/////////////////////////// 충돌관련
 public:
 	static bool SphereToSphere(const GameEngineTransform& _Left, const GameEngineTransform& _Right);
 

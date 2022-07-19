@@ -26,9 +26,9 @@ void Penitent::Start()
 		Renderer = CreateComponent<GameEngineTextureRenderer>();
 
 		Renderer->GetTransform().SetWorldScale({300, 300});
-		Renderer->SetTexture("penintent_idle_anim_1.png", 0);
-		Renderer->CreateFrameAnimation("penintent_idle_anim_1", { "penintent_idle_anim_1.png", 0, 12, 0.1f, true });
-		Renderer->ChangeFrameAnimation("penintent_idle_anim_1");
+		Renderer->CreateFrameAnimation("penintent_idle_anim", { "penintent_idle_anim.png", 0, 12, 0.1f, true });
+		Renderer->CreateFrameAnimation("penitent_sheathedIdle", { "penitent_sheathedIdle.png", 0, 45, 0.1f, true });
+		Renderer->ChangeFrameAnimation("penitent_sheathedIdle");
 	}
 }
 

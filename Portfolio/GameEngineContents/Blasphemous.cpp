@@ -269,5 +269,6 @@ void Blasphemous::LoadMap(const std::string& _Level, int _Room, int _Index)
 
 void Blasphemous::CutTexture()
 {
-	GameEngineTexture::Cut("penintent_idle_anim_1.png", 8, 2);
+	GameEngineTexture::Cut("penintent_idle_anim.png", 8, 2);
+	GameEngineTexture::Cut("penitent_sheathedIdle.png", 7, 7);
 }
