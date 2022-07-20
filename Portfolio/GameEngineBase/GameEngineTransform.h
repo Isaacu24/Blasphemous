@@ -133,7 +133,6 @@ public:
 			Local = _World * Parent->Data.WorldWorldMatrix.InverseReturn();
 		}
 
-
 		CalculateWorldPosition(Local);
 		CalculateWorld();
 	}

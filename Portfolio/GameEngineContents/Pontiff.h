@@ -32,6 +32,7 @@ private:
 	class GameEngineTextureRenderer* Helmet_;
 	class GameEngineTextureRenderer* Body_;
 
+	class GameEngineTextureRenderer* MainBody_;
 };
 
 

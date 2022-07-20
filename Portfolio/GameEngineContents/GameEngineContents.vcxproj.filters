@@ -101,6 +101,9 @@
     <ClInclude Include="Platform.h">
       <Filter>Actor\BossMonster\Pontiff</Filter>
     </ClInclude>
+    <ClInclude Include="PlatformSpawner.h">
+      <Filter>Actor\BossMonster\Pontiff</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -201,6 +204,9 @@
       <Filter>Actor\BossMonster\Pontiff</Filter>
     </ClCompile>
     <ClCompile Include="Platform.cpp">
+      <Filter>Actor\BossMonster\Pontiff</Filter>
+    </ClCompile>
+    <ClCompile Include="PlatformSpawner.cpp">
       <Filter>Actor\BossMonster\Pontiff</Filter>
     </ClCompile>
   </ItemGroup>

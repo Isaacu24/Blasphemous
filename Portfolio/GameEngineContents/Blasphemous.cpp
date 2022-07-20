@@ -325,6 +325,26 @@ void Blasphemous::LoadBossMonster()
 			GameEngineTexture::Load(Shaders[i].GetFullPath());
 		}
 	}
+
+
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory("GameEngineResources");
+		Dir.Move("GameEngineResources");
+		Dir.Move("Resources");
+		Dir.Move("Sprite");
+		Dir.Move("Monster");
+		Dir.Move("Boss");
+		Dir.Move("ElderBrother");
+
+		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Shaders.size(); i++)
+		{
+			GameEngineTexture::Load(Shaders[i].GetFullPath());
+		}
+	}
 }
 
 void Blasphemous::CutTexture()
@@ -345,6 +365,12 @@ void Blasphemous::CutTexture()
 	GameEngineTexture::Cut("pontiff_openIdle_face.png", 7, 5);
 	GameEngineTexture::Cut("pontiff_opening_face.png", 5, 4);
 	GameEngineTexture::Cut("pontiff_opening_torso.png", 5, 4);
+
+	GameEngineTexture::Cut("elderBrother_idle.png", 3, 4);
+	GameEngineTexture::Cut("elderBrother_jump.png", 4, 7);
+	GameEngineTexture::Cut("elderBrother_attack.png", 4, 6);
+	GameEngineTexture::Cut("elderBrother_death.png", 5, 10);
+	GameEngineTexture::Cut("elderBrother_corpse.png", 4, 3);
 
 	//NPC
 	GameEngineTexture::Cut("Deosgracias_idle.png", 7, 3);

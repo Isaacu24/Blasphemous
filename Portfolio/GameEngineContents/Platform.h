@@ -1,6 +1,8 @@
 #pragma once
+#include <GameEngineCore/GameEngineActor.h>
 
-class Platform
+//5초마다 혼자 알아서 삭제
+class Platform : public GameEngineActor
 {
 public:
 	Platform();
@@ -12,6 +14,9 @@ public:
 	Platform& operator=(Platform&& _Other) noexcept = delete;
 
 protected:
+	void Start() override;
+	void Update(float _DeltaTime) override;
+	void End() override;
 
 private:
 

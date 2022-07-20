@@ -83,6 +83,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PlatformSpawner.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Pontiff.h">
       <SubType>
       </SubType>
@@ -218,6 +222,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Platform.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlatformSpawner.cpp">
       <SubType>
       </SubType>
     </ClCompile>

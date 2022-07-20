@@ -60,6 +60,10 @@ void Stage03::SettingStage()
 	AfterLayerRenderer->SetTexture("1_3_AfterLayer_0.png");
 	AfterLayerRenderer->ScaleToTexture();
 
+	GameEngineTextureRenderer* AfterParallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	AfterParallaxRenderer->SetTexture("1_3_AfterParallax_0.png");
+	AfterParallaxRenderer->ScaleToTexture();
+
 	float OffsetX = StageRendrer->GetTransform().GetLocalScale().x / 2;
 	float OffsetY = StageRendrer->GetTransform().GetLocalScale().y / 2;
 
@@ -78,7 +82,7 @@ void Stage03::Start()
 
 void Stage03::Update(float _DeltaTime)
 {
-	CameraActor_->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition());
+	CameraActor_->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition() + float4{ 0, 100 });
 }
 
 

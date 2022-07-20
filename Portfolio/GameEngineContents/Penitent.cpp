@@ -78,8 +78,8 @@ void Penitent::Update(float _DeltaTime)
 
 	ButtonCheck();
 
-	GameEngineDebug::OutPutString("x : " + std::to_string(GetTransform().GetLocalPosition().x));
-	GameEngineDebug::OutPutString("y : " + std::to_string(GetTransform().GetLocalPosition().y));
+	//GameEngineDebug::OutPutString("x : " + std::to_string(GetTransform().GetLocalPosition().x));
+	//GameEngineDebug::OutPutString("y : " + std::to_string(GetTransform().GetLocalPosition().y));
 }
 
 

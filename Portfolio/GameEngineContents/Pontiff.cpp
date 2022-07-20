@@ -9,7 +9,6 @@ Pontiff::~Pontiff()
 {
 }
 
-
 //GameEngineTexture::Cut("pontiff_closing_face.png", 5, 3);
 //GameEngineTexture::Cut("pontiff_closing_torso.png", 5, 3);
 //GameEngineTexture::Cut("pontiff_idle_helmet.png", 7, 5);

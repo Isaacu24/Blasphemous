@@ -22,6 +22,12 @@ protected:
 
 	virtual void SettingStage() = 0;
 
+	float CamerLeftPos_;
+	float CamerRightPos_;
+
+	float PlayerLeftPos_;
+	float PlayerRightPos_;
+
 private:
 
 };

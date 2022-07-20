@@ -45,6 +45,10 @@ void Stage02::SettingStage()
 	DoorRenderer->SetTexture("1_2_Door.png");
 	DoorRenderer->ScaleToTexture();
 
+	GameEngineTextureRenderer* AfterParallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	AfterParallaxRenderer->SetTexture("1_2_AfterParallax_0.png");
+	AfterParallaxRenderer->ScaleToTexture();
+
 	float OffsetX = StageRendrer->GetTransform().GetLocalScale().x / 2;
 	float OffsetY = StageRendrer->GetTransform().GetLocalScale().y / 2;
 
@@ -64,7 +68,7 @@ void Stage02::Start()
 
 void Stage02::Update(float _DeltaTime)
 {
-	CameraActor_->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition());
+	CameraActor_->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition() + float4{ 0, 100 });
 }
 
 void Stage02::End()

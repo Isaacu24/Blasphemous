@@ -68,7 +68,7 @@ void Stage04::Start()
 
 void Stage04::Update(float _DeltaTime)
 {
-	CameraActor_->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition());
+	CameraActor_->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition() + float4{ 0, 100 });
 }
 
 void Stage04::End()
