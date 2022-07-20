@@ -10,12 +10,26 @@ Stage10::~Stage10()
 {
 }
 
-void Stage10::Start()
-{
-	CameraActor_ = CreateActor<GameEngineCameraActor>();
-	CameraActor_->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
 
+void Stage10::SettingStage()
+{
 	Stage_ = CreateActor<StageActor>();
+
+	GameEngineTextureRenderer* BeforeParallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	BeforeParallaxRenderer->SetTexture("2_1_BeforeParallax_0.png");
+	BeforeParallaxRenderer->ScaleToTexture();
+
+	GameEngineTextureRenderer* BeforeParallaxRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	BeforeParallaxRenderer1->SetTexture("2_1_BeforeParallax_1.png");
+	BeforeParallaxRenderer1->ScaleToTexture();
+
+	GameEngineTextureRenderer* BeforeParallaxRenderer2 = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	BeforeParallaxRenderer2->SetTexture("2_1_BeforeParallax_2.png");
+	BeforeParallaxRenderer2->ScaleToTexture();
+
+	GameEngineTextureRenderer* BeforeParallaxRenderer3 = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	BeforeParallaxRenderer3->SetTexture("2_1_BeforeParallax_3.png");
+	BeforeParallaxRenderer3->ScaleToTexture();
 
 	GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	StageRenderer->SetTexture("2_1_Tile.png");
@@ -34,6 +48,15 @@ void Stage10::Start()
 	float4 Offset = { OffsetX , -OffsetY };
 
 	Stage_->GetTransform().SetLocalMove(Offset);
+}
+
+
+void Stage10::Start()
+{
+	CameraActor_ = CreateActor<GameEngineCameraActor>();
+	CameraActor_->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
+
+	SettingStage();
 }
 
 void Stage10::Update(float _DeltaTime)

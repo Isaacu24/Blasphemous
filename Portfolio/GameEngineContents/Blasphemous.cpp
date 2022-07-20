@@ -225,8 +225,6 @@ void Blasphemous::LoadResources()
 		}
 	}
 
-
-
 	//NPC
 	{
 		GameEngineDirectory Dir;
@@ -246,7 +244,25 @@ void Blasphemous::LoadResources()
 		}
 	}
 
+	//Object
+	{
+		GameEngineDirectory Dir;
 
+		Dir.MoveParentToExitsChildDirectory("GameEngineResources");
+		Dir.Move("GameEngineResources");
+		Dir.Move("Resources");
+		Dir.Move("Sprite");
+		Dir.Move("Object");
+
+		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Shaders.size(); i++)
+		{
+			GameEngineTexture::Load(Shaders[i].GetFullPath());
+		}
+	}
+
+	LoadBossMonster();
 
 	//{
 	//	GameEngineDirectory Dir;
@@ -288,6 +304,29 @@ void Blasphemous::LoadMap(const std::string& _Level, int _Room, int _Index)
 	}
 }
 
+//BossMonster
+void Blasphemous::LoadBossMonster()
+{
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory("GameEngineResources");
+		Dir.Move("GameEngineResources");
+		Dir.Move("Resources");
+		Dir.Move("Sprite");
+		Dir.Move("Monster");
+		Dir.Move("Boss");
+		Dir.Move("Pontiff");
+
+		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Shaders.size(); i++)
+		{
+			GameEngineTexture::Load(Shaders[i].GetFullPath());
+		}
+	}
+}
+
 void Blasphemous::CutTexture()
 {
 	//Player
@@ -297,7 +336,20 @@ void Blasphemous::CutTexture()
 	GameEngineTexture::Cut("penitent_climbledge_reviewed.png", 4, 3);
 	//GameEngineTexture::Cut("penitent_respawning_hw.png", 6, 6);
 
+	//BossMonster
+	GameEngineTexture::Cut("pontiff_closing_face.png", 5, 3);
+	GameEngineTexture::Cut("pontiff_closing_torso.png", 5, 3);
+	GameEngineTexture::Cut("pontiff_idle_helmet.png", 7, 5);
+	GameEngineTexture::Cut("pontiff_idle_torso.png", 7, 5);
+	GameEngineTexture::Cut("pontiff_openedIdle_face_DEATH.png", 10, 7);
+	GameEngineTexture::Cut("pontiff_openIdle_face.png", 7, 5);
+	GameEngineTexture::Cut("pontiff_opening_face.png", 5, 4);
+	GameEngineTexture::Cut("pontiff_opening_torso.png", 5, 4);
+
 	//NPC
 	GameEngineTexture::Cut("Deosgracias_idle.png", 7, 3);
+	GameEngineTexture::Cut("Deosgracias_front.png", 13, 7);
 
+	//Object
+	GameEngineTexture::Cut("priedieu_stand_and_liton_anim.png", 7, 1);
 }

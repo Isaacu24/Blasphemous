@@ -10,11 +10,9 @@ Stage20::~Stage20()
 {
 }
 
-void Stage20::Start()
-{
-	CameraActor_ = CreateActor<GameEngineCameraActor>();
-	CameraActor_->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
 
+void Stage20::SettingStage()
+{
 	Stage_ = CreateActor<StageActor>();
 
 	GameEngineTextureRenderer* BeforePrallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
@@ -38,6 +36,14 @@ void Stage20::Start()
 	float4 Offset = { OffsetX , -OffsetY };
 
 	Stage_->GetTransform().SetLocalMove(Offset);
+}
+
+void Stage20::Start()
+{
+	CameraActor_ = CreateActor<GameEngineCameraActor>();
+	CameraActor_->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
+
+	SettingStage();
 }
 
 void Stage20::Update(float _DeltaTime)

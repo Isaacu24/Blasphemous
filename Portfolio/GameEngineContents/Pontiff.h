@@ -4,7 +4,9 @@
 
 enum class PontiffState
 {
+	Opening,
 	OpenIdle,
+	Closing,
 	CloseIdle,
 	Death
 };
@@ -22,9 +24,13 @@ public:
 	Pontiff& operator=(Pontiff&& _Other) noexcept = delete;
 
 protected:
+	void Start() override;
+	void Update(float _DeltaTime) override;
+	void End() override;
 
 private:
-
+	class GameEngineTextureRenderer* Helmet_;
+	class GameEngineTextureRenderer* Body_;
 
 };
 

@@ -14,6 +14,8 @@ public:
 	Stage21& operator=(Stage21&& _Other) noexcept = delete;
 
 protected:
+	void SettingStage() override;
+
 	void Start() override;
 	void Update(float _DeltaTime) override;
 	void End() override;

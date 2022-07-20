@@ -11,11 +11,9 @@ Stage05::~Stage05()
 {
 }
 
-void Stage05::Start()
-{
-	CameraActor_ = CreateActor<GameEngineCameraActor>();
-	CameraActor_->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
 
+void Stage05::SettingStage()
+{
 	Stage_ = CreateActor<StageActor>();
 
 	GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
@@ -41,12 +39,18 @@ void Stage05::Start()
 	Stage_->GetTransform().SetLocalMove(Offset);
 }
 
+void Stage05::Start()
+{
+	CameraActor_ = CreateActor<GameEngineCameraActor>();
+	CameraActor_->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
+
+	SettingStage();
+}
+
 void Stage05::Update(float _DeltaTime)
 {
 	CameraActor_->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition());
 }
-
-
 
 void Stage05::End()
 {

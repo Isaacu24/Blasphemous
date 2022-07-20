@@ -20,6 +20,8 @@ protected:
 	class BossMonster* BossMonster_;
 	std::list<class MonsterBase*> MonsterList_;
 
+	virtual void SettingStage() = 0;
+
 private:
 
 };
