@@ -136,17 +136,19 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="ThirdParty\bin\fmod.dll">
+    <Library Include="ThirdParty\bin\fmod_vc.lib">
       <Filter>ThirdParty\Lib</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="ThirdParty\bin\fmod_vc.lib">
+    </Library>
+    <Library Include="ThirdParty\bin\fmodL_vc.lib">
       <Filter>ThirdParty\Lib</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="ThirdParty\bin\fmodL.dll">
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThirdParty\bin\fmodL.dll">
       <Filter>ThirdParty\Lib</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="ThirdParty\bin\fmodL_vc.lib">
+    </None>
+    <None Include="ThirdParty\bin\fmod.dll">
       <Filter>ThirdParty\Lib</Filter>
-    </CopyFileToFolders>
+    </None>
   </ItemGroup>
 </Project>

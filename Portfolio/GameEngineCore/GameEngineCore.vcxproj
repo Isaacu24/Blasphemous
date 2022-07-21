@@ -154,7 +154,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="ThirdPaty\inc\DirectXTex.h" />
+    <ClInclude Include="ThirdParty\inc\DirectXTex.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineActor.cpp">
