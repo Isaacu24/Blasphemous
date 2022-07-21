@@ -62,6 +62,11 @@ void Stage10::Start()
 void Stage10::Update(float _DeltaTime)
 {
 	CameraActor_->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition());
+
+	if (-550 < CameraActor_->GetTransform().GetLocalPosition().y)
+	{
+		CameraActor_->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition().x, -550 });
+	}
 }
 
 void Stage10::End()

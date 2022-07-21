@@ -1,12 +1,13 @@
 #include "PreCompile.h"
 #include "Stage04.h"
 #include "Penitent.h"
+#include "ElderBrother.h"
 
-Stage04::Stage04() 
+Stage04::Stage04()
 {
 }
 
-Stage04::~Stage04() 
+Stage04::~Stage04()
 {
 }
 
@@ -38,6 +39,11 @@ void Stage04::SettingStage()
 	StageRenderer->SetTexture("1_4_Tile.png");
 	StageRenderer->ScaleToTexture();
 
+	ElderBrother* NewElderBrother = CreateActor<ElderBrother>();
+	NewElderBrother->GetTransform().SetWorldMove({ 2000, -700 });
+	NewElderBrother->GetTransform().SetLocalScale({ 1500, 750 });
+	NewElderBrother->GetTransform().PixLocalNegativeX();
+
 	Penitent_ = CreateActor<Penitent>();
 	Penitent_->GetTransform().SetWorldMove({ 280, -925 });
 
@@ -68,7 +74,25 @@ void Stage04::Start()
 
 void Stage04::Update(float _DeltaTime)
 {
-	CameraActor_->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition() + float4{ 0, 100 });
+	CameraActor_->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition());
+
+	if (650 > CameraActor_->GetTransform().GetLocalPosition().x)
+	{
+		CameraActor_->GetTransform().SetWorldPosition(float4{ 650, Penitent_->GetTransform().GetLocalPosition().y });
+	}
+
+	if (2000 < CameraActor_->GetTransform().GetLocalPosition().x)
+	{
+		CameraActor_->GetTransform().SetWorldPosition(float4{ 2000, Penitent_->GetTransform().GetLocalPosition().y });
+	}
+
+	if (-830 < CameraActor_->GetTransform().GetLocalPosition().y)
+	{
+		CameraActor_->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition().x, -830 });
+	}
+
+	GameEngineDebug::OutPutString("x : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().x));
+	GameEngineDebug::OutPutString("y : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().y));
 }
 
 void Stage04::End()

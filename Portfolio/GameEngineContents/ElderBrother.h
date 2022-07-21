@@ -28,6 +28,7 @@ protected:
 
 private:
 	ElderState CurrentState_;
-
+	
+	class GameEngineTextureRenderer* Renderer_;
 };
 

@@ -55,8 +55,8 @@ void Stage02::SettingStage()
 	float4 Offset = { OffsetX , -OffsetY };
 
 	Stage_->GetTransform().SetLocalMove(Offset);
-}
 
+}
 
 void Stage02::Start()
 {
@@ -64,11 +64,26 @@ void Stage02::Start()
 	CameraActor_->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
 
 	SettingStage();
+
+	CameraActor_->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition());
 }
 
 void Stage02::Update(float _DeltaTime)
 {
-	CameraActor_->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition() + float4{ 0, 100 });
+	CameraActor_->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition().x, -1250 });
+
+	if (640 > CameraActor_->GetTransform().GetLocalPosition().x)
+	{
+		CameraActor_->GetTransform().SetWorldPosition(float4{ 640, -1250 });
+	}
+
+	if (3200 < CameraActor_->GetTransform().GetLocalPosition().x)
+	{
+		CameraActor_->GetTransform().SetWorldPosition(float4{ 3200, -1250 });
+	}
+
+	GameEngineDebug::OutPutString("x : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().x));
+	GameEngineDebug::OutPutString("y : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().y));
 }
 
 void Stage02::End()

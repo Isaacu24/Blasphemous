@@ -38,7 +38,7 @@ void Stage20::SettingStage()
 	Stage_->GetTransform().SetLocalMove(Offset);
 }
 
-void Stage20::Start()
+void Stage20::Start()                                                     
 {
 	CameraActor_ = CreateActor<GameEngineCameraActor>();
 	CameraActor_->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
@@ -48,7 +48,7 @@ void Stage20::Start()
 
 void Stage20::Update(float _DeltaTime)
 {
-	CameraActor_->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition());
+	CameraActor_->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition() + float4{ 0, 100 });
 }
 
 void Stage20::End()
