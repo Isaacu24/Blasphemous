@@ -4,6 +4,7 @@
 #include "GameEngineRenderer.h"
 #include "GameEngineCamera.h"
 #include "GameEngineCameraActor.h"
+#include "GameEngineGUI.h"
 
 GameEngineLevel::GameEngineLevel()
 	: MainCamera(nullptr)
@@ -81,6 +82,8 @@ void GameEngineLevel::Render(float _DelataTime)
 	// 이 사이에서 무언가를 해야 합니다.
 	MainCamera->Render(_DelataTime);
 
+	GameEngineGUI::GUIRender();
+
 	GameEngineDevice::RenderEnd();
 }
 
@@ -147,7 +150,6 @@ void GameEngineLevel::LevelUpdate(float _DeltaTime)
 }
 
 // 레벨을 이동하는 액터
-// 루트인애가 지우려고 여기로 온다고 생각할 겁니다.
 void GameEngineLevel::RemoveActor(GameEngineActor* _Actor)
 {
 	if (AllActors.end() == AllActors.find(_Actor->GetOrder()))

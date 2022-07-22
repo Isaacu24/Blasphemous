@@ -70,16 +70,21 @@ void Stage02::Start()
 
 void Stage02::Update(float _DeltaTime)
 {
-	CameraActor_->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition().x, -1250 });
+	CameraActor_->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition() + float4{0, 100} });
 
-	if (640 > CameraActor_->GetTransform().GetLocalPosition().x)
+	if (-1200 < CameraActor_->GetTransform().GetWorldPosition().y)
 	{
-		CameraActor_->GetTransform().SetWorldPosition(float4{ 640, -1250 });
+		CameraActor_->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition().x, -1200 });
 	}
 
-	if (3200 < CameraActor_->GetTransform().GetLocalPosition().x)
+	if (640 > CameraActor_->GetTransform().GetWorldPosition().x)
 	{
-		CameraActor_->GetTransform().SetWorldPosition(float4{ 3200, -1250 });
+		CameraActor_->GetTransform().SetWorldPosition(float4{ 640, CameraActor_->GetTransform().GetLocalPosition().y });
+	}
+
+	if (3200 < CameraActor_->GetTransform().GetWorldPosition().x)
+	{
+		CameraActor_->GetTransform().SetWorldPosition(float4{ 3200, CameraActor_->GetTransform().GetLocalPosition().y });
 	}
 
 	GameEngineDebug::OutPutString("x : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().x));

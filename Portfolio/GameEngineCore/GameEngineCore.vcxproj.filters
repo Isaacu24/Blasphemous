@@ -135,6 +135,12 @@
     <ClInclude Include="imgui_impl_dx11.h">
       <Filter>GUI\IMGUI</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineMetaRenderer.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineMetaReader.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineActor.cpp">
@@ -263,6 +269,12 @@
     </ClCompile>
     <ClCompile Include="imgui_impl_dx11.cpp">
       <Filter>GUI\IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineMetaRenderer.cpp">
+      <Filter>Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineMetaReader.cpp">
+      <Filter>Contents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

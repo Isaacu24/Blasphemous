@@ -14,7 +14,7 @@ struct Output
     float4 Tex : TEXCOORD;
 };
 
-cbuffer AtlasData : register(b1)
+cbuffer MetaData : register(b1)
 {
     float2 TextureFramePos;
     float2 TextureFrameSize;
@@ -22,9 +22,8 @@ cbuffer AtlasData : register(b1)
 
 Output TextureAtlas_VS(Input _Input)
 {
-    Output NewOutPut = (Output)0;
+    Output NewOutPut = (Output) 0;
     NewOutPut.Pos = mul(_Input.Pos, WorldViewProjection);
-    //NewOutPut.Pos.w = 1.0f;
     NewOutPut.PosLocal = _Input.Pos;
 
     NewOutPut.Tex.x = (_Input.Tex.x * TextureFrameSize.x) + TextureFramePos.x;
@@ -40,5 +39,4 @@ float4 TextureAtlas_PS(Output _Input) : SV_Target0
     float4 TextureColor = Tex.Sample(Sam, _Input.Tex.xy);
    
     return TextureColor;
-
 }

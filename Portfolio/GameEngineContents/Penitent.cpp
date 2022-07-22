@@ -43,7 +43,9 @@ void Penitent::Start()
 		Renderer->CreateFrameAnimation("penitent_sheathedIdle", { "penitent_sheathedIdle.png", 0, 45, 0.1f, true });
 		Renderer->CreateFrameAnimation("penitent_verticalattack_LVL3_anim", { "penitent_verticalattack_LVL3_anim.png", 0, 23, 0.05f, true });
 		Renderer->CreateFrameAnimation("penitent_climbledge_reviewed", { "penitent_climbledge_reviewed.png", 0, 11, 0.1f, true });
-		//Renderer->CreateFrameAnimation("penitent_respawning_hw", { "penitent_respawning_hw.png", 0, 31, 0.1f, true });
+		Renderer->CreateFrameAnimation("penitent_dodge_attack_LVL3", { "penitent_dodge_attack_LVL3.png", 0, 26, 0.1f, true });
+		Renderer->CreateFrameAnimation("penitent_falling_ahead_anim 1", { "penitent_falling_ahead_anim 1.png", 0, 5, 0.1f, true });
+		Renderer->CreateFrameAnimation("penitent_jumpoff_new", { "penitent_jumpoff_new.png", 0, 4, 0.1f, true });
 		Renderer->ChangeFrameAnimation("penintent_idle_anim");
 	}
 }
@@ -92,6 +94,7 @@ void Penitent::ButtonCheck()
 
 	else if (GameEngineInput::GetInst()->IsUpKey("PenitentAnimation"))
 	{
+		Renderer->GetTransform().SetWorldScale({ 250, 250 });
 		Renderer->ChangeFrameAnimation("penintent_idle_anim");
 	}
 }

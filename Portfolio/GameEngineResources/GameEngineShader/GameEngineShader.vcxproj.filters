@@ -5,5 +5,6 @@
     <FxCompile Include="Color.hlsl" />
     <FxCompile Include="Texture.hlsl" />
     <FxCompile Include="TextureAtlas.hlsl" />
+    <FxCompile Include="TextureMeta.hlsl" />
   </ItemGroup>
 </Project>

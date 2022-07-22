@@ -67,6 +67,24 @@ void Stage30::Start()
 void Stage30::Update(float _DeltaTime)
 {
 	CameraActor_->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition() + float4{ 0, 100 });
+
+	if (-50 < CameraActor_->GetTransform().GetWorldPosition().y)
+	{
+		CameraActor_->GetTransform().SetWorldPosition(float4{ CameraActor_->GetTransform().GetWorldPosition().x, -50 });
+	}
+
+	if (650 > CameraActor_->GetTransform().GetWorldPosition().x)
+	{
+		CameraActor_->GetTransform().SetWorldPosition(float4{ 650, CameraActor_->GetTransform().GetWorldPosition().y });
+	}
+
+	if (2850 < CameraActor_->GetTransform().GetWorldPosition().x)
+	{
+		CameraActor_->GetTransform().SetWorldPosition(float4{ 2850, CameraActor_->GetTransform().GetWorldPosition().y });
+	}
+
+	GameEngineDebug::OutPutString("x : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().x));
+	GameEngineDebug::OutPutString("y : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().y));
 }
 
 void Stage30::End()

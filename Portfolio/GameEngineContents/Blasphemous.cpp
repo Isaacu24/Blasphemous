@@ -354,6 +354,9 @@ void Blasphemous::CutTexture()
 	GameEngineTexture::Cut("penitent_sheathedIdle.png", 7, 7);
 	GameEngineTexture::Cut("penitent_verticalattack_LVL3_anim.png", 8, 3);
 	GameEngineTexture::Cut("penitent_climbledge_reviewed.png", 4, 3);
+	GameEngineTexture::Cut("penitent_dodge_attack_LVL3.png", 8, 4);
+	GameEngineTexture::Cut("penitent_falling_ahead_anim 1.png", 3, 2);
+	GameEngineTexture::Cut("penitent_jumpoff_new.png", 3, 2);
 	//GameEngineTexture::Cut("penitent_respawning_hw.png", 6, 6);
 
 	//BossMonster

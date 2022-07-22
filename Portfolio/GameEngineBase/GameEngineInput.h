@@ -159,12 +159,12 @@ public:
 		return RightTrigger_;
 	}
 
-	inline float GetMagnitudeL()
+	inline double GetMagnitudeL()
 	{
 		return sqrt(ThumbLX_ * ThumbLX_ + ThumbLY_ * ThumbLY_);
 	}
 
-	inline float GetMagnitudeR()
+	inline double GetMagnitudeR()
 	{
 		return sqrt(ThumbRX_ * ThumbRX_ + ThumbRY_ * ThumbRY_);
 	}

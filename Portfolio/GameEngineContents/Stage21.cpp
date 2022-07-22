@@ -56,6 +56,8 @@ void Stage21::Start()
 
 void Stage21::Update(float _DeltaTime)
 {
+	GameEngineDebug::OutPutString("x : " + std::to_string(Penitent_->GetTransform().GetLocalPosition().x));
+	GameEngineDebug::OutPutString("y : " + std::to_string(Penitent_->GetTransform().GetLocalPosition().y));
 }
 
 

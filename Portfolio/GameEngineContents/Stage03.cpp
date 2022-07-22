@@ -44,7 +44,7 @@ void Stage03::SettingStage()
 	AltarRenderer->GetTransform().SetWorldMove({ 780, 0 });
 
 	GameEngineTextureRenderer* SavePointRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	SavePointRenderer->CreateFrameAnimation("priedieu_stand_and_liton_anim", { "priedieu_stand_and_liton_anim.png", 0, 6, 0.1f, true });
+	SavePointRenderer->CreateFrameAnimation("priedieu_stand_and_liton_anim", { "priedieu_stand_and_liton_anim.png", 1, 6, 0.1f, true });
 	SavePointRenderer->ChangeFrameAnimation("priedieu_stand_and_liton_anim");
 	SavePointRenderer->GetTransform().SetLocalScale({ 100, 250 });
 	SavePointRenderer->GetTransform().SetWorldMove({ 100, -100 });
@@ -82,7 +82,25 @@ void Stage03::Start()
 
 void Stage03::Update(float _DeltaTime)
 {
-	CameraActor_->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition() + float4{ 0, 100 });
+	CameraActor_->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition() + float4{0, 100} });
+
+	if (-755 < CameraActor_->GetTransform().GetWorldPosition().y)
+	{
+		CameraActor_->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition().x, -755 });
+	}
+
+	if (650 > CameraActor_->GetTransform().GetWorldPosition().x)	
+	{
+		CameraActor_->GetTransform().SetWorldPosition(float4{ 650, CameraActor_->GetTransform().GetLocalPosition().y });
+	}
+
+	if (2430 < CameraActor_->GetTransform().GetWorldPosition().x)
+	{
+		CameraActor_->GetTransform().SetWorldPosition(float4{ 2430, CameraActor_->GetTransform().GetLocalPosition().y });
+	}
+
+	GameEngineDebug::OutPutString("x : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().x));
+	GameEngineDebug::OutPutString("y : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().y));
 }
 
 

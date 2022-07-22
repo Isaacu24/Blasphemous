@@ -38,7 +38,7 @@ void Stage05::SettingStage()
 
 	Stage_->GetTransform().SetLocalMove(Offset);
 
-	CameraActor_->GetTransform().SetWorldPosition(float4{ 950, -570});
+	CameraActor_->GetTransform().SetWorldPosition(float4{ 950, -500});
 }
 
 void Stage05::Start()
@@ -51,12 +51,6 @@ void Stage05::Start()
 
 void Stage05::Update(float _DeltaTime)
 {
-	CameraActor_->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition());
-
-	if (-550 < CameraActor_->GetTransform().GetLocalPosition().y)
-	{
-		CameraActor_->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition().x, -550 });
-	}
 }
 
 void Stage05::End()
