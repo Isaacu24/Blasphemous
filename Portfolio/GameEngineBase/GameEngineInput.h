@@ -33,6 +33,16 @@ private:
 			Up_ = false;
 			Free_ = true;
 		}
+
+		// 생성자 주석걸어두기
+		//GameEngineKey(int _Key) 
+		//	: Key_(_Key)
+		//	, Down_(false)
+		//	, Press_(false)
+		//	, Up_(false)
+		//	, Free_(true)
+		//{
+		//}
 	};
 
 private:
@@ -149,12 +159,12 @@ public:
 		return RightTrigger_;
 	}
 
-	inline double GetMagnitudeL()
+	inline float GetMagnitudeL()
 	{
 		return sqrt(ThumbLX_ * ThumbLX_ + ThumbLY_ * ThumbLY_);
 	}
 
-	inline double GetMagnitudeR()
+	inline float GetMagnitudeR()
 	{
 		return sqrt(ThumbRX_ * ThumbRX_ + ThumbRY_ * ThumbRY_);
 	}

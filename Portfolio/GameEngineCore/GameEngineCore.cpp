@@ -6,6 +6,7 @@
 #include <GameEngineCore/GameEngineDevice.h>
 #include "GameEngineLevel.h"
 #include "GameEngineDevice.h"
+#include "GameEngineGUI.h"
 
 #pragma comment(lib, "GameEngineBase.lib")
 
@@ -15,11 +16,11 @@ GameEngineLevel* GameEngineCore::NextLevel = nullptr;
 std::map<std::string, class GameEngineLevel*> GameEngineCore::AllLevels;
 
 
-GameEngineCore::GameEngineCore() 
+GameEngineCore::GameEngineCore()
 {
 }
 
-GameEngineCore::~GameEngineCore() 
+GameEngineCore::~GameEngineCore()
 {
 }
 
@@ -50,9 +51,13 @@ bool GameEngineCore::ChangeLevel(const std::string& _Name)
 
 void GameEngineCore::CoreStart(GameEngineCore* _UserCore)
 {
-	//엔진 리소스 초기화
+	GameEngineGUI::Initialize();
+
+	// 엔진 리소스는 완성되어야 합니다.
 	EngineResourcesInitialize();
 
+	// 엔진이 뭔가를 할겁니다.
+	// 준비를 먼저하고.
 	_UserCore->Start();
 }
 
@@ -60,6 +65,8 @@ void GameEngineCore::CoreUpdate(GameEngineCore* _UserCore)
 {
 	if (nullptr != NextLevel)
 	{
+
+
 		Rectangle(GameEngineWindow::GetInst()->GetHDC()
 			, 0
 			, 0
@@ -74,6 +81,8 @@ void GameEngineCore::CoreUpdate(GameEngineCore* _UserCore)
 		NextLevel = nullptr;
 		CurrentLevel->OnEvent();
 
+		// ex) 타이틀에서 5초후 => 플레이 레벨로 이동
+		//     플레이 레벨에서 => 다시 타이틀레벨로
 		CurrentLevel->ReSetAccTime();
 
 		GameEngineTime::GetInst()->Reset();
@@ -88,14 +97,16 @@ void GameEngineCore::CoreUpdate(GameEngineCore* _UserCore)
 	GameEngineTime::GetInst()->Update();
 
 	float DeltaTime = GameEngineTime::GetDeltaTime();
+
 	GameEngineInput::GetInst()->Update(DeltaTime);
+	// 엔진수준에서 유저가 하고 싶은일.
 	_UserCore->Update(DeltaTime);
 
 	CurrentLevel->LevelUpdate(DeltaTime);
 
 }
 
-void GameEngineCore::CoreEnd(GameEngineCore* _UserCore) 
+void GameEngineCore::CoreEnd(GameEngineCore* _UserCore)
 {
 	_UserCore->End();
 
@@ -109,6 +120,10 @@ void GameEngineCore::CoreEnd(GameEngineCore* _UserCore)
 		Level.second = nullptr;
 	}
 
+	// 이유는 리소스를 사용할거 같아서
+	// gui에서 텍스처라던가 이런거 쓰다가
+	GameEngineGUI::GUIDestroy();
+
 	EngineResourcesDestroy();
 
 	GameEngineWindow::Destroy();
@@ -121,16 +136,20 @@ void GameEngineCore::CoreEnd(GameEngineCore* _UserCore)
 void GameEngineCore::WindowCreate(const std::string& _Name, GameEngineCore* _UserCore)
 {
 	GameEngineWindow::GetInst()->CreateGameWindow(nullptr, _Name.c_str());
-	GameEngineWindow::GetInst()->SetWindowScaleAndPosition({ 150 , 100 }, {1280, 720});
+	GameEngineWindow::GetInst()->SetWindowScaleAndPosition({ 300 , 200 }, { 1280, 720 });
 	GameEngineWindow::GetInst()->ShowGameWindow();
 	GameEngineDevice::Initialize();
 
-	//엔진 실행
+
+
+
+	// 엔진의 실행인데.
 	GameEngineWindow::GetInst()->MessageLoop(
 		std::bind(&GameEngineCore::CoreStart, _UserCore),
 		std::bind(&GameEngineCore::CoreUpdate, _UserCore),
 		std::bind(&GameEngineCore::CoreEnd, _UserCore)
 	);
+
 
 }
 
@@ -138,6 +157,7 @@ void GameEngineCore::InitializeLevel(GameEngineLevel* _Level, const std::string 
 {
 	_Level->Start();
 	_Level->SetName(_Name);
-	
+
+	// AllLevels.insert(std::map<std::string, GameEngineLevel*>::value_type(_Name, NewLevel));
 	AllLevels.insert(std::make_pair(_Name, _Level));
 }

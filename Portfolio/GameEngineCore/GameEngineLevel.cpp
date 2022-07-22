@@ -3,14 +3,22 @@
 #include "GameEngineActor.h"
 #include "GameEngineRenderer.h"
 #include "GameEngineCamera.h"
+#include "GameEngineCameraActor.h"
 
-GameEngineLevel::GameEngineLevel() 
+GameEngineLevel::GameEngineLevel()
 	: MainCamera(nullptr)
 	, UIMainCamera(nullptr)
 {
+	for (size_t i = 0; i < 1280; i++)
+	{
+		for (size_t i = 0; i < 720; i++)
+		{
+
+		}
+	}
 }
 
-GameEngineLevel::~GameEngineLevel() 
+GameEngineLevel::~GameEngineLevel()
 {
 	for (const std::pair<int, std::list<GameEngineActor*>>& Group : AllActors)
 	{
@@ -29,6 +37,12 @@ GameEngineLevel::~GameEngineLevel()
 
 void GameEngineLevel::ActorUpdate(float _DeltaTime)
 {
+	//if (true == GetMainCameraActor()->IsFreeCameraMode())
+	//{
+	//	GetMainCameraActor()->Update(_DeltaTime);
+	//	return;
+	//}
+
 	for (const std::pair<int, std::list<GameEngineActor*>>& Group : AllActors)
 	{
 		float ScaleTime = GameEngineTime::GetInst()->GetDeltaTime(Group.first);
@@ -108,14 +122,19 @@ void GameEngineLevel::Release(float _DelataTime)
 				// DeleteObject.push_back((*GroupStart));
 				GroupStart = Group.erase(GroupStart);
 			}
-			else 
+			else
 			{
 				++GroupStart;
 			}
-			
+
 		}
 	}
 
+}
+
+GameEngineCameraActor* GameEngineLevel::GetMainCameraActor()
+{
+	return MainCamera->GetActor<GameEngineCameraActor>();
 }
 
 void GameEngineLevel::LevelUpdate(float _DeltaTime)

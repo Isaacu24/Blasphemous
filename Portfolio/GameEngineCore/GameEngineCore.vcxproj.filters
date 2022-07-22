@@ -108,6 +108,33 @@
     <ClInclude Include="ThirdParty\inc\DirectXTex.h">
       <Filter>ThirdParty\Inc</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineGUI.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_win32.h">
+      <Filter>GUI\IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_internal.h">
+      <Filter>GUI\IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_rectpack.h">
+      <Filter>GUI\IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_textedit.h">
+      <Filter>GUI\IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_truetype.h">
+      <Filter>GUI\IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imconfig.h">
+      <Filter>GUI\IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui.h">
+      <Filter>GUI\IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_dx11.h">
+      <Filter>GUI\IMGUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineActor.cpp">
@@ -216,6 +243,27 @@
     <ClCompile Include="GameEngineDepthStencilTexture.cpp">
       <Filter>Resources\OutputMerger</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineGUI.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_win32.cpp">
+      <Filter>GUI\IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_tables.cpp">
+      <Filter>GUI\IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_widgets.cpp">
+      <Filter>GUI\IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui.cpp">
+      <Filter>GUI\IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_draw.cpp">
+      <Filter>GUI\IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_dx11.cpp">
+      <Filter>GUI\IMGUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -277,6 +325,12 @@
     </Filter>
     <Filter Include="ThirdParty\Inc">
       <UniqueIdentifier>{c98bd001-474e-4938-aa69-540cb0a230fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{4496c95e-070b-4856-9614-826197f8f2af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\IMGUI">
+      <UniqueIdentifier>{2e3d9b74-ab2b-4a0e-be71-294706ec7560}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

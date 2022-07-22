@@ -37,6 +37,25 @@ void FrameAnimation::Update(float _Delta)
 			Frame(Info);
 		}
 
+		if (Info.CurFrame > Info.End)
+		{
+			if (false == bOnceEnd && nullptr != End)
+			{
+				End(Info);
+				bOnceEnd = true;
+				bOnceStart = false;
+			}
+
+			if (true == Info.Loop)
+			{
+				Info.CurFrame = Info.Start;
+			}
+			else
+			{
+				Info.CurFrame = Info.End;
+			}
+		}
+
 		if (nullptr != Texture)
 		{
 			ParentRenderer->SetTexture(Texture, Info.CurFrame);
@@ -51,23 +70,6 @@ void FrameAnimation::Update(float _Delta)
 			MsgBoxAssert("텍스처가 세팅되지 않은 애니메이션 입니다.");
 		}
 
-		if (Info.CurFrame >= Info.End)
-		{
-			if (false == bOnceEnd && nullptr != End)
-			{
-				End(Info);
-				bOnceEnd = true;
-				bOnceStart = false;
-			}
-
-			if (true == Info.Loop)
-			{
-				Info.CurFrame = Info.Start;
-			}
-			else {
-				Info.CurFrame = Info.End;
-			}
-		}
 
 		Info.FrameTime -= Info.Inter;
 	}
@@ -253,7 +255,14 @@ void GameEngineTextureRenderer::ChangeFrameAnimation(const std::string& _Animati
 	{
 		CurAni = &FrameAni[Name];
 		CurAni->Reset();
-		SetTexture(CurAni->Texture, CurAni->Info.CurFrame);
+		if (nullptr != CurAni->Texture)
+		{
+			SetTexture(CurAni->Texture, CurAni->Info.CurFrame);
+		}
+		else if (nullptr != CurAni->FolderTexture)
+		{
+			SetTexture(CurAni->FolderTexture->GetTexture(CurAni->Info.CurFrame));
+		}
 	}
 }
 
@@ -276,4 +285,15 @@ void GameEngineTextureRenderer::Update(float _Delta)
 void GameEngineTextureRenderer::ScaleToTexture()
 {
 	GetTransform().SetLocalScale(CurTex->GetScale());
+}
+
+void GameEngineTextureRenderer::CurAnimationReset()
+{
+	CurAnimationSetStartPivotFrame(CurAni->Info.Start);
+	// CurAni->Info.CurFrame = CurAni->Info.Start;
+}
+
+void GameEngineTextureRenderer::CurAnimationSetStartPivotFrame(int SetFrame)
+{
+	CurAni->Info.CurFrame += CurAni->Info.Start + SetFrame;
 }
