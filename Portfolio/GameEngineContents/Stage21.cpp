@@ -2,6 +2,7 @@
 #include "Stage21.h"
 #include "Penitent.h"
 #include "Pontiff.h"
+#include "GiantSword.h"
 
 Stage21::Stage21() 
 {
@@ -28,6 +29,11 @@ void Stage21::SettingStage()
 	NewPontiff->GetTransform().SetWorldMove({ 1250, -520 });
 	BossMonster_ = NewPontiff;
 	MonsterList_.push_back(NewPontiff);
+
+	GiantSword* NewPGiantSword = CreateActor<GiantSword>();
+	NewPGiantSword->GetTransform().SetWorldMove({ 1250, -600 });
+	BossMonster_ = NewPGiantSword;
+	MonsterList_.push_back(NewPGiantSword);
 
 	Penitent_ = CreateActor<Penitent>();
 	Penitent_->GetTransform().SetWorldMove({ 1250, -860 });

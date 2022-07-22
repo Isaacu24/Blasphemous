@@ -138,7 +138,10 @@
     <ClInclude Include="GameEngineMetaRenderer.h">
       <Filter>Contents</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngineMetaReader.h">
+    <ClInclude Include="GameEngineMetaParser.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineMeta.h">
       <Filter>Contents</Filter>
     </ClInclude>
   </ItemGroup>
@@ -273,7 +276,10 @@
     <ClCompile Include="GameEngineMetaRenderer.cpp">
       <Filter>Contents</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngineMetaReader.cpp">
+    <ClCompile Include="GameEngineMetaParser.cpp">
+      <Filter>Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineMeta.cpp">
       <Filter>Contents</Filter>
     </ClCompile>
   </ItemGroup>

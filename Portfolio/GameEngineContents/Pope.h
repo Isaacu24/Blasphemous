@@ -25,8 +25,13 @@ public:
 	Pope& operator=(Pope&& _Other) noexcept = delete;
 
 protected:
+	void Start() override;
+	void Update(float _DeltaTime) override;
+	void End() override;
 
 private:
+	PopeState CurrentState_;
 
+	class GameEngineTextureRenderer* Renderer_;
 };
 

@@ -162,11 +162,11 @@ void Blasphemous::LoadResources()
 		Dir.Move("Resources");
 		Dir.Move("UI");
 
-		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+		std::vector<GameEngineFile> Textures = Dir.GetAllFile();
 
-		for (size_t i = 0; i < Shaders.size(); i++)
+		for (size_t i = 0; i < Textures.size(); i++)
 		{
-			GameEngineTexture::Load(Shaders[i].GetFullPath());
+			GameEngineTexture::Load(Textures[i].GetFullPath());
 		}
 	}
 
@@ -180,11 +180,11 @@ void Blasphemous::LoadResources()
 		Dir.Move("UI");
 		Dir.Move("MainMenu");
 
-		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+		std::vector<GameEngineFile> Textures = Dir.GetAllFile();
 
-		for (size_t i = 0; i < Shaders.size(); i++)
+		for (size_t i = 0; i < Textures.size(); i++)
 		{
-			GameEngineTexture::Load(Shaders[i].GetFullPath());
+			GameEngineTexture::Load(Textures[i].GetFullPath());
 		}
 	}
 
@@ -198,11 +198,11 @@ void Blasphemous::LoadResources()
 		Dir.Move("UI");
 		Dir.Move("Inventory");
 
-		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+		std::vector<GameEngineFile> Textures = Dir.GetAllFile();
 
-		for (size_t i = 0; i < Shaders.size(); i++)
+		for (size_t i = 0; i < Textures.size(); i++)
 		{
-			GameEngineTexture::Load(Shaders[i].GetFullPath());
+			GameEngineTexture::Load(Textures[i].GetFullPath());
 		}
 	}
 
@@ -217,11 +217,11 @@ void Blasphemous::LoadResources()
 		Dir.Move("Sprite");
 		Dir.Move("Player");
 
-		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+		std::vector<GameEngineFile> Textures = Dir.GetAllFile();
 
-		for (size_t i = 0; i < Shaders.size(); i++)
+		for (size_t i = 0; i < Textures.size(); i++)
 		{
-			GameEngineTexture::Load(Shaders[i].GetFullPath());
+			GameEngineTexture::Load(Textures[i].GetFullPath());
 		}
 	}
 
@@ -236,11 +236,11 @@ void Blasphemous::LoadResources()
 		Dir.Move("NPC");
 		Dir.Move("Deosgracias");
 
-		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+		std::vector<GameEngineFile> Textures = Dir.GetAllFile();
 
-		for (size_t i = 0; i < Shaders.size(); i++)
+		for (size_t i = 0; i < Textures.size(); i++)
 		{
-			GameEngineTexture::Load(Shaders[i].GetFullPath());
+			GameEngineTexture::Load(Textures[i].GetFullPath());
 		}
 	}
 
@@ -254,11 +254,11 @@ void Blasphemous::LoadResources()
 		Dir.Move("Sprite");
 		Dir.Move("Object");
 
-		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+		std::vector<GameEngineFile> Textures = Dir.GetAllFile();
 
-		for (size_t i = 0; i < Shaders.size(); i++)
+		for (size_t i = 0; i < Textures.size(); i++)
 		{
-			GameEngineTexture::Load(Shaders[i].GetFullPath());
+			GameEngineTexture::Load(Textures[i].GetFullPath());
 		}
 	}
 
@@ -295,11 +295,11 @@ void Blasphemous::LoadMap(const std::string& _Level, int _Room, int _Index)
 		Dir.Move(_Level);
 		Dir.Move(std::to_string(_Room) + "-" + std::to_string(_Index));
 
-		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+		std::vector<GameEngineFile> Textures = Dir.GetAllFile();
 
-		for (size_t i = 0; i < Shaders.size(); i++)
+		for (size_t i = 0; i < Textures.size(); i++)
 		{
-			GameEngineTexture::Load(Shaders[i].GetFullPath());
+			GameEngineTexture::Load(Textures[i].GetFullPath());
 		}
 	}
 }
@@ -318,14 +318,13 @@ void Blasphemous::LoadBossMonster()
 		Dir.Move("Boss");
 		Dir.Move("Pontiff");
 
-		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+		std::vector<GameEngineFile> Textures = Dir.GetAllFile();
 
-		for (size_t i = 0; i < Shaders.size(); i++)
+		for (size_t i = 0; i < Textures.size(); i++)
 		{
-			GameEngineTexture::Load(Shaders[i].GetFullPath());
+			GameEngineTexture::Load(Textures[i].GetFullPath());
 		}
 	}
-
 
 	{
 		GameEngineDirectory Dir;
@@ -338,13 +337,49 @@ void Blasphemous::LoadBossMonster()
 		Dir.Move("Boss");
 		Dir.Move("ElderBrother");
 
-		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+		std::vector<GameEngineFile> Textures = Dir.GetAllFile();
 
-		for (size_t i = 0; i < Shaders.size(); i++)
+		for (size_t i = 0; i < Textures.size(); i++)
 		{
-			GameEngineTexture::Load(Shaders[i].GetFullPath());
+			GameEngineTexture::Load(Textures[i].GetFullPath());
+		}
+
+	}
+
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory("GameEngineResources");
+		Dir.Move("GameEngineResources");
+		Dir.Move("Resources");
+		Dir.Move("Sprite");
+		Dir.Move("Monster");
+		Dir.Move("Boss");
+		Dir.Move("Pope");
+
+		std::vector<GameEngineFile> Textures = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Textures.size(); i++)
+		{
+			GameEngineTexture::Load(Textures[i].GetFullPath());
 		}
 	}
+
+	//{
+	//	GameEngineDirectory Dir;
+
+	//	Dir.MoveParentToExitsChildDirectory("GameEngineResources");
+	//	Dir.Move("GameEngineResources");
+	//	Dir.Move("Resources");
+	//	Dir.Move("Metafile");
+
+	//	std::vector<GameEngineFile> MataFile = Dir.GetAllFile();
+
+	//	for (size_t i = 0; i < MataFile.size(); i++)
+	//	{
+	//		GameEngineTexture::Load(MataFile[i].GetFullPath());
+	//	}
+	//}
 }
 
 void Blasphemous::CutTexture()
@@ -374,6 +409,16 @@ void Blasphemous::CutTexture()
 	GameEngineTexture::Cut("elderBrother_attack.png", 4, 6);
 	GameEngineTexture::Cut("elderBrother_death.png", 5, 10);
 	GameEngineTexture::Cut("elderBrother_corpse.png", 4, 3);
+
+	GameEngineTexture::Cut("pope_idle.png", 4, 4);
+	GameEngineTexture::Cut("pope_appear.png", 4, 4);
+	GameEngineTexture::Cut("pope_death.png", 6, 6);
+	GameEngineTexture::Cut("pope_hitReaction.png", 4, 3);
+	GameEngineTexture::Cut("pope_spellCast.png", 8, 7);
+	GameEngineTexture::Cut("pope_vanishing.png", 4, 4);
+
+	GameEngineTexture::Cut("pontiff_giantSword_teleportOUT.png", 9, 3);
+	GameEngineTexture::Cut("pontiff_giantSword_teleportIN.png", 9, 3);
 
 	//NPC
 	GameEngineTexture::Cut("Deosgracias_idle.png", 7, 3);

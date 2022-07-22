@@ -1,6 +1,13 @@
 #pragma once
+#include <GameEngineCore/GameEngineActor.h>
+#include "BossMonster.h"
 
-class GiantSword
+enum class GiantSwordState
+{
+
+};
+
+class GiantSword : public GameEngineActor, public BossMonster
 {
 public:
 	GiantSword();
@@ -12,8 +19,13 @@ public:
 	GiantSword& operator=(GiantSword&& _Other) noexcept = delete;
 
 protected:
+	void Start() override;
+	void Update(float _DeltaTime) override;
+	void End() override;
 
 private:
+	GiantSwordState CurrentState_;
 
+	class GameEngineTextureRenderer* Renderer_;
 };
 

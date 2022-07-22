@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Stage20.h"
 #include "Penitent.h"
+#include "Pope.h"
 
 Stage20::Stage20() 
 {
@@ -25,6 +26,11 @@ void Stage20::SettingStage()
 
 	Penitent_ = CreateActor<Penitent>();
 	Penitent_->GetTransform().SetWorldMove({ 300, -1650 });
+
+	Pope* NewPope = CreateActor<Pope>();
+	NewPope->GetTransform().SetWorldMove({ 1750, -1660 });
+	BossMonster_ = NewPope;
+	MonsterList_.push_back(NewPope);
 
 	GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	AfterLayerRenderer->SetTexture("12_2_AfterLayer.png");

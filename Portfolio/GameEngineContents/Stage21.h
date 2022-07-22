@@ -2,6 +2,11 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include "StageBase.h"
 
+enum class EnventOrder
+{
+	
+};
+
 class Stage21 : public GameEngineLevel, public StageBase
 {
 public:

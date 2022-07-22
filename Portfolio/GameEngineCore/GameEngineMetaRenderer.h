@@ -18,7 +18,6 @@ protected:
 
 private:
 	GameEngineTexture* CurTex;
-	float4 FrameData;
 
 };
 
