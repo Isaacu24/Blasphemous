@@ -1,11 +1,7 @@
 #pragma once
-#include <map>
-#include <string>
-#include "GameEngineMeta.h"
 
 class GameEngineMetaParser
 {
-
 public:
 	GameEngineMetaParser();
 	~GameEngineMetaParser();
@@ -15,25 +11,27 @@ public:
 	GameEngineMetaParser& operator=(const GameEngineMetaParser& _Other) = delete;
 	GameEngineMetaParser& operator=(GameEngineMetaParser&& _Other) noexcept = delete;
 
-	void ReadMetafile(GameEngineMeta& _Meta);
+	static void AutoCompile(const std::string& _Path);
 
-	int ReadToX();
+	static std::string& ltrim(std::string& s, const char* t = " \t\n\r\f\v")
+	{
+		s.erase(0, s.find_first_not_of(t));
+		return s;
+	}
 
-	int ReadToY();
+	static std::string& rtrim(std::string& s, const char* t = " \t\n\r\f\v")
+	{
+		s.erase(s.find_last_not_of(t) + 1);
+		return s;
+	}
 
-	int ReadToHeight();
-
-	int ReadToWidth();
-
-	float4 ReadToPivot();
-
-	const GameEngineMeta* Find(const std::string& _Name);
-
-
+	static std::string& trim(std::string& s, const char* t = " \t\n\r\f\v")
+	{
+		return ltrim(rtrim(s, t), t);
+	}
 
 protected:
 
 private:
-	std::map<std::string, GameEngineMeta*> Metafiles_;
 };
 

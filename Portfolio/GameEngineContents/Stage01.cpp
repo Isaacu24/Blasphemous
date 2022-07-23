@@ -2,6 +2,7 @@
 #include "Stage01.h"
 #include <GameEngineCore/GameEngineTexture.h>
 #include "Penitent.h"
+#include "LoadingActor.h"
 
 Stage01::Stage01() 
 {
@@ -57,7 +58,7 @@ void Stage01::Start()
 {
 	CameraActor_ = CreateActor<GameEngineCameraActor>();
 	CameraActor_->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
-	
+
 	SettingStage();
 }
 

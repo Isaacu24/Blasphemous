@@ -206,6 +206,23 @@ void Blasphemous::LoadResources()
 		}
 	}
 
+	//UI Loading
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory("GameEngineResources");
+		Dir.Move("GameEngineResources");
+		Dir.Move("Resources");
+		Dir.Move("UI");
+		Dir.Move("Loading");
+
+		std::vector<GameEngineFile> Textures = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Textures.size(); i++)
+		{
+			GameEngineTexture::Load(Textures[i].GetFullPath());
+		}
+	}
 
 	//Player
 	{
@@ -426,4 +443,6 @@ void Blasphemous::CutTexture()
 
 	//Object
 	GameEngineTexture::Cut("priedieu_stand_and_liton_anim.png", 7, 1);
+	//GameEngineTexture::Cut("breakableTwistedCorpse03.png", 5, 3);
+	//GameEngineTexture::Cut("breakableTwistedCorpse04.png", 5, 3);
 }

@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Stage10.h"
 #include "Penitent.h"
+#include "BreakableTwistedCorpse.h"
 
 Stage10::Stage10()
 {
@@ -36,14 +37,14 @@ void Stage10::SettingStage()
 	StageRenderer->ScaleToTexture();
 
 	Penitent_ = CreateActor<Penitent>();
-	Penitent_->GetTransform().SetWorldMove({ 300, -610 });
+	Penitent_->GetTransform().SetWorldMove({ 250, -690 });
 
 	GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	DoorRenderer->SetTexture("2_1_Door.png");
 	DoorRenderer->ScaleToTexture();
 
-	float OffsetX = DoorRenderer->GetTransform().GetLocalScale().x / 2;
-	float OffsetY = DoorRenderer->GetTransform().GetLocalScale().y / 2;
+	float OffsetX = StageRenderer->GetTransform().GetLocalScale().x / 2;
+	float OffsetY = StageRenderer->GetTransform().GetLocalScale().y / 2;
 
 	float4 Offset = { OffsetX , -OffsetY };
 
@@ -73,14 +74,14 @@ void Stage10::Update(float _DeltaTime)
 		CameraActor_->GetTransform().SetWorldPosition(float4{ CameraActor_->GetTransform().GetLocalPosition().x, -1680 });
 	}
 
-	if (700 > CameraActor_->GetTransform().GetLocalPosition().x)
+	if (780 > CameraActor_->GetTransform().GetLocalPosition().x)
 	{
-		CameraActor_->GetTransform().SetWorldPosition(float4{ 700, CameraActor_->GetTransform().GetLocalPosition().y });
+		CameraActor_->GetTransform().SetWorldPosition(float4{ 780, CameraActor_->GetTransform().GetLocalPosition().y });
 	}
 
-	if (3200 < CameraActor_->GetTransform().GetLocalPosition().x)
+	if (3480 < CameraActor_->GetTransform().GetLocalPosition().x)
 	{
-		CameraActor_->GetTransform().SetWorldPosition(float4{ 3200, CameraActor_->GetTransform().GetLocalPosition().y });
+		CameraActor_->GetTransform().SetWorldPosition(float4{ 3480, CameraActor_->GetTransform().GetLocalPosition().y });
 	}
 
 	GameEngineDebug::OutPutString("x : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().x));

@@ -104,6 +104,12 @@
     <ClInclude Include="PlatformSpawner.h">
       <Filter>Actor\BossMonster\Pontiff</Filter>
     </ClInclude>
+    <ClInclude Include="LoadingActor.h">
+      <Filter>Actor\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="BreakableTwistedCorpse.h">
+      <Filter>Actor\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -209,6 +215,12 @@
     <ClCompile Include="PlatformSpawner.cpp">
       <Filter>Actor\BossMonster\Pontiff</Filter>
     </ClCompile>
+    <ClCompile Include="LoadingActor.cpp">
+      <Filter>Actor\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="BreakableTwistedCorpse.cpp">
+      <Filter>Actor\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -279,6 +291,9 @@
     </Filter>
     <Filter Include="Actor\Effect\Pope">
       <UniqueIdentifier>{0ef6ce20-1a40-4e6a-ab4c-b4d20606baf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Object">
+      <UniqueIdentifier>{fb0b9cb5-0ddf-4d4b-a7e8-3a98628137c6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

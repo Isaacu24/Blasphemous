@@ -13,50 +13,43 @@ public:
 	GameEngineMeta& operator=(const GameEngineMeta& _Other) = delete;
 	GameEngineMeta& operator=(GameEngineMeta&& _Other) noexcept = delete;
 
+	inline void SetX(const std::string& _X)
+	{
+		X_ = _X;
+	}
+
+	inline void SetY(const std::string& _Y)
+	{
+		Y_ = _Y;
+	}
+
+	inline void SetWidth(const std::string& _Width)
+	{
+		Width_ = _Width;
+	}
+
+	inline void SetHeight(const std::string& _Height)
+	{
+		Height_ = _Height;
+	}
+
+	inline void SetPivotX(const std::string& _PivotX)
+	{
+		PivotX_ = _PivotX;
+	}
+
+	inline void SetPivotY(const std::string& _PivotY)
+	{
+		PivotY_ = _PivotY;
+	}
+
 private:
-	std::filesystem::directory_iterator Metafile_;
+	std::string X_;
+	std::string Y_;
 
-	int X_;
-	int Y_;
-	int Width_;
-	int Height_;
+	std::string Width_;
+	std::string Height_;
 
-	float4 Pivot_;
-
-public:
-	static GameEngineMeta* Load(const std::string& _Path)
-	{
-		return Load(_Path, GameEnginePath::GetFileName(_Path));
-	}
-
-	static GameEngineMeta* Load(const std::string& _Path, const std::string& _Name);
-
-	void MetaFileLoad(const std::string& _Path);
-	
-private:
-	int GetX()
-	{
-		return X_;
-	}
-
-	int GetY()
-	{
-		return Y_;
-	}
-
-	int GetWidth()
-	{
-		return Width_;
-	}
-
-	int GetHeight()
-	{
-		return Height_;
-	}
-
-	const float4& GetPivot()
-	{
-		return Pivot_;
-	}
-
+	std::string PivotX_;
+	std::string PivotY_;
 };

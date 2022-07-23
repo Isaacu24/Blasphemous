@@ -21,3 +21,6 @@ void GameEngineMetaRenderer::Update(float _Delta)
 {
 }
 
+void MetaAnimation::Update(float _DeltaTime)
+{
+}
