@@ -445,4 +445,7 @@ void Blasphemous::CutTexture()
 	GameEngineTexture::Cut("priedieu_stand_and_liton_anim.png", 7, 1);
 	//GameEngineTexture::Cut("breakableTwistedCorpse03.png", 5, 3);
 	//GameEngineTexture::Cut("breakableTwistedCorpse04.png", 5, 3);
+
+	//UI
+	GameEngineTexture::Cut("ItemCursorAlt.png", 4, 4);
 }

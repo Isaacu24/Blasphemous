@@ -39,7 +39,7 @@ void Stage02::SettingStage()
 	StageRendrer->ScaleToTexture();
 
 	Penitent_ = CreateActor<Penitent>();
-	Penitent_->GetTransform().SetWorldMove({ 205, -1285 });
+	Penitent_->GetTransform().SetWorldMove({ 180, -1420 });
 
 	GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	DoorRenderer->SetTexture("1_2_Door.png");
@@ -72,9 +72,9 @@ void Stage02::Update(float _DeltaTime)
 {
 	CameraActor_->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition() + float4{0, 100} });
 
-	if (-1200 < CameraActor_->GetTransform().GetWorldPosition().y)
+	if (-1285 < CameraActor_->GetTransform().GetWorldPosition().y)
 	{
-		CameraActor_->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition().x, -1200 });
+		CameraActor_->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition().x, -1285 });
 	}
 
 	if (640 > CameraActor_->GetTransform().GetWorldPosition().x)
@@ -82,9 +82,9 @@ void Stage02::Update(float _DeltaTime)
 		CameraActor_->GetTransform().SetWorldPosition(float4{ 640, CameraActor_->GetTransform().GetLocalPosition().y });
 	}
 
-	if (3200 < CameraActor_->GetTransform().GetWorldPosition().x)
+	if (3550 < CameraActor_->GetTransform().GetWorldPosition().x)
 	{
-		CameraActor_->GetTransform().SetWorldPosition(float4{ 3200, CameraActor_->GetTransform().GetLocalPosition().y });
+		CameraActor_->GetTransform().SetWorldPosition(float4{ 3550, CameraActor_->GetTransform().GetLocalPosition().y });
 	}
 
 	GameEngineDebug::OutPutString("x : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().x));

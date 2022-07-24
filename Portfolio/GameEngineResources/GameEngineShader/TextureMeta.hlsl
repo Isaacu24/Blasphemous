@@ -14,10 +14,15 @@ struct Output
     float4 Tex : TEXCOORD;
 };
 
-cbuffer MetaData : register(b1)
+cbuffer MetaData : register(b0)
 {
-    float2 TextureFramePos;
-    float2 TextureFrameSize;
+    int X_;
+    int Y_;
+    
+    int Height_;
+    int Width_;
+   
+    float4 Pivot_; //UV ÁÂÇ¥
 };
 
 Output TextureAtlas_VS(Input _Input)
@@ -25,9 +30,9 @@ Output TextureAtlas_VS(Input _Input)
     Output NewOutPut = (Output) 0;
     NewOutPut.Pos = mul(_Input.Pos, WorldViewProjection);
     NewOutPut.PosLocal = _Input.Pos;
-
-    NewOutPut.Tex.x = (_Input.Tex.x * TextureFrameSize.x) + TextureFramePos.x;
-    NewOutPut.Tex.y = (_Input.Tex.y * TextureFrameSize.y) + TextureFramePos.y;
+   
+    //NewOutPut.Tex.x = (_Input.Tex.x * TextureFrameSize.x) + TextureFramePos.x;
+    //NewOutPut.Tex.y = (_Input.Tex.y * TextureFrameSize.y) + TextureFramePos.y;
     
     return NewOutPut;
 }

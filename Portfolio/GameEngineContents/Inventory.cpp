@@ -12,17 +12,29 @@ Inventory::~Inventory()
 {
 }
 
+//GameEngineTexture::Cut("ItemCursorAlt.png", 4, 4);
+
 void Inventory::Start()
 {
 	InventoryRenderer_ = CreateComponent<GameEngineTextureRenderer>();
 	InventoryRenderer_->GetTransform().SetWorldScale({1280, 800});
 	InventoryRenderer_->SetTexture("Inventory_0.png");
 
+	Cursor_ = CreateComponent<GameEngineTextureRenderer>();
+	Cursor_->CreateFrameAnimation("ItemCursorAlt", {"ItemCursorAlt.png", 0, 15, 0.1f, true});
+	Cursor_->ChangeFrameAnimation("ItemCursorAlt");
+	Cursor_->GetTransform().SetWorldScale({30, 30});
+
 	GameEngineInput::GetInst()->CreateButton("InventoryLeftButton", GAMEPAD_LEFT_SHOULDER);
 	GameEngineInput::GetInst()->CreateButton("InventoryRightButton", GAMEPAD_RIGHT_SHOULDER);
 
 	GameEngineInput::GetInst()->CreateKey("InventoryLeftKey", VK_LEFT);
 	GameEngineInput::GetInst()->CreateKey("InventoryRightKey", VK_RIGHT);
+
+	GameEngineInput::GetInst()->CreateKey("CursorLeftKey", 'a');
+	GameEngineInput::GetInst()->CreateKey("CursorRightKey", 'd');
+	GameEngineInput::GetInst()->CreateKey("CursorDownKey", 's');
+	GameEngineInput::GetInst()->CreateKey("CursorUpKey", 'w');
 }
 
 void Inventory::Update(float _DeltaTime)
@@ -55,6 +67,7 @@ void Inventory::Update(float _DeltaTime)
 		ChangeInventoryIndex();
 	}
 
+	CursorMove();
 }
 
 void Inventory::End()
@@ -121,5 +134,18 @@ void Inventory::ChangeInventory()
 	case InventoryType::Collectibles:
 		InventoryRenderer_->SetTexture("Inventory_6.png");
 		break;
+	}
+}
+
+void Inventory::CursorMove()
+{
+	if (true == GameEngineInput::GetInst()->IsDownKey("CursorLeftKey"))
+	{
+		CursorPos_++;
+	}
+
+	if (true == GameEngineInput::GetInst()->IsDownKey("CursorLeftKey"))
+	{
+		//CursorPos_++;
 	}
 }

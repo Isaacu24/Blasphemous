@@ -33,10 +33,17 @@ protected:
 	void ChangeInventoryIndex();
 	void ChangeInventory();
 
+	void CursorMove();
+
 private:
 	InventoryType InventoryType_;
 	
 	GameEngineTextureRenderer* InventoryRenderer_;
 	int InventoryIndex_;
+
+	//std::vector<Item> Items_;
+
+	GameEngineTextureRenderer* Cursor_;
+	int CursorPos_;
 };
 

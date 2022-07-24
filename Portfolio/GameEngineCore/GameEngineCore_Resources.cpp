@@ -160,7 +160,6 @@ void ShaderCompile()
 	}
 }
 
-
 void MetaDataCompile()
 {
 	GameEngineDirectory Dir;
@@ -174,7 +173,7 @@ void MetaDataCompile()
 
 	for (size_t i = 0; i < MetaDatas.size(); i++)
 	{
-		GameEngineMetaParser::AutoCompile(MetaDatas[i].GetFullPath());
+		GameEngineMetaParser::GetInst()->AutoCompile(MetaDatas[i].GetFullPath());
 	}
 }
 

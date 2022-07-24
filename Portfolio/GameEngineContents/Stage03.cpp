@@ -46,11 +46,11 @@ void Stage03::SettingStage()
 	GameEngineTextureRenderer* SavePointRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	SavePointRenderer->CreateFrameAnimation("priedieu_stand_and_liton_anim", { "priedieu_stand_and_liton_anim.png", 1, 6, 0.1f, true });
 	SavePointRenderer->ChangeFrameAnimation("priedieu_stand_and_liton_anim");
-	SavePointRenderer->GetTransform().SetLocalScale({ 125, 325 });
+	SavePointRenderer->GetTransform().SetWorldScale({ 50, 400 });
 	SavePointRenderer->GetTransform().SetWorldMove({ 100, -80 });
 
 	Penitent_ = CreateActor<Penitent>();
-	Penitent_->GetTransform().SetWorldMove({ 237, -960 });
+	Penitent_->GetTransform().SetWorldMove({ 50, -1000 });
 
 	GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	DoorRenderer->SetTexture("1_3_Door.png");
