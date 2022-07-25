@@ -45,7 +45,7 @@ void Stage04::SettingStage()
 	NewElderBrother->GetTransform().PixLocalNegativeX();
 
 	Penitent_ = CreateActor<Penitent>();
-	Penitent_->GetTransform().SetWorldMove({ 280, -925, 0.0f});
+	Penitent_->GetTransform().SetWorldMove({ 250, -1000, 0.0f});
 
 	GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	DoorRenderer->SetTexture("1_4_Door.png");
@@ -93,6 +93,16 @@ void Stage04::Update(float _DeltaTime)
 
 	GameEngineDebug::OutPutString("x : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().x));
 	GameEngineDebug::OutPutString("y : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().y));
+
+	if (200 > Penitent_->GetTransform().GetWorldPosition().x)
+	{
+		GEngine::ChangeLevel("Stage03");
+	}
+
+	if (2500 < Penitent_->GetTransform().GetWorldPosition().x)
+	{
+		GEngine::ChangeLevel("Stage05");
+	}
 }
 
 void Stage04::End()

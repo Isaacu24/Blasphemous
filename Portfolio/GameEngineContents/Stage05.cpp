@@ -51,6 +51,17 @@ void Stage05::Start()
 
 void Stage05::Update(float _DeltaTime)
 {
+	if (430 > Penitent_->GetTransform().GetWorldPosition().x)
+	{
+		GEngine::ChangeLevel("Stage04");
+	}
+
+	if (1600 < Penitent_->GetTransform().GetWorldPosition().x)
+	{
+		GEngine::ChangeLevel("Stage10");
+	}
+
+	GameEngineDebug::OutPutString("x : " + std::to_string(Penitent_->GetTransform().GetLocalPosition().x));
 }
 
 void Stage05::End()

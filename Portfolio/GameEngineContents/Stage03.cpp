@@ -50,7 +50,7 @@ void Stage03::SettingStage()
 	SavePointRenderer->GetTransform().SetWorldMove({ 100, -80 });
 
 	Penitent_ = CreateActor<Penitent>();
-	Penitent_->GetTransform().SetWorldMove({ 50, -1000, 0.0f });
+	Penitent_->GetTransform().SetWorldMove({ 150, -1050, 0.0f });
 
 	GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	DoorRenderer->SetTexture("1_3_Door.png");
@@ -101,6 +101,16 @@ void Stage03::Update(float _DeltaTime)
 
 	GameEngineDebug::OutPutString("x : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().x));
 	GameEngineDebug::OutPutString("y : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().y));
+
+	if (100 > Penitent_->GetTransform().GetWorldPosition().x)
+	{
+		GEngine::ChangeLevel("Stage02");
+	}
+
+	if (3100 < Penitent_->GetTransform().GetWorldPosition().x)
+	{
+		GEngine::ChangeLevel("Stage04");
+	}
 }
 
 

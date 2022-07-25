@@ -29,7 +29,7 @@ void Stage30::SettingStage()
 	NewDeogracias->GetTransform().PixLocalNegativeX();
 
 	Penitent_ = CreateActor<Penitent>();
-	Penitent_->GetTransform().SetWorldMove({ 660, -960, 0.0f });
+	Penitent_->GetTransform().SetWorldMove({ 100, -960, 0.0f });
 
 	GameEngineTextureRenderer* StageRenderer2 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	StageRenderer2->SetTexture("13_1_2_Tile.png");

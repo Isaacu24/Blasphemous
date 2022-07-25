@@ -83,6 +83,11 @@ void Stage01::Update(float _DeltaTime)
 
 	GameEngineDebug::OutPutString("x : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().x));
 	GameEngineDebug::OutPutString("y : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().y));
+
+	if (3650 < Penitent_->GetTransform().GetWorldPosition().x)
+	{
+		GEngine::ChangeLevel("Stage02");
+	}
 }
 
 void Stage01::End()
