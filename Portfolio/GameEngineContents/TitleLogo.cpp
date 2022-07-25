@@ -1,6 +1,5 @@
+#include "PreCompile.h"
 #include "TitleLogo.h"
-#include <GameEngineCore/GameEngineTextureRenderer.h>
-#include <GameEngineBase/GameEngineWindow.h>
 
 TitleLogo::TitleLogo() 
 {

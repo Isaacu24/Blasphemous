@@ -12,7 +12,6 @@
 #pragma comment(lib, "dxguid")
 
 
-// 설명 :
 class GameEngineMath
 {
 public:
@@ -69,6 +68,7 @@ public:
 	// Color
 	static const float4 BLUE;
 	static const float4 BLACK;
+	static const float4 RED;
 
 public:
 	// 외적을 쓸수 있는곳
@@ -138,6 +138,11 @@ public:
 		return Return;
 	}
 
+	static float4 ABS3DReturn(const float4& _Postion)
+	{
+		return _Postion.ABS3DReturn();
+	}
+
 	static float VectorXYtoDegree(const float4& _Postion, const float4& _Target)
 	{
 		return VectorXYtoRadian(_Postion, _Target) * GameEngineMath::RadianToDegree;
@@ -203,9 +208,6 @@ public:
 		return VectorRotationToRadianXAxis(_Value, _Degree * GameEngineMath::DegreeToRadian);
 	}
 
-	// [][] * cosf   -sinf
-	// [][]   sinf   cosf
-
 	static float4 VectorRotationToRadianXAxis(const float4& _Value, float _Radian)
 	{
 		float4 Rot;
@@ -237,11 +239,6 @@ public:
 
 		return Lerp(p1, p2, Time);
 	}
-
-	//           []
-	//           []
-	//           []
-	// [][][][]  []
 
 	static float DotProduct3D(const float4& _Left, const float4& _Right)
 	{
@@ -359,9 +356,13 @@ public:
 		return { x * 0.5f, y * 0.5f , z * 0.5f, 1.0f };
 	}
 
+	float4 ABS3DReturn() const
+	{
+		return float4(fabsf(x), fabsf(y), fabsf(z));
+	}
+
 	float Length() const
 	{
-		// sqrtf 제곱근 구해줍니다.
 		return sqrtf((x * x) + (y * y) + (z * z));
 	}
 
@@ -377,7 +378,6 @@ public:
 		y /= Len;
 		z /= Len;
 
-		// sqrtf 제곱근 구해줍니다.
 		return;
 	}
 
@@ -788,13 +788,6 @@ public:
 
 	void ViewPort(float _Width, float _Height, float _Left, float _Right, float _ZMin, float _ZMax)
 	{
-
-		// 크기 자전 이동 뷰 투영 뷰포트 => 모니터에
-		//                                마우스포지션은
-		//                       * 마우스포지션은
-
-		//             -1~1사이의 값이
-		//            640
 		Arr2D[0][0] = _Width / 2.0f;
 		Arr2D[0][1] = 0.0f;
 		Arr2D[0][2] = 0.0f;
@@ -981,8 +974,6 @@ public:
 
 		//return M;
 
-
-		// 뷰 행렬을 만들어주는 함수에요.
 		// DirectX::XMMatrixLookAtLH()
 	}
 

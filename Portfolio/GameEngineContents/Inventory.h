@@ -34,6 +34,7 @@ protected:
 	void ChangeInventory();
 
 	void CursorMove();
+	void LineBreakCuror();
 
 private:
 	InventoryType InventoryType_;
@@ -45,5 +46,9 @@ private:
 
 	GameEngineTextureRenderer* Cursor_;
 	int CursorPos_;
+
+	int MaxSlotIndex_;
+
+	int LineSlotCount_;
 };
 

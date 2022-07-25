@@ -25,10 +25,10 @@ void Stage20::SettingStage()
 	StageRenderer->ScaleToTexture();
 
 	Penitent_ = CreateActor<Penitent>();
-	Penitent_->GetTransform().SetWorldMove({ 300, -1650 });
+	Penitent_->GetTransform().SetWorldMove({ 300, -1650, 0.0f });
 
 	Pope* NewPope = CreateActor<Pope>();
-	NewPope->GetTransform().SetWorldMove({ 1750, -1660 });
+	NewPope->GetTransform().SetWorldMove({ 1750, -1660, 0.0f });
 	BossMonster_ = NewPope;
 	MonsterList_.push_back(NewPope);
 

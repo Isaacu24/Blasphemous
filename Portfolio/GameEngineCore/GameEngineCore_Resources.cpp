@@ -25,7 +25,7 @@
 #include "GameEngineBlend.h"
 #include "GameEngineRenderingPipeLine.h"
 
-#include "GameEngineMetaParser.h"
+//#include "GameEngineMetaParser.h"
 
 void EngineInputLayOut()
 {
@@ -160,22 +160,22 @@ void ShaderCompile()
 	}
 }
 
-void MetaDataCompile()
-{
-	GameEngineDirectory Dir;
-
-	Dir.MoveParentToExitsChildDirectory("GameEngineResources");
-	Dir.Move("GameEngineResources");
-	Dir.Move("Resources");
-	Dir.Move("Metafile");
-
-	std::vector<GameEngineFile> MetaDatas = Dir.GetAllFile("meta");
-
-	for (size_t i = 0; i < MetaDatas.size(); i++)
-	{
-		GameEngineMetaParser::GetInst()->AutoCompile(MetaDatas[i].GetFullPath());
-	}
-}
+//void MetaDataCompile()
+//{
+//	GameEngineDirectory Dir;
+//
+//	Dir.MoveParentToExitsChildDirectory("GameEngineResources");
+//	Dir.Move("GameEngineResources");
+//	Dir.Move("Resources");
+//	Dir.Move("Metafile");
+//
+//	std::vector<GameEngineFile> MetaDatas = Dir.GetAllFile("meta");
+//
+//	for (size_t i = 0; i < MetaDatas.size(); i++)
+//	{
+//		GameEngineMetaParser::GetInst()->AutoCompile(MetaDatas[i].GetFullPath());
+//	}
+//}
 
 
 void EngineRenderingPipeLine()
@@ -302,7 +302,7 @@ void GameEngineCore::EngineResourcesInitialize()
 	EngineMesh();
 	EngineSubSetting();
 	ShaderCompile();
-	MetaDataCompile();
+	//MetaDataCompile();
 
 	EngineRenderingPipeLine();
 

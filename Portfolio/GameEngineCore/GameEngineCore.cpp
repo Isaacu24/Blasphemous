@@ -7,7 +7,7 @@
 #include "GameEngineLevel.h"
 #include "GameEngineDevice.h"
 #include "GameEngineGUI.h"
-#include "GameEngineMetaParser.h"
+//#include "GameEngineMetaParser.h"
 
 #pragma comment(lib, "GameEngineBase.lib")
 
@@ -127,7 +127,7 @@ void GameEngineCore::CoreEnd(GameEngineCore* _UserCore)
 
 	EngineResourcesDestroy();
 
-	GameEngineMetaParser::Destroy();
+	//GameEngineMetaParser::Destroy();
 
 	GameEngineWindow::Destroy();
 	GameEngineInput::Destroy();

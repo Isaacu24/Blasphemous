@@ -39,7 +39,7 @@ void Stage02::SettingStage()
 	StageRendrer->ScaleToTexture();
 
 	Penitent_ = CreateActor<Penitent>();
-	Penitent_->GetTransform().SetWorldMove({ 180, -1420 });
+	Penitent_->GetTransform().SetWorldMove({ 180, -1420, 0.0f });
 
 	GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	DoorRenderer->SetTexture("1_2_Door.png");

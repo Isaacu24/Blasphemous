@@ -173,7 +173,6 @@ void GameEngineTexture::Cut(UINT _X, UINT _Y)
 	{
 		for (size_t x = 0; x < _X; x++)
 		{
-
 			float4 FrameData;
 
 			FrameData.PosX = Start.x;

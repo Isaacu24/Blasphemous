@@ -79,10 +79,9 @@ void GameEngineLevel::Render(float _DelataTime)
 {
 	GameEngineDevice::RenderStart();
 
-	// 이 사이에서 무언가를 해야 합니다.
 	MainCamera->Render(_DelataTime);
 
-	GameEngineGUI::GUIRender();
+	GameEngineGUI::GUIRender(this, _DelataTime);
 
 	GameEngineDevice::RenderEnd();
 }
@@ -149,7 +148,6 @@ void GameEngineLevel::LevelUpdate(float _DeltaTime)
 	Release(_DeltaTime);
 }
 
-// 레벨을 이동하는 액터
 void GameEngineLevel::RemoveActor(GameEngineActor* _Actor)
 {
 	if (AllActors.end() == AllActors.find(_Actor->GetOrder()))

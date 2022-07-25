@@ -2,7 +2,9 @@
 #include "GameEngineGUI.h"
 #include <GameEngineBase/GameEngineWindow.h>
 #include "GameEngineDevice.h"
-#include <GameEngineBase/GameEngineString.h>
+
+
+std::list<GameEngineGUIWindow*> GameEngineGUI::Windows;
 
 GameEngineGUI::GameEngineGUI()
 {
@@ -46,26 +48,26 @@ void GameEngineGUI::Initialize()
 
     GameEngineWindow::GetInst()->SetMessageCallBack(ImGui_ImplWin32_WndProcHandler);
 }
-void GameEngineGUI::GUIRender()
+
+
+
+void GameEngineGUI::GUIRender(GameEngineLevel* _Level, float _DeltaTime)
 {
     ImGui_ImplDX11_NewFrame();
     ImGui_ImplWin32_NewFrame();
     ImGui::NewFrame();
 
 
-    // 비긴과
-    // 앤드로 이루어집니다.
-
-    std::string Text = GameEngineString::AnsiToUTF8Return("윈도우창 하나");
-    std::string Button = GameEngineString::AnsiToUTF8Return("버튼");
-
-    ImGui::Begin(Text.c_str());
-
-    ImGui::Button(Button.c_str());
-
-    ImGui::End();
-
-    // 여기사이에
+    for (GameEngineGUIWindow* GUIWIndow : Windows)
+    {
+        if (false == GUIWIndow->IsOpen)
+        {
+            continue;
+        }
+        GUIWIndow->Begin();
+        GUIWIndow->OnGUI(_Level, _DeltaTime);
+        GUIWIndow->End();
+    }
 
     ImGuiIO& io = ImGui::GetIO();
     (void)io;
@@ -81,6 +83,12 @@ void GameEngineGUI::GUIRender()
 }
 void GameEngineGUI::GUIDestroy()
 {
+    for (GameEngineGUIWindow* GUIWIndow : Windows)
+    {
+        delete GUIWIndow;
+    }
+
+
     ImGui_ImplDX11_Shutdown();
     ImGui_ImplWin32_Shutdown();
     ImGui::DestroyContext();

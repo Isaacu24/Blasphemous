@@ -141,6 +141,9 @@
     <ClInclude Include="GameEngineMetaParser.h">
       <Filter>Contents</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineStatusWindow.h">
+      <Filter>GUI\EngineGUIWindow</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineActor.cpp">
@@ -276,6 +279,9 @@
     <ClCompile Include="GameEngineMetaParser.cpp">
       <Filter>Contents</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineStatusWindow.cpp">
+      <Filter>GUI\EngineGUIWindow</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -343,6 +349,9 @@
     </Filter>
     <Filter Include="GUI\IMGUI">
       <UniqueIdentifier>{2e3d9b74-ab2b-4a0e-be71-294706ec7560}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\EngineGUIWindow">
+      <UniqueIdentifier>{c3cfb6c4-29a3-4214-8727-296e061eb068}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

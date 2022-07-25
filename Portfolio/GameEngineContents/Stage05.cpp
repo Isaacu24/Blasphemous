@@ -20,12 +20,12 @@ void Stage05::SettingStage()
 	StageRenderer->SetTexture("1_5_Tile.png");
 	StageRenderer->ScaleToTexture();
 
-	Deogracias* NewDeogracias = CreateActor<Deogracias>();
-	NewDeogracias->GetTransform().SetLocalMove({ 940, -570 });
-	NewDeogracias->GetTransform().PixLocalNegativeX();
+	//Deogracias* NewDeogracias = CreateActor<Deogracias>();
+	//NewDeogracias->GetTransform().SetLocalMove({ 940, -570 });
+	//NewDeogracias->GetTransform().PixLocalNegativeX();
 
 	Penitent_ = CreateActor<Penitent>();
-	Penitent_->GetTransform().SetWorldMove({ 522, -670 });
+	Penitent_->GetTransform().SetWorldMove({ 522, -670, 0.0f });
 
 	GameEngineTextureRenderer* DoorRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	DoorRendrer->SetTexture("1_5_Door.png");

@@ -24,12 +24,12 @@ void Stage30::SettingStage()
 	BeforeLayerRenderer->ScaleToTexture();
 
 	Deogracias* NewDeogracias = CreateActor<Deogracias>();
-	NewDeogracias->GetTransform().SetWorldMove({ 800, -870 });
+	NewDeogracias->GetTransform().SetWorldMove({ 800, -870, 0.0f });
 	NewDeogracias->ChangeFrontAnimation();
 	NewDeogracias->GetTransform().PixLocalNegativeX();
 
 	Penitent_ = CreateActor<Penitent>();
-	Penitent_->GetTransform().SetWorldMove({ 660, -960 });
+	Penitent_->GetTransform().SetWorldMove({ 660, -960, 0.0f });
 
 	GameEngineTextureRenderer* StageRenderer2 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	StageRenderer2->SetTexture("13_1_2_Tile.png");
@@ -46,7 +46,7 @@ void Stage30::SettingStage()
 	GameEngineTextureRenderer* ChairRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	ChairRenderer->SetTexture("ash-mountain-spritesheet_9.png");
 	ChairRenderer->ScaleToTexture();
-	ChairRenderer->GetTransform().SetWorldMove({1060, 920});
+	ChairRenderer->GetTransform().SetWorldMove({1060, 920, 0.0f });
 
 	float OffsetX = StageRenderer1->GetTransform().GetLocalScale().x / 2;
 	float OffsetY = StageRenderer1->GetTransform().GetLocalScale().y / 2;

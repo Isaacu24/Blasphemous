@@ -41,7 +41,7 @@ void MainMenuActor::Start()
 
 	Crisanta_ = CreateComponent<GameEngineTextureRenderer>();
 	Crisanta_->GetTransform().SetWorldScale({ 878, 720 });
-	Crisanta_->GetTransform().SetWorldPosition({-200, 0, 0});
+	Crisanta_->GetTransform().SetWorldPosition({-200, 0, 0.0f});
 	Crisanta_->SetTexture("Crisanta_0.png");
 
 	BigPetal_ = CreateComponent<GameEngineTextureRenderer>();
@@ -50,17 +50,17 @@ void MainMenuActor::Start()
 
 	Pilgrimage_ = CreateComponent<GameEngineTextureRenderer>();
 	Pilgrimage_->GetTransform().SetWorldScale({ 58, 30 });
-	Pilgrimage_->GetTransform().SetLocalPosition({ 450, -50 });
+	Pilgrimage_->GetTransform().SetWorldPosition({ 450, -50, 0.0f });
 	Pilgrimage_->SetTexture("Pilgrimage_Select.png");
 
 	Option_ = CreateComponent<GameEngineTextureRenderer>();
 	Option_->GetTransform().SetWorldScale({ 58, 30 });
-	Option_->GetTransform().SetLocalPosition({ 450, -125 });
+	Option_->GetTransform().SetWorldPosition({ 450, -125, 0.0f });
 	Option_->SetTexture("Option.png");
 
 	Exit_ = CreateComponent<GameEngineTextureRenderer>();
 	Exit_->GetTransform().SetWorldScale({ 84, 30 });
-	Exit_->GetTransform().SetLocalPosition({ 450, -200 });
+	Exit_->GetTransform().SetWorldPosition({ 450, -200, 0.0f });
 	Exit_->SetTexture("Exit.png");
 
 	GameEngineInput::GetInst()->CreateKey("MainMenUpKey", VK_UP);
