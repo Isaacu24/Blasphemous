@@ -15,7 +15,10 @@ void GravityComponent::Start()
 
 void GravityComponent::Update(float _DeltaTime)
 {
-	GetActor()->GetTransform().SetLocalMove(GetTransform().GetDownVector() * 250.f * _DeltaTime);
+	if (true == Active_)
+	{
+		GetActor()->GetTransform().SetLocalMove(GetTransform().GetDownVector() * 300.f * _DeltaTime);
+	}
 }
 
 void GravityComponent::End()

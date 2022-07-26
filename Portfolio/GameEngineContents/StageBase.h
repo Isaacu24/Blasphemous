@@ -14,21 +14,23 @@ public:
 protected:
 	GameEngineActor* Stage_;
 
+	GameEngineTextureRenderer* ColMap_;
+
 	class GameEngineCameraActor* CameraActor_;
 	class Penitent* Penitent_;
 
 	class BossMonster* BossMonster_;
-	std::list<class MonsterBase*> MonsterList_;
+	std::list<class BossMonster*> MonsterList_;
 
 	//class LoadingActor* LoadingActor_;
 
 	virtual void SettingStage() = 0;
 
-	float CamerLeftPos_;
-	float CamerRightPos_;
+	float4 CamerLeftPos_;
+	float4 CamerRightPos_;
 
-	float PlayerLeftPos_;
-	float PlayerRightPos_;
+	float4 PlayerLeftPos_;
+	float4 PlayerRightPos_;
 
 private:
 

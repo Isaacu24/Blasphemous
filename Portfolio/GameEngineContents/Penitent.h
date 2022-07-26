@@ -1,11 +1,13 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 
-enum class PlayerFSM
+enum class PlayerState
 {
 	Idle, 
 	Run, 
 	Fall,
+	Jump,
+	LadderClimb, //사다리 타기
 	Slide, //무적 상태
 	Attack, 
 	Parring, //무적 상태
@@ -39,26 +41,43 @@ public:
 		Money_ = _Value;
 	}
 
+	inline void SetGround(GameEngineTextureRenderer* _Ground)
+	{
+		Ground_ = _Ground;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 	void End() override;
 
-	void ButtonCheck();
+	void InputCheck(float _DeltaTime);
+
+	bool GroundCheck();
+	void UphillRoadCheck();
+	void LadderCheck();
 
 private:
-	PlayerFSM PrevState_;
-	PlayerFSM CurrentState_;
+	PlayerState PrevState_;
+	PlayerState CurrentState_;
 
-	GameEngineTextureRenderer* Renderer;
+	float MoveDir_;
 
-	float4 Time_;
+	class GravityComponent* Gravity_;
+
+	GameEngineTextureRenderer* Renderer_;
+
+	GameEngineTextureRenderer* Ground_;
 
 	int HP_;
 	int MP_;
 	float Speed_;
 
 	int Money_; 
+
+	bool IsJump_;
+
+	float JumpTime_;
 
 	std::vector<bool> Flasks_;
 };

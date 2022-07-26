@@ -8,9 +8,11 @@
 class GameEngineUpdateObject : public GameEngineDebugObject
 {
 public:
+	// constrcuter destructer
 	GameEngineUpdateObject();
 	virtual ~GameEngineUpdateObject();
 
+	// delete Function
 	GameEngineUpdateObject(const GameEngineUpdateObject& _Other) = delete;
 	GameEngineUpdateObject(GameEngineUpdateObject&& _Other) noexcept = delete;
 	GameEngineUpdateObject& operator=(const GameEngineUpdateObject& _Other) = delete;
@@ -27,13 +29,18 @@ public:
 		IsUpdate_ = false;
 	}
 
+	inline void OnOffSwitch()
+	{
+		IsUpdate_ = !IsUpdate_;
+	}
+
 	inline bool IsUpdate()
 	{
 		if (nullptr != Parent)
 		{
 			return IsUpdate_ && false == IsDeath_ && true == Parent->IsUpdate();
 		}
-		else 
+		else
 		{
 			return IsUpdate_ && false == IsDeath_;
 		}
@@ -51,7 +58,7 @@ public:
 		}
 	}
 
-	void AddAccTime(float _DeltaTime) 
+	void AddAccTime(float _DeltaTime)
 	{
 		AccTime_ += _DeltaTime;
 	}
@@ -124,10 +131,10 @@ public:
 
 protected:
 	// 이 오브젝트가 동작을 하기 시작했다.
-	virtual void OnEvent() {}
-
+	virtual void OnEvent() {}//레벨체인지 스타트
+												//레벨에선 이런개념 액터나 컴포넌트도 갖고있다.
 	// 이 오브젝트가 꺼졌다.
-	virtual void OffEvent() {}
+	virtual void OffEvent() {}//레벨체인지 엔드
 
 	// 이 오브젝트가 만들어졌다.
 	virtual void Start() = 0;

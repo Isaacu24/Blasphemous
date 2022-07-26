@@ -18,6 +18,10 @@ void Stage01::SettingStage()
 {
 	Stage_ = CreateActor<StageActor>();
 
+	ColMap_ = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	ColMap_->SetTexture("1_1_Colmap.png");
+	ColMap_->ScaleToTexture();
+
 	GameEngineTextureRenderer* BeforeParallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer->SetTexture("1_1_BeforeParallax_0.png");
 	BeforeParallaxRenderer->ScaleToTexture();
@@ -36,6 +40,7 @@ void Stage01::SettingStage()
 
 	Penitent_ = CreateActor<Penitent>();
 	Penitent_->GetTransform().SetWorldMove({ 1225, -940 , 0.0f });
+	Penitent_->SetGround(ColMap_);
 
 	GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	DoorRenderer->SetTexture("1_1_Door.png");
@@ -44,6 +49,9 @@ void Stage01::SettingStage()
 	GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	AfterLayerRenderer->SetTexture("1_1_AfterLayer.png");
 	AfterLayerRenderer->ScaleToTexture();
+
+	// 레벨 체인지 스타트 추가될 때 추가
+	PlayerRightPos_ = float4{ 3650, -1350 };
 
 	float OffsetX = StageRenderer->GetTransform().GetLocalScale().x / 2;
 	float OffsetY = StageRenderer->GetTransform().GetLocalScale().y / 2;
@@ -80,9 +88,6 @@ void Stage01::Update(float _DeltaTime)
 	{
 		CameraActor_->GetTransform().SetWorldPosition(float4{ 3150, CameraActor_->GetTransform().GetLocalPosition().y });
 	}
-
-	GameEngineDebug::OutPutString("x : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().x));
-	GameEngineDebug::OutPutString("y : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().y));
 
 	if (3650 < Penitent_->GetTransform().GetWorldPosition().x)
 	{

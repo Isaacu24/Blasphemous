@@ -16,6 +16,10 @@ void Stage21::SettingStage()
 {
 	Stage_ = CreateActor<StageActor>();
 
+	ColMap_ = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	ColMap_->SetTexture("12_3_Colmap.png");
+	ColMap_->ScaleToTexture();
+
 	GameEngineTextureRenderer* BeforeLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeLayerRenderer->SetTexture("12_3_BeforeLayer_0.png");
 	BeforeLayerRenderer->ScaleToTexture();
@@ -28,15 +32,14 @@ void Stage21::SettingStage()
 	Pontiff* NewPontiff = CreateActor<Pontiff>();
 	NewPontiff->GetTransform().SetWorldMove({ 1250, -520, 0.0f });
 	BossMonster_ = NewPontiff;
-	MonsterList_.push_back(NewPontiff);
 
 	GiantSword* NewPGiantSword = CreateActor<GiantSword>();
 	NewPGiantSword->GetTransform().SetWorldMove({ 1250, -600 });
 	BossMonster_ = NewPGiantSword;
-	MonsterList_.push_back(NewPGiantSword);
 
 	Penitent_ = CreateActor<Penitent>();
 	Penitent_->GetTransform().SetWorldMove({ 1250, -860, 0.0f });
+	Penitent_->SetGround(ColMap_);
 
 	GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	StageRenderer->SetTexture("12_3_Tile.png");

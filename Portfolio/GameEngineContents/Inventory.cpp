@@ -73,8 +73,8 @@ void Inventory::Update(float _DeltaTime)
 
 	GameEngineDebug::OutPutString("CursorPos : " + std::to_string(CursorPos_));
 
-	//GameEngineDebug::OutPutString("CursorPosX : " + std::to_string(Cursor_->GetTransform().GetWorldPosition().x));
-	//GameEngineDebug::OutPutString("CursorPosY : " + std::to_string(Cursor_->GetTransform().GetWorldPosition().y));
+	GameEngineDebug::OutPutString("CursorPosX : " + std::to_string(Cursor_->GetTransform().GetWorldPosition().x));
+	GameEngineDebug::OutPutString("CursorPosY : " + std::to_string(Cursor_->GetTransform().GetWorldPosition().y));
 }
 
 void Inventory::End()
@@ -97,6 +97,7 @@ void Inventory::ChangeInventoryIndex()
 		InventoryType_ = InventoryType::Relics;
 		CursorPos_ = 1;
 		MaxSlotIndex_ = 7;
+		LineSlotCount_ = 7;
 		Cursor_->GetTransform().SetWorldPosition({ -425, -125, 0.0f });
 		break;
 	case 3:

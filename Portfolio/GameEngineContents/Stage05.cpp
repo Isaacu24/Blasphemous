@@ -16,6 +16,10 @@ void Stage05::SettingStage()
 {
 	Stage_ = CreateActor<StageActor>();
 
+	ColMap_ = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	ColMap_->SetTexture("1_5_Colmap.png");
+	ColMap_->ScaleToTexture();
+
 	GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	StageRenderer->SetTexture("1_5_Tile.png");
 	StageRenderer->ScaleToTexture();
@@ -26,6 +30,7 @@ void Stage05::SettingStage()
 
 	Penitent_ = CreateActor<Penitent>();
 	Penitent_->GetTransform().SetWorldMove({ 522, -670, 0.0f });
+	Penitent_->SetGround(ColMap_);
 
 	GameEngineTextureRenderer* DoorRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	DoorRendrer->SetTexture("1_5_Door.png");

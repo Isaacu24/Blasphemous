@@ -15,6 +15,10 @@ void Stage30::SettingStage()
 {
 	Stage_ = CreateActor<StageActor>();
 
+	ColMap_ = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	ColMap_->SetTexture("13_1_Colmap.png");
+	ColMap_->ScaleToTexture();
+
 	GameEngineTextureRenderer* BeforeParallaxRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRendrer->SetTexture("13_1_BeforeParallax_1.png");
 	BeforeParallaxRendrer->ScaleToTexture();
@@ -30,6 +34,7 @@ void Stage30::SettingStage()
 
 	Penitent_ = CreateActor<Penitent>();
 	Penitent_->GetTransform().SetWorldMove({ 100, -960, 0.0f });
+	Penitent_->SetGround(ColMap_);
 
 	GameEngineTextureRenderer* StageRenderer2 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	StageRenderer2->SetTexture("13_1_2_Tile.png");

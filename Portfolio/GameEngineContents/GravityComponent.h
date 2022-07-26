@@ -12,12 +12,17 @@ public:
 	GravityComponent& operator=(const GravityComponent& _Other) = delete;
 	GravityComponent& operator=(GravityComponent&& _Other) noexcept = delete;
 
+	void SetActive(bool _Active)
+	{
+		Active_ = _Active;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 	void End() override;
 
 private:
-
+	bool Active_;
 };
 

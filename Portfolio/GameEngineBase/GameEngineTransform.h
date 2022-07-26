@@ -137,6 +137,7 @@ public:
 			Local = _World * Parent->Data.WorldWorldMatrix.InverseReturn();
 		}
 
+
 		CalculateWorldPosition(Local);
 		CalculateWorld();
 	}
@@ -184,6 +185,11 @@ public:
 	inline void SetWorldMove(const float4& _Value)
 	{
 		SetWorldPosition(Data.WorldPosition + _Value);
+	}
+
+	inline float4 GetWorldScale() const
+	{
+		return Data.WorldScaling;
 	}
 
 	inline float4 GetLocalScale() const

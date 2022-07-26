@@ -16,6 +16,10 @@ void Stage20::SettingStage()
 {
 	Stage_ = CreateActor<StageActor>();
 
+	ColMap_ = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	ColMap_->SetTexture("12_2_Colmap.png");
+	ColMap_->ScaleToTexture();
+
 	GameEngineTextureRenderer* BeforePrallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforePrallaxRenderer->SetTexture("12_2_BeforeParallax_0.png");
 
@@ -27,10 +31,10 @@ void Stage20::SettingStage()
 	Pope* NewPope = CreateActor<Pope>();
 	NewPope->GetTransform().SetWorldMove({ 1750, -1660, 0.0f });
 	BossMonster_ = NewPope;
-	MonsterList_.push_back(NewPope);
 
 	Penitent_ = CreateActor<Penitent>();
 	Penitent_->GetTransform().SetWorldMove({ 300, -1650, 0.0f });
+	Penitent_->SetGround(ColMap_);
 
 	GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	AfterLayerRenderer->SetTexture("12_2_AfterLayer.png");
