@@ -64,31 +64,26 @@ void Stage02::SettingStage()
 
 void Stage02::Start()
 {
-	CameraActor_ = CreateActor<GameEngineCameraActor>();
-	CameraActor_->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
-
 	SettingStage();
-
-	CameraActor_->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition());
 }
 
 void Stage02::Update(float _DeltaTime)
 {
-	CameraActor_->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition() + float4{0, 100} });
+	GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition() + float4{0, 100} });
 
-	if (-1285 < CameraActor_->GetTransform().GetWorldPosition().y)
+	if (-1285 < GetMainCameraActor()->GetTransform().GetWorldPosition().y)
 	{
-		CameraActor_->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition().x, -1285 });
+		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition().x, -1285 });
 	}
 
-	if (640 > CameraActor_->GetTransform().GetWorldPosition().x)
+	if (640 > GetMainCameraActor()->GetTransform().GetWorldPosition().x)
 	{
-		CameraActor_->GetTransform().SetWorldPosition(float4{ 640, CameraActor_->GetTransform().GetLocalPosition().y });
+		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ 640, GetMainCameraActor()->GetTransform().GetLocalPosition().y });
 	}
 
-	if (3550 < CameraActor_->GetTransform().GetWorldPosition().x)
+	if (3550 < GetMainCameraActor()->GetTransform().GetWorldPosition().x)
 	{
-		CameraActor_->GetTransform().SetWorldPosition(float4{ 3550, CameraActor_->GetTransform().GetLocalPosition().y });
+		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ 3550, GetMainCameraActor()->GetTransform().GetLocalPosition().y });
 	}
 
 	//GameEngineDebug::OutPutString("x : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().x));

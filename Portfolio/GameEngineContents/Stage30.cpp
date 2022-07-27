@@ -19,13 +19,13 @@ void Stage30::SettingStage()
 	ColMap_->SetTexture("13_1_Colmap.png");
 	ColMap_->ScaleToTexture();
 
-	GameEngineTextureRenderer* BeforeParallaxRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	BeforeParallaxRendrer->SetTexture("13_1_BeforeParallax_1.png");
-	BeforeParallaxRendrer->ScaleToTexture();
+	//GameEngineTextureRenderer* BeforeParallaxRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	//BeforeParallaxRendrer->SetTexture("13_1_BeforeParallax_1.png");
+	//BeforeParallaxRendrer->ScaleToTexture();
 
-	GameEngineTextureRenderer* BeforeLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	BeforeLayerRenderer->SetTexture("13_1_BeforeLayer.png");
-	BeforeLayerRenderer->ScaleToTexture();
+	//GameEngineTextureRenderer* BeforeLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	//BeforeLayerRenderer->SetTexture("13_1_BeforeLayer.png");
+	//BeforeLayerRenderer->ScaleToTexture();
 
 	Deogracias* NewDeogracias = CreateActor<Deogracias>();
 	NewDeogracias->GetTransform().SetWorldMove({ 800, -870, 0.0f });
@@ -44,17 +44,17 @@ void Stage30::SettingStage()
 	StageRenderer1->SetTexture("13_1_1_Tile.png");
 	StageRenderer1->ScaleToTexture();
 
-	GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	AfterLayerRenderer->SetTexture("13_1_AfterLayer.png");
-	AfterLayerRenderer->ScaleToTexture();
+	//GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	//AfterLayerRenderer->SetTexture("13_1_AfterLayer.png");
+	//AfterLayerRenderer->ScaleToTexture();
 
-	GameEngineTextureRenderer* ChairRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	ChairRenderer->SetTexture("ash-mountain-spritesheet_9.png");
-	ChairRenderer->ScaleToTexture();
-	ChairRenderer->GetTransform().SetWorldMove({1060, 920, 0.0f });
+	//GameEngineTextureRenderer* ChairRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	//ChairRenderer->SetTexture("ash-mountain-spritesheet_9.png");
+	//ChairRenderer->ScaleToTexture();
+	//ChairRenderer->GetTransform().SetWorldMove({1060, 920, 0.0f });
 
-	float OffsetX = StageRenderer1->GetTransform().GetLocalScale().x / 2;
-	float OffsetY = StageRenderer1->GetTransform().GetLocalScale().y / 2;
+	float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
+	float OffsetY = ColMap_->GetTransform().GetLocalScale().y / 2;
 
 	float4 Offset = { OffsetX , -OffsetY };
 
@@ -63,33 +63,27 @@ void Stage30::SettingStage()
 
 void Stage30::Start()
 {
-	CameraActor_ = CreateActor<GameEngineCameraActor>();
-	CameraActor_->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
-
 	SettingStage();
 }
 
 void Stage30::Update(float _DeltaTime)
 {
-	CameraActor_->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition() + float4{ 0, 100 });
+	GetMainCameraActor()->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition() + float4{0, 100});
 
-	if (-50 < CameraActor_->GetTransform().GetWorldPosition().y)
+	if (-50 < GetMainCameraActor()->GetTransform().GetWorldPosition().y)
 	{
-		CameraActor_->GetTransform().SetWorldPosition(float4{ CameraActor_->GetTransform().GetWorldPosition().x, -50 });
+		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ GetMainCameraActor()->GetTransform().GetWorldPosition().x, -50 });
 	}
 
-	if (650 > CameraActor_->GetTransform().GetWorldPosition().x)
+	if (650 > GetMainCameraActor()->GetTransform().GetWorldPosition().x)
 	{
-		CameraActor_->GetTransform().SetWorldPosition(float4{ 650, CameraActor_->GetTransform().GetWorldPosition().y });
+		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ 650, GetMainCameraActor()->GetTransform().GetWorldPosition().y });
 	}
 
-	if (2850 < CameraActor_->GetTransform().GetWorldPosition().x)
+	if (2850 < GetMainCameraActor()->GetTransform().GetWorldPosition().x)
 	{
-		CameraActor_->GetTransform().SetWorldPosition(float4{ 2850, CameraActor_->GetTransform().GetWorldPosition().y });
+		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ 2850, GetMainCameraActor()->GetTransform().GetWorldPosition().y });
 	}
-
-	GameEngineDebug::OutPutString("x : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().x));
-	GameEngineDebug::OutPutString("y : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().y));
 }
 
 void Stage30::End()

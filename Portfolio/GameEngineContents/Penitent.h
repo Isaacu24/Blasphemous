@@ -58,10 +58,12 @@ protected:
 	void LadderCheck();
 
 private:
+	class PlayerUI* PlayerUI_;
+
+	GameEngineStateManager StateManager;
+
 	PlayerState PrevState_;
 	PlayerState CurrentState_;
-
-	float MoveDir_;
 
 	class GravityComponent* Gravity_;
 

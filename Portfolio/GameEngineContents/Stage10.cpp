@@ -59,38 +59,32 @@ void Stage10::SettingStage()
 
 void Stage10::Start()
 {
-	CameraActor_ = CreateActor<GameEngineCameraActor>();
-	CameraActor_->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
-
 	SettingStage();
 }
 
 void Stage10::Update(float _DeltaTime)
 {
-	CameraActor_->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition() + float4{ 0, 100 });
+	GetMainCameraActor()->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition() + float4{0, 100});
 
-	if (-450 < CameraActor_->GetTransform().GetLocalPosition().y)
+	if (-450 < GetMainCameraActor()->GetTransform().GetLocalPosition().y)
 	{
-		CameraActor_->GetTransform().SetWorldPosition(float4{ CameraActor_->GetTransform().GetLocalPosition().x, -450 });
+		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ GetMainCameraActor()->GetTransform().GetLocalPosition().x, -450 });
 	}
 
-	if (-1680 > CameraActor_->GetTransform().GetLocalPosition().y)
+	if (-1680 > GetMainCameraActor()->GetTransform().GetLocalPosition().y)
 	{
-		CameraActor_->GetTransform().SetWorldPosition(float4{ CameraActor_->GetTransform().GetLocalPosition().x, -1680 });
+		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ GetMainCameraActor()->GetTransform().GetLocalPosition().x, -1680 });
 	}
 
-	if (780 > CameraActor_->GetTransform().GetLocalPosition().x)
+	if (780 > GetMainCameraActor()->GetTransform().GetLocalPosition().x)
 	{
-		CameraActor_->GetTransform().SetWorldPosition(float4{ 780, CameraActor_->GetTransform().GetLocalPosition().y });
+		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ 780, GetMainCameraActor()->GetTransform().GetLocalPosition().y });
 	}
 
-	if (3480 < CameraActor_->GetTransform().GetLocalPosition().x)
+	if (3480 < GetMainCameraActor()->GetTransform().GetLocalPosition().x)
 	{
-		CameraActor_->GetTransform().SetWorldPosition(float4{ 3480, CameraActor_->GetTransform().GetLocalPosition().y });
+		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ 3480, GetMainCameraActor()->GetTransform().GetLocalPosition().y });
 	}
-
-	GameEngineDebug::OutPutString("x : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().x));
-	GameEngineDebug::OutPutString("y : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().y));
 
 	if (250 > Penitent_->GetTransform().GetWorldPosition().x)
 	{

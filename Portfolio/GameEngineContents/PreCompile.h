@@ -45,8 +45,10 @@
 
 // core
 #include <GameEngineCore/GEngine.h>
+#include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/CoreMinimal.h>
 #include <GameEngineCore/GameEngineTextureRenderer.h>
+#include <GameEngineCore/GameEngineUIRenderer.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
 
 

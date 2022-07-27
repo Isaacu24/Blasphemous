@@ -8,18 +8,27 @@
 #include "GameEngineVertexBuffer.h"
 #include "GameEngineIndexBuffer.h"
 
-GameEngineRenderer::GameEngineRenderer() 
+GameEngineRenderer::GameEngineRenderer()
 {
 }
 
-GameEngineRenderer::~GameEngineRenderer() 
+GameEngineRenderer::~GameEngineRenderer()
 {
 }
 
 
-void GameEngineRenderer::Start() 
+void GameEngineRenderer::Start()
 {
-	GetActor()->GetLevel()->PushRenderer(this);
+}
+
+void GameEngineRenderer::PushRendererToMainCamera()
+{
+	GetActor()->GetLevel()->PushRendererToMainCamera(this);
+}
+
+void GameEngineRenderer::PushRendererToUICamera()
+{
+	GetActor()->GetLevel()->PushRendererToUICamera(this);
 }
 
 //void GameEngineRenderer::Render(float _DeltaTime)
@@ -42,8 +51,6 @@ void GameEngineRenderer::Start()
 //	//{
 //	//	int TriIndex = Index->Indexs[i];
 //
-//	//	// 0 번째 순서의 점이 됩니다.
-//	//	// 최초에 원본 매쉬의 점을 복사합니다.
 //	//	CopyBuffer[i] = Vertex->Vertexs[TriIndex];
 //
 //	//	auto& tran = GetTransform();

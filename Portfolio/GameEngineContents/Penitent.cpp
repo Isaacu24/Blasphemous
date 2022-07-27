@@ -1,6 +1,7 @@
 #include "Penitent.h"
 #include "PreCompile.h"
 #include "GravityComponent.h"
+#include "PlayerUI.h"
 
 Penitent::Penitent() 
 	: Speed_(250.0f)
@@ -35,6 +36,8 @@ void Penitent::Start()
 
 	Gravity_ = CreateComponent<GravityComponent>();
 
+	PlayerUI_ = GetLevel()->CreateActor<PlayerUI>();
+
 	GetTransform().SetLocalScale({1, 1, 1});
 
 	{
@@ -50,6 +53,10 @@ void Penitent::Start()
 		Renderer_->CreateFrameAnimation("penitent_jumpoff_new", { "penitent_jumpoff_new.png", 0, 4, 0.1f, true });
 		Renderer_->ChangeFrameAnimation("penintent_idle_anim");
 	}
+
+	StateManager.CreateStateMember("Idle", this, &Player::IdleUpdate, &Player::IdleStart);
+	StateManager.CreateStateMember("Move", this, &Player::MoveUpdate, &Player::MoveStart);
+	StateManager.ChangeState("Idle");
 }
 
 void Penitent::Update(float _DeltaTime)
@@ -59,14 +66,14 @@ void Penitent::Update(float _DeltaTime)
 	switch (CurrentState_)
 	{
 	case PlayerState::Idle:
-		if (true == GroundCheck() || true == IsJump_) //¶¥ÀÌ¶ó¸é 
+		if (true == GroundCheck()) //¶¥ÀÌ¶ó¸é 
 		{
+			IsJump_ = false;
 			Gravity_->SetActive(false);
 		}
 
 		else //¶¥ÀÌ ¾Æ´Ï¶ó¸é 
 		{
-			IsJump_ = false;
 			Gravity_->SetActive(true);
 			return;
 		}
@@ -82,7 +89,6 @@ void Penitent::Update(float _DeltaTime)
 		
 		if (0.5f <= JumpTime_)
 		{
-			IsJump_ = false;
 			JumpTime_ = 0.0f;
 			CurrentState_ = PlayerState::Idle;
 		}

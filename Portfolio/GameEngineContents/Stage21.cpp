@@ -20,14 +20,14 @@ void Stage21::SettingStage()
 	ColMap_->SetTexture("12_3_Colmap.png");
 	ColMap_->ScaleToTexture();
 
-	GameEngineTextureRenderer* BeforeLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	BeforeLayerRenderer->SetTexture("12_3_BeforeLayer_0.png");
-	BeforeLayerRenderer->ScaleToTexture();
-	BeforeLayerRenderer->GetTransform().SetWorldMove({100, 0});
+	//GameEngineTextureRenderer* BeforeLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	//BeforeLayerRenderer->SetTexture("12_3_BeforeLayer_0.png");
+	//BeforeLayerRenderer->ScaleToTexture();
+	//BeforeLayerRenderer->GetTransform().SetWorldMove({100, 0});
 
-	GameEngineTextureRenderer* BeforeLayerRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	BeforeLayerRenderer1->SetTexture("12_3_BeforeLayer_1.png");
-	BeforeLayerRenderer1->ScaleToTexture();
+	//GameEngineTextureRenderer* BeforeLayerRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	//BeforeLayerRenderer1->SetTexture("12_3_BeforeLayer_1.png");
+	//BeforeLayerRenderer1->ScaleToTexture();
 
 	Pontiff* NewPontiff = CreateActor<Pontiff>();
 	NewPontiff->GetTransform().SetWorldMove({ 1250, -520, 0.0f });
@@ -45,21 +45,18 @@ void Stage21::SettingStage()
 	StageRenderer->SetTexture("12_3_Tile.png");
 	StageRenderer->ScaleToTexture();
 
-	float OffsetX = StageRenderer->GetTransform().GetLocalScale().x / 2;
-	float OffsetY = StageRenderer->GetTransform().GetLocalScale().y / 2;
+	float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
+	float OffsetY = ColMap_->GetTransform().GetLocalScale().y / 2;
 
 	float4 Offset = { OffsetX , -OffsetY };
 
 	Stage_->GetTransform().SetLocalMove(Offset);
 
-	CameraActor_->GetTransform().SetWorldPosition({ 1250, -670 });
+	GetMainCameraActor()->GetTransform().SetWorldPosition({1250, -670});
 }
 
 void Stage21::Start()
 {
-	CameraActor_ = CreateActor<GameEngineCameraActor>();
-	CameraActor_->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
-
 	SettingStage();
 }
 

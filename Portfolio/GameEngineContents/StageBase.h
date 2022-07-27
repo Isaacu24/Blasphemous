@@ -16,7 +16,6 @@ protected:
 
 	GameEngineTextureRenderer* ColMap_;
 
-	class GameEngineCameraActor* CameraActor_;
 	class Penitent* Penitent_;
 
 	class BossMonster* BossMonster_;

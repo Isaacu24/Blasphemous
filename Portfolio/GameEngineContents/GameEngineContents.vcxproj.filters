@@ -110,6 +110,12 @@
     <ClInclude Include="BreakableTwistedCorpse.h">
       <Filter>Actor\Object</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerUI.h">
+      <Filter>Actor\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="LeftTopUI.h">
+      <Filter>Actor\UI\UIBar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -221,6 +227,12 @@
     <ClCompile Include="BreakableTwistedCorpse.cpp">
       <Filter>Actor\Object</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerUI.cpp">
+      <Filter>Actor\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="LeftTopUI.cpp">
+      <Filter>Actor\UI\UIBar</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -294,6 +306,9 @@
     </Filter>
     <Filter Include="Actor\Object">
       <UniqueIdentifier>{fb0b9cb5-0ddf-4d4b-a7e8-3a98628137c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\UI\UIBar">
+      <UniqueIdentifier>{632d89b0-32ad-4bb9-aa16-f3b529f3d01d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

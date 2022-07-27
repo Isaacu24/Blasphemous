@@ -17,11 +17,11 @@ Inventory::~Inventory()
 
 void Inventory::Start()
 {
-	InventoryRenderer_ = CreateComponent<GameEngineTextureRenderer>();
+	InventoryRenderer_ = CreateComponent<GameEngineUIRenderer>();
 	InventoryRenderer_->GetTransform().SetWorldScale({ 1280, 800});
 	InventoryRenderer_->SetTexture("Inventory_0.png");
 
-	Cursor_ = CreateComponent<GameEngineTextureRenderer>();
+	Cursor_ = CreateComponent<GameEngineUIRenderer>();
 	Cursor_->CreateFrameAnimation("ItemCursorAlt", { "ItemCursorAlt.png", 0, 15, 0.1f, true });
 	Cursor_->ChangeFrameAnimation("ItemCursorAlt");
 	Cursor_->GetTransform().SetWorldScale({ 55, 55 });

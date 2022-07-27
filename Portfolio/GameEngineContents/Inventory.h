@@ -39,12 +39,12 @@ protected:
 private:
 	InventoryType InventoryType_;
 	
-	GameEngineTextureRenderer* InventoryRenderer_;
+	GameEngineUIRenderer* InventoryRenderer_;
 	int InventoryIndex_;
 
 	//std::vector<Item> Items_;
 
-	GameEngineTextureRenderer* Cursor_;
+	GameEngineUIRenderer* Cursor_;
 	int CursorPos_;
 
 	int MaxSlotIndex_;

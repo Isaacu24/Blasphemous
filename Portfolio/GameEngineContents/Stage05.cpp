@@ -43,14 +43,11 @@ void Stage05::SettingStage()
 
 	Stage_->GetTransform().SetLocalMove(Offset);
 
-	CameraActor_->GetTransform().SetWorldPosition(float4{ 950, -500});
+	GetMainCameraActor()->GetTransform().SetWorldPosition(float4{950, -500});
 }
 
 void Stage05::Start()
 {
-	CameraActor_ = CreateActor<GameEngineCameraActor>();
-	CameraActor_->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
-
 	SettingStage();
 }
 
