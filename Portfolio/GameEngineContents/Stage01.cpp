@@ -22,21 +22,21 @@ void Stage01::SettingStage()
 	ColMap_->SetTexture("1_1_Colmap.png");
 	ColMap_->ScaleToTexture();
 
-	//GameEngineTextureRenderer* BeforeParallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	//BeforeParallaxRenderer->SetTexture("1_1_BeforeParallax_0.png");
-	//BeforeParallaxRenderer->ScaleToTexture();
+	GameEngineTextureRenderer* BeforeParallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	BeforeParallaxRenderer->SetTexture("1_1_BeforeParallax_0.png");
+	BeforeParallaxRenderer->ScaleToTexture();
 
-	//GameEngineTextureRenderer* BeforeParallaxRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	//BeforeParallaxRenderer1->SetTexture("1_1_BeforeParallax_1.png");
-	//BeforeParallaxRenderer1->ScaleToTexture();
+	GameEngineTextureRenderer* BeforeParallaxRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	BeforeParallaxRenderer1->SetTexture("1_1_BeforeParallax_1.png");
+	BeforeParallaxRenderer1->ScaleToTexture();
 
-	//GameEngineTextureRenderer* BeforeParallaxRenderer2 = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	//BeforeParallaxRenderer2->SetTexture("1_1_BeforeParallax_2.png");
-	//BeforeParallaxRenderer2->ScaleToTexture();
+	GameEngineTextureRenderer* BeforeParallaxRenderer2 = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	BeforeParallaxRenderer2->SetTexture("1_1_BeforeParallax_2.png");
+	BeforeParallaxRenderer2->ScaleToTexture();
 
-	//GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	//StageRenderer->SetTexture("1_1_Tile.png");
-	//StageRenderer->ScaleToTexture();
+	GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	StageRenderer->SetTexture("1_1_Tile.png");
+	StageRenderer->ScaleToTexture();
 	
 	Penitent_ = CreateActor<Penitent>();
 	Penitent_->GetTransform().SetWorldMove({ 1225, -940 , 0.0f });
@@ -46,9 +46,9 @@ void Stage01::SettingStage()
 	DoorRenderer->SetTexture("1_1_Door.png");
 	DoorRenderer->ScaleToTexture();
 
-	//GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	//AfterLayerRenderer->SetTexture("1_1_AfterLayer.png");
-	//AfterLayerRenderer->ScaleToTexture();
+	GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	AfterLayerRenderer->SetTexture("1_1_AfterLayer.png");
+	AfterLayerRenderer->ScaleToTexture();
 
 	// 레벨 체인지 스타트 추가될 때 추가
 	PlayerRightPos_ = float4{ 3650, -1350 };
@@ -93,5 +93,5 @@ void Stage01::Update(float _DeltaTime)
 }
 
 void Stage01::End()
-{
+{		
 }

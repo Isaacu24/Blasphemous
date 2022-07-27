@@ -38,18 +38,18 @@ void Stage10::SettingStage()
 
 	GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	StageRenderer->SetTexture("2_1_Tile.png");
-	StageRenderer->ScaleToTexture();
-
+	StageRenderer->ScaleToTexture();	
+	
 	Penitent_ = CreateActor<Penitent>();
-	Penitent_->GetTransform().SetWorldMove({ 300, -690, 0.0f });
+	Penitent_->GetTransform().SetWorldMove({ 300, -600, 0.0f });
 	Penitent_->SetGround(ColMap_);
 
 	GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	DoorRenderer->SetTexture("2_1_Door.png");
 	DoorRenderer->ScaleToTexture();
-
-	float OffsetX = StageRenderer->GetTransform().GetLocalScale().x / 2;
-	float OffsetY = StageRenderer->GetTransform().GetLocalScale().y / 2;
+	
+	float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
+	float OffsetY = ColMap_->GetTransform().GetLocalScale().y / 2;
 
 	float4 Offset = { OffsetX , -OffsetY };
 

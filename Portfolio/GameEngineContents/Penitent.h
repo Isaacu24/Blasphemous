@@ -1,21 +1,6 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
+#include <GameEngineCore/CoreMinimal.h>
 
-enum class PlayerState
-{
-	Idle, 
-	Run, 
-	Fall,
-	Jump,
-	LadderClimb, //사다리 타기
-	Slide, //무적 상태
-	Attack, 
-	Parring, //무적 상태
-	Hit, 
-	Death //무적 상태
-};
-
-class GameEngineTextureRenderer;
 class Penitent : public GameEngineActor
 {
 public:
@@ -51,19 +36,26 @@ protected:
 	void Update(float _DeltaTime) override;
 	void End() override;
 
-	void InputCheck(float _DeltaTime);
+	void PixelCheck();
 
-	bool GroundCheck();
-	void UphillRoadCheck();
+	void GroundCheck();
 	void LadderCheck();
+	void UphillRoadCheck();
+
+	void IdleStart(const StateInfo& _Info);
+	void IdleUpdate(float _DeltaTime, const StateInfo& _Info);
+
+	void LadderClimbStart(const StateInfo& _Info);
+	void LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info);
+
+	void JumpStart(const StateInfo& _Info);
+	void JumpUpdate(float _DeltaTime, const StateInfo& _Info);
+
 
 private:
+	GameEngineStateManager StateManager_;
+
 	class PlayerUI* PlayerUI_;
-
-	GameEngineStateManager StateManager;
-
-	PlayerState PrevState_;
-	PlayerState CurrentState_;
 
 	class GravityComponent* Gravity_;
 
@@ -71,13 +63,17 @@ private:
 
 	GameEngineTextureRenderer* Ground_;
 
+	float4 MoveDir_;
+
 	int HP_;
 	int MP_;
 	float Speed_;
 
 	int Money_; 
 
+	bool IsGround_;
 	bool IsJump_;
+	bool IsLadder_;
 
 	float JumpTime_;
 

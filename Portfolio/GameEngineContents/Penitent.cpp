@@ -35,7 +35,6 @@ void Penitent::Start()
 	}
 
 	Gravity_ = CreateComponent<GravityComponent>();
-
 	PlayerUI_ = GetLevel()->CreateActor<PlayerUI>();
 
 	GetTransform().SetLocalScale({1, 1, 1});
@@ -54,92 +53,16 @@ void Penitent::Start()
 		Renderer_->ChangeFrameAnimation("penintent_idle_anim");
 	}
 
-	StateManager.CreateStateMember("Idle", this, &Player::IdleUpdate, &Player::IdleStart);
-	StateManager.CreateStateMember("Move", this, &Player::MoveUpdate, &Player::MoveStart);
-	StateManager.ChangeState("Idle");
+	StateManager_.CreateStateMember("Idle", this, &Penitent::IdleUpdate, &Penitent::IdleStart);
+	StateManager_.CreateStateMember("LadderClimb", this, &Penitent::LadderClimbUpdate, &Penitent::LadderClimbStart);
+	StateManager_.CreateStateMember("Jump", this, &Penitent::JumpUpdate, &Penitent::JumpStart);
+	StateManager_.ChangeState("Idle");
 }
 
 void Penitent::Update(float _DeltaTime)
 { 
-	InputCheck(_DeltaTime);
+	StateManager_.Update(_DeltaTime);
 
-	switch (CurrentState_)
-	{
-	case PlayerState::Idle:
-		if (true == GroundCheck()) //땅이라면 
-		{
-			IsJump_ = false;
-			Gravity_->SetActive(false);
-		}
-
-		else //땅이 아니라면 
-		{
-			Gravity_->SetActive(true);
-			return;
-		}
-		UphillRoadCheck();
-		break;
-	case PlayerState::Run:
-		UphillRoadCheck();
-		break;
-	case PlayerState::Jump:
-		IsJump_ = true;
-		GetTransform().SetWorldMove(GetTransform().GetUpVector() * 350 * _DeltaTime);
-		JumpTime_ += _DeltaTime;
-		
-		if (0.5f <= JumpTime_)
-		{
-			JumpTime_ = 0.0f;
-			CurrentState_ = PlayerState::Idle;
-		}
-		break;
-	case PlayerState::Fall:
-		break;
-	case PlayerState::LadderClimb:
-		Gravity_->SetActive(false);
-
-		if (20000 < GameEngineInput::GetInst()->GetThumbLY()
-			|| GameEngineInput::GetInst()->IsPressKey("PenitentUp"))
-		{
-			GetTransform().SetWorldMove(GetTransform().GetUpVector() * Speed_ * _DeltaTime);
-		}
-
-		if (0 > GameEngineInput::GetInst()->GetThumbLY()
-			|| GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
-		{
-			GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed_ * _DeltaTime);
-		}
-
-		if (true == GroundCheck()) //땅이라면 
-		{
-			CurrentState_ = PlayerState::Idle;
-		}
-		break;
-	case PlayerState::Slide:
-		break;
-	case PlayerState::Attack:
-		break;
-	case PlayerState::Parring:
-		break;
-	case PlayerState::Hit:
-		break;
-	case PlayerState::Death:
-		break;
-	default:
-		break;
-	}
-
-	LadderCheck();
-	
-	GameEngineDebug::OutPutString("PlayerState : " + std::to_string(static_cast<int>(CurrentState_)));
-
-	//GameEngineDebug::OutPutString("x : " + std::to_string(GetTransform().GetLocalPosition().x));
-	//GameEngineDebug::OutPutString("y : " + std::to_string(GetTransform().GetLocalPosition().y));
-}
-
-
-void Penitent::InputCheck(float _DeltaTime)
-{
 	if (20000 < GameEngineInput::GetInst()->GetThumbLX()
 		|| GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
 	{
@@ -156,99 +79,129 @@ void Penitent::InputCheck(float _DeltaTime)
 
 	if (GameEngineInput::GetInst()->IsDownKey("PenitentJump") && false == IsJump_)
 	{
-		CurrentState_ = PlayerState::Jump;
+		StateManager_.ChangeState("Jump");
 	}
 
-	if (GameEngineInput::GetInst()->IsDownKey("PenitentAnimation"))
+	LadderCheck(); //사다리 체크
+	UphillRoadCheck(); //오르막길 체크
+}
+
+void Penitent::PixelCheck()
+{
+
+}
+
+void Penitent::GroundCheck()
+{
+	float4 Color = Ground_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y - 95));
+
+	if (true == Color.CompareInt4D(float4::BLACK)) //땅이라면 
 	{
-		Renderer_->ChangeFrameAnimation("penitent_verticalattack_LVL3_anim");
+		IsJump_ = false;
+		IsGround_ = true;
 	}
 
-	else if (GameEngineInput::GetInst()->IsUpKey("PenitentAnimation"))
+	else
 	{
-		Renderer_->GetTransform().SetWorldScale({ 250, 250 });
-		Renderer_->ChangeFrameAnimation("penintent_idle_anim");
+		IsGround_ = false;
 	}
 }
 
-bool Bool_ = false;
-
-bool Penitent::GroundCheck()
+void Penitent::LadderCheck()
 {
-	float4 Color = Ground_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y - 90));
+	float4 MiddleColor = Ground_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y - 200));
+	float4 LowColor = Ground_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y));
 
-	if (Color.CompareInt4D(float4::BLACK))
+	if (true == LowColor.CompareInt4D(float4::GREEN)
+		|| true == MiddleColor.CompareInt4D(float4::GREEN))
 	{
-		Bool_= false;
-		return true;
-	}
-
-	else if (Color.CompareInt4D(float4{1.0f, 0.0f, 1.0f, 1.0f}) && false == Bool_)
-	{
-		if (0 > GameEngineInput::GetInst()->GetThumbLY()
-			|| GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
+		if (GameEngineInput::GetInst()->IsDownKey("PenitentDown"))
 		{
-			Bool_ = true;
-			return true;
+			StateManager_.ChangeState("LadderClimb");
 		}
-
-		return true;
 	}
-
-	return false;
 }
 
 void Penitent::UphillRoadCheck()
 {
 	while (true)
 	{
-		float4 Color = Ground_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y - 89));
-
-		if (Color.CompareInt4D(float4::BLACK)
-			|| Color.CompareInt4D(float4{ 1.0f, 0.0f, 1.0f, 1.0f }) && false == Bool_)
+		float4 RightColor = Ground_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y - 94));
+		
+		if (true == RightColor.CompareInt4D(float4::BLACK))
 		{
-			GetTransform().SetWorldMove({ 0, 1, 0.0f });
+			GetTransform().SetWorldMove(float4{ 0, 1 ,0, 0 });
 			continue;
 		}
 
-		if (Color.CompareInt4D(float4{ 1.0f, 1.0f, 1.0f, 0.0f })
-			|| Color.CompareInt4D(float4::GREEN))
+		else
 		{
 			break;
 		}
 	}
 }
 
-void Penitent::LadderCheck()
-{
-	float4 Color = Ground_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y - 150));
-
-	if (Color.CompareInt4D(float4::GREEN))
-	{
-		if (0 > GameEngineInput::GetInst()->GetThumbLY()
-			|| GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
-		{
-			CurrentState_ = PlayerState::LadderClimb;
-		}
-	}
-
-	Color = Ground_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y));
-
-	if (Color.CompareInt4D(float4::GREEN))
-	{
-		if (0 > GameEngineInput::GetInst()->GetThumbLY()
-			|| GameEngineInput::GetInst()->IsPressKey("PenitentUp"))
-		{
-			CurrentState_ = PlayerState::LadderClimb;
-		}
-	}
-
-	GameEngineDebug::OutPutString("Color : " + std::to_string(Color.x) + " " + std::to_string(Color.y) + " " + std::to_string(Color.z) + " " + std::to_string(Color.w));
-}
-
 void Penitent::End()
 {
 
+}
+
+void Penitent::IdleStart(const StateInfo& _Info)
+{
+}
+
+void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+	GroundCheck(); //지면 체크
+	Gravity_->SetActive(!IsGround_);
+}
+
+
+
+void Penitent::LadderClimbStart(const StateInfo& _Info)
+{
+	IsLadder_ = true;
+}
+
+void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+	if (20000 < GameEngineInput::GetInst()->GetThumbLY()
+		|| GameEngineInput::GetInst()->IsPressKey("PenitentUp"))
+	{
+		GetTransform().SetWorldMove(GetTransform().GetUpVector() * Speed_ * _DeltaTime);
+	}
+
+	if (0 > GameEngineInput::GetInst()->GetThumbLY()
+		|| GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
+	{
+		GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed_ * _DeltaTime);
+	}
+
+	if (true == IsGround_)
+	{
+		IsLadder_ = false;
+		StateManager_.ChangeState("Idle");
+	}
+}
+
+
+
+void Penitent::JumpStart(const StateInfo& _Info)
+{
+	IsJump_ = true;
+}
+
+void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+	JumpTime_ += _DeltaTime;
+	GetTransform().SetWorldMove(GetTransform().GetUpVector() * 350 * _DeltaTime);
+
+	if (0.5f <= JumpTime_)
+	{
+		JumpTime_ = 0.f;
+
+		StateManager_.ChangeState("Idle");
+	}
 }
 
 

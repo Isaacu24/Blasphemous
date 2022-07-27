@@ -32,16 +32,6 @@ void PlayerUI::Start()
 	BalanceFrame_->SetTexture("Balance.png");
 	BalanceFrame_->ScaleToTexture();
 
-	for (size_t i = 0; i < 10; i++)
-	{
-		GameEngineUIRenderer* Renderer = CreateComponent<GameEngineUIRenderer>();
-		Renderer->SetTexture(std::to_string(i) + ".png");
-		Renderer->ScaleToTexture();
-		Renderer->GetTransform().SetWorldMove({ 500, 270 });
-
-		Renderer->GetTransform().SetWorldMove({ 500 + (10.f * i), 270 });
-	}
-
 	BarFrame_->GetTransform().SetWorldMove({-620, 350});
 	HPBar_->GetTransform().SetWorldMove({ -620, 350 });
 	MPBar_->GetTransform().SetWorldMove({ -620, 350 });
@@ -54,6 +44,15 @@ void PlayerUI::Start()
 		Flasks_[i]->ScaleToTexture();
 
 		Flasks_[i]->GetTransform().SetWorldMove({-470.f + (40.f * i), 260 });
+	}
+
+	for (size_t i = 0; i < 10; i++)
+	{
+		GameEngineUIRenderer* Renderer = CreateComponent<GameEngineUIRenderer>();
+		Renderer->SetTexture(std::to_string(i) + ".png");
+		Renderer->ScaleToTexture();
+
+		Renderer->GetTransform().SetWorldMove({ 450 + (10.f * i), 270 });
 	}
 }
 

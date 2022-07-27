@@ -42,9 +42,10 @@ public:
 };
 
 // 설명 :
-class GameEngineStateManager final 
+class GameEngineStateManager final // 더는 상속 못내려
 {
 public:
+	// constrcuter destructer
 	GameEngineStateManager();
 	~GameEngineStateManager();
 
@@ -54,6 +55,7 @@ public:
 	GameEngineStateManager& operator=(const GameEngineStateManager& _Other) = delete;
 	GameEngineStateManager& operator=(GameEngineStateManager&& _Other) noexcept = delete;
 
+	// 맴버함수만 됩니다.
 	template<typename ObjectType>
 	void CreateStateMember(const std::string& _StateName
 		, ObjectType* _Object
