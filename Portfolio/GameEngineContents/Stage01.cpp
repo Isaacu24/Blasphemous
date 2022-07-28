@@ -21,36 +21,38 @@ void Stage01::SettingStage()
 	ColMap_ = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	ColMap_->SetTexture("1_1_Colmap.png");
 	ColMap_->ScaleToTexture();
+	ColMap_->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::ColMap) });
 
 	GameEngineTextureRenderer* BeforeParallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer->SetTexture("1_1_BeforeParallax_0.png");
 	BeforeParallaxRenderer->ScaleToTexture();
+	BeforeParallaxRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax0) });
 
 	GameEngineTextureRenderer* BeforeParallaxRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer1->SetTexture("1_1_BeforeParallax_1.png");
 	BeforeParallaxRenderer1->ScaleToTexture();
+	BeforeParallaxRenderer1->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax1) });
 
 	GameEngineTextureRenderer* BeforeParallaxRenderer2 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer2->SetTexture("1_1_BeforeParallax_2.png");
 	BeforeParallaxRenderer2->ScaleToTexture();
+	BeforeParallaxRenderer2->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax2) });
 
 	GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	StageRenderer->SetTexture("1_1_Tile.png");
 	StageRenderer->ScaleToTexture();
-	
-	Penitent_ = CreateActor<Penitent>();
-	Penitent_->GetTransform().SetWorldMove({ 1225, -940 , 0.0f });
-	Penitent_->SetGround(ColMap_);
+	StageRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::Tile) });
 
 	GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	DoorRenderer->SetTexture("1_1_Door.png");
 	DoorRenderer->ScaleToTexture();
+	DoorRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::Door) });
 
 	GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	AfterLayerRenderer->SetTexture("1_1_AfterLayer.png");
 	AfterLayerRenderer->ScaleToTexture();
+	AfterLayerRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::AfterParallax0) });
 
-	// 레벨 체인지 스타트 추가될 때 추가
 	PlayerRightPos_ = float4{ 3650, -1350 };
 
 	float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
@@ -94,4 +96,20 @@ void Stage01::Update(float _DeltaTime)
 
 void Stage01::End()
 {		
+}
+
+void Stage01::OnEvent()
+{
+	if (nullptr == Penitent::GetMainPlayer())
+	{
+		Penitent_ = CreateActor<Penitent>(ACTORORDER::Player);
+		Penitent_->GetTransform().SetWorldPosition({ 1225, -940 , static_cast<int>(ACTORORDER::Player) });
+		Penitent_->SetGround(ColMap_);
+
+		Penitent_->SetLevelOverOn();
+	}
+}
+
+void Stage01::OffEvent()
+{
 }

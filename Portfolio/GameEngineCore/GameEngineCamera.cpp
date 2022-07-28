@@ -7,6 +7,7 @@
 
 GameEngineCamera::GameEngineCamera()
 {
+	// 윈도우가 여러분들 생각하기 가장 쉬운 비율이라서 여기서 하는거고.
 	Size = GameEngineWindow::GetInst()->GetScale();
 	Mode = CAMERAPROJECTIONMODE::PersPective;
 	Near = 0.1f;
@@ -162,4 +163,39 @@ float4 GameEngineCamera::GetMouseWorldPosition()
 float4 GameEngineCamera::GetMouseWorldPositionToActor()
 {
 	return GetTransform().GetWorldPosition() + GetMouseWorldPosition();
+}
+
+void GameEngineCamera::OverRenderer(GameEngineCamera* _NextCamera)
+{
+	if (nullptr == _NextCamera)
+	{
+		MsgBoxAssert("next camera is nullptr! fuck you");
+		return;
+	}
+
+	std::map<int, std::list<GameEngineRenderer*>>::iterator StartGroupIter = AllRenderer_.begin();
+	std::map<int, std::list<GameEngineRenderer*>>::iterator EndGroupIter = AllRenderer_.end();
+
+	for (; StartGroupIter != EndGroupIter; ++StartGroupIter)
+	{
+		std::list<GameEngineRenderer*>& Group = StartGroupIter->second;
+		std::list<GameEngineRenderer*>::iterator GroupStart = Group.begin();
+		std::list<GameEngineRenderer*>::iterator GroupEnd = Group.end();
+
+		for (; GroupStart != GroupEnd; )
+		{
+			GameEngineActor* Root = (*GroupStart)->GetRoot<GameEngineActor>();
+
+			if (true == Root->IsLevelOver)
+			{
+				_NextCamera->AllRenderer_[StartGroupIter->first].push_back(*GroupStart);
+				GroupStart = Group.erase(GroupStart);
+			}
+			else
+			{
+				++GroupStart;
+			}
+
+		}
+	}
 }

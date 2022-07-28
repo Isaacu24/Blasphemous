@@ -18,43 +18,50 @@ void Stage30::SettingStage()
 	ColMap_ = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	ColMap_->SetTexture("13_1_Colmap.png");
 	ColMap_->ScaleToTexture();
+	ColMap_->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::ColMap) });
 
-	//GameEngineTextureRenderer* BeforeParallaxRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	//BeforeParallaxRendrer->SetTexture("13_1_BeforeParallax_1.png");
-	//BeforeParallaxRendrer->ScaleToTexture();
+	GameEngineTextureRenderer* BeforeParallaxRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	BeforeParallaxRendrer->SetTexture("13_1_BeforeParallax_1.png");
+	BeforeParallaxRendrer->ScaleToTexture();
+	BeforeParallaxRendrer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax0) });
 
-	//GameEngineTextureRenderer* BeforeLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	//BeforeLayerRenderer->SetTexture("13_1_BeforeLayer.png");
-	//BeforeLayerRenderer->ScaleToTexture();
+	GameEngineTextureRenderer* BeforeLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	BeforeLayerRenderer->SetTexture("13_1_BeforeLayer.png");
+	BeforeLayerRenderer->ScaleToTexture();
+	BeforeLayerRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax1) });
 
 	Deogracias* NewDeogracias = CreateActor<Deogracias>();
-	NewDeogracias->GetTransform().SetWorldMove({ 800, -870, 0.0f });
+	NewDeogracias->GetTransform().SetWorldPosition({ 800, -870, static_cast<int>(ACTORORDER::NPC) });
 	NewDeogracias->ChangeFrontAnimation();
 	NewDeogracias->GetTransform().PixLocalNegativeX();
 
 	Penitent_ = CreateActor<Penitent>();
-	Penitent_->GetTransform().SetWorldMove({ 100, -960, 0.0f });
+	Penitent_->GetTransform().SetWorldPosition({ 100, -960, static_cast<int>(ACTORORDER::Player) });
 	Penitent_->SetGround(ColMap_);
 
 	GameEngineTextureRenderer* StageRenderer2 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	StageRenderer2->SetTexture("13_1_2_Tile.png");
 	StageRenderer2->ScaleToTexture();
+	StageRenderer2->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::AfterParallax0) });
 
 	GameEngineTextureRenderer* StageRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	StageRenderer1->SetTexture("13_1_1_Tile.png");
 	StageRenderer1->ScaleToTexture();
+	StageRenderer1->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::AfterParallax1) });
 
-	//GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	//AfterLayerRenderer->SetTexture("13_1_AfterLayer.png");
-	//AfterLayerRenderer->ScaleToTexture();
+	GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	AfterLayerRenderer->SetTexture("13_1_AfterLayer.png");
+	AfterLayerRenderer->ScaleToTexture();
+	AfterLayerRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::AfterParallax2) });
 
-	//GameEngineTextureRenderer* ChairRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	//ChairRenderer->SetTexture("ash-mountain-spritesheet_9.png");
-	//ChairRenderer->ScaleToTexture();
-	//ChairRenderer->GetTransform().SetWorldMove({1060, 920, 0.0f });
+	GameEngineTextureRenderer* ChairRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	ChairRenderer->SetTexture("ash-mountain-spritesheet_9.png");
+	ChairRenderer->ScaleToTexture();
+	ChairRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::AfterParallax3) });
+	ChairRenderer->GetTransform().SetWorldMove({1060, 920, 0.0f });
 
-	float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
-	float OffsetY = ColMap_->GetTransform().GetLocalScale().y / 2;
+	float OffsetX = StageRenderer2->GetTransform().GetLocalScale().x / 2;
+	float OffsetY = StageRenderer2->GetTransform().GetLocalScale().y / 2;
 
 	float4 Offset = { OffsetX , -OffsetY };
 
@@ -87,6 +94,14 @@ void Stage30::Update(float _DeltaTime)
 }
 
 void Stage30::End()
+{
+}
+
+void Stage30::OnEvent()
+{
+}
+
+void Stage30::OffEvent()
 {
 }
 

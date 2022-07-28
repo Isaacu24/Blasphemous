@@ -3,10 +3,13 @@
 #include "GravityComponent.h"
 #include "PlayerUI.h"
 
+Penitent* Penitent::MainPlayer_ = nullptr;
+
 Penitent::Penitent() 
 	: Speed_(250.0f)
 	, JumpTime_(0.0f)
 {
+	MainPlayer_ = this;
 }
 
 Penitent::~Penitent() 
@@ -30,8 +33,16 @@ void Penitent::Start()
 		GameEngineInput::GetInst()->CreateKey("PenitentUp", 'W');
 		GameEngineInput::GetInst()->CreateKey("PenitentDown", 'S');
 		GameEngineInput::GetInst()->CreateKey("PenitentJump", VK_LSHIFT);
+		GameEngineInput::GetInst()->CreateKey("PenitentRecovery", 'F');
 
 		GameEngineInput::GetInst()->CreateKey("PenitentAnimation", '1');
+	}
+
+	Flasks_.resize(3);
+
+	for (size_t i = 0; i < Flasks_.size(); i++)
+	{
+		Flasks_[i] = true;
 	}
 
 	Gravity_ = CreateComponent<GravityComponent>();
@@ -56,6 +67,7 @@ void Penitent::Start()
 	StateManager_.CreateStateMember("Idle", this, &Penitent::IdleUpdate, &Penitent::IdleStart);
 	StateManager_.CreateStateMember("LadderClimb", this, &Penitent::LadderClimbUpdate, &Penitent::LadderClimbStart);
 	StateManager_.CreateStateMember("Jump", this, &Penitent::JumpUpdate, &Penitent::JumpStart);
+	StateManager_.CreateStateMember("Recovery", this, &Penitent::RecoveryUpdate, &Penitent::RecoveryStart);
 	StateManager_.ChangeState("Idle");
 }
 
@@ -81,6 +93,12 @@ void Penitent::Update(float _DeltaTime)
 	{
 		StateManager_.ChangeState("Jump");
 	}
+
+	if (GameEngineInput::GetInst()->IsDownKey("PenitentRecovery"))
+	{
+		StateManager_.ChangeState("Recovery");
+	}
+
 
 	LadderCheck(); //사다리 체크
 	UphillRoadCheck(); //오르막길 체크
@@ -202,6 +220,37 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 
 		StateManager_.ChangeState("Idle");
 	}
+}
+
+void Penitent::RecoveryStart(const StateInfo& _Info)
+{
+	if (0 >= Flasks_.size())
+	{
+		StateManager_.ChangeState("Idle");
+		return;
+	}
+
+	int Size = Flasks_.size() - 1;
+
+	for (int i = Size; i >= 0; --i)
+	{
+		if (true == Flasks_[i])
+		{
+			PlusHP(10);
+
+			Flasks_[i] = false;
+			PlayerUI_->Flasks_[i]->SetTexture("Empty_Flask.png");
+
+			return;
+		}
+	}
+
+	StateManager_.ChangeState("Idle");
+}
+
+void Penitent::RecoveryUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+	StateManager_.ChangeState("Idle");
 }
 
 

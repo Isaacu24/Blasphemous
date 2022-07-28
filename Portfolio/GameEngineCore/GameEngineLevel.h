@@ -18,7 +18,6 @@ enum class CAMERAORDER
 	UICAMERA,
 };
 
-// 설명 : 화면(타이틀 화면, 플레이 화면, 인벤토리 화면)
 class GameEngineCore;
 class GameEngineActor;
 class GameEngineCamera;
@@ -148,6 +147,8 @@ private:
 	void LevelUpdate(float DeltaTime);
 
 	void RemoveActor(GameEngineActor* _Actor);
+
+	void OverChildMove(GameEngineLevel* _NextLevel);
 
 private:
 	// 0번 백그라운드

@@ -17,42 +17,51 @@ void Stage02::SettingStage()
 	ColMap_ = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	ColMap_->SetTexture("1_2_Colmap.png");
 	ColMap_->ScaleToTexture();
+	ColMap_->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::ColMap) });
 
-	//GameEngineTextureRenderer* BeforeParallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	//BeforeParallaxRenderer->SetTexture("1_2_BeforeParallax_0.png");
-	//BeforeParallaxRenderer->ScaleToTexture();
+	GameEngineTextureRenderer* BeforeParallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	BeforeParallaxRenderer->SetTexture("1_2_BeforeParallax_0.png");
+	BeforeParallaxRenderer->ScaleToTexture();
+	BeforeParallaxRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax0) });
 
-	//GameEngineTextureRenderer* BeforeParallaxRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	//BeforeParallaxRenderer1->SetTexture("1_2_BeforeParallax_1.png");
-	//BeforeParallaxRenderer1->ScaleToTexture();
+	GameEngineTextureRenderer* BeforeParallaxRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	BeforeParallaxRenderer1->SetTexture("1_2_BeforeParallax_1.png");
+	BeforeParallaxRenderer1->ScaleToTexture();
+	BeforeParallaxRenderer1->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax1) });
 
-	//GameEngineTextureRenderer* BeforeParallaxRenderer2 = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	//BeforeParallaxRenderer2->SetTexture("1_2_BeforeParallax_2.png");
-	//BeforeParallaxRenderer2->ScaleToTexture();
+	GameEngineTextureRenderer* BeforeParallaxRenderer2 = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	BeforeParallaxRenderer2->SetTexture("1_2_BeforeParallax_2.png");
+	BeforeParallaxRenderer2->ScaleToTexture();
+	BeforeParallaxRenderer2->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax2) });
 
-	//GameEngineTextureRenderer* BeforeParallaxRenderer3 = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	//BeforeParallaxRenderer3->SetTexture("1_2_BeforeParallax_3.png");
-	//BeforeParallaxRenderer3->ScaleToTexture();
+	GameEngineTextureRenderer* BeforeParallaxRenderer3 = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	BeforeParallaxRenderer3->SetTexture("1_2_BeforeParallax_3.png");
+	BeforeParallaxRenderer3->ScaleToTexture();
+	BeforeParallaxRenderer3->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax3) });
 
-	//GameEngineTextureRenderer* BeforeParallaxRenderer4 = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	//BeforeParallaxRenderer4->SetTexture("1_2_BeforeParallax_4.png");
-	//BeforeParallaxRenderer4->ScaleToTexture();
+	GameEngineTextureRenderer* BeforeParallaxRenderer4 = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	BeforeParallaxRenderer4->SetTexture("1_2_BeforeParallax_4.png");
+	BeforeParallaxRenderer4->ScaleToTexture();
+	BeforeParallaxRenderer4->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax4) });
 
-	//GameEngineTextureRenderer* StageRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	//StageRendrer->SetTexture("1_2_Tile.png");
-	//StageRendrer->ScaleToTexture();
+	GameEngineTextureRenderer* StageRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	StageRendrer->SetTexture("1_2_Tile.png");
+	StageRendrer->ScaleToTexture();
+	StageRendrer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::Tile) });
 
 	Penitent_ = CreateActor<Penitent>();
-	Penitent_->GetTransform().SetWorldMove({ 180, -1420, 0.0f });
+	Penitent_->GetTransform().SetWorldPosition({ 180, -1420, static_cast<int>(ACTORORDER::Player) });
 	Penitent_->SetGround(ColMap_);
 
-	//GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	//DoorRenderer->SetTexture("1_2_Door.png");
-	//DoorRenderer->ScaleToTexture();
+	GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	DoorRenderer->SetTexture("1_2_Door.png");
+	DoorRenderer->ScaleToTexture();
+	DoorRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::Door) });
 
-	//GameEngineTextureRenderer* AfterParallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	//AfterParallaxRenderer->SetTexture("1_2_AfterParallax_0.png");
-	//AfterParallaxRenderer->ScaleToTexture();
+	GameEngineTextureRenderer* AfterParallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	AfterParallaxRenderer->SetTexture("1_2_AfterParallax_0.png");
+	AfterParallaxRenderer->ScaleToTexture();
+	AfterParallaxRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::AfterParallax0) });
 
 	float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
 	float OffsetY = ColMap_->GetTransform().GetLocalScale().y / 2;
@@ -103,4 +112,12 @@ void Stage02::Update(float _DeltaTime)
 void Stage02::End()
 {
 
+}
+
+void Stage02::OnEvent()
+{
+}
+
+void Stage02::OffEvent()
+{
 }

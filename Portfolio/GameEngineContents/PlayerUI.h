@@ -3,6 +3,8 @@
 
 class PlayerUI : public GameEngineActor
 {
+	friend class Penitent;
+
 public:
 	PlayerUI();
 	~PlayerUI();

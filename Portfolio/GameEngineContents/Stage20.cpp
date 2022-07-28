@@ -19,26 +19,30 @@ void Stage20::SettingStage()
 	ColMap_ = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	ColMap_->SetTexture("12_2_Colmap.png");
 	ColMap_->ScaleToTexture();
+	ColMap_->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::ColMap) });
 
-	//GameEngineTextureRenderer* BeforePrallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	//BeforePrallaxRenderer->SetTexture("12_2_BeforeParallax_0.png");
-	//BeforePrallaxRenderer->ScaleToTexture();
+	GameEngineTextureRenderer* BeforePrallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	BeforePrallaxRenderer->SetTexture("12_2_BeforeParallax_0.png");
+	BeforePrallaxRenderer->ScaleToTexture();
+	BeforePrallaxRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax0) });
 
 	GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	StageRenderer->SetTexture("12_2_Tile.png");
 	StageRenderer->ScaleToTexture();
+	StageRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::Tile) });
 
 	Pope* NewPope = CreateActor<Pope>();
-	NewPope->GetTransform().SetWorldMove({ 1750, -1660, 0.0f });
 	BossMonster_ = NewPope;
+	NewPope->GetTransform().SetWorldPosition({ 1750, -1660, static_cast<int>(ACTORORDER::Monster) });
 
 	Penitent_ = CreateActor<Penitent>();
-	Penitent_->GetTransform().SetWorldMove({ 300, -1650, 0.0f });
+	Penitent_->GetTransform().SetWorldPosition({ 300,-1650, static_cast<int>(ACTORORDER::Player) });
 	Penitent_->SetGround(ColMap_);
 
-	//GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	//AfterLayerRenderer->SetTexture("12_2_AfterLayer.png");
-	//AfterLayerRenderer->ScaleToTexture();
+	GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+	AfterLayerRenderer->SetTexture("12_2_AfterLayer.png");
+	AfterLayerRenderer->ScaleToTexture();
+	AfterLayerRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::AfterParallax0) });
 
 	float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
 	float OffsetY = ColMap_->GetTransform().GetLocalScale().y / 2;
@@ -79,5 +83,13 @@ void Stage20::Update(float _DeltaTime)
 }
 
 void Stage20::End()
+{
+}
+
+void Stage20::OnEvent()
+{
+}
+
+void Stage20::OffEvent()
 {
 }

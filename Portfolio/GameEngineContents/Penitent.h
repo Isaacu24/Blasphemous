@@ -3,6 +3,15 @@
 
 class Penitent : public GameEngineActor
 {
+private:
+	static Penitent* MainPlayer_;
+
+public:
+	static Penitent* GetMainPlayer()
+	{
+		return MainPlayer_;
+	}
+
 public:
 	Penitent();
 	~Penitent();
@@ -19,6 +28,16 @@ public:
 	inline int GetHP()
 	{
 		return HP_;
+	}
+
+	inline void PlusHP(int _Value)
+	{
+		HP_ += _Value;
+
+		if (100 < HP_)
+		{
+			HP_ = 100;
+		}
 	}
 
 	inline void SetMoney(int _Value)
@@ -51,6 +70,8 @@ protected:
 	void JumpStart(const StateInfo& _Info);
 	void JumpUpdate(float _DeltaTime, const StateInfo& _Info);
 
+	void RecoveryStart(const StateInfo& _Info);
+	void RecoveryUpdate(float _DeltaTime, const StateInfo& _Info);
 
 private:
 	GameEngineStateManager StateManager_;
