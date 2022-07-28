@@ -2,7 +2,12 @@
 #include "StageBase.h"
 
 StageBase::StageBase() 
-	: IsLeftExit_(false)
+	: Stage_(nullptr)
+	, ColMap_(nullptr)
+	, Penitent_(nullptr)
+	, BossMonster_(nullptr)
+	, MonsterList_{}
+	, IsLeftExit_(false)
 	, IsRightExit_(false)
 {
 }

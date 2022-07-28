@@ -25,9 +25,6 @@ protected:
 
 	virtual void SettingStage() = 0;
 
-	float4 CamerLeftPos_;
-	float4 CamerRightPos_;
-
 	float4 PlayerLeftPos_;
 	float4 PlayerRightPos_;
 

@@ -6,7 +6,19 @@
 Penitent* Penitent::MainPlayer_ = nullptr;
 
 Penitent::Penitent() 
-	: Speed_(250.0f)
+	: StateManager_{}
+	, PlayerUI_(nullptr)
+	, Gravity_(nullptr)
+	, Renderer_(nullptr)
+	, Ground_(nullptr)
+	, HP_(100)
+	, MP_(100)
+	, Speed_(250.0f)
+	, Money_(0)
+	, IsGround_(false)
+	, IsJump_(false)
+	, IsLadder_(false)
+	, Flasks_{}
 	, JumpTime_(0.0f)
 {
 	MainPlayer_ = this;
@@ -78,15 +90,27 @@ void Penitent::Update(float _DeltaTime)
 	if (20000 < GameEngineInput::GetInst()->GetThumbLX()
 		|| GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
 	{
-		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * _DeltaTime);
 		Renderer_->GetTransform().PixLocalPositiveX();
+
+		if (true == RightObstacleCheck())
+		{
+			return;
+		}
+
+		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * _DeltaTime);
 	}
 
 	if (0 > GameEngineInput::GetInst()->GetThumbLX()
 		|| GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
 	{
-		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ * _DeltaTime);
 		Renderer_->GetTransform().PixLocalNegativeX();
+
+		if (true == LeftObstacleCheck())
+		{
+			return;
+		}
+
+		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ * _DeltaTime);
 	}
 
 	if (GameEngineInput::GetInst()->IsDownKey("PenitentJump") && false == IsJump_)
@@ -102,13 +126,9 @@ void Penitent::Update(float _DeltaTime)
 	LadderCheck(); //사다리 체크
 	UphillRoadCheck(); //오르막길 체크
 
+
 	GameEngineDebug::OutPutString("PlayerX : " + std::to_string(GetTransform().GetWorldPosition().x));
 	GameEngineDebug::OutPutString("PlayerY : " + std::to_string(GetTransform().GetWorldPosition().y));
-}
-
-void Penitent::PixelCheck()
-{
-
 }
 
 void Penitent::GroundCheck()
@@ -146,9 +166,9 @@ void Penitent::UphillRoadCheck()
 {
 	while (true)
 	{
-		float4 RightColor = Ground_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y - 94));
+		float4 Color = Ground_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y - 94));
 		
-		if (true == RightColor.CompareInt4D(float4::BLACK))
+		if (true == Color.CompareInt4D(float4::BLACK))
 		{
 			GetTransform().SetWorldMove(float4{ 0, 1 ,0, 0 });
 			continue;
@@ -159,6 +179,30 @@ void Penitent::UphillRoadCheck()
 			break;
 		}
 	}
+}
+
+bool Penitent::LeftObstacleCheck()
+{
+	float4 LeftColor = Ground_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x - 50, -(GetTransform().GetWorldPosition().y - 10));
+
+	if (true == LeftColor.CompareInt4D(float4::BLACK))
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool Penitent::RightObstacleCheck()
+{
+	float4 RightColor = Ground_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x + 50, -(GetTransform().GetWorldPosition().y - 10));
+
+	if (true == RightColor.CompareInt4D(float4::BLACK))
+	{
+		return true;
+	}
+
+	return false;
 }
 
 void Penitent::End()
@@ -232,7 +276,7 @@ void Penitent::RecoveryStart(const StateInfo& _Info)
 		return;
 	}
 
-	int Size = Flasks_.size() - 1;
+	int Size = static_cast<int>(Flasks_.size() - 1);
 
 	for (int i = Size; i >= 0; --i)
 	{
@@ -254,6 +298,8 @@ void Penitent::RecoveryUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	StateManager_.ChangeState("Idle");
 }
+
+
 
 
 

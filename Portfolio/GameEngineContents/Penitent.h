@@ -55,11 +55,12 @@ protected:
 	void Update(float _DeltaTime) override;
 	void End() override;
 
-	void PixelCheck();
-
 	void GroundCheck();
 	void LadderCheck();
 	void UphillRoadCheck();
+
+	bool LeftObstacleCheck();
+	bool RightObstacleCheck();
 
 	void IdleStart(const StateInfo& _Info);
 	void IdleUpdate(float _DeltaTime, const StateInfo& _Info);
@@ -83,8 +84,6 @@ private:
 	GameEngineTextureRenderer* Renderer_;
 
 	GameEngineTextureRenderer* Ground_;
-
-	float4 MoveDir_;
 
 	int HP_;
 	int MP_;
