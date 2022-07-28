@@ -11,6 +11,8 @@ enum class ACTORORDER
 
 	Door,
 
+	Temp,
+
 	Player,
 	NPC,
 	AtherMonster,

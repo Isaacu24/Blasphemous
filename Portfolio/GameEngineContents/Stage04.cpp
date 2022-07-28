@@ -57,10 +57,6 @@ void Stage04::SettingStage()
 	NewElderBrother->GetTransform().SetLocalScale({ 1500, 750 });
 	NewElderBrother->GetTransform().PixLocalNegativeX();
 
-	Penitent_ = CreateActor<Penitent>();
-	Penitent_->GetTransform().SetWorldPosition({ 300, 1000, static_cast<int>(ACTORORDER::Player) });
-	Penitent_->SetGround(ColMap_);
-
 	GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	DoorRenderer->SetTexture("1_4_Door.png");
 	DoorRenderer->ScaleToTexture();
@@ -77,6 +73,11 @@ void Stage04::SettingStage()
 	float4 Offset = { OffsetX , -OffsetY };
 
 	Stage_->GetTransform().SetLocalMove(Offset);
+
+	PlayerRightPos_ = float4{ 2650, -1028, static_cast<int>(ACTORORDER::Player) };
+	PlayerLeftPos_ = float4{ 250, -1028, static_cast<int>(ACTORORDER::Player) };
+
+	IsLeftExit_ = true;
 }
 
 
@@ -106,11 +107,13 @@ void Stage04::Update(float _DeltaTime)
 
 	if (200 > Penitent_->GetTransform().GetWorldPosition().x)
 	{
+		IsLeftExit_ = true;
 		GEngine::ChangeLevel("Stage03");
 	}
 
-	if (2500 < Penitent_->GetTransform().GetWorldPosition().x)
+	if (2700 < Penitent_->GetTransform().GetWorldPosition().x)
 	{
+		IsRightExit_ = true;
 		GEngine::ChangeLevel("Stage05");
 	}
 }
@@ -121,6 +124,37 @@ void Stage04::End()
 
 void Stage04::OnEvent()
 {
+	if (nullptr == Penitent::GetMainPlayer())
+	{
+		Penitent_ = CreateActor<Penitent>(ACTORORDER::Player);
+		Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
+		Penitent_->SetGround(ColMap_);
+
+		Penitent_->SetLevelOverOn();
+	}
+
+	else if (nullptr != Penitent::GetMainPlayer())
+	{
+		Penitent_ = Penitent::GetMainPlayer();
+		Penitent_->SetGround(ColMap_);
+
+		if (true == IsRightExit_)
+		{
+			Penitent_->GetTransform().SetWorldPosition(PlayerRightPos_);
+		}
+
+		else if (true == IsLeftExit_)
+		{
+			Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
+		}
+
+		Penitent_->SetLevelOverOn();
+	}
+
+	IsRightExit_ = false;
+	IsLeftExit_ = false;
+
+	GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition() + float4{0, 100} });
 }
 
 void Stage04::OffEvent()

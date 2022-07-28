@@ -99,9 +99,11 @@ void Penitent::Update(float _DeltaTime)
 		StateManager_.ChangeState("Recovery");
 	}
 
-
 	LadderCheck(); //사다리 체크
 	UphillRoadCheck(); //오르막길 체크
+
+	GameEngineDebug::OutPutString("PlayerX : " + std::to_string(GetTransform().GetWorldPosition().x));
+	GameEngineDebug::OutPutString("PlayerY : " + std::to_string(GetTransform().GetWorldPosition().y));
 }
 
 void Penitent::PixelCheck()

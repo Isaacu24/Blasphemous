@@ -2,6 +2,8 @@
 #include "StageBase.h"
 
 StageBase::StageBase() 
+	: IsLeftExit_(false)
+	, IsRightExit_(false)
 {
 }
 

@@ -35,10 +35,6 @@ void Stage30::SettingStage()
 	NewDeogracias->ChangeFrontAnimation();
 	NewDeogracias->GetTransform().PixLocalNegativeX();
 
-	Penitent_ = CreateActor<Penitent>();
-	Penitent_->GetTransform().SetWorldPosition({ 100, -960, static_cast<int>(ACTORORDER::Player) });
-	Penitent_->SetGround(ColMap_);
-
 	GameEngineTextureRenderer* StageRenderer2 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	StageRenderer2->SetTexture("13_1_2_Tile.png");
 	StageRenderer2->ScaleToTexture();
@@ -91,6 +87,11 @@ void Stage30::Update(float _DeltaTime)
 	{
 		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ 2850, GetMainCameraActor()->GetTransform().GetWorldPosition().y });
 	}
+
+	if (100 > Penitent_->GetTransform().GetWorldPosition().x)
+	{
+		Penitent_->GetTransform().SetWorldPosition(float4{ 100, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player) });
+	}
 }
 
 void Stage30::End()
@@ -99,6 +100,28 @@ void Stage30::End()
 
 void Stage30::OnEvent()
 {
+	if (nullptr == Penitent::GetMainPlayer())
+	{
+		Penitent_ = CreateActor<Penitent>();
+		Penitent_->GetTransform().SetWorldPosition({ 150, -963, static_cast<int>(ACTORORDER::Player) });
+		Penitent_->SetGround(ColMap_);
+
+		Penitent_->SetLevelOverOn();
+	}
+
+	else if (nullptr != Penitent::GetMainPlayer())
+	{
+		Penitent_ = Penitent::GetMainPlayer();
+		Penitent_->GetTransform().SetWorldPosition({ 150, -963, static_cast<int>(ACTORORDER::Player) });
+		Penitent_->SetGround(ColMap_);
+
+		Penitent_->SetLevelOverOn();
+	}
+
+	IsRightExit_ = false;
+	IsLeftExit_ = false;
+
+	GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition() + float4{0, 100} });
 }
 
 void Stage30::OffEvent()

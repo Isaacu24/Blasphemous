@@ -31,10 +31,6 @@ void Stage05::SettingStage()
 	//NewDeogracias->GetTransform().SetLocalMove({ 940, -570 });
 	//NewDeogracias->GetTransform().PixLocalNegativeX();
 
-	Penitent_ = CreateActor<Penitent>();
-	Penitent_->GetTransform().SetWorldPosition(W{ 522, -670, static_cast<int>(ACTORORDER::Player) });
-	Penitent_->SetGround(ColMap_);
-
 	GameEngineTextureRenderer* DoorRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	DoorRendrer->SetTexture("1_5_Door.png");
 	DoorRendrer->ScaleToTexture();
@@ -48,6 +44,11 @@ void Stage05::SettingStage()
 	Stage_->GetTransform().SetLocalMove(Offset);
 
 	GetMainCameraActor()->GetTransform().SetWorldPosition(float4{950, -500});
+
+	PlayerRightPos_ = float4{ 1550, -674, static_cast<int>(ACTORORDER::Player) };
+	PlayerLeftPos_ = float4{ 480, -674, static_cast<int>(ACTORORDER::Player) };
+
+	IsLeftExit_ = true;
 }
 
 void Stage05::Start()
@@ -59,11 +60,13 @@ void Stage05::Update(float _DeltaTime)
 {
 	if (430 > Penitent_->GetTransform().GetWorldPosition().x)
 	{
+		IsLeftExit_ = true;
 		GEngine::ChangeLevel("Stage04");
 	}
 
 	if (1600 < Penitent_->GetTransform().GetWorldPosition().x)
 	{
+		IsRightExit_ = true;
 		GEngine::ChangeLevel("Stage10");
 	}
 
@@ -76,6 +79,35 @@ void Stage05::End()
 
 void Stage05::OnEvent()
 {
+	if (nullptr == Penitent::GetMainPlayer())
+	{
+		Penitent_ = CreateActor<Penitent>(ACTORORDER::Player);
+		Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
+		Penitent_->SetGround(ColMap_);
+
+		Penitent_->SetLevelOverOn();
+	}
+
+	else if (nullptr != Penitent::GetMainPlayer())
+	{
+		Penitent_ = Penitent::GetMainPlayer();
+		Penitent_->SetGround(ColMap_);
+
+		if (true == IsRightExit_)
+		{
+			Penitent_->GetTransform().SetWorldPosition(PlayerRightPos_);
+		}
+
+		else if (true == IsLeftExit_)
+		{
+			Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
+		}
+
+		Penitent_->SetLevelOverOn();
+	}
+
+	IsRightExit_ = false;
+	IsLeftExit_ = false;
 }
 
 void Stage05::OffEvent()

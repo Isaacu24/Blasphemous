@@ -46,10 +46,6 @@ void Stage10::SettingStage()
 	StageRenderer->ScaleToTexture();	
 	StageRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::Tile) });
 
-	Penitent_ = CreateActor<Penitent>();
-	Penitent_->GetTransform().SetWorldPosition({ 300, -550, static_cast<int>(ACTORORDER::Player) });
-	Penitent_->SetGround(ColMap_);
-
 	GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	DoorRenderer->SetTexture("2_1_Door.png");
 	DoorRenderer->ScaleToTexture();
@@ -61,6 +57,11 @@ void Stage10::SettingStage()
 	float4 Offset = { OffsetX , -OffsetY };
 
 	Stage_->GetTransform().SetLocalMove(Offset);
+
+	PlayerRightPos_ = float4{ 3950, -682, static_cast<int>(ACTORORDER::Player) };
+	PlayerLeftPos_ = float4{ 300, -682, static_cast<int>(ACTORORDER::Player) };
+
+	IsLeftExit_ = true;
 }
 
 
@@ -95,13 +96,16 @@ void Stage10::Update(float _DeltaTime)
 
 	if (250 > Penitent_->GetTransform().GetWorldPosition().x)
 	{
+		IsLeftExit_ = true;
 		GEngine::ChangeLevel("Stage05");
 	}
 
-	if (3900 < Penitent_->GetTransform().GetWorldPosition().x)
+	if (4000 < Penitent_->GetTransform().GetWorldPosition().x)
 	{
+		IsRightExit_ = true;
 		GEngine::ChangeLevel("Stage20");
 	}
+
 }
 
 void Stage10::End()
@@ -110,6 +114,37 @@ void Stage10::End()
 
 void Stage10::OnEvent()
 {
+	if (nullptr == Penitent::GetMainPlayer())
+	{
+		Penitent_ = CreateActor<Penitent>(ACTORORDER::Player);
+		Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
+		Penitent_->SetGround(ColMap_);
+
+		Penitent_->SetLevelOverOn();
+	}
+
+	else if (nullptr != Penitent::GetMainPlayer())
+	{
+		Penitent_ = Penitent::GetMainPlayer();
+		Penitent_->SetGround(ColMap_);
+
+		if (true == IsRightExit_)
+		{
+			Penitent_->GetTransform().SetWorldPosition(PlayerRightPos_);
+		}
+
+		else if (true == IsLeftExit_)
+		{
+			Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
+		}
+
+		Penitent_->SetLevelOverOn();
+	}
+
+	IsRightExit_ = false;
+	IsLeftExit_ = false;
+
+	GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition() + float4{0, 100} });
 }
 
 void Stage10::OffEvent()

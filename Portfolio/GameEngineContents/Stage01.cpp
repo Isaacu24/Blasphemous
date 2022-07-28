@@ -53,14 +53,14 @@ void Stage01::SettingStage()
 	AfterLayerRenderer->ScaleToTexture();
 	AfterLayerRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::AfterParallax0) });
 
-	PlayerRightPos_ = float4{ 3650, -1350 };
-
 	float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
 	float OffsetY = ColMap_->GetTransform().GetLocalScale().y / 2;
 
 	float4 Offset = { OffsetX , -OffsetY };
 
 	Stage_->GetTransform().SetLocalMove(Offset);
+
+	PlayerRightPos_ = float4{ 3600, -1730, static_cast<int>(ACTORORDER::Player) };
 }
 
 
@@ -88,8 +88,9 @@ void Stage01::Update(float _DeltaTime)
 		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ 3150, GetMainCameraActor()->GetTransform().GetLocalPosition().y });
 	}
 
-	if (3700 < Penitent_->GetTransform().GetWorldPosition().x)
+	if (3650 < Penitent_->GetTransform().GetWorldPosition().x)
 	{
+		IsRightExit_ = true;
 		GEngine::ChangeLevel("Stage02");
 	}
 }
@@ -102,12 +103,35 @@ void Stage01::OnEvent()
 {
 	if (nullptr == Penitent::GetMainPlayer())
 	{
-		Penitent_ = CreateActor<Penitent>(ACTORORDER::Player);
-		Penitent_->GetTransform().SetWorldPosition({ 1225, -940 , static_cast<int>(ACTORORDER::Player) });
+		Penitent_ = CreateActor<Penitent>();
+		Penitent_->GetTransform().SetWorldPosition({ 1230, -940 , static_cast<int>(ACTORORDER::Player) });
 		Penitent_->SetGround(ColMap_);
 
 		Penitent_->SetLevelOverOn();
 	}
+
+	else if (nullptr != Penitent::GetMainPlayer())
+	{
+		Penitent_ = Penitent::GetMainPlayer();
+		Penitent_->SetGround(ColMap_);
+
+		if (true == IsRightExit_)
+		{
+			Penitent_->GetTransform().SetWorldPosition(PlayerRightPos_);
+		}
+
+		else
+		{
+			Penitent_->GetTransform().SetWorldPosition({ 1230, -940 , static_cast<int>(ACTORORDER::Player) });
+		}
+
+		Penitent_->SetLevelOverOn();
+	}
+
+	IsRightExit_ = false;
+	IsLeftExit_ = false;
+
+	GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition() + float4{0, 100} });
 }
 
 void Stage01::OffEvent()

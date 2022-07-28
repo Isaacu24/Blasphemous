@@ -41,10 +41,6 @@ void Stage21::SettingStage()
 	NewGiantSword->GetTransform().SetWorldPosition({ 1250, -600 , static_cast<int>(ACTORORDER::AtherMonster) });
 	BossMonster_ = NewGiantSword;
 
-	Penitent_ = CreateActor<Penitent>();
-	Penitent_->GetTransform().SetWorldPosition({ 1250, -860, static_cast<int>(ACTORORDER::Player) });
-	Penitent_->SetGround(ColMap_);
-
 	GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	StageRenderer->SetTexture("12_3_Tile.png");
 	StageRenderer->ScaleToTexture();
@@ -78,6 +74,36 @@ void Stage21::End()
 
 void Stage21::OnEvent()
 {
+	if (nullptr == Penitent::GetMainPlayer())
+	{
+		Penitent_ = CreateActor<Penitent>(ACTORORDER::Player);
+		Penitent_->GetTransform().SetWorldPosition({ 1250, -860, static_cast<int>(ACTORORDER::Player) });
+		Penitent_->SetGround(ColMap_);
+
+		Penitent_->SetLevelOverOn();
+	}
+
+	else if (nullptr != Penitent::GetMainPlayer())
+	{
+		Penitent_ = Penitent::GetMainPlayer();
+		Penitent_->GetTransform().SetWorldPosition({ 1250, -860, static_cast<int>(ACTORORDER::Player) });
+		Penitent_->SetGround(ColMap_);
+
+		Penitent_->SetLevelOverOn();
+	}
+
+	if (350 > Penitent_->GetTransform().GetWorldPosition().x)
+	{
+		Penitent_->GetTransform().SetWorldPosition(float4{ 350, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player) });
+	}
+
+	if (2000 < Penitent_->GetTransform().GetWorldPosition().x)
+	{
+		Penitent_->GetTransform().SetWorldPosition(float4{ 2000, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player) });
+	}
+
+	IsRightExit_ = false;
+	IsLeftExit_ = false;
 }
 
 void Stage21::OffEvent()

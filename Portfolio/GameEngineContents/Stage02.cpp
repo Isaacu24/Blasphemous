@@ -49,10 +49,6 @@ void Stage02::SettingStage()
 	StageRendrer->ScaleToTexture();
 	StageRendrer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::Tile) });
 
-	Penitent_ = CreateActor<Penitent>();
-	Penitent_->GetTransform().SetWorldPosition({ 180, -1420, static_cast<int>(ACTORORDER::Player) });
-	Penitent_->SetGround(ColMap_);
-
 	GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	DoorRenderer->SetTexture("1_2_Door.png");
 	DoorRenderer->ScaleToTexture();
@@ -69,6 +65,11 @@ void Stage02::SettingStage()
 	float4 Offset = { OffsetX , -OffsetY };
 
 	Stage_->GetTransform().SetLocalMove(Offset);
+
+	PlayerRightPos_ = float4{ 3980, -1561, static_cast<int>(ACTORORDER::Player) };
+	PlayerLeftPos_ = float4{ 210, -1425, static_cast<int>(ACTORORDER::Player) };
+
+	IsLeftExit_ = true;
 }
 
 void Stage02::Start()
@@ -95,16 +96,15 @@ void Stage02::Update(float _DeltaTime)
 		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ 3550, GetMainCameraActor()->GetTransform().GetLocalPosition().y });
 	}
 
-	//GameEngineDebug::OutPutString("x : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().x));
-	//GameEngineDebug::OutPutString("y : " + std::to_string(CameraActor_->GetTransform().GetLocalPosition().y));
-
-	if (130 > Penitent_->GetTransform().GetWorldPosition().x)
+	if (150 > Penitent_->GetTransform().GetWorldPosition().x)
 	{
+		IsLeftExit_ = true;
 		GEngine::ChangeLevel("Stage01");
 	}
 
 	if (4000 < Penitent_->GetTransform().GetWorldPosition().x)
 	{
+		IsRightExit_ = true;
 		GEngine::ChangeLevel("Stage03");
 	}
 }
@@ -116,6 +116,37 @@ void Stage02::End()
 
 void Stage02::OnEvent()
 {
+	if (nullptr == Penitent::GetMainPlayer())
+	{
+		Penitent_ = CreateActor<Penitent>(ACTORORDER::Player);
+		Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
+		Penitent_->SetGround(ColMap_);
+
+		Penitent_->SetLevelOverOn();
+	}
+
+	else if (nullptr != Penitent::GetMainPlayer())
+	{
+		Penitent_ = Penitent::GetMainPlayer();
+		Penitent_->SetGround(ColMap_);
+
+		if (true == IsRightExit_)
+		{
+			Penitent_->GetTransform().SetWorldPosition(PlayerRightPos_);
+		}
+
+		else if (true == IsLeftExit_)
+		{
+			Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
+		}
+
+		Penitent_->SetLevelOverOn();
+	}
+
+	IsRightExit_ = false;
+	IsLeftExit_ = false;
+
+	GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition() + float4{0, 100} });
 }
 
 void Stage02::OffEvent()

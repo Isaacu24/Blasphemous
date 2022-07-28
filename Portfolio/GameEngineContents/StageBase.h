@@ -31,6 +31,9 @@ protected:
 	float4 PlayerLeftPos_;
 	float4 PlayerRightPos_;
 
+	bool IsLeftExit_;
+	bool IsRightExit_;
+
 private:
 
 };
