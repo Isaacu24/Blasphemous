@@ -119,6 +119,9 @@
     <ClInclude Include="GlobalValue.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="Option.h">
+      <Filter>Level\MainMenu\Option</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -236,6 +239,9 @@
     <ClCompile Include="LeftTopUI.cpp">
       <Filter>Actor\UI\UIBar</Filter>
     </ClCompile>
+    <ClCompile Include="Option.cpp">
+      <Filter>Level\MainMenu\Option</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -315,6 +321,9 @@
     </Filter>
     <Filter Include="Global">
       <UniqueIdentifier>{313839cb-6ac3-472e-bdf6-7e1231dd01c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\MainMenu\Option">
+      <UniqueIdentifier>{f05a770e-562d-4252-b078-c1ac7ba6f73a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

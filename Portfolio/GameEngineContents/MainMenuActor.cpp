@@ -50,22 +50,34 @@ void MainMenuActor::Start()
 
 	Pilgrimage_ = CreateComponent<GameEngineTextureRenderer>();
 	Pilgrimage_->GetTransform().SetWorldScale({ 58, 30 });
-	Pilgrimage_->GetTransform().SetWorldPosition({ 450, -50, 0.0f });
+	Pilgrimage_->GetTransform().SetWorldPosition({ 440, -50, 0.0f });
 	Pilgrimage_->SetTexture("Pilgrimage_Select.png");
 
 	Option_ = CreateComponent<GameEngineTextureRenderer>();
 	Option_->GetTransform().SetWorldScale({ 58, 30 });
-	Option_->GetTransform().SetWorldPosition({ 450, -125, 0.0f });
+	Option_->GetTransform().SetWorldPosition({ 440, -125, 0.0f });
 	Option_->SetTexture("Option.png");
 
 	Exit_ = CreateComponent<GameEngineTextureRenderer>();
 	Exit_->GetTransform().SetWorldScale({ 84, 30 });
-	Exit_->GetTransform().SetWorldPosition({ 450, -200, 0.0f });
+	Exit_->GetTransform().SetWorldPosition({ 425, -200, 0.0f });
 	Exit_->SetTexture("Exit.png");
 
 	GameEngineInput::GetInst()->CreateKey("MainMenUpKey", VK_UP);
 	GameEngineInput::GetInst()->CreateKey("MainMenuDownKey", VK_DOWN);
 	GameEngineInput::GetInst()->CreateKey("MainMenSelectKey", VK_SPACE);
+
+	Selecter_ = CreateComponent<GameEngineTextureRenderer>();
+	Selecter_->CreateFrameAnimation("alliedCherub", {"alliedCherub.png", 0, 10, 0.1f, true});
+	Selecter_->ChangeFrameAnimation("alliedCherub");
+	Selecter_->GetTransform().SetWorldScale({ 170, 170 });
+	Selecter_->GetTransform().SetWorldPosition({ 520, -45, 0.0f });
+	Selecter_->GetTransform().PixLocalNegativeX();
+
+	OptionWindow_ = CreateComponent<GameEngineTextureRenderer>();
+	OptionWindow_->SetTexture("OptionBackground.png");
+	OptionWindow_->ScaleToTexture();
+	OptionWindow_->GetTransform().SetWorldPosition({ 0, 0, -1.0f });
 }
 
 void MainMenuActor::Update(float _DeltaTime)
@@ -214,16 +226,22 @@ void MainMenuActor::ChangeMenuSelect()
 		Pilgrimage_->SetTexture("Pilgrimage_Select.png");
 		Option_->SetTexture("Option.png");
 		Exit_->SetTexture("Exit.png");
+
+		Selecter_->GetTransform().SetWorldPosition({ 520, -45, 0.0f });
 		break;
 	case MainMenuType::Option_:
 		Option_->SetTexture("Option_Select.png");
 		Pilgrimage_->SetTexture("Pilgrimage.png");
 		Exit_->SetTexture("Exit.png");
+
+		Selecter_->GetTransform().SetWorldPosition({ 520, -120, 0.0f });
 		break;
 	case MainMenuType::Exit_:
 		Exit_->SetTexture("Exit_Select.png");
 		Pilgrimage_->SetTexture("Pilgrimage.png");
 		Option_->SetTexture("Option.png");
+
+		Selecter_->GetTransform().SetWorldPosition({ 520, -195, 0.0f });
 		break;
 	default:
 		break;

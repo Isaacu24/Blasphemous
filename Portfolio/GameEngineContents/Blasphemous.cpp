@@ -77,6 +77,12 @@ void Blasphemous::Update(float _DeltaTime)
 	if (true == GameEngineInput::GetInst()->IsDownKey("GotoTitle"))
 	{
 		ChangeLevel("Title");
+
+		float4 _Scale = { 1980, 1080 };
+
+		RECT Rc = { 0, 0,  _Scale.ix(),  _Scale.iy() };
+
+		AdjustWindowRect(&Rc, WS_OVERLAPPEDWINDOW, FALSE);
 	}
 
 	if (true == GameEngineInput::GetInst()->IsDownKey("GotoMainMenu"))
@@ -450,4 +456,6 @@ void Blasphemous::CutTexture()
 
 	//UI
 	GameEngineTexture::Cut("ItemCursorAlt.png", 4, 4);
+	GameEngineTexture::Cut("alliedCherub.png", 4, 3);
+
 }

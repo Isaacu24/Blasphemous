@@ -14,6 +14,9 @@ public:
 	PlayerUI& operator=(const PlayerUI& _Other) = delete;
 	PlayerUI& operator=(PlayerUI&& _Other) noexcept = delete;
 
+	void SetTear(int Value);
+	void UseFlask(int _Index);
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -24,7 +27,9 @@ private:
 
 	std::vector<GameEngineUIRenderer*> Flasks_;
 
-	GameEngineUIRenderer* BalanceFrame_;
+	GameEngineUIRenderer* TearFrame_;
+
+	std::vector<GameEngineUIRenderer*> TearRenderers_;
 
 	LeftTopUI* HPBar_;
 	LeftTopUI* MPBar_;

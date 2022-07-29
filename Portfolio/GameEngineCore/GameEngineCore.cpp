@@ -141,17 +141,12 @@ void GameEngineCore::WindowCreate(const std::string& _Name, GameEngineCore* _Use
 	GameEngineWindow::GetInst()->ShowGameWindow();
 	GameEngineDevice::Initialize();
 
-
-
-
 	// 엔진의 실행인데.
 	GameEngineWindow::GetInst()->MessageLoop(
 		std::bind(&GameEngineCore::CoreStart, _UserCore),
 		std::bind(&GameEngineCore::CoreUpdate, _UserCore),
 		std::bind(&GameEngineCore::CoreEnd, _UserCore)
 	);
-
-
 }
 
 void GameEngineCore::InitializeLevel(GameEngineLevel* _Level, const std::string _Name)

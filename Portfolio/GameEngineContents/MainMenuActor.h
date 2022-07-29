@@ -35,6 +35,10 @@ private:
 	GameEngineTextureRenderer* Option_;
 	GameEngineTextureRenderer* Exit_;
 
+	GameEngineTextureRenderer* Selecter_;
+
+	GameEngineTextureRenderer* OptionWindow_;
+
 	MainMenuType CurrentType_;
 	int MenuIndex_;
 

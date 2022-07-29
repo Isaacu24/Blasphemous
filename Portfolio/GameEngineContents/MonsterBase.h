@@ -22,14 +22,14 @@ public:
 		return HP_;
 	}
 
-	inline void SetMoney(int _Value)
+	inline void SetTear(int _Value)
 	{
-		Money_ = _Value;
+		Tear_ = _Value;
 	}
 
-	inline int GetMoney()
+	inline int GetTear()
 	{
-		return Money_;
+		return Tear_;
 	}
 
 protected:
@@ -38,6 +38,6 @@ private:
 	int HP_;
 	int Speed_;
 
-	int Money_; //플레이어에게 전달한 돈
+	int Tear_; //플레이어에게 전달한 눈물
 };
 

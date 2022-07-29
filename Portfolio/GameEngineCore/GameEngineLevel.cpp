@@ -189,11 +189,6 @@ void GameEngineLevel::RemoveActor(GameEngineActor* _Actor)
 
 void GameEngineLevel::OverChildMove(GameEngineLevel* _NextLevel)
 {
-	// 플레이 레벨
-
-	// 로그인 레벨
-	// _NextLevel
-
 	std::map<int, std::list<GameEngineActor*>>::iterator StartGroupIter = AllActors.begin();
 	std::map<int, std::list<GameEngineActor*>>::iterator EndGroupIter = AllActors.end();
 
@@ -233,7 +228,7 @@ void GameEngineLevel::OverChildMove(GameEngineLevel* _NextLevel)
 		{
 			continue;
 		}
-
+		
 		Cameras[i]->OverRenderer(_NextLevel->Cameras[i]);
 	}
 

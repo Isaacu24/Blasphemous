@@ -169,7 +169,7 @@ void GameEngineCamera::OverRenderer(GameEngineCamera* _NextCamera)
 {
 	if (nullptr == _NextCamera)
 	{
-		MsgBoxAssert("next camera is nullptr! fuck you");
+		MsgBoxAssert("next camera is nullptr!");
 		return;
 	}
 

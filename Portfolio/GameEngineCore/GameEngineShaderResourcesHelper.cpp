@@ -39,6 +39,11 @@ void GameEngineShaderResourcesHelper::ResourcesCheck(GameEngineRenderingPipeLine
 
 }
 
+void Test() {
+	int a = 0;
+	// 왜 안되는거야!!!!
+}
+
 void GameEngineShaderResourcesHelper::ShaderCheck(GameEngineShader* _Shader)
 {
 	// 픽셀쉐이더와 버텍스 쉐이더에서 transform데이터 같은 중요 상수버퍼의 이름을 똑같이 해서 사용하고 싶다면??????
@@ -224,7 +229,7 @@ bool GameEngineShaderResourcesHelper::IsSampler(const std::string& _Name)
 
 GameEngineSampler* GameEngineShaderResourcesHelper::SetSampler(const std::string& _Name, const std::string& _TextureName)
 {
-	if (false == IsTexture(_Name))
+	if (false == IsSampler(_Name))
 	{
 		MsgBox("쉐이더에서 이러한 이름의 텍스처세팅를 사용한 적이 없습니다.");
 		return nullptr;
@@ -240,7 +245,7 @@ GameEngineSampler* GameEngineShaderResourcesHelper::SetSampler(const std::string
 {
 	std::string Name = GameEngineString::ToUpperReturn(_Name);
 
-	if (false == IsTexture(_Name))
+	if (false == IsSampler(_Name))
 	{
 		MsgBox("쉐이더에서 이러한 이름의 텍스처세팅를 사용한 적이 없습니다.");
 		return nullptr;

@@ -14,7 +14,7 @@ Penitent::Penitent()
 	, HP_(100)
 	, MP_(100)
 	, Speed_(250.0f)
-	, Money_(0)
+	, Tear_(0)
 	, IsGround_(false)
 	, IsJump_(false)
 	, IsLadder_(false)
@@ -46,6 +46,7 @@ void Penitent::Start()
 		GameEngineInput::GetInst()->CreateKey("PenitentDown", 'S');
 		GameEngineInput::GetInst()->CreateKey("PenitentJump", VK_LSHIFT);
 		GameEngineInput::GetInst()->CreateKey("PenitentRecovery", 'F');
+		GameEngineInput::GetInst()->CreateKey("FreeCamera", 'O');
 
 		GameEngineInput::GetInst()->CreateKey("PenitentAnimation", '1');
 	}
@@ -59,6 +60,7 @@ void Penitent::Start()
 
 	Gravity_ = CreateComponent<GravityComponent>();
 	PlayerUI_ = GetLevel()->CreateActor<PlayerUI>();
+	PlayerUI_->SetLevelOverOn();
 
 	GetTransform().SetLocalScale({1, 1, 1});
 
@@ -81,6 +83,8 @@ void Penitent::Start()
 	StateManager_.CreateStateMember("Jump", this, &Penitent::JumpUpdate, &Penitent::JumpStart);
 	StateManager_.CreateStateMember("Recovery", this, &Penitent::RecoveryUpdate, &Penitent::RecoveryStart);
 	StateManager_.ChangeState("Idle");
+
+	PlayerUI_->SetTear(Tear_);
 }
 
 void Penitent::Update(float _DeltaTime)
@@ -92,12 +96,10 @@ void Penitent::Update(float _DeltaTime)
 	{
 		Renderer_->GetTransform().PixLocalPositiveX();
 
-		if (true == RightObstacleCheck())
+		if (false == RightObstacleCheck())
 		{
-			return;
+			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * _DeltaTime);
 		}
-
-		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * _DeltaTime);
 	}
 
 	if (0 > GameEngineInput::GetInst()->GetThumbLX()
@@ -105,17 +107,16 @@ void Penitent::Update(float _DeltaTime)
 	{
 		Renderer_->GetTransform().PixLocalNegativeX();
 
-		if (true == LeftObstacleCheck())
+		if (false == LeftObstacleCheck())
 		{
-			return;
+			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ * _DeltaTime);
 		}
-
-		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ * _DeltaTime);
 	}
 
 	if (GameEngineInput::GetInst()->IsDownKey("PenitentJump") && false == IsJump_)
 	{
 		StateManager_.ChangeState("Jump");
+		PlayerUI_->SetTear(Tear_ += 123);
 	}
 
 	if (GameEngineInput::GetInst()->IsDownKey("PenitentRecovery"))
@@ -126,9 +127,10 @@ void Penitent::Update(float _DeltaTime)
 	LadderCheck(); //사다리 체크
 	UphillRoadCheck(); //오르막길 체크
 
-
-	GameEngineDebug::OutPutString("PlayerX : " + std::to_string(GetTransform().GetWorldPosition().x));
-	GameEngineDebug::OutPutString("PlayerY : " + std::to_string(GetTransform().GetWorldPosition().y));
+	if (true == GameEngineInput::GetInst()->IsDownKey("FreeCamera"))
+	{
+		GetLevel()->GetMainCameraActor()->FreeCameraModeOnOff();
+	}
 }
 
 void Penitent::GroundCheck()
@@ -270,13 +272,13 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Penitent::RecoveryStart(const StateInfo& _Info)
 {
-	if (0 >= Flasks_.size())
+	int Size = static_cast<int>(Flasks_.size() - 1);
+
+	if (0 >= Size)
 	{
 		StateManager_.ChangeState("Idle");
 		return;
 	}
-
-	int Size = static_cast<int>(Flasks_.size() - 1);
 
 	for (int i = Size; i >= 0; --i)
 	{
@@ -285,8 +287,7 @@ void Penitent::RecoveryStart(const StateInfo& _Info)
 			PlusHP(10);
 
 			Flasks_[i] = false;
-			PlayerUI_->Flasks_[i]->SetTexture("Empty_Flask.png");
-
+			PlayerUI_->UseFlask(i);
 			return;
 		}
 	}

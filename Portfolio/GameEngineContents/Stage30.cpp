@@ -3,11 +3,11 @@
 #include "Penitent.h"
 #include "Deogracias.h"
 
-Stage30::Stage30() 
+Stage30::Stage30()
 {
 }
 
-Stage30::~Stage30() 
+Stage30::~Stage30()
 {
 }
 
@@ -54,7 +54,7 @@ void Stage30::SettingStage()
 	ChairRenderer->SetTexture("ash-mountain-spritesheet_9.png");
 	ChairRenderer->ScaleToTexture();
 	ChairRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::AfterParallax3) });
-	ChairRenderer->GetTransform().SetWorldMove({1060, 920, 0.0f });
+	ChairRenderer->GetTransform().SetWorldMove({ 1060, 920, 0.0f });
 
 	float OffsetX = StageRenderer2->GetTransform().GetLocalScale().x / 2;
 	float OffsetY = StageRenderer2->GetTransform().GetLocalScale().y / 2;
@@ -71,7 +71,7 @@ void Stage30::Start()
 
 void Stage30::Update(float _DeltaTime)
 {
-	GetMainCameraActor()->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition() + float4{0, 100});
+	GetMainCameraActor()->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition() + float4{ 0, 100 });
 
 	if (-50 < GetMainCameraActor()->GetTransform().GetWorldPosition().y)
 	{

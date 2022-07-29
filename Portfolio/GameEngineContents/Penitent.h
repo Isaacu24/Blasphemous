@@ -40,9 +40,9 @@ public:
 		}
 	}
 
-	inline void SetMoney(int _Value)
+	inline void SerTear(int _Value)
 	{
-		Money_ = _Value;
+		Tear_ = _Value;
 	}
 
 	inline void SetGround(GameEngineTextureRenderer* _Ground)
@@ -89,7 +89,7 @@ private:
 	int MP_;
 	float Speed_;
 
-	int Money_; 
+	int Tear_; 
 
 	bool IsGround_;
 	bool IsJump_;
