@@ -1,5 +1,13 @@
 #pragma once
 
+enum class StageFlow
+{
+	NORMAL,
+	BOSSCOMBAT,
+	BOSSDEAD,
+	STAGECLEAR
+};
+
 class StageBase
 {
 public:
@@ -11,7 +19,19 @@ public:
 	StageBase& operator=(const StageBase& _Other) = delete;
 	StageBase& operator=(StageBase&& _Other) noexcept = delete;
 
+	inline void SetState(StageFlow _State)
+	{
+		CurrentState_ = _State;
+	}
+
+	inline StageFlow GetState()
+	{
+		return CurrentState_;
+	}
+
 protected:
+	StageFlow CurrentState_;
+
 	GameEngineActor* Stage_;
 
 	GameEngineTextureRenderer* ColMap_;

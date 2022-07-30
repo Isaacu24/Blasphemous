@@ -12,7 +12,7 @@ Option::~Option()
 
 void Option::Start()
 {
-	CreateActor<OptionActor>();
+	Actor_ = CreateActor<OptionActor>();
 }
 
 void Option::Update(float _DeltaTime)
@@ -21,5 +21,14 @@ void Option::Update(float _DeltaTime)
 }
 
 void Option::End()
+{
+}
+
+void Option::OnEvent()
+{
+	Actor_->UpdateOptionMenu();
+}
+
+void Option::OffEvent()
 {
 }

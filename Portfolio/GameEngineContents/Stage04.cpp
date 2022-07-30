@@ -118,6 +118,15 @@ void Stage04::Update(float _DeltaTime)
 	}
 }
 
+void Stage04::BossStateCheck()
+{
+	if (nullptr == BossMonster_)
+	{
+		return;
+	}
+}
+
+
 void Stage04::End()
 {
 }
@@ -160,3 +169,5 @@ void Stage04::OnEvent()
 void Stage04::OffEvent()
 {
 }
+
+

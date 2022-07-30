@@ -19,13 +19,19 @@ public:
 	OptionActor& operator=(const OptionActor& _Other) = delete;
 	OptionActor& operator=(OptionActor&& _Other) noexcept = delete;
 
+	void UpdateOptionMenu();
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 	void End() override;
 
 private:
+	OptionType CurrentState_;
+
 	class GameEngineTextureRenderer* Option_;
+
+	GameEngineTextureRenderer* Selecter_;
 
 	GameEngineTextureRenderer* Game_;
 	GameEngineTextureRenderer* Sound_;
@@ -33,5 +39,7 @@ private:
 
 	int OptionIndex_;
 
+private:
+	void ChangeIndex();
 };
 
