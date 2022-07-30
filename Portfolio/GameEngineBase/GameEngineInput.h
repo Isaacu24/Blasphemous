@@ -154,6 +154,11 @@ public:
 		return LeftTrigger_;
 	}
 
+	inline void SetLeftTrigger(BYTE _Value)
+	{
+		LeftTrigger_ = _Value;
+	}
+
 	inline BYTE GetRightTrigger()
 	{
 		return RightTrigger_;

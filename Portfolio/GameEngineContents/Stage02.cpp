@@ -17,7 +17,7 @@ void Stage02::SettingStage()
 	ColMap_ = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	ColMap_->SetTexture("1_2_Colmap.png");
 	ColMap_->ScaleToTexture();
-	ColMap_->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::ColMap) });
+	ColMap_->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::AfterParallax1) });
 
 	GameEngineTextureRenderer* BeforeParallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer->SetTexture("1_2_BeforeParallax_0.png");

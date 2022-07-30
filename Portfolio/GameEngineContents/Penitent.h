@@ -71,6 +71,9 @@ protected:
 	void JumpStart(const StateInfo& _Info);
 	void JumpUpdate(float _DeltaTime, const StateInfo& _Info);
 
+	void SlideStart(const StateInfo& _Info);
+	void SlideUpdate(float _DeltaTime, const StateInfo& _Info);
+
 	void RecoveryStart(const StateInfo& _Info);
 	void RecoveryUpdate(float _DeltaTime, const StateInfo& _Info);
 
@@ -85,19 +88,21 @@ private:
 
 	GameEngineTextureRenderer* Ground_;
 
-	float Offset_;
-
 	int HP_;
 	int MP_;
 	float Speed_;
+
+	float4 Dir_;
 
 	int Tear_; 
 
 	bool IsGround_;
 	bool IsJump_;
 	bool IsLadder_;
+	bool IsSlide_;
 
 	float JumpTime_;
+	float SlideTime_;
 
 	std::vector<bool> Flasks_;
 };

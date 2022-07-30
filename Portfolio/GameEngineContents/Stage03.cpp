@@ -81,7 +81,7 @@ void Stage03::SettingStage()
 
 	Stage_->GetTransform().SetLocalMove(Offset);
 
-	PlayerRightPos_ = float4{ 3150, -1067, static_cast<int>(ACTORORDER::Player) };
+	PlayerRightPos_ = float4{ 3200, -1067, static_cast<int>(ACTORORDER::Player) };
 	PlayerLeftPos_ = float4{ 150, -1067, static_cast<int>(ACTORORDER::Player) };
 
 	IsLeftExit_ = true;
@@ -117,7 +117,7 @@ void Stage03::Update(float _DeltaTime)
 		GEngine::ChangeLevel("Stage02");
 	}
 
-	if (3200 < Penitent_->GetTransform().GetWorldPosition().x)
+	if (3250 < Penitent_->GetTransform().GetWorldPosition().x)
 	{
 		IsRightExit_ = true;
 		GEngine::ChangeLevel("Stage04");
@@ -166,4 +166,5 @@ void Stage03::OnEvent()
 
 void Stage03::OffEvent()
 {
+
 }
