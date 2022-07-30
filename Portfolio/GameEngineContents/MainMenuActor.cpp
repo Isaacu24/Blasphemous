@@ -63,9 +63,9 @@ void MainMenuActor::Start()
 	Exit_->GetTransform().SetWorldPosition({ 425, -200, 0.0f });
 	Exit_->SetTexture("Exit.png");
 
-	GameEngineInput::GetInst()->CreateKey("MainMenUpKey", VK_UP);
+	GameEngineInput::GetInst()->CreateKey("MainMenuUpKey", VK_UP);
 	GameEngineInput::GetInst()->CreateKey("MainMenuDownKey", VK_DOWN);
-	GameEngineInput::GetInst()->CreateKey("MainMenSelectKey", VK_SPACE);
+	GameEngineInput::GetInst()->CreateKey("MainMenuSelectKey", VK_SPACE);
 
 	Selecter_ = CreateComponent<GameEngineTextureRenderer>();
 	Selecter_->CreateFrameAnimation("alliedCherub", {"alliedCherub.png", 0, 10, 0.1f, true});
@@ -73,11 +73,6 @@ void MainMenuActor::Start()
 	Selecter_->GetTransform().SetWorldScale({ 170, 170 });
 	Selecter_->GetTransform().SetWorldPosition({ 520, -45, 0.0f });
 	Selecter_->GetTransform().PixLocalNegativeX();
-
-	OptionWindow_ = CreateComponent<GameEngineTextureRenderer>();
-	OptionWindow_->SetTexture("OptionBackground.png");
-	OptionWindow_->ScaleToTexture();
-	OptionWindow_->GetTransform().SetWorldPosition({ 0, 0, -1.0f });
 }
 
 void MainMenuActor::Update(float _DeltaTime)
@@ -89,7 +84,7 @@ void MainMenuActor::Update(float _DeltaTime)
 
 	SelectMenu();
 
-	if (true == GameEngineInput::GetInst()->IsDownKey("MainMenUpKey"))
+	if (true == GameEngineInput::GetInst()->IsDownKey("MainMenuUpKey"))
 	{
 		if (1 == MenuIndex_)
 		{
@@ -250,7 +245,7 @@ void MainMenuActor::ChangeMenuSelect()
 
 void MainMenuActor::SelectMenu()
 {
-	if (true == GameEngineInput::GetInst()->IsDownKey("MainMenSelectKey"))
+	if (true == GameEngineInput::GetInst()->IsDownKey("MainMenuSelectKey"))
 	{
 		switch (CurrentType_)
 		{
@@ -258,6 +253,7 @@ void MainMenuActor::SelectMenu()
 			GEngine::ChangeLevel("Stage01");
 			break;
 		case MainMenuType::Option_:
+			GEngine::ChangeLevel("Option");
 			break;
 		case MainMenuType::Exit_:
 			break;

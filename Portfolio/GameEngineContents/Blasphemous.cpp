@@ -1,6 +1,8 @@
 #include "Blasphemous.h"
 #include "Title.h"
 #include "MainMenu.h"
+#include "Option.h"
+
 #include "PreCompile.h"
 
 #include "Stage01.h"
@@ -35,6 +37,7 @@ void Blasphemous::Start()
 
 	CreateLevel<Title>("Title"); 
 	CreateLevel<MainMenu>("MainMenu");
+	CreateLevel<Option>("Option");
 
 	//형제단 본부
 	CreateLevel<Stage01>("Stage01");
@@ -451,7 +454,7 @@ void Blasphemous::CutTexture()
 
 	//Object
 	GameEngineTexture::Cut("priedieu_stand_and_liton_anim.png", 7, 1);
-	//GameEngineTexture::Cut("breakableTwistedCorpse03.png", 5, 3);
+	GameEngineTexture::Cut("brotherhood_door_anim 1.png", 8, 2);
 	//GameEngineTexture::Cut("breakableTwistedCorpse04.png", 5, 3);
 
 	//UI

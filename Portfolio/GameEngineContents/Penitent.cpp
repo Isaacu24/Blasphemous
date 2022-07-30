@@ -36,6 +36,12 @@ void Penitent::Start()
 		GameEngineInput::GetInst()->CreateButton("PenitentX", GAMEPAD_X);
 		GameEngineInput::GetInst()->CreateButton("PenitentB", GAMEPAD_B);
 		GameEngineInput::GetInst()->CreateButton("PenitentY", GAMEPAD_Y);
+
+		GameEngineInput::GetInst()->CreateButton("PenitentLeftShoulder", GAMEPAD_LEFT_SHOULDER); //LB
+		GameEngineInput::GetInst()->CreateButton("PenitentRightShoulder", GAMEPAD_RIGHT_SHOULDER);
+
+		GameEngineInput::GetInst()->CreateButton("PenitentLeftThumb", GAMEPAD_LEFT_THUMB); //LT
+		GameEngineInput::GetInst()->CreateButton("PenitentRightThumb", GAMEPAD_RIGHT_THUMB);
 	}
 
 	if (false == GameEngineInput::GetInst()->IsKey("PenitentLeft"))
@@ -81,7 +87,9 @@ void Penitent::Start()
 	StateManager_.CreateStateMember("Idle", this, &Penitent::IdleUpdate, &Penitent::IdleStart);
 	StateManager_.CreateStateMember("LadderClimb", this, &Penitent::LadderClimbUpdate, &Penitent::LadderClimbStart);
 	StateManager_.CreateStateMember("Jump", this, &Penitent::JumpUpdate, &Penitent::JumpStart);
+	StateManager_.CreateStateMember("Slide", this, &Penitent::RecoveryUpdate, &Penitent::RecoveryStart);
 	StateManager_.CreateStateMember("Recovery", this, &Penitent::RecoveryUpdate, &Penitent::RecoveryStart);
+	StateManager_.CreateStateMember("Death", this, &Penitent::RecoveryUpdate, &Penitent::RecoveryStart);
 	StateManager_.ChangeState("Idle");
 
 	PlayerUI_->SetTear(Tear_);
@@ -95,6 +103,7 @@ void Penitent::Update(float _DeltaTime)
 		|| GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
 	{
 		Renderer_->GetTransform().PixLocalPositiveX();
+		Offset_ = 30;
 
 		if (false == RightObstacleCheck())
 		{
@@ -106,6 +115,7 @@ void Penitent::Update(float _DeltaTime)
 		|| GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
 	{
 		Renderer_->GetTransform().PixLocalNegativeX();
+		Offset_ = -30;
 
 		if (false == LeftObstacleCheck())
 		{
@@ -113,13 +123,17 @@ void Penitent::Update(float _DeltaTime)
 		}
 	}
 
-	if (GameEngineInput::GetInst()->IsDownKey("PenitentJump") && false == IsJump_)
+	if (GameEngineInput::GetInst()->IsDownKey("PenitentJump")
+		&& false == IsJump_ && true == IsGround_
+		|| GameEngineInput::GetInst()->IsDownButton("PenitentB")
+		&& false == IsJump_ && true == IsGround_)
 	{
 		StateManager_.ChangeState("Jump");
 		PlayerUI_->SetTear(Tear_ += 123);
 	}
 
-	if (GameEngineInput::GetInst()->IsDownKey("PenitentRecovery"))
+	if (GameEngineInput::GetInst()->IsDownKey("PenitentRecovery")
+		|| 100 < GameEngineInput::GetInst()->IsDownButton("PenitentLeftThumb"))
 	{
 		StateManager_.ChangeState("Recovery");
 	}

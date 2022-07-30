@@ -85,6 +85,8 @@ private:
 
 	GameEngineTextureRenderer* Ground_;
 
+	float Offset_;
+
 	int HP_;
 	int MP_;
 	float Speed_;

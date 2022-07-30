@@ -122,6 +122,15 @@
     <ClInclude Include="Option.h">
       <Filter>Level\MainMenu\Option</Filter>
     </ClInclude>
+    <ClInclude Include="OptionActor.h">
+      <Filter>Actor\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Door.h">
+      <Filter>Actor\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="PrieDieu.h">
+      <Filter>Actor\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -241,6 +250,15 @@
     </ClCompile>
     <ClCompile Include="Option.cpp">
       <Filter>Level\MainMenu\Option</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionActor.cpp">
+      <Filter>Actor\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Door.cpp">
+      <Filter>Actor\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="PrieDieu.cpp">
+      <Filter>Actor\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

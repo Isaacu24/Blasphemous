@@ -24,4 +24,5 @@ protected:
 	void OffEvent() override;
 
 private:
+	class PrieDieu* PrieDieu_;
 };

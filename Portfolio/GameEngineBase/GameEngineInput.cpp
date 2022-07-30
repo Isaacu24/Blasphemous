@@ -127,7 +127,7 @@ bool GameEngineInput::IsDownButton(const std::string& _Name)
 
 	if (AllInputButton_.end() == AllInputButton_.find(UpperKey))
 	{
-		MsgBoxAssert("존재하지 않는 키 입니다.");
+		MsgBoxAssert("존재하지 않는 버튼 입니다.");
 		return false;
 	}
 	return AllInputButton_[UpperKey].Down_;
@@ -139,7 +139,7 @@ bool GameEngineInput::IsUpButton(const std::string& _Name)
 
 	if (AllInputButton_.end() == AllInputButton_.find(UpperKey))
 	{
-		MsgBoxAssert("존재하지 않는 키 입니다.");
+		MsgBoxAssert("존재하지 않는 버튼 입니다.");
 		return false;
 	}
 	return AllInputButton_[UpperKey].Up_;
@@ -151,7 +151,7 @@ bool GameEngineInput::IsPressButton(const std::string& _Name)
 
 	if (AllInputButton_.end() == AllInputButton_.find(UpperKey))
 	{
-		MsgBoxAssert("존재하지 않는 키 입니다.");
+		MsgBoxAssert("존재하지 않는 버튼 입니다.");
 		return false;
 	}
 	return AllInputButton_[UpperKey].Press_;
@@ -163,7 +163,7 @@ bool GameEngineInput::IsFreeButton(const std::string& _Name)
 
 	if (AllInputButton_.end() == AllInputButton_.find(UpperKey))
 	{
-		MsgBoxAssert("존재하지 않는 키 입니다.");
+		MsgBoxAssert("존재하지 않는 버튼 입니다.");
 		return false;
 	}
 	return AllInputButton_[UpperKey].Free_;
@@ -229,7 +229,7 @@ void GameEngineInput::CreateButton(const std::string& _Name, int _Button)
 
 	if (AllInputButton_.end() != AllInputButton_.find(UpperButton))
 	{
-		MsgBoxAssert("이미 존재하는 이름의 키를 또 만들려고 했습니다.");
+		MsgBoxAssert("이미 존재하는 이름의 버튼을 또 만들려고 했습니다.");
 		return;
 	}
 

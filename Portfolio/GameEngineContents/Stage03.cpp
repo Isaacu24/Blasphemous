@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Stage03.h"
 #include "Penitent.h"
+#include "PrieDieu.h"
 
 Stage03::Stage03() 
 {
@@ -24,12 +25,10 @@ void Stage03::SettingStage()
 	BeforeParallaxRenderer->ScaleToTexture();
 	BeforeParallaxRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax0) });
 
-
 	GameEngineTextureRenderer* BeforeParallaxRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer1->SetTexture("1_3_BeforeParallax_1.png");
 	BeforeParallaxRenderer1->ScaleToTexture();
 	BeforeParallaxRenderer1->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax1) });
-
 
 	GameEngineTextureRenderer* BeforeParallaxRenderer2 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer2->SetTexture("1_2_BeforeParallax_2.png");
@@ -57,12 +56,8 @@ void Stage03::SettingStage()
 	AltarRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::Object) });
 	AltarRenderer->GetTransform().SetWorldMove({ 820, -20 });
 
-	GameEngineTextureRenderer* SavePointRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	SavePointRenderer->CreateFrameAnimation("priedieu_stand_and_liton_anim", { "priedieu_stand_and_liton_anim.png", 1, 6, 0.1f, true });
-	SavePointRenderer->ChangeFrameAnimation("priedieu_stand_and_liton_anim");
-	SavePointRenderer->GetTransform().SetWorldScale({ 150, 300 });
-	SavePointRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::Object) });
-	SavePointRenderer->GetTransform().SetWorldMove({ 100, -100 });
+	PrieDieu_ = CreateActor<PrieDieu>();
+	PrieDieu_->GetTransform().SetWorldMove({ 1800, -1000 });
 
 	GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	DoorRenderer->SetTexture("1_3_Door.png");

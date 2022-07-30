@@ -100,6 +100,14 @@ void PlayerUI::SetTear(int _Value)
 			TearRenderers_[i] = CreateComponent<GameEngineUIRenderer>();
 		}
 
+		if (i == Numbers.size())
+		{
+			if (0 == Numbers[i]) //앞 자리가 0이라면
+			{
+				return;
+			}
+		}
+
 		TearRenderers_[i]->SetTexture(std::to_string(Numbers[i]) + ".png");
 		TearRenderers_[i]->ScaleToTexture();
 		TearRenderers_[i]->GetTransform().SetWorldPosition({ 505.f - (10.f * i), 270.f, -100.f });

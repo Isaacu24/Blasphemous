@@ -2,6 +2,7 @@
 #include "Stage05.h"
 #include "Penitent.h"
 #include "Deogracias.h"
+#include "Door.h"
 
 Stage05::Stage05()
 {
@@ -30,6 +31,9 @@ void Stage05::SettingStage()
 	//NewDeogracias->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::) });
 	//NewDeogracias->GetTransform().SetLocalMove({ 940, -570 });
 	//NewDeogracias->GetTransform().PixLocalNegativeX();
+
+	Door_ = CreateActor<Door>();
+	Door_->GetTransform().SetWorldMove({ 1107, -520 });
 
 	GameEngineTextureRenderer* DoorRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	DoorRendrer->SetTexture("1_5_Door.png");
