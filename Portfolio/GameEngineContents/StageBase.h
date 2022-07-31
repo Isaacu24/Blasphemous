@@ -39,11 +39,13 @@ protected:
 	class Penitent* Penitent_;
 
 	class BossMonster* BossMonster_;
-	std::list<class BossMonster*> MonsterList_;
+	std::list<class MonsterBase*> MonsterList_;
 
 	//class LoadingActor* LoadingActor_;
 
 	virtual void SettingStage() = 0;
+
+	virtual void SettingMonster() {};
 
 	float4 PlayerLeftPos_;
 	float4 PlayerRightPos_;

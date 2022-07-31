@@ -12,6 +12,10 @@ public:
 	Door& operator=(const Door& _Other) = delete;
 	Door& operator=(Door&& _Other) noexcept = delete;
 
+	//플레이어와 상호작용
+	//함수 포인터로 만들까?
+	void Open(); 
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

@@ -1,6 +1,8 @@
 #pragma once
+#include "PreCompile.h"
 
 //몬스터의 기본적인 클래스
+class GameEngineTextureRenderer;
 class MonsterBase
 {
 public:
@@ -32,12 +34,37 @@ public:
 		return Tear_;
 	}
 
-protected:
+	inline void SetSpeed(float _Speed)
+	{
+		Speed_ = _Speed;
+	}
 
-private:
+	void SetGround(GameEngineTextureRenderer* _Ground);
+
+	inline void ChangeMonsterState(const std::string& _State)
+	{
+		State_.ChangeState(_State);
+	}
+
+protected:
+	GameEngineStateManager State_;
+
+	GameEngineTextureRenderer* Renderer_;
+	GameEngineTextureRenderer* ColMap_;
+	class GravityComponent* Gravity_;
+
 	int HP_;
-	int Speed_;
+	float Speed_;
 
 	int Tear_; //플레이어에게 전달한 눈물
+
+	bool IsGround_;
+
+	bool GroundCheck(int _X, int _Y);
+
+	bool ObstacleCheck();
+
+private:
+
 };
 

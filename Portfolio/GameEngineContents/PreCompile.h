@@ -50,10 +50,11 @@
 #include <GameEngineCore/GameEngineTextureRenderer.h>
 #include <GameEngineCore/GameEngineUIRenderer.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
-
+#include <GameEngineCore/GameEngineStateManager.h>
 
 //Contents
 #include <GameEngineContents/StageActor.h>
+#include "GravityComponent.h"
 #include "CutScenePlayer.h"
 #include "GlobalValue.h"
 

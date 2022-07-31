@@ -291,23 +291,7 @@ void Blasphemous::LoadResources()
 	}
 
 	LoadBossMonster();
-
-	//{
-	//	GameEngineDirectory Dir;
-
-	//	Dir.MoveParentToExitsChildDirectory("GameEngineResources");
-	//	Dir.Move("GameEngineResources");
-	//	Dir.Move("Resources");
-	//	Dir.Move("VideoImage");
-	//	Dir.Move("FirstBoss");
-
-	//	std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
-
-	//	for (size_t i = 0; i < Shaders.size(); i++)
-	//	{
-	//		GameEngineTexture::Load(Shaders[i].GetFullPath());
-	//	}
-	//}
+	LoadNormalMonster();
 }
 
 //¸Ê ÅØ½ºÃÄ
@@ -410,6 +394,48 @@ void Blasphemous::LoadBossMonster()
 	//}
 }
 
+void Blasphemous::LoadNormalMonster()
+{
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory("GameEngineResources");
+		Dir.Move("GameEngineResources");
+		Dir.Move("Resources");
+		Dir.Move("Sprite");
+		Dir.Move("Monster");
+		Dir.Move("Normal");
+		Dir.Move("Fool_knife");
+
+		std::vector<GameEngineFile> Textures = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Textures.size(); i++)
+		{
+			GameEngineTexture::Load(Textures[i].GetFullPath());
+		}
+	}
+
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory("GameEngineResources");
+		Dir.Move("GameEngineResources");
+		Dir.Move("Resources");
+		Dir.Move("Sprite");
+		Dir.Move("Monster");
+		Dir.Move("Normal");
+		Dir.Move("Crosscrawler");
+
+		std::vector<GameEngineFile> Textures = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Textures.size(); i++)
+		{
+			GameEngineTexture::Load(Textures[i].GetFullPath());
+		}
+	}
+
+}
+
 void Blasphemous::CutTexture()
 {
 	//Player
@@ -447,6 +473,13 @@ void Blasphemous::CutTexture()
 
 	GameEngineTexture::Cut("pontiff_giantSword_teleportOUT.png", 9, 3);
 	GameEngineTexture::Cut("pontiff_giantSword_teleportIN.png", 9, 3);
+
+	//NormalMonster
+	GameEngineTexture::Cut("Fool_death_knife.png", 4, 4);
+	GameEngineTexture::Cut("Fool_hurt_knife.png", 3, 3);
+	GameEngineTexture::Cut("fool_idle_knife.png", 3, 4);
+	GameEngineTexture::Cut("Fool_turn_knife.png", 3, 3);
+	GameEngineTexture::Cut("Fool_walk_knife.png", 3, 3);
 
 	//NPC
 	GameEngineTexture::Cut("Deosgracias_idle.png", 7, 3);

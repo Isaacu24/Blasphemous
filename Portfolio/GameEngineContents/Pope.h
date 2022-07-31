@@ -31,7 +31,5 @@ protected:
 
 private:
 	PopeState CurrentState_;
-
-	class GameEngineTextureRenderer* Renderer_;
 };
 

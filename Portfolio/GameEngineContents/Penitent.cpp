@@ -10,7 +10,7 @@ Penitent::Penitent()
 	, PlayerUI_(nullptr)
 	, Gravity_(nullptr)
 	, Renderer_(nullptr)
-	, Ground_(nullptr)
+	, ColMap_(nullptr)
 	, HP_(100)
 	, MP_(100)
 	, Speed_(250.0f)
@@ -161,12 +161,12 @@ void Penitent::GroundCheck()
 
 	if (true == IsLadder_)
 	{
-		Color = Ground_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y - 130));
+		Color = ColMap_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y - 130));
 	}
 
 	else
 	{
-		Color = Ground_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y - 95));
+		Color = ColMap_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y - 95));
 	}
 
 	if (true == Color.CompareInt4D(float4::BLACK)) //¶¥ÀÌ¶ó¸é 
@@ -196,8 +196,8 @@ void Penitent::GroundCheck()
 
 void Penitent::LadderCheck()
 {
-	float4 LowColor = Ground_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y - 200));
-	float4 MiddleColor = Ground_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y));
+	float4 LowColor = ColMap_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y - 200));
+	float4 MiddleColor = ColMap_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y));
 
 	if (true == LowColor.CompareInt4D(float4::GREEN))
 	{
@@ -217,7 +217,7 @@ void Penitent::UphillRoadCheck()
 {
 	while (true)
 	{
-		float4 Color = Ground_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y - 94));
+		float4 Color = ColMap_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y - 94));
 		
 		if (true == Color.CompareInt4D(float4::BLACK))
 		{
@@ -238,12 +238,12 @@ bool Penitent::LeftObstacleCheck()
 
 	if (true == IsSlide_)
 	{
-		LeftColor = Ground_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x - 50, -(GetTransform().GetWorldPosition().y - 20));
+		LeftColor = ColMap_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x - 20, -(GetTransform().GetWorldPosition().y - 20));
 	}
 
 	else
 	{
-		LeftColor = Ground_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x - 50, -(GetTransform().GetWorldPosition().y - 10));
+		LeftColor = ColMap_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x - 20, -(GetTransform().GetWorldPosition().y - 10));
 	}
 
 	if (true == LeftColor.CompareInt4D(float4::BLACK))
@@ -260,12 +260,12 @@ bool Penitent::RightObstacleCheck()
 
 	if (true == IsSlide_)
 	{
-		RightColor = Ground_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x + 50, -(GetTransform().GetWorldPosition().y - 20));
+		RightColor = ColMap_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x + 20, -(GetTransform().GetWorldPosition().y - 20));
 	}
 
 	else
 	{
-		RightColor = Ground_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x + 50, -(GetTransform().GetWorldPosition().y - 10));
+		RightColor = ColMap_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x + 20, -(GetTransform().GetWorldPosition().y - 10));
 	}
 
 	if (true == RightColor.CompareInt4D(float4::BLACK))

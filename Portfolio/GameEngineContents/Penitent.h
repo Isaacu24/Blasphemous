@@ -47,7 +47,7 @@ public:
 
 	inline void SetGround(GameEngineTextureRenderer* _Ground)
 	{
-		Ground_ = _Ground;
+		ColMap_ = _Ground;
 	}
 
 protected:
@@ -86,7 +86,7 @@ private:
 
 	GameEngineTextureRenderer* Renderer_;
 
-	GameEngineTextureRenderer* Ground_;
+	GameEngineTextureRenderer* ColMap_;
 
 	int HP_;
 	int MP_;

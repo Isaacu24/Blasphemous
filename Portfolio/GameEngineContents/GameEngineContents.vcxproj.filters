@@ -39,10 +39,10 @@
       <Filter>Level\Pilgrimage\01Brotherhood</Filter>
     </ClInclude>
     <ClInclude Include="Crosscrawler.h">
-      <Filter>Actor\Monster</Filter>
+      <Filter>Actor\NormalMonster</Filter>
     </ClInclude>
     <ClInclude Include="Fool_knife.h">
-      <Filter>Actor\Monster</Filter>
+      <Filter>Actor\NormalMonster</Filter>
     </ClInclude>
     <ClInclude Include="Stage02.h">
       <Filter>Level\Pilgrimage\01Brotherhood</Filter>
@@ -171,10 +171,10 @@
       <Filter>Level\Pilgrimage\01Brotherhood</Filter>
     </ClCompile>
     <ClCompile Include="Crosscrawler.cpp">
-      <Filter>Actor\Monster</Filter>
+      <Filter>Actor\NormalMonster</Filter>
     </ClCompile>
     <ClCompile Include="Fool_knife.cpp">
-      <Filter>Actor\Monster</Filter>
+      <Filter>Actor\NormalMonster</Filter>
     </ClCompile>
     <ClCompile Include="Stage02.cpp">
       <Filter>Level\Pilgrimage\01Brotherhood</Filter>
@@ -289,9 +289,6 @@
     <Filter Include="Actor\MonsterBase">
       <UniqueIdentifier>{a1525c77-0346-4385-9e61-34b6a61b5f72}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\Monster">
-      <UniqueIdentifier>{46ee28c6-fdf0-48d5-8bf4-9c4e0d879fed}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Actor\Player">
       <UniqueIdentifier>{de8841d7-2ef7-407f-8ef8-9469bc98f610}</UniqueIdentifier>
     </Filter>
@@ -342,6 +339,9 @@
     </Filter>
     <Filter Include="Level\MainMenu\Option">
       <UniqueIdentifier>{f05a770e-562d-4252-b078-c1ac7ba6f73a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\NormalMonster">
+      <UniqueIdentifier>{46ee28c6-fdf0-48d5-8bf4-9c4e0d879fed}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

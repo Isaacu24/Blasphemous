@@ -8,7 +8,7 @@ ElderBrother::ElderBrother()
 ElderBrother::~ElderBrother() 
 {
 }
-//
+
 //GameEngineTexture::Cut("elderBrother_idle.png", 3, 4);
 //GameEngineTexture::Cut("elderBrother_jump.png", 4, 7);
 //GameEngineTexture::Cut("elderBrother_attack.png", 4, 6);

@@ -24,27 +24,25 @@ public:
 	NormalMonster& operator=(const NormalMonster& _Other) = delete;
 	NormalMonster& operator=(NormalMonster&& _Other) noexcept = delete;
 
-	inline void SetCurrentState(MonsterFSM _State)
+	inline void SetPatrolStart(bool _Start)
 	{
-		CurrentState_ = _State;
+		PatrolStart_ = _Start;
 	}
 
-	inline MonsterFSM GetCurrentState()
+	inline void SetPatrolEnd(bool _End)
 	{
-		return CurrentState_;
-	}
-
-	inline MonsterFSM GetPrevState()
-	{
-		return PrevState_;
+		PatrolEnd_ = _End;
 	}
 
 protected:
+	bool PatrolStart_;
+	bool PatrolEnd_;
+
+	virtual void PatrolMoveX() {};
+
+	bool LeftObstacleCheck(int _X, int _Y);
+	bool RightObstacleCheck(int _X, int _Y);
 
 private:
-	MonsterFSM PrevState_;
-	MonsterFSM CurrentState_;
-
-
 };
 

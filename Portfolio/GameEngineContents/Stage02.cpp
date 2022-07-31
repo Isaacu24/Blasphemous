@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Stage02.h"
 #include "Penitent.h"
+#include "Fool_knife.h"
 
 Stage02::Stage02() 
 {
@@ -17,7 +18,7 @@ void Stage02::SettingStage()
 	ColMap_ = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	ColMap_->SetTexture("1_2_Colmap.png");
 	ColMap_->ScaleToTexture();
-	ColMap_->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::AfterParallax1) });
+	ColMap_->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::ColMap) });
 
 	GameEngineTextureRenderer* BeforeParallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer->SetTexture("1_2_BeforeParallax_0.png");
@@ -66,15 +67,34 @@ void Stage02::SettingStage()
 
 	Stage_->GetTransform().SetLocalMove(Offset);
 
-	PlayerRightPos_ = float4{ 3980, -1561, static_cast<int>(ACTORORDER::Player) };
+	PlayerRightPos_ = float4{ 4050, -1561, static_cast<int>(ACTORORDER::Player) };
 	PlayerLeftPos_ = float4{ 210, -1425, static_cast<int>(ACTORORDER::Player) };
 
 	IsLeftExit_ = true;
 }
 
+void Stage02::SettingMonster()
+{
+	Fool_knife* FoolKnife = CreateActor<Fool_knife>();
+	FoolKnife->GetTransform().SetWorldPosition({ 1300, -1289, static_cast<int>(ACTORORDER::Monster) });
+	FoolKnife->SetGround(ColMap_);
+	MonsterList_.push_back(FoolKnife);
+
+	//Fool_knife* FoolKnife1 = CreateActor<Fool_knife>();
+	//FoolKnife1->GetTransform().SetWorldPosition({ 700, -1555, static_cast<int>(ACTORORDER::Monster) });
+	//FoolKnife1->SetGround(ColMap_);
+	//MonsterList_.push_back(FoolKnife1);
+
+	//Fool_knife* FoolKnife2 = CreateActor<Fool_knife>();
+	//FoolKnife2->GetTransform().SetWorldPosition({ 600, -1555, static_cast<int>(ACTORORDER::Monster) });
+	//FoolKnife2->SetGround(ColMap_);
+	//MonsterList_.push_back(FoolKnife2);
+}
+
 void Stage02::Start()
 {
 	SettingStage();
+	SettingMonster();
 }
 
 void Stage02::Update(float _DeltaTime)
@@ -102,7 +122,7 @@ void Stage02::Update(float _DeltaTime)
 		GEngine::ChangeLevel("Stage01");
 	}
 
-	if (4000 < Penitent_->GetTransform().GetWorldPosition().x)
+	if (4100 < Penitent_->GetTransform().GetWorldPosition().x)
 	{
 		IsRightExit_ = true;
 		GEngine::ChangeLevel("Stage03");
