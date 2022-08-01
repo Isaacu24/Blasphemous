@@ -25,8 +25,5 @@ protected:
 	void OffEvent() override;
 
 private:
-	GameEngineTextureRenderer* MyRenderer_;
-
-	int Index_;
 };
 

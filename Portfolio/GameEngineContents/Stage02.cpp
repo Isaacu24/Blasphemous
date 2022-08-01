@@ -97,26 +97,8 @@ void Stage02::Start()
 	SettingMonster();
 }
 
-float MyTime_ = 0.f; 
-
 void Stage02::Update(float _DeltaTime)
 {
-	MyTime_ += _DeltaTime;
-
-	if (0.1f < MyTime_)
-	{
-		MyTime_ = 0.f;
-
-		++Index_;
-
-		if (32 == Index_)
-		{
-			Index_ = 0;
-		}
-
-		MyRenderer_->SetTexture("cherubCaptor_idle_" + std::to_string(Index_) + ".png");
-	}
-
 	GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition() + float4{0, 100} });
 
 	if (-1285 < GetMainCameraActor()->GetTransform().GetWorldPosition().y)
@@ -185,15 +167,6 @@ void Stage02::OnEvent()
 	IsLeftExit_ = false;
 
 	GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition() + float4{0, 100} });
-
-
-	MyRenderer_ = Penitent_->CreateComponent<GameEngineTextureRenderer>();
-	MyRenderer_->SetTexture("cherubCaptor_idle_0.png");
-	MyRenderer_->GetTransform().SetWorldScale({ 200, 300 });
-	MyRenderer_->SetPivot(PIVOTMODE::BOT);
-	MyRenderer_->GetTransform().SetWorldPosition(float4{ 300, -1425, static_cast<int>(ACTORORDER::Player) });
-
-	Index_ = 0;
 }
 
 void Stage02::OffEvent()
