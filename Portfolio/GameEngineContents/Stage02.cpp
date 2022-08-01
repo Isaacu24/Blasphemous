@@ -2,6 +2,7 @@
 #include "Stage02.h"
 #include "Penitent.h"
 #include "Fool_knife.h"
+#include "WingedFace.h"
 
 Stage02::Stage02() 
 {
@@ -79,6 +80,14 @@ void Stage02::SettingMonster()
 	FoolKnife->GetTransform().SetWorldPosition({ 1300, -1289, static_cast<int>(ACTORORDER::Monster) });
 	FoolKnife->SetGround(ColMap_);
 	MonsterList_.push_back(FoolKnife);
+
+	WingedFace* FlyingEnemy = CreateActor<WingedFace>();
+	FlyingEnemy->GetTransform().SetWorldPosition({ 2150, -1250, static_cast<int>(ACTORORDER::Monster) });
+	FlyingEnemy->SetGround(ColMap_);
+	FlyingEnemy->SetStartPos(-1000);
+	FlyingEnemy->SetEndPos(-1600);
+	FlyingEnemy->GetTransform().SetWorldScale({2, 2});
+	MonsterList_.push_back(FlyingEnemy);
 
 	//Fool_knife* FoolKnife1 = CreateActor<Fool_knife>();
 	//FoolKnife1->GetTransform().SetWorldPosition({ 700, -1555, static_cast<int>(ACTORORDER::Monster) });

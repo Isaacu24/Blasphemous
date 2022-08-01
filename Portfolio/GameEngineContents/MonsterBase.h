@@ -62,8 +62,6 @@ protected:
 
 	bool GroundCheck(int _X, int _Y);
 
-	bool ObstacleCheck();
-
 private:
 
 };

@@ -63,18 +63,23 @@ void FrameAnimation::Update(float _Delta)
 			ParentRenderer->SetTexture(Texture, Info.CurFrame);
 			ParentRenderer->SetPivot();
 		}
+
 		else if (nullptr != FolderTexture)
 		{
 			ParentRenderer->FrameDataReset();
 			ParentRenderer->CurTex = FolderTexture->GetTexture(Info.CurFrame);
 			ParentRenderer->SetTexture(FolderTexture->GetTexture(Info.CurFrame));
 			ParentRenderer->SetPivot();
+
+			if (ParentRenderer->ScaleMode == SCALEMODE::IMAGE)
+			{
+				ParentRenderer->ScaleToTexture();
+			}
 		}
 		else
 		{
 			MsgBoxAssert("텍스처가 세팅되지 않은 애니메이션 입니다.");
 		}
-
 
 		Info.FrameTime -= Info.Inter;
 	}
@@ -84,6 +89,8 @@ GameEngineTextureRenderer::GameEngineTextureRenderer()
 	: CurAni(nullptr)
 	, CurTex(nullptr)
 	, PivotMode(PIVOTMODE::CUSTOM)
+	, ScaleMode(SCALEMODE::CUSTOM)
+	, ScaleRatio(1.0f)
 {
 }
 
@@ -276,6 +283,10 @@ void GameEngineTextureRenderer::Update(float _Delta)
 }
 
 
+void GameEngineTextureRenderer::ScaleToCutTexture(int _Index)
+{
+	GetTransform().SetLocalScale(CurTex->GetCutScale(_Index) * ScaleRatio);
+}
 
 void GameEngineTextureRenderer::ScaleToTexture()
 {

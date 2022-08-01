@@ -19,6 +19,6 @@ protected:
 	void End() override;
 
 private:
-
+	class GameEngineTextureRenderer* Renderer_;
 };
 

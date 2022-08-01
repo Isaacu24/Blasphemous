@@ -131,6 +131,9 @@
     <ClInclude Include="PrieDieu.h">
       <Filter>Actor\Object</Filter>
     </ClInclude>
+    <ClInclude Include="WingedFace.h">
+      <Filter>Actor\NormalMonster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -259,6 +262,9 @@
     </ClCompile>
     <ClCompile Include="PrieDieu.cpp">
       <Filter>Actor\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="WingedFace.cpp">
+      <Filter>Actor\NormalMonster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

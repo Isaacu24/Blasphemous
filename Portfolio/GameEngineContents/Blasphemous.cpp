@@ -433,6 +433,40 @@ void Blasphemous::LoadNormalMonster()
 			GameEngineTexture::Load(Textures[i].GetFullPath());
 		}
 	}
+
+
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory("GameEngineResources");
+		Dir.Move("GameEngineResources");
+		Dir.Move("Resources");
+		Dir.Move("Sprite");
+		Dir.Move("Monster");
+		Dir.Move("Normal");
+		Dir.Move("WingedFace");
+		Dir.Move("WingedFaceIdle");
+
+		GameEngineFolderTexture::Load(Dir.GetFullPath());
+
+	}
+
+
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory("GameEngineResources");
+		Dir.Move("GameEngineResources");
+		Dir.Move("Resources");
+		Dir.Move("Sprite");
+		Dir.Move("Monster");
+		Dir.Move("Normal");
+		Dir.Move("WingedFace");
+		Dir.Move("WingedFaceDeath");
+
+		GameEngineFolderTexture::Load(Dir.GetFullPath());
+
+	}
 }
 
 void Blasphemous::CutTexture()

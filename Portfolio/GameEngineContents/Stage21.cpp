@@ -3,6 +3,7 @@
 #include "Penitent.h"
 #include "Pontiff.h"
 #include "GiantSword.h"
+#include "Platform.h"
 
 Stage21::Stage21() 
 {
@@ -33,8 +34,7 @@ void Stage21::SettingStage()
 	BeforeLayerRenderer1->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax1) });
 
 	Pontiff* NewPontiff = CreateActor<Pontiff>();
-	NewPontiff->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::Monster) });
-	NewPontiff->GetTransform().SetWorldMove({ 1250, -520, 0.0f });
+	NewPontiff->GetTransform().SetWorldPosition({ 1250, -520, static_cast<int>(ACTORORDER::Monster) });
 	BossMonster_ = NewPontiff;
 
 	GiantSword* NewGiantSword = CreateActor<GiantSword>();
@@ -52,6 +52,10 @@ void Stage21::SettingStage()
 	float4 Offset = { OffsetX , -OffsetY };
 
 	Stage_->GetTransform().SetLocalMove(Offset);
+
+	Platform* NewPlatform = CreateActor<Platform>();
+	NewPlatform->GetTransform().SetWorldPosition({ 1250, -600 , static_cast<int>(ACTORORDER::AfterParallax1) });
+	NewPlatform->GetTransform().SetWorldScale({2, 2});
 
 	GetMainCameraActor()->GetTransform().SetWorldPosition({1250, -670});
 }

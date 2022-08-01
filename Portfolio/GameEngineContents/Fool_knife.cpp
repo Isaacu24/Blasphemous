@@ -35,22 +35,17 @@ void Fool_knife::Start()
 	SetSpeed(70.f);
 
 	PatrolStart_ = true;
-	IsTurn_ = false;
 }
 
 void Fool_knife::Update(float _DeltaTime)
 {
-	IsGround_ = GroundCheck(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y + 35));
+	State_.Update(_DeltaTime);
 
-	GameEngineDebug::OutPutString("X: " + std::to_string(GetTransform().GetWorldPosition().x));
-	GameEngineDebug::OutPutString("Y: " + std::to_string(GetTransform().GetWorldPosition().y));
+	IsGround_ = GroundCheck(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y + 35));
 
 	Gravity_->SetActive(!IsGround_);
 
-	if (false == IsTurn_)
-	{
-		PatrolMoveX();
-	}
+	GameEngineDebug::OutPutString("FoolState : " + State_.GetCurStateStateName());
 }
 
 void Fool_knife::End()
@@ -58,22 +53,19 @@ void Fool_knife::End()
 }
 
 
-void Fool_knife::PatrolMoveX()
+void Fool_knife::PatrolMoveX(float _DeltaTime)
 {
 	if (true == PatrolStart_
 		&& false == PatrolEnd_)
 	{
 		if (true == RightObstacleCheck(GetTransform().GetWorldPosition().x + 50, -(GetTransform().GetWorldPosition().y + 35)))
 		{
-			GetTransform().SetWorldMove(float4::RIGHT * Speed_ * GameEngineTime::GetDeltaTime());
-
-			Renderer_->GetTransform().PixLocalPositiveX();
+			GetTransform().SetWorldMove(float4::RIGHT * Speed_ * _DeltaTime);
 		}
 
 		else if (true == RightObstacleCheck(GetTransform().GetWorldPosition().x + 50, -(GetTransform().GetWorldPosition().y)))
 		{
 			State_.ChangeState("Turn");
-			IsTurn_ = true;
 
 			PatrolStart_ = true;
 			PatrolEnd_ = false;
@@ -82,7 +74,6 @@ void Fool_knife::PatrolMoveX()
 		else
 		{
 			State_.ChangeState("Turn");
-			IsTurn_ = true;
 
 			PatrolEnd_ = true;
 			PatrolStart_ = false;
@@ -94,15 +85,12 @@ void Fool_knife::PatrolMoveX()
 	{
 		if (true == LeftObstacleCheck(GetTransform().GetWorldPosition().x - 50, -(GetTransform().GetWorldPosition().y + 35)))
 		{
-			GetTransform().SetWorldMove(float4::LEFT * Speed_ * GameEngineTime::GetDeltaTime());
-
-			Renderer_->GetTransform().PixLocalNegativeX();
+			GetTransform().SetWorldMove(float4::LEFT * Speed_ * _DeltaTime);
 		}
 
 		else if (true == LeftObstacleCheck(GetTransform().GetWorldPosition().x - 50, -(GetTransform().GetWorldPosition().y)))
 		{
 			State_.ChangeState("Turn");
-			IsTurn_ = true;
 
 			PatrolStart_ = true;
 			PatrolEnd_ = false;
@@ -111,7 +99,6 @@ void Fool_knife::PatrolMoveX()
 		else
 		{
 			State_.ChangeState("Turn");
-			IsTurn_ = true;
 
 			PatrolStart_ = true;
 			PatrolEnd_ = false;
@@ -135,6 +122,7 @@ void Fool_knife::PatrolStart(const StateInfo& _Info)
 
 void Fool_knife::PatrolUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+	PatrolMoveX(_DeltaTime);
 }
 
 void Fool_knife::TrackStart(const StateInfo& _Info)

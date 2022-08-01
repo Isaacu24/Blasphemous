@@ -33,19 +33,27 @@ public:
 
 	void TurnEnd(const FrameAnimation_DESC& _Info)
 	{
-		IsTurn_ = false;
 		ChangeMonsterState("Patrol");
+
+		if (true == PatrolStart_)
+		{
+			Renderer_->GetTransform().PixLocalPositiveX();
+		}
+
+		else if (true == PatrolEnd_)
+		{
+			Renderer_->GetTransform().PixLocalNegativeX();
+		}
 	}
 
-	void PatrolMoveX() override;
 
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 	void End() override;
 
+	void PatrolMoveX(float _DeltaTime) override;
 private:
-	bool IsTurn_;
 };
 
 

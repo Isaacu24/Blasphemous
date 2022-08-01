@@ -90,7 +90,7 @@ public:
 
 	std::string GetCurStateStateName()
 	{
-		if (nullptr != CurState)
+		if (nullptr == CurState)
 		{
 			return "";
 		}
