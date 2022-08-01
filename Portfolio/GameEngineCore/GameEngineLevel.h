@@ -18,11 +18,13 @@ enum class CAMERAORDER
 	UICAMERA,
 };
 
+// 설명 : 화면(타이틀 화면, 플레이 화면, 인벤토리 화면)
 class GameEngineCore;
 class GameEngineActor;
 class GameEngineCamera;
 class GameEngineRenderer;
 class GameEngineTransform;
+class GameEngineCollision;
 class GameEngineCameraActor;
 class GameEngineLevel :
 	public GameEngineNameObject,
@@ -32,6 +34,7 @@ class GameEngineLevel :
 	friend GameEngineActor;
 	friend GameEngineCamera;
 	friend GameEngineRenderer;
+	friend GameEngineCollision;
 	// 레벨이 현재까지 얼마나 켜져있었는지 시간을 잴수 있게 한다.
 
 public:
@@ -136,11 +139,6 @@ protected:
 
 
 private:
-	// 0번 그룹 플레이어
-	// 1번 그룹 몬스터
-	// 2번 그룹
-	std::map<int, std::list<GameEngineActor*>> AllActors;
-	std::list<GameEngineUpdateObject*> DeleteObject;
 
 	void ActorUpdate(float _DelataTime);
 
@@ -149,12 +147,6 @@ private:
 	void RemoveActor(GameEngineActor* _Actor);
 
 	void OverChildMove(GameEngineLevel* _NextLevel);
-
-private:
-	// 0번 백그라운드
-	// 1번 플레이어
-	// 2번 UI
-	std::vector<GameEngineCamera*> Cameras;
 
 	void PushCamera(GameEngineCamera* _Camera, CAMERAORDER _Order)
 	{
@@ -180,8 +172,19 @@ private:
 
 	void PushRenderer(GameEngineRenderer* _Renderer, int _CameraOrder);
 
+	void PushCollision(GameEngineCollision* _Collision, int _Order);
+
 	void Render(float _DelataTime);
 
 	void Release(float _DelataTime);
+
+private:
+	std::map<int, std::list<GameEngineActor*>> AllActors;
+
+	std::list<GameEngineUpdateObject*> DeleteObject;
+
+	std::vector<GameEngineCamera*> Cameras;
+
+	std::map<int, std::list<GameEngineCollision*>> AllCollisions;
 };
 

@@ -434,6 +434,28 @@ void Blasphemous::LoadNormalMonster()
 		}
 	}
 
+
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory("GameEngineResources");
+		Dir.Move("GameEngineResources");
+		Dir.Move("Resources");
+		Dir.Move("Sprite");
+		Dir.Move("Monster");
+		Dir.Move("Normal");
+		Dir.Move("cherubCaptor");
+
+		std::vector<GameEngineFile> Textures = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Textures.size(); i++)
+		{
+			GameEngineTexture::Load(Textures[i].GetFullPath());
+		}
+	}
+
+
+
 }
 
 void Blasphemous::CutTexture()

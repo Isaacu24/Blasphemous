@@ -2,6 +2,7 @@
 #include <map>
 #include <chrono>
 
+// 설명 :
 class GameEngineTime
 {
 
@@ -14,8 +15,6 @@ public:
 		return Inst_;
 	}
 
-	// 마지막에 지우더라도 내가 의도한 순서에서 지우고 싶기 때문에
-	// pointer로 삭제
 	static void Destroy()
 	{
 		if (nullptr != Inst_)
@@ -31,6 +30,11 @@ public:
 
 	static inline float GetDeltaTime()
 	{
+		if (0.05f <= Inst_->DeltaTimef)
+		{
+			Inst_->DeltaTimef = 0.05f;
+		}
+
 		return Inst_->DeltaTimef;
 	}
 
@@ -52,7 +56,7 @@ public:
 	}
 
 
-	void SetTimeScale(int _Key, float _TimeScale) 
+	void SetTimeScale(int _Key, float _TimeScale)
 	{
 		TimeScale_[_Key] = _TimeScale;
 	}
