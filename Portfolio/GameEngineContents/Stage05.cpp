@@ -49,7 +49,7 @@ void Stage05::SettingStage()
 
 	GetMainCameraActor()->GetTransform().SetWorldPosition(float4{950, -500});
 
-	PlayerRightPos_ = float4{ 1550, -674, static_cast<int>(ACTORORDER::Player) };
+	PlayerRightPos_ = float4{ 1600, -674, static_cast<int>(ACTORORDER::Player) };
 	PlayerLeftPos_ = float4{ 480, -674, static_cast<int>(ACTORORDER::Player) };
 
 	IsLeftExit_ = true;
@@ -68,13 +68,13 @@ void Stage05::Update(float _DeltaTime)
 		GEngine::ChangeLevel("Stage04");
 	}
 
-	if (1600 < Penitent_->GetTransform().GetWorldPosition().x)
+	if (1650 < Penitent_->GetTransform().GetWorldPosition().x) 
 	{
 		IsRightExit_ = true;
 		GEngine::ChangeLevel("Stage10");
 	}
 
-	GameEngineDebug::OutPutString("x : " + std::to_string(Penitent_->GetTransform().GetLocalPosition().x));
+	//GameEngineDebug::OutPutString("x : " + std::to_string(Penitent_->GetTransform().GetLocalPosition().x));
 }
 
 void Stage05::End()

@@ -25,6 +25,8 @@ public:
 	void DeathStart(const StateInfo& _Info);
 	void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
 
+	bool DecideState(GameEngineCollision* _This, GameEngineCollision* _Other);
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

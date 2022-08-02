@@ -23,6 +23,7 @@ void ElderBrother::Start()
 	Renderer_->CreateFrameAnimation("elderBrother_attack", { "elderBrother_attack.png", 0, 23, 0.1f, true });
 	Renderer_->CreateFrameAnimation("elderBrother_death", { "elderBrother_death.png", 0, 48, 0.1f, true });
 	Renderer_->ChangeFrameAnimation("elderBrother_idle");
+	Renderer_->SetPivot(PIVOTMODE::CENTER);
 
 	State_.CreateStateMember("Idle", this, &ElderBrother::IdleUpdate, &ElderBrother::IdleStart);
 	State_.CreateStateMember("Jump", this, &ElderBrother::JumpUpdate, &ElderBrother::JumpStart);
@@ -30,13 +31,15 @@ void ElderBrother::Start()
 	State_.CreateStateMember("Death", this, &ElderBrother::DeathUpdate, &ElderBrother::DeathStart);
 	State_.ChangeState("Idle");
 
-	Collider_ = CreateComponent<GameEngineCollision>();
-	Collider_->GetTransform().SetWorldScale({500, 500});
-	Collider_->ChangeOrder(COLLISIONORDER::BossMonster);
+	DetectCollider_ = CreateComponent<GameEngineCollision>();
+	DetectCollider_->GetTransform().SetWorldScale({500, 500});
+	DetectCollider_->ChangeOrder(COLLISIONORDER::BossMonster);
 }
 
 void ElderBrother::Update(float _DeltaTime)
 {
+	Renderer_;
+	State_.Update(_DeltaTime);
 }
 
 void ElderBrother::End()
@@ -50,6 +53,8 @@ void ElderBrother::IdleStart(const StateInfo& _Info)
 
 void ElderBrother::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+	DetectCollider_->IsCollision(CollisionType::CT_OBB2D, COLLISIONORDER::Player, CollisionType::CT_OBB2D,
+		std::bind(&ElderBrother::DecideState, this, std::placeholders::_1, std::placeholders::_2));
 }
 
 void ElderBrother::JumpStart(const StateInfo& _Info)
@@ -79,4 +84,19 @@ void ElderBrother::DeathStart(const StateInfo& _Info)
 
 void ElderBrother::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+}
+
+bool ElderBrother::DecideState(GameEngineCollision* _This, GameEngineCollision* _Other)
+{
+	if (_This->GetTransform().GetWorldPosition().x < _Other->GetTransform().GetWorldPosition().x)
+	{
+		Renderer_->GetTransform().PixLocalPositiveX();
+	}
+
+	else
+	{
+		Renderer_->GetTransform().PixLocalNegativeX();
+	}
+
+	return false;
 }

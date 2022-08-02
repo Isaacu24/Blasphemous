@@ -24,10 +24,9 @@ void Fool_knife::Start()
 
 	Gravity_ = CreateComponent<GravityComponent>();
 
-	Collider_ = CreateComponent<GameEngineCollision>();
-	Collider_->ChangeOrder(COLLISIONORDER::Monster);
-	Collider_->GetTransform().SetWorldMove({ 0.0f, 150.0f });
-	Collider_->GetTransform().SetWorldScale({ 600.0f, 100.0f, 1.0f });
+	DetectCollider_ = CreateComponent<GameEngineCollision>();
+	DetectCollider_->ChangeOrder(COLLISIONORDER::Monster);
+	DetectCollider_->GetTransform().SetWorldScale({ 600.0f, 300.0f, 1.0f });
 
 	State_.CreateStateMember("Idle", this, &Fool_knife::IdleUpdate, &Fool_knife::IdleStart);
 	State_.CreateStateMember("Patrol", this, &Fool_knife::PatrolUpdate, &Fool_knife::PatrolStart);
@@ -50,9 +49,7 @@ void Fool_knife::Update(float _DeltaTime)
 
 	Gravity_->SetActive(!IsGround_);
 
-	GameEngineDebug::OutPutString("FoolState : " + State_.GetCurStateStateName());
-
-	if (true == Collider_->IsCollision(CollisionType::CT_OBB2D, COLLISIONORDER::Player, CollisionType::CT_OBB2D,
+	if (true == DetectCollider_->IsCollision(CollisionType::CT_OBB2D, COLLISIONORDER::Player, CollisionType::CT_OBB2D,
 		std::bind(&Fool_knife::TrackPlayer, this, std::placeholders::_1, std::placeholders::_2)))
 	{
 		IsCollision_ = true;

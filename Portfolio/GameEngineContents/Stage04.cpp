@@ -30,12 +30,10 @@ void Stage04::SettingStage()
 	BeforeParallaxRenderer1->ScaleToTexture();
 	BeforeParallaxRenderer1->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax1) });
 
-
 	GameEngineTextureRenderer* BeforeParallaxRenderer2 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer2->SetTexture("1_4_BeforeParallax_2.png");
 	BeforeParallaxRenderer2->ScaleToTexture();
 	BeforeParallaxRenderer2->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax2) });
-
 
 	GameEngineTextureRenderer* BeforeParallaxRenderer3 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer3->SetTexture("1_4_BeforeParallax_3.png");
@@ -54,7 +52,7 @@ void Stage04::SettingStage()
 
 	ElderBrother* NewElderBrother = CreateActor<ElderBrother>();
 	NewElderBrother->GetTransform().SetWorldPosition({ 2000, -800, static_cast<int>(ACTORORDER::Monster) });
-	NewElderBrother->GetTransform().SetLocalScale({ 1500, 750 });
+	NewElderBrother->GetTransform().SetWorldScale({ 1500, 750 });
 	NewElderBrother->GetTransform().PixLocalNegativeX();
 
 	GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();

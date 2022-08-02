@@ -166,6 +166,8 @@ void Penitent::Update(float _DeltaTime)
 	{
 		GetLevel()->GetMainCameraActor()->FreeCameraModeOnOff();
 	}
+
+	GameEngineDebug::OutPutString("PlayerState: " + StateManager_.GetCurStateStateName());
 }
 
 void Penitent::GroundCheck()
@@ -296,6 +298,7 @@ void Penitent::End()
 
 void Penitent::IdleStart(const StateInfo& _Info)
 {
+	Collider_->GetTransform().SetWorldScale({ 100.f, 100.f, 1.0f });
 }
 
 void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -342,7 +345,7 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 	JumpTime_ += _DeltaTime;
 	GetTransform().SetWorldMove(GetTransform().GetUpVector() * 350 * _DeltaTime);
 
-	if (0.5f <= JumpTime_)
+	if (0.6f <= JumpTime_)
 	{
 		JumpTime_ = 0.f;
 
@@ -353,6 +356,7 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 void Penitent::SlideStart(const StateInfo& _Info)
 {
 	IsSlide_ = true;
+	Collider_->GetTransform().SetWorldScale({ 200.f, 100.f, 1.0f });
 }
 
 void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -416,7 +420,7 @@ void Penitent::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Penitent::HitStart(const StateInfo& _Info)
 {
-	GameEngineDebug::OutPutString("Hit!");
+	//GameEngineDebug::OutPutString("Hit!");
 	StateManager_.ChangeState("Idle");
 }
 

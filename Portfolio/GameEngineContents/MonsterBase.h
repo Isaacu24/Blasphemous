@@ -53,7 +53,10 @@ protected:
 	GameEngineTextureRenderer* ColMap_;
 
 	class GravityComponent* Gravity_;
-	class GameEngineCollision* Collider_;
+
+	class GameEngineCollision* DetectCollider_; //범위
+	GameEngineCollision* BodyCollider_; //몸체
+	GameEngineCollision* AttackCollider_; //공격
 
 	int HP_;
 	float Speed_;

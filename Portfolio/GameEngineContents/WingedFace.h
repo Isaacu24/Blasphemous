@@ -48,6 +48,8 @@ protected:
 private:
 	float StartPos_;
 	float EndPos_;
+
+	bool IsShoot_;
 };
 
 
