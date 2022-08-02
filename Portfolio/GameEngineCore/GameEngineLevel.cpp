@@ -63,6 +63,11 @@ void GameEngineLevel::ActorUpdate(float _DeltaTime)
 
 void GameEngineLevel::PushRenderer(GameEngineRenderer* _Renderer, int _CameraOrder)
 {
+	// 기존 자신이 있던 자리에서 지우고
+
+	Cameras[static_cast<UINT>(_Renderer->CameraOrder)]->AllRenderer_[_Renderer->GetOrder()].remove(_Renderer);
+
+	_Renderer->CameraOrder = static_cast<CAMERAORDER>(_CameraOrder);
 	Cameras[_CameraOrder]->PushRenderer(_Renderer);
 }
 
@@ -179,7 +184,6 @@ void GameEngineLevel::LevelUpdate(float _DeltaTime)
 }
 
 // 레벨을 이동하는 액터
-// 루트인애가 지우려고 여기로 온다고 생각할 겁니다.
 void GameEngineLevel::RemoveActor(GameEngineActor* _Actor)
 {
 	if (AllActors.end() == AllActors.find(_Actor->GetOrder()))
@@ -220,6 +224,7 @@ void GameEngineLevel::OverChildMove(GameEngineLevel* _NextLevel)
 
 			std::list<GameEngineActor*>::iterator GroupStart = Group.begin();
 			std::list<GameEngineActor*>::iterator GroupEnd = Group.end();
+
 			for (; GroupStart != GroupEnd; )
 			{
 				if (true == (*GroupStart)->IsLevelOver)
@@ -267,8 +272,15 @@ void GameEngineLevel::OverChildMove(GameEngineLevel* _NextLevel)
 
 			std::list<GameEngineCollision*>::iterator GroupStart = Group.begin();
 			std::list<GameEngineCollision*>::iterator GroupEnd = Group.end();
+
 			for (; GroupStart != GroupEnd; )
 			{
+				if (true == (*GroupStart)->IsDeath())
+				{
+					++GroupStart;
+					continue;
+				}
+
 				if (true == (*GroupStart)->GetRoot<GameEngineActor>()->IsLevelOver)
 				{
 					// 내쪽에서는 삭제되고

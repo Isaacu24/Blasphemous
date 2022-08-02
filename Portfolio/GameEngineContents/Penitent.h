@@ -77,12 +77,23 @@ protected:
 	void RecoveryStart(const StateInfo& _Info);
 	void RecoveryUpdate(float _DeltaTime, const StateInfo& _Info);
 
+	void DeathStart(const StateInfo& _Info);
+	void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
+
+	void HitStart(const StateInfo& _Info);
+	void HitUpdate(float _DeltaTime, const StateInfo& _Info);
+
+	//피격 함수
+	bool HitMonster(GameEngineCollision* _This, GameEngineCollision* _Other);
+	bool HitProjectile(GameEngineCollision* _This, GameEngineCollision* _Other);
+
 private:
 	GameEngineStateManager StateManager_;
 
 	class PlayerUI* PlayerUI_;
 
 	class GravityComponent* Gravity_;
+	class GameEngineCollision* Collider_;
 
 	GameEngineTextureRenderer* Renderer_;
 

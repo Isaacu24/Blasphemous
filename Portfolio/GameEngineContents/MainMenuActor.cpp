@@ -77,6 +77,8 @@ void MainMenuActor::Start()
 
 void MainMenuActor::Update(float _DeltaTime)
 {
+	Selecter_;
+
 	BackgroundAnimation(_DeltaTime);
 	PetalAnimation(_DeltaTime);
 	CrisantaAnimation(_DeltaTime);

@@ -51,7 +51,9 @@ protected:
 
 	GameEngineTextureRenderer* Renderer_;
 	GameEngineTextureRenderer* ColMap_;
+
 	class GravityComponent* Gravity_;
+	class GameEngineCollision* Collider_;
 
 	int HP_;
 	float Speed_;

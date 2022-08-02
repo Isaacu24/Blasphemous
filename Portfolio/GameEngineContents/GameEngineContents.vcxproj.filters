@@ -138,7 +138,7 @@
       <Filter>Actor\Effect\Player</Filter>
     </ClInclude>
     <ClInclude Include="Projectile.h">
-      <Filter>Actor\Effect\WingedFace</Filter>
+      <Filter>Actor\Effect\Monster\Normal\WingedFace</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -276,7 +276,7 @@
       <Filter>Actor\Effect\Player</Filter>
     </ClCompile>
     <ClCompile Include="Projectile.cpp">
-      <Filter>Actor\Effect\WingedFace</Filter>
+      <Filter>Actor\Effect\Monster\Normal\WingedFace</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -340,12 +340,6 @@
     <Filter Include="Actor\BossMonster\Pontiff">
       <UniqueIdentifier>{d4b3495a-bac9-46fc-9168-5e0dee44a911}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\Effect\Pontiff">
-      <UniqueIdentifier>{4893c782-f708-4a9c-8c8f-30b54220c896}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\Effect\Pope">
-      <UniqueIdentifier>{0ef6ce20-1a40-4e6a-ab4c-b4d20606baf6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Actor\Object">
       <UniqueIdentifier>{fb0b9cb5-0ddf-4d4b-a7e8-3a98628137c6}</UniqueIdentifier>
     </Filter>
@@ -361,8 +355,26 @@
     <Filter Include="Actor\NormalMonster">
       <UniqueIdentifier>{46ee28c6-fdf0-48d5-8bf4-9c4e0d879fed}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\Effect\WingedFace">
+    <Filter Include="Actor\Effect\Monster">
+      <UniqueIdentifier>{a7463d9b-9245-44a0-bd96-13eaef58a79a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Effect\Monster\Boss">
+      <UniqueIdentifier>{13bfb70c-9418-45ef-9215-33c82d6adb9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Effect\Monster\Normal">
+      <UniqueIdentifier>{b60e6c9c-91a5-4e34-9489-92b395fff635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Effect\Monster\Normal\WingedFace">
       <UniqueIdentifier>{1d27d9f2-26dd-41b2-bf91-9c7937312a86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Effect\Monster\Boss\Pontiff">
+      <UniqueIdentifier>{4893c782-f708-4a9c-8c8f-30b54220c896}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Effect\Monster\Boss\Pope">
+      <UniqueIdentifier>{0ef6ce20-1a40-4e6a-ab4c-b4d20606baf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Effect\Monster\Boss\Elder">
+      <UniqueIdentifier>{3c4e333e-c7b6-4027-96bd-f21adf98ddaf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

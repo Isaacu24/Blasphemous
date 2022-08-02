@@ -5,6 +5,7 @@
 #include <Windows.h>
 #include <GameEngineBase/GameEngineWindow.h>
 
+
 #include "GameEngineVertexBuffer.h"
 #include "GameEngineIndexBuffer.h"
 
@@ -51,6 +52,8 @@ void GameEngineRenderer::PushRendererToUICamera()
 //	//{
 //	//	int TriIndex = Index->Indexs[i];
 //
+//	//	// 0 번째 순서의 점이 됩니다.
+//	//	// 최초에 원본 매쉬의 점을 복사합니다.
 //	//	CopyBuffer[i] = Vertex->Vertexs[TriIndex];
 //
 //	//	auto& tran = GetTransform();
@@ -72,3 +75,8 @@ void GameEngineRenderer::PushRendererToUICamera()
 //	//	Polygon(GameEngineWindow::GetHDC(), &DrawVertex[i], 3);
 //	//}
 //}
+
+void GameEngineRenderer::ChangeCamera(CAMERAORDER _Order)
+{
+	GetActor()->GetLevel()->PushRenderer(this, _Order);
+}

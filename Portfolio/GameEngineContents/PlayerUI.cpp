@@ -19,7 +19,7 @@ void PlayerUI::Start()
 	HPBar_->Renderer_->ScaleToTexture();
 	HPBar_->Renderer_->SetPivot(PIVOTMODE::LEFTTOP);
 	HPBar_->SetLevelOverOn();
-	HPBar_->Renderer_->GetTransform().SetLocalScale(HPBar_->Renderer_->GetTransform().GetWorldScale() - float4{ HPBar_->Renderer_->GetTransform().GetWorldScale().x, 0 });
+	HPBar_->Renderer_->ScaleToTexture();
 	HPBar_->Renderer_->SetPivot(PIVOTMODE::LEFTTOP);
 
 	MPBar_ = GetLevel()->CreateActor<LeftTopUI>();

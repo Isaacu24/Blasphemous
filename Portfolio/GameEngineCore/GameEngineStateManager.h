@@ -21,6 +21,7 @@ public:
 			return;
 		}
 
+		Info.StateTime += _DeltaTime;
 		Update(_DeltaTime, Info);
 	}
 
@@ -55,7 +56,6 @@ public:
 	GameEngineStateManager& operator=(const GameEngineStateManager& _Other) = delete;
 	GameEngineStateManager& operator=(GameEngineStateManager&& _Other) noexcept = delete;
 
-	// 맴버함수만 됩니다.
 	template<typename ObjectType>
 	void CreateStateMember(const std::string& _StateName
 		, ObjectType* _Object
@@ -126,11 +126,20 @@ public:
 		}
 	}
 
+	float GetCurStateTime()
+	{
+		if (nullptr == CurState)
+		{
+			return 0.0f;
+		}
+
+		return CurState->Info.StateTime;
+	}
+
 protected:
 
 private:
 	std::map<std::string, GameEngineState> AllState;
 	GameEngineState* CurState;
-
 };
 

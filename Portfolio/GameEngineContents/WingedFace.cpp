@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "WingedFace.h"
+#include "Projectile.h"
 
 WingedFace::WingedFace() 
 {
@@ -21,8 +22,12 @@ void WingedFace::Start()
 	Renderer_->SetPivot(PIVOTMODE::CENTER);
 
 	Gravity_ = CreateComponent<GravityComponent>();
+	Collider_ = CreateComponent<GameEngineCollision>();
+	Collider_->ChangeOrder(COLLISIONORDER::Monster);
+	Collider_->GetTransform().SetWorldScale({ 300.0f, 300.0f, 1.0f });
 
 	State_.CreateStateMember("Patrol", this, &WingedFace::PatrolUpdate, &WingedFace::PatrolStart);
+	State_.CreateStateMember("Shoot", this, &WingedFace::ShootUpdate, &WingedFace::ShootStart);
 	State_.CreateStateMember("Death", this, &WingedFace::DeathUpdate, &WingedFace::DeathStart);
 	State_.ChangeState("Patrol");
 
@@ -35,6 +40,9 @@ void WingedFace::Start()
 void WingedFace::Update(float _DeltaTime)
 {
 	State_.Update(_DeltaTime);
+
+	Collider_->IsCollision(CollisionType::CT_OBB2D, COLLISIONORDER::Player, CollisionType::CT_OBB2D, 
+		std::bind(&WingedFace::LookAtPlayer, this, std::placeholders::_1, std::placeholders::_2));
 
 	//GameEngineDebug::OutPutString("FaceY : " + std::to_string(GetTransform().GetWorldPosition().y));
 }
@@ -54,11 +62,12 @@ void WingedFace::PatrolMoveY(float _DeltaTime)
 		if (GetTransform().GetWorldPosition().y < StartPos_)
 		{
 			GetTransform().SetWorldUpMove(Speed_, _DeltaTime);
-
 		}
 
 		else
 		{
+			State_.ChangeState("Shoot");
+
 			PatrolStart_ = false;
 			PatrolEnd_ = true;
 		}
@@ -69,11 +78,12 @@ void WingedFace::PatrolMoveY(float _DeltaTime)
 		if (GetTransform().GetWorldPosition().y > EndPos_)
 		{
 			GetTransform().SetWorldDownMove(Speed_, _DeltaTime);
-
 		}
 
 		else
 		{
+			State_.ChangeState("Shoot");
+
 			PatrolStart_ = true;
 			PatrolEnd_ = false;
 		}
@@ -92,6 +102,29 @@ void WingedFace::PatrolStart(const StateInfo& _Info)
 void WingedFace::PatrolUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	PatrolMoveY(_DeltaTime);
+}
+
+void WingedFace::ShootStart(const StateInfo& _Info)
+{
+	Projectile* LeftProjectile = GetLevel()->CreateActor<Projectile>();
+	LeftProjectile->SetGround(ColMap_);
+	LeftProjectile->SetDirection(float4::LEFT);
+	LeftProjectile->GetTransform().SetWorldPosition({ GetTransform().GetWorldPosition().x - 50.f, GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::AfterParallax5)});
+	LeftProjectile->GetTransform().SetWorldScale({ 2, 2 });
+
+	Projectile* RightProjectile = GetLevel()->CreateActor<Projectile>();
+	RightProjectile->SetGround(ColMap_);
+	RightProjectile->SetDirection(float4::RIGHT);
+	RightProjectile->GetTransform().SetWorldPosition({ GetTransform().GetWorldPosition().x + 50.f, GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::AfterParallax5) });
+	RightProjectile->GetTransform().SetWorldScale({ 2, 2 });
+}
+
+void WingedFace::ShootUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+	if (0.5f <= _Info.StateTime)
+	{
+		State_.ChangeState("Patrol");
+	}
 }
 
 void WingedFace::DeathStart(const StateInfo& _Info)

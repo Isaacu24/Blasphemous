@@ -116,6 +116,12 @@ void Stage04::Update(float _DeltaTime)
 		IsRightExit_ = true;
 		GEngine::ChangeLevel("Stage05");
 	}
+
+	if (CurrentFlow_ != STAGEFLOW::BOSSAPPEAR 
+		&& 400 < Penitent_->GetTransform().GetWorldPosition().x)
+	{
+		CurrentFlow_ = STAGEFLOW::BOSSAPPEAR;
+	}
 }
 
 void Stage04::BossStateCheck()

@@ -3,8 +3,6 @@
 #include "Penitent.h"
 #include "Fool_knife.h"
 #include "WingedFace.h"
-#include "Projectile.h"
-#include "Crosscrawler.h"
 
 Stage02::Stage02() 
 {
@@ -86,8 +84,8 @@ void Stage02::SettingMonster()
 	WingedFace* FlyingEnemy = CreateActor<WingedFace>();
 	FlyingEnemy->GetTransform().SetWorldPosition({ 2150, -1250, static_cast<int>(ACTORORDER::Monster) });
 	FlyingEnemy->SetGround(ColMap_);
-	FlyingEnemy->SetStartPos(-1000);
-	FlyingEnemy->SetEndPos(-1600);
+	FlyingEnemy->SetStartPos(-1150);
+	FlyingEnemy->SetEndPos(-1550);
 	FlyingEnemy->GetTransform().SetWorldScale({2, 2});
 	MonsterList_.push_back(FlyingEnemy);
 
@@ -96,10 +94,6 @@ void Stage02::SettingMonster()
 	//NewCrosscrawler->SetGround(ColMap_);
 	//NewCrosscrawler->GetTransform().SetWorldScale({ 2, 2 });
 	//MonsterList_.push_back(FlyingEnemy);
-
-	Projectile* Effect = CreateActor<Projectile>();
-	Effect->GetTransform().SetWorldPosition({ 2150, -1250, static_cast<int>(ACTORORDER::AfterParallax5) });
-	Effect->GetTransform().SetWorldScale({ 2, 2 });
 }
 
 void Stage02::Start()

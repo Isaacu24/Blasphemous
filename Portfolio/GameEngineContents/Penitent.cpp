@@ -66,6 +66,10 @@ void Penitent::Start()
 	}
 
 	Gravity_ = CreateComponent<GravityComponent>();
+	Collider_ = CreateComponent<GameEngineCollision>();
+	Collider_->GetTransform().SetWorldScale({100.f, 100.f, 1.0f});
+	Collider_->ChangeOrder(COLLISIONORDER::Player);
+
 	PlayerUI_ = GetLevel()->CreateActor<PlayerUI>();
 	PlayerUI_->SetLevelOverOn();
 
@@ -91,7 +95,8 @@ void Penitent::Start()
 	StateManager_.CreateStateMember("Slide", this, &Penitent::SlideUpdate, &Penitent::SlideStart);
 	StateManager_.CreateStateMember("Crouch", this, &Penitent::RecoveryUpdate, &Penitent::RecoveryStart);
 	StateManager_.CreateStateMember("Recovery", this, &Penitent::RecoveryUpdate, &Penitent::RecoveryStart);
-	StateManager_.CreateStateMember("Death", this, &Penitent::RecoveryUpdate, &Penitent::RecoveryStart);
+	StateManager_.CreateStateMember("Hit", this, &Penitent::HitUpdate, &Penitent::HitStart);
+	StateManager_.CreateStateMember("Death", this, &Penitent::DeathUpdate, &Penitent::DeathStart);
 	StateManager_.ChangeState("Idle");
 
 	PlayerUI_->SetTear(Tear_);
@@ -145,6 +150,14 @@ void Penitent::Update(float _DeltaTime)
 	{
 		StateManager_.ChangeState("Slide");
 	}
+
+	Collider_->IsCollision(CollisionType::CT_OBB2D, COLLISIONORDER::Monster, CollisionType::CT_OBB2D,
+		std::bind(&Penitent::HitMonster, this, std::placeholders::_1, std::placeholders::_2)
+	);
+
+	Collider_->IsCollision(CollisionType::CT_OBB2D, COLLISIONORDER::Projectile, CollisionType::CT_OBB2D,
+		std::bind(&Penitent::HitProjectile, this, std::placeholders::_1, std::placeholders::_2)
+	);
 
 	GroundCheck(); //지면 체크
 	LadderCheck(); //사다리 체크
@@ -391,7 +404,37 @@ void Penitent::RecoveryStart(const StateInfo& _Info)
 
 void Penitent::RecoveryUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+}
+
+void Penitent::DeathStart(const StateInfo& _Info)
+{
+}
+
+void Penitent::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+}
+
+void Penitent::HitStart(const StateInfo& _Info)
+{
+	GameEngineDebug::OutPutString("Hit!");
 	StateManager_.ChangeState("Idle");
+}
+
+void Penitent::HitUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+}
+
+
+//피격 함수
+bool Penitent::HitMonster(GameEngineCollision* _This, GameEngineCollision* _Other)
+{
+	return false;
+}
+
+bool Penitent::HitProjectile(GameEngineCollision* _This, GameEngineCollision* _Other)
+{
+	StateManager_.ChangeState("Hit");
+	return false;
 }
 
 

@@ -28,31 +28,29 @@ private:
 
 	///////////////////////////////////////// 매니지먼트 사운드 기능
 public:
-	// 그냥 사운드 재생1회 절대로 멈추거나 이런건 못합니다.
 	static GameEngineSoundPlayer SoundPlayControl(const std::string& _Name, unsigned int LoopCount = 0);
 
 	static void SoundPlayOneShot(const std::string& _Name, int LoopCount = 0);
 	static void Update();
 
-/// <summary>
-/// ///////////////////////////////////// 리소스 매니지먼트
-/// </summary>
+	/// <summary>
+	/// ///////////////////////////////////// 리소스 매니지먼트
+	/// </summary>
 public:
 	static GameEngineSound* FindRessource(const std::string& _Name);
 	static GameEngineSound* LoadRessource(const GameEngineFile& _Path);
 	static GameEngineSound* LoadRessource(const std::string& _Path);
 	static GameEngineSound* LoadRessource(const std::string& _Path, const std::string& _Name);
 
-	static void AllResourcesDestroy();
+	static void ResourcesDestroy();
 
 private:
 	static std::map<std::string, GameEngineSound*> AllRes;
 
 };
 
-// 사운드 재생을 제어할수 있는 기능들을 넣을겁니다.
 class GameEngineSound;
-class GameEngineSoundPlayer 
+class GameEngineSoundPlayer
 {
 	friend GameEngineSound;
 

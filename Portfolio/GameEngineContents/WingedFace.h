@@ -16,6 +16,9 @@ public:
 	void PatrolStart(const StateInfo& _Info);
 	void PatrolUpdate(float _DeltaTime, const StateInfo& _Info);
 
+	void ShootStart(const StateInfo& _Info);
+	void ShootUpdate(float _DeltaTime, const StateInfo& _Info);
+
 	void DeathStart(const StateInfo& _Info);
 	void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
 
@@ -33,7 +36,6 @@ public:
 	{
 		Death();
 	}
-
 
 protected:
 	void Start() override;

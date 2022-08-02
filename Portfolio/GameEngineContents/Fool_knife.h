@@ -34,23 +34,12 @@ public:
 	inline void TurnEnd(const FrameAnimation_DESC& _Info)
 	{
 		ChangeMonsterState("Patrol");
-
-		if (true == PatrolStart_)
-		{
-			Renderer_->GetTransform().PixLocalPositiveX();
-		}
-
-		else if (true == PatrolEnd_)
-		{
-			Renderer_->GetTransform().PixLocalNegativeX();
-		}
 	}
 
 	inline void DeathEnd(const FrameAnimation_DESC& _Info)
 	{
 		Death();
 	}
-
 
 protected:
 	void Start() override;

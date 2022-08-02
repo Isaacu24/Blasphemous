@@ -62,8 +62,23 @@ void FrameAnimation::Update(float _Delta)
 			ParentRenderer->CurTex = Texture;
 			ParentRenderer->SetTexture(Texture, Info.CurFrame);
 			ParentRenderer->SetPivot();
-		}
 
+			if (Texture->GetCutCount() != 0)
+			{
+				if (ParentRenderer->ScaleMode == SCALEMODE::IMAGE)
+				{
+					ParentRenderer->ScaleToCutTexture(Info.CurFrame);
+				}
+			}
+
+			else
+			{
+				if (ParentRenderer->ScaleMode == SCALEMODE::IMAGE)
+				{
+					ParentRenderer->ScaleToTexture();
+				}
+			}
+		}
 		else if (nullptr != FolderTexture)
 		{
 			ParentRenderer->FrameDataReset();
@@ -80,6 +95,7 @@ void FrameAnimation::Update(float _Delta)
 		{
 			MsgBoxAssert("텍스처가 세팅되지 않은 애니메이션 입니다.");
 		}
+
 
 		Info.FrameTime -= Info.Inter;
 	}
@@ -283,14 +299,39 @@ void GameEngineTextureRenderer::Update(float _Delta)
 }
 
 
+
 void GameEngineTextureRenderer::ScaleToCutTexture(int _Index)
 {
-	GetTransform().SetLocalScale(CurTex->GetCutScale(_Index) * ScaleRatio);
+	float4 Scale = CurTex->GetCutScale(_Index);
+
+	if (0 > GetTransform().GetLocalScale().x)
+	{
+		Scale.x= -Scale.x;
+	}
+
+	if (0 > GetTransform().GetLocalScale().y)
+	{
+		Scale.y = -Scale.y;
+	}
+
+	GetTransform().SetLocalScale(Scale * ScaleRatio);
 }
 
 void GameEngineTextureRenderer::ScaleToTexture()
 {
-	GetTransform().SetLocalScale(CurTex->GetScale());
+	float4 Scale = CurTex->GetScale();
+
+	if (0 > GetTransform().GetLocalScale().x)
+	{
+		Scale.x = -Scale.x;
+	}
+
+	if (0 > GetTransform().GetLocalScale().y)
+	{
+		Scale.y = -Scale.y;
+	}
+
+	GetTransform().SetLocalScale(Scale * ScaleRatio);
 }
 
 void GameEngineTextureRenderer::CurAnimationReset()

@@ -1,7 +1,8 @@
 #include "PreCompile.h"
 #include "NormalMonster.h"
 
-NormalMonster::NormalMonster() 
+NormalMonster::NormalMonster()
+	: IsCollision_(false)
 {
 }
 
@@ -41,6 +42,51 @@ bool NormalMonster::RightObstacleCheck(int _X, int _Y)
 	}
 
 	return false;
+}
+
+bool NormalMonster::LookAtPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)
+{
+	if (_This->GetTransform().GetWorldPosition().x < _Other->GetTransform().GetWorldPosition().x)
+	{
+		Renderer_->GetTransform().PixLocalPositiveX();
+	}
+
+	else
+	{
+		Renderer_->GetTransform().PixLocalNegativeX();
+	}
+
+	return false;
+}
+
+bool NormalMonster::TrackPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)
+{
+	State_.ChangeState("Track");
+
+	LookAtPlayer(_This, _Other);
+
+	float Distance = abs(_This->GetTransform().GetWorldPosition().x - _Other->GetTransform().GetWorldPosition().x);
+
+	if (70.f > Distance)
+	{
+		IsPlayerLeft_ = false;
+		IsPlayerRight_ = false;
+		return false;
+	}
+
+	if (_This->GetTransform().GetWorldPosition().x < _Other->GetTransform().GetWorldPosition().x)
+	{
+		IsPlayerLeft_ = true;
+		IsPlayerRight_ = false;
+	}
+
+	else
+	{
+		IsPlayerRight_ = true;
+		IsPlayerLeft_ = false;
+	}
+
+	return true;
 }
 
 

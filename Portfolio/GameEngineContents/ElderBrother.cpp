@@ -29,6 +29,10 @@ void ElderBrother::Start()
 	State_.CreateStateMember("Attack", this, &ElderBrother::AttackUpdate, &ElderBrother::AttackStart);
 	State_.CreateStateMember("Death", this, &ElderBrother::DeathUpdate, &ElderBrother::DeathStart);
 	State_.ChangeState("Idle");
+
+	Collider_ = CreateComponent<GameEngineCollision>();
+	Collider_->GetTransform().SetWorldScale({500, 500});
+	Collider_->ChangeOrder(COLLISIONORDER::BossMonster);
 }
 
 void ElderBrother::Update(float _DeltaTime)

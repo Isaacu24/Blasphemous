@@ -24,6 +24,11 @@ void Fool_knife::Start()
 
 	Gravity_ = CreateComponent<GravityComponent>();
 
+	Collider_ = CreateComponent<GameEngineCollision>();
+	Collider_->ChangeOrder(COLLISIONORDER::Monster);
+	Collider_->GetTransform().SetWorldMove({ 0.0f, 150.0f });
+	Collider_->GetTransform().SetWorldScale({ 600.0f, 100.0f, 1.0f });
+
 	State_.CreateStateMember("Idle", this, &Fool_knife::IdleUpdate, &Fool_knife::IdleStart);
 	State_.CreateStateMember("Patrol", this, &Fool_knife::PatrolUpdate, &Fool_knife::PatrolStart);
 	State_.CreateStateMember("Track", this, &Fool_knife::TrackUpdate, &Fool_knife::TrackStart);
@@ -46,6 +51,22 @@ void Fool_knife::Update(float _DeltaTime)
 	Gravity_->SetActive(!IsGround_);
 
 	GameEngineDebug::OutPutString("FoolState : " + State_.GetCurStateStateName());
+
+	if (true == Collider_->IsCollision(CollisionType::CT_OBB2D, COLLISIONORDER::Player, CollisionType::CT_OBB2D,
+		std::bind(&Fool_knife::TrackPlayer, this, std::placeholders::_1, std::placeholders::_2)))
+	{
+		IsCollision_ = true;
+	}
+
+	else
+	{
+		if (true == IsCollision_)
+		{
+			IsCollision_ = false;
+
+			State_.ChangeState("Patrol");
+		}
+	}
 }
 
 void Fool_knife::End()
@@ -118,6 +139,16 @@ void Fool_knife::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 void Fool_knife::PatrolStart(const StateInfo& _Info)
 {
 	Renderer_->ChangeFrameAnimation("Fool_walk_knife");
+
+	if (true == PatrolStart_)
+	{
+		Renderer_->GetTransform().PixLocalPositiveX();
+	}
+
+	else if (true == PatrolEnd_)
+	{
+		Renderer_->GetTransform().PixLocalNegativeX();
+	}
 }
 
 void Fool_knife::PatrolUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -127,11 +158,38 @@ void Fool_knife::PatrolUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Fool_knife::TrackStart(const StateInfo& _Info)
 {
+	if ("Track" == _Info.PrevState)
+	{
+		return;
+	}
+
 	Renderer_->ChangeFrameAnimation("Fool_walk_knife");
 }
 
 void Fool_knife::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+	if (true == IsPlayerLeft_)
+	{
+		if (false == RightObstacleCheck(GetTransform().GetWorldPosition().x + 50, -(GetTransform().GetWorldPosition().y + 35)))
+		{
+			Renderer_->ChangeFrameAnimation("fool_idle_knife");
+			return;
+		}
+
+		GetTransform().SetWorldMove(float4::RIGHT * Speed_ * _DeltaTime);
+	}
+
+	else if (true == IsPlayerRight_)
+	{
+
+		if (false == LeftObstacleCheck(GetTransform().GetWorldPosition().x - 50, -(GetTransform().GetWorldPosition().y + 35)))
+		{
+			Renderer_->ChangeFrameAnimation("fool_idle_knife");
+			return;
+		}
+
+		GetTransform().SetWorldMove(float4::LEFT * Speed_ * _DeltaTime);
+	}
 }
 
 void Fool_knife::HurtStart(const StateInfo& _Info)
