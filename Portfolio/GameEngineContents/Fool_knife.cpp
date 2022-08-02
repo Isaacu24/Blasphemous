@@ -157,6 +157,7 @@ void Fool_knife::TurnUpdate(float _DeltaTime, const StateInfo& _Info)
 void Fool_knife::DeathStart(const StateInfo& _Info)
 {
 	Renderer_->ChangeFrameAnimation("Fool_death_knife");
+	Renderer_->AnimationBindEnd("Fool_death_knife", &Fool_knife::DeathEnd, this);
 }
 
 void Fool_knife::DeathUpdate(float _DeltaTime, const StateInfo& _Info)

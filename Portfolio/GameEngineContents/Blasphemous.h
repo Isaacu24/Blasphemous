@@ -28,6 +28,8 @@ private:
 	void LoadBossMonster();
 	void LoadNormalMonster();
 
+	void LoadEffect();
+
 	void CutTexture();
 
 };

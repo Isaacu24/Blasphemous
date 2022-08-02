@@ -14,7 +14,8 @@ void WingedFace::Start()
 {
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 	Renderer_->CreateFrameAnimationFolder("WingedFaceIdle", FrameAnimation_DESC{ "WingedFaceIdle", 0.1f });
-	Renderer_->ChangeFrameAnimation("WingedFaceIdle");
+	Renderer_->CreateFrameAnimationFolder("WingedFaceDeath", FrameAnimation_DESC{ "WingedFaceDeath", 0.1f, false });
+	Renderer_->ChangeFrameAnimation("WingedFaceDeath");
 	Renderer_->ScaleToTexture();
 	Renderer_->SetScaleModeImage();
 	Renderer_->SetPivot(PIVOTMODE::CENTER);
@@ -35,7 +36,7 @@ void WingedFace::Update(float _DeltaTime)
 {
 	State_.Update(_DeltaTime);
 
-	GameEngineDebug::OutPutString("FaceY : " + std::to_string(GetTransform().GetWorldPosition().y));
+	//GameEngineDebug::OutPutString("FaceY : " + std::to_string(GetTransform().GetWorldPosition().y));
 }
 
 void WingedFace::End()
@@ -95,6 +96,12 @@ void WingedFace::PatrolUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void WingedFace::DeathStart(const StateInfo& _Info)
 {
+	Renderer_->ChangeFrameAnimation("WingedFaceDeath");
+	Renderer_->ScaleToTexture();
+	Renderer_->SetScaleModeImage();
+	Renderer_->SetPivot(PIVOTMODE::CENTER);
+
+	Renderer_->AnimationBindEnd("WingedFaceDeath", &WingedFace::DeathEnd, this);
 }
 
 void WingedFace::DeathUpdate(float _DeltaTime, const StateInfo& _Info)

@@ -30,3 +30,11 @@ enum class ACTORORDER
 
 	ColMap,
 };
+
+enum class CollisionOrder
+{
+	Player,
+	Monster,
+	BossMonster,
+	Object
+};

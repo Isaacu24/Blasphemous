@@ -2,14 +2,6 @@
 #include <GameEngineCore/GameEngineActor.h>
 #include "BossMonster.h"
 
-enum class ElderState
-{
-	Idle,
-	Jump,
-	Attack,
-	Death
-};
-
 class ElderBrother : public GameEngineActor, public BossMonster
 {
 public:
@@ -21,12 +13,23 @@ public:
 	ElderBrother& operator=(const ElderBrother& _Other) = delete;
 	ElderBrother& operator=(ElderBrother&& _Other) noexcept = delete;
 
+	void IdleStart(const StateInfo& _Info);
+	void IdleUpdate(float _DeltaTime, const StateInfo& _Info);
+
+	void JumpStart(const StateInfo& _Info);
+	void JumpUpdate(float _DeltaTime, const StateInfo& _Info);
+
+	void AttackStart(const StateInfo& _Info);
+	void AttackUpdate(float _DeltaTime, const StateInfo& _Info);
+
+	void DeathStart(const StateInfo& _Info);
+	void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 	void End() override;
 
 private:
-	ElderState CurrentState_;
 };
 

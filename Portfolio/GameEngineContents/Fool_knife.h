@@ -31,7 +31,7 @@ public:
 	void DeathStart(const StateInfo& _Info);
 	void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
 
-	void TurnEnd(const FrameAnimation_DESC& _Info)
+	inline void TurnEnd(const FrameAnimation_DESC& _Info)
 	{
 		ChangeMonsterState("Patrol");
 
@@ -44,6 +44,11 @@ public:
 		{
 			Renderer_->GetTransform().PixLocalNegativeX();
 		}
+	}
+
+	inline void DeathEnd(const FrameAnimation_DESC& _Info)
+	{
+		Death();
 	}
 
 

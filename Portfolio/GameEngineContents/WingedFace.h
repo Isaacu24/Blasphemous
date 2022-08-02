@@ -29,6 +29,12 @@ public:
 		EndPos_ = _Pos;
 	}
 
+	inline void DeathEnd(const FrameAnimation_DESC& _Info)
+	{
+		Death();
+	}
+
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

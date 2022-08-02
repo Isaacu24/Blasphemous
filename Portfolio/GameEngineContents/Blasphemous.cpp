@@ -292,6 +292,7 @@ void Blasphemous::LoadResources()
 
 	LoadBossMonster();
 	LoadNormalMonster();
+	LoadEffect();
 }
 
 //¸Ê ÅØ½ºÃÄ
@@ -444,6 +445,24 @@ void Blasphemous::LoadNormalMonster()
 		Dir.Move("Sprite");
 		Dir.Move("Monster");
 		Dir.Move("Normal");
+		Dir.Move("Crosscrawler");
+		Dir.Move("CrosscrawlerWalk");
+
+		GameEngineFolderTexture::Load(Dir.GetFullPath());
+
+	}
+
+
+
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory("GameEngineResources");
+		Dir.Move("GameEngineResources");
+		Dir.Move("Resources");
+		Dir.Move("Sprite");
+		Dir.Move("Monster");
+		Dir.Move("Normal");
 		Dir.Move("WingedFace");
 		Dir.Move("WingedFaceIdle");
 
@@ -466,6 +485,26 @@ void Blasphemous::LoadNormalMonster()
 
 		GameEngineFolderTexture::Load(Dir.GetFullPath());
 
+	}
+}
+
+void Blasphemous::LoadEffect()
+{
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory("GameEngineResources");
+		Dir.Move("GameEngineResources");
+		Dir.Move("Resources");
+		Dir.Move("Sprite");
+		Dir.Move("Effect");
+
+		std::vector<GameEngineFile> Textures = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Textures.size(); i++)
+		{
+			GameEngineTexture::Load(Textures[i].GetFullPath());
+		}
 	}
 }
 
@@ -522,6 +561,15 @@ void Blasphemous::CutTexture()
 	GameEngineTexture::Cut("priedieu_stand_and_liton_anim.png", 7, 1);
 	GameEngineTexture::Cut("brotherhood_door_anim 1.png", 8, 2);
 	//GameEngineTexture::Cut("breakableTwistedCorpse04.png", 5, 3);
+
+	//Effect
+	GameEngineTexture::Cut("BloodSplatters.png", 5, 5);
+	GameEngineTexture::Cut("BloodSplattersV3.png", 4, 4);
+	GameEngineTexture::Cut("BloodSplattersV4.png", 4, 4);
+
+	GameEngineTexture::Cut("TakeBackProyectile.png", 6, 2);
+	GameEngineTexture::Cut("TakeBackProyectileExplosion.png", 6, 3);
+	GameEngineTexture::Cut("TakeBackProyectileHead.png", 6, 2);
 
 	//UI
 	GameEngineTexture::Cut("ItemCursorAlt.png", 4, 4);

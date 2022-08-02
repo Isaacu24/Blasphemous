@@ -134,6 +134,12 @@
     <ClInclude Include="WingedFace.h">
       <Filter>Actor\NormalMonster</Filter>
     </ClInclude>
+    <ClInclude Include="BloodSplatters.h">
+      <Filter>Actor\Effect\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Actor\Effect\WingedFace</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -266,6 +272,12 @@
     <ClCompile Include="WingedFace.cpp">
       <Filter>Actor\NormalMonster</Filter>
     </ClCompile>
+    <ClCompile Include="BloodSplatters.cpp">
+      <Filter>Actor\Effect\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Actor\Effect\WingedFace</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -348,6 +360,9 @@
     </Filter>
     <Filter Include="Actor\NormalMonster">
       <UniqueIdentifier>{46ee28c6-fdf0-48d5-8bf4-9c4e0d879fed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Effect\WingedFace">
+      <UniqueIdentifier>{1d27d9f2-26dd-41b2-bf91-9c7937312a86}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -3,6 +3,8 @@
 #include "Penitent.h"
 #include "Fool_knife.h"
 #include "WingedFace.h"
+#include "Projectile.h"
+#include "Crosscrawler.h"
 
 Stage02::Stage02() 
 {
@@ -89,15 +91,15 @@ void Stage02::SettingMonster()
 	FlyingEnemy->GetTransform().SetWorldScale({2, 2});
 	MonsterList_.push_back(FlyingEnemy);
 
-	//Fool_knife* FoolKnife1 = CreateActor<Fool_knife>();
-	//FoolKnife1->GetTransform().SetWorldPosition({ 700, -1555, static_cast<int>(ACTORORDER::Monster) });
-	//FoolKnife1->SetGround(ColMap_);
-	//MonsterList_.push_back(FoolKnife1);
+	//Crosscrawler* NewCrosscrawler = CreateActor<Crosscrawler>();
+	//NewCrosscrawler->GetTransform().SetWorldPosition({ 1050, -1250, static_cast<int>(ACTORORDER::Monster) });
+	//NewCrosscrawler->SetGround(ColMap_);
+	//NewCrosscrawler->GetTransform().SetWorldScale({ 2, 2 });
+	//MonsterList_.push_back(FlyingEnemy);
 
-	//Fool_knife* FoolKnife2 = CreateActor<Fool_knife>();
-	//FoolKnife2->GetTransform().SetWorldPosition({ 600, -1555, static_cast<int>(ACTORORDER::Monster) });
-	//FoolKnife2->SetGround(ColMap_);
-	//MonsterList_.push_back(FoolKnife2);
+	Projectile* Effect = CreateActor<Projectile>();
+	Effect->GetTransform().SetWorldPosition({ 2150, -1250, static_cast<int>(ACTORORDER::AfterParallax5) });
+	Effect->GetTransform().SetWorldScale({ 2, 2 });
 }
 
 void Stage02::Start()
