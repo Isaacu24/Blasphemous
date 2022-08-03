@@ -24,11 +24,13 @@ void Stage30::SettingStage()
 	BeforeParallaxRendrer->SetTexture("13_1_BeforeParallax_1.png");
 	BeforeParallaxRendrer->ScaleToTexture();
 	BeforeParallaxRendrer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax0) });
+	Parallaxs_.push_back(BeforeParallaxRendrer);
 
 	GameEngineTextureRenderer* BeforeLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeLayerRenderer->SetTexture("13_1_BeforeLayer.png");
 	BeforeLayerRenderer->ScaleToTexture();
 	BeforeLayerRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax1) });
+	Parallaxs_.push_back(BeforeLayerRenderer);
 
 	Deogracias* NewDeogracias = CreateActor<Deogracias>();
 	NewDeogracias->GetTransform().SetWorldPosition({ 800, -870, static_cast<int>(ACTORORDER::NPC) });
@@ -71,6 +73,13 @@ void Stage30::Start()
 
 void Stage30::Update(float _DeltaTime)
 {
+	PrevPos_ = CurPos_;
+	CurPos_ = GetMainCameraActor()->GetTransform().GetWorldPosition();
+
+	float4 Dir = CurPos_ - PrevPos_;
+
+	MoveParallax(Dir, _DeltaTime);
+
 	GetMainCameraActor()->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition() + float4{ 0, 100 });
 
 	if (-50 < GetMainCameraActor()->GetTransform().GetWorldPosition().y)

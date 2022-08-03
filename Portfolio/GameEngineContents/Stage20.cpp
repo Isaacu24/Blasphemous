@@ -24,7 +24,8 @@ void Stage20::SettingStage()
 	GameEngineTextureRenderer* BeforePrallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforePrallaxRenderer->SetTexture("12_2_BeforeParallax_0.png");
 	BeforePrallaxRenderer->ScaleToTexture();
-	BeforePrallaxRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax0) });
+	BeforePrallaxRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax5) });
+	Parallaxs_.push_back(BeforePrallaxRenderer);
 
 	GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	StageRenderer->SetTexture("12_2_Tile.png");
@@ -65,6 +66,13 @@ void Stage20::Start()
 
 void Stage20::Update(float _DeltaTime)
 {
+	PrevPos_ = CurPos_;
+	CurPos_ = GetMainCameraActor()->GetTransform().GetWorldPosition();
+
+	float4 Dir = CurPos_ - PrevPos_;
+
+	MoveParallax(Dir, _DeltaTime);
+
 	GetMainCameraActor()->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition() + float4{ 0, 0 });
 
 	if (-1510 < GetMainCameraActor()->GetTransform().GetLocalPosition().x)

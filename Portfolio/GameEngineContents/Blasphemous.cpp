@@ -56,7 +56,7 @@ void Blasphemous::Start()
 	//²ŞÀÇ ÀúÆí
 	CreateLevel<Stage30>("Stage30");
 
-	ChangeLevel("MainMenu");
+	ChangeLevel("Title");
 
 	GameEngineInput::GetInst()->CreateKey("GotoTitle", 'T');
 	GameEngineInput::GetInst()->CreateKey("GotoMainMenu", 'M');

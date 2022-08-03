@@ -98,23 +98,23 @@ void ElderBrother::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
 
 bool ElderBrother::DecideState(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-	if (_This->GetTransform().GetWorldPosition().x < _Other->GetTransform().GetWorldPosition().x)
-	{
-		Renderer_->GetTransform().PixLocalPositiveX();
-	}
+	//if (_This->GetTransform().GetWorldPosition().x < _Other->GetTransform().GetWorldPosition().x)
+	//{
+	//	Renderer_->GetTransform().PixLocalPositiveX();
+	//}
 
-	else
-	{
-		State_.ChangeState("Jump");
-		Renderer_->GetTransform().PixLocalNegativeX();
-	}
+	//else
+	//{
+	//	State_.ChangeState("Jump");
+	//	Renderer_->GetTransform().PixLocalNegativeX();
+	//}
 
-	float Distance = abs(_This->GetTransform().GetWorldPosition().x - _Other->GetTransform().GetWorldPosition().x);
+	//float Distance = abs(_This->GetTransform().GetWorldPosition().x - _Other->GetTransform().GetWorldPosition().x);
 
-	if (500 >= Distance)
-	{
-		State_.ChangeState("Attack");
-	}
+	//if (500 >= Distance)
+	//{
+	//	State_.ChangeState("Attack");
+	//}
 
 	return true;
 }

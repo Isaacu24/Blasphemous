@@ -31,6 +31,8 @@ private:
 
 	bool IsEvent_;
 
+	float Time_;
+
 	void PlayerCameraMove();
 };
 

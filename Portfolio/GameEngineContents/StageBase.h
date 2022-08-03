@@ -27,13 +27,18 @@ public:
 
 	inline STAGEFLOW GetState()
 	{
-		return CurrentFlow_;
+		return	CurrentFlow_;
 	}
+
+	void MoveParallax(float4 _Dir, float _DeltaTime);
 
 protected:
 	STAGEFLOW CurrentFlow_;
 
 	GameEngineActor* Stage_;
+
+	float4 CurPos_;
+	float4 PrevPos_;
 
 	GameEngineTextureRenderer* ColMap_;
 
@@ -53,6 +58,8 @@ protected:
 
 	bool IsLeftExit_;
 	bool IsRightExit_;
+
+	std::vector<GameEngineTextureRenderer*> Parallaxs_;
 
 private:
 

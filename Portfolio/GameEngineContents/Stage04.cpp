@@ -26,26 +26,31 @@ void Stage04::SettingStage()
 	BeforeParallaxRenderer->SetTexture("1_4_BeforeParallax_0.png");
 	BeforeParallaxRenderer->ScaleToTexture();
 	BeforeParallaxRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax0) });
+	Parallaxs_.push_back(BeforeParallaxRenderer);
 
 	GameEngineTextureRenderer* BeforeParallaxRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer1->SetTexture("1_4_BeforeParallax_1.png");
 	BeforeParallaxRenderer1->ScaleToTexture();
 	BeforeParallaxRenderer1->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax1) });
+	Parallaxs_.push_back(BeforeParallaxRenderer1);
 
 	GameEngineTextureRenderer* BeforeParallaxRenderer2 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer2->SetTexture("1_4_BeforeParallax_2.png");
 	BeforeParallaxRenderer2->ScaleToTexture();
 	BeforeParallaxRenderer2->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax2) });
+	Parallaxs_.push_back(BeforeParallaxRenderer2);
 
 	GameEngineTextureRenderer* BeforeParallaxRenderer3 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer3->SetTexture("1_4_BeforeParallax_3.png");
 	BeforeParallaxRenderer3->ScaleToTexture();
 	BeforeParallaxRenderer3->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax3) });
+	Parallaxs_.push_back(BeforeParallaxRenderer3);
 
 	GameEngineTextureRenderer* BeforeParallaxRenderer4 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer4->SetTexture("1_4_BeforeParallax_4.png");
 	BeforeParallaxRenderer4->ScaleToTexture();
 	BeforeParallaxRenderer4->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax4) });
+	Parallaxs_.push_back(BeforeParallaxRenderer4);
 
 	GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	StageRenderer->SetTexture("1_4_Tile.png");
@@ -91,11 +96,18 @@ void Stage04::Start()
 
 void Stage04::Update(float _DeltaTime)
 {
+	PrevPos_ = CurPos_;
+	CurPos_ = GetMainCameraActor()->GetTransform().GetWorldPosition();
+
+	float4 Dir = CurPos_ - PrevPos_;
+
+	MoveParallax(Dir, _DeltaTime);
+
 	switch (CurrentFlow_)
 	{
 	case STAGEFLOW::NORMAL:
 		if (false == IsEvent_
-			&& 900 < Penitent_->GetTransform().GetWorldPosition().x)
+			&& 1400 < Penitent_->GetTransform().GetWorldPosition().x)
 		{
 			CurrentFlow_ = STAGEFLOW::BOSSAPPEAR;
 		}
@@ -103,9 +115,16 @@ void Stage04::Update(float _DeltaTime)
 		PlayerCameraMove();
 		break;
 	case STAGEFLOW::BOSSAPPEAR:
-		IsEvent_ = true;
-		BossUI_ = CreateActor<BossUI>();
-		CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
+		Time_ += _DeltaTime;
+
+		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition() + float4{Time_ * 30, 100} });
+
+		if (3.f < Time_)
+		{
+			IsEvent_ = true;
+			BossUI_ = CreateActor<BossUI>();
+			CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
+		}
 		break;
 	default:
 		PlayerCameraMove();
