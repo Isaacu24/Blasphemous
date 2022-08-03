@@ -18,7 +18,6 @@ void Fool_knife::Start()
 	Renderer_->CreateFrameAnimation("Fool_walk_knife", { "Fool_walk_knife.png", 0, 8, 0.1f, true });
 	Renderer_->CreateFrameAnimation("Fool_death_knife", { "Fool_death_knife.png", 0, 13, 0.1f, false });
 	Renderer_->ChangeFrameAnimation("fool_idle_knife");
-
 	Renderer_->GetTransform().SetWorldScale({ 400, 300 });
 	Renderer_->SetPivot(PIVOTMODE::BOT);
 

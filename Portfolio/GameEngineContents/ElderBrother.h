@@ -27,11 +27,18 @@ public:
 
 	bool DecideState(GameEngineCollision* _This, GameEngineCollision* _Other);
 
+	inline void ChangeIdle(const FrameAnimation_DESC& _Info)
+	{
+		State_.ChangeState("Idle");
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 	void End() override;
 
 private:
+	//float4 Dir_;
+
 };
 

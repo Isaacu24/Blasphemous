@@ -64,7 +64,6 @@ void GameEngineLevel::ActorUpdate(float _DeltaTime)
 void GameEngineLevel::PushRenderer(GameEngineRenderer* _Renderer, int _CameraOrder)
 {
 	// 기존 자신이 있던 자리에서 지우고
-
 	Cameras[static_cast<UINT>(_Renderer->CameraOrder)]->AllRenderer_[_Renderer->GetOrder()].remove(_Renderer);
 
 	_Renderer->CameraOrder = static_cast<CAMERAORDER>(_CameraOrder);
@@ -139,13 +138,29 @@ void GameEngineLevel::Release(float _DelataTime)
 
 		Cameras[i]->Release(_DelataTime);
 	}
+	{
+		std::map<int, std::list<GameEngineCollision*>>::iterator StartGroupIter = AllCollisions.begin();
+		std::map<int, std::list<GameEngineCollision*>>::iterator EndGroupIter = AllCollisions.end();
 
-	// std::list<GameEngineActor*> 루트 액터 부모가 없는 액터들만 여기에 들어올수 있다.
-	// a c
-	// b
-	// 
-	// b->setParent(a);
+		for (; StartGroupIter != EndGroupIter; ++StartGroupIter)
+		{
+			std::list<GameEngineCollision*>& Group = StartGroupIter->second;
 
+			std::list<GameEngineCollision*>::iterator GroupStart = Group.begin();
+			std::list<GameEngineCollision*>::iterator GroupEnd = Group.end();
+			for (; GroupStart != GroupEnd; )
+			{
+				if (true == (*GroupStart)->IsDeath())
+				{
+					GroupStart = Group.erase(GroupStart);
+				}
+				else
+				{
+					++GroupStart;
+				}
+			}
+		}
+	}
 	std::map<int, std::list<GameEngineActor*>>::iterator StartGroupIter = AllActors.begin();
 	std::map<int, std::list<GameEngineActor*>>::iterator EndGroupIter = AllActors.end();
 
@@ -224,7 +239,6 @@ void GameEngineLevel::OverChildMove(GameEngineLevel* _NextLevel)
 
 			std::list<GameEngineActor*>::iterator GroupStart = Group.begin();
 			std::list<GameEngineActor*>::iterator GroupEnd = Group.end();
-
 			for (; GroupStart != GroupEnd; )
 			{
 				if (true == (*GroupStart)->IsLevelOver)
@@ -272,15 +286,8 @@ void GameEngineLevel::OverChildMove(GameEngineLevel* _NextLevel)
 
 			std::list<GameEngineCollision*>::iterator GroupStart = Group.begin();
 			std::list<GameEngineCollision*>::iterator GroupEnd = Group.end();
-
 			for (; GroupStart != GroupEnd; )
 			{
-				if (true == (*GroupStart)->IsDeath())
-				{
-					++GroupStart;
-					continue;
-				}
-
 				if (true == (*GroupStart)->GetRoot<GameEngineActor>()->IsLevelOver)
 				{
 					// 내쪽에서는 삭제되고

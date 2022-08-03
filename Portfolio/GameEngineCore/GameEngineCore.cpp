@@ -64,8 +64,6 @@ void GameEngineCore::CoreUpdate(GameEngineCore* _UserCore)
 {
 	if (nullptr != NextLevel)
 	{
-
-
 		Rectangle(GameEngineWindow::GetInst()->GetHDC()
 			, 0
 			, 0
@@ -74,7 +72,6 @@ void GameEngineCore::CoreUpdate(GameEngineCore* _UserCore)
 		if (nullptr != CurrentLevel)
 		{
 			CurrentLevel->OffEvent();
-
 			CurrentLevel->OverChildMove(NextLevel);
 		}
 
@@ -137,9 +134,10 @@ void GameEngineCore::CoreEnd(GameEngineCore* _UserCore)
 void GameEngineCore::WindowCreate(const std::string& _Name, GameEngineCore* _UserCore)
 {
 	GameEngineWindow::GetInst()->CreateGameWindow(nullptr, _Name.c_str());
-	GameEngineWindow::GetInst()->SetWindowScaleAndPosition({ 300, 200 }, { 1280, 720 });
+	GameEngineWindow::GetInst()->SetWindowScaleAndPosition(_UserCore->StartWindowPosition(), _UserCore->StartWindowSize());
 	GameEngineWindow::GetInst()->ShowGameWindow();
 	GameEngineDevice::Initialize();
+
 
 	// 엔진의 실행인데.
 	GameEngineWindow::GetInst()->MessageLoop(
@@ -147,6 +145,8 @@ void GameEngineCore::WindowCreate(const std::string& _Name, GameEngineCore* _Use
 		std::bind(&GameEngineCore::CoreUpdate, _UserCore),
 		std::bind(&GameEngineCore::CoreEnd, _UserCore)
 	);
+
+
 }
 
 void GameEngineCore::InitializeLevel(GameEngineLevel* _Level, const std::string _Name)

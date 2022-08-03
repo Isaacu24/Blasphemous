@@ -66,6 +66,7 @@ void Penitent::Start()
 	}
 
 	Gravity_ = CreateComponent<GravityComponent>();
+
 	Collider_ = CreateComponent<GameEngineCollision>();
 	Collider_->GetTransform().SetWorldScale({100.f, 100.f, 1.0f});
 	Collider_->ChangeOrder(COLLISIONORDER::Player);
@@ -86,7 +87,6 @@ void Penitent::Start()
 		Renderer_->CreateFrameAnimation("penitent_dodge_attack_LVL3", { "penitent_dodge_attack_LVL3.png", 0, 26, 0.1f, true });
 		Renderer_->CreateFrameAnimation("penitent_falling_ahead_anim 1", { "penitent_falling_ahead_anim 1.png", 0, 5, 0.1f, true });
 		Renderer_->CreateFrameAnimation("penitent_jumpoff_new", { "penitent_jumpoff_new.png", 0, 4, 0.1f, true });
-		Renderer_->ChangeFrameAnimation("penintent_idle_anim");
 	}
 
 	StateManager_.CreateStateMember("Idle", this, &Penitent::IdleUpdate, &Penitent::IdleStart);
@@ -157,6 +157,10 @@ void Penitent::Update(float _DeltaTime)
 
 	Collider_->IsCollision(CollisionType::CT_OBB2D, COLLISIONORDER::Projectile, CollisionType::CT_OBB2D,
 		std::bind(&Penitent::HitProjectile, this, std::placeholders::_1, std::placeholders::_2)
+	);
+
+	Collider_->IsCollision(CollisionType::CT_OBB2D, COLLISIONORDER::BossMonster, CollisionType::CT_OBB2D,
+		std::bind(&Penitent::HitMonster, this, std::placeholders::_1, std::placeholders::_2)
 	);
 
 	GroundCheck(); //지면 체크
@@ -298,6 +302,7 @@ void Penitent::End()
 
 void Penitent::IdleStart(const StateInfo& _Info)
 {
+	Renderer_->ChangeFrameAnimation("penintent_idle_anim");
 	Collider_->GetTransform().SetWorldScale({ 100.f, 100.f, 1.0f });
 }
 

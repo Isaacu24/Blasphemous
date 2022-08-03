@@ -15,6 +15,7 @@ public:
 
 protected:
 	void SettingStage() override;
+	void SettingMonster() override;
 
 	void Start() override;
 	void Update(float _DeltaTime) override;

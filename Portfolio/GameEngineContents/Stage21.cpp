@@ -33,14 +33,6 @@ void Stage21::SettingStage()
 	BeforeLayerRenderer1->ScaleToTexture();
 	BeforeLayerRenderer1->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax1) });
 
-	Pontiff* NewPontiff = CreateActor<Pontiff>();
-	NewPontiff->GetTransform().SetWorldPosition({ 1250, -520, static_cast<int>(ACTORORDER::Monster) });
-	BossMonster_ = NewPontiff;
-
-	GiantSword* NewGiantSword = CreateActor<GiantSword>();
-	NewGiantSword->GetTransform().SetWorldPosition({ 1250, -600 , static_cast<int>(ACTORORDER::AtherMonster) });
-	BossMonster_ = NewGiantSword;
-
 	GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	StageRenderer->SetTexture("12_3_Tile.png");
 	StageRenderer->ScaleToTexture();
@@ -57,12 +49,25 @@ void Stage21::SettingStage()
 	NewPlatform->GetTransform().SetWorldPosition({ 1250, -600 , static_cast<int>(ACTORORDER::AfterParallax1) });
 	NewPlatform->GetTransform().SetWorldScale({2, 2});
 
-	GetMainCameraActor()->GetTransform().SetWorldPosition({1250, -670});
+	GetMainCameraActor()->GetTransform().SetWorldPosition({ 1250, -670 });
+
+}
+
+void Stage21::SettingMonster()
+{
+	Pontiff* NewPontiff = CreateActor<Pontiff>();
+	NewPontiff->GetTransform().SetWorldPosition({ 1250, -520, static_cast<int>(ACTORORDER::Monster) });
+	BossMonster_ = NewPontiff;
+
+	GiantSword* NewGiantSword = CreateActor<GiantSword>();
+	NewGiantSword->GetTransform().SetWorldPosition({ 1250, -600 , static_cast<int>(ACTORORDER::BossMonster) });
+	BossMonster_ = NewGiantSword;
 }
 
 void Stage21::Start()
 {
 	SettingStage();
+	SettingMonster();
 }
 
 void Stage21::Update(float _DeltaTime)

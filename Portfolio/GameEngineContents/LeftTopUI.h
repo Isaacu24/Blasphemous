@@ -4,6 +4,7 @@
 class LeftTopUI : public GameEngineActor
 {
 	friend class PlayerUI;
+	friend class BossUI;
 
 public:
 	LeftTopUI();

@@ -2,8 +2,10 @@
 #include "Stage04.h"
 #include "Penitent.h"
 #include "ElderBrother.h"
+#include "BossUI.h"
 
 Stage04::Stage04()
+	: IsEvent_(false)
 {
 }
 
@@ -50,11 +52,6 @@ void Stage04::SettingStage()
 	StageRenderer->ScaleToTexture();
 	StageRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::Tile) });
 
-	ElderBrother* NewElderBrother = CreateActor<ElderBrother>();
-	NewElderBrother->GetTransform().SetWorldPosition({ 2000, -800, static_cast<int>(ACTORORDER::Monster) });
-	NewElderBrother->GetTransform().SetWorldScale({ 1500, 750 });
-	NewElderBrother->GetTransform().PixLocalNegativeX();
-
 	GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	DoorRenderer->SetTexture("1_4_Door.png");
 	DoorRenderer->ScaleToTexture();
@@ -78,47 +75,41 @@ void Stage04::SettingStage()
 	IsLeftExit_ = true;
 }
 
+void Stage04::SettingMonster()
+{
+	ElderBrother* NewElderBrother = CreateActor<ElderBrother>();
+	NewElderBrother->GetTransform().SetWorldPosition({ 1800, -1200, static_cast<int>(ACTORORDER::BossMonster) });
+	NewElderBrother->SetGround(ColMap_);
+	BossMonster_ = NewElderBrother;
+}
 
 void Stage04::Start()
 {
 	SettingStage();
+	SettingMonster();
 }
 
 void Stage04::Update(float _DeltaTime)
 {
-	GetMainCameraActor()->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition() + float4{0, 100});
-
-	if (-700 < GetMainCameraActor()->GetTransform().GetLocalPosition().y)
+	switch (CurrentFlow_)
 	{
-		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ GetMainCameraActor()->GetTransform().GetLocalPosition().x, -700 });
-	}
+	case STAGEFLOW::NORMAL:
+		if (false == IsEvent_
+			&& 900 < Penitent_->GetTransform().GetWorldPosition().x)
+		{
+			CurrentFlow_ = STAGEFLOW::BOSSAPPEAR;
+		}
 
-	if (650 > GetMainCameraActor()->GetTransform().GetLocalPosition().x)
-	{
-		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ 650, GetMainCameraActor()->GetTransform().GetLocalPosition().y });
-	}
-
-	if (2300 < GetMainCameraActor()->GetTransform().GetLocalPosition().x)
-	{
-		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ 2300, GetMainCameraActor()->GetTransform().GetLocalPosition().y });
-	}
-
-	if (200 > Penitent_->GetTransform().GetWorldPosition().x)
-	{
-		IsLeftExit_ = true;
-		GEngine::ChangeLevel("Stage03");
-	}
-
-	if (2800 < Penitent_->GetTransform().GetWorldPosition().x)
-	{
-		IsRightExit_ = true;
-		GEngine::ChangeLevel("Stage05");
-	}
-
-	if (CurrentFlow_ != STAGEFLOW::BOSSAPPEAR 
-		&& 400 < Penitent_->GetTransform().GetWorldPosition().x)
-	{
-		CurrentFlow_ = STAGEFLOW::BOSSAPPEAR;
+		PlayerCameraMove();
+		break;
+	case STAGEFLOW::BOSSAPPEAR:
+		IsEvent_ = true;
+		BossUI_ = CreateActor<BossUI>();
+		CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
+		break;
+	default:
+		PlayerCameraMove();
+		break;
 	}
 }
 
@@ -172,6 +163,38 @@ void Stage04::OnEvent()
 
 void Stage04::OffEvent()
 {
+}
+
+void Stage04::PlayerCameraMove()
+{
+	GetMainCameraActor()->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition() + float4{ 0, 100 });
+
+	if (-700 < GetMainCameraActor()->GetTransform().GetLocalPosition().y)
+	{
+		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ GetMainCameraActor()->GetTransform().GetLocalPosition().x, -700 });
+	}
+
+	if (650 > GetMainCameraActor()->GetTransform().GetLocalPosition().x)
+	{
+		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ 650, GetMainCameraActor()->GetTransform().GetLocalPosition().y });
+	}
+
+	if (2300 < GetMainCameraActor()->GetTransform().GetLocalPosition().x)
+	{
+		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ 2300, GetMainCameraActor()->GetTransform().GetLocalPosition().y });
+	}
+
+	if (200 > Penitent_->GetTransform().GetWorldPosition().x)
+	{
+		IsLeftExit_ = true;
+		GEngine::ChangeLevel("Stage03");
+	}
+
+	if (2800 < Penitent_->GetTransform().GetWorldPosition().x)
+	{
+		IsRightExit_ = true;
+		GEngine::ChangeLevel("Stage05");
+	}
 }
 
 

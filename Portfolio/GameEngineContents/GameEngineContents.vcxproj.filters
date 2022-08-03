@@ -140,6 +140,9 @@
     <ClInclude Include="Projectile.h">
       <Filter>Actor\Effect\Monster\Normal\WingedFace</Filter>
     </ClInclude>
+    <ClInclude Include="BossUI.h">
+      <Filter>Actor\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -277,6 +280,9 @@
     </ClCompile>
     <ClCompile Include="Projectile.cpp">
       <Filter>Actor\Effect\Monster\Normal\WingedFace</Filter>
+    </ClCompile>
+    <ClCompile Include="BossUI.cpp">
+      <Filter>Actor\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

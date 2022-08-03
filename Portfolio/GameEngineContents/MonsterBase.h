@@ -66,6 +66,7 @@ protected:
 	bool IsGround_;
 
 	bool GroundCheck(int _X, int _Y);
+	bool UphillRoadCheck(int _X, int _Y);
 
 private:
 

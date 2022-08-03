@@ -9,21 +9,15 @@ ElderBrother::~ElderBrother()
 {
 }
 
-//GameEngineTexture::Cut("elderBrother_idle.png", 3, 4);
-//GameEngineTexture::Cut("elderBrother_jump.png", 4, 7);
-//GameEngineTexture::Cut("elderBrother_attack.png", 4, 6);
-//GameEngineTexture::Cut("elderBrother_death.png", 5, 10);
-//GameEngineTexture::Cut("elderBrother_corpse.png", 4, 3);
-
 void ElderBrother::Start()
 {
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 	Renderer_->CreateFrameAnimation("elderBrother_idle", {"elderBrother_idle.png", 0, 9, 0.15f, true});
 	Renderer_->CreateFrameAnimation("elderBrother_jump", { "elderBrother_jump.png", 0, 24, 0.15f, true });
 	Renderer_->CreateFrameAnimation("elderBrother_attack", { "elderBrother_attack.png", 0, 23, 0.1f, true });
-	Renderer_->CreateFrameAnimation("elderBrother_death", { "elderBrother_death.png", 0, 48, 0.1f, true });
-	Renderer_->ChangeFrameAnimation("elderBrother_idle");
-	Renderer_->SetPivot(PIVOTMODE::CENTER);
+	Renderer_->CreateFrameAnimation("elderBrother_death", { "elderBrother_death.png", 0, 48, 0.1f, false });
+	Renderer_->GetTransform().SetWorldScale({1200, 700});
+	Renderer_->SetPivot(PIVOTMODE::BOT);
 
 	State_.CreateStateMember("Idle", this, &ElderBrother::IdleUpdate, &ElderBrother::IdleStart);
 	State_.CreateStateMember("Jump", this, &ElderBrother::JumpUpdate, &ElderBrother::JumpStart);
@@ -31,15 +25,26 @@ void ElderBrother::Start()
 	State_.CreateStateMember("Death", this, &ElderBrother::DeathUpdate, &ElderBrother::DeathStart);
 	State_.ChangeState("Idle");
 
+	Gravity_ = CreateComponent<GravityComponent>();
+
 	DetectCollider_ = CreateComponent<GameEngineCollision>();
-	DetectCollider_->GetTransform().SetWorldScale({500, 500});
 	DetectCollider_->ChangeOrder(COLLISIONORDER::BossMonster);
+	DetectCollider_->GetTransform().SetWorldScale({ 2000.0f, 500.0f, 1.0f });
 }
 
 void ElderBrother::Update(float _DeltaTime)
 {
-	Renderer_;
 	State_.Update(_DeltaTime);
+
+	if (true == GroundCheck(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y + 89.f)))
+	{
+		if (true == UphillRoadCheck(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y + 90.f)))
+		{
+			GetTransform().SetWorldMove(float4::UP);
+		}
+	}
+
+	Gravity_->SetActive(!IsGround_);
 }
 
 void ElderBrother::End()
@@ -59,18 +64,22 @@ void ElderBrother::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void ElderBrother::JumpStart(const StateInfo& _Info)
 {
+	Speed_ = 600.f;
 	Renderer_->ChangeFrameAnimation("elderBrother_jump");
-
+	Renderer_->AnimationBindEnd("elderBrother_jump", &ElderBrother::ChangeIdle, this);
 }
 
 void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+	Speed_ -= 1.f;
+	GetTransform().SetWorldMove(float4::UP * Speed_ * _DeltaTime);
+	GetTransform().SetWorldMove(float4::LEFT * 50 * _DeltaTime);
 }
 
 void ElderBrother::AttackStart(const StateInfo& _Info)
 {
 	Renderer_->ChangeFrameAnimation("elderBrother_attack");
-
+	Renderer_->AnimationBindEnd("elderBrother_attack", &ElderBrother::ChangeIdle, this);
 }
 
 void ElderBrother::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -84,6 +93,7 @@ void ElderBrother::DeathStart(const StateInfo& _Info)
 
 void ElderBrother::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+
 }
 
 bool ElderBrother::DecideState(GameEngineCollision* _This, GameEngineCollision* _Other)
@@ -95,8 +105,16 @@ bool ElderBrother::DecideState(GameEngineCollision* _This, GameEngineCollision* 
 
 	else
 	{
+		State_.ChangeState("Jump");
 		Renderer_->GetTransform().PixLocalNegativeX();
 	}
 
-	return false;
+	float Distance = abs(_This->GetTransform().GetWorldPosition().x - _Other->GetTransform().GetWorldPosition().x);
+
+	if (500 >= Distance)
+	{
+		State_.ChangeState("Attack");
+	}
+
+	return true;
 }

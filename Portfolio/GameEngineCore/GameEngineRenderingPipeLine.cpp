@@ -26,6 +26,7 @@ GameEngineRenderingPipeLine::GameEngineRenderingPipeLine()
 	IndexBuffer = GameEngineIndexBuffer::Find("rect");
 	Rasterizer = GameEngineRasterizer::Find("EngineRasterizer");
 	Blend = GameEngineBlend::Find("AlphaBlend");
+	DepthStencil = GameEngineDepthStencil::Find("EngineBaseDepth");
 }
 
 GameEngineRenderingPipeLine::~GameEngineRenderingPipeLine()
@@ -50,6 +51,15 @@ GameEngineRenderingPipeLine::~GameEngineRenderingPipeLine()
 //		return;
 //	}
 //}
+
+void GameEngineRenderingPipeLine::AllShaderReset()
+{
+	GameEngineDevice::GetContext()->VSSetShader(nullptr, nullptr, 0);
+	GameEngineDevice::GetContext()->GSSetShader(nullptr, nullptr, 0);
+	GameEngineDevice::GetContext()->DSSetShader(nullptr, nullptr, 0);
+	GameEngineDevice::GetContext()->HSSetShader(nullptr, nullptr, 0);
+	GameEngineDevice::GetContext()->PSSetShader(nullptr, nullptr, 0);
+}
 
 GameEngineRenderingPipeLine* GameEngineRenderingPipeLine::Create(const std::string& _Name)
 {
@@ -190,7 +200,6 @@ void GameEngineRenderingPipeLine::Rendering()
 void GameEngineRenderingPipeLine::InputAssembler1VertexBufferSetting()
 {
 	// 그래픽리소스에 Setting이라는 함수가 존재한다면
-	// 그건 이제부터 그 설정으로 랜더링 파이프라인이 돌아가게 된다는 뜻이 됩니다.
 	InputLayOut->Setting();
 	// 버텍스 버퍼는 세팅할게 없다.
 	VertexBuffer->Setting();
@@ -200,12 +209,13 @@ void GameEngineRenderingPipeLine::VertexShaderSetting()
 {
 	VertexShader->Setting();
 	// 위치 
-	GameEngineDevice::GetContext()->IASetPrimitiveTopology(Topology);
 	// D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 }
 
 void GameEngineRenderingPipeLine::InputAssembler2IndexBufferSetting()
 {
+	GameEngineDevice::GetContext()->IASetPrimitiveTopology(Topology);
+
 	IndexBuffer->Setting();
 }
 
@@ -226,7 +236,7 @@ void GameEngineRenderingPipeLine::OutputMergerBlendSetting()
 
 void GameEngineRenderingPipeLine::OutputMergerDepthStencilSetting()
 {
-
+	DepthStencil->Setting();
 }
 
 

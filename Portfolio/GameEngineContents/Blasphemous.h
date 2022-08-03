@@ -22,6 +22,16 @@ protected:
 	void Update(float _DeltaTime) override;
 	void End() override;
 
+	float4 StartWindowSize() override
+	{
+		return { 1280.0f, 720.0f };
+	};
+
+	float4 StartWindowPosition() override
+	{
+		return { 300.0f, 200.0f };
+	}
+
 private:
 	void LoadResources();
 	void LoadMap(const std::string& _Level, int _Room, int _Index);

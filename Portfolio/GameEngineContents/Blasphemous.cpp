@@ -541,6 +541,7 @@ void Blasphemous::CutTexture()
 	GameEngineTexture::Cut("pope_death.png", 6, 6);
 	GameEngineTexture::Cut("pope_hitReaction.png", 4, 3);
 	GameEngineTexture::Cut("pope_spellCast.png", 8, 7);
+	GameEngineTexture::Cut("pope_spellCast_FXS.png", 8, 7);
 	GameEngineTexture::Cut("pope_vanishing.png", 4, 4);
 
 	GameEngineTexture::Cut("pontiff_giantSword_teleportOUT.png", 9, 3);

@@ -17,6 +17,7 @@ public:
 
 protected:
 	void SettingStage() override;
+	void SettingMonster() override;
 
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -26,5 +27,10 @@ protected:
 	void OffEvent() override;
 
 private:
+	class BossUI* BossUI_;
+
+	bool IsEvent_;
+
+	void PlayerCameraMove();
 };
 

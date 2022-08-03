@@ -15,7 +15,7 @@ enum class ACTORORDER
 
 	Player,
 	NPC,
-	AtherMonster,
+	BossMonster,
 	Monster,
 	Object,
 

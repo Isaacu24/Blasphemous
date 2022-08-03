@@ -19,8 +19,6 @@ void PlayerUI::Start()
 	HPBar_->Renderer_->ScaleToTexture();
 	HPBar_->Renderer_->SetPivot(PIVOTMODE::LEFTTOP);
 	HPBar_->SetLevelOverOn();
-	HPBar_->Renderer_->ScaleToTexture();
-	HPBar_->Renderer_->SetPivot(PIVOTMODE::LEFTTOP);
 
 	MPBar_ = GetLevel()->CreateActor<LeftTopUI>();
 	MPBar_->Renderer_->SetTexture("Player_MP.png");

@@ -2,16 +2,6 @@
 #include <GameEngineCore/GameEngineActor.h>
 #include "BossMonster.h"
 
-enum class PopeState
-{
-	Idle,
-	Appear, //등장
-	Vanishing, //사라짐
-	SpellCast,
-	Hit,
-	Death
-};
-
 //첫 번째 교황
 class Pope : public GameEngineActor, public BossMonster
 {
@@ -30,6 +20,7 @@ protected:
 	void End() override;
 
 private:
-	PopeState CurrentState_;
+
+	bool DecideState(GameEngineCollision* _This, GameEngineCollision* _Other);
 };
 

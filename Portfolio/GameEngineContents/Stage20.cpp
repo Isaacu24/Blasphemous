@@ -31,10 +31,6 @@ void Stage20::SettingStage()
 	StageRenderer->ScaleToTexture();
 	StageRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::Tile) });
 
-	Pope* NewPope = CreateActor<Pope>();
-	BossMonster_ = NewPope;
-	NewPope->GetTransform().SetWorldPosition({ 1750, -1660, static_cast<int>(ACTORORDER::Monster) });
-
 	GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	AfterLayerRenderer->SetTexture("12_2_AfterLayer.png");
 	AfterLayerRenderer->ScaleToTexture();
@@ -53,9 +49,18 @@ void Stage20::SettingStage()
 	IsLeftExit_ = true;
 }
 
+void Stage20::SettingMonster()
+{
+	Pope* NewPope = CreateActor<Pope>();
+	NewPope->GetTransform().SetWorldPosition({ 1800, -1760, static_cast<int>(ACTORORDER::BossMonster) });
+	NewPope->SetGround(ColMap_);
+	BossMonster_ = NewPope;
+}
+
 void Stage20::Start()
 {
 	SettingStage();
+	SettingMonster();
 }
 
 void Stage20::Update(float _DeltaTime)

@@ -14,6 +14,8 @@ class GameEngineBlend;
 class GameEngineRenderingPipeLine : public GameEngineRes<GameEngineRenderingPipeLine>
 {
 public:
+	static void AllShaderReset();
+
 	static GameEngineRenderingPipeLine* Create(const std::string& _Name);
 
 public:
@@ -29,12 +31,25 @@ public:
 
 	// void SetInputAssembler1InputLayOutSetting(const std::string& _Name);
 
+	// 범위를 지정하려면 면이 필요하지?
+	// 면을 이루려면 점이 필요하죠?
+	// 리소스는 점을 n개를 버퍼라는 개념으로 그래픽카드한테 쏴주는거다.
+
+	// 이 점은 모니터 공간으로 가야 랜더링
+	// WinApi때 그 좌표계로 가야 한다.
+
+	// 점의 구조를 알려주는 인풋레이아웃도 이 단계에서 세팅된다.
 	void SetInputAssembler1VertexBuffer(const std::string& _Name);
 
+	// 버텍스 쉐이더
+	// 그렇게 넣어준 점을 이동시켜야 내가 원하는 곳에 범위를 잡을수 있다.
+	// 점 하나하나를 원하는 위치에 옮긴다.
+	// 즉 점을 내마음대로 수치를 변경할수 있는 단계
 	void SetVertexShader(const std::string& _Name);
 
 	void SetInputAssembler2IndexBuffer(const std::string& _Name);
 
+	// 그리고 나서 이 점들을 진짜 모니터 위치로 옮겨주는 역할을 
 	void SetRasterizer(const std::string& _Name);
 
 	void SetPixelShader(const std::string& _Name);
@@ -61,12 +76,7 @@ protected:
 private:
 	GameEngineInputLayOut* InputLayOut; // 인풋어셈블러1 세팅
 	GameEngineVertexBuffer* VertexBuffer; // 인풋어셈블러1 세팅
-
-	// HLSL이라는 다른 언어를 사용하는 단계에요.
-	// HLSL은 그래픽카드에 특정 데이터에 대한 처리 단계를 우리가 직접 작성해서
-	// 그래픽카드에 올려줄수 있는 겁니다.
-
-	// 정점을 이렇게 처리해.
+	
 	GameEngineVertexShader* VertexShader; // 버텍스쉐이더 세팅
 
 	GameEngineIndexBuffer* IndexBuffer; // 인풋어셈블러2 세팅
