@@ -27,9 +27,9 @@ void WingedFace::Start()
 	DetectCollider_->ChangeOrder(COLLISIONORDER::Monster);
 	DetectCollider_->GetTransform().SetWorldScale({ 300.0f, 300.0f, 1.0f });
 
-	State_.CreateStateMember("Patrol", this, &WingedFace::PatrolUpdate, &WingedFace::PatrolStart);
-	State_.CreateStateMember("Shoot", this, &WingedFace::ShootUpdate, &WingedFace::ShootStart);
-	State_.CreateStateMember("Death", this, &WingedFace::DeathUpdate, &WingedFace::DeathStart);
+	State_.CreateStateMember("Patrol", std::bind(&WingedFace::PatrolUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&WingedFace::PatrolStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Shoot", std::bind(&WingedFace::ShootUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&WingedFace::ShootStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Death", std::bind(&WingedFace::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&WingedFace::DeathStart, this, std::placeholders::_1));
 	State_.ChangeState("Patrol");
 
 	SetSpeed(150.f);
@@ -144,7 +144,8 @@ void WingedFace::DeathStart(const StateInfo& _Info)
 	Renderer_->SetScaleModeImage();
 	Renderer_->SetPivot(PIVOTMODE::CENTER);
 
-	Renderer_->AnimationBindEnd("WingedFaceDeath", &WingedFace::DeathEnd, this);
+	Renderer_->AnimationBindEnd("WingedFaceDeath", std::bind(&WingedFace::DeathEnd, this, std::placeholders::_1));
+
 }
 
 void WingedFace::DeathUpdate(float _DeltaTime, const StateInfo& _Info)

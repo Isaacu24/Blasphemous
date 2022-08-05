@@ -27,12 +27,12 @@ void Fool_knife::Start()
 	DetectCollider_->ChangeOrder(COLLISIONORDER::Monster);
 	DetectCollider_->GetTransform().SetWorldScale({ 600.0f, 300.0f, 1.0f });
 
-	State_.CreateStateMember("Idle", this, &Fool_knife::IdleUpdate, &Fool_knife::IdleStart);
-	State_.CreateStateMember("Patrol", this, &Fool_knife::PatrolUpdate, &Fool_knife::PatrolStart);
-	State_.CreateStateMember("Track", this, &Fool_knife::TrackUpdate, &Fool_knife::TrackStart);
-	State_.CreateStateMember("Death", this, &Fool_knife::DeathUpdate, &Fool_knife::DeathStart);
-	State_.CreateStateMember("Turn", this, &Fool_knife::TurnUpdate, &Fool_knife::TurnStart);
-	State_.CreateStateMember("Hurt", this, &Fool_knife::HurtUpdate, &Fool_knife::HurtStart);
+	State_.CreateStateMember("Idle", std::bind(&Fool_knife::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Fool_knife::IdleStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Patrol", std::bind(&Fool_knife::PatrolUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Fool_knife::PatrolStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Track", std::bind(&Fool_knife::TrackUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Fool_knife::TrackStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Death", std::bind(&Fool_knife::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Fool_knife::DeathStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Turn", std::bind(&Fool_knife::TurnUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Fool_knife::TurnStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Hurt", std::bind(&Fool_knife::HurtUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Fool_knife::HurtStart, this, std::placeholders::_1));
 	State_.ChangeState("Patrol");
 
 	SetSpeed(70.f);
@@ -200,7 +200,7 @@ void Fool_knife::HurtUpdate(float _DeltaTime, const StateInfo& _Info)
 void Fool_knife::TurnStart(const StateInfo& _Info)
 {
 	Renderer_->ChangeFrameAnimation("Fool_turn_knife");
-	Renderer_->AnimationBindEnd("Fool_turn_knife", &Fool_knife::TurnEnd, this);
+	Renderer_->AnimationBindEnd("Fool_turn_knife", std::bind(&Fool_knife::TurnEnd, this, std::placeholders::_1));
 }
 
 void Fool_knife::TurnUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -211,7 +211,7 @@ void Fool_knife::TurnUpdate(float _DeltaTime, const StateInfo& _Info)
 void Fool_knife::DeathStart(const StateInfo& _Info)
 {
 	Renderer_->ChangeFrameAnimation("Fool_death_knife");
-	Renderer_->AnimationBindEnd("Fool_death_knife", &Fool_knife::DeathEnd, this);
+	Renderer_->AnimationBindEnd("Fool_death_knife", std::bind(&Fool_knife::DeathEnd, this, std::placeholders::_1));
 }
 
 void Fool_knife::DeathUpdate(float _DeltaTime, const StateInfo& _Info)

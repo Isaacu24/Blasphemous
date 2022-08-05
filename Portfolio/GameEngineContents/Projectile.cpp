@@ -32,8 +32,8 @@ void Projectile::Start()
 	Collider_->ChangeOrder(COLLISIONORDER::Projectile);
 	Collider_->GetTransform().SetWorldScale({ 10.0f, 10.0f, 1.0f });
 
-	State_.CreateStateMember("Shoot", this, &Projectile::ShootUpdate, &Projectile::ShootStart);
-	State_.CreateStateMember("Explosion", this, &Projectile::ExplosionUpdate, &Projectile::ExplosionStart);
+	State_.CreateStateMember("Shoot", std::bind(&Projectile::ShootUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Projectile::ShootStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Explosion", std::bind(&Projectile::ExplosionUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Projectile::ExplosionStart, this, std::placeholders::_1));
 	State_.ChangeState("Shoot");
 }
 
@@ -78,7 +78,7 @@ void Projectile::ExplosionStart(const StateInfo& _Info)
 {
 	Renderer_->GetTransform().SetWorldScale({ 200.f, 200.f });
 	Renderer_->ChangeFrameAnimation("TakeBackProyectileExplosion");
-	Renderer_->AnimationBindEnd("TakeBackProyectileExplosion", &Projectile::ExplosionEnd, this);
+	Renderer_->AnimationBindEnd("TakeBackProyectileExplosion", std::bind(&Projectile::ExplosionEnd, this, std::placeholders::_1));
 }
 
 void Projectile::ExplosionUpdate(float _DeltaTime, const StateInfo& _Info)

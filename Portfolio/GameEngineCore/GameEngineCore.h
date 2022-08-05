@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngineBase/GameEngineString.h>
 #include <GameEngineBase/GameEngineDebug.h>
+#include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineBase/GameEngineMath.h>
 #include <map>
 
@@ -15,25 +16,22 @@ public:
 	{
 		GameEngineDebug::LeakCheckOn();
 
+		// 여기에서 만들어진 이 코어를 알아야 하는거지.
 		CoreType Core;
 		WindowCreate(Core.GetWindowTitle(), &Core);
 	}
 
-protected:
-	virtual std::string GetWindowTitle() 
-	{ 
-		return "MainWindow";
+
+	static GameEngineLevel* GetCurLevel()
+	{
+		return CurrentLevel;
 	}
 
-	virtual float4 StartWindowSize() 
-	{ 
-		return { 1280.0f, 720.0f }; 
-	};
 
-	virtual float4 StartWindowPosition() 
-	{ 
-		return { 200, 300 }; 
-	};
+protected:
+	virtual std::string GetWindowTitle() { return "MainWindow"; }
+	virtual float4 StartWindowSize() { return { 1280.0f, 720.0f }; };
+	virtual float4 StartWindowPosition() { return { 200, 300 }; };
 
 	virtual void Start() = 0;
 	virtual void Update(float _DeltaTime) = 0;

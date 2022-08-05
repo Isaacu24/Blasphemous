@@ -6,6 +6,7 @@
 #include "GameEngineCameraActor.h"
 #include "GameEngineCollision.h"
 #include "GameEngineGUI.h"
+#include "GameEngineCoreDebug.h"
 
 GameEngineLevel::GameEngineLevel()
 {
@@ -47,7 +48,7 @@ void GameEngineLevel::ActorUpdate(float _DeltaTime)
 {
 	for (const std::pair<int, std::list<GameEngineActor*>>& Group : AllActors)
 	{
-		float ScaleTime = GameEngineTime::GetInst()->GetDeltaTime(Group.first);
+		// float ScaleTime = GameEngineTime::GetInst()->GetDeltaTime(Group.first);
 		for (GameEngineActor* const Actor : Group.second)
 		{
 			if (false == Actor->IsUpdate())
@@ -55,10 +56,41 @@ void GameEngineLevel::ActorUpdate(float _DeltaTime)
 				continue;
 			}
 
-			Actor->AllUpdate(ScaleTime, _DeltaTime);
+			Actor->AllUpdate(_DeltaTime);
 		}
 	}
+}
 
+void GameEngineLevel::ActorOnEvent()
+{
+	for (const std::pair<int, std::list<GameEngineActor*>>& Group : AllActors)
+	{
+		float ScaleTime = GameEngineTime::GetInst()->GetDeltaTime(Group.first);
+		for (GameEngineActor* const Actor : Group.second)
+		{
+			if (false == Actor->IsUpdate())
+			{
+				continue;
+			}
+			Actor->OnEvent();
+		}
+	}
+}
+
+void GameEngineLevel::ActorOffEvent()
+{
+	for (const std::pair<int, std::list<GameEngineActor*>>& Group : AllActors)
+	{
+		float ScaleTime = GameEngineTime::GetInst()->GetDeltaTime(Group.first);
+		for (GameEngineActor* const Actor : Group.second)
+		{
+			if (false == Actor->IsUpdate())
+			{
+				continue;
+			}
+			Actor->OffEvent();
+		}
+	}
 }
 
 void GameEngineLevel::PushRenderer(GameEngineRenderer* _Renderer, int _CameraOrder)
@@ -68,6 +100,7 @@ void GameEngineLevel::PushRenderer(GameEngineRenderer* _Renderer, int _CameraOrd
 	Cameras[static_cast<UINT>(_Renderer->CameraOrder)]->AllRenderer_[_Renderer->GetOrder()].remove(_Renderer);
 
 	_Renderer->CameraOrder = static_cast<CAMERAORDER>(_CameraOrder);
+	// 다른 카메라로 들어갈수도 있습니다.
 	Cameras[_CameraOrder]->PushRenderer(_Renderer);
 }
 
@@ -106,6 +139,7 @@ void GameEngineLevel::Render(float _DelataTime)
 {
 	GameEngineDevice::RenderStart();
 
+	// 이 사이에서 무언가를 해야 합니다.
 	for (size_t i = 0; i < Cameras.size(); i++)
 	{
 		if (nullptr == Cameras[i])
@@ -116,7 +150,11 @@ void GameEngineLevel::Render(float _DelataTime)
 		Cameras[i]->Render(_DelataTime);
 	}
 
+	// 여기서 그려져야 합니다.
+	GameEngineDebug::Debug3DRender();
+
 	GameEngineGUI::GUIRender(this, _DelataTime);
+
 
 	GameEngineDevice::RenderEnd();
 }
@@ -200,6 +238,7 @@ void GameEngineLevel::LevelUpdate(float _DeltaTime)
 }
 
 // 레벨을 이동하는 액터
+// 루트인애가 지우려고 여기로 온다고 생각할 겁니다.
 void GameEngineLevel::RemoveActor(GameEngineActor* _Actor)
 {
 	if (AllActors.end() == AllActors.find(_Actor->GetOrder()))

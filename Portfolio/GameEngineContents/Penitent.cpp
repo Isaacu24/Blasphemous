@@ -89,14 +89,14 @@ void Penitent::Start()
 		Renderer_->CreateFrameAnimationCutTexture("penitent_jumpoff_new", { "penitent_jumpoff_new.png", 0, 4, 0.1f, true });
 	}
 
-	StateManager_.CreateStateMember("Idle", this, &Penitent::IdleUpdate, &Penitent::IdleStart);
-	StateManager_.CreateStateMember("LadderClimb", this, &Penitent::LadderClimbUpdate, &Penitent::LadderClimbStart);
-	StateManager_.CreateStateMember("Jump", this, &Penitent::JumpUpdate, &Penitent::JumpStart);
-	StateManager_.CreateStateMember("Slide", this, &Penitent::SlideUpdate, &Penitent::SlideStart);
-	StateManager_.CreateStateMember("Crouch", this, &Penitent::RecoveryUpdate, &Penitent::RecoveryStart);
-	StateManager_.CreateStateMember("Recovery", this, &Penitent::RecoveryUpdate, &Penitent::RecoveryStart);
-	StateManager_.CreateStateMember("Hit", this, &Penitent::HitUpdate, &Penitent::HitStart);
-	StateManager_.CreateStateMember("Death", this, &Penitent::DeathUpdate, &Penitent::DeathStart);
+	StateManager_.CreateStateMember("Idle", std::bind(&Penitent::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::IdleStart, this, std::placeholders::_1));
+	StateManager_.CreateStateMember("LadderClimb", std::bind(&Penitent::LadderClimbUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::LadderClimbStart, this, std::placeholders::_1));
+	StateManager_.CreateStateMember("Jump", std::bind(&Penitent::JumpUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::JumpStart, this, std::placeholders::_1));
+	StateManager_.CreateStateMember("Slide", std::bind(&Penitent::SlideUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::SlideStart, this, std::placeholders::_1));
+	StateManager_.CreateStateMember("Crouch", std::bind(&Penitent::RecoveryUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::RecoveryStart, this, std::placeholders::_1));
+	StateManager_.CreateStateMember("Recovery", std::bind(&Penitent::RecoveryUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::RecoveryStart, this, std::placeholders::_1));
+	StateManager_.CreateStateMember("Hit", std::bind(&Penitent::HitUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::HitStart, this, std::placeholders::_1));
+	StateManager_.CreateStateMember("Death", std::bind(&Penitent::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::DeathStart, this, std::placeholders::_1));
 	StateManager_.ChangeState("Idle");
 
 	PlayerUI_->SetTear(Tear_);

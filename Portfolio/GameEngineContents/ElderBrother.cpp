@@ -19,10 +19,10 @@ void ElderBrother::Start()
 	Renderer_->GetTransform().SetWorldScale({1200, 700});
 	Renderer_->SetPivot(PIVOTMODE::BOT);
 
-	State_.CreateStateMember("Idle", this, &ElderBrother::IdleUpdate, &ElderBrother::IdleStart);
-	State_.CreateStateMember("Jump", this, &ElderBrother::JumpUpdate, &ElderBrother::JumpStart);
-	State_.CreateStateMember("Attack", this, &ElderBrother::AttackUpdate, &ElderBrother::AttackStart);
-	State_.CreateStateMember("Death", this, &ElderBrother::DeathUpdate, &ElderBrother::DeathStart);
+	State_.CreateStateMember("Idle", std::bind(&ElderBrother::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::IdleStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Jump", std::bind(&ElderBrother::JumpUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::JumpStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Attack", std::bind(&ElderBrother::AttackUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::AttackStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Death", std::bind(&ElderBrother::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::DeathStart, this, std::placeholders::_1));
 	State_.ChangeState("Idle");
 
 	Gravity_ = CreateComponent<GravityComponent>();
@@ -66,7 +66,8 @@ void ElderBrother::JumpStart(const StateInfo& _Info)
 {
 	Speed_ = 600.f;
 	Renderer_->ChangeFrameAnimation("elderBrother_jump");
-	Renderer_->AnimationBindEnd("elderBrother_jump", &ElderBrother::ChangeIdle, this);
+	Renderer_->AnimationBindEnd("elderBrother_jump", std::bind(&ElderBrother::ChangeIdle, this, std::placeholders::_1));
+
 }
 
 void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -79,7 +80,7 @@ void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 void ElderBrother::AttackStart(const StateInfo& _Info)
 {
 	Renderer_->ChangeFrameAnimation("elderBrother_attack");
-	Renderer_->AnimationBindEnd("elderBrother_attack", &ElderBrother::ChangeIdle, this);
+	Renderer_->AnimationBindEnd("elderBrother_attack", std::bind(&ElderBrother::ChangeIdle, this, std::placeholders::_1));
 }
 
 void ElderBrother::AttackUpdate(float _DeltaTime, const StateInfo& _Info)

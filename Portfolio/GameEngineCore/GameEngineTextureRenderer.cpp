@@ -53,7 +53,7 @@ void FrameAnimation::Update(float _Delta)
 			}
 			else
 			{
-				Info.CurFrame = Info.Frames.size() - 1;
+				Info.CurFrame = static_cast<unsigned int>(Info.Frames.size()) - 1;
 			}
 		}
 
@@ -235,12 +235,10 @@ void GameEngineTextureRenderer::CreateFrameAnimationFolder(const std::string& _A
 
 	if (NewAni.Info.Frames.size() == 0)
 	{
-		for (unsigned int i = 0; i < NewAni.FolderTexture->GetTextureCount() - 1; i++)
+		for (unsigned int i = 0; i < NewAni.FolderTexture->GetTextureCount(); i++)
 		{
 			NewAni.Info.Frames.push_back(i);
 		}
-		//NewAni.Info.Start = 0;
-		//NewAni.Info.End = static_cast<unsigned int>(NewAni.FolderTexture->GetTextureCount() - 1);
 	}
 }
 
@@ -306,6 +304,7 @@ void GameEngineTextureRenderer::ScaleToCutTexture(int _Index)
 {
 	float4 Scale = CurTex->GetCutScale(_Index);
 
+	// 이거는 봐야합니다.
 	if (0 > GetTransform().GetLocalScale().x)
 	{
 		Scale.x = -Scale.x;
@@ -323,6 +322,7 @@ void GameEngineTextureRenderer::ScaleToTexture()
 {
 	float4 Scale = CurTex->GetScale();
 
+	// 이거는 봐야합니다.
 	if (0 > GetTransform().GetLocalScale().x)
 	{
 		Scale.x = -Scale.x;
