@@ -26,20 +26,20 @@ void Stage01::SettingStage()
 	GameEngineTextureRenderer* BeforeParallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer->SetTexture("1_1_BeforeParallax_0.png");
 	BeforeParallaxRenderer->ScaleToTexture();
-	BeforeParallaxRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax0) });
-	Parallaxs_.push_back(BeforeParallaxRenderer);
+	BeforeParallaxRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax0)});
+	BeforeParallaxRenderer->GetTransform().SetWorldScale(BeforeParallaxRenderer->GetTransform().GetWorldScale() * 1.5f);
 
 	GameEngineTextureRenderer* BeforeParallaxRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer1->SetTexture("1_1_BeforeParallax_1.png");
 	BeforeParallaxRenderer1->ScaleToTexture();
-	BeforeParallaxRenderer1->GetTransform().SetWorldPosition({ -300, 600, static_cast<int>(ACTORORDER::BeforeParallax1) });
-	Parallaxs_.push_back(BeforeParallaxRenderer1);
+	BeforeParallaxRenderer1->GetTransform().SetWorldPosition({ -100, 700, static_cast<int>(ACTORORDER::BeforeParallax1)});
+	BeforeParallaxRenderer1->GetTransform().SetWorldScale(BeforeParallaxRenderer1->GetTransform().GetWorldScale() * 1.25f);
 
 	GameEngineTextureRenderer* BeforeParallaxRenderer2 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer2->SetTexture("1_1_BeforeParallax_2.png");
 	BeforeParallaxRenderer2->ScaleToTexture();
-	BeforeParallaxRenderer2->GetTransform().SetWorldPosition({ 0, 30, static_cast<int>(ACTORORDER::BeforeParallax2) });
-	Parallaxs_.push_back(BeforeParallaxRenderer2);
+	BeforeParallaxRenderer2->GetTransform().SetWorldPosition({ 100, 50, static_cast<int>(ACTORORDER::BeforeParallax2)});
+	BeforeParallaxRenderer2->GetTransform().SetWorldScale(BeforeParallaxRenderer2->GetTransform().GetWorldScale() * 1.25f);
 
 	GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	StageRenderer->SetTexture("1_1_Tile.png");
@@ -54,7 +54,7 @@ void Stage01::SettingStage()
 	GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	AfterLayerRenderer->SetTexture("1_1_AfterLayer.png");
 	AfterLayerRenderer->ScaleToTexture();
-	AfterLayerRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::AfterParallax0) });
+	AfterLayerRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::AfterLayer0) });
 
 	float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
 	float OffsetY = ColMap_->GetTransform().GetLocalScale().y / 2;
@@ -73,28 +73,27 @@ void Stage01::Start()
 
 void Stage01::Update(float _DeltaTime)
 {
-	PrevPos_ = CurPos_;
-	CurPos_ = GetMainCameraActor()->GetTransform().GetWorldPosition();
+	if (false == IsChangeCameraPos_)
+	{
+		GetMainCameraActor()->GetTransform().SetWorldMove({0, 0, CameraZPos_});
+		IsChangeCameraPos_ = true;
+	}
 
-	float4 Dir = CurPos_ - PrevPos_;
-
-	MoveParallax(Dir, _DeltaTime);
-
-	GetMainCameraActor()->GetTransform().SetWorldPosition(Penitent_->GetTransform().GetLocalPosition() + float4{0, 100});
+	GetMainCameraActor()->GetTransform().SetWorldPosition({ Penitent_->GetTransform().GetLocalPosition().x, Penitent_->GetTransform().GetLocalPosition().y + 100, CameraZPos_ });
 
 	if (-700 < GetMainCameraActor()->GetTransform().GetWorldPosition().y)
 	{
-		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition().x, -700 });
+		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition().x, -700, CameraZPos_ });
 	}
 
 	if (690 > GetMainCameraActor()->GetTransform().GetWorldPosition().x)
 	{
-		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ 690, GetMainCameraActor()->GetTransform().GetLocalPosition().y });
+		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ 690, GetMainCameraActor()->GetTransform().GetLocalPosition().y, CameraZPos_ });
 	}
 
 	if (3150 < GetMainCameraActor()->GetTransform().GetWorldPosition().x)
 	{
-		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ 3150, GetMainCameraActor()->GetTransform().GetLocalPosition().y });
+		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ 3150, GetMainCameraActor()->GetTransform().GetLocalPosition().y, CameraZPos_ });
 	}
 
 	if (3700 < Penitent_->GetTransform().GetWorldPosition().x)

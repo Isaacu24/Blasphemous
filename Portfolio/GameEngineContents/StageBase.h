@@ -30,8 +30,6 @@ public:
 		return	CurrentFlow_;
 	}
 
-	void MoveParallax(float4 _Dir, float _DeltaTime);
-
 protected:
 	STAGEFLOW CurrentFlow_;
 
@@ -58,6 +56,10 @@ protected:
 
 	bool IsLeftExit_;
 	bool IsRightExit_;
+
+	float CameraZPos_;
+
+	bool IsChangeCameraPos_;
 
 	std::vector<GameEngineTextureRenderer*> Parallaxs_;
 

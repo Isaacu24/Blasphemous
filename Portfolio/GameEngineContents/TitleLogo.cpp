@@ -11,7 +11,7 @@ TitleLogo::~TitleLogo()
 
 void TitleLogo::Start()
 {
-	Renderer = CreateComponent<GameEngineTextureRenderer>();
+	Renderer = CreateComponent<GameEngineUIRenderer>();
 	Renderer->GetTransform().SetWorldScale({ 800, 300 });
 	Renderer->SetTexture("GameLogo.png");
 }

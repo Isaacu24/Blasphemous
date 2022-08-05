@@ -8,7 +8,7 @@ enum class MainMenuType
 	Exit_
 };
 
-class GameEngineTextureRenderer;
+class GameEngineUIRenderer;
 class MainMenuActor : public GameEngineActor
 {
 public:
@@ -26,16 +26,16 @@ protected:
 	void End() override;
 
 private:
-	GameEngineTextureRenderer* Background_;
-	GameEngineTextureRenderer* BigPetal_;
-	GameEngineTextureRenderer* Petal_;
-	GameEngineTextureRenderer* Crisanta_;
+	GameEngineUIRenderer* Background_;
+	GameEngineUIRenderer* BigPetal_;
+	GameEngineUIRenderer* Petal_;
+	GameEngineUIRenderer* Crisanta_;
 
-	GameEngineTextureRenderer* Pilgrimage_;
-	GameEngineTextureRenderer* Option_;
-	GameEngineTextureRenderer* Exit_;
+	GameEngineUIRenderer* Pilgrimage_;
+	GameEngineUIRenderer* Option_;
+	GameEngineUIRenderer* Exit_;
 
-	GameEngineTextureRenderer* Selecter_;
+	GameEngineUIRenderer* Selecter_;
 
 	MainMenuType CurrentType_;
 	int MenuIndex_;

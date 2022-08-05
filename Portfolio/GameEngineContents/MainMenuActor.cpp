@@ -31,34 +31,34 @@ MainMenuActor::~MainMenuActor()
 
 void MainMenuActor::Start()
 {
-	Background_ = CreateComponent<GameEngineTextureRenderer>();
+	Background_ = CreateComponent<GameEngineUIRenderer>();
 	Background_->GetTransform().SetWorldScale(GameEngineWindow::GetScale());
 	Background_->SetTexture("TitleBackgorund_0.png");
 
-	Petal_ = CreateComponent<GameEngineTextureRenderer>();
+	Petal_ = CreateComponent<GameEngineUIRenderer>();
 	Petal_->GetTransform().SetWorldScale(GameEngineWindow::GetScale());
 	Petal_->SetTexture("Crisanta_Petal_0.png");
 
-	Crisanta_ = CreateComponent<GameEngineTextureRenderer>();
+	Crisanta_ = CreateComponent<GameEngineUIRenderer>();
 	Crisanta_->GetTransform().SetWorldScale({ 878, 720 });
 	Crisanta_->GetTransform().SetWorldPosition({-200, 0, 0.0f});
 	Crisanta_->SetTexture("Crisanta_0.png");
 
-	BigPetal_ = CreateComponent<GameEngineTextureRenderer>();
+	BigPetal_ = CreateComponent<GameEngineUIRenderer>();
 	BigPetal_->GetTransform().SetWorldScale(GameEngineWindow::GetScale());
 	BigPetal_->SetTexture("Crisanta_BigPetal_0.png");
 
-	Pilgrimage_ = CreateComponent<GameEngineTextureRenderer>();
+	Pilgrimage_ = CreateComponent<GameEngineUIRenderer>();
 	Pilgrimage_->GetTransform().SetWorldScale({ 58, 30 });
 	Pilgrimage_->GetTransform().SetWorldPosition({ 440, -50, 0.0f });
 	Pilgrimage_->SetTexture("Pilgrimage_Select.png");
 
-	Option_ = CreateComponent<GameEngineTextureRenderer>();
+	Option_ = CreateComponent<GameEngineUIRenderer>();
 	Option_->GetTransform().SetWorldScale({ 58, 30 });
 	Option_->GetTransform().SetWorldPosition({ 440, -125, 0.0f });
 	Option_->SetTexture("Option.png");
 
-	Exit_ = CreateComponent<GameEngineTextureRenderer>();
+	Exit_ = CreateComponent<GameEngineUIRenderer>();
 	Exit_->GetTransform().SetWorldScale({ 84, 30 });
 	Exit_->GetTransform().SetWorldPosition({ 425, -200, 0.0f });
 	Exit_->SetTexture("Exit.png");
@@ -67,7 +67,7 @@ void MainMenuActor::Start()
 	GameEngineInput::GetInst()->CreateKey("MainMenuDownKey", VK_DOWN);
 	GameEngineInput::GetInst()->CreateKey("MainMenuSelectKey", VK_SPACE);
 
-	Selecter_ = CreateComponent<GameEngineTextureRenderer>();
+	Selecter_ = CreateComponent<GameEngineUIRenderer>();
 	Selecter_->CreateFrameAnimationCutTexture("alliedCherub", {"alliedCherub.png", 0, 10, 0.1f, true});
 	Selecter_->ChangeFrameAnimation("alliedCherub");
 	Selecter_->GetTransform().SetWorldScale({ 170, 170 });

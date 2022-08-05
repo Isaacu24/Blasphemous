@@ -20,5 +20,9 @@ protected:
 
 private:
 	GameEngineTextureRenderer* ButttonShadow_;
+	bool IsReverse_;
+
+	float Alpha_;
+
 };
 

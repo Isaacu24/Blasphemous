@@ -12,9 +12,6 @@ MainMenu::~MainMenu()
 
 void MainMenu::Start()
 {
-	GameEngineCameraActor* CameraActor = CreateActor<GameEngineCameraActor>();
-	CameraActor->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
-
 	CreateActor<MainMenuActor>();
 }
 

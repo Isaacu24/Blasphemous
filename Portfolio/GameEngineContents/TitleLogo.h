@@ -1,7 +1,7 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 
-class GameEngineTextureRenderer;
+class GameEngineUIRenderer;
 class TitleLogo : public GameEngineActor
 {
 public:
@@ -19,6 +19,6 @@ protected:
 	void End() override;
 
 private:
-	GameEngineTextureRenderer* Renderer;
+	GameEngineUIRenderer* Renderer;
 };
 

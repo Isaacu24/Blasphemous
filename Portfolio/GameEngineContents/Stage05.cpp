@@ -62,6 +62,12 @@ void Stage05::Start()
 
 void Stage05::Update(float _DeltaTime)
 {
+	if (false == IsChangeCameraPos_)
+	{
+		GetMainCameraActor()->GetTransform().SetWorldMove({ 0, 0, CameraZPos_ });
+		IsChangeCameraPos_ = true;
+	}
+
 	if (430 > Penitent_->GetTransform().GetWorldPosition().x)
 	{
 		IsLeftExit_ = true;
