@@ -12,11 +12,11 @@ Fool_knife::~Fool_knife()
 void Fool_knife::Start()
 {
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
-	Renderer_->CreateFrameAnimation("fool_idle_knife", { "fool_idle_knife.png", 0, 11, 0.1f, true });
-	Renderer_->CreateFrameAnimation("Fool_hurt_knife", { "Fool_hurt_knife.png", 0, 8, 0.1f, false });
-	Renderer_->CreateFrameAnimation("Fool_turn_knife", { "Fool_turn_knife.png", 0, 6, 0.1f, false });
-	Renderer_->CreateFrameAnimation("Fool_walk_knife", { "Fool_walk_knife.png", 0, 8, 0.1f, true });
-	Renderer_->CreateFrameAnimation("Fool_death_knife", { "Fool_death_knife.png", 0, 13, 0.1f, false });
+	Renderer_->CreateFrameAnimationCutTexture("fool_idle_knife", { "fool_idle_knife.png", 0, 11, 0.1f, true });
+	Renderer_->CreateFrameAnimationCutTexture("Fool_hurt_knife", { "Fool_hurt_knife.png", 0, 8, 0.1f, false });
+	Renderer_->CreateFrameAnimationCutTexture("Fool_turn_knife", { "Fool_turn_knife.png", 0, 6, 0.1f, false });
+	Renderer_->CreateFrameAnimationCutTexture("Fool_walk_knife", { "Fool_walk_knife.png", 0, 8, 0.1f, true });
+	Renderer_->CreateFrameAnimationCutTexture("Fool_death_knife", { "Fool_death_knife.png", 0, 13, 0.1f, false });
 	Renderer_->ChangeFrameAnimation("fool_idle_knife");
 	Renderer_->GetTransform().SetWorldScale({ 400, 300 });
 	Renderer_->SetPivot(PIVOTMODE::BOT);

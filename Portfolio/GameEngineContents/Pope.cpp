@@ -19,13 +19,13 @@ Pope::~Pope()
 void Pope::Start()
 {
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
-	Renderer_->CreateFrameAnimation("pope_idle", { "pope_idle.png", 0, 12, 0.1f, true });
-	Renderer_->CreateFrameAnimation("pope_appear", { "pope_appear.png", 0, 15, 0.1f, true });
-	Renderer_->CreateFrameAnimation("pope_hitReaction", { "pope_hitReaction.png", 0, 10, 0.1f, true });
-	Renderer_->CreateFrameAnimation("pope_spellCast", { "pope_spellCast.png", 0, 53, 0.1f, true });
-	Renderer_->CreateFrameAnimation("pope_spellCast_FXS", { "pope_spellCast_FXS.png", 0, 53, 0.1f, true }); //ÀÌÆåÆ®
-	Renderer_->CreateFrameAnimation("pope_vanishing", { "pope_vanishing.png", 0, 13, 0.1f, true });
-	Renderer_->CreateFrameAnimation("pope_death", { "pope_death.png", 0, 35, 0.1f, true });
+	Renderer_->CreateFrameAnimationCutTexture("pope_idle", { "pope_idle.png", 0, 12, 0.1f, true });
+	Renderer_->CreateFrameAnimationCutTexture("pope_appear", { "pope_appear.png", 0, 15, 0.1f, true });
+	Renderer_->CreateFrameAnimationCutTexture("pope_hitReaction", { "pope_hitReaction.png", 0, 10, 0.1f, true });
+	Renderer_->CreateFrameAnimationCutTexture("pope_spellCast", { "pope_spellCast.png", 0, 53, 0.1f, true });
+	Renderer_->CreateFrameAnimationCutTexture("pope_spellCast_FXS", { "pope_spellCast_FXS.png", 0, 53, 0.1f, true }); //ÀÌÆåÆ®
+	Renderer_->CreateFrameAnimationCutTexture("pope_vanishing", { "pope_vanishing.png", 0, 13, 0.1f, true });
+	Renderer_->CreateFrameAnimationCutTexture("pope_death", { "pope_death.png", 0, 35, 0.1f, true });
 	Renderer_->ChangeFrameAnimation("pope_idle");
 	Renderer_->GetTransform().SetWorldScale({ 250, 250});
 	Renderer_->SetPivot(PIVOTMODE::BOT);

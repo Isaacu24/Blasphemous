@@ -12,10 +12,10 @@ ElderBrother::~ElderBrother()
 void ElderBrother::Start()
 {
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
-	Renderer_->CreateFrameAnimation("elderBrother_idle", {"elderBrother_idle.png", 0, 9, 0.15f, true});
-	Renderer_->CreateFrameAnimation("elderBrother_jump", { "elderBrother_jump.png", 0, 24, 0.15f, true });
-	Renderer_->CreateFrameAnimation("elderBrother_attack", { "elderBrother_attack.png", 0, 23, 0.1f, true });
-	Renderer_->CreateFrameAnimation("elderBrother_death", { "elderBrother_death.png", 0, 48, 0.1f, false });
+	Renderer_->CreateFrameAnimationCutTexture("elderBrother_idle", {"elderBrother_idle.png", 0, 9, 0.15f, true});
+	Renderer_->CreateFrameAnimationCutTexture("elderBrother_jump", { "elderBrother_jump.png", 0, 24, 0.15f, true });
+	Renderer_->CreateFrameAnimationCutTexture("elderBrother_attack", { "elderBrother_attack.png", 0, 23, 0.1f, true });
+	Renderer_->CreateFrameAnimationCutTexture("elderBrother_death", { "elderBrother_death.png", 0, 48, 0.1f, false });
 	Renderer_->GetTransform().SetWorldScale({1200, 700});
 	Renderer_->SetPivot(PIVOTMODE::BOT);
 

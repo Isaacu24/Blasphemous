@@ -80,13 +80,13 @@ void Penitent::Start()
 		Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 
 		Renderer_->GetTransform().SetWorldScale({250, 250 });
-		Renderer_->CreateFrameAnimation("penintent_idle_anim", { "penintent_idle_anim.png", 0, 12, 0.1f, true });
-		Renderer_->CreateFrameAnimation("penitent_sheathedIdle", { "penitent_sheathedIdle.png", 0, 45, 0.1f, true });
-		Renderer_->CreateFrameAnimation("penitent_verticalattack_LVL3_anim", { "penitent_verticalattack_LVL3_anim.png", 0, 23, 0.05f, true });
-		Renderer_->CreateFrameAnimation("penitent_climbledge_reviewed", { "penitent_climbledge_reviewed.png", 0, 11, 0.1f, true });
-		Renderer_->CreateFrameAnimation("penitent_dodge_attack_LVL3", { "penitent_dodge_attack_LVL3.png", 0, 26, 0.1f, true });
-		Renderer_->CreateFrameAnimation("penitent_falling_ahead_anim 1", { "penitent_falling_ahead_anim 1.png", 0, 5, 0.1f, true });
-		Renderer_->CreateFrameAnimation("penitent_jumpoff_new", { "penitent_jumpoff_new.png", 0, 4, 0.1f, true });
+		Renderer_->CreateFrameAnimationCutTexture("penintent_idle_anim", { "penintent_idle_anim.png", 0, 12, 0.1f, true });
+		Renderer_->CreateFrameAnimationCutTexture("penitent_sheathedIdle", { "penitent_sheathedIdle.png", 0, 45, 0.1f, true });
+		Renderer_->CreateFrameAnimationCutTexture("penitent_verticalattack_LVL3_anim", { "penitent_verticalattack_LVL3_anim.png", 0, 23, 0.05f, true });
+		Renderer_->CreateFrameAnimationCutTexture("penitent_climbledge_reviewed", { "penitent_climbledge_reviewed.png", 0, 11, 0.1f, true });
+		Renderer_->CreateFrameAnimationCutTexture("penitent_dodge_attack_LVL3", { "penitent_dodge_attack_LVL3.png", 0, 26, 0.1f, true });
+		Renderer_->CreateFrameAnimationCutTexture("penitent_falling_ahead_anim 1", { "penitent_falling_ahead_anim 1.png", 0, 5, 0.1f, true });
+		Renderer_->CreateFrameAnimationCutTexture("penitent_jumpoff_new", { "penitent_jumpoff_new.png", 0, 4, 0.1f, true });
 	}
 
 	StateManager_.CreateStateMember("Idle", this, &Penitent::IdleUpdate, &Penitent::IdleStart);

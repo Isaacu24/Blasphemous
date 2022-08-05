@@ -68,7 +68,7 @@ void MainMenuActor::Start()
 	GameEngineInput::GetInst()->CreateKey("MainMenuSelectKey", VK_SPACE);
 
 	Selecter_ = CreateComponent<GameEngineTextureRenderer>();
-	Selecter_->CreateFrameAnimation("alliedCherub", {"alliedCherub.png", 0, 10, 0.1f, true});
+	Selecter_->CreateFrameAnimationCutTexture("alliedCherub", {"alliedCherub.png", 0, 10, 0.1f, true});
 	Selecter_->ChangeFrameAnimation("alliedCherub");
 	Selecter_->GetTransform().SetWorldScale({ 170, 170 });
 	Selecter_->GetTransform().SetWorldPosition({ 520, -45, 0.0f });

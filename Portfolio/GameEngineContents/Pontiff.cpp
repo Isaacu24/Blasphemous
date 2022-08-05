@@ -23,12 +23,12 @@ void Pontiff::Start()
 	Helmet_ = CreateComponent<GameEngineTextureRenderer>();
 	Body_ = CreateComponent<GameEngineTextureRenderer>();
 
-	Helmet_->CreateFrameAnimation("pontiff_idle_helmet", { "pontiff_idle_helmet.png", 0, 30, 0.1f, true });
+	Helmet_->CreateFrameAnimationCutTexture("pontiff_idle_helmet", { "pontiff_idle_helmet.png", 0, 30, 0.1f, true });
 	Helmet_->ChangeFrameAnimation("pontiff_idle_helmet");
 	Helmet_->GetTransform().SetLocalScale({ 900, 1300 });
 	Helmet_->GetTransform().SetLocalMove({ 0, 10 });
 
-	Body_->CreateFrameAnimation("pontiff_idle_torso", { "pontiff_idle_torso.png", 0, 30, 0.1f, true});
+	Body_->CreateFrameAnimationCutTexture("pontiff_idle_torso", { "pontiff_idle_torso.png", 0, 30, 0.1f, true});
 	Body_->ChangeFrameAnimation("pontiff_idle_torso");
 	Body_->GetTransform().SetLocalScale({ 900, 1100 });
 }

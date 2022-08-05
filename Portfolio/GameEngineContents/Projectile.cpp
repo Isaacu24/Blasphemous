@@ -22,9 +22,9 @@ Projectile::~Projectile()
 void Projectile::Start()
 {
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
-	Renderer_->CreateFrameAnimation("TakeBackProyectile", {"TakeBackProyectile.png", 0, 9, 0.1f, true});
-	Renderer_->CreateFrameAnimation("TakeBackProyectileExplosion", { "TakeBackProyectileExplosion.png", 0, 14, 0.1f, true });
-	Renderer_->CreateFrameAnimation("TakeBackProyectileHead", { "TakeBackProyectileHead.png", 0, 9, 0.1f, true });
+	Renderer_->CreateFrameAnimationCutTexture("TakeBackProyectile", {"TakeBackProyectile.png", 0, 9, 0.1f, true});
+	Renderer_->CreateFrameAnimationCutTexture("TakeBackProyectileExplosion", { "TakeBackProyectileExplosion.png", 0, 14, 0.1f, true });
+	Renderer_->CreateFrameAnimationCutTexture("TakeBackProyectileHead", { "TakeBackProyectileHead.png", 0, 9, 0.1f, true });
 	Renderer_->ChangeFrameAnimation("TakeBackProyectile");
 	Renderer_->GetTransform().SetWorldScale({60.f, 40.f });
 

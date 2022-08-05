@@ -64,6 +64,7 @@ void GameEngineLevel::ActorUpdate(float _DeltaTime)
 void GameEngineLevel::PushRenderer(GameEngineRenderer* _Renderer, int _CameraOrder)
 {
 	// 기존 자신이 있던 자리에서 지우고
+
 	Cameras[static_cast<UINT>(_Renderer->CameraOrder)]->AllRenderer_[_Renderer->GetOrder()].remove(_Renderer);
 
 	_Renderer->CameraOrder = static_cast<CAMERAORDER>(_CameraOrder);
