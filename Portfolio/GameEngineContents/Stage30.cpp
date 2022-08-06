@@ -135,6 +135,21 @@ void Stage30::OnEvent()
 		Penitent_->SetLevelOverOn();
 	}
 
+	if (nullptr == LoadingActor_)
+	{
+		LoadingActor_ = CreateActor<LoadingActor>();
+		LoadingActor_->IsEntrance(true);
+	}
+
+	else if (nullptr != LoadingActor_)
+	{
+		LoadingActor_->Death();
+		LoadingActor_ = nullptr;
+
+		LoadingActor_ = CreateActor<LoadingActor>();
+		LoadingActor_->IsEntrance(true);
+	}
+
 	IsRightExit_ = false;
 	IsLeftExit_ = false;
 

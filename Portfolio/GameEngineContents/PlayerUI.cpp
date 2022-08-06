@@ -17,45 +17,38 @@ void PlayerUI::Start()
 	HPBar_ = GetLevel()->CreateActor<LeftTopUI>();
 	HPBar_->Renderer_->SetTexture("Player_HP.png");
 	HPBar_->Renderer_->ScaleToTexture();
-	HPBar_->Renderer_->SetPivot(PIVOTMODE::LEFTTOP);
 	HPBar_->SetLevelOverOn();
 
 	MPBar_ = GetLevel()->CreateActor<LeftTopUI>();
 	MPBar_->Renderer_->SetTexture("Player_MP.png");
 	MPBar_->Renderer_->ScaleToTexture();
-	MPBar_->Renderer_->SetPivot(PIVOTMODE::LEFTTOP);
 	MPBar_->SetLevelOverOn();
 
 	BarFrame_ = GetLevel()->CreateActor<LeftTopUI>();
 	BarFrame_->Renderer_->SetTexture("Player_HpBar.png");
 	BarFrame_->Renderer_->ScaleToTexture();
-	BarFrame_->Renderer_->SetPivot(PIVOTMODE::LEFTTOP);
 	BarFrame_->SetLevelOverOn();
 
 	TearFrame_ = CreateComponent<GameEngineUIRenderer>();
 	TearFrame_->SetTexture("TearFrame.png");
 	TearFrame_->ScaleToTexture();
 
-	BarFrame_->GetTransform().SetWorldMove({ -620, 350, -100 });
-	HPBar_->GetTransform().SetWorldMove({ -620, 350 });
-	MPBar_->GetTransform().SetWorldMove({ -620, 350 });
-	TearFrame_->GetTransform().SetWorldMove({ 500, 270 });
+	HPBar_->GetTransform().SetWorldPosition({ -450, 290, static_cast<int>(UIORDER::PlayerUI)});
+	MPBar_->GetTransform().SetWorldPosition({ -450, 290, static_cast<int>(UIORDER::PlayerUI) });
+	BarFrame_->GetTransform().SetWorldPosition({ -450, 290, static_cast<int>(UIORDER::PlayerUIFrame) });
+	TearFrame_->GetTransform().SetWorldPosition({ 500, 270, static_cast<int>(UIORDER::PlayerUIFrame) });
 
 	for (size_t i = 0; i < 3; i++)
 	{
 		Flasks_[i] = CreateComponent<GameEngineUIRenderer>();
 		Flasks_[i]->SetTexture("Full_Flask.png");
+		Flasks_[i]->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(UIORDER::PlayerUI) });
 		Flasks_[i]->ScaleToTexture();
 
 		Flasks_[i]->GetTransform().SetWorldMove({ -470.f + (40.f * i), 260 });
 	}
 
 	TearRenderers_.resize(10);
-
-	TearRenderers_[0] = CreateComponent<GameEngineUIRenderer>();
-	TearRenderers_[0]->SetTexture("0.png");
-	TearRenderers_[0]->ScaleToTexture();
-	TearRenderers_[0]->GetTransform().SetWorldPosition({ 505, 270 });
 }
 
 void PlayerUI::Update(float _DeltaTime)
@@ -108,7 +101,7 @@ void PlayerUI::SetTear(int _Value)
 
 		TearRenderers_[i]->SetTexture(std::to_string(Numbers[i]) + ".png");
 		TearRenderers_[i]->ScaleToTexture();
-		TearRenderers_[i]->GetTransform().SetWorldPosition({ 505.f - (10.f * i), 270.f, -100.f });
+		TearRenderers_[i]->GetTransform().SetWorldPosition({ 505.f - (10.f * i), 270.f, static_cast<int>(UIORDER::PlayerUI)});
 	}
 }
 
@@ -117,6 +110,6 @@ void PlayerUI::UseFlask(int _Index)
 {
 	Flasks_[_Index]->SetTexture("Empty_Flask.png");
 
-	HPBar_->Renderer_->GetTransform().SetWorldScale(HPBar_->Renderer_->GetTransform().GetWorldScale() + float4{ 100, 0, 0 });
+	HPBar_->Renderer_->GetTransform().SetWorldScale(HPBar_->Renderer_->GetTransform().GetWorldScale() + float4{100, 0});
 	HPBar_->Renderer_->SetPivot(PIVOTMODE::LEFTTOP);
 }

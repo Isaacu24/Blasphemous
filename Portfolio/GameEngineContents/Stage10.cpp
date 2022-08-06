@@ -24,26 +24,25 @@ void Stage10::SettingStage()
 	GameEngineTextureRenderer* BeforeParallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer->SetTexture("2_1_BeforeParallax_0.png");
 	BeforeParallaxRenderer->ScaleToTexture();
-	BeforeParallaxRenderer->GetTransform().SetWorldPosition({ 0, 500, static_cast<int>(ACTORORDER::BeforeParallax0) });
+	BeforeParallaxRenderer->GetTransform().SetWorldPosition({ 0, 700, static_cast<int>(ACTORORDER::BeforeParallax0) });
 	Parallaxs_.push_back(BeforeParallaxRenderer);
 
 	GameEngineTextureRenderer* BeforeParallaxRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer1->SetTexture("2_1_BeforeParallax_1.png");
 	BeforeParallaxRenderer1->ScaleToTexture();
-	BeforeParallaxRenderer1->GetTransform().SetWorldPosition({ 0, 500, static_cast<int>(ACTORORDER::BeforeParallax1) });
+	BeforeParallaxRenderer1->GetTransform().SetWorldPosition({ 0, 550, static_cast<int>(ACTORORDER::BeforeParallax1) });
 	Parallaxs_.push_back(BeforeParallaxRenderer1);
 
 	GameEngineTextureRenderer* BeforeParallaxRenderer2 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer2->SetTexture("2_1_BeforeParallax_2.png");
 	BeforeParallaxRenderer2->ScaleToTexture();
 	BeforeParallaxRenderer2->GetTransform().SetWorldPosition({ 0, 500, static_cast<int>(ACTORORDER::BeforeParallax2) });
-	BeforeParallaxRenderer2->GetTransform().SetWorldScale(BeforeParallaxRenderer2->GetTransform().GetWorldScale() * 1.3f);
 	Parallaxs_.push_back(BeforeParallaxRenderer2);
 
 	GameEngineTextureRenderer* BeforeParallaxRenderer3 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer3->SetTexture("2_1_BeforeParallax_3.png");
 	BeforeParallaxRenderer3->ScaleToTexture();
-	BeforeParallaxRenderer3->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeParallax3) });
+	BeforeParallaxRenderer3->GetTransform().SetWorldPosition({ 0, 300, static_cast<int>(ACTORORDER::BeforeParallax3) });
 	Parallaxs_.push_back(BeforeParallaxRenderer3);
 
 	GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
@@ -54,7 +53,7 @@ void Stage10::SettingStage()
 	GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	DoorRenderer->SetTexture("2_1_Door.png");
 	DoorRenderer->ScaleToTexture();
-	DoorRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::AfterParallax0) });
+	DoorRenderer->GetTransform().SetWorldPosition({ -2, 0, static_cast<int>(ACTORORDER::Door) });
 	
 	float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
 	float OffsetY = ColMap_->GetTransform().GetLocalScale().y / 2;
@@ -105,16 +104,34 @@ void Stage10::Update(float _DeltaTime)
 		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ 3450, GetMainCameraActor()->GetTransform().GetLocalPosition().y, CameraZPos_ });
 	}
 
-	if (250 > Penitent_->GetTransform().GetWorldPosition().x)
+	if (250 > Penitent_->GetTransform().GetWorldPosition().x
+		&& false == IsLeftExit_)
 	{
 		IsLeftExit_ = true;
-		GEngine::ChangeLevel("Stage05");
+
+		if (nullptr != LoadingActor_)
+		{
+			LoadingActor_->Death();
+			LoadingActor_ = nullptr;
+		}
+
+		LoadingActor_ = CreateActor<LoadingActor>();
+		LoadingActor_->Exit("Stage05");
 	}
 
-	if (4000 < Penitent_->GetTransform().GetWorldPosition().x)
+	if (4000 < Penitent_->GetTransform().GetWorldPosition().x
+		&& false == IsRightExit_)
 	{
 		IsRightExit_ = true;
-		GEngine::ChangeLevel("Stage20");
+
+		if (nullptr != LoadingActor_)
+		{
+			LoadingActor_->Death();
+			LoadingActor_ = nullptr;
+		}
+
+		LoadingActor_ = CreateActor<LoadingActor>();
+		LoadingActor_->Exit("Stage20");
 	}
 
 }
@@ -150,6 +167,21 @@ void Stage10::OnEvent()
 		}
 
 		Penitent_->SetLevelOverOn();
+	}
+
+	if (nullptr == LoadingActor_)
+	{
+		LoadingActor_ = CreateActor<LoadingActor>();
+		LoadingActor_->IsEntrance(true);
+	}
+
+	else if (nullptr != LoadingActor_)
+	{
+		LoadingActor_->Death();
+		LoadingActor_ = nullptr;
+
+		LoadingActor_ = CreateActor<LoadingActor>();
+		LoadingActor_->IsEntrance(true);
 	}
 
 	IsRightExit_ = false;

@@ -22,7 +22,7 @@ void Inventory::Start()
 	InventoryRenderer_->SetTexture("Inventory_0.png");
 
 	Cursor_ = CreateComponent<GameEngineUIRenderer>();
-	Cursor_->CreateFrameAnimation("ItemCursorAlt", { "ItemCursorAlt.png", 0, 15, 0.1f, true });
+	Cursor_->CreateFrameAnimationCutTexture("ItemCursorAlt", { "ItemCursorAlt.png", 0, 15, 0.1f, true });
 	Cursor_->ChangeFrameAnimation("ItemCursorAlt");
 	Cursor_->GetTransform().SetWorldScale({ 55, 55 });
 	Cursor_->GetTransform().SetWorldPosition({-425, -125, 0.0f});

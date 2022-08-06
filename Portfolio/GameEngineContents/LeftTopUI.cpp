@@ -12,6 +12,7 @@ LeftTopUI::~LeftTopUI()
 void LeftTopUI::Start()
 {
 	Renderer_ = CreateComponent<GameEngineUIRenderer>();
+	Renderer_->SetPivot(PIVOTMODE::LEFTTOP);
 }
 
 void LeftTopUI::Update(float _DeltaTime)

@@ -58,5 +58,6 @@
 #include "GravityComponent.h"
 #include "CutScenePlayer.h"
 #include "GlobalValue.h"
+#include "LoadingActor.h"
 
 

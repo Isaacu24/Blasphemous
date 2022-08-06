@@ -47,9 +47,6 @@
     <ClInclude Include="Stage02.h">
       <Filter>Level\Pilgrimage\01Brotherhood</Filter>
     </ClInclude>
-    <ClInclude Include="TitleLogo.h">
-      <Filter>Actor\UI</Filter>
-    </ClInclude>
     <ClInclude Include="MainMenuActor.h">
       <Filter>Actor\UI</Filter>
     </ClInclude>
@@ -190,9 +187,6 @@
     </ClCompile>
     <ClCompile Include="Stage02.cpp">
       <Filter>Level\Pilgrimage\01Brotherhood</Filter>
-    </ClCompile>
-    <ClCompile Include="TitleLogo.cpp">
-      <Filter>Actor\UI</Filter>
     </ClCompile>
     <ClCompile Include="MainMenuActor.cpp">
       <Filter>Actor\UI</Filter>

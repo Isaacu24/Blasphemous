@@ -122,16 +122,34 @@ void Stage02::Update(float _DeltaTime)
 		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ 3550, GetMainCameraActor()->GetTransform().GetLocalPosition().y , CameraZPos_ });
 	}
 
-	if (150 > Penitent_->GetTransform().GetWorldPosition().x)
+	if (150 > Penitent_->GetTransform().GetWorldPosition().x
+		&& false == IsLeftExit_)
 	{
 		IsLeftExit_ = true;
-		GEngine::ChangeLevel("Stage01");
+
+		if (nullptr != LoadingActor_)
+		{
+			LoadingActor_->Death();
+			LoadingActor_ = nullptr;
+		}
+
+		LoadingActor_ = CreateActor<LoadingActor>();
+		LoadingActor_->Exit("Stage01");
 	}
 
-	if (4100 < Penitent_->GetTransform().GetWorldPosition().x)
+	if (4100 < Penitent_->GetTransform().GetWorldPosition().x
+		&& false == IsRightExit_)
 	{
 		IsRightExit_ = true;
-		GEngine::ChangeLevel("Stage03");
+
+		if (nullptr != LoadingActor_)
+		{
+			LoadingActor_->Death();
+			LoadingActor_ = nullptr;
+		}
+
+		LoadingActor_ = CreateActor<LoadingActor>();
+		LoadingActor_->Exit("Stage03");
 	}
 }
 
@@ -167,6 +185,21 @@ void Stage02::OnEvent()
 		}
 
 		Penitent_->SetLevelOverOn();
+	}
+
+	if (nullptr == LoadingActor_)
+	{
+		LoadingActor_ = CreateActor<LoadingActor>();
+		LoadingActor_->IsEntrance(true);
+	}
+
+	else if (nullptr != LoadingActor_)
+	{
+		LoadingActor_->Death();
+		LoadingActor_ = nullptr;
+
+		LoadingActor_ = CreateActor<LoadingActor>();
+		LoadingActor_->IsEntrance(true);
 	}
 
 	IsRightExit_ = false;

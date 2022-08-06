@@ -19,7 +19,6 @@ cbuffer AtlasData : register(b1)
     float2 TextureFrameSize;
 };
 
-
 Output TextureAtlas_VS(Input _Input)
 {
     Output NewOutPut = (Output) 0;

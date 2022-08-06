@@ -45,7 +45,7 @@ protected:
 	class BossMonster* BossMonster_;
 	std::list<class MonsterBase*> MonsterList_;
 
-	//class LoadingActor* LoadingActor_;
+	class LoadingActor* LoadingActor_;
 
 	virtual void SettingStage() = 0;
 

@@ -2,7 +2,6 @@
 #include "Stage01.h"
 #include <GameEngineCore/GameEngineTexture.h>
 #include "Penitent.h"
-#include "LoadingActor.h"
 
 Stage01::Stage01() 
 {
@@ -63,7 +62,7 @@ void Stage01::SettingStage()
 
 	Stage_->GetTransform().SetLocalMove(Offset);
 
-	PlayerRightPos_ = float4{ 3650, -1730, static_cast<int>(ACTORORDER::Player) };
+	PlayerRightPos_ = float4{ 3600, -1730, static_cast<int>(ACTORORDER::Player) };
 }
 
 void Stage01::Start()
@@ -96,10 +95,19 @@ void Stage01::Update(float _DeltaTime)
 		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ 3150, GetMainCameraActor()->GetTransform().GetLocalPosition().y, CameraZPos_ });
 	}
 
-	if (3700 < Penitent_->GetTransform().GetWorldPosition().x)
+	if (3650 < Penitent_->GetTransform().GetWorldPosition().x
+		&& false == IsRightExit_)
 	{
 		IsRightExit_ = true;
-		GEngine::ChangeLevel("Stage02");
+
+		if (nullptr != LoadingActor_)
+		{
+			LoadingActor_->Death();
+			LoadingActor_ = nullptr;
+		}
+
+		LoadingActor_ = CreateActor<LoadingActor>();
+		LoadingActor_->Exit("Stage02");
 	}
 }
 
@@ -134,6 +142,21 @@ void Stage01::OnEvent()
 		}
 
 		Penitent_->SetLevelOverOn();
+	}
+
+	if (nullptr == LoadingActor_)
+	{
+		LoadingActor_ = CreateActor<LoadingActor>();
+		LoadingActor_->IsEntrance(true);
+	}
+
+	else if (nullptr != LoadingActor_)
+	{
+		LoadingActor_->Death();
+		LoadingActor_ = nullptr;
+
+		LoadingActor_ = CreateActor<LoadingActor>();
+		LoadingActor_->IsEntrance(true);
 	}
 
 	IsRightExit_ = false;

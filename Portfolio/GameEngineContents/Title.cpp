@@ -1,6 +1,5 @@
 #include "Title.h"
 #include "PreCompile.h"
-#include "TitleLogo.h"
 #include "TitleActor.h"
 #include "Inventory.h"
 
@@ -19,12 +18,11 @@ void Title::Start()
 
 	TitleActor* Actor = CreateActor<TitleActor>();
 
-	TitleLogo* Logo = CreateActor<TitleLogo>();
-	Logo->GetTransform().SetWorldMove({ 0.f, 30.f, 0.f });
 }
 
 void Title::Update(float _DeltaTime)
 {
+
 
 }
 

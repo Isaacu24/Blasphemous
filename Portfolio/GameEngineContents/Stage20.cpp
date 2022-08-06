@@ -26,7 +26,6 @@ void Stage20::SettingStage()
 	BeforePrallaxRenderer->ScaleToTexture();
 	BeforePrallaxRenderer->GetTransform().SetWorldPosition({ 0, 100, static_cast<int>(ACTORORDER::BeforeParallax5) });
 	BeforePrallaxRenderer->GetTransform().SetWorldScale(BeforePrallaxRenderer->GetTransform().GetWorldScale() * 1.3f);
-	Parallaxs_.push_back(BeforePrallaxRenderer);
 
 	GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	StageRenderer->SetTexture("12_2_Tile.png");
@@ -96,12 +95,20 @@ void Stage20::Update(float _DeltaTime)
 		Penitent_->GetTransform().SetWorldPosition(float4{ 350, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player) });
 	}
 
-	if (4350 < Penitent_->GetTransform().GetWorldPosition().x)
+	if (4350 < Penitent_->GetTransform().GetWorldPosition().x
+		&& false == IsRightExit_)
 	{
 		IsRightExit_ = true;
-		GEngine::ChangeLevel("Stage30");
-	}
 
+		if (nullptr != LoadingActor_)
+		{
+			LoadingActor_->Death();
+			LoadingActor_ = nullptr;
+		}
+
+		LoadingActor_ = CreateActor<LoadingActor>();
+		LoadingActor_->Exit("Stage30");
+	}
 }
 
 void Stage20::End()
@@ -135,6 +142,21 @@ void Stage20::OnEvent()
 		}
 
 		Penitent_->SetLevelOverOn();
+	}
+
+	if (nullptr == LoadingActor_)
+	{
+		LoadingActor_ = CreateActor<LoadingActor>();
+		LoadingActor_->IsEntrance(true);
+	}
+
+	else if (nullptr != LoadingActor_)
+	{
+		LoadingActor_->Death();
+		LoadingActor_ = nullptr;
+
+		LoadingActor_ = CreateActor<LoadingActor>();
+		LoadingActor_->IsEntrance(true);
 	}
 
 	IsRightExit_ = false;

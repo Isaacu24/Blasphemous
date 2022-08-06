@@ -19,10 +19,19 @@ protected:
 	void End() override;
 
 private:
-	GameEngineTextureRenderer* ButttonShadow_;
+	GameEngineUIRenderer* ButttonShadow_;
+	GameEngineUIRenderer* PressAnyKey_;
+
+	GameEngineUIRenderer* GameLogo_;
+
+	GameEngineUIRenderer* DescRenderer_;
+
 	bool IsReverse_;
+	bool IsDown_;
 
 	float Alpha_;
+
+	float ChangeTime_;
 
 };
 

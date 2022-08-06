@@ -42,7 +42,7 @@ enum class ACTORORDER
 	BeforeParallax1 = 300,
 	BeforeParallax0 = 350,
 
-	ColMap = 500
+	ColMap
 };
 
 enum class COLLISIONORDER
@@ -53,3 +53,18 @@ enum class COLLISIONORDER
 	Projectile,
 	Object
 };
+
+
+enum class UIORDER
+{
+	Inventory = 0,
+	LodingUI,
+	InteractionUI,
+	MonterUI,
+	PlayerUI,
+	PlayerUIFrame,
+};
+
+
+
+

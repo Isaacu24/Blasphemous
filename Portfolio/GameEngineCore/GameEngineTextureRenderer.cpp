@@ -126,7 +126,6 @@ void GameEngineTextureRenderer::SetTextureRendererSetting()
 
 	ShaderResources.SetConstantBufferLink("AtlasData", FrameData);
 	ShaderResources.SetConstantBufferLink("ColorData", ColorData);
-
 }
 
 void GameEngineTextureRenderer::Start()

@@ -203,10 +203,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="TitleLogo.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="WingedFace.h">
       <SubType>
       </SubType>
@@ -390,10 +386,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TitleActor.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="TitleLogo.cpp">
       <SubType>
       </SubType>
     </ClCompile>
