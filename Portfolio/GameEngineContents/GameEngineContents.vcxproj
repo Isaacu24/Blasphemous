@@ -313,6 +313,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Player_State.cpp" />
     <ClCompile Include="Pontiff.cpp">
       <SubType>
       </SubType>
@@ -393,6 +394,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Player_Collision.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

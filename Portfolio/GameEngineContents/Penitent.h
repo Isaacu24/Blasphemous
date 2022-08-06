@@ -62,6 +62,8 @@ protected:
 	bool LeftObstacleCheck();
 	bool RightObstacleCheck();
 
+	void CollisionCheck();
+
 	void IdleStart(const StateInfo& _Info);
 	void IdleUpdate(float _DeltaTime, const StateInfo& _Info);
 

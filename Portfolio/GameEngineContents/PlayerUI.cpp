@@ -1,4 +1,4 @@
-#include "PreCompile.h"
+ï»¿#include "PreCompile.h"
 #include "PlayerUI.h"
 #include "LeftTopUI.h"
 
@@ -18,6 +18,7 @@ void PlayerUI::Start()
 	HPBar_->Renderer_->SetTexture("Player_HP.png");
 	HPBar_->Renderer_->ScaleToTexture();
 	HPBar_->SetLevelOverOn();
+	HPBar_->Renderer_->GetTransform().SetLocalScale(HPBar_->Renderer_->GetTransform().GetWorldScale() - float4{ HPBar_->Renderer_->GetTransform().GetWorldScale().x, 0 });
 
 	MPBar_ = GetLevel()->CreateActor<LeftTopUI>();
 	MPBar_->Renderer_->SetTexture("Player_MP.png");
@@ -33,16 +34,15 @@ void PlayerUI::Start()
 	TearFrame_->SetTexture("TearFrame.png");
 	TearFrame_->ScaleToTexture();
 
-	HPBar_->GetTransform().SetWorldPosition({ -450, 290, static_cast<int>(UIORDER::PlayerUI)});
-	MPBar_->GetTransform().SetWorldPosition({ -450, 290, static_cast<int>(UIORDER::PlayerUI) });
-	BarFrame_->GetTransform().SetWorldPosition({ -450, 290, static_cast<int>(UIORDER::PlayerUIFrame) });
+	HPBar_->GetTransform().SetWorldPosition({ -600, 330, static_cast<int>(UIORDER::PlayerUI) });
+	MPBar_->GetTransform().SetWorldPosition({ -600, 330, static_cast<int>(UIORDER::PlayerUI) });
+	BarFrame_->GetTransform().SetWorldPosition({ -600, 330, static_cast<int>(UIORDER::PlayerUIFrame) });
 	TearFrame_->GetTransform().SetWorldPosition({ 500, 270, static_cast<int>(UIORDER::PlayerUIFrame) });
 
 	for (size_t i = 0; i < 3; i++)
 	{
 		Flasks_[i] = CreateComponent<GameEngineUIRenderer>();
 		Flasks_[i]->SetTexture("Full_Flask.png");
-		Flasks_[i]->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(UIORDER::PlayerUI) });
 		Flasks_[i]->ScaleToTexture();
 
 		Flasks_[i]->GetTransform().SetWorldMove({ -470.f + (40.f * i), 260 });
@@ -93,7 +93,7 @@ void PlayerUI::SetTear(int _Value)
 
 		if (i == Numbers.size())
 		{
-			if (0 == Numbers[i]) //¾Õ ÀÚ¸®°¡ 0ÀÌ¶ó¸é
+			if (0 == Numbers[i]) 
 			{
 				return;
 			}
@@ -101,7 +101,7 @@ void PlayerUI::SetTear(int _Value)
 
 		TearRenderers_[i]->SetTexture(std::to_string(Numbers[i]) + ".png");
 		TearRenderers_[i]->ScaleToTexture();
-		TearRenderers_[i]->GetTransform().SetWorldPosition({ 505.f - (10.f * i), 270.f, static_cast<int>(UIORDER::PlayerUI)});
+		TearRenderers_[i]->GetTransform().SetWorldPosition({ 505.f - (10.f * i), 270.f, static_cast<int>(UIORDER::PlayerUI) });
 	}
 }
 
@@ -110,6 +110,6 @@ void PlayerUI::UseFlask(int _Index)
 {
 	Flasks_[_Index]->SetTexture("Empty_Flask.png");
 
-	HPBar_->Renderer_->GetTransform().SetWorldScale(HPBar_->Renderer_->GetTransform().GetWorldScale() + float4{100, 0});
+	HPBar_->Renderer_->GetTransform().SetWorldScale(HPBar_->Renderer_->GetTransform().GetWorldScale() + float4{ 100, 0 });
 	HPBar_->Renderer_->SetPivot(PIVOTMODE::LEFTTOP);
 }

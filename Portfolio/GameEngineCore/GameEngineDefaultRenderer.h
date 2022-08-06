@@ -2,17 +2,9 @@
 #include "GameEngineRenderer.h"
 #include "GameEngineShaderResourcesHelper.h"
 
-// 설명 :
 class GameEngineRenderingPipeLine;
 class GameEngineDefaultRenderer : public GameEngineRenderer
 {
-	// 하나의 랜더링 파이프라인은
-	// 하나의 매쉬
-	// 하나의 메테리얼
-
-	// 하나의 랜더타겟
-
-
 public:
 	GameEngineShaderResourcesHelper ShaderResources;
 

@@ -17,7 +17,6 @@ void Crosscrawler::Start()
 	//Renderer_->ScaleToTexture();
 	//Renderer_->SetScaleModeImage();
 	//Renderer_->SetPivot(PIVOTMODE::BOT);
-
 }
 
 void Crosscrawler::Update(float _DeltaTime)

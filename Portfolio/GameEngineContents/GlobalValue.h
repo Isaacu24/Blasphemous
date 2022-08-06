@@ -61,8 +61,8 @@ enum class UIORDER
 	LodingUI,
 	InteractionUI,
 	MonterUI,
-	PlayerUI,
 	PlayerUIFrame,
+	PlayerUI,
 };
 
 

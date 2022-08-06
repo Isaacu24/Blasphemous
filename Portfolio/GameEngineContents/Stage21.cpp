@@ -76,6 +76,16 @@ void Stage21::Update(float _DeltaTime)
 		IsChangeCameraPos_ = true;
 	}
 
+	if (680 > Penitent_->GetTransform().GetWorldPosition().x)
+	{
+		Penitent_->GetTransform().SetWorldPosition(float4{ 680, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player) });
+	}
+
+	else if (1810 < Penitent_->GetTransform().GetWorldPosition().x)
+	{
+		Penitent_->GetTransform().SetWorldPosition(float4{ 1810, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player) });
+	}
+
 	GameEngineDebug::OutPutString("x : " + std::to_string(Penitent_->GetTransform().GetLocalPosition().x));
 	GameEngineDebug::OutPutString("y : " + std::to_string(Penitent_->GetTransform().GetLocalPosition().y));
 }
