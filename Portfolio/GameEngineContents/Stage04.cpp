@@ -97,19 +97,22 @@ void Stage04::Update(float _DeltaTime)
 	{
 		GetMainCameraActor()->GetTransform().SetWorldMove({ 0, 0, CameraZPos_ });
 		IsChangeCameraPos_ = true;
+		Penitent_->ChangeState("Idle");
 	}
 
 	switch (CurrentFlow_)
 	{
 	case STAGEFLOW::NORMAL:
 		if (false == IsEvent_
-			&& 1400 < Penitent_->GetTransform().GetWorldPosition().x)
+			&& 1300 < Penitent_->GetTransform().GetWorldPosition().x)
 		{
 			CurrentFlow_ = STAGEFLOW::BOSSAPPEAR;
 		}
 		PlayerCameraMove();
 		break;
 	case STAGEFLOW::BOSSAPPEAR:
+		Penitent_->ChangeState("Freeze");
+
 		Time_ += _DeltaTime;
 
 		GetMainCameraActor()->GetTransform().SetWorldPosition({ Penitent_->GetTransform().GetLocalPosition().x + (Time_ * 30), Penitent_->GetTransform().GetLocalPosition().y + 100, CameraZPos_ });

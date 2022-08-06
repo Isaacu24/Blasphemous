@@ -6,7 +6,7 @@
 Penitent* Penitent::MainPlayer_ = nullptr;
 
 Penitent::Penitent() 
-	: StateManager_{}
+	: State_{}
 	, PlayerUI_(nullptr)
 	, Gravity_(nullptr)
 	, Renderer_(nullptr)
@@ -89,46 +89,39 @@ void Penitent::Start()
 		Renderer_->CreateFrameAnimationCutTexture("penitent_jumpoff_new", { "penitent_jumpoff_new.png", 0, 4, 0.1f, true });
 	}
 
-	StateManager_.CreateStateMember("Idle", std::bind(&Penitent::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::IdleStart, this, std::placeholders::_1));
-	StateManager_.CreateStateMember("LadderClimb", std::bind(&Penitent::LadderClimbUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::LadderClimbStart, this, std::placeholders::_1));
-	StateManager_.CreateStateMember("Jump", std::bind(&Penitent::JumpUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::JumpStart, this, std::placeholders::_1));
-	StateManager_.CreateStateMember("Slide", std::bind(&Penitent::SlideUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::SlideStart, this, std::placeholders::_1));
-	StateManager_.CreateStateMember("Crouch", std::bind(&Penitent::RecoveryUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::RecoveryStart, this, std::placeholders::_1));
-	StateManager_.CreateStateMember("Recovery", std::bind(&Penitent::RecoveryUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::RecoveryStart, this, std::placeholders::_1));
-	StateManager_.CreateStateMember("Hit", std::bind(&Penitent::HitUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::HitStart, this, std::placeholders::_1));
-	StateManager_.CreateStateMember("Death", std::bind(&Penitent::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::DeathStart, this, std::placeholders::_1));
-	StateManager_.ChangeState("Idle");
+	State_.CreateStateMember("Freeze", std::bind(&Penitent::FreezeUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::FreezeStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Idle", std::bind(&Penitent::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::IdleStart, this, std::placeholders::_1));
+	State_.CreateStateMember("LadderClimb", std::bind(&Penitent::LadderClimbUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::LadderClimbStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Jump", std::bind(&Penitent::JumpUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::JumpStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Slide", std::bind(&Penitent::SlideUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::SlideStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Crouch", std::bind(&Penitent::RecoveryUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::RecoveryStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Recovery", std::bind(&Penitent::RecoveryUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::RecoveryStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Hit", std::bind(&Penitent::HitUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::HitStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Death", std::bind(&Penitent::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::DeathStart, this, std::placeholders::_1));
+	State_.ChangeState("Idle");
 
 	PlayerUI_->SetTear(Tear_);
 }
 
 void Penitent::Update(float _DeltaTime)
 { 
-	StateManager_.Update(_DeltaTime);
+	State_.Update(_DeltaTime);
 
 	GroundCheck(); 
 	LadderCheck(); 
 	CollisionCheck();
-
-	Gravity_->SetActive(!IsGround_);
 
 	if (true == GameEngineInput::GetInst()->IsDownKey("FreeCamera"))
 	{
 		GetLevel()->GetMainCameraActor()->FreeCameraModeOnOff();
 	}
 
-	GameEngineDebug::OutPutString("PlayerState: " + StateManager_.GetCurStateStateName());
+	GameEngineDebug::OutPutString("PlayerState: " + State_.GetCurStateStateName());
 }
 
 void Penitent::End()
 {
 
 }
-
-
-
-
-
-
 
 

@@ -50,6 +50,11 @@ public:
 		ColMap_ = _Ground;
 	}
 
+	inline void ChangeState(const std::string& _State)
+	{
+		State_.ChangeState(_State);
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -66,6 +71,9 @@ protected:
 
 	void IdleStart(const StateInfo& _Info);
 	void IdleUpdate(float _DeltaTime, const StateInfo& _Info);
+
+	void FreezeStart(const StateInfo& _Info);
+	void FreezeUpdate(float _DeltaTime, const StateInfo& _Info);
 
 	void LadderClimbStart(const StateInfo& _Info);
 	void LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info);
@@ -90,7 +98,7 @@ protected:
 	bool HitProjectile(GameEngineCollision* _This, GameEngineCollision* _Other);
 
 private:
-	GameEngineStateManager StateManager_;
+	GameEngineStateManager State_;
 
 	class PlayerUI* PlayerUI_;
 

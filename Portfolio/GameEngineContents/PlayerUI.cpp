@@ -45,7 +45,7 @@ void PlayerUI::Start()
 		Flasks_[i]->SetTexture("Full_Flask.png");
 		Flasks_[i]->ScaleToTexture();
 
-		Flasks_[i]->GetTransform().SetWorldMove({ -470.f + (40.f * i), 260 });
+		Flasks_[i]->GetTransform().SetWorldMove({ -440.f + (40.f * i), 240 });
 	}
 
 	TearRenderers_.resize(10);
@@ -101,7 +101,7 @@ void PlayerUI::SetTear(int _Value)
 
 		TearRenderers_[i]->SetTexture(std::to_string(Numbers[i]) + ".png");
 		TearRenderers_[i]->ScaleToTexture();
-		TearRenderers_[i]->GetTransform().SetWorldPosition({ 505.f - (10.f * i), 270.f, static_cast<int>(UIORDER::PlayerUI) });
+		TearRenderers_[i]->GetTransform().SetWorldPosition({ 505.f - (10.f * i), 270.f, static_cast<int>(UIORDER::NumberUI) });
 	}
 }
 

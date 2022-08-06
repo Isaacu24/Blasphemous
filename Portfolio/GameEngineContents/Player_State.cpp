@@ -40,22 +40,32 @@ void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 		|| GameEngineInput::GetInst()->IsDownButton("PenitentA")
 		&& false == IsJump_ && true == IsGround_)
 	{
-		StateManager_.ChangeState("Jump");
+		State_.ChangeState("Jump");
 		PlayerUI_->SetTear(Tear_ += 123);
 	}
 
 	if (GameEngineInput::GetInst()->IsDownKey("PenitentRecovery")
 		|| GameEngineInput::GetInst()->IsDownButton("PenitentLeftShoulder"))
 	{
-		StateManager_.ChangeState("Recovery");
+		State_.ChangeState("Recovery");
 	}
 
 	if (GameEngineInput::GetInst()->IsDownKey("PenitentSlide")
 		&& true == IsGround_ && false == IsLadder_)
 	{
-		StateManager_.ChangeState("Slide");
+		State_.ChangeState("Slide");
 	}
 
+	Gravity_->SetActive(!IsGround_);
+}
+
+void Penitent::FreezeStart(const StateInfo& _Info)
+{
+	Renderer_->ChangeFrameAnimation("penintent_idle_anim");
+}
+
+void Penitent::FreezeUpdate(float _DeltaTime, const StateInfo& _Info)
+{
 }
 
 void Penitent::LadderClimbStart(const StateInfo& _Info)
@@ -66,28 +76,6 @@ void Penitent::LadderClimbStart(const StateInfo& _Info)
 
 void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-	if (20000 < GameEngineInput::GetInst()->GetThumbLX()
-		|| GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
-	{
-		Renderer_->GetTransform().PixLocalPositiveX();
-
-		if (false == RightObstacleCheck())
-		{
-			Dir_ += GetTransform().GetRightVector();
-		}
-	}
-
-	if (0 > GameEngineInput::GetInst()->GetThumbLX()
-		|| GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
-	{
-		Renderer_->GetTransform().PixLocalNegativeX();
-
-		if (false == LeftObstacleCheck())
-		{
-			Dir_ += GetTransform().GetLeftVector();
-		}
-	}
-
 	if (20000 < GameEngineInput::GetInst()->GetThumbLY()
 		|| GameEngineInput::GetInst()->IsPressKey("PenitentUp"))
 	{
@@ -103,7 +91,7 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
 	if (true == IsGround_)
 	{
 		IsLadder_ = false;
-		StateManager_.ChangeState("Idle");
+		State_.ChangeState("Idle");
 	}
 }
 
@@ -148,8 +136,10 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 	if (0.5f <= JumpTime_)
 	{
 		JumpTime_ -= 0.5f;
-		StateManager_.ChangeState("Idle");
+		State_.ChangeState("Idle");
 	}
+
+	Gravity_->SetActive(!IsGround_);
 }
 
 void Penitent::SlideStart(const StateInfo& _Info)
@@ -167,15 +157,17 @@ void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
 		|| true == LeftObstacleCheck())
 	{
 		IsSlide_ = false;
-		StateManager_.ChangeState("Idle");
+		State_.ChangeState("Idle");
 	}
 
 	if (0.5f <= SlideTime_)
 	{
 		IsSlide_ = false;
 		SlideTime_ = 0.f;
-		StateManager_.ChangeState("Idle");
+		State_.ChangeState("Idle");
 	}
+
+	Gravity_->SetActive(!IsGround_);
 }
 
 void Penitent::RecoveryStart(const StateInfo& _Info)
@@ -184,7 +176,7 @@ void Penitent::RecoveryStart(const StateInfo& _Info)
 
 	if (0 >= Size)
 	{
-		StateManager_.ChangeState("Idle");
+		State_.ChangeState("Idle");
 		return;
 	}
 
@@ -196,12 +188,12 @@ void Penitent::RecoveryStart(const StateInfo& _Info)
 
 			Flasks_[i] = false;
 			PlayerUI_->UseFlask(i);
-			StateManager_.ChangeState("Idle");
+			State_.ChangeState("Idle");
 			return;
 		}
 	}
 
-	StateManager_.ChangeState("Idle");
+	State_.ChangeState("Idle");
 }
 
 void Penitent::RecoveryUpdate(float _DeltaTime, const StateInfo& _Info)

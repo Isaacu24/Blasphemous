@@ -50,13 +50,13 @@ void Penitent::LadderCheck()
 	{
 		if (GameEngineInput::GetInst()->IsDownKey("PenitentDown"))
 		{
-			StateManager_.ChangeState("LadderClimb");
+			State_.ChangeState("LadderClimb");
 		}
 	}
 
 	if (true == MiddleColor.CompareInt4D(float4::GREEN))
 	{
-		StateManager_.ChangeState("LadderClimb");
+		State_.ChangeState("LadderClimb");
 	}
 }
 
@@ -141,7 +141,7 @@ void Penitent::CollisionCheck()
 
 void Penitent::HitStart(const StateInfo& _Info)
 {
-	StateManager_.ChangeState("Idle");
+	State_.ChangeState("Idle");
 }
 
 void Penitent::HitUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -158,6 +158,6 @@ bool Penitent::HitMonster(GameEngineCollision* _This, GameEngineCollision* _Othe
 
 bool Penitent::HitProjectile(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-	StateManager_.ChangeState("Hit");
+	State_.ChangeState("Hit");
 	return false;
 }
