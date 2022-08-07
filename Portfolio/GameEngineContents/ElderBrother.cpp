@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "ElderBrother.h"
 #include "AttackCorpseEffecter.h"
+#include "JumpCorpseEffecter.h"
 
 ElderBrother::ElderBrother() 
 {
@@ -22,6 +23,7 @@ void ElderBrother::Start()
 	Renderer_->GetTransform().PixLocalNegativeX();
 
 	AttackEffecter_ = GetLevel()->CreateActor<AttackCorpseEffecter>();
+	JumpEffecter_ = GetLevel()->CreateActor<JumpCorpseEffecter>();
 
 	State_.CreateStateMember("Freeze", std::bind(&ElderBrother::FreezeUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::FreezeStart, this, std::placeholders::_1));
 	State_.CreateStateMember("Appear", std::bind(&ElderBrother::AppearUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::AppearStart, this, std::placeholders::_1));
@@ -114,6 +116,9 @@ void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 	if (false == IsDecide_)
 	{
 		IsDecide_ = true;
+
+		JumpEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{0.f, 100.f});
+		JumpEffecter_->CreateEffect();
 
 		Renderer_->ChangeFrameAnimation("elderBrother_jump");
 		Renderer_->AnimationBindEnd("elderBrother_jump", std::bind(&ElderBrother::ChangeIdle, this, std::placeholders::_1));

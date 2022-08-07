@@ -3,6 +3,7 @@
 #include "BossMonster.h"
 
 class AttackCorpseEffecter;
+class JumpCorpseEffecter;
 class ElderBrother : public GameEngineActor, public BossMonster
 {
 public:
@@ -53,6 +54,7 @@ private:
 	float4 Dir_;
 
 	AttackCorpseEffecter* AttackEffecter_;
+	JumpCorpseEffecter* JumpEffecter_;
 
 	bool IsDecide_;
 
