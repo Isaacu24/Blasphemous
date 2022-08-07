@@ -56,13 +56,10 @@ void GameEngineCore::CoreStart(GameEngineCore* _UserCore)
 {
 	GameEngineGUI::Initialize();
 
-	// 엔진 리소스는 완성되어야 합니다.
 	EngineResourcesInitialize();
 
 	GameEngineDebug::Debug3DInitialize();
 
-	// 엔진이 뭔가를 할겁니다.
-		// 준비를 먼저하고.
 	_UserCore->Start();
 }
 
@@ -79,7 +76,6 @@ void GameEngineCore::CoreUpdate(GameEngineCore* _UserCore)
 		{
 			CurrentLevel->ActorOffEvent();
 			CurrentLevel->OffEvent();
-			// 넘어가려는 액터가 이때 존재해야 겠죠?
 
 			CurrentLevel->OverChildMove(NextLevel);
 		}

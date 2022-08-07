@@ -545,6 +545,7 @@ void Blasphemous::CutTexture()
 
 	GameEngineTexture::Cut("pontiff_giantSword_teleportOUT.png", 9, 3);
 	GameEngineTexture::Cut("pontiff_giantSword_teleportIN.png", 9, 3);
+	GameEngineTexture::Cut("pontiff_giantSword_eyeLids.png", 5, 4);
 
 	//NormalMonster
 	GameEngineTexture::Cut("Fool_death_knife.png", 4, 4);
@@ -573,7 +574,6 @@ void Blasphemous::CutTexture()
 	GameEngineTexture::Cut("TakeBackProyectile.png", 6, 2);
 	GameEngineTexture::Cut("TakeBackProyectileExplosion.png", 6, 3);
 	GameEngineTexture::Cut("TakeBackProyectileHead.png", 6, 2);
-
 
 	//UI
 	GameEngineTexture::Cut("ItemCursorAlt.png", 4, 4);
