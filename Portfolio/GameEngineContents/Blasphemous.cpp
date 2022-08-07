@@ -534,7 +534,6 @@ void Blasphemous::CutTexture()
 	GameEngineTexture::Cut("elderBrother_jump.png", 4, 7);
 	GameEngineTexture::Cut("elderBrother_attack.png", 4, 6);
 	GameEngineTexture::Cut("elderBrother_death.png", 5, 10);
-	GameEngineTexture::Cut("elderBrother_corpse.png", 4, 3);
 
 	GameEngineTexture::Cut("pope_idle.png", 4, 4);
 	GameEngineTexture::Cut("pope_appear.png", 4, 4);
@@ -568,9 +567,13 @@ void Blasphemous::CutTexture()
 	GameEngineTexture::Cut("BloodSplattersV3.png", 4, 4);
 	GameEngineTexture::Cut("BloodSplattersV4.png", 4, 4);
 
+	GameEngineTexture::Cut("burntFace_rayBeam_impact.png", 5, 4);
+	GameEngineTexture::Cut("elderBrother_corpse.png", 4, 3);
+
 	GameEngineTexture::Cut("TakeBackProyectile.png", 6, 2);
 	GameEngineTexture::Cut("TakeBackProyectileExplosion.png", 6, 3);
 	GameEngineTexture::Cut("TakeBackProyectileHead.png", 6, 2);
+
 
 	//UI
 	GameEngineTexture::Cut("ItemCursorAlt.png", 4, 4);

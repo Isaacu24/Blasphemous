@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Penitent.h"
 #include "PlayerUI.h"
+#include "AttackCorpseEffecter.h"
 
 
 void Penitent::IdleStart(const StateInfo& _Info)

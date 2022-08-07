@@ -1,5 +1,6 @@
-#include "ElderBrother.h"
 #include "PreCompile.h"
+#include "ElderBrother.h"
+#include "AttackCorpseEffecter.h"
 
 ElderBrother::ElderBrother() 
 {
@@ -18,12 +19,17 @@ void ElderBrother::Start()
 	Renderer_->CreateFrameAnimationCutTexture("elderBrother_death", { "elderBrother_death.png", 0, 48, 0.1f, false });
 	Renderer_->GetTransform().SetWorldScale({1200, 700});
 	Renderer_->SetPivot(PIVOTMODE::BOT);
+	Renderer_->GetTransform().PixLocalNegativeX();
 
+	AttackEffecter_ = GetLevel()->CreateActor<AttackCorpseEffecter>();
+
+	State_.CreateStateMember("Freeze", std::bind(&ElderBrother::FreezeUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::FreezeStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Appear", std::bind(&ElderBrother::AppearUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::AppearStart, this, std::placeholders::_1));
 	State_.CreateStateMember("Idle", std::bind(&ElderBrother::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::IdleStart, this, std::placeholders::_1));
 	State_.CreateStateMember("Jump", std::bind(&ElderBrother::JumpUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::JumpStart, this, std::placeholders::_1));
 	State_.CreateStateMember("Attack", std::bind(&ElderBrother::AttackUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::AttackStart, this, std::placeholders::_1));
 	State_.CreateStateMember("Death", std::bind(&ElderBrother::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::DeathStart, this, std::placeholders::_1));
-	State_.ChangeState("Idle");
+	State_.ChangeState("Freeze");
 
 	Gravity_ = CreateComponent<GravityComponent>();
 
@@ -51,6 +57,34 @@ void ElderBrother::End()
 {
 }
 
+void ElderBrother::FreezeStart(const StateInfo& _Info)
+{
+	Renderer_->ChangeFrameAnimation("elderBrother_idle");
+}
+
+void ElderBrother::FreezeUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+}
+
+void ElderBrother::AppearStart(const StateInfo& _Info)
+{
+	Renderer_->ChangeFrameAnimation("elderBrother_idle");
+}
+
+void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+	AppearTime_ += _DeltaTime;
+
+	if (8.f <= AppearTime_)
+	{
+		AppearTime_ = 0.f;
+		State_.ChangeState("Idle");
+		IsEventEnd_ = true;
+
+		GetTransform().SetWorldPosition({ GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::BossMonster) });
+	}
+}
+
 void ElderBrother::IdleStart(const StateInfo& _Info)
 {
 	Renderer_->ChangeFrameAnimation("elderBrother_idle");
@@ -65,26 +99,56 @@ void ElderBrother::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 void ElderBrother::JumpStart(const StateInfo& _Info)
 {
 	Speed_ = 600.f;
-	Renderer_->ChangeFrameAnimation("elderBrother_jump");
-	Renderer_->AnimationBindEnd("elderBrother_jump", std::bind(&ElderBrother::ChangeIdle, this, std::placeholders::_1));
-
 }
 
 void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	Speed_ -= 1.f;
-	GetTransform().SetWorldMove(float4::UP * Speed_ * _DeltaTime);
-	GetTransform().SetWorldMove(float4::LEFT * 50 * _DeltaTime);
+	DecideTime_ += _DeltaTime;
+
+	if (2.5f < DecideTime_)
+	{
+		GetTransform().SetWorldMove(Dir_ + float4::UP * Speed_ * _DeltaTime);
+	}
+
+	if (false == IsDecide_)
+	{
+		IsDecide_ = true;
+
+		Renderer_->ChangeFrameAnimation("elderBrother_jump");
+		Renderer_->AnimationBindEnd("elderBrother_jump", std::bind(&ElderBrother::ChangeIdle, this, std::placeholders::_1));
+	}
 }
 
 void ElderBrother::AttackStart(const StateInfo& _Info)
 {
-	Renderer_->ChangeFrameAnimation("elderBrother_attack");
-	Renderer_->AnimationBindEnd("elderBrother_attack", std::bind(&ElderBrother::ChangeIdle, this, std::placeholders::_1));
 }
 
 void ElderBrother::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+	DecideTime_ += _DeltaTime;
+
+	if (2.f < DecideTime_
+		&& false == IsDecide_)
+	{
+		IsDecide_ = true;
+
+		Renderer_->ChangeFrameAnimation("elderBrother_attack");
+
+		if (Dir_.CompareInt4D(float4::LEFT))
+		{
+			AttackEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{ -150.f, 150.f }, Dir_);
+			AttackEffecter_->CreateEffect();
+		}
+
+		else
+		{
+			AttackEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{ 150.f, 150.f }, Dir_);
+			AttackEffecter_->CreateEffect();
+		}
+
+		Renderer_->AnimationBindEnd("elderBrother_attack", std::bind(&ElderBrother::ChangeIdle, this, std::placeholders::_1));
+	}
 }
 
 void ElderBrother::DeathStart(const StateInfo& _Info)
@@ -97,25 +161,36 @@ void ElderBrother::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
 
 }
 
+
+
 bool ElderBrother::DecideState(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-	//if (_This->GetTransform().GetWorldPosition().x < _Other->GetTransform().GetWorldPosition().x)
-	//{
-	//	Renderer_->GetTransform().PixLocalPositiveX();
-	//}
+	DecideTime_ = 0.f;
+	IsDecide_ = false;
 
-	//else
-	//{
-	//	State_.ChangeState("Jump");
-	//	Renderer_->GetTransform().PixLocalNegativeX();
-	//}
+	if (_This->GetTransform().GetWorldPosition().x < _Other->GetTransform().GetWorldPosition().x)
+	{
+		Dir_ = float4::RIGHT;
+		Renderer_->GetTransform().PixLocalPositiveX();
+	}
 
-	//float Distance = abs(_This->GetTransform().GetWorldPosition().x - _Other->GetTransform().GetWorldPosition().x);
+	else
+	{
+		Dir_ = float4::LEFT;
+		Renderer_->GetTransform().PixLocalNegativeX();
+	}
 
-	//if (500 >= Distance)
-	//{
-	//	State_.ChangeState("Attack");
-	//}
+	float Distance = abs(_This->GetTransform().GetWorldPosition().x - _Other->GetTransform().GetWorldPosition().x);
+
+	if (500 >= Distance)
+	{
+		State_.ChangeState("Attack");
+	}
+
+	else
+	{
+		State_.ChangeState("Jump");
+	}
 
 	return true;
 }

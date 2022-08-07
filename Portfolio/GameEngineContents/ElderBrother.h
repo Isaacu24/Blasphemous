@@ -2,6 +2,7 @@
 #include <GameEngineCore/GameEngineActor.h>
 #include "BossMonster.h"
 
+class AttackCorpseEffecter;
 class ElderBrother : public GameEngineActor, public BossMonster
 {
 public:
@@ -12,6 +13,12 @@ public:
 	ElderBrother(ElderBrother&& _Other) noexcept = delete;
 	ElderBrother& operator=(const ElderBrother& _Other) = delete;
 	ElderBrother& operator=(ElderBrother&& _Other) noexcept = delete;
+
+	void FreezeStart(const StateInfo& _Info);
+	void FreezeUpdate(float _DeltaTime, const StateInfo& _Info);
+
+	void AppearStart(const StateInfo& _Info);
+	void AppearUpdate(float _DeltaTime, const StateInfo& _Info);
 
 	void IdleStart(const StateInfo& _Info);
 	void IdleUpdate(float _DeltaTime, const StateInfo& _Info);
@@ -32,13 +39,25 @@ public:
 		State_.ChangeState("Idle");
 	}
 
+	inline void ChangeState(const std::string& _State)
+	{
+		State_.ChangeState(_State);
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 	void End() override;
 
 private:
-	//float4 Dir_;
+	float4 Dir_;
+
+	AttackCorpseEffecter* AttackEffecter_;
+
+	bool IsDecide_;
+
+	float DecideTime_;
+	float AppearTime_;
 
 };
 

@@ -140,6 +140,18 @@
     <ClInclude Include="BossUI.h">
       <Filter>Actor\UI</Filter>
     </ClInclude>
+    <ClInclude Include="AttackCorpseEffecter.h">
+      <Filter>Actor\Effect\Monster\Boss\Elder</Filter>
+    </ClInclude>
+    <ClInclude Include="JumpCorpseEffecter.h">
+      <Filter>Actor\Effect\Monster\Boss\Elder</Filter>
+    </ClInclude>
+    <ClInclude Include="Corpse.h">
+      <Filter>Actor\Effect\Monster\Boss\Elder</Filter>
+    </ClInclude>
+    <ClInclude Include="CorpseGroundEffect.h">
+      <Filter>Actor\Effect\Monster\Boss\Elder</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -278,11 +290,23 @@
     <ClCompile Include="BossUI.cpp">
       <Filter>Actor\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Player_Collision.cpp">
+    <ClCompile Include="Penitent_Collision.cpp">
       <Filter>Actor\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Player_State.cpp">
+    <ClCompile Include="Penitent_State.cpp">
       <Filter>Actor\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackCorpseEffecter.cpp">
+      <Filter>Actor\Effect\Monster\Boss\Elder</Filter>
+    </ClCompile>
+    <ClCompile Include="JumpCorpseEffecter.cpp">
+      <Filter>Actor\Effect\Monster\Boss\Elder</Filter>
+    </ClCompile>
+    <ClCompile Include="Corpse.cpp">
+      <Filter>Actor\Effect\Monster\Boss\Elder</Filter>
+    </ClCompile>
+    <ClCompile Include="CorpseGroundEffect.cpp">
+      <Filter>Actor\Effect\Monster\Boss\Elder</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -24,7 +24,7 @@ void Stage20::SettingStage()
 	GameEngineTextureRenderer* BeforePrallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforePrallaxRenderer->SetTexture("12_2_BeforeParallax_0.png");
 	BeforePrallaxRenderer->ScaleToTexture();
-	BeforePrallaxRenderer->GetTransform().SetWorldPosition({ 0, 100, static_cast<int>(ACTORORDER::BeforeParallax5) });
+	BeforePrallaxRenderer->GetTransform().SetWorldPosition({ 0, 500, static_cast<int>(ACTORORDER::BeforeParallax5) });
 	BeforePrallaxRenderer->GetTransform().SetWorldScale(BeforePrallaxRenderer->GetTransform().GetWorldScale() * 1.3f);
 
 	GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
@@ -35,7 +35,7 @@ void Stage20::SettingStage()
 	GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	AfterLayerRenderer->SetTexture("12_2_AfterLayer.png");
 	AfterLayerRenderer->ScaleToTexture();
-	AfterLayerRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::AfterLayer5) });
+	AfterLayerRenderer->GetTransform().SetWorldPosition({ 0, -550, static_cast<int>(ACTORORDER::AfterLayer5) });
 
 	float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
 	float OffsetY = ColMap_->GetTransform().GetLocalScale().y / 2;

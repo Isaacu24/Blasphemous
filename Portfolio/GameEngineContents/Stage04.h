@@ -27,11 +27,10 @@ protected:
 	void OffEvent() override;
 
 private:
+	class ElderBrother* ElderBrother_;
 	class BossUI* BossUI_;
 
 	bool IsEvent_;
-
-	float Time_;
 
 	void PlayerCameraMove();
 };
