@@ -1,24 +1,28 @@
 #include "PreCompile.h"
 #include "ElderBrother.h"
-#include "AttackCorpseEffecter.h"
-#include "JumpCorpseEffecter.h"
 
-ElderBrother::ElderBrother() 
+namespace
+{
+	const char* ELDER_ATTACK_NAME = "elderBrother_attack";
+	constexpr std::string_view TEST = "TEST";
+}
+
+ElderBrother::ElderBrother()
 {
 }
 
-ElderBrother::~ElderBrother() 
+ElderBrother::~ElderBrother()
 {
 }
 
 void ElderBrother::Start()
 {
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
-	Renderer_->CreateFrameAnimationCutTexture("elderBrother_idle", {"elderBrother_idle.png", 0, 9, 0.15f, true});
+	Renderer_->CreateFrameAnimationCutTexture("elderBrother_idle", { "elderBrother_idle.png", 0, 9, 0.15f, true });
 	Renderer_->CreateFrameAnimationCutTexture("elderBrother_jump", { "elderBrother_jump.png", 0, 24, 0.15f, true });
 	Renderer_->CreateFrameAnimationCutTexture("elderBrother_attack", { "elderBrother_attack.png", 0, 23, 0.1f, true });
 	Renderer_->CreateFrameAnimationCutTexture("elderBrother_death", { "elderBrother_death.png", 0, 48, 0.1f, false });
-	Renderer_->GetTransform().SetWorldScale({1200, 700});
+	Renderer_->GetTransform().SetWorldScale({ 1200, 700 });
 	Renderer_->SetPivot(PIVOTMODE::BOT);
 	Renderer_->GetTransform().PixLocalNegativeX();
 
@@ -117,10 +121,8 @@ void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 	{
 		IsDecide_ = true;
 
-		JumpEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{0.f, 100.f});
-		JumpEffecter_->CreateEffect();
-
 		Renderer_->ChangeFrameAnimation("elderBrother_jump");
+		Renderer_->AnimationBindFrame("elderBrother_jump", std::bind(&ElderBrother::JumpFrame, this, std::placeholders::_1));
 		Renderer_->AnimationBindEnd("elderBrother_jump", std::bind(&ElderBrother::ChangeIdle, this, std::placeholders::_1));
 	}
 }
@@ -128,7 +130,6 @@ void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 void ElderBrother::AttackStart(const StateInfo& _Info)
 {
 }
-
 void ElderBrother::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	DecideTime_ += _DeltaTime;
@@ -139,19 +140,7 @@ void ElderBrother::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 		IsDecide_ = true;
 
 		Renderer_->ChangeFrameAnimation("elderBrother_attack");
-
-		if (Dir_.CompareInt4D(float4::LEFT))
-		{
-			AttackEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{ -150.f, 150.f }, Dir_);
-			AttackEffecter_->CreateEffect();
-		}
-
-		else
-		{
-			AttackEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{ 150.f, 150.f }, Dir_);
-			AttackEffecter_->CreateEffect();
-		}
-
+		Renderer_->AnimationBindFrame("elderBrother_attack", std::bind(&ElderBrother::AttackFrame, this, std::placeholders::_1));
 		Renderer_->AnimationBindEnd("elderBrother_attack", std::bind(&ElderBrother::ChangeIdle, this, std::placeholders::_1));
 	}
 }

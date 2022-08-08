@@ -15,10 +15,6 @@ Projectile::~Projectile()
 {
 }
 
-//GameEngineTexture::Cut("TakeBackProyectile.png", 6, 2);
-//GameEngineTexture::Cut("TakeBackProyectileExplosion.png", 6, 3);
-//GameEngineTexture::Cut("TakeBackProyectileHead.png", 6, 2);
-
 void Projectile::Start()
 {
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
@@ -41,7 +37,7 @@ void Projectile::Update(float _DeltaTime)
 {
 	State_.Update(_DeltaTime);
 
-	float4 Color = ColMap_->GetCurTexture()->GetPixel(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y));
+	float4 Color = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y));
 
 	if (Color.CompareInt4D(float4::BLACK))
 	{

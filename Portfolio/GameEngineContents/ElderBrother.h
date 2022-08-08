@@ -1,6 +1,8 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 #include "BossMonster.h"
+#include "AttackCorpseEffecter.h"
+#include "JumpCorpseEffecter.h"
 
 class AttackCorpseEffecter;
 class JumpCorpseEffecter;
@@ -35,11 +37,6 @@ public:
 
 	bool DecideState(GameEngineCollision* _This, GameEngineCollision* _Other);
 
-	inline void ChangeIdle(const FrameAnimation_DESC& _Info)
-	{
-		State_.ChangeState("Idle");
-	}
-
 	inline void ChangeState(const std::string& _State)
 	{
 		State_.ChangeState(_State);
@@ -60,6 +57,39 @@ private:
 
 	float DecideTime_;
 	float AppearTime_;
+
+	inline void ChangeIdle(const FrameAnimation_DESC& _Info)
+	{
+		State_.ChangeState("Idle");
+	}
+
+	inline void JumpFrame(const FrameAnimation_DESC& _Info)
+	{
+		if (24 == _Info.CurFrame)
+		{
+			JumpEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{ 0.f, 100.f });
+			JumpEffecter_->CreateEffect();
+		}
+	}
+
+	inline void AttackFrame(const FrameAnimation_DESC& _Info)
+	{
+		if (17 == _Info.CurFrame)
+		{
+			if (Dir_.CompareInt4D(float4::LEFT))
+			{
+				AttackEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{ -200.f, 150.f }, Dir_);
+				AttackEffecter_->CreateEffect();
+			}
+
+			else
+			{
+				AttackEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{ 200.f, 200.f }, Dir_);
+				AttackEffecter_->CreateEffect();
+			}
+
+		}
+	}
 
 };
 

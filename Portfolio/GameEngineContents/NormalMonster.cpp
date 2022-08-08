@@ -12,7 +12,7 @@ NormalMonster::~NormalMonster()
 
 bool NormalMonster::LeftObstacleCheck(int _X, int _Y)
 {
-	float4 LeftColor = ColMap_->GetCurTexture()->GetPixel(_X, _Y);
+	float4 LeftColor = ColMap_->GetCurTexture()->GetPixelToFloat4(_X, _Y);
 
 	if (true == LeftColor.CompareInt4D(float4::BLACK))
 	{
@@ -29,7 +29,7 @@ bool NormalMonster::LeftObstacleCheck(int _X, int _Y)
 
 bool NormalMonster::RightObstacleCheck(int _X, int _Y)
 {
-	float4 RightColor = ColMap_->GetCurTexture()->GetPixel(_X, _Y);
+	float4 RightColor = ColMap_->GetCurTexture()->GetPixelToFloat4(_X, _Y);
 
 	if (true == RightColor.CompareInt4D(float4::BLACK))
 	{

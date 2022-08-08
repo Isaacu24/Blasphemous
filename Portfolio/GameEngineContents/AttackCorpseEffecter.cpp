@@ -3,6 +3,11 @@
 #include "Corpse.h"
 #include "CorpseGroundEffect.h"
 
+namespace
+{
+	constexpr float DEFAULT_DELAY_TIME = 0.15f;
+}
+
 AttackCorpseEffecter::AttackCorpseEffecter() 
 	: CreatePos_(float4::ZERO)
 	, Index_(0)
@@ -23,10 +28,10 @@ void AttackCorpseEffecter::Update(float _DeltaTime)
 	{
 		DelayTime_ += _DeltaTime;
 
-		if (0.15f < DelayTime_)
+		if (DEFAULT_DELAY_TIME < DelayTime_)
 		{
 			++Index_;
-			DelayTime_ -= 0.15f;
+			DelayTime_ -= DEFAULT_DELAY_TIME;
 
 			CorpseGroundEffect* Effect = GetLevel()->CreateActor<CorpseGroundEffect>();
 			Effect->GetTransform().SetWorldPosition({ CreatePos_.x + (Index_ * (110.f * Dir_.x)) , CreatePos_.y, static_cast<int>(ACTORORDER::BossMonster) });

@@ -37,7 +37,7 @@ void JumpCorpseEffecter::Update(float _DeltaTime)
 
 			NewCorpse->GetTransform().SetWorldPosition({ CreatePos_.x + PosX, CreatePos_.y , static_cast<int>(ACTORORDER::BossMonster) });
 
-			if (5 < Index_)
+			if (3 < Index_)
 			{
 				Index_ = 0;
 				IsEffect_ = false;

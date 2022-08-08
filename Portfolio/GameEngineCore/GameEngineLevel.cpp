@@ -7,6 +7,7 @@
 #include "GameEngineCollision.h"
 #include "GameEngineGUI.h"
 #include "GameEngineCoreDebug.h"
+#include "GEngine.h"
 
 GameEngineLevel::GameEngineLevel()
 {
@@ -15,7 +16,7 @@ GameEngineLevel::GameEngineLevel()
 	{
 		GameEngineCameraActor* CameraActor = CreateActor<GameEngineCameraActor>();
 		CameraActor->GetTransform().SetLocalPosition({ 0.0f, 0.0f, -100.0f });
-		CameraActor->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::PersPective);
+		CameraActor->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
 		CameraActor->GetCameraComponent()->SetCameraOrder(CAMERAORDER::MAINCAMERA);
 	}
 
@@ -72,7 +73,7 @@ void GameEngineLevel::ActorOnEvent()
 			{
 				continue;
 			}
-			Actor->OnEvent();
+			Actor->AllOnEvent();
 		}
 	}
 }
@@ -88,7 +89,7 @@ void GameEngineLevel::ActorOffEvent()
 			{
 				continue;
 			}
-			Actor->OffEvent();
+			Actor->AllOffEvent();
 		}
 	}
 }
@@ -137,9 +138,29 @@ GameEngineCameraActor* GameEngineLevel::GetUICameraActor()
 
 void GameEngineLevel::Render(float _DelataTime)
 {
+	{
+		if (true == GEngine::IsCollisionDebug())
+		{
+			std::map<int, std::list<GameEngineCollision*>>::iterator StartGroupIter = AllCollisions.begin();
+			std::map<int, std::list<GameEngineCollision*>>::iterator EndGroupIter = AllCollisions.end();
+			for (; StartGroupIter != EndGroupIter; ++StartGroupIter)
+			{
+				std::list<GameEngineCollision*>& Group = StartGroupIter->second;
+				std::list<GameEngineCollision*>::iterator GroupStart = Group.begin();
+				std::list<GameEngineCollision*>::iterator GroupEnd = Group.end();
+				for (; GroupStart != GroupEnd; ++GroupStart)
+				{
+					if (true == (*GroupStart)->IsUpdate())
+					{
+						(*GroupStart)->DebugRender();
+					}
+				}
+			}
+		}
+	}
+
 	GameEngineDevice::RenderStart();
 
-	// 이 사이에서 무언가를 해야 합니다.
 	for (size_t i = 0; i < Cameras.size(); i++)
 	{
 		if (nullptr == Cameras[i])
@@ -150,7 +171,6 @@ void GameEngineLevel::Render(float _DelataTime)
 		Cameras[i]->Render(_DelataTime);
 	}
 
-	// 여기서 그려져야 합니다.
 	GameEngineDebug::Debug3DRender();
 
 	GameEngineGUI::GUIRender(this, _DelataTime);
@@ -237,8 +257,6 @@ void GameEngineLevel::LevelUpdate(float _DeltaTime)
 	Release(_DeltaTime);
 }
 
-// 레벨을 이동하는 액터
-// 루트인애가 지우려고 여기로 온다고 생각할 겁니다.
 void GameEngineLevel::RemoveActor(GameEngineActor* _Actor)
 {
 	if (AllActors.end() == AllActors.find(_Actor->GetOrder()))
@@ -263,9 +281,6 @@ void GameEngineLevel::PushCollision(GameEngineCollision* _Collision, int _Order)
 
 void GameEngineLevel::OverChildMove(GameEngineLevel* _NextLevel)
 {
-	// 플레이 레벨
-
-	// 로그인 레벨
 	// _NextLevel
 	{
 		std::map<int, std::list<GameEngineActor*>>::iterator StartGroupIter = AllActors.begin();

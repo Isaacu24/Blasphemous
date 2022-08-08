@@ -16,7 +16,7 @@ void MonsterBase::SetGround(GameEngineTextureRenderer* _Ground)
 
 bool MonsterBase::GroundCheck(int _X, int _Y)
 {
-	float4 Color = ColMap_->GetCurTexture()->GetPixel(_X, _Y);
+	float4 Color = ColMap_->GetCurTexture()->GetPixelToFloat4(_X, _Y);
 
 	if (Color.CompareInt4D(float4::BLACK))
 	{
@@ -38,7 +38,7 @@ bool MonsterBase::UphillRoadCheck(int _X, int _Y)
 {
 	while (true)
 	{
-		float4 Color = ColMap_->GetCurTexture()->GetPixel(_X, _Y);
+		float4 Color = ColMap_->GetCurTexture()->GetPixelToFloat4(_X, _Y);
 
 		if (true == Color.CompareInt4D(float4::BLACK))
 		{
