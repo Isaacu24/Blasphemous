@@ -58,6 +58,8 @@ private:
 
 	GravityActor* AffectChecker;
 
+	float4 Target_;
+
 	bool IsDecide_;
 
 	float DecideTime_;

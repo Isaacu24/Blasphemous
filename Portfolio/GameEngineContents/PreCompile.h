@@ -52,6 +52,7 @@
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineCore/GameEngineStateManager.h>
 #include <GameEngineCore/GameEngineCollision.h>
+#include <GameEngineCore/GameEngineFontRenderer.h>
 
 //Contents
 #include <GameEngineContents/StageActor.h>

@@ -61,7 +61,7 @@ protected:
 
 	bool IsChangeCameraPos_;
 
-	std::vector<GameEngineTextureRenderer*> Parallaxs_;
+	class GameEngineFontRenderer* Font_;
 
 private:
 

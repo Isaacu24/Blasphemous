@@ -7,7 +7,6 @@
 void Penitent::IdleStart(const StateInfo& _Info)
 {
 	Renderer_->ChangeFrameAnimation("penintent_idle_anim");
-	Collider_->GetTransform().SetWorldScale({ 100.f, 100.f, 1.0f });
 }
 
 void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -146,7 +145,8 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 void Penitent::SlideStart(const StateInfo& _Info)
 {
 	IsSlide_ = true;
-	Collider_->GetTransform().SetWorldScale({ 200.f, 100.f, 1.0f });
+	Collider_->GetTransform().SetWorldScale({ 200.f, 100.f });
+	Collider_->GetTransform().SetWorldMove({0.f, -100.f});
 }
 
 void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -169,6 +169,12 @@ void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
 	}
 
 	Gravity_->SetActive(!IsGround_);
+}
+
+void Penitent::SlideEnd(const StateInfo& _Info)
+{
+	Collider_->GetTransform().SetWorldScale({ 100.f, 200.f});
+	Collider_->GetTransform().SetWorldMove({ 0.f, 100.f });
 }
 
 void Penitent::RecoveryStart(const StateInfo& _Info)

@@ -68,8 +68,9 @@ void Penitent::Start()
 	Gravity_ = CreateComponent<GravityComponent>();
 
 	Collider_ = CreateComponent<GameEngineCollision>();
-	Collider_->GetTransform().SetWorldScale({100.f, 100.f, 1.0f});
+	Collider_->GetTransform().SetWorldScale({100.f, 200.f});
 	Collider_->ChangeOrder(COLLISIONORDER::Player);
+	Collider_->SetDebugSetting(CollisionType::CT_OBB, float4{ 0.0f, 0.0f, 1.0f, 0.5f });
 
 	PlayerUI_ = GetLevel()->CreateActor<PlayerUI>();
 	PlayerUI_->SetLevelOverOn();
@@ -93,7 +94,7 @@ void Penitent::Start()
 	State_.CreateStateMember("Idle", std::bind(&Penitent::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::IdleStart, this, std::placeholders::_1));
 	State_.CreateStateMember("LadderClimb", std::bind(&Penitent::LadderClimbUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::LadderClimbStart, this, std::placeholders::_1));
 	State_.CreateStateMember("Jump", std::bind(&Penitent::JumpUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::JumpStart, this, std::placeholders::_1));
-	State_.CreateStateMember("Slide", std::bind(&Penitent::SlideUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::SlideStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Slide", std::bind(&Penitent::SlideUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::SlideStart, this, std::placeholders::_1), std::bind(&Penitent::SlideEnd, this, std::placeholders::_1));
 	State_.CreateStateMember("Crouch", std::bind(&Penitent::RecoveryUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::RecoveryStart, this, std::placeholders::_1));
 	State_.CreateStateMember("Recovery", std::bind(&Penitent::RecoveryUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::RecoveryStart, this, std::placeholders::_1));
 	State_.CreateStateMember("Hit", std::bind(&Penitent::HitUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::HitStart, this, std::placeholders::_1));

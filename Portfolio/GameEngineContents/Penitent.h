@@ -83,6 +83,7 @@ protected:
 
 	void SlideStart(const StateInfo& _Info);
 	void SlideUpdate(float _DeltaTime, const StateInfo& _Info);
+	void SlideEnd(const StateInfo& _Info);
 
 	void RecoveryStart(const StateInfo& _Info);
 	void RecoveryUpdate(float _DeltaTime, const StateInfo& _Info);

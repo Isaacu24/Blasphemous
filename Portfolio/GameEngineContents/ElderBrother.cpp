@@ -44,7 +44,8 @@ void ElderBrother::Start()
 
 	DetectCollider_ = CreateComponent<GameEngineCollision>();
 	DetectCollider_->ChangeOrder(COLLISIONORDER::BossMonster);
-	DetectCollider_->GetTransform().SetWorldScale({ 2000.0f, 500.0f, 1.0f });
+	DetectCollider_->GetTransform().SetWorldScale({ 2000.0f, 1500.0f });
+	DetectCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{1.0f, 1.0f, 1.0f, 0.5f});
 }
 
 void ElderBrother::Update(float _DeltaTime)
@@ -169,7 +170,6 @@ void ElderBrother::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 
 }
-
 
 
 bool ElderBrother::DecideState(GameEngineCollision* _This, GameEngineCollision* _Other)

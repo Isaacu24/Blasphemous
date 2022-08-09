@@ -74,7 +74,6 @@ void Stage03::SettingStage()
 	AfterParallaxRenderer->SetTexture("1_3_AfterParallax_0.png");
 	AfterParallaxRenderer->ScaleToTexture();
 	AfterParallaxRenderer->GetTransform().SetWorldPosition({ 0, 100, static_cast<int>(ACTORORDER::AfterParallax5) });
-	Parallaxs_.push_back(AfterParallaxRenderer);
 
 	float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
 	float OffsetY = ColMap_->GetTransform().GetLocalScale().y / 2;

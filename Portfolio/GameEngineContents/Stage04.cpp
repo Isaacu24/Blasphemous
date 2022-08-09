@@ -241,7 +241,7 @@ void Stage04::PlayerCameraMove()
 		}
 
 		LoadingActor_ = CreateActor<LoadingActor>();
-		LoadingActor_->Exit("Stage04");
+		LoadingActor_->Exit("Stage03");
 	}
 
 	if (2800 < Penitent_->GetTransform().GetWorldPosition().x

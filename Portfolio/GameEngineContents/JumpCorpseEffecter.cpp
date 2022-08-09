@@ -30,7 +30,7 @@ void JumpCorpseEffecter::Update(float _DeltaTime)
 			++Index_;
 			DelayTime_ -= 0.15f;
 
-			float PosX = Random_.RandomFloat(-200.f, 200.f );
+			float PosX = Random_.RandomFloat(-150.f, 150.f);
 
 			Corpse* NewCorpse = GetLevel()->CreateActor<Corpse>();
 			NewCorpse->SetCreatePos({ CreatePos_.x + PosX, CreatePos_.y });

@@ -29,7 +29,7 @@ protected:
 	void End() override;
 
 private:
-	GameEngineRandom Random_;
+	GameEngineRandom Random_;	
 	int Index_;
 
 	float4 CreatePos_;
