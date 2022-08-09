@@ -18,7 +18,7 @@ GravityActor::~GravityActor()
 void GravityActor::Start()
 {
 	Gravity_ = CreateComponent<GravityComponent>();
-}aa
+}
 
 void GravityActor::Update(float _DeltaTime)
 {
