@@ -80,8 +80,8 @@ void Stage04::SettingStage()
 
 	Font_ = Actor->CreateComponent<GameEngineFontRenderer>();
 	Font_->SetColor({ 1.0f, 0.0f, 0.0f });
-	Font_->SetScreenPostion({0, 0, -1000.f});
-	Font_->SetText("¾È³çÇÏ¼¼¿ä.", "±Ã¼­");
+	Font_->SetScreenPostion({100, 100, 0.f});
+	Font_->SetText("¾È³çÇÏ¼¼¿ä.");
 	Font_->ChangeCamera(CAMERAORDER::UICAMERA);
 }
 

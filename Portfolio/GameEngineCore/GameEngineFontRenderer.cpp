@@ -5,7 +5,7 @@ GameEngineRenderTarget* GameEngineFontRenderer::FontTarget = nullptr;
 
 GameEngineFontRenderer::GameEngineFontRenderer()
 	: Font(nullptr)
-	, FontSize(200.0f)
+	, FontSize(20.0f)
 	, Color(float4::WHITE)
 	, ScreenPostion(float4::ZERO)
 {
@@ -39,10 +39,10 @@ void GameEngineFontRenderer::Render(float _DeltaTime)
 		return;
 	}
 
-	GameEngineRenderTarget::GetPrevRenderTarget();
-	FontTarget->Setting();
+	//GameEngineRenderTarget::GetPrevRenderTarget();
+	//FontTarget->Setting();
 	Font->FontDraw(Text, FontSize, ScreenPostion, Color);
 	GameEngineRenderingPipeLine::AllShaderReset();
-	GameEngineRenderTarget::SetPrevRenderTarget();
+	//GameEngineRenderTarget::SetPrevRenderTarget();
 	// FontTarget->R();
 }
