@@ -162,7 +162,7 @@ void Stage20::OnEvent()
 	IsRightExit_ = false;
 	IsLeftExit_ = false;
 
-	GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition() + float4{0, 100} });
+	GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition() + float4{0, CameraOffset_} });
 }
 
 void Stage20::OffEvent()

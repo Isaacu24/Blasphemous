@@ -40,6 +40,10 @@ public:
 
 	bool DecideState(GameEngineCollision* _This, GameEngineCollision* _Other);
 
+	bool AttackToPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);
+
+	bool JumpToPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);
+
 	inline void ChangeState(const std::string& _State)
 	{
 		State_.ChangeState(_State);
@@ -58,6 +62,8 @@ private:
 
 	GravityActor* AffectChecker;
 
+	GameEngineCollision* JumpCollider_;
+
 	float4 Target_;
 
 	bool IsDecide_;
@@ -65,17 +71,35 @@ private:
 	float DecideTime_;
 	float AppearTime_;
 
+	float JumpForce_;
+
+	float Alpha_;
+	bool IsJump_;
+
 	inline void ChangeIdle(const FrameAnimation_DESC& _Info)
 	{
 		State_.ChangeState("Idle");
 	}
 
-	inline void JumpFrame(const FrameAnimation_DESC& _Info)
+	inline void JumpFrame(const FrameAnimation_DESC& _Info, float _DeltaTime)
 	{
+		if (10 == _Info.CurFrame)
+		{
+			IsJump_ = true;
+		}
+
 		if (24 == _Info.CurFrame)
 		{
-			JumpEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{ 0.f, 100.f });
+			IsJump_ = false;
+			JumpEffecter_->SetCreatePos(GetTransform().GetWorldPosition());
 			JumpEffecter_->CreateEffect();
+		}
+
+		if (25 == _Info.CurFrame)
+		{
+			JumpCollider_->On();
+			JumpCollider_->IsCollision(CollisionType::CT_OBB2D, COLLISIONORDER::Player, CollisionType::CT_OBB2D,
+				std::bind(&ElderBrother::JumpToPlayer, this, std::placeholders::_1, std::placeholders::_2));
 		}
 	}
 
@@ -83,7 +107,6 @@ private:
 	{
 		if (16 == _Info.CurFrame)
 		{
-			AffectChecker->SetSpeed(800.f);
 			AffectChecker->Move();
 			AffectChecker->On();
 		}
@@ -106,6 +129,10 @@ private:
 				AttackEffecter_->SetCreatePos(AffectChecker->GetTransform().GetWorldPosition() + float4{ 0, 60 });
 				AttackEffecter_->CreateEffect();
 			}
+
+			AttackCollider_->On();
+			AttackCollider_->IsCollision(CollisionType::CT_OBB2D, COLLISIONORDER::Player, CollisionType::CT_OBB2D,
+				std::bind(&ElderBrother::AttackToPlayer, this, std::placeholders::_1, std::placeholders::_2));
 		}
 	}
 

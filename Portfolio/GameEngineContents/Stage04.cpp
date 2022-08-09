@@ -75,6 +75,14 @@ void Stage04::SettingStage()
 	PlayerLeftPos_ = float4{ 250, -1028, static_cast<int>(ACTORORDER::Player) };
 
 	IsLeftExit_ = true;
+
+	BossUI* Actor = CreateActor<BossUI>();
+
+	Font_ = Actor->CreateComponent<GameEngineFontRenderer>();
+	Font_->SetColor({ 1.0f, 0.0f, 0.0f });
+	Font_->SetScreenPostion({0, 0, -1000.f});
+	Font_->SetText("¾È³çÇÏ¼¼¿ä.", "±Ã¼­");
+	Font_->ChangeCamera(CAMERAORDER::UICAMERA);
 }
 
 void Stage04::SettingMonster()
@@ -102,7 +110,7 @@ void Stage04::Update(float _DeltaTime)
 	switch (CurrentFlow_)
 	{
 	case STAGEFLOW::NORMAL:
-		PlayerCameraMove();
+		//PlayerCameraMove();
 
 		if (1300 < Penitent_->GetTransform().GetWorldPosition().x
 			&& false == IsEvent_)
@@ -203,7 +211,7 @@ void Stage04::OnEvent()
 	IsRightExit_ = false;
 	IsLeftExit_ = false;
 
-	GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition() + float4{0, 100} });
+	GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition() + float4{0, CameraOffset_} });
 }
 
 void Stage04::OffEvent()
@@ -212,7 +220,7 @@ void Stage04::OffEvent()
 
 void Stage04::PlayerCameraMove()
 {
-	GetMainCameraActor()->GetTransform().SetWorldPosition({ Penitent_->GetTransform().GetLocalPosition().x, Penitent_->GetTransform().GetLocalPosition().y + 100, CameraZPos_ });
+	GetMainCameraActor()->GetTransform().SetWorldPosition({ Penitent_->GetTransform().GetLocalPosition().x, Penitent_->GetTransform().GetLocalPosition().y + CameraOffset_, CameraZPos_ });
 
 	if (-700 < GetMainCameraActor()->GetTransform().GetLocalPosition().y)
 	{

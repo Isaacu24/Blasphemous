@@ -9,6 +9,7 @@ namespace
 }
 
 ElderBrother::ElderBrother()
+	: JumpForce_(500.f)
 {
 }
 
@@ -31,6 +32,16 @@ void ElderBrother::Start()
 	JumpEffecter_ = GetLevel()->CreateActor<JumpCorpseEffecter>();
 	AffectChecker = GetLevel()->CreateActor<GravityActor>(ACTORORDER::BossMonster);
 	AffectChecker->Off();
+
+	AttackCollider_ = CreateComponent<GameEngineCollision>();
+	AttackCollider_->GetTransform().SetWorldScale({ 2000.0f, 500.0f });
+	AttackCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{ 1.0f, 0.0f, 0.0f, 1.0f });
+	AttackCollider_->Off();
+
+	JumpCollider_ = CreateComponent<GameEngineCollision>();
+	JumpCollider_->GetTransform().SetWorldScale({ 2000.0f, 500.0f });
+	JumpCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{ 1.0f, 0.0f, 0.0f, 1.0f });
+	JumpCollider_->Off();
 
 	State_.CreateStateMember("Freeze", std::bind(&ElderBrother::FreezeUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::FreezeStart, this, std::placeholders::_1));
 	State_.CreateStateMember("Appear", std::bind(&ElderBrother::AppearUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::AppearStart, this, std::placeholders::_1));
@@ -99,7 +110,7 @@ void ElderBrother::IdleStart(const StateInfo& _Info)
 {
 	Renderer_->ChangeFrameAnimation("elderBrother_idle");
 
-	AffectChecker->Off();
+	Alpha_ = 0.f;
 }
 
 void ElderBrother::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -118,9 +129,9 @@ void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 	Speed_ -= 1.f;
 	DecideTime_ += _DeltaTime;
 
-	if (2.5f < DecideTime_)
+	if (1.5f > DecideTime_)
 	{
-		GetTransform().SetWorldMove(Dir_ + float4::UP * Speed_ * _DeltaTime);
+		return;
 	}
 
 	if (false == IsDecide_)
@@ -128,8 +139,16 @@ void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 		IsDecide_ = true;
 
 		Renderer_->ChangeFrameAnimation("elderBrother_jump");
-		Renderer_->AnimationBindFrame("elderBrother_jump", std::bind(&ElderBrother::JumpFrame, this, std::placeholders::_1));
+		Renderer_->AnimationBindFrame("elderBrother_jump", std::bind(&ElderBrother::JumpFrame, this, std::placeholders::_1, _DeltaTime));
 		Renderer_->AnimationBindEnd("elderBrother_jump", std::bind(&ElderBrother::ChangeIdle, this, std::placeholders::_1));
+	}
+
+	if (true == IsJump_)
+	{
+		GetTransform().SetWorldMove(GetTransform().GetUpVector() * _DeltaTime);
+
+		Alpha_ += _DeltaTime * 0.05f;
+		GetTransform().SetWorldPosition(float4::LerpLimit(GetTransform().GetWorldPosition(), Target_, Alpha_));
 	}
 }
 
@@ -142,11 +161,12 @@ void ElderBrother::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	DecideTime_ += _DeltaTime;
 
-	if (2.f < DecideTime_
+	if (1.f < DecideTime_
 		&& false == IsDecide_)
 	{
 		IsDecide_ = true;
 
+		AffectChecker->Off();
 		AffectChecker->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()); 
 		AffectChecker->SetGround(ColMap_);
 		AffectChecker->SetDirection(Dir_);
@@ -198,8 +218,26 @@ bool ElderBrother::DecideState(GameEngineCollision* _This, GameEngineCollision* 
 
 	else
 	{
+		Target_ = _Other->GetTransform().GetWorldPosition();
 		State_.ChangeState("Jump");
 	}
 
 	return true;
+}
+
+bool ElderBrother::AttackToPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)
+{
+	Penitent* Player = dynamic_cast<Penitent*>(_Other->GetRoot());
+
+	if (nullptr == Player)
+	{
+		return false;
+	}
+
+	return false;
+}
+
+bool ElderBrother::JumpToPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)
+{
+	return false;
 }

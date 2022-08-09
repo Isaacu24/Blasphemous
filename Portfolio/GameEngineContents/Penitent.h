@@ -55,10 +55,17 @@ public:
 		State_.ChangeState(_State);
 	}
 
+	inline void SetDamege(int _Damage)
+	{
+		HP_ -= _Damage;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 	void End() override;
+
+	bool HealthCheck();
 
 	void GroundCheck();
 	void LadderCheck();
@@ -109,6 +116,8 @@ private:
 	GameEngineTextureRenderer* Renderer_;
 
 	GameEngineTextureRenderer* ColMap_;
+
+	class GameEngineFontRederer* Font_;
 
 	int HP_;
 	int MP_;

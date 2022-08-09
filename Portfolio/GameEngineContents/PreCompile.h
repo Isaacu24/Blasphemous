@@ -61,4 +61,5 @@
 #include "GlobalValue.h"
 #include "LoadingActor.h"
 
+#include "Penitent.h"
 

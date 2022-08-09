@@ -63,6 +63,8 @@ protected:
 
 	class GameEngineFontRenderer* Font_;
 
+	float CameraOffset_;
+
 private:
 
 };

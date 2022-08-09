@@ -25,6 +25,7 @@ Output Texture_VS(Input _Input)
 
 Texture2D Tex : register(t0);
 SamplerState Smp : register(s0);
+
 float4 Texture_PS(Output _Input) : SV_Target0
 {
     float4 Color = Tex.Sample(Smp, _Input.Tex.xy);

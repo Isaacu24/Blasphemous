@@ -105,7 +105,7 @@ void Stage02::Update(float _DeltaTime)
 		IsChangeCameraPos_ = true;
 	}
 
-	GetMainCameraActor()->GetTransform().SetWorldPosition({ Penitent_->GetTransform().GetLocalPosition().x, Penitent_->GetTransform().GetLocalPosition().y + 100, CameraZPos_ });
+	GetMainCameraActor()->GetTransform().SetWorldPosition({ Penitent_->GetTransform().GetLocalPosition().x, Penitent_->GetTransform().GetLocalPosition().y + 200, CameraZPos_ });
 
 	if (-1285 < GetMainCameraActor()->GetTransform().GetWorldPosition().y)
 	{

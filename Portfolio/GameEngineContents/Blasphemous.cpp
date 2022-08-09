@@ -291,6 +291,7 @@ void Blasphemous::LoadResources()
 	}
 
 	GameEngineFont::Load("±Ã¼­");
+	GameEngineFont::Load("µ¸¿ò");
 
 	LoadBossMonster();
 	LoadNormalMonster();

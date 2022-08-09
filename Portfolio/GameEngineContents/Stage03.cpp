@@ -101,7 +101,7 @@ void Stage03::Update(float _DeltaTime)
 		IsChangeCameraPos_ = true;
 	}
 
-	GetMainCameraActor()->GetTransform().SetWorldPosition({ Penitent_->GetTransform().GetLocalPosition().x, Penitent_->GetTransform().GetLocalPosition().y + 100, CameraZPos_ });
+	GetMainCameraActor()->GetTransform().SetWorldPosition({ Penitent_->GetTransform().GetLocalPosition().x, Penitent_->GetTransform().GetLocalPosition().y + CameraOffset_, CameraZPos_ });
 
 	if (-755 < GetMainCameraActor()->GetTransform().GetWorldPosition().y)
 	{
@@ -201,7 +201,7 @@ void Stage03::OnEvent()
 	IsRightExit_ = false;
 	IsLeftExit_ = false;
 
-	GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition() + float4{0, 100} });
+	GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition() + float4{0, CameraOffset_} });
 }
 
 void Stage03::OffEvent()

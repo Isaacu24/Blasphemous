@@ -146,7 +146,7 @@ void Penitent::SlideStart(const StateInfo& _Info)
 {
 	IsSlide_ = true;
 	Collider_->GetTransform().SetWorldScale({ 200.f, 100.f });
-	Collider_->GetTransform().SetWorldMove({0.f, -100.f});
+	Collider_->GetTransform().SetWorldMove({ 0, -50 });
 }
 
 void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -174,7 +174,7 @@ void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
 void Penitent::SlideEnd(const StateInfo& _Info)
 {
 	Collider_->GetTransform().SetWorldScale({ 100.f, 200.f});
-	Collider_->GetTransform().SetWorldMove({ 0.f, 100.f });
+	Collider_->GetTransform().SetWorldMove({ 0, 50 });
 }
 
 void Penitent::RecoveryStart(const StateInfo& _Info)

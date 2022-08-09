@@ -145,8 +145,6 @@ void GameEngineCore::WindowCreate(const std::string& _Name, GameEngineCore* _Use
 	GameEngineDevice::Initialize();
 
 
-
-
 	// 엔진의 실행인데.
 	GameEngineWindow::GetInst()->MessageLoop(
 		std::bind(&GameEngineCore::CoreStart, _UserCore),

@@ -11,6 +11,7 @@ StageBase::StageBase()
 	, IsRightExit_(false)
 	, CameraZPos_(-1400.f)
 	, IsChangeCameraPos_(false)
+	, CameraOffset_(200.f)
 {
 }
 

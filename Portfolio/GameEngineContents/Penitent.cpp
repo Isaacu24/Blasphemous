@@ -71,9 +71,15 @@ void Penitent::Start()
 	Collider_->GetTransform().SetWorldScale({100.f, 200.f});
 	Collider_->ChangeOrder(COLLISIONORDER::Player);
 	Collider_->SetDebugSetting(CollisionType::CT_OBB, float4{ 0.0f, 0.0f, 1.0f, 0.5f });
+	Collider_->GetTransform().SetWorldMove({0, 100});
 
 	PlayerUI_ = GetLevel()->CreateActor<PlayerUI>();
 	PlayerUI_->SetLevelOverOn();
+
+	GameEngineFontRenderer* Font = CreateComponent<GameEngineFontRenderer>();
+	Font->SetText("¾È³çÇÏ¼¼¿ä");
+	Font->SetColor({ 1.0f, 0.0f, 0.0f });
+	Font->SetScreenPostion({ 100, 100 });
 
 	GetTransform().SetLocalScale({1, 1, 1});
 
@@ -88,6 +94,8 @@ void Penitent::Start()
 		Renderer_->CreateFrameAnimationCutTexture("penitent_dodge_attack_LVL3", { "penitent_dodge_attack_LVL3.png", 0, 26, 0.1f, true });
 		Renderer_->CreateFrameAnimationCutTexture("penitent_falling_ahead_anim 1", { "penitent_falling_ahead_anim 1.png", 0, 5, 0.1f, true });
 		Renderer_->CreateFrameAnimationCutTexture("penitent_jumpoff_new", { "penitent_jumpoff_new.png", 0, 4, 0.1f, true });
+
+		Renderer_->SetPivot(PIVOTMODE::BOT);
 	}
 
 	State_.CreateStateMember("Freeze", std::bind(&Penitent::FreezeUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::FreezeStart, this, std::placeholders::_1));
@@ -102,11 +110,16 @@ void Penitent::Start()
 	State_.ChangeState("Idle");
 
 	PlayerUI_->SetTear(Tear_);
-}
+}	
 
 void Penitent::Update(float _DeltaTime)
 { 
 	State_.Update(_DeltaTime);
+
+	if (false == HealthCheck())
+	{
+		return;
+	}
 
 	GroundCheck(); 
 	LadderCheck(); 
@@ -123,6 +136,19 @@ void Penitent::Update(float _DeltaTime)
 void Penitent::End()
 {
 
+}
+
+bool Penitent::HealthCheck()
+{
+	if (0 >= HP_)
+	{
+		HP_ = 0;
+		ChangeState("Death");
+
+		return false;
+	}
+
+	return true;
 }
 
 

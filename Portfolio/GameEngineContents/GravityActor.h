@@ -27,7 +27,7 @@ public:
 			Dir_ = GetTransform().GetRightVector();
 		}
 
-		else if(-1 == Dir_.x)
+		else if (-1 == Dir_.x)
 		{
 			Dir_ = GetTransform().GetLeftVector();
 		}
@@ -36,8 +36,13 @@ public:
 	inline void Move()
 	{
 		IsMove_ = true;
-	}
 
+		Alpha_ = 0.f;
+
+		StartPos_ = GetTransform().GetWorldPosition();
+		EndPos_ = StartPos_ + float4{ Dir_.x * 800.f, 0.f };
+	}
+	
 	void GroundCheck();
 	void UphillRoadCheck();
 
@@ -68,5 +73,10 @@ private:
 	bool IsGround_;
 
 	float Speed_;
+
+	float Alpha_;
+
+	float4 StartPos_;
+	float4 EndPos_;
 };
 
