@@ -83,6 +83,7 @@ private:
 		{
 			AffectChecker->SetSpeed(800.f);
 			AffectChecker->Move();
+			AffectChecker->On();
 		}
 
 		if (17 < _Info.CurFrame)
@@ -94,13 +95,13 @@ private:
 
 			if (Dir_.CompareInt4D(float4::LEFT))
 			{
-				AttackEffecter_->SetCreatePos(AffectChecker->GetTransform().GetWorldPosition() + float4{0, 150});
+				AttackEffecter_->SetCreatePos(AffectChecker->GetTransform().GetWorldPosition() + float4{0, 60 });
 				AttackEffecter_->CreateEffect();
 			}
 
 			else
 			{
-				AttackEffecter_->SetCreatePos(AffectChecker->GetTransform().GetWorldPosition() + float4{ 0, 150 });
+				AttackEffecter_->SetCreatePos(AffectChecker->GetTransform().GetWorldPosition() + float4{ 0, 60 });
 				AttackEffecter_->CreateEffect();
 			}
 		}

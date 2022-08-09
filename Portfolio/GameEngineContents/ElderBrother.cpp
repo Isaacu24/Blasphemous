@@ -29,6 +29,8 @@ void ElderBrother::Start()
 
 	AttackEffecter_ = GetLevel()->CreateActor<AttackCorpseEffecter>();
 	JumpEffecter_ = GetLevel()->CreateActor<JumpCorpseEffecter>();
+	AffectChecker = GetLevel()->CreateActor<GravityActor>(ACTORORDER::BossMonster);
+	AffectChecker->Off();
 
 	State_.CreateStateMember("Freeze", std::bind(&ElderBrother::FreezeUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::FreezeStart, this, std::placeholders::_1));
 	State_.CreateStateMember("Appear", std::bind(&ElderBrother::AppearUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::AppearStart, this, std::placeholders::_1));
@@ -94,8 +96,9 @@ void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void ElderBrother::IdleStart(const StateInfo& _Info)
 {
-	AffectChecker->Death(2.f);
 	Renderer_->ChangeFrameAnimation("elderBrother_idle");
+
+	AffectChecker->Off();
 }
 
 void ElderBrother::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -143,8 +146,7 @@ void ElderBrother::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 	{
 		IsDecide_ = true;
 
-		AffectChecker = GetLevel()->CreateActor<GravityActor>(ACTORORDER::BossMonster);
-		AffectChecker->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
+		AffectChecker->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()); 
 		AffectChecker->SetGround(ColMap_);
 		AffectChecker->SetDirection(Dir_);
 

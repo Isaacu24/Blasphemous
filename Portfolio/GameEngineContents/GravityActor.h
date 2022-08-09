@@ -39,6 +39,7 @@ public:
 	}
 
 	void GroundCheck();
+	void UphillRoadCheck();
 
 	inline void SetGround(GameEngineTextureRenderer* _ColMap)
 	{
@@ -57,6 +58,7 @@ protected:
 
 private:
 	GravityComponent* Gravity_;
+	GameEngineTextureRenderer* Renderer_;
 
 	GameEngineTextureRenderer* ColMap_;
 
