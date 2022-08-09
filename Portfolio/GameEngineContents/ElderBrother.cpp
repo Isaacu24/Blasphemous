@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "ElderBrother.h"
+#include "GravityActor.h"
 
 namespace
 {
@@ -33,7 +34,7 @@ void ElderBrother::Start()
 	State_.CreateStateMember("Appear", std::bind(&ElderBrother::AppearUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::AppearStart, this, std::placeholders::_1));
 	State_.CreateStateMember("Idle", std::bind(&ElderBrother::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::IdleStart, this, std::placeholders::_1));
 	State_.CreateStateMember("Jump", std::bind(&ElderBrother::JumpUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::JumpStart, this, std::placeholders::_1));
-	State_.CreateStateMember("Attack", std::bind(&ElderBrother::AttackUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::AttackStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Attack", std::bind(&ElderBrother::AttackUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::AttackStart, this, std::placeholders::_1), std::bind(&ElderBrother::AttackEnd, this, std::placeholders::_1));
 	State_.CreateStateMember("Death", std::bind(&ElderBrother::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::DeathStart, this, std::placeholders::_1));
 	State_.ChangeState("Freeze");
 
@@ -81,7 +82,7 @@ void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	AppearTime_ += _DeltaTime;
 
-	if (8.f <= AppearTime_)
+	if (1.f <= AppearTime_)
 	{
 		AppearTime_ = 0.f;
 		State_.ChangeState("Idle");
@@ -93,6 +94,7 @@ void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void ElderBrother::IdleStart(const StateInfo& _Info)
 {
+	AffectChecker->Death(2.f);
 	Renderer_->ChangeFrameAnimation("elderBrother_idle");
 }
 
@@ -129,7 +131,9 @@ void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void ElderBrother::AttackStart(const StateInfo& _Info)
 {
+
 }
+
 void ElderBrother::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	DecideTime_ += _DeltaTime;
@@ -139,10 +143,19 @@ void ElderBrother::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 	{
 		IsDecide_ = true;
 
+		AffectChecker = GetLevel()->CreateActor<GravityActor>(ACTORORDER::BossMonster);
+		AffectChecker->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
+		AffectChecker->SetGround(ColMap_);
+		AffectChecker->SetDirection(Dir_);
+
 		Renderer_->ChangeFrameAnimation("elderBrother_attack");
 		Renderer_->AnimationBindFrame("elderBrother_attack", std::bind(&ElderBrother::AttackFrame, this, std::placeholders::_1));
 		Renderer_->AnimationBindEnd("elderBrother_attack", std::bind(&ElderBrother::ChangeIdle, this, std::placeholders::_1));
 	}
+}
+
+void ElderBrother::AttackEnd(const StateInfo& _Info)
+{
 }
 
 void ElderBrother::DeathStart(const StateInfo& _Info)

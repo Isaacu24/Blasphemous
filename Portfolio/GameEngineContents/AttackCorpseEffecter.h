@@ -14,10 +14,9 @@ public:
 	AttackCorpseEffecter& operator=(const AttackCorpseEffecter& _Other) = delete;
 	AttackCorpseEffecter& operator=(AttackCorpseEffecter&& _Other) noexcept = delete;
 
-	inline void SetCreatePos(float4 _Pos, float4 _Dir)
+	inline void SetCreatePos(float4 _Pos)
 	{
 		CreatePos_ = _Pos;
-		Dir_ = _Dir;
 	}
 
 	inline void CreateEffect()

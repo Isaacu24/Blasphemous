@@ -3,9 +3,11 @@
 #include "BossMonster.h"
 #include "AttackCorpseEffecter.h"
 #include "JumpCorpseEffecter.h"
+#include "GravityActor.h"
 
-class AttackCorpseEffecter;
+class GravityActor;
 class JumpCorpseEffecter;
+class AttackCorpseEffecter;
 class ElderBrother : public GameEngineActor, public BossMonster
 {
 public:
@@ -31,6 +33,7 @@ public:
 
 	void AttackStart(const StateInfo& _Info);
 	void AttackUpdate(float _DeltaTime, const StateInfo& _Info);
+	void AttackEnd(const StateInfo& _Info);
 
 	void DeathStart(const StateInfo& _Info);
 	void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
@@ -53,6 +56,8 @@ private:
 	AttackCorpseEffecter* AttackEffecter_;
 	JumpCorpseEffecter* JumpEffecter_;
 
+	GravityActor* AffectChecker;
+
 	bool IsDecide_;
 
 	float DecideTime_;
@@ -74,20 +79,30 @@ private:
 
 	inline void AttackFrame(const FrameAnimation_DESC& _Info)
 	{
-		if (17 == _Info.CurFrame)
+		if (16 == _Info.CurFrame)
 		{
+			AffectChecker->SetSpeed(800.f);
+			AffectChecker->Move();
+		}
+
+		if (17 < _Info.CurFrame)
+		{
+			if (nullptr == AffectChecker)
+			{
+				return;
+			}
+
 			if (Dir_.CompareInt4D(float4::LEFT))
 			{
-				AttackEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{ -200.f, 150.f }, Dir_);
+				AttackEffecter_->SetCreatePos(AffectChecker->GetTransform().GetWorldPosition() + float4{0, 150});
 				AttackEffecter_->CreateEffect();
 			}
 
 			else
 			{
-				AttackEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{ 200.f, 200.f }, Dir_);
+				AttackEffecter_->SetCreatePos(AffectChecker->GetTransform().GetWorldPosition() + float4{ 0, 150 });
 				AttackEffecter_->CreateEffect();
 			}
-
 		}
 	}
 

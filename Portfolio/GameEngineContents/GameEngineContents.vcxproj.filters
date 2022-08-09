@@ -152,6 +152,9 @@
     <ClInclude Include="CorpseGroundEffect.h">
       <Filter>Actor\Effect\Monster\Boss\Elder</Filter>
     </ClInclude>
+    <ClInclude Include="GravityActor.h">
+      <Filter>Actor\Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -308,6 +311,9 @@
     <ClCompile Include="CorpseGroundEffect.cpp">
       <Filter>Actor\Effect\Monster\Boss\Elder</Filter>
     </ClCompile>
+    <ClCompile Include="GravityActor.cpp">
+      <Filter>Actor\Global</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -405,6 +411,9 @@
     </Filter>
     <Filter Include="Actor\Effect\Monster\Boss\Elder">
       <UniqueIdentifier>{3c4e333e-c7b6-4027-96bd-f21adf98ddaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Global">
+      <UniqueIdentifier>{8175c211-1fe1-4198-9af8-59dbc4b97413}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
