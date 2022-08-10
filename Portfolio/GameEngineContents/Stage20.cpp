@@ -53,66 +53,67 @@ void Stage20::SettingStage()
 
 void Stage20::SettingMonster()
 {
-	Pope* NewPope = CreateActor<Pope>();
-	NewPope->GetTransform().SetWorldPosition({ 1800, -1760, static_cast<int>(ACTORORDER::BossMonster) });
-	NewPope->SetGround(ColMap_);
-	BossMonster_ = NewPope;
+    Pope_ = CreateActor<Pope>();
+    Pope_->GetTransform().SetWorldPosition({2500, -1760, static_cast<int>(ACTORORDER::BossMonster)});
+	Pope_->SetGround(ColMap_);
+    BossMonster_ = Pope_;
+    Pope_->Off();
 }
 
 void Stage20::Start()
 {
 	SettingStage();
 	SettingMonster();
-
-	BossUI_ = CreateActor<BossUI>();
-
-	Font_ = Stage_->CreateComponent<GameEngineFontRenderer>();
-	Font_->SetColor({ 0.65f, 0.65f, 0.45f, 1.0f });
-	Font_->SetScreenPostion({ 450, 590, -100.f });
-	Font_->SetText("에스크리바르 교황 성하", "Neo둥근모");
-	Font_->SetSize(30);
-	Font_->ChangeCamera(CAMERAORDER::UICAMERA);
 }
 
 void Stage20::Update(float _DeltaTime)
 {
-	if (false == IsChangeCameraPos_)
-	{
-		GetMainCameraActor()->GetTransform().SetWorldMove({ 0, 0, CameraZPos_ });
-		IsChangeCameraPos_ = true;
-	}
+    switch (CurrentFlow_)
+    {
+    case STAGEFLOW::NORMAL:
+        PlayerCameraMove();
 
-	GetMainCameraActor()->GetTransform().SetWorldPosition({ Penitent_->GetTransform().GetLocalPosition().x, -1540, CameraZPos_ });
-
-	if (940 > GetMainCameraActor()->GetTransform().GetLocalPosition ().x)
-	{
-		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ 940, GetMainCameraActor()->GetTransform().GetLocalPosition().y, CameraZPos_ });
-	}
-
-	if (3600 < GetMainCameraActor()->GetTransform().GetLocalPosition().x)
-	{
-		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ 3600, GetMainCameraActor()->GetTransform().GetLocalPosition().y, CameraZPos_ });
-	}
-
-	if (350 > Penitent_->GetTransform().GetWorldPosition().x)
-	{
-		Penitent_->GetTransform().SetWorldPosition(float4{ 350, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player) });
-	}
-
-	if (4350 < Penitent_->GetTransform().GetWorldPosition().x
-		&& false == IsRightExit_)
-	{
-		IsRightExit_ = true;
-
-		if (nullptr != LoadingActor_)
+        if (2000.f <= Penitent_->GetTransform().GetWorldPosition().x
+			&& false == IsEvent_) 
 		{
-			LoadingActor_->Death();
-			LoadingActor_ = nullptr;
+            Penitent_->ChangeState("Freeze");
+            CurrentFlow_ = STAGEFLOW::BOSSAPPEAR;
+		}
+        break;
+    case STAGEFLOW::BOSSAPPEAR:
+        if (2250.f > GetMainCameraActor()->GetTransform().GetWorldPosition().x) 
+		{
+            GetMainCameraActor()->GetTransform().SetWorldRightMove(300, _DeltaTime);
 		}
 
-		LoadingActor_ = CreateActor<LoadingActor>();
-		LoadingActor_->Exit("Stage30");
-	}
+		else
+		{
+            if (nullptr == BossUI_)
+            {
+                BossUI_ = CreateActor<BossUI>();
+
+                Font_ = Stage_->CreateComponent<GameEngineFontRenderer>();
+                Font_->SetColor({0.65f, 0.65f, 0.45f, 1.0f});
+                Font_->SetScreenPostion({470, 590, -100.f});
+                Font_->SetText("에스크리바르 교황 성하", "Neo둥근모");
+                Font_->SetSize(30);
+                Font_->ChangeCamera(CAMERAORDER::UICAMERA);
+             
+				Penitent_->ChangeState("Idle");
+
+				Pope_->On();
+                Pope_->GetTransform().PixLocalNegativeX();
+                Pope_->ChangeMonsterState("Appear");
+            }
+		}
+        break;
+    case STAGEFLOW::BOSSCOMBAT:
+        break;
+    case STAGEFLOW::BOSSDEAD:
+        break;
+    default:
+        break;
+    }
 }
 
 void Stage20::End()
@@ -171,4 +172,49 @@ void Stage20::OnEvent()
 
 void Stage20::OffEvent()
 {
+
+}
+
+void Stage20::PlayerCameraMove() 
+{
+    if (false == IsChangeCameraPos_)
+    {
+        GetMainCameraActor()->GetTransform().SetWorldMove({0, 0, CameraZPos_});
+        IsChangeCameraPos_ = true;
+    }
+
+    GetMainCameraActor()->GetTransform().SetWorldPosition(
+        {Penitent_->GetTransform().GetLocalPosition().x, -1540, CameraZPos_});
+
+    if (940 > GetMainCameraActor()->GetTransform().GetLocalPosition().x)
+    {
+        GetMainCameraActor()->GetTransform().SetWorldPosition(
+            float4{940, GetMainCameraActor()->GetTransform().GetLocalPosition().y, CameraZPos_});
+    }
+
+    if (3600 < GetMainCameraActor()->GetTransform().GetLocalPosition().x)
+    {
+        GetMainCameraActor()->GetTransform().SetWorldPosition(
+            float4{3600, GetMainCameraActor()->GetTransform().GetLocalPosition().y, CameraZPos_});
+    }
+
+    if (350 > Penitent_->GetTransform().GetWorldPosition().x)
+    {
+        Penitent_->GetTransform().SetWorldPosition(
+            float4{350, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player)});
+    }
+
+    if (4350 < Penitent_->GetTransform().GetWorldPosition().x && false == IsRightExit_)
+    {
+        IsRightExit_ = true;
+
+        if (nullptr != LoadingActor_)
+        {
+            LoadingActor_->Death();
+            LoadingActor_ = nullptr;
+        }
+
+        LoadingActor_ = CreateActor<LoadingActor>();
+        LoadingActor_->Exit("Stage30");
+    }
 }

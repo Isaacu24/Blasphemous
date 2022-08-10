@@ -5,7 +5,6 @@
 #include "BossUI.h"
 
 Stage04::Stage04()
-	: IsEvent_(false)
 {
 }
 

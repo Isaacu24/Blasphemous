@@ -25,6 +25,9 @@ protected:
 	void OffEvent() override;
 
 private:
+    class Pope*   Pope_;
 	class BossUI* BossUI_;
+
+	void PlayerCameraMove();
 };
 

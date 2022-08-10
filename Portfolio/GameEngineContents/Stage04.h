@@ -30,8 +30,6 @@ private:
 	class ElderBrother* ElderBrother_;
 	class BossUI* BossUI_;
 
-	bool IsEvent_;
-
 	void PlayerCameraMove();
 };
 

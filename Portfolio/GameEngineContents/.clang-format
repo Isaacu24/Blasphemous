@@ -1,4 +1,4 @@
-BasedOnStyle: LLVM
+BasedOnStyle: Google
 
 AccessModifierOffset: -4
 BreakInheritanceList : BeforeComma
@@ -46,14 +46,14 @@ TabWidth: 4
 
 #allow single block
 
-AllowShortBlocksOnASingleLine : Always
+AllowShortBlocksOnASingleLine : Never
 
 #Force pointers to the type for C++.
 DerivePointerAlignment: false
 PointerAlignment: Left
 
 #align structures to the right when you initialize with initializer-list
-AlignArrayOfStructures : Right
+AlignArrayOfStructures : Left
 
 #align by the = operator
 AlignConsecutiveAssignments : true

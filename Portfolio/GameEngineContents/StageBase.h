@@ -65,6 +65,9 @@ protected:
 
 	float CameraOffset_;
 
+	bool IsEvent_;
+
+
 private:
 
 };
