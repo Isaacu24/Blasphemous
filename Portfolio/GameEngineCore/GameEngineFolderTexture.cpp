@@ -43,8 +43,4 @@ void GameEngineFolderTexture::LoadFolder(const std::string& _Path)
 		NewTexture->TextureLoad(AllFile[i].GetFullPath());
 		Textures.push_back(NewTexture);
 	}
-
-
-
-	int a = 0;
 }

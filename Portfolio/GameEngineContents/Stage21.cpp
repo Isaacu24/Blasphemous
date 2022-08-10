@@ -71,7 +71,7 @@ void Stage21::Start()
 	BossUI_ = CreateActor<BossUI>();
 
 	Font_ = Stage_->CreateComponent<GameEngineFontRenderer>();
-	Font_->SetColor({ 0.65f, 0.65f, 0.45f, 1.0f });
+	Font_->SetColor({ 0.7f, 0.7f, 0.5f, 1.0f });
 	Font_->SetScreenPostion({ 450, 600, -100.f });
 	Font_->SetText("마지막 기적의 아들", "Neo둥근모");
 	Font_->SetSize(35);

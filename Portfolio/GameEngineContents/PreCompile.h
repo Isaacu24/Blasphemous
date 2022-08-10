@@ -54,6 +54,7 @@
 #include <GameEngineCore/GameEngineCollision.h>
 #include <GameEngineCore/GameEngineFontRenderer.h>
 
+
 //Contents
 #include <GameEngineContents/StageActor.h>
 #include "GravityComponent.h"
@@ -63,3 +64,18 @@
 
 #include "Penitent.h"
 
+
+
+namespace
+{
+    inline void MovePath(GameEngineDirectory& dir, std::initializer_list<std::string> path)
+    {
+        dir.MoveParentToExitsChildDirectory(*path.begin());
+        dir.Move(*path.begin());
+
+        for (int i = 1; i < path.size(); ++i)
+        {
+            dir.Move(*(path.begin() + i));
+        }
+    }
+}

@@ -4,20 +4,18 @@
 class StageActor : public GameEngineActor
 {
 public:
-	StageActor();
-	~StageActor();
+    StageActor();
+    ~StageActor();
 
-	StageActor(const StageActor& _Other) = delete;
-	StageActor(StageActor&& _Other) noexcept = delete;
-	StageActor& operator=(const StageActor& _Other) = delete;
-	StageActor& operator=(StageActor&& _Other) noexcept = delete;
+    StageActor(const StageActor& _Other)                = delete;
+    StageActor(StageActor&& _Other) noexcept            = delete;
+    StageActor& operator=(const StageActor& _Other)     = delete;
+    StageActor& operator=(StageActor&& _Other) noexcept = delete;
 
 protected:
-	void Start() override;
-	void Update(float _DeltaTime) override;
-	void End() override;
+    void Start() override;
+    void Update(float _DeltaTime) override;
+    void End() override;
 
 private:
-
 };
-

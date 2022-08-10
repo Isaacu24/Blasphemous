@@ -1,0 +1,115 @@
+BasedOnStyle: LLVM
+
+AccessModifierOffset: -4
+BreakInheritanceList : BeforeComma
+BinPackArguments: false
+BinPackParameters: false
+SortIncludes : Never
+BraceWrapping: 
+  AfterCaseLabel: true
+  AfterClass: true
+  AfterControlStatement: true
+  AfterEnum: true
+  AfterFunction: true
+  AfterNamespace: true
+  AfterStruct: true
+  AfterUnion: true
+  AfterExternBlock: true
+  BeforeCatch: true
+  BeforeElse: true
+  BeforeLambdaBody: true
+  BeforeWhile: true
+  SplitEmptyFunction: false
+  SplitEmptyRecord: false
+  SplitEmptyNamespace: false
+
+BreakBeforeBraces: Custom
+
+ColumnLimit: 120
+
+IncludeCategories: 
+  - Regex: '^<.*'
+    Priority: 1
+  - Regex: '^".*'
+    Priority: 2
+  - Regex: '.*'
+    Priority: 3
+IncludeIsMainRegex: '([-_](test|unittest))?$'
+IndentCaseBlocks: true
+IndentWidth: 4
+MacroBlockBegin: ''
+MacroBlockEnd: ''
+MaxEmptyLinesToKeep: 2
+NamespaceIndentation: All
+
+TabWidth: 4
+
+#allow single block
+
+AllowShortBlocksOnASingleLine : Always
+
+#Force pointers to the type for C++.
+DerivePointerAlignment: false
+PointerAlignment: Left
+
+#align structures to the right when you initialize with initializer-list
+AlignArrayOfStructures : Right
+
+#align by the = operator
+AlignConsecutiveAssignments : true
+
+#align macro
+AlignConsecutiveMacros: AcrossEmptyLines
+
+#align macro with new lines
+AlignEscapedNewlines : Right
+
+#align variables
+AlignConsecutiveDeclarations : true
+
+#align operands to be the on the start of the line when it is too long
+AlignOperands : AlignAfterOperator
+
+#align trailing comments
+AlignTrailingComments : true
+
+#make argument to be aligned when there is too many arguments that will not feet in the monitor
+AlignAfterOpenBracket : Align
+
+#align arguments when it is too long
+AllowAllArgumentsOnNextLine : true
+
+#align parameters in the header
+AllowAllParametersOfDeclarationOnNextLine : true
+
+#it will only take effect if wrapping the string at that point leads to it being indented ContinuationIndentWidth spaces from the start of the line.
+AlwaysBreakBeforeMultilineStrings : false
+
+#alway break template declaration
+AlwaysBreakTemplateDeclarations : Yes
+
+#break binary operator
+BreakBeforeBinaryOperators : All
+
+#break ternary operator
+BreakBeforeTernaryOperators : true
+
+#align ctor
+BreakConstructorInitializers : BeforeComma
+PackConstructorInitializers : Never
+
+#align inheritance
+BreakInheritanceList : BeforeComma
+
+#break liternal
+BreakStringLiterals : true
+
+#compact namespace 
+CompactNamespaces : false
+
+#align public/private/protected
+EmptyLineBeforeAccessModifier : LogicalBlock
+
+#align preprocessor
+IndentPPDirectives : BeforeHash
+

@@ -132,12 +132,6 @@
     <ClInclude Include="imgui_impl_dx11.h">
       <Filter>GUI\IMGUI</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngineMetaRenderer.h">
-      <Filter>Contents</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineMetaParser.h">
-      <Filter>Contents</Filter>
-    </ClInclude>
     <ClInclude Include="GameEngineStatusWindow.h">
       <Filter>GUI\EngineGUIWindow</Filter>
     </ClInclude>
@@ -158,6 +152,12 @@
     </ClInclude>
     <ClInclude Include="portable-file-dialogs.h">
       <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineMetaData.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineMetaDataFolder.h">
+      <Filter>Contents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -285,12 +285,6 @@
     <ClCompile Include="imgui_impl_dx11.cpp">
       <Filter>GUI\IMGUI</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngineMetaRenderer.cpp">
-      <Filter>Contents</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngineMetaParser.cpp">
-      <Filter>Contents</Filter>
-    </ClCompile>
     <ClCompile Include="GameEngineStatusWindow.cpp">
       <Filter>GUI\EngineGUIWindow</Filter>
     </ClCompile>
@@ -308,6 +302,12 @@
     </ClCompile>
     <ClCompile Include="GameEngineCoreDebug.cpp">
       <Filter>Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineMetaData.cpp">
+      <Filter>Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineMetaDataFolder.cpp">
+      <Filter>Contents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

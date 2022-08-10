@@ -17,7 +17,7 @@
 #include "Stage21.h"
 
 #include "Stage30.h"
-
+#include "TestLevel.h"
 
 #pragma comment(lib, "GameEngineBase.lib")
 
@@ -56,7 +56,10 @@ void Blasphemous::Start()
 	//꿈의 저편
 	CreateLevel<Stage30>("Stage30");
 
-	ChangeLevel("Title");
+	//테스트 레벨
+	CreateLevel<TestLevel>("TestLevel");
+
+	ChangeLevel("TestLevel");
 
 	GameEngineInput::GetInst()->CreateKey("GotoTitle", 'T');
 	GameEngineInput::GetInst()->CreateKey("GotoMainMenu", 'M');
@@ -140,7 +143,7 @@ void Blasphemous::Update(float _DeltaTime)
 
 	if (true == GameEngineInput::GetInst()->IsDownKey("GotoStage9"))
 	{
-		//ChangeLevel("Stage10");
+		ChangeLevel("TestLevel");
 	}
 
 }
@@ -380,22 +383,6 @@ void Blasphemous::LoadBossMonster()
 			GameEngineTexture::Load(Textures[i].GetFullPath());
 		}
 	}
-
-	//{
-	//	GameEngineDirectory Dir;
-
-	//	Dir.MoveParentToExitsChildDirectory("GameEngineResources");
-	//	Dir.Move("GameEngineResources");
-	//	Dir.Move("Resources");
-	//	Dir.Move("Metafile");
-
-	//	std::vector<GameEngineFile> MataFile = Dir.GetAllFile();
-
-	//	for (size_t i = 0; i < MataFile.size(); i++)
-	//	{
-	//		GameEngineTexture::Load(MataFile[i].GetFullPath());
-	//	}
-	//}
 }
 
 void Blasphemous::LoadNormalMonster()

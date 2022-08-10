@@ -33,20 +33,10 @@ void ElderBrother::Start()
 	AffectChecker = GetLevel()->CreateActor<GravityActor>(ACTORORDER::BossMonster);
 	AffectChecker->Off();
 
-	AttackCollider_ = CreateComponent<GameEngineCollision>();
-	AttackCollider_->GetTransform().SetWorldScale({ 2000.0f, 500.0f });
-	AttackCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{ 1.0f, 0.0f, 0.0f, 1.0f });
-	AttackCollider_->Off();
-
-	JumpCollider_ = CreateComponent<GameEngineCollision>();
-	JumpCollider_->GetTransform().SetWorldScale({ 2000.0f, 500.0f });
-	JumpCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{ 1.0f, 0.0f, 0.0f, 1.0f });
-	JumpCollider_->Off();
-
 	State_.CreateStateMember("Freeze", std::bind(&ElderBrother::FreezeUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::FreezeStart, this, std::placeholders::_1));
 	State_.CreateStateMember("Appear", std::bind(&ElderBrother::AppearUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::AppearStart, this, std::placeholders::_1));
 	State_.CreateStateMember("Idle", std::bind(&ElderBrother::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::IdleStart, this, std::placeholders::_1));
-	State_.CreateStateMember("Jump", std::bind(&ElderBrother::JumpUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::JumpStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Jump", std::bind(&ElderBrother::JumpUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::JumpStart, this, std::placeholders::_1), std::bind(&ElderBrother::JumpEnd, this, std::placeholders::_1));
 	State_.CreateStateMember("Attack", std::bind(&ElderBrother::AttackUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::AttackStart, this, std::placeholders::_1), std::bind(&ElderBrother::AttackEnd, this, std::placeholders::_1));
 	State_.CreateStateMember("Death", std::bind(&ElderBrother::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&ElderBrother::DeathStart, this, std::placeholders::_1));
 	State_.ChangeState("Freeze");
@@ -57,6 +47,16 @@ void ElderBrother::Start()
 	DetectCollider_->ChangeOrder(COLLISIONORDER::BossMonster);
 	DetectCollider_->GetTransform().SetWorldScale({ 2000.0f, 1500.0f });
 	DetectCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{1.0f, 1.0f, 1.0f, 0.5f});
+
+	AttackCollider_ = CreateComponent<GameEngineCollision>();
+	AttackCollider_->GetTransform().SetWorldScale({ 500.0f, 100.0f });
+	AttackCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{ 1.0f, 0.0f, 0.0f, 1.0f });
+	AttackCollider_->Off();
+
+	JumpCollider_ = CreateComponent<GameEngineCollision>();
+	JumpCollider_->GetTransform().SetWorldScale({ 500.0f, 500.0f });
+	JumpCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{ 1.0f, 0.0f, 0.0f, 1.0f });
+	JumpCollider_->Off();
 }
 
 void ElderBrother::Update(float _DeltaTime)
@@ -148,8 +148,14 @@ void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 		GetTransform().SetWorldMove(GetTransform().GetUpVector() * _DeltaTime);
 
 		Alpha_ += _DeltaTime * 0.05f;
-		GetTransform().SetWorldPosition(float4::LerpLimit(GetTransform().GetWorldPosition(), Target_, Alpha_));
+		GetTransform().SetWorldMove(GameEngineMath::LerpLimit(GetTransform().GetWorldPosition().x, Target_.x, Alpha_));
+		GetTransform().SetWorldMove(GameEngineMath::LerpLimit(GetTransform().GetWorldPosition().y, Target_.y, Alpha_));
 	}
+}
+
+void ElderBrother::JumpEnd(const StateInfo& _Info)
+{
+	JumpCollider_->Off();
 }
 
 void ElderBrother::AttackStart(const StateInfo& _Info)
@@ -179,6 +185,7 @@ void ElderBrother::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void ElderBrother::AttackEnd(const StateInfo& _Info)
 {
+	AttackCollider_->Off();
 }
 
 void ElderBrother::DeathStart(const StateInfo& _Info)
@@ -232,6 +239,11 @@ bool ElderBrother::AttackToPlayer(GameEngineCollision* _This, GameEngineCollisio
 	if (nullptr == Player)
 	{
 		return false;
+	}
+
+	else
+	{
+		Player->SetDamege(10);
 	}
 
 	return false;

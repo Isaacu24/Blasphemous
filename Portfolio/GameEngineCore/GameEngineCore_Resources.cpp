@@ -194,7 +194,6 @@ void EngineRenderingPipeLine()
 		NewPipe->SetVertexShader("DebugTexture.hlsl");
 		NewPipe->SetPixelShader("DebugTexture.hlsl");
 	}
-
 }
 
 void EngineMesh()
@@ -307,7 +306,6 @@ void GameEngineCore::EngineResourcesInitialize()
 	EngineRenderingPipeLine();
 
 	// Ω¶¿Ã¥ı ∑ŒµÂ
-
 }
 
 

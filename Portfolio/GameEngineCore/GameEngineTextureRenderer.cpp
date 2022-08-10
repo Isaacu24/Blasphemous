@@ -11,7 +11,6 @@ void FrameAnimation::Reset()
 
 void FrameAnimation::Update(float _Delta)
 {
-
 	Info.FrameTime += _Delta;
 
 	if (nullptr != Time)
@@ -63,7 +62,6 @@ void FrameAnimation::Update(float _Delta)
 			ParentRenderer->SetTexture(Texture, Info.Frames[Info.CurFrame]);
 			ParentRenderer->SetPivot();
 
-			// 잘렸다는 거죠?
 			if (Texture->GetCutCount() != 0)
 			{
 				if (ParentRenderer->ScaleMode == SCALEMODE::IMAGE)
@@ -116,7 +114,6 @@ GameEngineTextureRenderer::~GameEngineTextureRenderer()
 
 void GameEngineTextureRenderer::SetTextureRendererSetting()
 {
-
 	SetPipeLine("TextureAtlas");
 
 	FrameData.PosX = 0.0f;
@@ -303,7 +300,6 @@ void GameEngineTextureRenderer::ScaleToCutTexture(int _Index)
 {
 	float4 Scale = CurTex->GetCutScale(_Index);
 
-	// 이거는 봐야합니다.
 	if (0 > GetTransform().GetLocalScale().x)
 	{
 		Scale.x = -Scale.x;
@@ -321,7 +317,6 @@ void GameEngineTextureRenderer::ScaleToTexture()
 {
 	float4 Scale = CurTex->GetScale();
 
-	// 이거는 봐야합니다.
 	if (0 > GetTransform().GetLocalScale().x)
 	{
 		Scale.x = -Scale.x;

@@ -56,7 +56,32 @@ void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 		State_.ChangeState("Slide");
 	}
 
+	if (GameEngineInput::GetInst()->IsDownKey("PenitentDown"))
+	{
+		ChangeState("Crouch");
+	}
+
 	Gravity_->SetActive(!IsGround_);
+}
+
+void Penitent::CrouchStart(const StateInfo& _Info)
+{
+	Collider_->GetTransform().SetWorldScale({ 100.f, 100.f });
+	Collider_->GetTransform().SetWorldMove({ 0, -30 });
+}
+
+void Penitent::CrouchUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+	if (true == GameEngineInput::GetInst()->IsUpKey("PenitentDown"))
+	{
+		ChangeState("Idle");
+	}
+}
+
+void Penitent::CrouchEnd(const StateInfo& _Info)
+{
+	Collider_->GetTransform().SetWorldScale({ 100.f, 200.f });
+	Collider_->GetTransform().SetWorldMove({ 0, 30 });
 }
 
 void Penitent::FreezeStart(const StateInfo& _Info)
@@ -173,7 +198,7 @@ void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Penitent::SlideEnd(const StateInfo& _Info)
 {
-	Collider_->GetTransform().SetWorldScale({ 100.f, 200.f});
+	Collider_->GetTransform().SetWorldScale({ 100.f, 200.f });
 	Collider_->GetTransform().SetWorldMove({ 0, 50 });
 }
 

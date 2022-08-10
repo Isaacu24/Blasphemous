@@ -30,6 +30,7 @@ public:
 
 	void JumpStart(const StateInfo& _Info);
 	void JumpUpdate(float _DeltaTime, const StateInfo& _Info);
+	void JumpEnd(const StateInfo& _Info);
 
 	void AttackStart(const StateInfo& _Info);
 	void AttackUpdate(float _DeltaTime, const StateInfo& _Info);

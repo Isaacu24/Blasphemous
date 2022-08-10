@@ -5,7 +5,7 @@
 
 Penitent* Penitent::MainPlayer_ = nullptr;
 
-Penitent::Penitent() 
+Penitent::Penitent()
 	: State_{}
 	, PlayerUI_(nullptr)
 	, Gravity_(nullptr)
@@ -24,7 +24,7 @@ Penitent::Penitent()
 	MainPlayer_ = this;
 }
 
-Penitent::~Penitent() 
+Penitent::~Penitent()
 {
 }
 
@@ -68,20 +68,20 @@ void Penitent::Start()
 	Gravity_ = CreateComponent<GravityComponent>();
 
 	Collider_ = CreateComponent<GameEngineCollision>();
-	Collider_->GetTransform().SetWorldScale({100.f, 200.f});
+	Collider_->GetTransform().SetWorldScale({ 100.f, 200.f });
 	Collider_->ChangeOrder(COLLISIONORDER::Player);
 	Collider_->SetDebugSetting(CollisionType::CT_OBB, float4{ 0.0f, 0.0f, 1.0f, 0.5f });
-	Collider_->GetTransform().SetWorldMove({0, 100});
+	Collider_->GetTransform().SetWorldMove({ 0, 100 });
 
 	PlayerUI_ = GetLevel()->CreateActor<PlayerUI>();
 	PlayerUI_->SetLevelOverOn();
 
-	GetTransform().SetLocalScale({1, 1, 1});
+	GetTransform().SetLocalScale({ 1, 1, 1 });
 
 	{
 		Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 
-		Renderer_->GetTransform().SetWorldScale({250, 250 });
+		Renderer_->GetTransform().SetWorldScale({ 250, 250 });
 		Renderer_->CreateFrameAnimationCutTexture("penintent_idle_anim", { "penintent_idle_anim.png", 0, 12, 0.1f, true });
 		Renderer_->CreateFrameAnimationCutTexture("penitent_sheathedIdle", { "penitent_sheathedIdle.png", 0, 45, 0.1f, true });
 		Renderer_->CreateFrameAnimationCutTexture("penitent_verticalattack_LVL3_anim", { "penitent_verticalattack_LVL3_anim.png", 0, 23, 0.05f, true });
@@ -98,17 +98,17 @@ void Penitent::Start()
 	State_.CreateStateMember("LadderClimb", std::bind(&Penitent::LadderClimbUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::LadderClimbStart, this, std::placeholders::_1));
 	State_.CreateStateMember("Jump", std::bind(&Penitent::JumpUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::JumpStart, this, std::placeholders::_1));
 	State_.CreateStateMember("Slide", std::bind(&Penitent::SlideUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::SlideStart, this, std::placeholders::_1), std::bind(&Penitent::SlideEnd, this, std::placeholders::_1));
-	State_.CreateStateMember("Crouch", std::bind(&Penitent::RecoveryUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::RecoveryStart, this, std::placeholders::_1));
+	State_.CreateStateMember("Crouch", std::bind(&Penitent::CrouchUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::CrouchStart, this, std::placeholders::_1), std::bind(&Penitent::CrouchEnd, this, std::placeholders::_1));
 	State_.CreateStateMember("Recovery", std::bind(&Penitent::RecoveryUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::RecoveryStart, this, std::placeholders::_1));
 	State_.CreateStateMember("Hit", std::bind(&Penitent::HitUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::HitStart, this, std::placeholders::_1));
 	State_.CreateStateMember("Death", std::bind(&Penitent::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Penitent::DeathStart, this, std::placeholders::_1));
 	State_.ChangeState("Idle");
 
 	PlayerUI_->SetTear(Tear_);
-}	
+}
 
 void Penitent::Update(float _DeltaTime)
-{ 
+{
 	State_.Update(_DeltaTime);
 
 	if (false == HealthCheck())
@@ -116,8 +116,8 @@ void Penitent::Update(float _DeltaTime)
 		return;
 	}
 
-	GroundCheck(); 
-	LadderCheck(); 
+	GroundCheck();
+	LadderCheck();
 	CollisionCheck();
 
 	if (true == GameEngineInput::GetInst()->IsDownKey("FreeCamera"))

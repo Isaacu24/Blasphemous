@@ -155,6 +155,12 @@
     <ClInclude Include="GravityActor.h">
       <Filter>Actor\Global</Filter>
     </ClInclude>
+    <ClInclude Include="TestLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="MetaAnimationWindow.h">
+      <Filter>Content</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -314,6 +320,12 @@
     <ClCompile Include="GravityActor.cpp">
       <Filter>Actor\Global</Filter>
     </ClCompile>
+    <ClCompile Include="TestLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="MetaAnimationWindow.cpp">
+      <Filter>Content</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -415,5 +427,11 @@
     <Filter Include="Actor\Global">
       <UniqueIdentifier>{8175c211-1fe1-4198-9af8-59dbc4b97413}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Content">
+      <UniqueIdentifier>{ffadbca4-8bbb-4bd6-876f-53c1da01f51c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".clang-format" />
   </ItemGroup>
 </Project>

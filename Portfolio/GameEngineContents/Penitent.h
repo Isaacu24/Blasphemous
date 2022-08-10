@@ -79,6 +79,10 @@ protected:
 	void IdleStart(const StateInfo& _Info);
 	void IdleUpdate(float _DeltaTime, const StateInfo& _Info);
 
+	void CrouchStart(const StateInfo& _Info);
+	void CrouchUpdate(float _DeltaTime, const StateInfo& _Info);
+	void CrouchEnd(const StateInfo& _Info);
+
 	void FreezeStart(const StateInfo& _Info);
 	void FreezeUpdate(float _DeltaTime, const StateInfo& _Info);
 
