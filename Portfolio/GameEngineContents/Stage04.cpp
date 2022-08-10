@@ -75,14 +75,6 @@ void Stage04::SettingStage()
 	PlayerLeftPos_ = float4{ 250, -1028, static_cast<int>(ACTORORDER::Player) };
 
 	IsLeftExit_ = true;
-
-	BossUI* Actor = CreateActor<BossUI>();
-
-	Font_ = Actor->CreateComponent<GameEngineFontRenderer>();
-	Font_->SetColor({ 1.0f, 0.0f, 0.0f });
-	Font_->SetScreenPostion({100, 100, 0.f});
-	Font_->SetText("¾È³çÇÏ¼¼¿ä.");
-	Font_->ChangeCamera(CAMERAORDER::UICAMERA);
 }
 
 void Stage04::SettingMonster()
@@ -110,7 +102,7 @@ void Stage04::Update(float _DeltaTime)
 	switch (CurrentFlow_)
 	{
 	case STAGEFLOW::NORMAL:
-		//PlayerCameraMove();
+		PlayerCameraMove();
 
 		if (1300 < Penitent_->GetTransform().GetWorldPosition().x
 			&& false == IsEvent_)
@@ -130,6 +122,13 @@ void Stage04::Update(float _DeltaTime)
 			BossUI_ = CreateActor<BossUI>();
 			Penitent_->ChangeState("Idle");
 			CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
+
+			Font_ = Stage_->CreateComponent<GameEngineFontRenderer>();
+			Font_->SetColor({ 0.65f, 0.65f, 0.45f, 1.0f });
+			Font_->SetScreenPostion({ 450, 590, -100.f });
+			Font_->SetText("Ä§¹¬ÇÏ´Â ºñÅºÀÇ ÆÄ¼ö²Û", "NeoµÕ±Ù¸ð");
+			Font_->SetSize(30);
+			Font_->ChangeCamera(CAMERAORDER::UICAMERA);
 		}
 		break;
 	case STAGEFLOW::BOSSCOMBAT:

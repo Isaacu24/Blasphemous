@@ -4,6 +4,7 @@
 #include "Pontiff.h"
 #include "GiantSword.h"
 #include "Platform.h"
+#include "BossUI.h"
 
 Stage21::Stage21() 
 {
@@ -66,6 +67,15 @@ void Stage21::Start()
 {
 	SettingStage();
 	SettingMonster();
+
+	BossUI_ = CreateActor<BossUI>();
+
+	Font_ = Stage_->CreateComponent<GameEngineFontRenderer>();
+	Font_->SetColor({ 0.65f, 0.65f, 0.45f, 1.0f });
+	Font_->SetScreenPostion({ 450, 600, -100.f });
+	Font_->SetText("마지막 기적의 아들", "Neo둥근모");
+	Font_->SetSize(35);
+	Font_->ChangeCamera(CAMERAORDER::UICAMERA);
 }
 
 void Stage21::Update(float _DeltaTime)

@@ -22,7 +22,7 @@ void BossUI::Start()
 	BarFrame_->Renderer_->ScaleToTexture();
 	BarFrame_->Renderer_->SetPivot(PIVOTMODE::LEFTTOP);
 
-	float4 UIPos = { -350, -250 };
+	float4 UIPos = { -350, -275 };
 
 	HPBar_->GetTransform().SetWorldPosition(UIPos);
 	BarFrame_->GetTransform().SetWorldPosition(UIPos);

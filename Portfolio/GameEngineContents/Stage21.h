@@ -30,4 +30,6 @@ protected:
 	void OffEvent() override;
 
 private:
+	class BossUI* BossUI_;
+
 };

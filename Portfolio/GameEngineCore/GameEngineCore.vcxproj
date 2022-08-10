@@ -195,6 +195,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ThirdParty\inc\DirectXTex.h" />
+    <ClInclude Include="portable-file-dialogs.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineActor.cpp">

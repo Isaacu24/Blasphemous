@@ -37,6 +37,7 @@ void GameEngineStatusWindow::Initialize(class GameEngineLevel* _Level)
 void GameEngineStatusWindow::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 {
 	int FPS = static_cast<int>(1.0f / _DeltaTime);
+	// printf 형식인데 안씀.
 
 	std::string Name = "FPS : " + std::to_string(FPS);
 	ImGui::Text(Name.c_str());
@@ -48,10 +49,22 @@ void GameEngineStatusWindow::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 
 	if (true == ImGui::Button("FreeCameaOnOff"))
 	{
+		// ;
 		GEngine::GetCurrentLevel()->GetMainCameraActor()->FreeCameraModeOnOff();
 	}
 
+	ImGui::Text("Level Select");
+	for (std::pair<std::string, GameEngineLevel*> Pair : GameEngineCore::AllLevels)
+	{
+		if (true == ImGui::Button(Pair.first.c_str()))
+		{
+			GameEngineCore::ChangeLevel(Pair.first);
+		}
 
+		ImGui::SameLine();
+	}
+
+	ImGui::NewLine();
 	std::string AllRenderTarget = "AllRenderTarget";
 	ImGui::Text(AllRenderTarget.c_str());
 

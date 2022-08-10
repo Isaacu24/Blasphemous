@@ -7,5 +7,6 @@
     <FxCompile Include="TextureAtlas.hlsl" />
     <FxCompile Include="TextureMeta.hlsl" />
     <FxCompile Include="Debug3D.hlsl" />
+    <FxCompile Include="DebugTexture.hlsl" />
   </ItemGroup>
 </Project>

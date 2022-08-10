@@ -76,11 +76,6 @@ void Penitent::Start()
 	PlayerUI_ = GetLevel()->CreateActor<PlayerUI>();
 	PlayerUI_->SetLevelOverOn();
 
-	GameEngineFontRenderer* Font = CreateComponent<GameEngineFontRenderer>();
-	Font->SetText("¾È³çÇÏ¼¼¿ä");
-	Font->SetColor({ 1.0f, 0.0f, 0.0f });
-	Font->SetScreenPostion({ 100, 100 });
-
 	GetTransform().SetLocalScale({1, 1, 1});
 
 	{

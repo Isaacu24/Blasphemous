@@ -73,6 +73,7 @@ void GameEngineLevel::ActorOnEvent()
 			{
 				continue;
 			}
+			// 루트 액터만 뭔가를 하는거죠?
 			Actor->AllOnEvent();
 		}
 	}
@@ -101,7 +102,6 @@ void GameEngineLevel::PushRenderer(GameEngineRenderer* _Renderer, int _CameraOrd
 	Cameras[static_cast<UINT>(_Renderer->CameraOrder)]->AllRenderer_[_Renderer->GetOrder()].remove(_Renderer);
 
 	_Renderer->CameraOrder = static_cast<CAMERAORDER>(_CameraOrder);
-	// 다른 카메라로 들어갈수도 있습니다.
 	Cameras[_CameraOrder]->PushRenderer(_Renderer);
 }
 
@@ -257,6 +257,7 @@ void GameEngineLevel::LevelUpdate(float _DeltaTime)
 	Release(_DeltaTime);
 }
 
+// 레벨을 이동하는 액터
 void GameEngineLevel::RemoveActor(GameEngineActor* _Actor)
 {
 	if (AllActors.end() == AllActors.find(_Actor->GetOrder()))
@@ -281,6 +282,14 @@ void GameEngineLevel::PushCollision(GameEngineCollision* _Collision, int _Order)
 
 void GameEngineLevel::OverChildMove(GameEngineLevel* _NextLevel)
 {
+	if (this == _NextLevel)
+	{
+		return;
+	}
+
+	// 플레이 레벨
+
+	// 로그인 레벨
 	// _NextLevel
 	{
 		std::map<int, std::list<GameEngineActor*>>::iterator StartGroupIter = AllActors.begin();
@@ -363,6 +372,32 @@ void GameEngineLevel::OverChildMove(GameEngineLevel* _NextLevel)
 			_NextLevel->AllCollisions[OverActor->GetOrder()].push_back(OverActor);
 		}
 	}
+}
 
+void GameEngineLevel::AllClear()
+{
+	{
+		std::map<int, std::list<GameEngineActor*>>::iterator StartGroupIter = AllActors.begin();
+		std::map<int, std::list<GameEngineActor*>>::iterator EndGroupIter = AllActors.end();
+
+		std::list<GameEngineActor*> OverList;
+
+		for (; StartGroupIter != EndGroupIter; ++StartGroupIter)
+		{
+			std::list<GameEngineActor*>& Group = StartGroupIter->second;
+			std::list<GameEngineActor*>::iterator GroupStart = Group.begin();
+			std::list<GameEngineActor*>::iterator GroupEnd = Group.end();
+			for (; GroupStart != GroupEnd; ++GroupStart)
+			{
+				delete* GroupStart;
+			}
+		}
+	}
+
+	AllActors.clear();
+
+	Cameras.clear();
+
+	AllCollisions.clear();
 }
 

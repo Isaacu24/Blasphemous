@@ -2,6 +2,7 @@
 #include "Stage20.h"
 #include "Penitent.h"
 #include "Pope.h"
+#include "BossUI.h"
 
 Stage20::Stage20()
 {
@@ -62,6 +63,15 @@ void Stage20::Start()
 {
 	SettingStage();
 	SettingMonster();
+
+	BossUI_ = CreateActor<BossUI>();
+
+	Font_ = Stage_->CreateComponent<GameEngineFontRenderer>();
+	Font_->SetColor({ 0.65f, 0.65f, 0.45f, 1.0f });
+	Font_->SetScreenPostion({ 450, 590, -100.f });
+	Font_->SetText("에스크리바르 교황 성하", "Neo둥근모");
+	Font_->SetSize(30);
+	Font_->ChangeCamera(CAMERAORDER::UICAMERA);
 }
 
 void Stage20::Update(float _DeltaTime)
@@ -72,13 +82,7 @@ void Stage20::Update(float _DeltaTime)
 		IsChangeCameraPos_ = true;
 	}
 
-	GetMainCameraActor()->GetTransform().SetWorldPosition({ Penitent_->GetTransform().GetLocalPosition().x, Penitent_->GetTransform().GetLocalPosition().y + 106.f, CameraZPos_ });
-	GameEngineDebug::OutPutString("CamY : " + std::to_string(GetMainCameraActor()->GetTransform().GetLocalPosition().y));
-
-	if (-1540 < GetMainCameraActor()->GetTransform().GetLocalPosition().y)
-	{
-		GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ GetMainCameraActor()->GetTransform().GetLocalPosition().x, -1540, CameraZPos_ });
-	}
+	GetMainCameraActor()->GetTransform().SetWorldPosition({ Penitent_->GetTransform().GetLocalPosition().x, -1540, CameraZPos_ });
 
 	if (940 > GetMainCameraActor()->GetTransform().GetLocalPosition ().x)
 	{
