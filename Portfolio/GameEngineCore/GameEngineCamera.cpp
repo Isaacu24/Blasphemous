@@ -7,7 +7,6 @@
 
 GameEngineCamera::GameEngineCamera()
 {
-	// 윈도우가 여러분들 생각하기 가장 쉬운 비율이라서 여기서 하는거고.
 	Size = GameEngineWindow::GetInst()->GetScale();
 	Mode = CAMERAPROJECTIONMODE::PersPective;
 	Near = 0.1f;
@@ -123,7 +122,7 @@ void GameEngineCamera::Release(float _DelataTime)
 	}
 }
 
-float4 GameEngineCamera::GetScreenPosition()
+float4 GameEngineCamera::GetMouseScreenPosition()
 {
 	POINT P;
 
@@ -144,7 +143,7 @@ void GameEngineCamera::Update(float _DeltaTime)
 
 float4 GameEngineCamera::GetMouseWorldPosition()
 {
-	float4 Pos = GetScreenPosition();
+	float4 Pos = GetMouseScreenPosition();
 
 	float4x4 ViewPort;
 	ViewPort.ViewPort(Size.x, Size.y, 0, 0, 0, 1);
@@ -169,7 +168,7 @@ void GameEngineCamera::OverRenderer(GameEngineCamera* _NextCamera)
 {
 	if (nullptr == _NextCamera)
 	{
-		MsgBoxAssert("next camera is nullptr!");
+		MsgBoxAssert("next camera is nullptr! fuck you");
 		return;
 	}
 

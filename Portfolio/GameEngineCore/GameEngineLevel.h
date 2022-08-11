@@ -18,6 +18,7 @@ enum class CAMERAORDER
 	UICAMERA,
 };
 
+// 설명 : 화면(타이틀 화면, 플레이 화면, 인벤토리 화면)
 class GameEngineCore;
 class GameEngineActor;
 class GameEngineCamera;
@@ -91,12 +92,11 @@ public:
 		NewActor->SetOrder(_ObjectGroupIndex);
 		NewActor->Start();
 
+		PushActor(NewActor, _ObjectGroupIndex);
+
 		// AllActors[_ObjectGroupIndex]게 사용하면
 		// 없으면 만들어버리고 있으면
 		// 찾아서 리턴해준다.
-		std::list<GameEngineActor*>& Group = AllActors[_ObjectGroupIndex];
-
-		Group.push_back(NewActor);
 
 		return dynamic_cast<ActorType*>(NewActor);
 	}
@@ -140,6 +140,12 @@ protected:
 
 
 private:
+	void PushActor(GameEngineActor* _Actor, int _ObjectGroupIndex)
+	{
+		std::list<GameEngineActor*>& Group = AllActors[_ObjectGroupIndex];
+
+		Group.push_back(_Actor);
+	}
 
 	void ActorOnEvent();
 

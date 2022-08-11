@@ -4,6 +4,7 @@
 #include "GameEngineDevice.h"
 #include "portable-file-dialogs.h"
 
+
 std::list<GameEngineGUIWindow*> GameEngineGUI::Windows;
 
 GameEngineGUI::GameEngineGUI()
@@ -113,32 +114,16 @@ std::string GameEngineGUI::OpenFolderDlg(const std::string& _Title, const std::s
     return Dlg.result();
 }
 
-std::string GameEngineGUI::OpenFileDlg(const std::string& _StartPath, const std::string& _Filter)
+std::string GameEngineGUI::OpenFileDlg(const std::string& _Title, const std::string& _StartPath)
 {
-    //OPENFILENAME OFN;
-    //char filePathName[100] = "";
-    //char lpstrFile[100] = "";
-    ////char filter[] = "모든 파일\0*.*\0텍스트 파일\0*.txt\0fbx 파일\0*.fbx";
+    pfd::open_file Dlg = pfd::open_file(_Title, _StartPath, { "All Files", "*" }, pfd::opt::force_path);
 
-    //std::string FullPath = _StartPath;
+    Dlg.kill();
 
-    //memset(&OFN, 0, sizeof(OPENFILENAME));
-    //OFN.lStructSize = sizeof(OPENFILENAME);
-    //OFN.hwndOwner = nullptr;
-    //OFN.lpstrFilter = _Filter.c_str();
-    //OFN.lpstrFile = lpstrFile;
-    //OFN.nMaxFile = 100;
-    //OFN.lpstrInitialDir = FullPath.c_str();
-    //OFN.Flags = OFN_EXPLORER;
-
-    //char PrevDir[256] = { 0 };
-    //GetCurrentDirectoryA(256, PrevDir);
-
-    //if (GetOpenFileName(&OFN) != 0) {
-    //    SetCurrentDirectoryA(PrevDir);
-    //}
-
-    //return OFN.lpstrFile;
+    if (0 != Dlg.result().size())
+    {
+        return Dlg.result()[0];
+    }
 
     return "";
 }
@@ -149,7 +134,6 @@ void GameEngineGUI::GUIDestroy()
     {
         delete GUIWIndow;
     }
-
 
     ImGui_ImplDX11_Shutdown();
     ImGui_ImplWin32_Shutdown();

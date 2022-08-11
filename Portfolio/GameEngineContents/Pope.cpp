@@ -28,6 +28,26 @@ void Pope::Start()
                              std::bind(&Pope::AppearUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&Pope::AppearStart, this, std::placeholders::_1),
                              std::bind(&Pope::AppearEnd, this, std::placeholders::_1));
+    
+    State_.CreateStateMember("Vanishing",
+                             std::bind(&Pope::VanishingUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Pope::VanishingStart, this, std::placeholders::_1),
+                             std::bind(&Pope::VanishingEnd, this, std::placeholders::_1));
+    
+    State_.CreateStateMember("SpellCast",
+                             std::bind(&Pope::SpellCastUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Pope::SpellCastStart, this, std::placeholders::_1),
+                             std::bind(&Pope::SpellCastEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember("Hit",
+                             std::bind(&Pope::HitUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Pope::HitStart, this, std::placeholders::_1),
+                             std::bind(&Pope::HitEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember("Death",
+                             std::bind(&Pope::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Pope::DeathStart, this, std::placeholders::_1),
+                             std::bind(&Pope::DeathEnd, this, std::placeholders::_1));
 
     DetectCollider_ = CreateComponent<GameEngineCollision>();
     DetectCollider_->ChangeOrder(COLLISIONORDER::BossMonster);
@@ -38,7 +58,8 @@ void Pope::Update(float _DeltaTime)
 {
     State_.Update(_DeltaTime);
 
-    if (true == DetectCollider_->IsCollision(
+    if (true
+        == DetectCollider_->IsCollision(
             CollisionType::CT_OBB2D,
             COLLISIONORDER::Player,
             CollisionType::CT_OBB2D,
@@ -56,26 +77,19 @@ void Pope::IdleStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("
 
 void Pope::IdleUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Pope::IdleEnd(const StateInfo& _Info) 
-{
-    int a = 0; 
-}
+void Pope::IdleEnd(const StateInfo& _Info) { int a = 0; }
 
-void Pope::AppearStart(const StateInfo& _Info) 
-{ 
-    Renderer_->ChangeFrameAnimation("pope_appear"); 
+void Pope::AppearStart(const StateInfo& _Info)
+{
+    Renderer_->ChangeFrameAnimation("pope_appear");
 
     Renderer_->ChangeFrameAnimation("pope_appear");
     Renderer_->AnimationBindEnd("pope_appear", std::bind(&Pope::ChangeIdle, this, std::placeholders::_1));
 }
 
-void Pope::AppearUpdate(float _DeltaTime, const StateInfo& _Info) 
-{
-}
+void Pope::AppearUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Pope::AppearEnd(const StateInfo& _Info) 
-{ 
-}
+void Pope::AppearEnd(const StateInfo& _Info) {}
 
 void Pope::VanishingStart(const StateInfo& _Info) {}
 

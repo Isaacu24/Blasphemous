@@ -11,6 +11,7 @@ void FrameAnimation::Reset()
 
 void FrameAnimation::Update(float _Delta)
 {
+
 	Info.FrameTime += _Delta;
 
 	if (nullptr != Time)
@@ -31,6 +32,15 @@ void FrameAnimation::Update(float _Delta)
 
 	if (Info.Inter <= Info.FrameTime)
 	{
+		if (Info.CurFrame == (Info.Frames.size() - 1)
+			&& false == bOnceEnd
+			&& nullptr != End)
+		{
+			End(Info);
+			bOnceEnd = true;
+			bOnceStart = false;
+		}
+
 		++Info.CurFrame;
 		if (nullptr != Frame)
 		{
@@ -39,12 +49,6 @@ void FrameAnimation::Update(float _Delta)
 
 		if (Info.CurFrame >= Info.Frames.size())
 		{
-			if (false == bOnceEnd && nullptr != End)
-			{
-				End(Info);
-				bOnceEnd = true;
-				bOnceStart = false;
-			}
 
 			if (true == Info.Loop)
 			{
@@ -114,6 +118,7 @@ GameEngineTextureRenderer::~GameEngineTextureRenderer()
 
 void GameEngineTextureRenderer::SetTextureRendererSetting()
 {
+
 	SetPipeLine("TextureAtlas");
 
 	FrameData.PosX = 0.0f;
@@ -123,6 +128,7 @@ void GameEngineTextureRenderer::SetTextureRendererSetting()
 
 	ShaderResources.SetConstantBufferLink("AtlasData", FrameData);
 	ShaderResources.SetConstantBufferLink("ColorData", ColorData);
+
 }
 
 void GameEngineTextureRenderer::Start()
@@ -272,10 +278,13 @@ void GameEngineTextureRenderer::ChangeFrameAnimation(const std::string& _Animati
 		if (nullptr != CurAni->Texture)
 		{
 			SetTexture(CurAni->Texture, CurAni->Info.Frames[CurAni->Info.CurFrame]);
+			ScaleToCutTexture(CurAni->Info.CurFrame);
 		}
 		else if (nullptr != CurAni->FolderTexture)
 		{
 			SetTexture(CurAni->FolderTexture->GetTexture(CurAni->Info.Frames[CurAni->Info.CurFrame]));
+			ScaleToTexture();
+
 		}
 	}
 }
@@ -316,7 +325,7 @@ void GameEngineTextureRenderer::ScaleToCutTexture(int _Index)
 void GameEngineTextureRenderer::ScaleToTexture()
 {
 	float4 Scale = CurTex->GetScale();
-
+	
 	if (0 > GetTransform().GetLocalScale().x)
 	{
 		Scale.x = -Scale.x;
