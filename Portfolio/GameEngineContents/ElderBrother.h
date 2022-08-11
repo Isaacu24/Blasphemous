@@ -76,8 +76,6 @@ private:
     float Alpha_;
     bool  IsJump_;
 
-    inline void ChangeIdle(const FrameAnimation_DESC& _Info) { State_.ChangeState("Idle"); }
-
     inline void JumpFrame(const FrameAnimation_DESC& _Info, float _DeltaTime)
     {
         if (10 == _Info.CurFrame)

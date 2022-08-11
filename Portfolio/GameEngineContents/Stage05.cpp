@@ -26,6 +26,8 @@ void Stage05::SettingStage()
 	StageRenderer->SetTexture("1_5_Tile.png");
 	StageRenderer->ScaleToTexture();
 	StageRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::Tile) });
+    StageRenderer->GetTransform().SetWorldScale(StageRenderer->GetTransform().GetWorldScale()
+                                                          * 2.f);
 
 	//Deogracias* NewDeogracias = CreateActor<Deogracias>();
 	//NewDeogracias->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::) });
@@ -39,6 +41,7 @@ void Stage05::SettingStage()
 	DoorRendrer->SetTexture("1_5_Door.png");
 	DoorRendrer->ScaleToTexture();
 	DoorRendrer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::Door) });
+    DoorRendrer->GetTransform().SetWorldScale(DoorRendrer->GetTransform().GetWorldScale() * 2.f);
 
 	float OffsetX = StageRenderer->GetTransform().GetLocalScale().x / 2;
 	float OffsetY = StageRenderer->GetTransform().GetLocalScale().y / 2;

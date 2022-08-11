@@ -21,7 +21,7 @@ void ElderBrother::Start()
     Renderer_->CreateFrameAnimationCutTexture("elderBrother_jump", {"elderBrother_jump.png", 0, 24, 0.15f, true});
     Renderer_->CreateFrameAnimationCutTexture("elderBrother_attack", {"elderBrother_attack.png", 0, 23, 0.1f, true});
     Renderer_->CreateFrameAnimationCutTexture("elderBrother_death", {"elderBrother_death.png", 0, 48, 0.1f, false});
-    Renderer_->GetTransform().SetWorldScale({1200, 700});
+    Renderer_->GetTransform().SetWorldScale({1100, 600});
     Renderer_->SetPivot(PIVOTMODE::BOT);
     Renderer_->GetTransform().PixLocalNegativeX();
 
@@ -146,7 +146,7 @@ void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
         Renderer_->AnimationBindFrame("elderBrother_jump",
                                       std::bind(&ElderBrother::JumpFrame, this, std::placeholders::_1, _DeltaTime));
         Renderer_->AnimationBindEnd("elderBrother_jump",
-                                    std::bind(&ElderBrother::ChangeIdle, this, std::placeholders::_1));
+                                    std::bind(&ElderBrother::ChangeIdleState, this, std::placeholders::_1));
     }
 
     if (true == IsJump_)
@@ -182,7 +182,7 @@ void ElderBrother::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
         Renderer_->AnimationBindFrame("elderBrother_attack",
                                       std::bind(&ElderBrother::AttackFrame, this, std::placeholders::_1));
         Renderer_->AnimationBindEnd("elderBrother_attack",
-                                    std::bind(&ElderBrother::ChangeIdle, this, std::placeholders::_1));
+                                    std::bind(&ElderBrother::ChangeIdleState, this, std::placeholders::_1));
     }
 }
 

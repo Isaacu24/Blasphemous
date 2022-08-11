@@ -49,7 +49,7 @@ protected:
 
 	virtual void SettingStage() = 0;
 
-	virtual void SettingMonster() {};
+	virtual void SettingMonster(){};
 
 	float4 PlayerLeftPos_;
 	float4 PlayerRightPos_;

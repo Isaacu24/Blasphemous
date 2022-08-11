@@ -11,13 +11,18 @@ void Pope::Start()
     Renderer_->CreateFrameAnimationCutTexture("pope_idle", {"pope_idle.png", 0, 12, 0.1f, true});
     Renderer_->CreateFrameAnimationCutTexture("pope_appear", {"pope_appear.png", 0, 14, 0.1f, false});
     Renderer_->CreateFrameAnimationCutTexture("pope_hitReaction", {"pope_hitReaction.png", 0, 10, 0.1f, true});
-    Renderer_->CreateFrameAnimationCutTexture("pope_spellCast", {"pope_spellCast.png", 0, 53, 0.1f, true});
-    Renderer_->CreateFrameAnimationCutTexture("pope_spellCast_FXS",
-                                              {"pope_spellCast_FXS.png", 0, 53, 0.1f, true});  //ÀÌÆåÆ®
+    Renderer_->CreateFrameAnimationCutTexture("pope_spellCast", {"pope_spellCast.png", 0, 54, 0.1f, true});
     Renderer_->CreateFrameAnimationCutTexture("pope_vanishing", {"pope_vanishing.png", 0, 13, 0.1f, true});
-    Renderer_->CreateFrameAnimationCutTexture("pope_death", {"pope_death.png", 0, 35, 0.1f, true});
-    Renderer_->GetTransform().SetWorldScale({250, 250});
+    Renderer_->CreateFrameAnimationCutTexture("pope_death", {"pope_death.png", 0, 34, 0.1f, true});
+    Renderer_->SetScaleModeImage();
     Renderer_->SetPivot(PIVOTMODE::BOT);
+
+    FXSRenderer_ = CreateComponent<GameEngineTextureRenderer>();
+    FXSRenderer_->CreateFrameAnimationCutTexture("pope_spellCast_FXS",
+                                              {"pope_spellCast_FXS.png", 0, 54, 0.1f, true});  //ÀÌÆåÆ®
+    FXSRenderer_->SetScaleModeImage();
+    FXSRenderer_->SetPivot(PIVOTMODE::BOT);
+    FXSRenderer_->Off();
 
     State_.CreateStateMember("Idle",
                              std::bind(&Pope::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2),
@@ -28,12 +33,12 @@ void Pope::Start()
                              std::bind(&Pope::AppearUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&Pope::AppearStart, this, std::placeholders::_1),
                              std::bind(&Pope::AppearEnd, this, std::placeholders::_1));
-    
+
     State_.CreateStateMember("Vanishing",
                              std::bind(&Pope::VanishingUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&Pope::VanishingStart, this, std::placeholders::_1),
                              std::bind(&Pope::VanishingEnd, this, std::placeholders::_1));
-    
+
     State_.CreateStateMember("SpellCast",
                              std::bind(&Pope::SpellCastUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&Pope::SpellCastStart, this, std::placeholders::_1),
@@ -73,7 +78,10 @@ void Pope::End() {}
 
 bool Pope::DecideState(GameEngineCollision* _This, GameEngineCollision* _Other) { return false; }
 
-void Pope::IdleStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("pope_idle"); }
+void Pope::IdleStart(const StateInfo& _Info)
+{
+    Renderer_->ChangeFrameAnimation("pope_idle");
+}
 
 void Pope::IdleUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
@@ -82,34 +90,55 @@ void Pope::IdleEnd(const StateInfo& _Info) { int a = 0; }
 void Pope::AppearStart(const StateInfo& _Info)
 {
     Renderer_->ChangeFrameAnimation("pope_appear");
-
-    Renderer_->ChangeFrameAnimation("pope_appear");
-    Renderer_->AnimationBindEnd("pope_appear", std::bind(&Pope::ChangeIdle, this, std::placeholders::_1));
+    Renderer_->AnimationBindEnd("pope_appear", std::bind(&Pope::ChangeIdleState, this, std::placeholders::_1));
 }
 
 void Pope::AppearUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Pope::AppearEnd(const StateInfo& _Info) {}
 
-void Pope::VanishingStart(const StateInfo& _Info) {}
+void Pope::VanishingStart(const StateInfo& _Info)
+{
+    Renderer_->ChangeFrameAnimation("pope_vanishing");
+    Renderer_->AnimationBindEnd("pope_vanishing", std::bind(&Pope::ChangeIdleState, this, std::placeholders::_1));
+}
 
 void Pope::VanishingUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Pope::VanishingEnd(const StateInfo& _Info) {}
 
-void Pope::SpellCastStart(const StateInfo& _Info) {}
+void Pope::SpellCastStart(const StateInfo& _Info)
+{
+    Renderer_->ChangeFrameAnimation("pope_spellCast");
+    //Renderer_->AnimationBindEnd("pope_spellCast", std::bind(&Pope::ChangeIdleState, this, std::placeholders::_1));
+
+    FXSRenderer_->On();
+    FXSRenderer_->ChangeFrameAnimation("pope_spellCast_FXS");
+    /*FXSRenderer_->AnimationBindEnd("pope_spellCast_FXS",
+                                   std::bind(&Pope::AnimationOff, this, std::placeholders::_1));*/
+}
 
 void Pope::SpellCastUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Pope::SpellCastEnd(const StateInfo& _Info) {}
+void Pope::SpellCastEnd(const StateInfo& _Info) 
+{
+}
 
-void Pope::HitStart(const StateInfo& _Info) {}
+void Pope::HitStart(const StateInfo& _Info)
+{
+    Renderer_->ChangeFrameAnimation("pope_hitReaction");
+    Renderer_->AnimationBindEnd("pope_hitReaction", std::bind(&Pope::ChangeIdleState, this, std::placeholders::_1));
+}
 
 void Pope::HitUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Pope::HitEnd(const StateInfo& _Info) {}
 
-void Pope::DeathStart(const StateInfo& _Info) {}
+void Pope::DeathStart(const StateInfo& _Info)
+{
+    Renderer_->ChangeFrameAnimation("pope_death");
+    Renderer_->AnimationBindEnd("pope_death", std::bind(&Pope::ChangeIdleState, this, std::placeholders::_1));
+}
 
 void Pope::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
