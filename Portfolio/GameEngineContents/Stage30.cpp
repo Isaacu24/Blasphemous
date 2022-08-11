@@ -23,18 +23,20 @@ void Stage30::SettingStage()
 	GameEngineTextureRenderer* BeforeParallaxRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRendrer->SetTexture("13_1_BeforeParallax_0.png");
 	BeforeParallaxRendrer->ScaleToTexture();
-	BeforeParallaxRendrer->GetTransform().SetWorldPosition({ -900, 0, static_cast<int>(ACTORORDER::BeforeParallax4) });
-	BeforeParallaxRendrer->GetTransform().SetWorldScale(BeforeParallaxRendrer->GetTransform().GetWorldScale() * 1.2f);
+	BeforeParallaxRendrer->GetTransform().SetWorldPosition({ -800, 0, static_cast<int>(ACTORORDER::BeforeParallax4) });
+	BeforeParallaxRendrer->GetTransform().SetWorldScale(BeforeParallaxRendrer->GetTransform().GetWorldScale() * 2.2f);
 
 	GameEngineTextureRenderer* BeforeParallaxRendrer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRendrer1->SetTexture("13_1_BeforeParallax_1.png");
 	BeforeParallaxRendrer1->ScaleToTexture();
-	BeforeParallaxRendrer1->GetTransform().SetWorldPosition({ 0, 500, static_cast<int>(ACTORORDER::BeforeParallax5) });
+	BeforeParallaxRendrer1->GetTransform().SetWorldPosition({ -800, 500, static_cast<int>(ACTORORDER::BeforeParallax5) });
+    BeforeParallaxRendrer1->GetTransform().SetWorldScale(BeforeParallaxRendrer1->GetTransform().GetWorldScale() * 2.f);
 
 	GameEngineTextureRenderer* BeforeLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeLayerRenderer->SetTexture("13_1_BeforeLayer.png");
 	BeforeLayerRenderer->ScaleToTexture();
 	BeforeLayerRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeLayer0) });
+    BeforeLayerRenderer->GetTransform().SetWorldScale(BeforeLayerRenderer->GetTransform().GetWorldScale() * 2.f);
 
 	Deogracias* NewDeogracias = CreateActor<Deogracias>();
 	NewDeogracias->GetTransform().SetWorldPosition({ 800, -870, static_cast<int>(ACTORORDER::NPC) });
@@ -45,16 +47,19 @@ void Stage30::SettingStage()
 	StageRenderer2->SetTexture("13_1_2_Tile.png");
 	StageRenderer2->ScaleToTexture();
 	StageRenderer2->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::AfterLayer0) });
+    StageRenderer2->GetTransform().SetWorldScale(StageRenderer2->GetTransform().GetWorldScale() * 2.f);
 
 	GameEngineTextureRenderer* StageRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	StageRenderer1->SetTexture("13_1_1_Tile.png");
 	StageRenderer1->ScaleToTexture();
 	StageRenderer1->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::AfterLayer1) });
+    StageRenderer1->GetTransform().SetWorldScale(StageRenderer1->GetTransform().GetWorldScale() * 2.f);
 
 	GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	AfterLayerRenderer->SetTexture("13_1_AfterLayer.png");
 	AfterLayerRenderer->ScaleToTexture();
 	AfterLayerRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::AfterLayer2) });
+    AfterLayerRenderer->GetTransform().SetWorldScale(AfterLayerRenderer->GetTransform().GetWorldScale() * 2.f);
 
 	GameEngineTextureRenderer* ChairRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	ChairRenderer->SetTexture("ash-mountain-spritesheet_9.png");
@@ -66,6 +71,7 @@ void Stage30::SettingStage()
 	AfterParallaxRenderer->SetTexture("13_1_AfterParallax_0.png");
 	AfterParallaxRenderer->ScaleToTexture();
 	AfterParallaxRenderer->GetTransform().SetWorldPosition({ 500, 500, static_cast<int>(ACTORORDER::AfterParallax5) });
+    AfterParallaxRenderer->GetTransform().SetWorldScale(AfterParallaxRenderer->GetTransform().GetWorldScale() * 2.f);
 
 	float OffsetX = StageRenderer2->GetTransform().GetLocalScale().x / 2;
 	float OffsetY = StageRenderer2->GetTransform().GetLocalScale().y / 2;
