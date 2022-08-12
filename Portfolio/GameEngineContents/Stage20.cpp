@@ -21,7 +21,7 @@ void Stage20::SettingStage()
     GameEngineTextureRenderer* BeforePrallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforePrallaxRenderer->SetTexture("12_2_BeforeParallax_0.png");
     BeforePrallaxRenderer->ScaleToTexture();
-    BeforePrallaxRenderer->GetTransform().SetWorldPosition({0, 500, static_cast<int>(ACTORORDER::BeforeParallax5)});
+    BeforePrallaxRenderer->GetTransform().SetWorldPosition({0, 390, static_cast<int>(ACTORORDER::BeforeParallax5)});
     BeforePrallaxRenderer->GetTransform().SetWorldScale(BeforePrallaxRenderer->GetTransform().GetWorldScale() * 2.3f);
 
     GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
@@ -79,7 +79,7 @@ void Stage20::Update(float _DeltaTime)
             }
             break;
         case STAGEFLOW::BOSSAPPEAR:
-            if (2250.f > GetMainCameraActor()->GetTransform().GetWorldPosition().x)
+            if (2275.f > GetMainCameraActor()->GetTransform().GetWorldPosition().x)
             {
                 GetMainCameraActor()->GetTransform().SetWorldRightMove(300, _DeltaTime);
             }
@@ -102,6 +102,18 @@ void Stage20::Update(float _DeltaTime)
                     Pope_->On();
                     Pope_->GetTransform().PixLocalNegativeX();
                     Pope_->ChangeMonsterState("Appear");
+                }
+
+                if (1660.f > Penitent_->GetTransform().GetLocalPosition().x)
+                {
+                    Penitent_->GetTransform().SetWorldPosition(
+                        {1660.f, Penitent_->GetTransform().GetWorldPosition().y});
+                }
+
+                else if (2900.f < Penitent_->GetTransform().GetLocalPosition().x)
+                {
+                    Penitent_->GetTransform().SetWorldPosition(
+                        {2900.f, Penitent_->GetTransform().GetWorldPosition().y});
                 }
             }
             break;

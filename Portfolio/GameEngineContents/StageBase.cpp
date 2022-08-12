@@ -3,7 +3,8 @@
 
 StageBase::StageBase() 
 	: Stage_(nullptr)
-	, ColMap_(nullptr)
+    , ColMap_(nullptr) 
+	, DangleColiders_{}
 	, Penitent_(nullptr)
 	, BossMonster_(nullptr)
 	, MonsterList_{}

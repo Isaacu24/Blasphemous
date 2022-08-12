@@ -83,6 +83,25 @@ void Stage02::SettingStage()
 	PlayerLeftPos_ = float4{ 210, -1425, static_cast<int>(ACTORORDER::Player) };
 
 	IsLeftExit_ = true;
+
+	{
+        GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
+        Collider->ChangeOrder(COLLISIONORDER::Handrail);
+        Collider->GetTransform().SetWorldPosition({2000, -1300});
+        Collider->GetTransform().SetWorldScale({30.0f, 30.0f, 1.0f});
+        Collider->SetDebugSetting(CollisionType::CT_AABB, float4{0.0f, 0.5f, 0.2f, 0.5f});
+        DangleColiders_.push_back(Collider);
+	}
+
+	{
+        GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
+        Collider->ChangeOrder(COLLISIONORDER::Handrail);
+        Collider->GetTransform().SetWorldPosition({1750, -1300});
+        Collider->GetTransform().SetWorldScale({30.0f, 30.0f, 1.0f});
+        Collider->SetDebugSetting(CollisionType::CT_AABB, float4{0.0f, 0.5f, 0.2f, 0.5f});
+        DangleColiders_.push_back(Collider);
+	}
+
 }
 
 void Stage02::SettingMonster()

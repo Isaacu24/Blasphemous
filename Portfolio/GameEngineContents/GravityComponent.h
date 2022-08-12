@@ -17,6 +17,11 @@ public:
 		Active_ = _Active;
 	}
 
+	bool GetActive() 
+	{
+		return Active_;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

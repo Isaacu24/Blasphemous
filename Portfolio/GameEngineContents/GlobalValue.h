@@ -48,10 +48,13 @@ enum class ACTORORDER
 enum class COLLISIONORDER
 {
 	Player,
+    PlayerAttack,
 	Monster,
 	BossMonster,
 	Projectile,
-	Object
+	Object,
+    Handrail, //³­°£
+	Debug
 };
 
 

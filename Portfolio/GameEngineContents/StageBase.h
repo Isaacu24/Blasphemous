@@ -9,6 +9,7 @@ enum class STAGEFLOW
 	STAGECLEAR
 };
 
+class GameEngineCollision;
 class StageBase
 {
 public:
@@ -39,6 +40,8 @@ protected:
 	float4 PrevPos_;
 
 	GameEngineTextureRenderer* ColMap_;
+
+	std::vector<GameEngineCollision*> DangleColiders_;
 
 	class Penitent* Penitent_;
 
