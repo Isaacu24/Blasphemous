@@ -121,6 +121,7 @@ private:
     bool IsJump_;
     bool IsSlide_;
     bool IsDangle_;
+    bool IsInventory_;
 
     float JumpTime_;
     float SlideTime_;

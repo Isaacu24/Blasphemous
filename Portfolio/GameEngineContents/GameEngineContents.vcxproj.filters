@@ -131,7 +131,7 @@
     <ClInclude Include="BloodSplatters.h">
       <Filter>Actor\Effect\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Projectile.h">
+    <ClInclude Include="VioletProjectile.h">
       <Filter>Actor\Effect\Monster\Normal\WingedFace</Filter>
     </ClInclude>
     <ClInclude Include="BossUI.h">
@@ -157,6 +157,18 @@
     </ClInclude>
     <ClInclude Include="MetaSpriteWindow.h">
       <Filter>Content</Filter>
+    </ClInclude>
+    <ClInclude Include="FireBall.h">
+      <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
+    </ClInclude>
+    <ClInclude Include="ToxicCloud.h">
+      <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
+    </ClInclude>
+    <ClInclude Include="SymbolEffect.h">
+      <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Actor\Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -287,7 +299,7 @@
     <ClCompile Include="BloodSplatters.cpp">
       <Filter>Actor\Effect\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Projectile.cpp">
+    <ClCompile Include="VioletProjectile.cpp">
       <Filter>Actor\Effect\Monster\Normal\WingedFace</Filter>
     </ClCompile>
     <ClCompile Include="BossUI.cpp">
@@ -319,6 +331,18 @@
     </ClCompile>
     <ClCompile Include="MetaSpriteWindow.cpp">
       <Filter>Content</Filter>
+    </ClCompile>
+    <ClCompile Include="FireBall.cpp">
+      <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
+    </ClCompile>
+    <ClCompile Include="ToxicCloud.cpp">
+      <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
+    </ClCompile>
+    <ClCompile Include="SymbolEffect.cpp">
+      <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Actor\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

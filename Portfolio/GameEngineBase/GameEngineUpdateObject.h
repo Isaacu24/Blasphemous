@@ -77,7 +77,7 @@ public:
 		AccTime_ = 0.0f;
 	}
 
-	inline 	void Death()
+	inline void Death()
 	{
 		IsDeath_ = true;
 	}

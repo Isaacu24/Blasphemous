@@ -55,6 +55,7 @@ void Penitent::Start()
         GameEngineInput::GetInst()->CreateKey("FreeCamera", 'O');
 
         GameEngineInput::GetInst()->CreateKey("PenitentAnimation", '1');
+        GameEngineInput::GetInst()->CreateKey("InventoryOn", 'I');
     }
 
     Flasks_.resize(3);
@@ -94,19 +95,20 @@ void Penitent::Start()
         {GetTransform().GetWorldPosition().x,
          (GetTransform().GetWorldPosition().y + CilmbY_)});  //사다리 타기 시 땅 감지
 
-    //DebugColliders_[1]->On();
-    //DebugColliders_[1]->GetTransform().SetWorldPosition(
-    //    {GetTransform().GetWorldPosition().x, (GetTransform().GetWorldPosition().y + 30)});  //땅 감지
+     DebugColliders_[1]->On();
+     DebugColliders_[1]->GetTransform().SetWorldPosition(
+         {GetTransform().GetWorldPosition().x + 20, (GetTransform().GetWorldPosition().y + 125)}); 
+     DebugColliders_[1]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
 
-    //DebugColliders_[2]->On();
-    //DebugColliders_[2]->GetTransform().SetWorldPosition(
-    //    {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y + 50});
-    //DebugColliders_[2]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
+     DebugColliders_[2]->On();
+     DebugColliders_[2]->GetTransform().SetWorldPosition(
+         {GetTransform().GetWorldPosition().x - 20, GetTransform().GetWorldPosition().y + 125});
+     DebugColliders_[2]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
 
-    //DebugColliders_[3]->On();
-    //DebugColliders_[3]->GetTransform().SetWorldPosition(
-    //    {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y - 50});
-    //DebugColliders_[3]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
+    // DebugColliders_[3]->On();
+    // DebugColliders_[3]->GetTransform().SetWorldPosition(
+    //     {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y - 50});
+    // DebugColliders_[3]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
 
     PlayerUI_ = GetLevel()->CreateActor<PlayerUI>();
     PlayerUI_->SetLevelOverOn();
@@ -179,7 +181,7 @@ void Penitent::Update(float _DeltaTime)
 {
     State_.Update(_DeltaTime);
 
-        DebugColliders_[0]->GetTransform().SetWorldPosition(
+    DebugColliders_[0]->GetTransform().SetWorldPosition(
         {GetTransform().GetWorldPosition().x,
          (GetTransform().GetWorldPosition().y + CilmbY_)});  //사다리 타기 시 땅 감지
 
@@ -195,6 +197,18 @@ void Penitent::Update(float _DeltaTime)
     if (true == GameEngineInput::GetInst()->IsDownKey("FreeCamera"))
     {
         GetLevel()->GetMainCameraActor()->FreeCameraModeOnOff();
+    }
+
+    if (false == IsInventory_ && true == GameEngineInput::GetInst()->IsDownKey("InventoryOn"))
+    {
+        IsInventory_ = true;
+        PlayerUI_->Inventory_->On();
+    }
+
+    else if (true == IsInventory_ && true == GameEngineInput::GetInst()->IsDownKey("InventoryOn"))
+    {
+        IsInventory_ = false;
+        PlayerUI_->Inventory_->Off();
     }
 
     GameEngineDebug::OutPutString("PlayerState: " + State_.GetCurStateStateName());

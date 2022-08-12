@@ -34,7 +34,7 @@ void Penitent::GroundCheck()
         IsDangle_ = false; 
         IsGround_ = true;
 
-        if (true == GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
+        if (true == GameEngineInput::GetInst()->IsPressKey("PenitentAnimation"))
         {
             IsGround_ = false;
         }
@@ -102,7 +102,7 @@ bool Penitent::LeftObstacleCheck()
 {
     float4 LeftColor;
 
-    if (true == IsSlide_)
+    if ("Slide" == State_.GetCurStateStateName())
     {
         LeftColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x - 20,
                                                                -(GetTransform().GetWorldPosition().y + 50));
@@ -111,7 +111,7 @@ bool Penitent::LeftObstacleCheck()
     else
     {
         LeftColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x - 20,
-                                                               -(GetTransform().GetWorldPosition().y + 50));
+                                                               -(GetTransform().GetWorldPosition().y + 150));
     }
 
     if (true == LeftColor.CompareInt4D(float4::BLACK))
@@ -125,8 +125,8 @@ bool Penitent::LeftObstacleCheck()
 bool Penitent::RightObstacleCheck()
 {
     float4 RightColor;
-
-    if (true == IsSlide_)
+    
+    if ("Slide" == State_.GetCurStateStateName())
     {
         RightColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x + 20,
                                                                 -(GetTransform().GetWorldPosition().y + 50));
@@ -135,7 +135,7 @@ bool Penitent::RightObstacleCheck()
     else
     {
         RightColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x + 20,
-                                                                -(GetTransform().GetWorldPosition().y + 50));
+                                                                -(GetTransform().GetWorldPosition().y + 150));
     }
 
     if (true == RightColor.CompareInt4D(float4::BLACK))
@@ -145,6 +145,7 @@ bool Penitent::RightObstacleCheck()
 
     return false;
 }
+
 
 void Penitent::CollisionCheck()
 {

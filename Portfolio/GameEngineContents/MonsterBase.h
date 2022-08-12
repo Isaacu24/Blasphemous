@@ -28,7 +28,9 @@ public:
 
     inline void ChangeMonsterState(const std::string& _State) { State_.ChangeState(_State); }
 
-    inline void ChangeIdleState(const FrameAnimation_DESC& _Info) { State_.ChangeState("Idle");
+    inline void ChangeIdleState(const FrameAnimation_DESC& _Info) 
+    {
+        State_.ChangeState("Idle");
     }
 
 protected:

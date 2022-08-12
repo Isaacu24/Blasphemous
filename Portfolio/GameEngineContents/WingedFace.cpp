@@ -1,6 +1,6 @@
 #include "PreCompile.h"
 #include "WingedFace.h"
-#include "Projectile.h"
+#include "VioletProjectile.h"
 
 WingedFace::WingedFace() 
 	: IsShoot_(false)
@@ -117,13 +117,13 @@ void WingedFace::ShootUpdate(float _DeltaTime, const StateInfo& _Info)
 	{
 		IsShoot_ = true;
 
-		Projectile* LeftProjectile = GetLevel()->CreateActor<Projectile>();
+		VioletProjectile* LeftProjectile = GetLevel()->CreateActor<VioletProjectile>();
 		LeftProjectile->SetGround(ColMap_);
 		LeftProjectile->SetDirection(float4::LEFT);
 		LeftProjectile->GetTransform().SetWorldPosition({ GetTransform().GetWorldPosition().x - 55.f, GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::AfterParallax5) });
 		LeftProjectile->GetTransform().SetWorldScale({ 2, 2 });
 
-		Projectile* RightProjectile = GetLevel()->CreateActor<Projectile>();
+		VioletProjectile* RightProjectile = GetLevel()->CreateActor<VioletProjectile>();
 		RightProjectile->SetGround(ColMap_);
 		RightProjectile->SetDirection(float4::RIGHT);
 		RightProjectile->GetTransform().SetWorldPosition({ GetTransform().GetWorldPosition().x + 55.f, GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::AfterParallax5) });

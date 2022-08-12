@@ -35,7 +35,8 @@ void ElderBrother::Start()
                              std::bind(&ElderBrother::FreezeStart, this, std::placeholders::_1));
     State_.CreateStateMember("Appear",
                              std::bind(&ElderBrother::AppearUpdate, this, std::placeholders::_1, std::placeholders::_2),
-                             std::bind(&ElderBrother::AppearStart, this, std::placeholders::_1));
+                             std::bind(&ElderBrother::AppearStart, this, std::placeholders::_1),
+                             std::bind(&ElderBrother::AppearEnd, this, std::placeholders::_1));
     State_.CreateStateMember("Idle",
                              std::bind(&ElderBrother::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&ElderBrother::IdleStart, this, std::placeholders::_1));
@@ -57,18 +58,20 @@ void ElderBrother::Start()
 
     DetectCollider_ = CreateComponent<GameEngineCollision>();
     DetectCollider_->ChangeOrder(COLLISIONORDER::BossMonster);
-    DetectCollider_->GetTransform().SetWorldScale({2000.0f, 1500.0f});
+    DetectCollider_->GetTransform().SetWorldScale({3000.0f, 1500.0f});
     DetectCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{1.0f, 1.0f, 1.0f, 0.5f});
 
     AttackCollider_ = CreateComponent<GameEngineCollision>();
     AttackCollider_->GetTransform().SetWorldScale({500.0f, 100.0f});
-    AttackCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{1.0f, 0.0f, 0.0f, 1.0f});
+    AttackCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{0.5f, 0.7f, 0.7f, 0.5f});
     AttackCollider_->Off();
 
     JumpCollider_ = CreateComponent<GameEngineCollision>();
     JumpCollider_->GetTransform().SetWorldScale({500.0f, 500.0f});
-    JumpCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{1.0f, 0.0f, 0.0f, 1.0f});
+    JumpCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{0.1f, 0.3f, 3.0f, 0.5f});
     JumpCollider_->Off();
+
+    Renderer_->GetColorData().MulColor = float4{0.1f, 0.1f, 0.1f, 1.0f};
 }
 
 void ElderBrother::Update(float _DeltaTime)
@@ -83,7 +86,7 @@ void ElderBrother::Update(float _DeltaTime)
         }
     }
 
-    Gravity_->SetActive(!IsGround_);
+    Gravity_->SetActive(!IsGround_); //중력은 계속 적용 받는 중
 }
 
 void ElderBrother::End() {}
@@ -92,7 +95,10 @@ void ElderBrother::FreezeStart(const StateInfo& _Info) { Renderer_->ChangeFrameA
 
 void ElderBrother::FreezeUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void ElderBrother::AppearStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("elderBrother_idle"); }
+void ElderBrother::AppearStart(const StateInfo& _Info) 
+{
+    Renderer_->ChangeFrameAnimation("elderBrother_idle"); 
+}
 
 void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -110,11 +116,14 @@ void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 }
 
+void ElderBrother::AppearEnd(const StateInfo& _Info) 
+{
+    Renderer_->GetColorData().MulColor = float4::ONE;
+}
+
 void ElderBrother::IdleStart(const StateInfo& _Info)
 {
     Renderer_->ChangeFrameAnimation("elderBrother_idle");
-
-    Alpha_ = 0.f;
 }
 
 void ElderBrother::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -151,16 +160,26 @@ void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 
     if (true == IsJump_)
     {
-        GetTransform().SetWorldMove(GetTransform().GetUpVector() * _DeltaTime);
+        GetTransform().SetWorldMove(GetTransform().GetUpVector()* 1000.f * _DeltaTime);
 
         Alpha_ += _DeltaTime * 0.05f;
-        GetTransform().SetWorldPosition(float4::LerpLimit(GetTransform().GetWorldPosition(), Target_, Alpha_));
+
+        float4 LerpPos = float4::LerpLimit(GetTransform().GetWorldPosition(), Target_, Alpha_);
+        GetTransform().SetWorldPosition({LerpPos.x, LerpPos.y, static_cast<int>(ACTORORDER::BossMonster)});
+
+        float4 Distance = Target_ - GetTransform().GetWorldPosition();
+
+        if (50 > abs(Distance.x)
+            && 50 >Distance.y)
+        {
+            IsJump_ = false;
+        }
     }
 }
 
 void ElderBrother::JumpEnd(const StateInfo& _Info)
 { 
-    JumpCollider_->Off(); 
+    Alpha_ = 0.f;
 }
 
 void ElderBrother::AttackStart(const StateInfo& _Info) {}
@@ -188,10 +207,12 @@ void ElderBrother::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void ElderBrother::AttackEnd(const StateInfo& _Info) 
 {
-    AttackCollider_->Off(); 
 }
 
-void ElderBrother::DeathStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("elderBrother_death"); }
+void ElderBrother::DeathStart(const StateInfo& _Info) 
+{
+    Renderer_->ChangeFrameAnimation("elderBrother_death"); 
+}
 
 void ElderBrother::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
@@ -229,21 +250,3 @@ bool ElderBrother::DecideState(GameEngineCollision* _This, GameEngineCollision* 
     return true;
 }
 
-bool ElderBrother::AttackToPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)
-{
-    Penitent* Player = dynamic_cast<Penitent*>(_Other->GetRoot());
-
-    if (nullptr == Player)
-    {
-        return false;
-    }
-
-    else
-    {
-        Player->SetDamege(10);
-    }
-
-    return false;
-}
-
-bool ElderBrother::JumpToPlayer(GameEngineCollision* _This, GameEngineCollision* _Other) { return false; }

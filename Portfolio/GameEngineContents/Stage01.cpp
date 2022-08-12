@@ -124,7 +124,7 @@ void Stage01::OnEvent()
 	if (nullptr == Penitent::GetMainPlayer())
 	{
 		Penitent_ = CreateActor<Penitent>();
-		Penitent_->GetTransform().SetWorldPosition({ 1230, 940 , static_cast<int>(ACTORORDER::Player) });
+		Penitent_->GetTransform().SetWorldPosition({ 1230, -940 , static_cast<int>(ACTORORDER::Player) });
 		Penitent_->SetGround(ColMap_);
 
 		Penitent_->SetLevelOverOn();

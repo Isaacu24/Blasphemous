@@ -26,6 +26,7 @@ public:
 
     void AppearStart(const StateInfo& _Info);
     void AppearUpdate(float _DeltaTime, const StateInfo& _Info);
+    void AppearEnd(const StateInfo& _Info);
 
     void IdleStart(const StateInfo& _Info);
     void IdleUpdate(float _DeltaTime, const StateInfo& _Info);
@@ -42,10 +43,6 @@ public:
     void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
 
     bool DecideState(GameEngineCollision* _This, GameEngineCollision* _Other);
-
-    bool AttackToPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);
-
-    bool JumpToPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);
 
     inline void ChangeState(const std::string& _State) { State_.ChangeState(_State); }
 
@@ -83,21 +80,16 @@ private:
             IsJump_ = true;
         }
 
-        if (24 == _Info.CurFrame)
+        if (19 == _Info.CurFrame)
         {
             IsJump_ = false;
-            JumpEffecter_->SetCreatePos(GetTransform().GetWorldPosition());
+            JumpEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{0, 100});
             JumpEffecter_->CreateEffect();
         }
 
         if (25 == _Info.CurFrame)
         {
-            JumpCollider_->On();
-            JumpCollider_->IsCollision(
-                CollisionType::CT_OBB2D,
-                COLLISIONORDER::Player,
-                CollisionType::CT_OBB2D,
-                std::bind(&ElderBrother::JumpToPlayer, this, std::placeholders::_1, std::placeholders::_2));
+            //JumpCollider_->On();
         }
     }
 
@@ -107,6 +99,8 @@ private:
         {
             AffectChecker->Move();
             AffectChecker->On();
+
+            //AttackCollider_->On();
         }
 
         if (17 < _Info.CurFrame)
@@ -127,13 +121,6 @@ private:
                 AttackEffecter_->SetCreatePos(AffectChecker->GetTransform().GetWorldPosition() + float4{0, 60});
                 AttackEffecter_->CreateEffect();
             }
-
-            AttackCollider_->On();
-            AttackCollider_->IsCollision(
-                CollisionType::CT_OBB2D,
-                COLLISIONORDER::Player,
-                CollisionType::CT_OBB2D,
-                std::bind(&ElderBrother::AttackToPlayer, this, std::placeholders::_1, std::placeholders::_2));
         }
     }
 };

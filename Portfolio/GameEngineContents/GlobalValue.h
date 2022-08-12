@@ -60,8 +60,8 @@ enum class COLLISIONORDER
 
 enum class UIORDER
 {
-	Inventory = 0,
-	LodingUI,
+    LodingUI = 0,
+	Inventory,
 	InteractionUI,
 	MonterUI,
 	NumberUI,
@@ -69,6 +69,14 @@ enum class UIORDER
 	PlayerUI,
 };
 
+
+enum class COLORTYPE
+{
+	RED,
+	BLUE,
+	GREEN,
+	PURPLE
+};
 
 
 

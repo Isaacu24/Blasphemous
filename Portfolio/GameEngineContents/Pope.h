@@ -59,6 +59,7 @@ private:
     SPELLTYPE SpellType_;
 
     GameEngineTextureRenderer* FXSRenderer_;
+    class SymbolEffect* Symbol_;
 
     bool DecideState(GameEngineCollision* _This, GameEngineCollision* _Other);
 

@@ -1,6 +1,8 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include "Inventory.h"
 
+class LeftTopUI;
 class PlayerUI : public GameEngineActor
 {
 	friend class Penitent;
@@ -23,7 +25,9 @@ protected:
 	void End() override;
 
 private:
-	class LeftTopUI* BarFrame_;
+	LeftTopUI* BarFrame_;
+
+	Inventory* Inventory_;
 
 	std::vector<GameEngineUIRenderer*> Flasks_;
 

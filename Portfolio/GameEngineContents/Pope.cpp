@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "Pope.h"
+#include "SymbolEffect.h"
 
 Pope::Pope() {}
 
@@ -20,9 +21,16 @@ void Pope::Start()
     FXSRenderer_ = CreateComponent<GameEngineTextureRenderer>();
     FXSRenderer_->CreateFrameAnimationCutTexture("pope_spellCast_FXS",
                                               {"pope_spellCast_FXS.png", 0, 54, 0.1f, true});  //ÀÌÆåÆ®
+
     FXSRenderer_->SetScaleModeImage();
     FXSRenderer_->SetPivot(PIVOTMODE::BOT);
-    FXSRenderer_->Off();
+    FXSRenderer_->GetTransform().SetLocalPosition({0, 0, static_cast<int>(ACTORORDER::BossMonster)});
+    FXSRenderer_->ChangeFrameAnimation("pope_spellCast_FXS");
+    FXSRenderer_->GetColorData().MulColor = float4{0.3f, 0.7f, 0.99f, 1.f};
+
+    Symbol_ = GetLevel()->CreateActor<SymbolEffect>();
+    Symbol_->GetTransform().SetWorldPosition({2500, -1760, static_cast<int>(ACTORORDER::BossMonster)});
+    Symbol_->SetColor(COLORTYPE::PURPLE);
 
     State_.CreateStateMember("Idle",
                              std::bind(&Pope::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2),
@@ -63,8 +71,7 @@ void Pope::Update(float _DeltaTime)
 {
     State_.Update(_DeltaTime);
 
-    if (true
-        == DetectCollider_->IsCollision(
+    if (true == DetectCollider_->IsCollision(
             CollisionType::CT_OBB2D,
             COLLISIONORDER::Player,
             CollisionType::CT_OBB2D,
@@ -73,7 +80,7 @@ void Pope::Update(float _DeltaTime)
         int a = 0;
     }
 }
-
+  
 void Pope::End() {}
 
 bool Pope::DecideState(GameEngineCollision* _This, GameEngineCollision* _Other) { return false; }

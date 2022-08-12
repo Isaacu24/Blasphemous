@@ -84,7 +84,7 @@ void Blasphemous::Update(float _DeltaTime)
 
         RECT Rc = {0, 0, _Scale.ix(), _Scale.iy()};
 
-        AdjustWindowRect(&Rc, WS_OVERLAPPEDWINDOW, FALSE);
+        AdjustWindowRect(&Rc, WS_OVERLAPPEDWINDOW, TRUE);
     }
 
     if (true == GameEngineInput::GetInst()->IsDownKey("GotoMainMenu"))
@@ -430,6 +430,8 @@ void Blasphemous::CutTexture()
     GameEngineTexture::Cut("TakeBackProyectile.png", 6, 2);
     GameEngineTexture::Cut("TakeBackProyectileExplosion.png", 6, 3);
     GameEngineTexture::Cut("TakeBackProyectileHead.png", 6, 2);
+
+    GameEngineTexture::Cut("pope_twistedOne_symbol.png", 8, 3);
 
     // UI
     GameEngineTexture::Cut("ItemCursorAlt.png", 4, 4);
