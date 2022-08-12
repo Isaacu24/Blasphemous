@@ -38,9 +38,6 @@
     <ClInclude Include="Stage01.h">
       <Filter>Level\Pilgrimage\01Brotherhood</Filter>
     </ClInclude>
-    <ClInclude Include="Crosscrawler.h">
-      <Filter>Actor\NormalMonster</Filter>
-    </ClInclude>
     <ClInclude Include="Fool_knife.h">
       <Filter>Actor\NormalMonster</Filter>
     </ClInclude>
@@ -155,10 +152,10 @@
     <ClInclude Include="GravityActor.h">
       <Filter>Actor\Global</Filter>
     </ClInclude>
-    <ClInclude Include="TestLevel.h">
+    <ClInclude Include="MetaLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
-    <ClInclude Include="MetaAnimationWindow.h">
+    <ClInclude Include="MetaSpriteWindow.h">
       <Filter>Content</Filter>
     </ClInclude>
   </ItemGroup>
@@ -199,9 +196,6 @@
     </ClCompile>
     <ClCompile Include="Stage01.cpp">
       <Filter>Level\Pilgrimage\01Brotherhood</Filter>
-    </ClCompile>
-    <ClCompile Include="Crosscrawler.cpp">
-      <Filter>Actor\NormalMonster</Filter>
     </ClCompile>
     <ClCompile Include="Fool_knife.cpp">
       <Filter>Actor\NormalMonster</Filter>
@@ -320,10 +314,10 @@
     <ClCompile Include="GravityActor.cpp">
       <Filter>Actor\Global</Filter>
     </ClCompile>
-    <ClCompile Include="TestLevel.cpp">
+    <ClCompile Include="MetaLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
-    <ClCompile Include="MetaAnimationWindow.cpp">
+    <ClCompile Include="MetaSpriteWindow.cpp">
       <Filter>Content</Filter>
     </ClCompile>
   </ItemGroup>

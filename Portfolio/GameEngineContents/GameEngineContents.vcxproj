@@ -51,10 +51,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Crosscrawler.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="CutScenePlayer.h">
       <SubType>
       </SubType>
@@ -115,7 +111,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="MetaAnimationWindow.h">
+    <ClInclude Include="MetaSpriteWindow.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -219,7 +215,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="TestLevel.h">
+    <ClInclude Include="MetaLevel.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -266,10 +262,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="CorpseGroundEffect.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Crosscrawler.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -329,7 +321,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="MetaAnimationWindow.cpp">
+    <ClCompile Include="MetaSpriteWindow.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -434,7 +426,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="TestLevel.cpp">
+    <ClCompile Include="MetaLevel.cpp">
       <SubType>
       </SubType>
     </ClCompile>

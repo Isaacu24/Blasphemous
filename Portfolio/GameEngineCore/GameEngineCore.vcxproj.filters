@@ -153,12 +153,6 @@
     <ClInclude Include="portable-file-dialogs.h">
       <Filter>GUI</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngineMetaData.h">
-      <Filter>Contents</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineMetaDataFolder.h">
-      <Filter>Contents</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineActor.cpp">
@@ -302,12 +296,6 @@
     </ClCompile>
     <ClCompile Include="GameEngineCoreDebug.cpp">
       <Filter>Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngineMetaData.cpp">
-      <Filter>Contents</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngineMetaDataFolder.cpp">
-      <Filter>Contents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

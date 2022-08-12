@@ -128,6 +128,7 @@ void GameEngineTextureRenderer::SetTextureRendererSetting()
 
 	ShaderResources.SetConstantBufferLink("AtlasData", FrameData);
 	ShaderResources.SetConstantBufferLink("ColorData", ColorData);
+
 }
 
 void GameEngineTextureRenderer::Start()
@@ -277,8 +278,7 @@ void GameEngineTextureRenderer::ChangeFrameAnimation(const std::string& _Animati
 		if (nullptr != CurAni->Texture)
 		{
 			SetTexture(CurAni->Texture, CurAni->Info.Frames[CurAni->Info.CurFrame]);
-
-			if (SCALEMODE::IMAGE == ScaleMode)
+			if (ScaleMode == SCALEMODE::IMAGE)
 			{
 				ScaleToCutTexture(CurAni->Info.CurFrame);
 			}
@@ -286,8 +286,7 @@ void GameEngineTextureRenderer::ChangeFrameAnimation(const std::string& _Animati
 		else if (nullptr != CurAni->FolderTexture)
 		{
 			SetTexture(CurAni->FolderTexture->GetTexture(CurAni->Info.Frames[CurAni->Info.CurFrame]));
-
-			if (SCALEMODE::IMAGE == ScaleMode)
+			if (ScaleMode == SCALEMODE::IMAGE)
 			{
 				ScaleToTexture();
 			}
@@ -331,7 +330,7 @@ void GameEngineTextureRenderer::ScaleToCutTexture(int _Index)
 void GameEngineTextureRenderer::ScaleToTexture()
 {
 	float4 Scale = CurTex->GetScale();
-	
+
 	if (0 > GetTransform().GetLocalScale().x)
 	{
 		Scale.x = -Scale.x;

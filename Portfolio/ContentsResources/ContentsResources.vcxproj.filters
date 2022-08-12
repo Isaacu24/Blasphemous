@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Map">
+      <UniqueIdentifier>{35440b85-d177-4cdf-a551-94c14e7bbee4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MetaFile">
+      <UniqueIdentifier>{a5a8fc84-e6b6-4437-b146-dafcd7393900}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{c63cadcf-1961-4317-b5aa-bb91c64aeaa9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sprite">
+      <UniqueIdentifier>{e4535ecb-081e-471e-b830-037bbd86c029}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{0abc7adb-675d-43ab-950e-4be5f3131593}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -100,14 +100,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="GameEngineMetaData.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="GameEngineMetaDataFolder.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="GameEnginePixelShader.h">
       <SubType>
       </SubType>
@@ -276,14 +268,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="GameEngineLevel.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="GameEngineMetaData.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="GameEngineMetaDataFolder.cpp">
       <SubType>
       </SubType>
     </ClCompile>

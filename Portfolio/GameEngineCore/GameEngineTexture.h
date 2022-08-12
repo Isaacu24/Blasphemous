@@ -33,6 +33,8 @@ public:
 // 설명 :
 class GameEngineTexture : public GameEngineRes<GameEngineTexture>
 {
+
+
 public:
 	// constrcuter destructer
 	GameEngineTexture();
@@ -91,8 +93,7 @@ public:
 	void TextureLoad(const std::string& _Path);
 
 	float4 GetScale()
-	{	
-		//(Metadata.width),(Metadata.height)이거쓰면 0,0되서 텍스쳐 생성에 실패함 뜸
+	{								//(Metadata.width),(Metadata.height)이거쓰면 0,0되서 텍스쳐 생성에 실패함 뜸
 		return { static_cast<float>(Desc.Width), static_cast<float>(Desc.Height) };
 	}
 
@@ -106,6 +107,8 @@ public:
 	PixelColor GetPixelToPixelColor(int _x, int _y);
 
 	float4 GetPixelToFloat4(int _x, int _y);
+
+	void Cut(UINT _StartX, UINT _StartY, UINT _SizeX, UINT _SizeY);
 
 
 protected:
