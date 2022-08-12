@@ -192,7 +192,7 @@ void Penitent::Update(float _DeltaTime)
 
     GroundCheck();
     LadderCheck();
-    CollisionCheck();
+    CollisionCheck();   
 
     if (true == GameEngineInput::GetInst()->IsDownKey("FreeCamera"))
     {

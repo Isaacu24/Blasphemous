@@ -142,7 +142,7 @@ void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
     Speed_ -= 1.f;
     DecideTime_ += _DeltaTime;
 
-    if (1.5f > DecideTime_)
+    if (1.f > DecideTime_)
     {
         return;
     }
@@ -169,8 +169,8 @@ void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 
         float4 Distance = Target_ - GetTransform().GetWorldPosition();
 
-        if (50 > abs(Distance.x)
-            && 50 >Distance.y)
+        if (100 > abs(Distance.x) 
+            && 100 > Distance.y)
         {
             IsJump_ = false;
         }

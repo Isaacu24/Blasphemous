@@ -432,6 +432,7 @@ void Blasphemous::CutTexture()
     GameEngineTexture::Cut("TakeBackProyectileHead.png", 6, 2);
 
     GameEngineTexture::Cut("pope_twistedOne_symbol.png", 8, 3);
+    GameEngineTexture::Cut("pope_fireBall.png", 4, 3);
 
     // UI
     GameEngineTexture::Cut("ItemCursorAlt.png", 4, 4);

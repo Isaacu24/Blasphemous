@@ -170,6 +170,9 @@
     <ClInclude Include="Projectile.h">
       <Filter>Actor\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="FireBallSpawner.h">
+      <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -343,6 +346,9 @@
     </ClCompile>
     <ClCompile Include="Projectile.cpp">
       <Filter>Actor\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="FireBallSpawner.cpp">
+      <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
