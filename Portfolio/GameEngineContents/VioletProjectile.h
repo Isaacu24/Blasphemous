@@ -1,10 +1,11 @@
 #pragma once
 #include <GameEngineCore/GameEngineStateManager.h>
 #include "Projectile.h"
+#include <GameEngineCore/GameEngineActor.h>
 
 class GameEngineCollision;
 class GameEngineTextureRenderer;
-class VioletProjectile : public Projectile
+class VioletProjectile : public Projectile, public GameEngineActor
 {
 public:
     VioletProjectile();
@@ -37,6 +38,11 @@ protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 	void End() override;
+	
+	void Shoot(float _DeltaTime) override
+	{ 
+        GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime); 
+    }
 
 private:
 };

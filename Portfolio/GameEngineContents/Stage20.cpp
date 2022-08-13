@@ -102,6 +102,7 @@ void Stage20::Update(float _DeltaTime)
                     Pope_->On();
                     Pope_->GetTransform().PixLocalNegativeX();
                     Pope_->ChangeMonsterState("Appear");
+                    Pope_->SetTarget(Penitent_);
                 }
 
                 if (1660.f > Penitent_->GetTransform().GetLocalPosition().x)

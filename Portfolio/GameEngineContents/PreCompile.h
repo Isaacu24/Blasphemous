@@ -39,6 +39,7 @@
 
 // base
 #include <GameEngineBase/GameEngineWindow.h>
+#include <GameEngineBase/GameEngineMath.h>
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineBase/GameEngineFile.h>
@@ -53,7 +54,6 @@
 #include <GameEngineCore/GameEngineStateManager.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include <GameEngineCore/GameEngineFontRenderer.h>
-
 
 //Contents
 #include <GameEngineContents/StageActor.h>

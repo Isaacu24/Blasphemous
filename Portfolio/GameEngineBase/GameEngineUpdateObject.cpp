@@ -51,7 +51,7 @@ void GameEngineUpdateObject::AllUpdate(float _DeltaTime)
 	AddAccTime(_DeltaTime);
 	ReleaseUpdate(_DeltaTime);
 	Update(GameEngineTime::GetInst()->GetTimeScale(GetOrder()) * _DeltaTime);
-
+		
 	for (GameEngineUpdateObject* Com : Childs)
 	{
 		//Com->AddAccTime(_DeltaTime);

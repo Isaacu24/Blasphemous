@@ -1,6 +1,10 @@
 #include "PreCompile.h"
 #include "Pope.h"
 #include "SymbolEffect.h"
+#include "FireBallSpawner.h"
+#include "ToxicCloudSpawner.h"
+#include "LightiningBoltSpawner.h"
+#include "MagicMissileSpawner.h"
 
 Pope::Pope() {}
 
@@ -20,7 +24,7 @@ void Pope::Start()
 
     FXSRenderer_ = CreateComponent<GameEngineTextureRenderer>();
     FXSRenderer_->CreateFrameAnimationCutTexture("pope_spellCast_FXS",
-                                              {"pope_spellCast_FXS.png", 0, 54, 0.1f, true});  //ÀÌÆåÆ®
+                                                 {"pope_spellCast_FXS.png", 0, 54, 0.1f, true});  //ÀÌÆåÆ®
 
     FXSRenderer_->SetScaleModeImage();
     FXSRenderer_->SetPivot(PIVOTMODE::BOT);
@@ -65,13 +69,37 @@ void Pope::Start()
     DetectCollider_ = CreateComponent<GameEngineCollision>();
     DetectCollider_->ChangeOrder(COLLISIONORDER::BossMonster);
     DetectCollider_->GetTransform().SetWorldScale({500.0f, 500.0f, 1.0f});
+
+    CreateSpawner();
+}
+
+void Pope::CreateSpawner()
+{
+    FireBallSpawner_ = GetLevel()->CreateActor<FireBallSpawner>();
+    FireBallSpawner_->GetTransform().SetWorldPosition({2500, -1260, static_cast<int>(ACTORORDER::BossMonster)});
+    FireBallSpawner_->SetGround(ColMap_);
+    FireBallSpawner_->Off();
+
+    ToxicCloudSpawner_ = GetLevel()->CreateActor<ToxicCloudSpawner>();
+    ToxicCloudSpawner_->GetTransform().SetWorldPosition({2500, -1260, static_cast<int>(ACTORORDER::BossMonster)});
+    ToxicCloudSpawner_->SetGround(ColMap_);
+    ToxicCloudSpawner_->Off();
+
+    LightiningBoltSpawner_ = GetLevel()->CreateActor<LightiningBoltSpawner>();
+    LightiningBoltSpawner_->GetTransform().SetWorldPosition({2500, -1260, static_cast<int>(ACTORORDER::BossMonster)});
+    LightiningBoltSpawner_->Off();
+
+    MagicMissileSpawner_ = GetLevel()->CreateActor<MagicMissileSpawner>();
+    MagicMissileSpawner_->GetTransform().SetWorldPosition({2500, -1260, static_cast<int>(ACTORORDER::BossMonster)});
+    MagicMissileSpawner_->Off();
 }
 
 void Pope::Update(float _DeltaTime)
 {
     State_.Update(_DeltaTime);
 
-    if (true == DetectCollider_->IsCollision(
+    if (true
+        == DetectCollider_->IsCollision(
             CollisionType::CT_OBB2D,
             COLLISIONORDER::Player,
             CollisionType::CT_OBB2D,
@@ -80,7 +108,7 @@ void Pope::Update(float _DeltaTime)
         int a = 0;
     }
 }
-  
+
 void Pope::End() {}
 
 bool Pope::DecideState(GameEngineCollision* _This, GameEngineCollision* _Other) { return false; }
@@ -88,9 +116,28 @@ bool Pope::DecideState(GameEngineCollision* _This, GameEngineCollision* _Other) 
 void Pope::IdleStart(const StateInfo& _Info)
 {
     Renderer_->ChangeFrameAnimation("pope_idle");
+    /*ToxicCloudSpawner_->On();
+    ToxicCloudSpawner_->SetGround(ColMap_);*/
+    //FireBallSpawner_->On();
+    //FireBallSpawner_->SetGround(ColMap_);
+
+    //LightiningBoltSpawner_->On();
+    MagicMissileSpawner_->On();
+    MagicMissileSpawner_->SetDirection(float4::LEFT);
 }
 
-void Pope::IdleUpdate(float _DeltaTime, const StateInfo& _Info) {}
+void Pope::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+
+    // ToxicCloudSpawner_->SetDirection(Target_->GetTransform().GetWorldPosition() - GetTransform().GetWorldPosition());
+   /* FireBallSpawner_->SetDirection(Target_->GetTransform().GetWorldPosition() - GetTransform().GetWorldPosition());
+
+    float Angle = float4::VectorXYtoRadian(FireBallSpawner_->GetTransform().GetWorldPosition(),
+                                           Target_->GetTransform().GetWorldPosition());*/
+
+    //FireBallSpawner_->GetTransform().SetLocalRotate(
+    //    float4::VectorRotationToRadianXAxis(FireBallSpawner_->GetTransform().GetLocalRotation(), Angle));
+}
 
 void Pope::IdleEnd(const StateInfo& _Info) { int a = 0; }
 
@@ -117,7 +164,7 @@ void Pope::VanishingEnd(const StateInfo& _Info) {}
 void Pope::SpellCastStart(const StateInfo& _Info)
 {
     Renderer_->ChangeFrameAnimation("pope_spellCast");
-    //Renderer_->AnimationBindEnd("pope_spellCast", std::bind(&Pope::ChangeIdleState, this, std::placeholders::_1));
+    // Renderer_->AnimationBindEnd("pope_spellCast", std::bind(&Pope::ChangeIdleState, this, std::placeholders::_1));
 
     FXSRenderer_->On();
     FXSRenderer_->ChangeFrameAnimation("pope_spellCast_FXS");
@@ -127,9 +174,7 @@ void Pope::SpellCastStart(const StateInfo& _Info)
 
 void Pope::SpellCastUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Pope::SpellCastEnd(const StateInfo& _Info) 
-{
-}
+void Pope::SpellCastEnd(const StateInfo& _Info) {}
 
 void Pope::HitStart(const StateInfo& _Info)
 {

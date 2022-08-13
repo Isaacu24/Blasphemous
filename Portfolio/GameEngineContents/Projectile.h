@@ -1,10 +1,9 @@
 #pragma once
 #include <GameEngineCore/GameEngineStateManager.h>
-#include <GameEngineCore/GameEngineActor.h>
 
 class GameEngineCollision;
 class GameEngineTextureRenderer;
-class Projectile : public GameEngineActor
+class Projectile 
 {
 public:
     Projectile();
@@ -17,7 +16,7 @@ public:
 
     virtual void SetGround(GameEngineTextureRenderer* _Texture) { ColMap_ = _Texture; }
 
-     virtual void SetDirection(float4 _Dir)
+    virtual void SetDirection(float4 _Dir)
     {
         Dir_ = _Dir;
 
@@ -45,10 +44,7 @@ protected:
     float4 Dir_;
     float  Speed_;
 
-    virtual void Shoot(float _DeltaTime)
-    { 
-        GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime); 
-    }
+    virtual void Shoot(float _DeltaTime){};
 
 private:
 

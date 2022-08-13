@@ -48,10 +48,14 @@ public:
     void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
     void DeathEnd(const StateInfo& _Info);
 
+    void SetTarget(GameEngineActor* _Target) { Target_ = _Target; }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
     void End() override;
+
+    void CreateSpawner();
 
 private:
     float4 TeleportPos_[3];
@@ -59,7 +63,14 @@ private:
     SPELLTYPE SpellType_;
 
     GameEngineTextureRenderer* FXSRenderer_;
-    class SymbolEffect* Symbol_;
+    class SymbolEffect*        Symbol_;
+
+    class FireBallSpawner*       FireBallSpawner_;
+    class ToxicCloudSpawner*     ToxicCloudSpawner_;
+    class LightiningBoltSpawner* LightiningBoltSpawner_;
+    class MagicMissileSpawner*   MagicMissileSpawner_;
+
+    GameEngineActor* Target_;  // Player
 
     bool DecideState(GameEngineCollision* _This, GameEngineCollision* _Other);
 

@@ -173,6 +173,21 @@
     <ClInclude Include="FireBallSpawner.h">
       <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
     </ClInclude>
+    <ClInclude Include="ToxicCloudSpawner.h">
+      <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
+    </ClInclude>
+    <ClInclude Include="LightiningBolt.h">
+      <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
+    </ClInclude>
+    <ClInclude Include="LightiningBoltSpawner.h">
+      <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicMissile.h">
+      <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicMissileSpawner.h">
+      <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -348,6 +363,21 @@
       <Filter>Actor\Effect</Filter>
     </ClCompile>
     <ClCompile Include="FireBallSpawner.cpp">
+      <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
+    </ClCompile>
+    <ClCompile Include="ToxicCloudSpawner.cpp">
+      <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
+    </ClCompile>
+    <ClCompile Include="LightiningBolt.cpp">
+      <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
+    </ClCompile>
+    <ClCompile Include="LightiningBoltSpawner.cpp">
+      <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicMissile.cpp">
+      <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicMissileSpawner.cpp">
       <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
     </ClCompile>
   </ItemGroup>

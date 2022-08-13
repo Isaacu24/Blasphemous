@@ -347,6 +347,14 @@ void Blasphemous::LoadNormalMonster()
 
         GameEngineFolderTexture::Load(Dir.GetFullPath());
     }
+
+    {
+        GameEngineDirectory Dir;
+        MovePath(Dir,
+                 {"ContentsResources", "Resources", "Sprite", "Effect", "FireBallExplosion"});
+
+        GameEngineFolderTexture::Load(Dir.GetFullPath());
+    }
 }
 
 void Blasphemous::LoadEffect()
@@ -433,6 +441,16 @@ void Blasphemous::CutTexture()
 
     GameEngineTexture::Cut("pope_twistedOne_symbol.png", 8, 3);
     GameEngineTexture::Cut("pope_fireBall.png", 4, 3);
+    GameEngineTexture::Cut("pope_fireBallVortex.png", 7, 7);
+
+    GameEngineTexture::Cut("pope_toxicOrb.png", 6, 6);
+    GameEngineTexture::Cut("Pope_toxicCloud.png", 6, 5);
+    GameEngineTexture::Cut("pope_toxicCloudv2.png", 4, 4);
+
+    GameEngineTexture::Cut("lightningBolt_fxs.png", 12, 6);
+    GameEngineTexture::Cut("lightningBolt_Tileable_fxs.png", 13, 6);
+
+    GameEngineTexture::Cut("pope_magicMissile.png", 6, 5);
 
     // UI
     GameEngineTexture::Cut("ItemCursorAlt.png", 4, 4);

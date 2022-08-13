@@ -107,7 +107,23 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="LightiningBolt.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="LightiningBoltSpawner.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="LoadingActor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MagicMissile.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MagicMissileSpawner.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -172,6 +188,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Projectile.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ToxicCloudSpawner.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -337,7 +357,23 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="LightiningBolt.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="LightiningBoltSpawner.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="LoadingActor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MagicMissile.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MagicMissileSpawner.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -403,6 +439,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Projectile.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ToxicCloudSpawner.cpp">
       <SubType>
       </SubType>
     </ClCompile>
