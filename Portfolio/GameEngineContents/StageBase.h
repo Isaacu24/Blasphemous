@@ -21,12 +21,12 @@ public:
 	StageBase& operator=(const StageBase& _Other) = delete;
 	StageBase& operator=(StageBase&& _Other) noexcept = delete;
 
-	inline void SetState(STAGEFLOW _State)
+	inline void SetFlow(STAGEFLOW _State)
 	{
 		CurrentFlow_ = _State;
 	}
 
-	inline STAGEFLOW GetState()
+	inline STAGEFLOW GetFlow()
 	{
 		return	CurrentFlow_;
 	}

@@ -52,9 +52,9 @@ void Stage21::SettingStage()
 
 void Stage21::SettingMonster()
 {
-	Pontiff* NewPontiff = CreateActor<Pontiff>();
-	NewPontiff->GetTransform().SetWorldPosition({ 1250, -520, static_cast<int>(ACTORORDER::BeforeLayer1) });
-	BossMonster_ = NewPontiff;
+    Pontiff_ = CreateActor<Pontiff>();
+    Pontiff_->GetTransform().SetWorldPosition({1250, -520, static_cast<int>(ACTORORDER::BeforeLayer1)});
+    BossMonster_ = Pontiff_;
 }
 
 void Stage21::Start()
@@ -70,29 +70,61 @@ void Stage21::Start()
 	Font_->SetText("마지막 기적의 아들", "Neo둥근모");
 	Font_->SetSize(35);
 	Font_->ChangeCamera(CAMERAORDER::UICAMERA);
+
+	CurrentFlow_ = STAGEFLOW::BOSSAPPEAR;
 }
 
-void Stage21::Update(float _DeltaTime)
+void Stage21::Update(float _DeltaTime) 
+{ 
+	switch (CurrentFlow_)
+    {
+        case STAGEFLOW::NORMAL:
+            PlayerCameraMove();
+            break;
+        case STAGEFLOW::BOSSAPPEAR:
+
+			if ("Idle" == Pontiff_->GetState())
+            {
+                CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
+			}
+
+            break;
+        case STAGEFLOW::BOSSCOMBAT:
+            PlayerCameraMove();
+            break;
+        case STAGEFLOW::BOSSDEAD:
+            break;
+        default:
+            break;
+    }
+    PlayerCameraMove();
+}
+
+
+void Stage21::PlayerCameraMove()
 {
-	if (false == IsChangeCameraPos_)
-	{
-		GetMainCameraActor()->GetTransform().SetWorldMove({ 0, 0, CameraZPos_ });
-		IsChangeCameraPos_ = true;
-	}
+    if (false == IsChangeCameraPos_)
+    {
+        GetMainCameraActor()->GetTransform().SetWorldMove({0, 0, CameraZPos_});
+        IsChangeCameraPos_ = true;
+    }
 
-	if (680 > Penitent_->GetTransform().GetWorldPosition().x)
-	{
-		Penitent_->GetTransform().SetWorldPosition(float4{ 680, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player) });
-	}
+    if (680 > Penitent_->GetTransform().GetWorldPosition().x)
+    {
+        Penitent_->GetTransform().SetWorldPosition(
+            float4{680, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player)});
+    }
 
-	else if (1810 < Penitent_->GetTransform().GetWorldPosition().x)
-	{
-		Penitent_->GetTransform().SetWorldPosition(float4{ 1810, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player) });
-	}
+    else if (1810 < Penitent_->GetTransform().GetWorldPosition().x)
+    {
+        Penitent_->GetTransform().SetWorldPosition(
+            float4{1810, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player)});
+    }
 
-	GameEngineDebug::OutPutString("x : " + std::to_string(Penitent_->GetTransform().GetLocalPosition().x));
-	GameEngineDebug::OutPutString("y : " + std::to_string(Penitent_->GetTransform().GetLocalPosition().y));
+    GameEngineDebug::OutPutString("x : " + std::to_string(Penitent_->GetTransform().GetLocalPosition().x));
+    GameEngineDebug::OutPutString("y : " + std::to_string(Penitent_->GetTransform().GetLocalPosition().y));
 }
+
 
 
 void Stage21::End()
@@ -136,5 +168,4 @@ void Stage21::OnEvent()
 void Stage21::OffEvent()
 {
 }
-
 

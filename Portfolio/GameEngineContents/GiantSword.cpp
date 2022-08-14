@@ -32,7 +32,7 @@ void GiantSword::Start()
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 
 	Renderer_->CreateFrameAnimationCutTexture("pontiff_giantSword_teleportOUT", { "pontiff_giantSword_teleportOUT.png", 0, 19, 0.1f, false });
-	Renderer_->CreateFrameAnimationCutTexture("pontiff_giantSword_teleportIN", { "pontiff_giantSword_teleportIN.png", 0, 17, 0.1f, false });
+	Renderer_->CreateFrameAnimationCutTexture("pontiff_giantSword_teleportIN", { "pontiff_giantSword_teleportIN.png", 0, 26, 0.1f, false });
 	Renderer_->GetTransform().SetLocalScale({ 125, 400 });
 
 	State_.CreateStateMember("TeleportIN", std::bind(&GiantSword::TeleportINUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&GiantSword::TeleportINStart, this, std::placeholders::_1));
