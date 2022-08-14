@@ -22,6 +22,11 @@ enum class ACTORORDER
 
 	Player,
 	NPC,
+
+    Temp2,
+    
+	Temp3,
+
 	BossMonster,
 	Monster,
 	Object,

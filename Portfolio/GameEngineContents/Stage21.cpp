@@ -2,7 +2,6 @@
 #include "Stage21.h"
 #include "Penitent.h"
 #include "Pontiff.h"
-#include "GiantSword.h"
 #include "Platform.h"
 #include "BossUI.h"
 
@@ -48,10 +47,6 @@ void Stage21::SettingStage()
 
 	Stage_->GetTransform().SetLocalMove(Offset);
 
-	Platform* NewPlatform = CreateActor<Platform>();
-	NewPlatform->GetTransform().SetWorldPosition({ 1250, -600 , static_cast<int>(ACTORORDER::AfterLayer5) });
-	NewPlatform->GetTransform().SetWorldScale({2, 2});
-
 	GetMainCameraActor()->GetTransform().SetWorldPosition({ 1250, -670 });
 }
 
@@ -60,10 +55,6 @@ void Stage21::SettingMonster()
 	Pontiff* NewPontiff = CreateActor<Pontiff>();
 	NewPontiff->GetTransform().SetWorldPosition({ 1250, -520, static_cast<int>(ACTORORDER::BeforeLayer1) });
 	BossMonster_ = NewPontiff;
-
-	GiantSword* NewGiantSword = CreateActor<GiantSword>();
-	NewGiantSword->GetTransform().SetWorldPosition({ 1250, -600 , static_cast<int>(ACTORORDER::BossMonster) });
-	BossMonster_ = NewGiantSword;
 }
 
 void Stage21::Start()
@@ -74,8 +65,8 @@ void Stage21::Start()
 	BossUI_ = CreateActor<BossUI>();
 
 	Font_ = Stage_->CreateComponent<GameEngineFontRenderer>();
-	Font_->SetColor({ 0.7f, 0.7f, 0.5f, 1.0f });
-	Font_->SetScreenPostion({ 450, 600, -100.f });
+	Font_->SetColor({ 0.88f, 0.88f, 0.65f, 1.0f });
+	Font_->SetScreenPostion({ 470, 600, -100.f });
 	Font_->SetText("마지막 기적의 아들", "Neo둥근모");
 	Font_->SetSize(35);
 	Font_->ChangeCamera(CAMERAORDER::UICAMERA);

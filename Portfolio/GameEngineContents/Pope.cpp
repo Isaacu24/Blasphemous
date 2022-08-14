@@ -71,7 +71,8 @@ void Pope::Start()
 
     DetectCollider_ = CreateComponent<GameEngineCollision>();
     DetectCollider_->ChangeOrder(COLLISIONORDER::BossMonster);
-    DetectCollider_->GetTransform().SetWorldScale({500.0f, 500.0f, 1.0f});
+    DetectCollider_->GetTransform().SetWorldScale({50.0f, 100.0f, 1.0f});
+    DetectCollider_->GetTransform().SetWorldMove({0, 100});
 
     TeleportPos_[0] = float4{1800, -1760};
     TeleportPos_[1] = float4{2100, -1760};

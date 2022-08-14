@@ -28,7 +28,7 @@ void LightiningBolt::Start()
 
     Collider_ = CreateComponent<GameEngineCollision>();
     Collider_->ChangeOrder(COLLISIONORDER::Projectile);
-    Collider_->GetTransform().SetWorldScale({10.0f, 100.0f, 1.0f});
+    Collider_->GetTransform().SetWorldScale({10.0f, 700.0f, 1.0f});
 }
 
 void LightiningBolt::Update(float _DeltaTime) 

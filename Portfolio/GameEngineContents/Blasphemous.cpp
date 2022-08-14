@@ -347,6 +347,15 @@ void Blasphemous::LoadNormalMonster()
 
         GameEngineFolderTexture::Load(Dir.GetFullPath());
     }
+
+    
+    {
+        GameEngineDirectory Dir;
+        MovePath(Dir,
+                 {"ContentsResources", "Resources", "Sprite", "Effect", "FireBallExplosion"});
+
+        GameEngineFolderTexture::Load(Dir.GetFullPath());
+    }
 }
 
 void Blasphemous::LoadEffect()
@@ -385,6 +394,8 @@ void Blasphemous::CutTexture()
     GameEngineTexture::Cut("pontiff_openIdle_face.png", 7, 5);
     GameEngineTexture::Cut("pontiff_opening_face.png", 5, 4);
     GameEngineTexture::Cut("pontiff_opening_torso.png", 5, 4);
+    GameEngineTexture::Cut("pontiff_opening_helmet.png", 1, 1);
+    GameEngineTexture::Cut("pontiff_closing_helmet.png", 1, 1);
 
     GameEngineTexture::Cut("elderBrother_idle.png", 3, 4);
     GameEngineTexture::Cut("elderBrother_jump.png", 4, 7);

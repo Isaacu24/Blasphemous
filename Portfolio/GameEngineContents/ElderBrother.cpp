@@ -71,7 +71,7 @@ void ElderBrother::Start()
     JumpCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{0.1f, 0.3f, 3.0f, 0.5f});
     JumpCollider_->Off();
 
-    Renderer_->GetColorData().MulColor = float4{0.1f, 0.1f, 0.1f, 1.0f};
+    Renderer_->GetColorData().MulColor = float4{0.08f, 0.08f, 0.08f, 1.0f};
 }
 
 void ElderBrother::Update(float _DeltaTime)
@@ -104,7 +104,7 @@ void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     AppearTime_ += _DeltaTime;
 
-    if (1.f <= AppearTime_)
+    if (8.f <= AppearTime_)
     {
         AppearTime_ = 0.f;
         State_.ChangeState("Idle");
@@ -139,10 +139,11 @@ void ElderBrother::JumpStart(const StateInfo& _Info) { Speed_ = 600.f; }
 
 void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    Speed_ -= 1.f;
+    Speed_ -= 0.1f;
+
     DecideTime_ += _DeltaTime;
 
-    if (1.f > DecideTime_)
+    if (0.1f > DecideTime_)
     {
         return;
     }
@@ -188,7 +189,7 @@ void ElderBrother::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     DecideTime_ += _DeltaTime;
 
-    if (1.f < DecideTime_ && false == IsDecide_)
+    if (0.1f < DecideTime_ && false == IsDecide_)
     {
         IsDecide_ = true;
 
