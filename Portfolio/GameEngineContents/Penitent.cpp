@@ -87,7 +87,7 @@ void Penitent::Start()
         DebugColliders_[i]->ChangeOrder(COLLISIONORDER::Debug);
         DebugColliders_[i]->SetDebugSetting(CollisionType::CT_AABB, float4{0.0f, 0.0f, 1.0f, 0.5f});
         DebugColliders_[i]->GetTransform().SetWorldScale({10.f, 10.f});
-        DebugColliders_[i]->Off();
+        DebugColliders_[i]->Off(); 
     }
 
     DebugColliders_[0]->On();

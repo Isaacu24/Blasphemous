@@ -15,7 +15,7 @@ void LightiningBolt::Start()
     Renderer_->CreateFrameAnimationCutTexture("lightningBolt_Tileable_fxs", {"lightningBolt_Tileable_fxs.png", 0, 76, 0.05f, false});
     Renderer_->ChangeFrameAnimation("lightningBolt_Tileable_fxs");
     Renderer_->AnimationBindEnd("lightningBolt_Tileable_fxs", std::bind(&LightiningBolt::StrikeEnd, this, std::placeholders::_1));
-    Renderer_->GetTransform().SetLocalScale({200, 700});
+    Renderer_->GetTransform().SetLocalScale({270, 570});
     Renderer_->SetPivot(PIVOTMODE::CENTER);
 
     //FXSRenderer_ = CreateComponent<GameEngineTextureRenderer>();

@@ -6,7 +6,10 @@
 #include "LightiningBoltSpawner.h"
 #include "MagicMissileSpawner.h"
 
-Pope::Pope() {}
+Pope::Pope()
+    : SpellType_(SPELLTYPE::FIREBALL)
+{
+}
 
 Pope::~Pope() {}
 
@@ -17,7 +20,7 @@ void Pope::Start()
     Renderer_->CreateFrameAnimationCutTexture("pope_appear", {"pope_appear.png", 0, 14, 0.1f, false});
     Renderer_->CreateFrameAnimationCutTexture("pope_hitReaction", {"pope_hitReaction.png", 0, 10, 0.1f, true});
     Renderer_->CreateFrameAnimationCutTexture("pope_spellCast", {"pope_spellCast.png", 0, 54, 0.1f, true});
-    Renderer_->CreateFrameAnimationCutTexture("pope_vanishing", {"pope_vanishing.png", 0, 13, 0.1f, true});
+    Renderer_->CreateFrameAnimationCutTexture("pope_vanishing", {"pope_vanishing.png", 0, 13, 0.1f, false});
     Renderer_->CreateFrameAnimationCutTexture("pope_death", {"pope_death.png", 0, 34, 0.1f, true});
     Renderer_->SetScaleModeImage();
     Renderer_->SetPivot(PIVOTMODE::BOT);
@@ -70,27 +73,32 @@ void Pope::Start()
     DetectCollider_->ChangeOrder(COLLISIONORDER::BossMonster);
     DetectCollider_->GetTransform().SetWorldScale({500.0f, 500.0f, 1.0f});
 
+    TeleportPos_[0] = float4{1800, -1760};
+    TeleportPos_[1] = float4{2100, -1760};
+    TeleportPos_[2] = float4{2500, -1760};
+    TeleportPos_[3] = float4{2800, -1760};
+
     CreateSpawner();
 }
 
 void Pope::CreateSpawner()
 {
     FireBallSpawner_ = GetLevel()->CreateActor<FireBallSpawner>();
-    FireBallSpawner_->GetTransform().SetWorldPosition({2500, -1260, static_cast<int>(ACTORORDER::BossMonster)});
+    FireBallSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BossMonster)});
     FireBallSpawner_->SetGround(ColMap_);
     FireBallSpawner_->Off();
 
     ToxicCloudSpawner_ = GetLevel()->CreateActor<ToxicCloudSpawner>();
-    ToxicCloudSpawner_->GetTransform().SetWorldPosition({2500, -1260, static_cast<int>(ACTORORDER::BossMonster)});
+    ToxicCloudSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BossMonster)});
     ToxicCloudSpawner_->SetGround(ColMap_);
     ToxicCloudSpawner_->Off();
 
     LightiningBoltSpawner_ = GetLevel()->CreateActor<LightiningBoltSpawner>();
-    LightiningBoltSpawner_->GetTransform().SetWorldPosition({2500, -1260, static_cast<int>(ACTORORDER::BossMonster)});
+    LightiningBoltSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BossMonster)});
     LightiningBoltSpawner_->Off();
 
     MagicMissileSpawner_ = GetLevel()->CreateActor<MagicMissileSpawner>();
-    MagicMissileSpawner_->GetTransform().SetWorldPosition({2500, -1260, static_cast<int>(ACTORORDER::BossMonster)});
+    MagicMissileSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BossMonster)});
     MagicMissileSpawner_->Off();
 }
 
@@ -116,28 +124,10 @@ bool Pope::DecideState(GameEngineCollision* _This, GameEngineCollision* _Other) 
 void Pope::IdleStart(const StateInfo& _Info)
 {
     Renderer_->ChangeFrameAnimation("pope_idle");
-    /*ToxicCloudSpawner_->On();
-    ToxicCloudSpawner_->SetGround(ColMap_);*/
-    //FireBallSpawner_->On();
-    //FireBallSpawner_->SetGround(ColMap_);
-
-    //LightiningBoltSpawner_->On();
-    MagicMissileSpawner_->On();
-    MagicMissileSpawner_->SetDirection(float4::LEFT);
+    Renderer_->AnimationBindEnd("pope_idle", std::bind(&Pope::ChangeSpellCast, this, std::placeholders::_1));
 }
 
-void Pope::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
-{
-
-    // ToxicCloudSpawner_->SetDirection(Target_->GetTransform().GetWorldPosition() - GetTransform().GetWorldPosition());
-   /* FireBallSpawner_->SetDirection(Target_->GetTransform().GetWorldPosition() - GetTransform().GetWorldPosition());
-
-    float Angle = float4::VectorXYtoRadian(FireBallSpawner_->GetTransform().GetWorldPosition(),
-                                           Target_->GetTransform().GetWorldPosition());*/
-
-    //FireBallSpawner_->GetTransform().SetLocalRotate(
-    //    float4::VectorRotationToRadianXAxis(FireBallSpawner_->GetTransform().GetLocalRotation(), Angle));
-}
+void Pope::IdleUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Pope::IdleEnd(const StateInfo& _Info) { int a = 0; }
 
@@ -151,15 +141,45 @@ void Pope::AppearUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Pope::AppearEnd(const StateInfo& _Info) {}
 
-void Pope::VanishingStart(const StateInfo& _Info)
+void Pope::VanishingStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("pope_vanishing"); }
+
+void Pope::VanishingUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    Renderer_->ChangeFrameAnimation("pope_vanishing");
-    Renderer_->AnimationBindEnd("pope_vanishing", std::bind(&Pope::ChangeIdleState, this, std::placeholders::_1));
+    VanishingTime_ += _DeltaTime;
+
+    if (3.f <= VanishingTime_)
+    {
+        VanishingTime_ = 0.f;
+        State_.ChangeState("Appear");
+    }
 }
 
-void Pope::VanishingUpdate(float _DeltaTime, const StateInfo& _Info) {}
+void Pope::VanishingEnd(const StateInfo& _Info)
+{
+    int AppearPos_ = Random_.RandomInt(0, 3);
 
-void Pope::VanishingEnd(const StateInfo& _Info) {}
+    switch (AppearPos_)
+    {
+        case 0:
+            GetTransform().SetWorldPosition(TeleportPos_[0]);
+            break;
+
+        case 1:
+            GetTransform().SetWorldPosition(TeleportPos_[1]);
+            break;
+
+        case 2:
+            GetTransform().SetWorldPosition(TeleportPos_[2]);
+            break;
+
+        case 3:
+            GetTransform().SetWorldPosition(TeleportPos_[3]);
+            break;
+
+        default:
+            break;
+    }
+}
 
 void Pope::SpellCastStart(const StateInfo& _Info)
 {
@@ -170,9 +190,107 @@ void Pope::SpellCastStart(const StateInfo& _Info)
     FXSRenderer_->ChangeFrameAnimation("pope_spellCast_FXS");
     /*FXSRenderer_->AnimationBindEnd("pope_spellCast_FXS",
                                    std::bind(&Pope::AnimationOff, this, std::placeholders::_1));*/
+
+    int Spell = Random_.RandomInt(0, 3);
+
+    if (Spell == static_cast<int>(SpellType_))
+    {
+        Spell++;
+
+        if (3 < Spell)
+        {
+            Spell = 0;
+        }
+    }
+
+    switch (Spell)
+    {
+        case 0:  //파이어볼
+            SpellType_ = SPELLTYPE::FIREBALL;
+
+            FireBallSpawner_->On();
+            FireBallSpawner_->SetGround(ColMap_);
+            FireBallSpawner_->GetTransform().SetWorldPosition(
+                {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y + 500});
+            break;
+
+        case 1:  //독안개
+            SpellType_ = SPELLTYPE::TOXICCLOUD;
+
+            ToxicCloudSpawner_->On();
+            ToxicCloudSpawner_->SetGround(ColMap_);
+            ToxicCloudSpawner_->GetTransform().SetWorldPosition(
+                {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y + 500});
+            break;
+
+        case 2:  //번개
+            SpellType_ = SPELLTYPE::LIGHTININGBOLT;
+
+            LightiningBoltSpawner_->On();
+            break;
+
+        case 3:  //매직 미사일
+            SpellType_ = SPELLTYPE::MAGICMISSILE;
+
+            MagicMissileSpawner_->On();
+            MagicMissileSpawner_->SetDirection(float4::LEFT);
+            MagicMissileSpawner_->GetTransform().SetWorldPosition(
+                {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y + 100.f});
+            break;
+
+        default:
+            break;
+    }
 }
 
-void Pope::SpellCastUpdate(float _DeltaTime, const StateInfo& _Info) {}
+void Pope::SpellCastUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    switch (SpellType_)
+    {
+        case SPELLTYPE::FIREBALL:
+            {
+                FireBallSpawner_->SetDirection(Target_->GetTransform().GetWorldPosition()
+                                               - GetTransform().GetWorldPosition());
+
+                float Angle = float4::VectorXYtoRadian(FireBallSpawner_->GetTransform().GetWorldPosition(),
+                                                       Target_->GetTransform().GetWorldPosition());
+
+                // FireBallSpawner_->GetTransform().SetLocalRotate(
+                //     float4::VectorRotationToRadianXAxis(FireBallSpawner_->GetTransform().GetLocalRotation(), Angle));
+
+                if (false == FireBallSpawner_->IsUpdate())
+                {
+                    State_.ChangeState("Vanishing");
+                }
+            }
+            break;
+        case SPELLTYPE::TOXICCLOUD:
+            ToxicCloudSpawner_->SetDirection(Target_->GetTransform().GetWorldPosition()
+                                             - GetTransform().GetWorldPosition());
+
+            if (false == ToxicCloudSpawner_->IsUpdate())
+            {
+                State_.ChangeState("Vanishing");
+            }
+            break;
+        case SPELLTYPE::LIGHTININGBOLT:
+            LightiningBoltSpawner_->SetTarget(Target_);
+
+            if (false == LightiningBoltSpawner_->IsUpdate())
+            {
+                State_.ChangeState("Vanishing");
+            }
+            break;
+        case SPELLTYPE::MAGICMISSILE:
+            if (false == MagicMissileSpawner_->IsUpdate())
+            {
+                State_.ChangeState("Vanishing");
+            }
+            break;
+        default:
+            break;
+    }
+}
 
 void Pope::SpellCastEnd(const StateInfo& _Info) {}
 

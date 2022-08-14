@@ -2,7 +2,6 @@
 #include "Penitent.h"
 
 
-
 void Penitent::GroundCheck()
 {
     float4 Color;
@@ -12,17 +11,17 @@ void Penitent::GroundCheck()
         Color = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x,
                                                            -(GetTransform().GetWorldPosition().y + CilmbY_));
     }
-        
+
     else
     {
         Color = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x,
                                                            -(GetTransform().GetWorldPosition().y + 30));
-    }   
-        
+    }
+
     if (true == Color.CompareInt4D(float4::BLACK))  //땅이라면
     {
         IsJump_   = false;
-        IsDangle_ = false; 
+        IsDangle_ = false;
         IsGround_ = true;
 
         UphillRoadCheck();  //오르막길 체크
@@ -31,7 +30,7 @@ void Penitent::GroundCheck()
     else if (true == Color.CompareInt4D(float4::MAGENTA))
     {
         IsJump_   = false;
-        IsDangle_ = false; 
+        IsDangle_ = false;
         IsGround_ = true;
 
         if (true == GameEngineInput::GetInst()->IsPressKey("PenitentAnimation"))
@@ -53,7 +52,7 @@ void Penitent::LadderCheck()
         return;
     }
 
-    float4 LowColor    = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x,
+    float4 LowColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x,
                                                                  -(GetTransform().GetWorldPosition().y - 50));
 
     float4 MiddleColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x,
@@ -125,7 +124,7 @@ bool Penitent::LeftObstacleCheck()
 bool Penitent::RightObstacleCheck()
 {
     float4 RightColor;
-    
+
     if ("Slide" == State_.GetCurStateStateName())
     {
         RightColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x + 20,
@@ -171,23 +170,20 @@ void Penitent::CollisionCheck()
 }
 
 
-void Penitent::HitStart(const StateInfo& _Info) 
+void Penitent::HitStart(const StateInfo& _Info)
 {
     if ("LadderClimb" == _Info.PrevState)
     {
-        State_.ChangeState("LadderClimb"); 
+        State_.ChangeState("LadderClimb");
         return;
     }
 
-    State_.ChangeState("Idle"); 
+    State_.ChangeState("Idle");
 }
 
 void Penitent::HitUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Penitent::HitEnd(const StateInfo& _Info) 
-{
-
-}
+void Penitent::HitEnd(const StateInfo& _Info) {}
 
 
 //피격 함수
@@ -212,8 +208,7 @@ bool Penitent::Dangle(GameEngineCollision* _This, GameEngineCollision* _Other)
         IsDangle_ = true;
     }
 
-    else if (true == IsDangle_
-            || true == IsGround_)
+    else if (true == IsDangle_ || true == IsGround_)
     {
         return false;
     }
@@ -223,7 +218,9 @@ bool Penitent::Dangle(GameEngineCollision* _This, GameEngineCollision* _Other)
 
     if (nullptr != This)
     {
-        This->GetTransform().SetWorldPosition(_Other->GetTransform().GetWorldPosition() + float4{0, -100});
+        float4 DanglePos = _Other->GetTransform().GetWorldPosition() + float4{0, -100};
+
+        This->GetTransform().SetWorldPosition({DanglePos.x, DanglePos.y, static_cast<int>(ACTORORDER::Player)});
         ChangeState("Dangle");
     }
 

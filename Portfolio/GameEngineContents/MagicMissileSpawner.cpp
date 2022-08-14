@@ -14,7 +14,7 @@ void MagicMissileSpawner::Update(float _DeltaTime)
 {
 	DelayTime_ += _DeltaTime; 
 
-	if (0.5f >= DelayTime_)
+	if (1.0f >= DelayTime_)
     {
         return;
 	}
@@ -29,7 +29,7 @@ void MagicMissileSpawner::Update(float _DeltaTime)
 	if (0 == MissileCount_ % 2) //Â¦¼ö(À§)
     {
         MagicMissile* Missile = GetLevel()->CreateActor<MagicMissile>();
-        Missile->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
+        Missile->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{0, 50});
         Missile->SetDirection(Dir_);
 
         DelayTime_ = 0.f;
@@ -39,7 +39,7 @@ void MagicMissileSpawner::Update(float _DeltaTime)
 	else //È¦¼ö(¾Æ·¡)
 	{
         MagicMissile* Missile = GetLevel()->CreateActor<MagicMissile>();
-        Missile->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
+        Missile->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{0, -50});
         Missile->SetDirection(Dir_);
 
         DelayTime_ = 0.f;

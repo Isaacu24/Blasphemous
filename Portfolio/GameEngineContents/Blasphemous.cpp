@@ -347,14 +347,6 @@ void Blasphemous::LoadNormalMonster()
 
         GameEngineFolderTexture::Load(Dir.GetFullPath());
     }
-
-    {
-        GameEngineDirectory Dir;
-        MovePath(Dir,
-                 {"ContentsResources", "Resources", "Sprite", "Effect", "FireBallExplosion"});
-
-        GameEngineFolderTexture::Load(Dir.GetFullPath());
-    }
 }
 
 void Blasphemous::LoadEffect()

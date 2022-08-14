@@ -1,13 +1,14 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include <GameEngineBase/GameEngineRandom.h>
 #include "BossMonster.h"
 
 enum class SPELLTYPE
 {
     FIREBALL,
     TOXICCLOUD,
-    MAGICMISSILE,
-    LIGHTININGBOLT
+    LIGHTININGBOLT,
+    MAGICMISSILE
 };
 
 //첫 번째 교황
@@ -58,7 +59,7 @@ protected:
     void CreateSpawner();
 
 private:
-    float4 TeleportPos_[3];
+    float4 TeleportPos_[4];
 
     SPELLTYPE SpellType_;
 
@@ -72,7 +73,16 @@ private:
 
     GameEngineActor* Target_;  // Player
 
+    GameEngineRandom Random_;
+    int              AppearPos_;
+
+    float VanishingTime_;
+
     bool DecideState(GameEngineCollision* _This, GameEngineCollision* _Other);
 
-    inline void AnimationOff(const FrameAnimation_DESC& _Info) { FXSRenderer_->Off(); }
+    void FXSOff(const FrameAnimation_DESC& _Info) { FXSRenderer_->Off(); }
+
+    void ChangeSpellCast(const FrameAnimation_DESC& _Info) { State_.ChangeState("SpellCast"); }
+    //void ChangeAppear(const FrameAnimation_DESC& _Info) { State_.ChangeState("Appear"); }
+
 };
