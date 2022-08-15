@@ -208,10 +208,16 @@ bool Penitent::Dangle(GameEngineCollision* _This, GameEngineCollision* _Other)
         IsDangle_ = true;
     }
 
-    else if (true == IsDangle_ || true == IsGround_)
+    else if (true == IsDangle_)
     {
         return false;
     }
+
+    if (true == IsGround_)
+    {
+        return false;
+    }
+
     GameEngineUpdateObject* Root = _This->GetRoot();
 
     Penitent* This = dynamic_cast<Penitent*>(Root);

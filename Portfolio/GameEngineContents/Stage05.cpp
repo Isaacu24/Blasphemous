@@ -3,6 +3,7 @@
 #include "Penitent.h"
 #include "Deogracias.h"
 #include "Door.h"
+#include "GlassSwitch.h"
 
 Stage05::Stage05()
 {
@@ -34,8 +35,11 @@ void Stage05::SettingStage()
 	//NewDeogracias->GetTransform().SetLocalMove({ 940, -570 });
 	//NewDeogracias->GetTransform().PixLocalNegativeX();
 
-	Door_ = CreateActor<Door>();
-	Door_->GetTransform().SetWorldMove({ 1107, -520 });
+	Door* IronDoor = CreateActor<Door>();
+    IronDoor->GetTransform().SetWorldMove({1107, -520});
+
+	GlassSwitch* Glass = CreateActor<GlassSwitch>();
+    Glass->GetTransform().SetWorldMove({1350, -490});
 
 	GameEngineTextureRenderer* DoorRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	DoorRendrer->SetTexture("1_5_Door.png");

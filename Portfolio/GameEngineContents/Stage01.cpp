@@ -31,14 +31,14 @@ void Stage01::SettingStage()
 	GameEngineTextureRenderer* BeforeParallaxRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer1->SetTexture("1_1_BeforeParallax_1.png");
 	BeforeParallaxRenderer1->ScaleToTexture();
-	BeforeParallaxRenderer1->GetTransform().SetWorldPosition({ -100, 700, static_cast<int>(ACTORORDER::BeforeParallax1)});
-	BeforeParallaxRenderer1->GetTransform().SetWorldScale(BeforeParallaxRenderer1->GetTransform().GetWorldScale() * 2.25f);
+	BeforeParallaxRenderer1->GetTransform().SetWorldPosition({ -100, 1000, static_cast<int>(ACTORORDER::BeforeParallax1)});
+	BeforeParallaxRenderer1->GetTransform().SetWorldScale(BeforeParallaxRenderer1->GetTransform().GetWorldScale() * 3.0f);
 
 	GameEngineTextureRenderer* BeforeParallaxRenderer2 = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	BeforeParallaxRenderer2->SetTexture("1_1_BeforeParallax_2.png");
 	BeforeParallaxRenderer2->ScaleToTexture();
-	BeforeParallaxRenderer2->GetTransform().SetWorldPosition({ 100, 50, static_cast<int>(ACTORORDER::BeforeParallax2)});
-	BeforeParallaxRenderer2->GetTransform().SetWorldScale(BeforeParallaxRenderer2->GetTransform().GetWorldScale() * 2.25f);
+	BeforeParallaxRenderer2->GetTransform().SetWorldPosition({ 100, 100, static_cast<int>(ACTORORDER::BeforeParallax2)});
+	BeforeParallaxRenderer2->GetTransform().SetWorldScale(BeforeParallaxRenderer2->GetTransform().GetWorldScale() * 2.5f);
 
 	GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
 	StageRenderer->SetTexture("1_1_Tile.png");

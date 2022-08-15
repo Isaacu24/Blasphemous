@@ -188,6 +188,9 @@
     <ClInclude Include="MagicMissileSpawner.h">
       <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
     </ClInclude>
+    <ClInclude Include="GlassSwitch.h">
+      <Filter>Actor\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -379,6 +382,9 @@
     </ClCompile>
     <ClCompile Include="MagicMissileSpawner.cpp">
       <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
+    </ClCompile>
+    <ClCompile Include="GlassSwitch.cpp">
+      <Filter>Actor\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

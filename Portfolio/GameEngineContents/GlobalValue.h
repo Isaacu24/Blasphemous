@@ -41,11 +41,11 @@ enum class ACTORORDER
 	BeforeLayer0,
 
 	BeforeParallax5 = 100,
-	BeforeParallax4 = 150,
-	BeforeParallax3 = 200,
-	BeforeParallax2 = 250,
-	BeforeParallax1 = 300,
-	BeforeParallax0 = 350,
+	BeforeParallax4 = 200,
+	BeforeParallax3 = 300,
+	BeforeParallax2 = 400,
+	BeforeParallax1 = 500,
+	BeforeParallax0 = 600,
 
 	ColMap
 };

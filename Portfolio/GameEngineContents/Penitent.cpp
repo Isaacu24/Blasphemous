@@ -87,7 +87,7 @@ void Penitent::Start()
         DebugColliders_[i]->ChangeOrder(COLLISIONORDER::Debug);
         DebugColliders_[i]->SetDebugSetting(CollisionType::CT_AABB, float4{0.0f, 0.0f, 1.0f, 0.5f});
         DebugColliders_[i]->GetTransform().SetWorldScale({10.f, 10.f});
-        DebugColliders_[i]->Off(); 
+        DebugColliders_[i]->Off();
     }
 
     DebugColliders_[0]->On();
@@ -95,15 +95,15 @@ void Penitent::Start()
         {GetTransform().GetWorldPosition().x,
          (GetTransform().GetWorldPosition().y + CilmbY_)});  //사다리 타기 시 땅 감지
 
-     DebugColliders_[1]->On();
-     DebugColliders_[1]->GetTransform().SetWorldPosition(
-         {GetTransform().GetWorldPosition().x + 20, (GetTransform().GetWorldPosition().y + 125)}); 
-     DebugColliders_[1]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
+    DebugColliders_[1]->On();
+    DebugColliders_[1]->GetTransform().SetWorldPosition(
+        {GetTransform().GetWorldPosition().x + 20, (GetTransform().GetWorldPosition().y + 125)});
+    DebugColliders_[1]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
 
-     DebugColliders_[2]->On();
-     DebugColliders_[2]->GetTransform().SetWorldPosition(
-         {GetTransform().GetWorldPosition().x - 20, GetTransform().GetWorldPosition().y + 125});
-     DebugColliders_[2]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
+    DebugColliders_[2]->On();
+    DebugColliders_[2]->GetTransform().SetWorldPosition(
+        {GetTransform().GetWorldPosition().x - 20, GetTransform().GetWorldPosition().y + 125});
+    DebugColliders_[2]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
 
     // DebugColliders_[3]->On();
     // DebugColliders_[3]->GetTransform().SetWorldPosition(
@@ -192,7 +192,7 @@ void Penitent::Update(float _DeltaTime)
 
     GroundCheck();
     LadderCheck();
-    CollisionCheck();           
+    CollisionCheck();
 
     if (true == GameEngineInput::GetInst()->IsDownKey("FreeCamera"))
     {
@@ -211,7 +211,12 @@ void Penitent::Update(float _DeltaTime)
         PlayerUI_->Inventory_->Off();
     }
 
-    GameEngineDebug::OutPutString("PlayerState: " + State_.GetCurStateStateName());
+    // GameEngineDebug::OutPutString("PlayerState: " + State_.GetCurStateStateName());
+
+    GameEngineDebug::OutPutString("MousePosX: "
+                                  + std::to_string(GetLevel()->GetMainCamera()->GetMouseWorldPositionToActor().x));
+    GameEngineDebug::OutPutString("MousePosY: "
+                                  + std::to_string(GetLevel()->GetMainCamera()->GetMouseWorldPositionToActor().y));
 }
 
 void Penitent::End() {}

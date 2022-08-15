@@ -24,6 +24,5 @@ protected:
 	void OffEvent() override;
 
 private:
-	class Door* Door_;
 };
 
