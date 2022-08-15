@@ -13,13 +13,21 @@ void PlayerUI::Start()
     HPBar_->Renderer_->SetTexture("Player_HP.png");
     HPBar_->Renderer_->ScaleToTexture();
     HPBar_->SetLevelOverOn();
-    HPBar_->Renderer_->GetTransform().SetLocalScale(HPBar_->Renderer_->GetTransform().GetWorldScale()
-                                                    - float4{HPBar_->Renderer_->GetTransform().GetWorldScale().x, 0});
+
+    Penitent::GetMainPlayer()->SetHP(20);
+    float HP = Penitent::GetMainPlayer()->GetHP() / 100.f;
+
+    HPBar_->Renderer_->SetUVData(HP);
 
     MPBar_ = GetLevel()->CreateActor<LeftTopUI>();
     MPBar_->Renderer_->SetTexture("Player_MP.png");
     MPBar_->Renderer_->ScaleToTexture();
     MPBar_->SetLevelOverOn();
+
+    Penitent::GetMainPlayer()->SetMP(20);
+    float MP = Penitent::GetMainPlayer()->GetMP() / 100.f;
+
+    MPBar_->Renderer_->SetUVData(MP);
 
     BarFrame_ = GetLevel()->CreateActor<LeftTopUI>();
     BarFrame_->Renderer_->SetTexture("Player_HpBar.png");
@@ -31,11 +39,11 @@ void PlayerUI::Start()
     TearFrame_->ScaleToTexture();
 
     Inventory_ = GetLevel()->CreateActor<Inventory>();
-    Inventory_->Off();
     Inventory_->SetLevelOverOn();
+    Inventory_->Off();
 
-    HPBar_->GetTransform().SetWorldPosition({-600, 330, static_cast<int>(UIORDER::PlayerUI)});
-    MPBar_->GetTransform().SetWorldPosition({-600, 330, static_cast<int>(UIORDER::PlayerUI)});
+    HPBar_->GetTransform().SetWorldPosition({-499, 308, static_cast<int>(UIORDER::PlayerUI)});
+    MPBar_->GetTransform().SetWorldPosition({-442, 284, static_cast<int>(UIORDER::PlayerUI)});
     BarFrame_->GetTransform().SetWorldPosition({-600, 330, static_cast<int>(UIORDER::PlayerUIFrame)});
     TearFrame_->GetTransform().SetWorldPosition({500, 270, static_cast<int>(UIORDER::PlayerUIFrame)});
 
@@ -106,7 +114,14 @@ void PlayerUI::UseFlask(int _Index)
 {
     Flasks_[_Index]->SetTexture("Empty_Flask.png");
 
-    HPBar_->Renderer_->GetTransform().SetWorldScale(HPBar_->Renderer_->GetTransform().GetWorldScale() + float4{100, 0});
-    HPBar_->Renderer_->SetPivot(PIVOTMODE::LEFTTOP);
+    Penitent::GetMainPlayer()->PlusHP(20);
+    float HP = Penitent::GetMainPlayer()->GetHP() / 100.f;
+    HPBar_->Renderer_->SetUVData(HP);
 }
 
+void PlayerUI::Damage() 
+{
+    //이미 값이 줄여져서 들어옴
+    float HP = Penitent::GetMainPlayer()->GetHP() / 100.f;
+    HPBar_->Renderer_->SetUVData(HP);
+}

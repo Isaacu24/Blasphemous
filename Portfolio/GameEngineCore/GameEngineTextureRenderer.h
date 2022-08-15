@@ -191,7 +191,16 @@ public:
 		return ColorData;
 	}
 
-	// 애니메이션 바인드
+	float4 GetUVData()
+	{
+		return UVData.x;
+	}
+
+	void SetUVData(float4 _Data)
+	{
+		UVData.x = _Data.x;
+	}
+
 	// 시작 프레임에 들어온다.
 	void AnimationBindStart(const std::string& _AnimationName, std::function<void(const FrameAnimation_DESC&)> _Function)
 	{
@@ -259,6 +268,8 @@ private:
 
 	GameEngineTexture* CurTex;
 	float4 FrameData;
+
+	float4 UVData;
 
 	ColorData ColorData;
 

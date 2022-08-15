@@ -109,6 +109,7 @@ GameEngineTextureRenderer::GameEngineTextureRenderer()
 	, PivotMode(PIVOTMODE::CUSTOM)
 	, ScaleMode(SCALEMODE::CUSTOM)
 	, ScaleRatio(1.0f)
+	, UVData(1.0f)
 {
 }
 
@@ -128,6 +129,7 @@ void GameEngineTextureRenderer::SetTextureRendererSetting()
 
 	ShaderResources.SetConstantBufferLink("AtlasData", FrameData);
 	ShaderResources.SetConstantBufferLink("ColorData", ColorData);
+	ShaderResources.SetConstantBufferLink("UVData", UVData);
 
 }
 

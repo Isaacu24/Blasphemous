@@ -31,6 +31,10 @@ public:
         }
     }
 
+    inline void SetMP(int _Value) { HP_ = _Value; }
+
+    inline int GetMP() { return HP_; }
+
     inline void SerTear(int _Value) { Tear_ = _Value; }
 
     inline void SetGround(GameEngineTextureRenderer* _Ground) { ColMap_ = _Ground; }

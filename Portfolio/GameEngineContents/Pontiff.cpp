@@ -19,12 +19,13 @@ void Pontiff::Start()
     Helmet_->CreateFrameAnimationCutTexture("pontiff_closing_helmet",
                                             {"pontiff_closing_helmet.png", 0, 0, 0.0f, false});
     Helmet_->GetTransform().SetLocalScale({950, 1300});
-    Helmet_->GetTransform().SetLocalMove({0, 15});
+    Helmet_->GetTransform().SetLocalMove({0, 50});
 
     Body_->CreateFrameAnimationCutTexture("pontiff_idle_torso", {"pontiff_idle_torso.png", 0, 30, 0.2f, true});
     Body_->CreateFrameAnimationCutTexture("pontiff_opening_torso", {"pontiff_opening_torso.png", 0, 17, 0.1f, true});
     Body_->CreateFrameAnimationCutTexture("pontiff_closing_torso", {"pontiff_closing_torso.png", 0, 14, 0.1f, true});
     Body_->GetTransform().SetLocalScale({950, 1100});
+    Body_->GetTransform().SetLocalMove({0, 35});
 
     Face_->CreateFrameAnimationCutTexture("pontiff_openIdle_face", {"pontiff_openIdle_face.png", 0, 30, 0.2f, true});
 
@@ -36,7 +37,7 @@ void Pontiff::Start()
                                           {"pontiff_openedIdle_face_DEATH.png", 0, 64, 0.2f, true});
 
     Face_->GetTransform().SetLocalScale({950, 1300});
-    Face_->GetTransform().SetLocalMove({0, 15, -1});
+    Face_->GetTransform().SetLocalMove({0, 50, -1});
 
     State_.CreateStateMember("Appear",
                              std::bind(&Pontiff::AppearUpdate, this, std::placeholders::_1, std::placeholders::_2),
@@ -77,7 +78,10 @@ void Pontiff::Start()
     GiantSword_->GetTransform().SetWorldPosition({1400, -600, static_cast<int>(ACTORORDER::BossMonster)});
 }
 
-void Pontiff::Update(float _DeltaTime) { State_.Update(_DeltaTime); }
+void Pontiff::Update(float _DeltaTime) 
+{ 
+    State_.Update(_DeltaTime); 
+}
 
 void Pontiff::End() {}
 
@@ -89,15 +93,19 @@ void Pontiff::AppearStart(const StateInfo& _Info)
     Face_->Off();
 }
 
-float Time_ = 0.f;
-void  Pontiff::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
+void Pontiff::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     Time_ += _DeltaTime;
+
+    if (false == GiantSword_->IsUpdate())
+    {
+        State_.ChangeState("CloseIdle");
+    }
 
     if (3.f <= Time_)
     {
         Time_ = 0.f;
-        State_.ChangeState("Opening");
+        State_.ChangeState("CloseIdle");
     }
 }
 
@@ -156,6 +164,7 @@ void Pontiff::CloseIdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 
 }
+
 void Pontiff::CloseIdleEnd(const StateInfo& _Info) 
 { Face_->On(); }
 

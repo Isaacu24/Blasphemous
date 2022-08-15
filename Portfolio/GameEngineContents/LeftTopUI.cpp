@@ -17,7 +17,6 @@ void LeftTopUI::Start()
 void LeftTopUI::Update(float _DeltaTime)
 {
 	Renderer_->SetPivot(PIVOTMODE::LEFTTOP);
-
 }
 
 void LeftTopUI::End()

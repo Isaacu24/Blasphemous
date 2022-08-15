@@ -55,6 +55,13 @@ private:
 
     class GiantSword* GiantSword_;
 
+    class SymbolEffect* Symbol_;
+
+    class FireBallSpawner*       FireBallSpawner_;
+    class ToxicCloudSpawner*     ToxicCloudSpawner_;
+    class LightiningBoltSpawner* LightiningBoltSpawner_;
+    class MagicMissileSpawner*   MagicMissileSpawner_;
+
     int AscensionSpeed_;
 
     float Time_;

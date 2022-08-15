@@ -10,9 +10,6 @@ class GameEngineShaderResourcesHelper
 
 	// 리소스 세팅함수들 정리
 
-		// 이 상수버퍼가 이녀석 안에 있어?
-
-
 public:
 	// constrcuter destructer
 	GameEngineShaderResourcesHelper();

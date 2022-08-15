@@ -62,7 +62,7 @@ private:
     float4 TeleportPos_[4];
 
     SPELLTYPE SpellType_;
-
+        
     GameEngineTextureRenderer* FXSRenderer_;
     class SymbolEffect*        Symbol_;
 

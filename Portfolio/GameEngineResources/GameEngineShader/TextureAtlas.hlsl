@@ -37,10 +37,20 @@ cbuffer ColorData : register(b0)
     float4 PlusColor;
 }
 
+cbuffer UVData : register(b8)
+{
+    float4 Value;
+}
+
 Texture2D Tex : register(t0);
 SamplerState Smp : register(s0);
 
 float4 TextureAtlas_PS(Output _Input) : SV_Target0
 {
+    if (_Input.Tex.x > Value.x)
+    {
+        discard;
+    }
+    
     return (Tex.Sample(Smp, _Input.Tex.xy) * MulColor) + PlusColor;
 }

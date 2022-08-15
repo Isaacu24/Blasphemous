@@ -37,8 +37,8 @@ void GiantSword::Start()
 
 	State_.CreateStateMember("TeleportIN", std::bind(&GiantSword::TeleportINUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&GiantSword::TeleportINStart, this, std::placeholders::_1));
 	State_.CreateStateMember("TeleportOut", std::bind(&GiantSword::TeleportOutUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&GiantSword::TeleportOutStart, this, std::placeholders::_1));
-	State_.CreateStateMember("TeleportAttack", std::bind(&GiantSword::AttackUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&GiantSword::AttackStart, this, std::placeholders::_1), std::bind(&GiantSword::AttackEnd, this, std::placeholders::_1));
-	State_.ChangeState("TeleportAttack");
+	State_.CreateStateMember("TrunAttack", std::bind(&GiantSword::AttackUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&GiantSword::AttackStart, this, std::placeholders::_1), std::bind(&GiantSword::AttackEnd, this, std::placeholders::_1));
+	State_.ChangeState("TrunAttack");
 }
 
 void GiantSword::Update(float _DeltaTime)
