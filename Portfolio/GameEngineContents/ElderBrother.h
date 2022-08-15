@@ -83,7 +83,7 @@ private:
         if (19 == _Info.CurFrame)
         {
             IsJump_ = false;
-            JumpEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{0, 100});
+            JumpEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{0, 50});
             JumpEffecter_->CreateEffect();
         }
 

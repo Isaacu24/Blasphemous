@@ -3,51 +3,46 @@
 #include "Penitent.h"
 #include "Pontiff.h"
 #include "Platform.h"
-#include "BossUI.h"
 
-Stage21::Stage21() 
-{
-}
+Stage21::Stage21() {}
 
-Stage21::~Stage21() 
-{
-}
+Stage21::~Stage21() {}
 
 void Stage21::SettingStage()
 {
-	Stage_ = CreateActor<StageActor>();
+    Stage_ = CreateActor<StageActor>();
 
-	ColMap_ = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	ColMap_->SetTexture("12_3_Colmap.png");
-	ColMap_->ScaleToTexture();
-	ColMap_->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::ColMap) });
+    ColMap_ = Stage_->CreateComponent<GameEngineTextureRenderer>();
+    ColMap_->SetTexture("12_3_Colmap.png");
+    ColMap_->ScaleToTexture();
+    ColMap_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::ColMap)});
 
-	GameEngineTextureRenderer* BeforeLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	BeforeLayerRenderer->SetTexture("12_3_BeforeLayer_0.png");
-	BeforeLayerRenderer->ScaleToTexture();
-	BeforeLayerRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeLayer0) });
+    GameEngineTextureRenderer* BeforeLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+    BeforeLayerRenderer->SetTexture("12_3_BeforeLayer_0.png");
+    BeforeLayerRenderer->ScaleToTexture();
+    BeforeLayerRenderer->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BeforeLayer0)});
     BeforeLayerRenderer->GetTransform().SetWorldScale(BeforeLayerRenderer->GetTransform().GetWorldScale() * 2.f);
 
-	GameEngineTextureRenderer* BeforeLayerRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	BeforeLayerRenderer1->SetTexture("12_3_BeforeLayer_1.png");
-	BeforeLayerRenderer1->ScaleToTexture();
-	BeforeLayerRenderer1->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::BeforeLayer2) });
+    GameEngineTextureRenderer* BeforeLayerRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
+    BeforeLayerRenderer1->SetTexture("12_3_BeforeLayer_1.png");
+    BeforeLayerRenderer1->ScaleToTexture();
+    BeforeLayerRenderer1->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BeforeLayer2)});
     BeforeLayerRenderer1->GetTransform().SetWorldScale(BeforeLayerRenderer1->GetTransform().GetWorldScale() * 2.f);
 
-	GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
-	StageRenderer->SetTexture("12_3_Tile.png");
-	StageRenderer->ScaleToTexture();
-	StageRenderer->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::AfterLayer0) });
+    GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+    StageRenderer->SetTexture("12_3_Tile.png");
+    StageRenderer->ScaleToTexture();
+    StageRenderer->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::AfterLayer0)});
     StageRenderer->GetTransform().SetWorldScale(StageRenderer->GetTransform().GetWorldScale() * 2.f);
 
-	float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
-	float OffsetY = ColMap_->GetTransform().GetLocalScale().y / 2;
+    float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
+    float OffsetY = ColMap_->GetTransform().GetLocalScale().y / 2;
 
-	float4 Offset = { OffsetX , -OffsetY };
+    float4 Offset = {OffsetX, -OffsetY};
 
-	Stage_->GetTransform().SetLocalMove(Offset);
+    Stage_->GetTransform().SetLocalMove(Offset);
 
-	GetMainCameraActor()->GetTransform().SetWorldPosition({ 1250, -670 });
+    GetMainCameraActor()->GetTransform().SetWorldPosition({1250, -670});
 }
 
 void Stage21::SettingMonster()
@@ -59,35 +54,31 @@ void Stage21::SettingMonster()
 
 void Stage21::Start()
 {
-	SettingStage();
-	SettingMonster();
+    SettingStage();
+    SettingMonster();
 
-	BossUI_ = CreateActor<BossUI>();
-
-	Font_ = Stage_->CreateComponent<GameEngineFontRenderer>();
-	Font_->SetColor({ 0.88f, 0.88f, 0.65f, 1.0f });
-	Font_->SetScreenPostion({ 470, 600, -100.f });
-	Font_->SetText("마지막 기적의 아들", "Neo둥근모");
-	Font_->SetSize(35);
-	Font_->ChangeCamera(CAMERAORDER::UICAMERA);
-
-	CurrentFlow_ = STAGEFLOW::BOSSAPPEAR;
+    CurrentFlow_ = STAGEFLOW::BOSSAPPEAR;
 }
 
-void Stage21::Update(float _DeltaTime) 
-{ 
-	switch (CurrentFlow_)
+void Stage21::Update(float _DeltaTime)
+{
+    switch (CurrentFlow_)
     {
         case STAGEFLOW::NORMAL:
             PlayerCameraMove();
             break;
         case STAGEFLOW::BOSSAPPEAR:
-
-			if ("Idle" == Pontiff_->GetState())
+            if ("Appear" != Pontiff_->GetState())
             {
-                CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
-			}
+                Font_ = Stage_->CreateComponent<GameEngineFontRenderer>();
+                Font_->SetColor({0.88f, 0.88f, 0.65f, 1.0f});
+                Font_->SetScreenPostion({470, 600, -100.f});
+                Font_->SetText("마지막 기적의 아들", "Neo둥근모");
+                Font_->SetSize(35);
+                Font_->ChangeCamera(CAMERAORDER::UICAMERA);
 
+                CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
+            }
             break;
         case STAGEFLOW::BOSSCOMBAT:
             PlayerCameraMove();
@@ -126,46 +117,42 @@ void Stage21::PlayerCameraMove()
 }
 
 
-
-void Stage21::End()
-{
-}
+void Stage21::End() {}
 
 void Stage21::OnEvent()
 {
-	if (nullptr == Penitent::GetMainPlayer())
-	{
-		Penitent_ = CreateActor<Penitent>(ACTORORDER::Player);
-		Penitent_->GetTransform().SetWorldPosition({ 1250, -860, static_cast<int>(ACTORORDER::Player) });
-		Penitent_->SetGround(ColMap_);
+    if (nullptr == Penitent::GetMainPlayer())
+    {
+        Penitent_ = CreateActor<Penitent>(ACTORORDER::Player);
+        Penitent_->GetTransform().SetWorldPosition({1250, -860, static_cast<int>(ACTORORDER::Player)});
+        Penitent_->SetGround(ColMap_);
 
-		Penitent_->SetLevelOverOn();
-	}
+        Penitent_->SetLevelOverOn();
+    }
 
-	else if (nullptr != Penitent::GetMainPlayer())
-	{
-		Penitent_ = Penitent::GetMainPlayer();
-		Penitent_->GetTransform().SetWorldPosition({ 1250, -860, static_cast<int>(ACTORORDER::Player) });
-		Penitent_->SetGround(ColMap_);
+    else if (nullptr != Penitent::GetMainPlayer())
+    {
+        Penitent_ = Penitent::GetMainPlayer();
+        Penitent_->GetTransform().SetWorldPosition({1250, -860, static_cast<int>(ACTORORDER::Player)});
+        Penitent_->SetGround(ColMap_);
 
-		Penitent_->SetLevelOverOn();
-	}
+        Penitent_->SetLevelOverOn();
+    }
 
-	if (350 > Penitent_->GetTransform().GetWorldPosition().x)
-	{
-		Penitent_->GetTransform().SetWorldPosition(float4{ 350, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player) });
-	}
+    if (350 > Penitent_->GetTransform().GetWorldPosition().x)
+    {
+        Penitent_->GetTransform().SetWorldPosition(
+            float4{350, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player)});
+    }
 
-	if (2000 < Penitent_->GetTransform().GetWorldPosition().x)
-	{
-		Penitent_->GetTransform().SetWorldPosition(float4{ 2000, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player) });
-	}
+    if (2000 < Penitent_->GetTransform().GetWorldPosition().x)
+    {
+        Penitent_->GetTransform().SetWorldPosition(
+            float4{2000, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player)});
+    }
 
-	IsRightExit_ = false;
-	IsLeftExit_ = false;
+    IsRightExit_ = false;
+    IsLeftExit_  = false;
 }
 
-void Stage21::OffEvent()
-{
-}
-
+void Stage21::OffEvent() {}

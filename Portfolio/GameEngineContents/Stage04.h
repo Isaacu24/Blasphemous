@@ -28,7 +28,6 @@ protected:
 
 private:
 	class ElderBrother* ElderBrother_;
-	class BossUI* BossUI_;
 
 	void PlayerCameraMove();
 };

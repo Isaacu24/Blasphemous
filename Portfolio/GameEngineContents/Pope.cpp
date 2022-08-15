@@ -8,8 +8,7 @@
 
 Pope::Pope()
     : SpellType_(SPELLTYPE::FIREBALL)
-{
-}
+{}
 
 Pope::~Pope() {}
 
@@ -80,6 +79,11 @@ void Pope::Start()
     TeleportPos_[3] = float4{2800, -1760};
 
     CreateSpawner();
+
+    BossUI_ = GetLevel()->CreateActor<BossUI>();
+    BossUI_->SetBossMonster(this);
+    BossUI_->SetBossUI();
+    BossUI_->AllOff();
 }
 
 void Pope::CreateSpawner()
@@ -140,7 +144,8 @@ void Pope::AppearStart(const StateInfo& _Info)
 
 void Pope::AppearUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Pope::AppearEnd(const StateInfo& _Info) {}
+void Pope::AppearEnd(const StateInfo& _Info) 
+{ BossUI_->AllOn(); }
 
 void Pope::VanishingStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("pope_vanishing"); }
 

@@ -1,7 +1,20 @@
 #include "PreCompile.h"
 #include "MonsterBase.h"
 
-MonsterBase::MonsterBase() {}
+MonsterBase::MonsterBase() 
+    : State_{}
+    , Renderer_(nullptr)
+    , ColMap_(nullptr)
+    , Gravity_(nullptr)
+    , DetectCollider_(nullptr)
+    , BodyCollider_(nullptr)
+    , AttackCollider_(nullptr)
+    , HP_(100)
+    , Att_(100)
+    , Speed_(100.f)
+    , Tear_(100)
+    , IsGround_(false)
+{}
 
 MonsterBase::~MonsterBase() {}
 
@@ -44,3 +57,4 @@ bool MonsterBase::UphillRoadCheck(int _X, int _Y)
         }
     }
 }
+

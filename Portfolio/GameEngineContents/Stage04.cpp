@@ -2,7 +2,6 @@
 #include "Stage04.h"
 #include "Penitent.h"
 #include "ElderBrother.h"
-#include "BossUI.h"
 
 Stage04::Stage04() {}
 
@@ -124,7 +123,6 @@ void Stage04::Update(float _DeltaTime)
             if (true == ElderBrother_->GetEventEnd())
             {
                 IsEvent_ = true;
-                BossUI_  = CreateActor<BossUI>();
                 Penitent_->ChangeState("Idle");
                 CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
 

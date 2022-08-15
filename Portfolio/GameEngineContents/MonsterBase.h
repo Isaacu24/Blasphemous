@@ -42,7 +42,7 @@ protected:
     class GravityComponent* Gravity_;
 
     class GameEngineCollision* DetectCollider_; //¹üÀ§
-    GameEngineCollision*       BodyCollider_;   //¸öÃ¼
+    GameEngineCollision*         BodyCollider_;   //¸öÃ¼
     GameEngineCollision*       AttackCollider_; //°ø°Ý
 
     int   HP_;

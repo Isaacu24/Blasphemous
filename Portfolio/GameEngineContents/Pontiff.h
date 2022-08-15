@@ -40,7 +40,10 @@ public:
     void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
     void DeathEnd(const StateInfo& _Info);
 
-    const std::string& GetState() { return State_.GetCurStateStateName(); }
+    const std::string GetState() 
+    { 
+        return State_.GetCurStateStateName(); 
+    }
 
 protected:
     void Start() override;
@@ -81,4 +84,3 @@ private:
 
 //플랫폼 생성기 클래스도 만들어야 함.
 //그건 플랫폼스포너(혹은 스테이지. 근데 아마 따로 클래스를 만드는 편이 좋다.)가 할 일.
-//교황은 몰라도 된다.

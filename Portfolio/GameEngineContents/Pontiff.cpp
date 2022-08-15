@@ -76,6 +76,11 @@ void Pontiff::Start()
 
     GiantSword_ = GetLevel()->CreateActor<GiantSword>();
     GiantSword_->GetTransform().SetWorldPosition({1400, -600, static_cast<int>(ACTORORDER::BossMonster)});
+
+    BossUI_ = GetLevel()->CreateActor<BossUI>();
+    BossUI_->SetBossMonster(this);
+    BossUI_->SetBossUI();
+    BossUI_->AllOff();
 }
 
 void Pontiff::Update(float _DeltaTime) 
@@ -109,7 +114,11 @@ void Pontiff::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 }
 
-void Pontiff::AppearEnd(const StateInfo& _Info) { Face_->On(); }
+void Pontiff::AppearEnd(const StateInfo& _Info) 
+{
+    Face_->On(); 
+    BossUI_->AllOn();
+}
 
 void Pontiff::OpeningStart(const StateInfo& _Info)
 {

@@ -72,6 +72,11 @@ void ElderBrother::Start()
     JumpCollider_->Off();
 
     Renderer_->GetColorData().MulColor = float4{0.08f, 0.08f, 0.08f, 1.0f};
+
+    BossUI_ = GetLevel()->CreateActor<BossUI>();
+    BossUI_->SetBossMonster(this);
+    BossUI_->SetBossUI();
+    BossUI_->AllOff();
 }
 
 void ElderBrother::Update(float _DeltaTime)
@@ -86,7 +91,7 @@ void ElderBrother::Update(float _DeltaTime)
         }
     }
 
-    Gravity_->SetActive(!IsGround_); //중력은 계속 적용 받는 중
+    Gravity_->SetActive(!IsGround_);  //중력은 계속 적용 받는 중
 }
 
 void ElderBrother::End() {}
@@ -95,10 +100,7 @@ void ElderBrother::FreezeStart(const StateInfo& _Info) { Renderer_->ChangeFrameA
 
 void ElderBrother::FreezeUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void ElderBrother::AppearStart(const StateInfo& _Info) 
-{
-    Renderer_->ChangeFrameAnimation("elderBrother_idle"); 
-}
+void ElderBrother::AppearStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("elderBrother_idle"); }
 
 void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -116,15 +118,13 @@ void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 }
 
-void ElderBrother::AppearEnd(const StateInfo& _Info) 
+void ElderBrother::AppearEnd(const StateInfo& _Info)
 {
     Renderer_->GetColorData().MulColor = float4::ONE;
+    BossUI_->AllOn();
 }
 
-void ElderBrother::IdleStart(const StateInfo& _Info)
-{
-    Renderer_->ChangeFrameAnimation("elderBrother_idle");
-}
+void ElderBrother::IdleStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("elderBrother_idle"); }
 
 void ElderBrother::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -161,7 +161,7 @@ void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 
     if (true == IsJump_)
     {
-        GetTransform().SetWorldMove(GetTransform().GetUpVector()* 1000.f * _DeltaTime);
+        GetTransform().SetWorldMove(GetTransform().GetUpVector() * 1000.f * _DeltaTime);
 
         Alpha_ += _DeltaTime * 0.05f;
 
@@ -170,18 +170,14 @@ void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 
         float4 Distance = Target_ - GetTransform().GetWorldPosition();
 
-        if (100 > abs(Distance.x) 
-            && 100 > Distance.y)
+        if (100 > abs(Distance.x) && 100 > Distance.y)
         {
             IsJump_ = false;
         }
     }
 }
 
-void ElderBrother::JumpEnd(const StateInfo& _Info)
-{ 
-    Alpha_ = 0.f;
-}
+void ElderBrother::JumpEnd(const StateInfo& _Info) { Alpha_ = 0.f; }
 
 void ElderBrother::AttackStart(const StateInfo& _Info) {}
 
@@ -206,14 +202,9 @@ void ElderBrother::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 }
 
-void ElderBrother::AttackEnd(const StateInfo& _Info) 
-{
-}
+void ElderBrother::AttackEnd(const StateInfo& _Info) {}
 
-void ElderBrother::DeathStart(const StateInfo& _Info) 
-{
-    Renderer_->ChangeFrameAnimation("elderBrother_death"); 
-}
+void ElderBrother::DeathStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("elderBrother_death"); }
 
 void ElderBrother::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
@@ -250,4 +241,3 @@ bool ElderBrother::DecideState(GameEngineCollision* _This, GameEngineCollision* 
 
     return true;
 }
-

@@ -2,11 +2,6 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include "StageBase.h"
 
-enum class EnventOrder
-{
-
-};
-
 class Stage21
     : public GameEngineLevel
     , public StageBase
@@ -33,7 +28,6 @@ protected:
 
 private:
     class Pontiff* Pontiff_;
-    class BossUI*  BossUI_;
 
     void PlayerCameraMove();
 };

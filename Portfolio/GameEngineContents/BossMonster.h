@@ -1,6 +1,8 @@
 #pragma once
 #include "MonsterBase.h"
+#include "BossUI.h"
 
+class BossUI;
 class BossMonster : public MonsterBase
 {
 public:
@@ -15,6 +17,7 @@ public:
     inline bool GetEventEnd() { return IsEventEnd_; }
 
 protected:
+    BossUI* BossUI_;
     bool IsEventEnd_;
 
 private:

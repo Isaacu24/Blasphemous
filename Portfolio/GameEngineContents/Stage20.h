@@ -26,7 +26,6 @@ protected:
 
 private:
     class Pope*   Pope_;
-	class BossUI* BossUI_;
 
 	void PlayerCameraMove();
 };

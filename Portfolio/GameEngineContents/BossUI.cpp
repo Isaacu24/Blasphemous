@@ -1,37 +1,34 @@
 #include "PreCompile.h"
 #include "BossUI.h"
-#include "LeftTopUI.h"
+#include "BossMonster.h"
 
-BossUI::BossUI() 
+BossUI::BossUI() {}
+
+BossUI::~BossUI() {}
+
+
+void BossUI::Start() {}
+
+void BossUI::SetBossUI()
 {
+    HPBar_ = GetLevel()->CreateActor<LeftTopUI>();
+    HPBar_->Renderer_->SetTexture("BossHPBar.png");
+    HPBar_->Renderer_->ScaleToTexture();
+    HPBar_->Renderer_->SetPivot(PIVOTMODE::LEFTTOP);
+
+    float HP = Boss_->GetHP() / 100.f;
+
+    HPBar_->Renderer_->SetUVData(HP);
+
+    BarFrame_ = GetLevel()->CreateActor<LeftTopUI>();
+    BarFrame_->Renderer_->SetTexture("Boss_HpBarFrame.png");
+    BarFrame_->Renderer_->ScaleToTexture();
+    BarFrame_->Renderer_->SetPivot(PIVOTMODE::LEFTTOP);
+
+    HPBar_->GetTransform().SetWorldPosition({-292, -300});
+    BarFrame_->GetTransform().SetWorldPosition({-350, -277});
 }
 
-BossUI::~BossUI() 
-{
-}
+void BossUI::Update(float _DeltaTime) {}
 
-void BossUI::Start()
-{
-	HPBar_ = GetLevel()->CreateActor<LeftTopUI>();
-	HPBar_->Renderer_->SetTexture("BossHPBar.png");
-	HPBar_->Renderer_->ScaleToTexture();
-	HPBar_->Renderer_->SetPivot(PIVOTMODE::LEFTTOP);
-
-	BarFrame_ = GetLevel()->CreateActor<LeftTopUI>();
-	BarFrame_->Renderer_->SetTexture("Boss_HpBarFrame.png");
-	BarFrame_->Renderer_->ScaleToTexture();
-	BarFrame_->Renderer_->SetPivot(PIVOTMODE::LEFTTOP);
-
-	float4 UIPos = { -350, -275 };
-
-	HPBar_->GetTransform().SetWorldPosition(UIPos);
-	BarFrame_->GetTransform().SetWorldPosition(UIPos);
-}
-
-void BossUI::Update(float _DeltaTime)
-{
-}
-
-void BossUI::End()
-{
-}
+void BossUI::End() {}

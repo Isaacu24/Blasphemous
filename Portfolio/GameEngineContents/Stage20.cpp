@@ -2,7 +2,6 @@
 #include "Stage20.h"
 #include "Penitent.h"
 #include "Pope.h"
-#include "BossUI.h"
 
 Stage20::Stage20() {}
 
@@ -86,10 +85,8 @@ void Stage20::Update(float _DeltaTime)
 
             else
             {
-                if (nullptr == BossUI_)
+                if (nullptr == Font_)
                 {
-                    BossUI_ = CreateActor<BossUI>();
-
                     Font_ = Stage_->CreateComponent<GameEngineFontRenderer>();
                     Font_->SetColor({0.65f, 0.65f, 0.45f, 1.0f});
                     Font_->SetScreenPostion({470, 590, -100.f});
