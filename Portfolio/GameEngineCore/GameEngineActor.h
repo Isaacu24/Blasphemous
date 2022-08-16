@@ -19,7 +19,7 @@ class GameEngineActor :
 public:
 	// constrcuter destructer
 	GameEngineActor();
-	virtual ~GameEngineActor() = 0;
+	virtual ~GameEngineActor();
 
 	// delete Function
 	GameEngineActor(const GameEngineActor& _Other) = delete;
@@ -61,6 +61,11 @@ public:
 
 	void ActorUpdate(float _DeltaTime);
 
+	bool IsRoot()
+	{
+		return nullptr == GetParent();
+	}
+
 protected:
 	virtual void Start() override;
 	virtual void Update(float _DeltaTime) override;
@@ -68,7 +73,6 @@ protected:
 
 
 private:
-
 	void SetLevel(GameEngineLevel* _ParentLevel)
 	{
 		ParentLevel = _ParentLevel;

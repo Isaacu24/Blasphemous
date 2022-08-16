@@ -17,12 +17,27 @@ protected:
     void Update(float _DeltaTime) override;
     void End() override;
 
-
 private:
     GameEngineTextureRenderer* Renderer_;
     GameEngineTextureRenderer* FXSRenderer_;
 
     GameEngineCollision* Collider_;
 
+    bool IsStrike_;
+
     void StrikeEnd(const FrameAnimation_DESC& _Info) { Death(); }
+
+    void Strike(const FrameAnimation_DESC& _Info)
+    {
+        if (68 == _Info.CurFrame)
+        {
+            Collider_->On();
+        }
+
+        else if (76 == _Info.CurFrame)
+        {
+            Collider_->Off();
+        }
+    }
+
 };

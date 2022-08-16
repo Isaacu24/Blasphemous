@@ -9,18 +9,18 @@ void ToxicCloud::Start()
 {
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
     Renderer_->CreateFrameAnimationCutTexture("pope_toxicOrb", {"pope_toxicOrb.png", 0, 35, 0.07f, false});
-    Renderer_->GetTransform().SetWorldScale({300.f, 300.f});
+    Renderer_->GetTransform().SetWorldScale({300.f, 300.f, 1.f});
     Renderer_->SetPivot(PIVOTMODE::CENTER);
 
     ExplsionV1_ = CreateComponent<GameEngineTextureRenderer>();
     ExplsionV1_->CreateFrameAnimationCutTexture("Pope_toxicCloud", {"Pope_toxicCloud.png", 0, 25, 0.1f, false});
-    ExplsionV1_->GetTransform().SetWorldScale({300.f, 300.f});
+    ExplsionV1_->GetTransform().SetWorldScale({300.f, 300.f, 1.f});
     ExplsionV1_->SetPivot(PIVOTMODE::CENTER);
     ExplsionV1_->Off();
 
     ExplsionV2_ = CreateComponent<GameEngineTextureRenderer>();
     ExplsionV2_->CreateFrameAnimationCutTexture("pope_toxicCloudv2", {"pope_toxicCloudv2.png", 0, 15, 0.07f, false});
-    ExplsionV2_->GetTransform().SetWorldScale({300.f, 300.f});
+    ExplsionV2_->GetTransform().SetWorldScale({300.f, 300.f, 1.f});
     ExplsionV2_->SetPivot(PIVOTMODE::CENTER);
     ExplsionV2_->Off();
 
@@ -51,10 +51,13 @@ void ToxicCloud::Update(float _DeltaTime)
         State_.ChangeState("Explosion");
     }
 
-    Collider_->IsCollision(CollisionType::CT_OBB2D,
-                           COLLISIONORDER::Player,
-                           CollisionType::CT_OBB2D,
-                           std::bind(&ToxicCloud::Explosion, this, std::placeholders::_1, std::placeholders::_2));
+    if (false == IsExplosion_)
+    {
+        Collider_->IsCollision(CollisionType::CT_OBB2D,
+                               COLLISIONORDER::Player,
+                               CollisionType::CT_OBB2D,
+                               std::bind(&ToxicCloud::Explosion, this, std::placeholders::_1, std::placeholders::_2));
+    }
 
     State_.Update(_DeltaTime);
 }

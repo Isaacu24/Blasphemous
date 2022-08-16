@@ -15,7 +15,7 @@ void VioletProjectile::Start()
     Renderer_->CreateFrameAnimationCutTexture("TakeBackProyectileHead",
                                               {"TakeBackProyectileHead.png", 0, 9, 0.1f, true});
     Renderer_->ChangeFrameAnimation("TakeBackProyectile");
-    Renderer_->GetTransform().SetWorldScale({60.f, 40.f});
+    Renderer_->GetTransform().SetWorldScale({60.f, 40.f, 1.f});
 
     Collider_ = CreateComponent<GameEngineCollision>();
     Collider_->ChangeOrder(COLLISIONORDER::Projectile);
@@ -43,10 +43,14 @@ void VioletProjectile::Update(float _DeltaTime)
         State_.ChangeState("Explosion");
     }
 
-    Collider_->IsCollision(CollisionType::CT_OBB2D,
-                           COLLISIONORDER::Player,
-                           CollisionType::CT_OBB2D,
-                           std::bind(&VioletProjectile::Explosion, this, std::placeholders::_1, std::placeholders::_2));
+    if (false == IsExplosion_)
+    {
+        Collider_->IsCollision(
+            CollisionType::CT_OBB2D,
+            COLLISIONORDER::Player,
+            CollisionType::CT_OBB2D,
+            std::bind(&VioletProjectile::Explosion, this, std::placeholders::_1, std::placeholders::_2));
+    }
 }
 
 
@@ -59,7 +63,7 @@ void VioletProjectile::ShootUpdate(float _DeltaTime, const StateInfo& _Info) { S
 
 void VioletProjectile::ExplosionStart(const StateInfo& _Info)
 {
-    Renderer_->GetTransform().SetWorldScale({200.f, 200.f});
+    Renderer_->GetTransform().SetWorldScale({200.f, 200.f, 1.f});
     Renderer_->ChangeFrameAnimation("TakeBackProyectileExplosion");
     Renderer_->AnimationBindEnd("TakeBackProyectileExplosion",
                                 std::bind(&VioletProjectile::ExplosionEnd, this, std::placeholders::_1));

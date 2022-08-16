@@ -16,15 +16,15 @@ void MetaSpriteWindow::Initialize(GameEngineLevel* _Level) {}
 
 void MetaSpriteWindow::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 {
-    AtlasFileButton();
-    MetaFileButton();
+    AtlasFileButton(_Level);
+    MetaFileButton(_Level);
 
     // AtlasFileButton();
     // MetaFileButton();
 }
 
 
-void MetaSpriteWindow::MetaFileButton()
+void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
 {
     if (nullptr == TargetTexture)
     {
@@ -32,7 +32,7 @@ void MetaSpriteWindow::MetaFileButton()
     }
 
 
-    if (true == ImGui::Button("MetaFileLoad"))
+    if (true == ImGui::Button("MetaFileLoad") && 0 == TargetTexture->GetCutCount())
     {
         std::string Path
             = GameEngineGUI::OpenFileDlg(GameEngineString::AnsiToUTF8Return("메타 파일 로드"), MetaDir.GetFullPath());
@@ -106,16 +106,15 @@ void MetaSpriteWindow::MetaFileButton()
                 }
 
                 TargetTexture->Cut(StartX, StartY, SizeX, SizeY);
-
                 StartPos += 1;
-                int a = 0;
             }
 
-            // GameEngineDebug::DrawTexture(TargetTexture, {0,0});
+            GameEngineActor* NewActor = _Level->CreateActor<GameEngineActor>();
 
-            for (size_t i = 0; i < TargetTexture->GetCutCount(); i++)
-            {}
+            GameEngineTextureRenderer* Renderer = NewActor->CreateComponent<GameEngineTextureRenderer>();
 
+            Renderer->SetTexture(TargetTexture, 2);
+            Renderer->ScaleToCutTexture(2);
 
             // TargetTexture->Cut();
 
@@ -125,6 +124,23 @@ void MetaSpriteWindow::MetaFileButton()
         }
     }
 
+
+    // if (nullptr != TargetTexture)
+    //{
+    //     float4 ImagePos = TargetTexture->GetScale().Half();
+
+    //    GameEngineDebug::DrawTexture(TargetTexture, ImagePos);
+
+    //    for (size_t i = 0; i < TargetTexture->GetCutCount(); i++)
+    //    {
+    //        float4 Pos = TargetTexture->GetCutPos(i);
+    //        float4 Scale = TargetTexture->GetCutScale(i);
+
+    //        GameEngineDebug::DrawBox(Pos + Scale.Half(), Scale, float4::ZERO, float4(1.0f, 0.0f, 0.0f, 0.5f));
+    //    }
+    //}
+
+
     if (false == CurMetaFolder_.empty())
     {
         ImGui::SameLine();
@@ -132,7 +148,7 @@ void MetaSpriteWindow::MetaFileButton()
     }
 }
 
-void MetaSpriteWindow::AtlasFileButton()
+void MetaSpriteWindow::AtlasFileButton(GameEngineLevel* _Level)
 {
     if (true == ImGui::Button("AtlasFileLoad"))
     {
@@ -151,3 +167,4 @@ void MetaSpriteWindow::AtlasFileButton()
         ImGui::Text(TargetTexture->GetNameCopy().c_str());
     }
 }
+

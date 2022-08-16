@@ -27,6 +27,6 @@ private:
     std::string CurMetaFile_;
     std::string CurAtlasFile_;
 
-    void MetaFileButton();
-    void AtlasFileButton();
+    void MetaFileButton(GameEngineLevel* _Level);
+    void AtlasFileButton(GameEngineLevel* _Level);
 };

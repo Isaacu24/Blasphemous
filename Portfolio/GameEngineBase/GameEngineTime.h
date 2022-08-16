@@ -15,6 +15,8 @@ public:
 		return Inst_;
 	}
 
+	// 마지막에 지우더라도 내가 의도한 순서에서 지우고 싶기 때문에
+	// pointer로 삭제하는 겁니다.
 	static void Destroy()
 	{
 		if (nullptr != Inst_)
@@ -35,7 +37,7 @@ public:
 			Inst_->DeltaTimef = 0.05f;
 		}
 
-		return Inst_->DeltaTimef;
+		return Inst_->DeltaTimef * Inst_->GlobalScale;
 	}
 
 	template<typename EnumType>
@@ -71,6 +73,11 @@ public:
 		return TimeScale_[_Key];
 	}
 
+	void SetGlobalScale(float _GlobalScale)
+	{
+		GlobalScale = _GlobalScale;
+	}
+
 protected:
 
 private:
@@ -79,6 +86,7 @@ private:
 	double DeltaTimed;
 	float DeltaTimef;
 	std::map<int, float> TimeScale_;
+	float GlobalScale;
 
 	GameEngineTime();
 	~GameEngineTime();

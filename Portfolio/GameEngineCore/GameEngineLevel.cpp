@@ -73,7 +73,6 @@ void GameEngineLevel::ActorOnEvent()
 			{
 				continue;
 			}
-			// 루트 액터만 뭔가를 하는거죠?
 			Actor->AllOnEvent();
 		}
 	}
@@ -178,6 +177,19 @@ void GameEngineLevel::Render(float _DelataTime)
 
 	GameEngineDevice::RenderEnd();
 }
+
+void GameEngineLevel::PushActor(GameEngineActor* _Actor, int _ObjectGroupIndex)
+{
+	if (nullptr != _Actor->GetParent())
+	{
+		MsgBoxAssert("부모가 존재하는 오브젝트는 루트가 될수 없습니다.");
+	}
+
+	std::list<GameEngineActor*>& Group = AllActors[_ObjectGroupIndex];
+
+	Group.push_back(_Actor);
+}
+
 
 void GameEngineLevel::Release(float _DelataTime)
 {

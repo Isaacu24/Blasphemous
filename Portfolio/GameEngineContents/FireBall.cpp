@@ -40,10 +40,13 @@ void FireBall::Update(float _DeltaTime)
         State_.ChangeState("Explosion");
     }
 
-    Collider_->IsCollision(CollisionType::CT_OBB2D,
-                           COLLISIONORDER::Player,
-                           CollisionType::CT_OBB2D,
-                           std::bind(&FireBall::Explosion, this, std::placeholders::_1, std::placeholders::_2));
+    if (false == IsExplosion_)
+    {
+        Collider_->IsCollision(CollisionType::CT_OBB2D,
+                               COLLISIONORDER::Player,
+                               CollisionType::CT_OBB2D,
+                               std::bind(&FireBall::Explosion, this, std::placeholders::_1, std::placeholders::_2));
+    }
 
     State_.Update(_DeltaTime);
 }
