@@ -44,7 +44,7 @@ protected:
     float4 Dir_;
     float  Speed_;
     bool   IsExplosion_;
-
+    
     virtual void Shoot(float _DeltaTime){};
 
 private:

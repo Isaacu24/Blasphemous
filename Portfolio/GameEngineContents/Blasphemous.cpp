@@ -430,13 +430,14 @@ void Blasphemous::CutTexture()
     GameEngineTexture::Cut("brotherhood_door_anim 1.png", 8, 2);
     GameEngineTexture::Cut("glassSwitch.png", 7, 4);
     GameEngineTexture::Cut("crow_idle_anim.png", 8, 13);
+    GameEngineTexture::Cut("reja_lateral_invertedBell_descending.png", 7, 3);
     // GameEngineTexture::Cut("breakableTwistedCorpse04.png", 5, 3);
 
     // Effect
     GameEngineTexture::Cut("BloodSplatters.png", 5, 5);
     GameEngineTexture::Cut("BloodSplattersV3.png", 4, 4);
     GameEngineTexture::Cut("BloodSplattersV4.png", 4, 4);
-
+        
     GameEngineTexture::Cut("burntFace_rayBeam_impact.png", 5, 4);
     GameEngineTexture::Cut("elderBrother_corpse.png", 4, 3);
 

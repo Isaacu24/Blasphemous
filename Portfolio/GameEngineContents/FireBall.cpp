@@ -12,7 +12,7 @@ void FireBall::Start()
     Renderer_->CreateFrameAnimationCutTexture("pope_fireBall", {"pope_fireBall.png", 0, 9, 0.1f, true});
     Renderer_->CreateFrameAnimationFolder("FireBallExplosion", FrameAnimation_DESC{"FireBallExplosion", 0.1f, false});
     Renderer_->ChangeFrameAnimation("pope_fireBall");
-    Renderer_->GetTransform().SetWorldScale({300.f, 300.f});
+    Renderer_->GetTransform().SetWorldScale({300.f, 300.f, 1.f});
     Renderer_->SetPivot(PIVOTMODE::CENTER);
 
     Collider_ = CreateComponent<GameEngineCollision>();

@@ -20,9 +20,11 @@ public:
 
 	void TeleportINStart(const StateInfo& _Info);
 	void TeleportINUpdate(float _DeltaTime, const StateInfo& _Info);
+    void TeleportINEnd(const StateInfo& _Info);
 
 	void TeleportOutStart(const StateInfo& _Info);
 	void TeleportOutUpdate(float _DeltaTime, const StateInfo& _Info);
+    void TeleportOutEnd(const StateInfo& _Info);
 
 	void AttackStart(const StateInfo& _Info);
 	void AttackUpdate(float _DeltaTime, const StateInfo& _Info);
@@ -39,6 +41,8 @@ private:
 	GameEngineTextureRenderer* IrisRenderer_; //µ¿°ø
 	GameEngineTextureRenderer* EyeRenderer_; //´«
 	GameEngineTextureRenderer* EyeLidRenderer_; //´«²¨Ç®(Animation
+
+	GameEngineCollision* Collider_;
 
 	float Time_;
 

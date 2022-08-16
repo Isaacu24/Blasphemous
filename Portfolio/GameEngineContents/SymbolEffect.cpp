@@ -20,7 +20,6 @@ void SymbolEffect::Start()
 void SymbolEffect::Update(float _DeltaTime) {}
 void SymbolEffect::End() {}
 
-
 void SymbolEffect::SetColor(COLORTYPE _Type)
 {
     switch (_Type)

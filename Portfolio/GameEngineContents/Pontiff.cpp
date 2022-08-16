@@ -81,6 +81,11 @@ void Pontiff::Start()
     BossUI_->SetBossMonster(this);
     BossUI_->SetBossUI();
     BossUI_->AllOff();
+
+    Collider_ = CreateComponent<GameEngineCollision>();
+    Collider_->ChangeOrder(COLLISIONORDER::BossMonster);
+    Collider_->GetTransform().SetWorldScale({150.f, 150.f, 1.0f});
+    Collider_->GetTransform().SetWorldMove({-30, 70});
 }
 
 void Pontiff::Update(float _DeltaTime) 

@@ -35,7 +35,11 @@ protected:
     void Update(float _DeltaTime) override;
     void End() override;
 
-    void Shoot(float _DeltaTime) override { GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime); }
+    void Shoot(float _DeltaTime) override 
+    {
+        Speed_ += _DeltaTime * 200.f;
+        GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime); 
+    }
 
 private:
 };

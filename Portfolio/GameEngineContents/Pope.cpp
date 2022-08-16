@@ -19,7 +19,7 @@ void Pope::Start()
     Renderer_->CreateFrameAnimationCutTexture("pope_appear", {"pope_appear.png", 0, 14, 0.1f, false});
     Renderer_->CreateFrameAnimationCutTexture("pope_hitReaction", {"pope_hitReaction.png", 0, 10, 0.1f, true});
     Renderer_->CreateFrameAnimationCutTexture("pope_spellCast", {"pope_spellCast.png", 0, 54, 0.1f, true});
-    Renderer_->CreateFrameAnimationCutTexture("pope_vanishing", {"pope_vanishing.png", 0, 13, 0.1f, false});
+    Renderer_->CreateFrameAnimationCutTexture("pope_vanishing", {"pope_vanishing.png", 0, 15, 0.1f, false});
     Renderer_->CreateFrameAnimationCutTexture("pope_death", {"pope_death.png", 0, 34, 0.1f, true});
     Renderer_->SetScaleModeImage();
     Renderer_->SetPivot(PIVOTMODE::BOT);
@@ -35,6 +35,7 @@ void Pope::Start()
     FXSRenderer_->GetColorData().MulColor = float4{0.3f, 0.7f, 0.99f, 1.f};
 
     Symbol_ = GetLevel()->CreateActor<SymbolEffect>();
+    Symbol_->GetTransform().SetWorldScale({1.5f, 1.5f, 1.f}); 
     Symbol_->GetTransform().SetWorldPosition({2500, -1760, static_cast<int>(ACTORORDER::BossMonster)});
     Symbol_->SetColor(COLORTYPE::PURPLE);
 

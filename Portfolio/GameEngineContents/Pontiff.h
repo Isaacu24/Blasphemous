@@ -56,6 +56,8 @@ private:
     GameEngineTextureRenderer*       Face_;
     GameEngineTextureRenderer*       MainBody_;
 
+    GameEngineCollision* Collider_;
+
     class GiantSword* GiantSword_;
 
     class SymbolEffect* Symbol_;

@@ -1,6 +1,7 @@
 #pragma once
 #include "MonsterBase.h"
 
+class Penitent;
 class NormalMonster : public MonsterBase
 {
 public:
@@ -22,6 +23,8 @@ public:
 		PatrolEnd_ = _End;
 	}
 
+	Penitent* GetPlayer();
+
 protected:
 	bool PatrolStart_;
 	bool PatrolEnd_;
@@ -30,6 +33,8 @@ protected:
 	bool IsPlayerRight_;
 
 	bool IsCollision_;
+
+	GameEngineCollision* PlayerCollision_;
 
 	virtual void PatrolMoveX(float _DeltaTime) {};
 	virtual void PatrolMoveY(float _DeltaTime) {};

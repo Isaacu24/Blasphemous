@@ -2,91 +2,106 @@
 #include "NormalMonster.h"
 
 NormalMonster::NormalMonster()
-	: IsCollision_(false)
-{
-}
+    : IsCollision_(false)
+{}
 
-NormalMonster::~NormalMonster() 
-{
+NormalMonster::~NormalMonster() {}
+
+Penitent* NormalMonster::GetPlayer() 
+{ 
+    if (nullptr == PlayerCollision_)
+    {
+        return nullptr;
+    }
+
+    Penitent* Player = dynamic_cast<Penitent*>(PlayerCollision_->GetRoot()); 
+
+    if (nullptr == Player)
+    {
+        return nullptr;
+    }
+
+    return Player;
 }
 
 bool NormalMonster::LeftObstacleCheck(int _X, int _Y)
 {
-	float4 LeftColor = ColMap_->GetCurTexture()->GetPixelToFloat4(_X, _Y);
+    float4 LeftColor = ColMap_->GetCurTexture()->GetPixelToFloat4(_X, _Y);
 
-	if (true == LeftColor.CompareInt4D(float4::BLACK))
-	{
-		return true;
-	}
+    if (true == LeftColor.CompareInt4D(float4::BLACK))
+    {
+        return true;
+    }
 
-	if (true == LeftColor.CompareInt4D(float4::MAGENTA))
-	{
-		return true;
-	}
+    if (true == LeftColor.CompareInt4D(float4::MAGENTA))
+    {
+        return true;
+    }
 
-	return false;
+    return false;
 }
 
 bool NormalMonster::RightObstacleCheck(int _X, int _Y)
 {
-	float4 RightColor = ColMap_->GetCurTexture()->GetPixelToFloat4(_X, _Y);
+    float4 RightColor = ColMap_->GetCurTexture()->GetPixelToFloat4(_X, _Y);
 
-	if (true == RightColor.CompareInt4D(float4::BLACK))
-	{
-		return true;
-	}
+    if (true == RightColor.CompareInt4D(float4::BLACK))
+    {
+        return true;
+    }
 
-	if (true == RightColor.CompareInt4D(float4::MAGENTA))
-	{
-		return true;
-	}
+    if (true == RightColor.CompareInt4D(float4::MAGENTA))
+    {
+        return true;
+    }
 
-	return false;
+    return false;
 }
 
 bool NormalMonster::LookAtPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-	if (_This->GetTransform().GetWorldPosition().x < _Other->GetTransform().GetWorldPosition().x)
-	{
-		Renderer_->GetTransform().PixLocalPositiveX();
-	}
+    if (_This->GetTransform().GetWorldPosition().x < _Other->GetTransform().GetWorldPosition().x)
+    {
+        Renderer_->GetTransform().PixLocalPositiveX();
+    }
 
-	else
-	{
-		Renderer_->GetTransform().PixLocalNegativeX();
-	}
+    else
+    {
+        Renderer_->GetTransform().PixLocalNegativeX();
+    }
 
-	return false;
+    return false;
 }
 
 bool NormalMonster::TrackPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-	State_.ChangeState("Track");
+    State_.ChangeState("Track");
 
-	LookAtPlayer(_This, _Other);
+    LookAtPlayer(_This, _Other);
 
-	float Distance = abs(_This->GetTransform().GetWorldPosition().x - _Other->GetTransform().GetWorldPosition().x);
+    PlayerCollision_ = _Other;
 
-	if (70.f > Distance)
-	{
-		IsPlayerLeft_ = false;
-		IsPlayerRight_ = false;
-		return false;
-	}
+    float Distance
+        = abs(_This->GetTransform().GetWorldPosition().x - PlayerCollision_->GetTransform().GetWorldPosition().x);
 
-	if (_This->GetTransform().GetWorldPosition().x < _Other->GetTransform().GetWorldPosition().x)
-	{
-		IsPlayerLeft_ = true;
-		IsPlayerRight_ = false;
-	}
+    if (70.f > Distance)
+    {
+        IsPlayerLeft_  = false;
+        IsPlayerRight_ = false;
+        return false;
+    }
 
-	else
-	{
-		IsPlayerRight_ = true;
-		IsPlayerLeft_ = false;
-	}
+    if (_This->GetTransform().GetWorldPosition().x < PlayerCollision_->GetTransform().GetWorldPosition().x)
+    {
+        IsPlayerLeft_  = true;
+        IsPlayerRight_ = false;
+    }
 
-	return true;
+    else
+    {
+        IsPlayerRight_ = true;
+        IsPlayerLeft_  = false;
+    }
+
+    return true;
 }
-
-

@@ -26,6 +26,7 @@ void Fool_knife::Start()
 	DetectCollider_ = CreateComponent<GameEngineCollision>();
 	DetectCollider_->ChangeOrder(COLLISIONORDER::Monster);
 	DetectCollider_->GetTransform().SetWorldScale({ 600.0f, 300.0f, 1.0f });
+    DetectCollider_->GetTransform().SetWorldMove({0, 100});
 
 	State_.CreateStateMember("Idle", std::bind(&Fool_knife::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Fool_knife::IdleStart, this, std::placeholders::_1));
 	State_.CreateStateMember("Patrol", std::bind(&Fool_knife::PatrolUpdate, this, std::placeholders::_1, std::placeholders::_2), std::bind(&Fool_knife::PatrolStart, this, std::placeholders::_1));
@@ -42,10 +43,9 @@ void Fool_knife::Start()
 
 void Fool_knife::Update(float _DeltaTime)
 {
-	State_.Update(_DeltaTime);
+    State_.Update(_DeltaTime);
 
 	IsGround_ = GroundCheck(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y + 35));
-
 	Gravity_->SetActive(!IsGround_);
 
 	if (true == DetectCollider_->IsCollision(CollisionType::CT_OBB2D, COLLISIONORDER::Player, CollisionType::CT_OBB2D,
@@ -63,6 +63,8 @@ void Fool_knife::Update(float _DeltaTime)
 			State_.ChangeState("Patrol");
 		}
 	}
+
+	GameEngineDebug::OutPutString("Fool: " + State_.GetCurStateStateName());
 }
 
 void Fool_knife::End()
@@ -159,7 +161,16 @@ void Fool_knife::TrackStart(const StateInfo& _Info)
 		return;
 	}
 
-	Renderer_->ChangeFrameAnimation("Fool_walk_knife");
+	//if (nullptr != GetPlayer()
+	//	&& GetTransform().GetWorldPosition().y > GetPlayer()->GetTransform().GetWorldPosition().y)
+ //   {
+ //       Renderer_->ChangeFrameAnimation("fool_idle_knife");
+	//}
+
+	else
+	{
+        Renderer_->ChangeFrameAnimation("Fool_walk_knife");
+	}
 }
 
 void Fool_knife::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
