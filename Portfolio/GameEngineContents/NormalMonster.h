@@ -23,7 +23,7 @@ public:
 		PatrolEnd_ = _End;
 	}
 
-	Penitent* GetPlayer();
+	//Penitent* GetPlayer();
 
 protected:
 	bool PatrolStart_;

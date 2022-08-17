@@ -115,6 +115,10 @@ public:
 
 	void Cut(UINT _StartX, UINT _StartY, UINT _SizeX, UINT _SizeY);
 
+	ID3D11Texture2D* GetTexture2D()
+	{
+		return Texture2D;
+	}
 
 protected:
 

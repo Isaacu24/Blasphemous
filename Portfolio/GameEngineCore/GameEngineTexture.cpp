@@ -126,7 +126,7 @@ void GameEngineTexture::TextureLoad(const std::string& _Path)
 	{
 		MsgBoxAssertString(_Path + "로드에 실패했습니다.");
 	}
-
+			
 	// GameEngineDevice::GetDevice()->쉬운텍스처함수
 
 	// 이건 라이브러리에서 지원해주는 함수이고

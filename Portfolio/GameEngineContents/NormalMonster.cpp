@@ -7,22 +7,22 @@ NormalMonster::NormalMonster()
 
 NormalMonster::~NormalMonster() {}
 
-Penitent* NormalMonster::GetPlayer() 
-{ 
-    if (nullptr == PlayerCollision_)
-    {
-        return nullptr;
-    }
-
-    Penitent* Player = dynamic_cast<Penitent*>(PlayerCollision_->GetRoot()); 
-
-    if (nullptr == Player)
-    {
-        return nullptr;
-    }
-
-    return Player;
-}
+//Penitent* NormalMonster::GetPlayer() 
+//{ 
+//    if (nullptr == PlayerCollision_)
+//    {
+//        return nullptr;
+//    }
+//
+//    Penitent* Player = dynamic_cast<Penitent*>(PlayerCollision_->GetRoot()); 
+//
+//    if (nullptr == Player)
+//    {
+//        return nullptr;
+//    }
+//
+//    return Player;
+//}
 
 bool NormalMonster::LeftObstacleCheck(int _X, int _Y)
 {
@@ -79,10 +79,9 @@ bool NormalMonster::TrackPlayer(GameEngineCollision* _This, GameEngineCollision*
 
     LookAtPlayer(_This, _Other);
 
-    PlayerCollision_ = _Other;
+    //PlayerCollision_ = _Other;
 
-    float Distance
-        = abs(_This->GetTransform().GetWorldPosition().x - PlayerCollision_->GetTransform().GetWorldPosition().x);
+    float Distance = abs(_This->GetTransform().GetWorldPosition().x - _Other->GetTransform().GetWorldPosition().x);
 
     if (70.f > Distance)
     {
@@ -91,7 +90,7 @@ bool NormalMonster::TrackPlayer(GameEngineCollision* _This, GameEngineCollision*
         return false;
     }
 
-    if (_This->GetTransform().GetWorldPosition().x < PlayerCollision_->GetTransform().GetWorldPosition().x)
+    if (_This->GetTransform().GetWorldPosition().x < _Other->GetTransform().GetWorldPosition().x)
     {
         IsPlayerLeft_  = true;
         IsPlayerRight_ = false;

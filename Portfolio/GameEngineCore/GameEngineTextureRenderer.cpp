@@ -11,7 +11,6 @@ void FrameAnimation::Reset()
 
 void FrameAnimation::Update(float _Delta)
 {
-
 	Info.FrameTime += _Delta;
 
 	if (nullptr != Time)
@@ -59,48 +58,48 @@ void FrameAnimation::Update(float _Delta)
 				Info.CurFrame = static_cast<unsigned int>(Info.Frames.size()) - 1;
 			}
 		}
+		Info.FrameTime -= Info.Inter;
+	}
 
-		if (nullptr != Texture)
+
+	if (nullptr != Texture)
+	{
+		ParentRenderer->CurTex = Texture;
+		ParentRenderer->SetTexture(Texture, Info.Frames[Info.CurFrame]);
+		ParentRenderer->SetPivot();
+
+		if (Texture->GetCutCount() != 0)
 		{
-			ParentRenderer->CurTex = Texture;
-			ParentRenderer->SetTexture(Texture, Info.Frames[Info.CurFrame]);
-			ParentRenderer->SetPivot();
-
-			if (Texture->GetCutCount() != 0)
+			if (ParentRenderer->ScaleMode == SCALEMODE::IMAGE)
 			{
-				if (ParentRenderer->ScaleMode == SCALEMODE::IMAGE)
-				{
-					ParentRenderer->ScaleToCutTexture(Info.Frames[Info.CurFrame]);
-				}
-			}
-			else
-			{
-				if (ParentRenderer->ScaleMode == SCALEMODE::IMAGE)
-				{
-					ParentRenderer->ScaleToTexture();
-				}
+				ParentRenderer->ScaleToCutTexture(Info.Frames[Info.CurFrame]);
 			}
 		}
-		else if (nullptr != FolderTexture)
+		else
 		{
-			ParentRenderer->FrameDataReset();
-			ParentRenderer->CurTex = FolderTexture->GetTexture(Info.Frames[Info.CurFrame]);
-			ParentRenderer->SetTexture(FolderTexture->GetTexture(Info.Frames[Info.CurFrame]));
-			ParentRenderer->SetPivot();
-
 			if (ParentRenderer->ScaleMode == SCALEMODE::IMAGE)
 			{
 				ParentRenderer->ScaleToTexture();
 			}
 		}
-		else
-		{
-			MsgBoxAssert("텍스처가 세팅되지 않은 애니메이션 입니다.");
-		}
-
-
-		Info.FrameTime -= Info.Inter;
 	}
+	else if (nullptr != FolderTexture)
+	{
+		ParentRenderer->FrameDataReset();
+		ParentRenderer->CurTex = FolderTexture->GetTexture(Info.Frames[Info.CurFrame]);
+		ParentRenderer->SetTexture(FolderTexture->GetTexture(Info.Frames[Info.CurFrame]));
+		ParentRenderer->SetPivot();
+
+		if (ParentRenderer->ScaleMode == SCALEMODE::IMAGE)
+		{
+			ParentRenderer->ScaleToTexture();
+		}
+	}
+	else
+	{
+		MsgBoxAssert("텍스처가 세팅되지 않은 애니메이션 입니다.");
+	}
+
 }
 
 GameEngineTextureRenderer::GameEngineTextureRenderer()
@@ -130,7 +129,6 @@ void GameEngineTextureRenderer::SetTextureRendererSetting()
 	ShaderResources.SetConstantBufferLink("AtlasData", FrameData);
 	ShaderResources.SetConstantBufferLink("ColorData", ColorData);
 	ShaderResources.SetConstantBufferLink("UVData", UVData);
-
 }
 
 void GameEngineTextureRenderer::Start()
@@ -169,6 +167,8 @@ void GameEngineTextureRenderer::SetPivot(PIVOTMODE _Mode)
 		break;
 	case PIVOTMODE::BOT:
 		SetPivotToVector(float4(0.0f, GetTransform().GetWorldScale().hy()));
+		break;
+	case PIVOTMODE::CUSTOM:
 		break;
 	default:
 		break;
@@ -348,8 +348,7 @@ void GameEngineTextureRenderer::ScaleToTexture()
 
 void GameEngineTextureRenderer::CurAnimationReset()
 {
-	CurAnimationSetStartPivotFrame(0);
-	// CurAni->Info.CurFrame = CurAni->Info.Start;
+	CurAni->Reset();
 }
 
 void GameEngineTextureRenderer::CurAnimationSetStartPivotFrame(int SetFrame)

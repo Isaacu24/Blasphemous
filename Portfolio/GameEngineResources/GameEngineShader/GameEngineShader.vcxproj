@@ -135,6 +135,7 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
+    <FxCompile Include="RenderOption.fx" />
     <FxCompile Include="Texture.hlsl" />
     <FxCompile Include="TextureAtlas.hlsl" />
     <FxCompile Include="TransformHeader.fx">

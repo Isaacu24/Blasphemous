@@ -297,6 +297,9 @@
     <ClCompile Include="GameEngineCoreDebug.cpp">
       <Filter>Debug</Filter>
     </ClCompile>
+    <ClCompile Include="imgui_demo.cpp">
+      <Filter>GUI\IMGUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">

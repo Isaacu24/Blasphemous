@@ -15,7 +15,6 @@ void GameEngineDefaultRenderer::Start()
 {
 	GameEngineRenderer::Start();
 
-	// 뭔가 또 할일이 있다면 여기서 해라.
 }
 
 void GameEngineDefaultRenderer::SetPipeLine(const std::string& _Name)
@@ -33,6 +32,11 @@ void GameEngineDefaultRenderer::SetPipeLine(const std::string& _Name)
 	if (true == ShaderResources.IsConstantBuffer("TRANSFORMDATA"))
 	{
 		ShaderResources.SetConstantBufferLink("TRANSFORMDATA", &GetTransformData(), sizeof(GetTransformData()));
+	}
+
+	if (true == ShaderResources.IsConstantBuffer("RENDEROPTION"))
+	{
+		ShaderResources.SetConstantBufferLink("RENDEROPTION", &Option, sizeof(Option));
 	}
 
 }

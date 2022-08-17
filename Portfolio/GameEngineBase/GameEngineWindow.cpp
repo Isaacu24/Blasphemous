@@ -127,6 +127,7 @@ void GameEngineWindow::ShowGameWindow()
     }
 
     ShowWindow(hWnd_, SW_SHOW);
+
     UpdateWindow(hWnd_);
 }
 

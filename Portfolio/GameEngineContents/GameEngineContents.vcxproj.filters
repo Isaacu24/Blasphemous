@@ -194,6 +194,9 @@
     <ClInclude Include="SideFence.h">
       <Filter>Actor\Object</Filter>
     </ClInclude>
+    <ClInclude Include="MetaTextureRenderer.h">
+      <Filter>Content</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -391,6 +394,9 @@
     </ClCompile>
     <ClCompile Include="SideFence.cpp">
       <Filter>Actor\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="MetaTextureRenderer.cpp">
+      <Filter>Content</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
