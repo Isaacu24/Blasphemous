@@ -134,11 +134,11 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
 
                     PivotX = atof(XString.c_str());
                     PivotY = atof(YString.c_str());
+
+                    MetaData Data = {StartX, StartY, SizeX, SizeY, PivotX, PivotY};
+
+                    MetaDatas_.push_back(Data);
                 }
-
-                MetaData Data = {StartX, StartY, SizeX, SizeY, PivotX, PivotY};
-
-                MetaDatas_.push_back(Data);
 
                 std::string DebugText;
                 DebugText += "StartX : " + std::to_string(StartX) + ",";
@@ -152,18 +152,14 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
                 GameEngineDebug::OutPutString(DebugText.c_str());
                 StartPos += 1;
             }
-            // 1. 메타정보만 로딩하여 vector에 저장
-            // 2. 로딩된 텍스처가 이미 잘려있다면, 그 vector의 정보를 사용하지 않음.
-            // 3. 안잘려있다면, for문을 돌아서 자름.
 
             if (0 == TargetTexture->GetCutCount())
             {
                 for (auto& [PosX, PosY, Width, Height, PivotX, PivotY] : MetaDatas_)
                 {
-                    TargetTexture->Cut(PosX, PosY, Width, Height);
+                    TargetTexture->Cut(PosX, TargetTexture->GetScale().y - PosY - Height, Width, Height);
                 }
             }
-
 
             GameEngineActor* NewActor = _Level->CreateActor<GameEngineActor>();
 
@@ -208,7 +204,6 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
             GameEngineDebug::DrawBox(Pos, Scale, float4::ZERO, float4(1.0f, 0.0f, 0.0f, 0.5f));
         }
     }
-
 
     if (false == CurMetaFolder_.empty())
     {
@@ -274,7 +269,6 @@ void MetaSpriteWindow::AtlasFileButton(GameEngineLevel* _Level)
 //     {
 //         Renderer->GetTransform().SetLocalPosition({-(Width), (Height)});
 //     }
-// z
 // }
 //
 //
