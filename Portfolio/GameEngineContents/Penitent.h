@@ -107,7 +107,6 @@ private:
     float4                            ColScale_;
     GameEngineCollision*              AttackCollider_;  // 공격 범위
     std::vector<GameEngineCollision*> DebugColliders_;
-    GameEngineTextureRenderer*        Renderer_;
     GameEngineTextureRenderer*        ColMap_;
     class GameEngineFontRederer*      Font_;
 

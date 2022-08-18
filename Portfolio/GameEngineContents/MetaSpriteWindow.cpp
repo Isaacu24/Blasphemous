@@ -7,9 +7,7 @@
 #include "MetaSpriteManager.h"
 
 MetaSpriteWindow::MetaSpriteWindow()
-    : CurMetaFolder_{}
-    , CurAtlasFolder_{}
-    , CurMetaFile_{}
+    : CurMetaFile_{}
     , CurAtlasFile_{}
 {}
 
@@ -70,7 +68,7 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
                 AnimationName, {ImageName, 0, static_cast<unsigned int>(MetaDatas_.size() - 1), 0.1f, true});
             Renderer->ChangeFrameAnimation(AnimationName);
 
-            Renderer->SetMetaData(MetaDatas_);
+            Renderer->SetCurData(MetaDatas_);
 
             MetaSpriteManager::Inst_->Insert(AnimationName, MetaDatas_);
         }
@@ -108,10 +106,10 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
         }
     }
 
-    if (false == CurMetaFolder_.empty())
+    if (false == CurMetaFile_.empty())
     {
         ImGui::SameLine();
-        ImGui::Text(CurMetaFolder_.c_str());
+        ImGui::Text(CurMetaFile_.c_str());
     }
 }
 
@@ -131,7 +129,7 @@ void MetaSpriteWindow::AtlasFileButton(GameEngineLevel* _Level)
         }
     }
 
-    if (false == CurAtlasFolder_.empty())
+    if (false == CurAtlasFile_.empty())
     {
         ImGui::SameLine();
         ImGui::Text(TargetTexture->GetNameCopy().c_str());
@@ -206,7 +204,7 @@ void MetaSpriteWindow::MetaParsing(const std::string& _AllText)
     size_t StartPos       = 0;
     size_t AnimationStart = 0;
 
-    while (true)
+    while (true)    
     {
         AnimationStart = _AllText.find("second:", AnimationStart);
 

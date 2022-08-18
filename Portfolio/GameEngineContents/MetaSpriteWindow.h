@@ -26,12 +26,7 @@ protected:
 private:
     int                  CurFrame;
     MetaTextureRenderer* Renderer;
-
     // GameEngineTextureRenderer* Renderer;
-
-
-    std::string CurMetaFolder_;
-    std::string CurAtlasFolder_;
 
     std::string CurMetaFile_;
     std::string CurAtlasFile_;
@@ -49,7 +44,4 @@ private:
 
     std::vector<GameEngineTexture*> Textures_;
     std::vector<std::vector<MetaData>> AllDatas_;
-
-    // void MetaFileButton();
-    // void AtlasFileButton();
 };

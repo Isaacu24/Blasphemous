@@ -14,15 +14,20 @@ public:
 
     void MetaSetPivot();
 
-    //void SetMetaData(float4 _Pivot, float _TextureSizeX, float _TextureSizeY)
+    // void SetMetaData(float4 _Pivot, float _TextureSizeX, float _TextureSizeY)
     //{
-    //    Pivot_ = _Pivot;
-    //    SizeX_ = _TextureSizeX;
-    //    SizeY_ = _TextureSizeY;
-    //}
+    //     Pivot_ = _Pivot;
+    //     SizeX_ = _TextureSizeX;
+    //     SizeY_ = _TextureSizeY;
+    // }
 
-    void SetMetaData(std::vector<MetaData>& _MetaDatas) { MetaDatas_ = _MetaDatas; }
+    inline void SetCurData(std::vector<MetaData>& _MetaData) { CurData_ = _MetaData; }
 
+    void CreateMetaAnimation(const std::string&         _AnimationName,
+                             const FrameAnimation_DESC& _Desc,
+                             std::vector<MetaData>&     _MetaDatas);
+
+    void ChangeMetaAnimation(const std::string& _AnimationName);
 
 protected:
     void Update(float _Delta) override;
@@ -34,5 +39,7 @@ private:
     float SizeX_;
     float SizeY_;
 
-    std::vector<MetaData> MetaDatas_;
+    std::vector<MetaData> CurData_;
+
+    std::map<std::string, std::vector<MetaData>> AllMetaData_;
 };

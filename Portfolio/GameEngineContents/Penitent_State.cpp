@@ -2,15 +2,18 @@
 #include "Penitent.h"
 #include "PlayerUI.h"
 #include "AttackCorpseEffecter.h"
+#include "MetaTextureRenderer.h"
+#include "MetaSpriteManager.h"
 
-
-void Penitent::IdleStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("penintent_idle"); }
+void Penitent::IdleStart(const StateInfo& _Info) 
+{ 
+    MetaRenderer_->ChangeMetaAnimation("penintent_idle_anim 1"); }
 
 void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     if (20000 < GameEngineInput::GetInst()->GetThumbLX() || GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
     {
-        Renderer_->GetTransform().PixLocalPositiveX();
+        GetTransform().PixLocalPositiveX();
 
         if (false == RightObstacleCheck())
         {
@@ -21,11 +24,11 @@ void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 
     if (0 > GameEngineInput::GetInst()->GetThumbLX() || GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
     {
-        Renderer_->GetTransform().PixLocalNegativeX();
+        GetTransform().PixLocalNegativeX();
 
         if (false == LeftObstacleCheck())
         {
-            Dir_ = GetTransform().GetLeftVector();
+            Dir_ = -(GetTransform().GetLeftVector());
             GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime);
         }
     }
@@ -93,7 +96,10 @@ void Penitent::DangleUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Penitent::DangleEnd(const StateInfo& _Info) {}
 
-void Penitent::FreezeStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("penintent_idle"); }
+void Penitent::FreezeStart(const StateInfo& _Info) 
+{
+    MetaRenderer_->ChangeMetaAnimation("penintent_idle_anim 1"); 
+}
 
 void Penitent::FreezeUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
@@ -121,18 +127,23 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 
 
-void Penitent::JumpStart(const StateInfo& _Info) { IsJump_ = true; }
+void Penitent::JumpStart(const StateInfo& _Info) 
+{ 
+    IsJump_ = true; 
+    
+    MetaRenderer_->ChangeMetaAnimation("penitent_jump_anim");
+}
 
 
 void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     JumpTime_ += _DeltaTime;
-
+        
     Dir_ = GetTransform().GetUpVector() * 2;
 
     if (20000 < GameEngineInput::GetInst()->GetThumbLX() || GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
     {
-        Renderer_->GetTransform().PixLocalPositiveX();
+        GetTransform().PixLocalPositiveX();
 
         if (false == RightObstacleCheck())
         {
@@ -142,11 +153,11 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 
     if (0 > GameEngineInput::GetInst()->GetThumbLX() || GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
     {
-        Renderer_->GetTransform().PixLocalNegativeX();
+        GetTransform().PixLocalNegativeX();
 
         if (false == LeftObstacleCheck())
         {
-            Dir_ += GetTransform().GetLeftVector();
+            Dir_ -= GetTransform().GetLeftVector();
         }
     }
 

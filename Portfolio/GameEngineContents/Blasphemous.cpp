@@ -19,6 +19,8 @@
 #include "Stage30.h"
 #include "MetaLevel.h"
 
+#include "MetaSpriteManager.h"
+
 #pragma comment(lib, "GameEngineBase.lib")
 
 
@@ -143,7 +145,7 @@ void Blasphemous::Update(float _DeltaTime)
     }
 }
 
-void Blasphemous::End() {}
+void Blasphemous::End() { MetaSpriteManager::Destroy(); }
 
 void Blasphemous::LoadResources()
 {
@@ -257,6 +259,12 @@ void Blasphemous::LoadResources()
     LoadBossMonster();
     LoadNormalMonster();
     LoadEffect();
+
+    {
+        GameEngineDirectory Dir;
+        MovePath(Dir, {"ContentsResources", "Resources", "MetaAtlas", "Penitent"});
+        MetaSpriteManager::Inst_->Load(Dir);
+    }
 }
 
 //¸Ê ÅØ½ºÃÄ
@@ -348,11 +356,10 @@ void Blasphemous::LoadNormalMonster()
         GameEngineFolderTexture::Load(Dir.GetFullPath());
     }
 
-    
+
     {
         GameEngineDirectory Dir;
-        MovePath(Dir,
-                 {"ContentsResources", "Resources", "Sprite", "Effect", "FireBallExplosion"});
+        MovePath(Dir, {"ContentsResources", "Resources", "Sprite", "Effect", "FireBallExplosion"});
 
         GameEngineFolderTexture::Load(Dir.GetFullPath());
     }
@@ -376,13 +383,13 @@ void Blasphemous::LoadEffect()
 void Blasphemous::CutTexture()
 {
     // Player
-    GameEngineTexture::Cut("penintent_idle.png", 8, 2);
-    //GameEngineTexture::Cut("penitent_sheathedIdle.png", 7, 7);
-    //GameEngineTexture::Cut("penitent_verticalattack_LVL3_anim.png", 8, 3);
-    //GameEngineTexture::Cut("penitent_climbledge_reviewed.png", 4, 3);
-    //GameEngineTexture::Cut("penitent_dodge_attack_LVL3.png", 8, 4);
-    //GameEngineTexture::Cut("penitent_falling_ahead_anim 1.png", 3, 2);
-    //GameEngineTexture::Cut("penitent_jumpoff_new.png", 3, 2);
+    // GameEngineTexture::Cut("penintent_idle.png", 8, 2);
+    // GameEngineTexture::Cut("penitent_sheathedIdle.png", 7, 7);
+    // GameEngineTexture::Cut("penitent_verticalattack_LVL3_anim.png", 8, 3);
+    // GameEngineTexture::Cut("penitent_climbledge_reviewed.png", 4, 3);
+    // GameEngineTexture::Cut("penitent_dodge_attack_LVL3.png", 8, 4);
+    // GameEngineTexture::Cut("penitent_falling_ahead_anim 1.png", 3, 2);
+    // GameEngineTexture::Cut("penitent_jumpoff_new.png", 3, 2);
     // GameEngineTexture::Cut("penitent_respawning_hw.png", 6, 6);
 
     // BossMonster
@@ -437,7 +444,7 @@ void Blasphemous::CutTexture()
     GameEngineTexture::Cut("BloodSplatters.png", 5, 5);
     GameEngineTexture::Cut("BloodSplattersV3.png", 4, 4);
     GameEngineTexture::Cut("BloodSplattersV4.png", 4, 4);
-        
+
     GameEngineTexture::Cut("burntFace_rayBeam_impact.png", 5, 4);
     GameEngineTexture::Cut("elderBrother_corpse.png", 4, 3);
 

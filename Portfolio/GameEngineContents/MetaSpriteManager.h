@@ -6,6 +6,15 @@ class MetaSpriteManager
 public: 
 	static MetaSpriteManager* Inst_;
 
+	static void Destroy() 
+	{
+        if (nullptr != Inst_)
+        {
+            delete Inst_;
+            Inst_ = nullptr;
+        }
+	}
+
 public:
 	MetaSpriteManager();
 	~MetaSpriteManager();
@@ -18,9 +27,20 @@ public:
 	std::vector<MetaData>& Insert(const std::string& _Name, std::vector<MetaData>& _Datas);
     std::vector<MetaData>& Find(const std::string& _Name);
 
+	void Load(GameEngineDirectory _Dir);
+
 protected:
 
 private:
     std::map<std::string, std::vector<MetaData>> MetaAnimations_;
+
+    std::vector<MetaData> MetaDatas_;
+
+    std::vector<GameEngineTexture*>    Textures_;
+    std::vector<std::vector<MetaData>> AllDatas_;
+
+	void MetaParsing(const std::string& _AllText);
+
+    void CutAllTexture();
 };
 

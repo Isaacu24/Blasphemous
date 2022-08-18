@@ -13,7 +13,7 @@ Penitent::Penitent()
     , Gravity_(nullptr)
     , Collider_(nullptr)
     , ColScale_(80, 150)
-    , Renderer_(nullptr)
+    , MetaRenderer_(nullptr)
     , ColMap_(nullptr)
     , HP_(100)
     , MP_(100)
@@ -115,28 +115,38 @@ void Penitent::Start()
     PlayerUI_ = GetLevel()->CreateActor<PlayerUI>();
     PlayerUI_->SetLevelOverOn();
 
-    GetTransform().SetLocalScale({1, 1, 1});
+    GetTransform().SetLocalScale({2, 2, 1});
+
+    MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
-        Renderer_ = CreateComponent<GameEngineTextureRenderer>();
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penintent_idle_anim 1");
 
-        Renderer_->GetTransform().SetWorldScale({250, 250});
-        Renderer_->CreateFrameAnimationCutTexture("penintent_idle", {"penintent_idle.png", 0, 12, 0.1f, true});
-        Renderer_->CreateFrameAnimationCutTexture("penitent_sheathedIdle",
-                                                  {"penitent_sheathedIdle.png", 0, 45, 0.1f, true});
-        Renderer_->CreateFrameAnimationCutTexture("penitent_verticalattack_LVL3_anim",
-                                                  {"penitent_verticalattack_LVL3_anim.png", 0, 23, 0.05f, true});
-        Renderer_->CreateFrameAnimationCutTexture("penitent_climbledge_reviewed",
-                                                  {"penitent_climbledge_reviewed.png", 0, 11, 0.1f, true});
-        Renderer_->CreateFrameAnimationCutTexture("penitent_dodge_attack_LVL3",
-                                                  {"penitent_dodge_attack_LVL3.png", 0, 26, 0.1f, true});
-        Renderer_->CreateFrameAnimationCutTexture("penitent_falling_ahead_anim 1",
-                                                  {"penitent_falling_ahead_anim 1.png", 0, 5, 0.1f, true});
-        Renderer_->CreateFrameAnimationCutTexture("penitent_jumpoff_new",
-                                                  {"penitent_jumpoff_new.png", 0, 4, 0.1f, true});
-
-        Renderer_->SetPivot(PIVOTMODE::BOT);
+        MetaRenderer_->CreateMetaAnimation(
+            "penintent_idle_anim 1",
+            {"penintent_idle_anim 1.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            Data);
     }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_aura_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_aura_anim",
+            {"penitent_aura_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            Data);
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_jump_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_jump_anim",
+            {"penitent_jump_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            Data);
+    }
+
+    MetaRenderer_->SetPivot(PIVOTMODE::BOT);
 
     State_.CreateStateMember("Freeze",
                              std::bind(&Penitent::FreezeUpdate, this, std::placeholders::_1, std::placeholders::_2),
@@ -175,8 +185,6 @@ void Penitent::Start()
 
     State_.ChangeState("Idle");
 
-    MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
-
     PlayerUI_->SetTear(Tear_);
 }
 
@@ -200,12 +208,6 @@ void Penitent::Update(float _DeltaTime)
     if (true == GameEngineInput::GetInst()->IsDownKey("FreeCamera"))
     {
         // GetLevel()->GetMainCameraActor()->FreeCameraModeOnOff();
-
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penintet_open_wooden_chest_anim");
-        MetaRenderer_->SetMetaData(Data);
-
-        MetaRenderer_->CreateFrameAnimationCutTexture("penintet_open_wooden_chest_anim", {"penintet_open_wooden_chest_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true});
-        MetaRenderer_->ChangeFrameAnimation("penintet_open_wooden_chest_anim");
     }
 
     if (false == IsInventory_ && true == GameEngineInput::GetInst()->IsDownKey("InventoryOn"))
