@@ -197,6 +197,9 @@
     <ClInclude Include="MetaTextureRenderer.h">
       <Filter>Content</Filter>
     </ClInclude>
+    <ClInclude Include="MetaSpriteManager.h">
+      <Filter>Content</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -396,6 +399,9 @@
       <Filter>Actor\Object</Filter>
     </ClCompile>
     <ClCompile Include="MetaTextureRenderer.cpp">
+      <Filter>Content</Filter>
+    </ClCompile>
+    <ClCompile Include="MetaSpriteManager.cpp">
       <Filter>Content</Filter>
     </ClCompile>
   </ItemGroup>

@@ -79,3 +79,14 @@ namespace
         }
     }
 }
+
+struct MetaData
+{
+    int   Index;
+    int   PosX;
+    int   PosY;
+    int   Width;
+    int   Height;
+    float PivotX;
+    float PivotY;
+};

@@ -22,10 +22,6 @@ void MetaSpriteWindow::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
     MetaFileButton(_Level);
 
     ImGui::ShowDemoWindow();
-
-
-    // AtlasFileButton();
-    // MetaFileButton();
 }
 
 
@@ -49,10 +45,27 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
 
             std::string AllText = LoadFile.GetString();
 
-            size_t StartPos = 0;
+            size_t StartPos       = 0;
+            size_t AnimationStart = 0;
 
             while (true)
             {
+                AnimationStart = AllText.find("second:", AnimationStart);
+
+                if (AnimationStart == std::string::npos)
+                {
+                    break;
+                }
+
+                size_t AnimationEnd = AllText.find("externalObjects", AnimationStart);
+
+                if (AnimationEnd == std::string::npos)
+                {
+                    break;
+                }
+
+                std::string AnimationString = AllText.substr(AnimationStart, AnimationEnd - AnimationStart);
+
                 StartPos = AllText.find("rect:", StartPos);
 
                 if (StartPos == std::string::npos)
@@ -69,6 +82,7 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
 
                 std::string CutDataString = AllText.substr(StartPos, EndPos - StartPos);
 
+                int   Index  = 0;
                 int   StartX = 0;
                 int   StartY = 0;
                 int   SizeX  = 0;
@@ -77,12 +91,29 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
                 float PivotY = 0;
 
                 {
+                    std::string FindString   = "second:";
+                    size_t      DataStartPos = AnimationString.find(FindString);
+                    size_t      DataEndpos   = AnimationString.find("\n", DataStartPos);
+
+                    std::string IndexString = AnimationString.substr(DataStartPos, DataEndpos);
+
+                    size_t UnderBarPos = IndexString.rfind("_");
+
+                    int Size = IndexString.size();
+
+                    IndexString = IndexString.substr(UnderBarPos + 1, IndexString.size() - UnderBarPos);
+
+                    Index = atoi(IndexString.c_str());
+                }
+
+                {
                     std::string FindString   = "x:";
                     size_t      DataStartPos = CutDataString.find(FindString);
                     size_t      DataEndpos   = CutDataString.find("\n", DataStartPos);
                     std::string XString      = CutDataString.substr(DataStartPos + FindString.size(),
                                                                DataEndpos - DataStartPos + FindString.size());
-                    StartX                   = atoi(XString.c_str());
+
+                    StartX = atoi(XString.c_str());
                 }
 
                 {
@@ -135,12 +166,13 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
                     PivotX = atof(XString.c_str());
                     PivotY = atof(YString.c_str());
 
-                    MetaData Data = {StartX, StartY, SizeX, SizeY, PivotX, PivotY};
+                    MetaData Data = {Index, StartX, StartY, SizeX, SizeY, PivotX, PivotY};
 
                     MetaDatas_.push_back(Data);
                 }
 
                 std::string DebugText;
+                DebugText += "Animation : " + std::to_string(Index) + ",";
                 DebugText += "StartX : " + std::to_string(StartX) + ",";
                 DebugText += "StartY : " + std::to_string(StartY) + ",";
                 DebugText += "SizeX : " + std::to_string(SizeX) + ",";
@@ -151,37 +183,47 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
 
                 GameEngineDebug::OutPutString(DebugText.c_str());
                 StartPos += 1;
+                AnimationStart += 1;
             }
 
             if (0 == TargetTexture->GetCutCount())
             {
-                for (auto& [PosX, PosY, Width, Height, PivotX, PivotY] : MetaDatas_)
+                for (auto& [Index, PosX, PosY, Width, Height, PivotX, PivotY] : MetaDatas_)
                 {
                     TargetTexture->Cut(PosX, TargetTexture->GetScale().y - PosY - Height, Width, Height);
                 }
             }
 
-            GameEngineActor* NewActor = _Level->CreateActor<GameEngineActor>();
+            GameEngineActor* PreviewActor = _Level->CreateActor<GameEngineActor>();
+            PreviewActor->GetTransform().SetLocalPosition(float4{-300.0f, 0.0f, 0.0f});
+            Renderer = PreviewActor->CreateComponent<MetaTextureRenderer>();
 
-            NewActor->GetTransform().SetLocalPosition(float4{-300.0f, 0.0f, 0.0f});
+            std::string FileName = std::filesystem::path{Path}.filename().string();
 
-            Renderer = NewActor->CreateComponent<MetaTextureRenderer>();
-            Renderer->SetTexture(TargetTexture, 0);
-            Renderer->SetSamplingModePoint();
-            Renderer->ScaleToCutTexture(0);
+            std::string ImageName     = std::filesystem::path{FileName}.replace_extension("").string(); //Remove .meta
+            std::string AnimationName = std::filesystem::path{ImageName}.replace_extension("").string(); //Remove .png
+
+            Renderer->CreateFrameAnimationCutTexture(
+                AnimationName, {ImageName, 0, static_cast<unsigned int>(MetaDatas_.size() - 1), 0.1f, true});
+            Renderer->ChangeFrameAnimation(AnimationName);
+
+            Renderer->SetMetaData(MetaDatas_);
+
+            // Renderer->SetTexture(TargetTexture, 0);
+            // Renderer->SetSamplingModePoint();
+            // Renderer->ScaleToCutTexture(0);
         }
     }
 
-    if (nullptr != Renderer && nullptr != TargetTexture && 0 != TargetTexture->GetCutCount())
-    {
-        ImGui::SliderInt("ImageIndex", &CurFrame, 0, TargetTexture->GetCutCount() - 1);
-        Renderer->SetTexture(TargetTexture, CurFrame);
-        Renderer->ScaleToCutTexture(CurFrame);
-        // MetaSetPivot();
-        Renderer->SetMetaData({MetaDatas_[CurFrame].PivotX, MetaDatas_[CurFrame].PivotY},
-                              TargetTexture->GetCutScale(CurFrame).x,
-                              TargetTexture->GetCutScale(CurFrame).y);
-    }
+    // if (nullptr != Renderer && nullptr != TargetTexture && 0 != TargetTexture->GetCutCount())
+    //{
+    //     ImGui::SliderInt("ImageIndex", &CurFrame, 0, TargetTexture->GetCutCount() - 1);
+    //     Renderer->SetTexture(TargetTexture, CurFrame);
+    //     Renderer->ScaleToCutTexture(CurFrame);
+    //     Renderer->SetMetaData({MetaDatas_[CurFrame].PivotX, MetaDatas_[CurFrame].PivotY},
+    //                           TargetTexture->GetCutScale(CurFrame).x,
+    //                           TargetTexture->GetCutScale(CurFrame).y);
+    // }
 
 
     if (nullptr != TargetTexture)
@@ -221,9 +263,9 @@ void MetaSpriteWindow::AtlasFileButton(GameEngineLevel* _Level)
 
         if (false == Path.empty())
         {
-            auto fileName = std::filesystem::path{Path}.filename().string();
-            auto pTexture = GameEngineRes<GameEngineTexture>::Find(fileName);
-            TargetTexture = (nullptr != pTexture) ? pTexture : GameEngineTexture::Load(Path);
+            std::string        fileName = std::filesystem::path{Path}.filename().string();
+            GameEngineTexture* pTexture = GameEngineRes<GameEngineTexture>::Find(fileName);
+            TargetTexture               = (nullptr != pTexture) ? pTexture : GameEngineTexture::Load(Path);
         }
     }
 
@@ -233,6 +275,11 @@ void MetaSpriteWindow::AtlasFileButton(GameEngineLevel* _Level)
         ImGui::Text(TargetTexture->GetNameCopy().c_str());
     }
 }
+
+void MetaSpriteWindow::MetaFolderButton(GameEngineLevel* _Level) {}
+
+void MetaSpriteWindow::AtlasFolderButton(GameEngineLevel* _Level) {}
+
 //
 // void MetaSpriteWindow::MetaSetPivot()
 //{
@@ -272,3 +319,5 @@ void MetaSpriteWindow::AtlasFileButton(GameEngineLevel* _Level)
 // }
 //
 //
+
+//폴더 채로 가져오는 함수

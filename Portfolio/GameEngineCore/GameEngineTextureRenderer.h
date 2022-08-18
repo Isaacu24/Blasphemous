@@ -12,7 +12,7 @@ enum class PIVOTMODE
 enum class SCALEMODE
 {
 	IMAGE,
-	CUSTOM,
+	CUSTOM,	
 };
 
 struct ColorData
@@ -253,7 +253,7 @@ public:
 
 		FrameAni[Name].Time = _Function;
 	}
-
+		
 protected:
 	void Start() override;
 
@@ -261,11 +261,18 @@ protected:
 
 	void Update(float _Delta) override;
 
+
+	int GetCurFrame()
+	{
+		return CurAni->Info.CurFrame;
+	}
+
 private:
 	PIVOTMODE PivotMode;
 	SCALEMODE ScaleMode;
 	float ScaleRatio;
 
+	FrameAnimation* CurAni;
 	GameEngineTexture* CurTex;
 	float4 FrameData;
 
@@ -274,7 +281,6 @@ private:
 	ColorData ColorData;
 
 	std::map<std::string, FrameAnimation> FrameAni;
-	FrameAnimation* CurAni;
 
 	void FrameDataReset();
 };

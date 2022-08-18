@@ -14,12 +14,14 @@ public:
 
     void MetaSetPivot();
 
-    void SetMetaData(float4 _Pivot,  float _TextureSizeX, float _TextureSizeY) 
-    { 
-        Pivot_ = _Pivot; 
-        SizeX_    = _TextureSizeX;
-        SizeY_    = _TextureSizeY;
-    }
+    //void SetMetaData(float4 _Pivot, float _TextureSizeX, float _TextureSizeY)
+    //{
+    //    Pivot_ = _Pivot;
+    //    SizeX_ = _TextureSizeX;
+    //    SizeY_ = _TextureSizeY;
+    //}
+
+    void SetMetaData(std::vector<MetaData>& _MetaDatas) { MetaDatas_ = _MetaDatas; }
 
 
 protected:
@@ -31,4 +33,6 @@ private:
 
     float SizeX_;
     float SizeY_;
+
+    std::vector<MetaData> MetaDatas_;
 };

@@ -1,16 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineGUI.h>
 
-struct MetaData
-{
-    int PosX; 
-    int PosY; 
-    int Width;
-    int Height;
-    float PivotX;
-    float PivotY;
-};
-
 class GameEngineTextureRenderer;
 class MetaTextureRenderer;
 class MetaSpriteWindow : public GameEngineGUIWindow
@@ -27,7 +17,7 @@ public:
     GameEngineDirectory MetaDir;
     GameEngineTexture*  TargetTexture;
 
-    //void MetaSetPivot();
+    // void MetaSetPivot();
 
 protected:
     void Initialize(class GameEngineLevel* _Level) override;
@@ -37,7 +27,7 @@ private:
     int                  CurFrame;
     MetaTextureRenderer* Renderer;
 
-    //GameEngineTextureRenderer* Renderer;
+    // GameEngineTextureRenderer* Renderer;
 
 
     std::string CurMetaFolder_;
@@ -48,6 +38,9 @@ private:
 
     void MetaFileButton(GameEngineLevel* _Level);
     void AtlasFileButton(GameEngineLevel* _Level);
+
+    void MetaFolderButton(GameEngineLevel* _Level);
+    void AtlasFolderButton(GameEngineLevel* _Level);
 
     std::vector<MetaData> MetaDatas_;
 
