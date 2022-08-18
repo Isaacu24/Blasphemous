@@ -2,6 +2,8 @@
 #include "PreCompile.h"
 #include "GravityComponent.h"
 #include "PlayerUI.h"
+#include "MetaTextureRenderer.h"
+#include "MetaSpriteManager.h"
 
 Penitent* Penitent::MainPlayer_ = nullptr;
 
@@ -119,8 +121,7 @@ void Penitent::Start()
         Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 
         Renderer_->GetTransform().SetWorldScale({250, 250});
-        Renderer_->CreateFrameAnimationCutTexture("penintent_idle_anim",
-                                                  {"penintent_idle_anim.png", 0, 12, 0.1f, true});
+        Renderer_->CreateFrameAnimationCutTexture("penintent_idle", {"penintent_idle.png", 0, 12, 0.1f, true});
         Renderer_->CreateFrameAnimationCutTexture("penitent_sheathedIdle",
                                                   {"penitent_sheathedIdle.png", 0, 45, 0.1f, true});
         Renderer_->CreateFrameAnimationCutTexture("penitent_verticalattack_LVL3_anim",
@@ -174,6 +175,8 @@ void Penitent::Start()
 
     State_.ChangeState("Idle");
 
+    MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
+
     PlayerUI_->SetTear(Tear_);
 }
 
@@ -196,7 +199,13 @@ void Penitent::Update(float _DeltaTime)
 
     if (true == GameEngineInput::GetInst()->IsDownKey("FreeCamera"))
     {
-        GetLevel()->GetMainCameraActor()->FreeCameraModeOnOff();
+        // GetLevel()->GetMainCameraActor()->FreeCameraModeOnOff();
+
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penintet_open_wooden_chest_anim");
+        MetaRenderer_->SetMetaData(Data);
+
+        MetaRenderer_->CreateFrameAnimationCutTexture("penintet_open_wooden_chest_anim", {"penintet_open_wooden_chest_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true});
+        MetaRenderer_->ChangeFrameAnimation("penintet_open_wooden_chest_anim");
     }
 
     if (false == IsInventory_ && true == GameEngineInput::GetInst()->IsDownKey("InventoryOn"))

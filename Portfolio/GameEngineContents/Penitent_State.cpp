@@ -4,7 +4,7 @@
 #include "AttackCorpseEffecter.h"
 
 
-void Penitent::IdleStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("penintent_idle_anim"); }
+void Penitent::IdleStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("penintent_idle"); }
 
 void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -93,7 +93,7 @@ void Penitent::DangleUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Penitent::DangleEnd(const StateInfo& _Info) {}
 
-void Penitent::FreezeStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("penintent_idle_anim"); }
+void Penitent::FreezeStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("penintent_idle"); }
 
 void Penitent::FreezeUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
@@ -167,7 +167,6 @@ void Penitent::SlideStart(const StateInfo& _Info)
     Collider_->GetTransform().SetWorldScale({ColScale_.y, ColScale_.x});
     Collider_->GetTransform().SetWorldMove({0, -50});
 }
-
 void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     SlideTime_ += _DeltaTime;

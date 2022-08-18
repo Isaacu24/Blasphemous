@@ -261,6 +261,7 @@ protected:
 
 	void Update(float _Delta) override;
 
+	FrameAnimation* CurAni;
 
 	int GetCurFrame()
 	{
@@ -272,7 +273,6 @@ private:
 	SCALEMODE ScaleMode;
 	float ScaleRatio;
 
-	FrameAnimation* CurAni;
 	GameEngineTexture* CurTex;
 	float4 FrameData;
 

@@ -139,10 +139,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="MetaSpriteManager.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
+    <ClInclude Include="MetaSpriteManager.h" />
     <ClInclude Include="MetaSpriteWindow.h">
       <SubType>
       </SubType>
@@ -405,10 +402,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="MetaSpriteManager.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
+    <ClCompile Include="MetaSpriteManager.cpp" />
     <ClCompile Include="MetaSpriteWindow.cpp">
       <SubType>
       </SubType>

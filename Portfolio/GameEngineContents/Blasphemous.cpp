@@ -376,7 +376,7 @@ void Blasphemous::LoadEffect()
 void Blasphemous::CutTexture()
 {
     // Player
-    GameEngineTexture::Cut("penintent_idle_anim.png", 8, 2);
+    GameEngineTexture::Cut("penintent_idle.png", 8, 2);
     //GameEngineTexture::Cut("penitent_sheathedIdle.png", 7, 7);
     //GameEngineTexture::Cut("penitent_verticalattack_LVL3_anim.png", 8, 3);
     //GameEngineTexture::Cut("penitent_climbledge_reviewed.png", 4, 3);

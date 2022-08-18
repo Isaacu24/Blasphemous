@@ -39,10 +39,16 @@ private:
     void MetaFileButton(GameEngineLevel* _Level);
     void AtlasFileButton(GameEngineLevel* _Level);
 
-    void MetaFolderButton(GameEngineLevel* _Level);
-    void AtlasFolderButton(GameEngineLevel* _Level);
+    void AllFolderButton(GameEngineLevel* _Level);
+
+    void MetaParsing(const std::string& _AllText);
+
+    void CutAllTexture();
 
     std::vector<MetaData> MetaDatas_;
+
+    std::vector<GameEngineTexture*> Textures_;
+    std::vector<std::vector<MetaData>> AllDatas_;
 
     // void MetaFileButton();
     // void AtlasFileButton();

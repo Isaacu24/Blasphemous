@@ -3,6 +3,9 @@
 
 class MetaSpriteManager
 {
+public: 
+	static MetaSpriteManager* Inst_;
+
 public:
 	MetaSpriteManager();
 	~MetaSpriteManager();
@@ -12,9 +15,8 @@ public:
 	MetaSpriteManager& operator=(const MetaSpriteManager& _Other) = delete;
 	MetaSpriteManager& operator=(MetaSpriteManager&& _Other) noexcept = delete;
 
-	std::vector<MetaData>& Insert();
-    std::vector<MetaData>& Find();
-
+	std::vector<MetaData>& Insert(const std::string& _Name, std::vector<MetaData>& _Datas);
+    std::vector<MetaData>& Find(const std::string& _Name);
 
 protected:
 

@@ -111,6 +111,8 @@ private:
     GameEngineTextureRenderer*        ColMap_;
     class GameEngineFontRederer*      Font_;
 
+    class MetaTextureRenderer* MetaRenderer_;
+
     int   HP_;
     int   MP_;
     float Speed_;
