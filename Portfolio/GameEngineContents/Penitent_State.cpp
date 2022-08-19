@@ -5,9 +5,7 @@
 #include "MetaTextureRenderer.h"
 #include "MetaSpriteManager.h"
 
-void Penitent::IdleStart(const StateInfo& _Info) 
-{ 
-    MetaRenderer_->ChangeMetaAnimation("penintent_idle_anim 1"); }
+void Penitent::IdleStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penintent_idle_anim 1"); }
 
 void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -17,6 +15,8 @@ void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 
         if (false == RightObstacleCheck())
         {
+            MetaRenderer_->ChangeMetaAnimation("penitent_running_anim");
+
             Dir_ = GetTransform().GetRightVector();
             GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime);
         }
@@ -28,6 +28,8 @@ void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 
         if (false == LeftObstacleCheck())
         {
+            MetaRenderer_->ChangeMetaAnimation("penitent_running_anim");
+
             Dir_ = -(GetTransform().GetLeftVector());
             GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime);
         }
@@ -96,10 +98,7 @@ void Penitent::DangleUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Penitent::DangleEnd(const StateInfo& _Info) {}
 
-void Penitent::FreezeStart(const StateInfo& _Info) 
-{
-    MetaRenderer_->ChangeMetaAnimation("penintent_idle_anim 1"); 
-}
+void Penitent::FreezeStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penintent_idle_anim 1"); }
 
 void Penitent::FreezeUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
@@ -127,10 +126,10 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 
 
-void Penitent::JumpStart(const StateInfo& _Info) 
-{ 
-    IsJump_ = true; 
-    
+void Penitent::JumpStart(const StateInfo& _Info)
+{
+    IsJump_ = true;
+
     MetaRenderer_->ChangeMetaAnimation("penitent_jump_anim");
 }
 
@@ -138,7 +137,7 @@ void Penitent::JumpStart(const StateInfo& _Info)
 void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     JumpTime_ += _DeltaTime;
-        
+
     Dir_ = GetTransform().GetUpVector() * 2;
 
     if (20000 < GameEngineInput::GetInst()->GetThumbLX() || GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
@@ -177,7 +176,10 @@ void Penitent::SlideStart(const StateInfo& _Info)
     IsSlide_ = true;
     Collider_->GetTransform().SetWorldScale({ColScale_.y, ColScale_.x});
     Collider_->GetTransform().SetWorldMove({0, -50});
+
+    MetaRenderer_->ChangeMetaAnimation("penitent_start_to_run_from_dodge_anim");
 }
+
 void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     SlideTime_ += _DeltaTime;
@@ -189,7 +191,7 @@ void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
         State_.ChangeState("Idle");
     }
 
-    if (0.5f <= SlideTime_)
+    if (1.5f <= SlideTime_)
     {
         IsSlide_   = false;
         SlideTime_ = 0.f;

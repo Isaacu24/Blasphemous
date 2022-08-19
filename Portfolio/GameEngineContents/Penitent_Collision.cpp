@@ -15,7 +15,7 @@ void Penitent::GroundCheck()
     else
     {
         Color = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x,
-                                                           -(GetTransform().GetWorldPosition().y + 30));
+                                                           -(GetTransform().GetWorldPosition().y - 5));
     }
 
     if (true == Color.CompareInt4D(float4::BLACK))  //¶¥ÀÌ¶ó¸é
@@ -82,7 +82,7 @@ void Penitent::UphillRoadCheck()
     while (true)
     {
         float4 Color = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x,
-                                                                  -(GetTransform().GetWorldPosition().y + 31));
+                                                                  -(GetTransform().GetWorldPosition().y - 4));
 
         if (true == Color.CompareInt4D(float4::BLACK) || true == Color.CompareInt4D(float4::MAGENTA))
         {
@@ -104,13 +104,13 @@ bool Penitent::LeftObstacleCheck()
     if ("Slide" == State_.GetCurStateStateName())
     {
         LeftColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x - 20,
-                                                               -(GetTransform().GetWorldPosition().y + 50));
+                                                               -(GetTransform().GetWorldPosition().y));
     }
 
     else
     {
         LeftColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x - 20,
-                                                               -(GetTransform().GetWorldPosition().y + 150));
+                                                               -(GetTransform().GetWorldPosition().y + 30));
     }
 
     if (true == LeftColor.CompareInt4D(float4::BLACK))
@@ -128,13 +128,13 @@ bool Penitent::RightObstacleCheck()
     if ("Slide" == State_.GetCurStateStateName())
     {
         RightColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x + 20,
-                                                                -(GetTransform().GetWorldPosition().y + 50));
+                                                                -(GetTransform().GetWorldPosition().y));
     }
 
     else
     {
         RightColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x + 20,
-                                                                -(GetTransform().GetWorldPosition().y + 150));
+                                                                -(GetTransform().GetWorldPosition().y + 30));
     }
 
     if (true == RightColor.CompareInt4D(float4::BLACK))

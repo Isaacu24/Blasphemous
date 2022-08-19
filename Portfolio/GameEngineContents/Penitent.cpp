@@ -70,13 +70,13 @@ void Penitent::Start()
     Gravity_ = CreateComponent<GravityComponent>();
 
     Collider_ = CreateComponent<GameEngineCollision>();
-    Collider_->GetTransform().SetWorldScale({100.f, 180.f});
+    Collider_->GetTransform().SetWorldScale({50.f, 90.f, 1.f});
     Collider_->ChangeOrder(COLLISIONORDER::Player);
     Collider_->SetDebugSetting(CollisionType::CT_OBB, float4{0.0f, 0.0f, 1.0f, 0.5f});
-    Collider_->GetTransform().SetWorldMove({0, 100});
+    Collider_->GetTransform().SetWorldMove({0, 30, 1.f});
 
     AttackCollider_ = CreateComponent<GameEngineCollision>();
-    AttackCollider_->GetTransform().SetWorldScale({100.f, 100.f});
+    AttackCollider_->GetTransform().SetWorldScale({50.f, 50.f, 1.f});
     AttackCollider_->ChangeOrder(COLLISIONORDER::PlayerAttack);
     AttackCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{0.3f, 0.0f, 1.0f, 0.5f});
     AttackCollider_->Off();
@@ -88,7 +88,7 @@ void Penitent::Start()
         DebugColliders_[i] = CreateComponent<GameEngineCollision>();
         DebugColliders_[i]->ChangeOrder(COLLISIONORDER::Debug);
         DebugColliders_[i]->SetDebugSetting(CollisionType::CT_AABB, float4{0.0f, 0.0f, 1.0f, 0.5f});
-        DebugColliders_[i]->GetTransform().SetWorldScale({10.f, 10.f});
+        DebugColliders_[i]->GetTransform().SetWorldScale({5.f, 5.f, 1.f});
         DebugColliders_[i]->Off();
     }
 
@@ -99,12 +99,12 @@ void Penitent::Start()
 
     DebugColliders_[1]->On();
     DebugColliders_[1]->GetTransform().SetWorldPosition(
-        {GetTransform().GetWorldPosition().x + 20, (GetTransform().GetWorldPosition().y + 125)});
+        {GetTransform().GetWorldPosition().x + 20, (GetTransform().GetWorldPosition().y + 30)});
     DebugColliders_[1]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
 
     DebugColliders_[2]->On();
     DebugColliders_[2]->GetTransform().SetWorldPosition(
-        {GetTransform().GetWorldPosition().x - 20, GetTransform().GetWorldPosition().y + 125});
+        {GetTransform().GetWorldPosition().x - 20, GetTransform().GetWorldPosition().y + 30});
     DebugColliders_[2]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
 
     // DebugColliders_[3]->On();
@@ -143,6 +143,24 @@ void Penitent::Start()
         MetaRenderer_->CreateMetaAnimation(
             "penitent_jump_anim",
             {"penitent_jump_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            Data);
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_start_to_run_from_dodge_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_start_to_run_from_dodge_anim",
+            {"penitent_start_to_run_from_dodge_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            Data);
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_running_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_running_anim",
+            {"penitent_running_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, true},
             Data);
     }
 

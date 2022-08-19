@@ -74,15 +74,13 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
         }
     }
 
-    // if (nullptr != Renderer && nullptr != TargetTexture && 0 != TargetTexture->GetCutCount())
-    //{
-    //     ImGui::SliderInt("ImageIndex", &CurFrame, 0, TargetTexture->GetCutCount() - 1);
-    //     Renderer->SetTexture(TargetTexture, CurFrame);
-    //     Renderer->ScaleToCutTexture(CurFrame);
-    //     Renderer->SetMetaData({MetaDatas_[CurFrame].PivotX, MetaDatas_[CurFrame].PivotY},
-    //                           TargetTexture->GetCutScale(CurFrame).x,
-    //                           TargetTexture->GetCutScale(CurFrame).y);
-    // }
+     if (nullptr != Renderer && nullptr != TargetTexture && 0 != TargetTexture->GetCutCount())
+    {
+         ImGui::SliderInt("ImageIndex", &CurFrame, 0, TargetTexture->GetCutCount() - 1);
+         Renderer->SetTexture(TargetTexture, CurFrame);
+         Renderer->ScaleToCutTexture(CurFrame);
+         Renderer->SetCurData(MetaDatas_);
+     }
 
 
     if (nullptr != TargetTexture)
