@@ -76,7 +76,7 @@ void Stage10::SettingStage()
     IsLeftExit_ = true;
 }
 
-void Stage10::SettingHandrail()
+void Stage10::SettingLedge()
 {
     //첫번째 줄
     {
@@ -202,7 +202,7 @@ void Stage10::SettingHandrail()
 void Stage10::Start()
 {
     SettingStage();
-    SettingHandrail();
+    SettingLedge();
 }
 
 void Stage10::Update(float _DeltaTime)

@@ -15,7 +15,7 @@ public:
 
 protected:
 	void SettingStage() override;
-    void SettingHandrail() override;
+    void SettingLedge() override;
 
 	void Start() override;
 	void Update(float _DeltaTime) override;

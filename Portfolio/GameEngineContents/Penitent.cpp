@@ -13,6 +13,7 @@ Penitent::Penitent()
     , Gravity_(nullptr)
     , Collider_(nullptr)
     , ColScale_(80, 150)
+    , JumpForce_(float4::ZERO)
     , MetaRenderer_(nullptr)
     , ColMap_(nullptr)
     , HP_(100)
@@ -20,7 +21,6 @@ Penitent::Penitent()
     , Speed_(250.0f)
     , Tear_(0)
     , IsGround_(false)
-    , IsJump_(false)
     , Flasks_{}
     , JumpTime_(0.0f)
 {
@@ -96,6 +96,7 @@ void Penitent::Start()
     DebugColliders_[0]->GetTransform().SetWorldPosition(
         {GetTransform().GetWorldPosition().x,
          (GetTransform().GetWorldPosition().y + CilmbY_)});  //사다리 타기 시 땅 감지
+    DebugColliders_[0]->SetDebugSetting(CollisionType::CT_AABB, float4{0.8f, 0.2f, 0.95f, 0.5f});
 
     DebugColliders_[1]->On();
     DebugColliders_[1]->GetTransform().SetWorldPosition(
@@ -114,49 +115,11 @@ void Penitent::Start()
 
     PlayerUI_ = GetLevel()->CreateActor<PlayerUI>();
     PlayerUI_->SetLevelOverOn();
-
-    SetAnimation();
+    PlayerUI_->SetTear(Tear_);
 
     GetTransform().SetLocalScale({2, 2, 1});
-
-    State_.CreateStateMember("Freeze",
-                             std::bind(&Penitent::FreezeUpdate, this, std::placeholders::_1, std::placeholders::_2),
-                             std::bind(&Penitent::FreezeStart, this, std::placeholders::_1));
-    State_.CreateStateMember("Idle",
-                             std::bind(&Penitent::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2),
-                             std::bind(&Penitent::IdleStart, this, std::placeholders::_1));
-    State_.CreateStateMember(
-        "LadderClimb",
-        std::bind(&Penitent::LadderClimbUpdate, this, std::placeholders::_1, std::placeholders::_2),
-        std::bind(&Penitent::LadderClimbStart, this, std::placeholders::_1));
-    State_.CreateStateMember("Jump",
-                             std::bind(&Penitent::JumpUpdate, this, std::placeholders::_1, std::placeholders::_2),
-                             std::bind(&Penitent::JumpStart, this, std::placeholders::_1));
-    State_.CreateStateMember("Slide",
-                             std::bind(&Penitent::SlideUpdate, this, std::placeholders::_1, std::placeholders::_2),
-                             std::bind(&Penitent::SlideStart, this, std::placeholders::_1),
-                             std::bind(&Penitent::SlideEnd, this, std::placeholders::_1));
-    State_.CreateStateMember("Crouch",
-                             std::bind(&Penitent::CrouchUpdate, this, std::placeholders::_1, std::placeholders::_2),
-                             std::bind(&Penitent::CrouchStart, this, std::placeholders::_1),
-                             std::bind(&Penitent::CrouchEnd, this, std::placeholders::_1));
-    State_.CreateStateMember("Dangle",
-                             std::bind(&Penitent::DangleUpdate, this, std::placeholders::_1, std::placeholders::_2),
-                             std::bind(&Penitent::DangleStart, this, std::placeholders::_1),
-                             std::bind(&Penitent::DangleEnd, this, std::placeholders::_1));
-    State_.CreateStateMember("Recovery",
-                             std::bind(&Penitent::RecoveryUpdate, this, std::placeholders::_1, std::placeholders::_2),
-                             std::bind(&Penitent::RecoveryStart, this, std::placeholders::_1));
-    State_.CreateStateMember("Hit",
-                             std::bind(&Penitent::HitUpdate, this, std::placeholders::_1, std::placeholders::_2),
-                             std::bind(&Penitent::HitStart, this, std::placeholders::_1));
-    State_.CreateStateMember("Death",
-                             std::bind(&Penitent::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2),
-                             std::bind(&Penitent::DeathStart, this, std::placeholders::_1));
-
-    State_.ChangeState("Idle");
-
-    PlayerUI_->SetTear(Tear_);
+    SetAnimation();
+    SetPlayerState();
 }
 
 void Penitent::Update(float _DeltaTime)
@@ -167,38 +130,28 @@ void Penitent::Update(float _DeltaTime)
         {GetTransform().GetWorldPosition().x,
          (GetTransform().GetWorldPosition().y + CilmbY_)});  //사다리 타기 시 땅 감지
 
-    if (false == HealthCheck())
-    {
-        return;
-    }
-
     GroundCheck();
     LadderCheck();
     CollisionCheck();
 
-    if (true == GameEngineInput::GetInst()->IsDownKey("FreeCamera"))
+    if (false == IsOnInventory_ && true == GameEngineInput::GetInst()->IsDownKey("InventoryOn"))
     {
-        // GetLevel()->GetMainCameraActor()->FreeCameraModeOnOff();
-    }
-
-    if (false == IsInventory_ && true == GameEngineInput::GetInst()->IsDownKey("InventoryOn"))
-    {
-        IsInventory_ = true;
+        IsOnInventory_ = true;
         PlayerUI_->Inventory_->On();
     }
 
-    else if (true == IsInventory_ && true == GameEngineInput::GetInst()->IsDownKey("InventoryOn"))
+    else if (true == IsOnInventory_ && true == GameEngineInput::GetInst()->IsDownKey("InventoryOn"))
     {
-        IsInventory_ = false;
+        IsOnInventory_ = false;
         PlayerUI_->Inventory_->Off();
     }
 
-    // GameEngineDebug::OutPutString("PlayerState: " + State_.GetCurStateStateName());
+    GameEngineDebug::OutPutString("PlayerState: " + State_.GetCurStateStateName());
 
-    GameEngineDebug::OutPutString("MousePosX: "
-                                  + std::to_string(GetLevel()->GetMainCamera()->GetMouseWorldPositionToActor().x));
-    GameEngineDebug::OutPutString("MousePosY: "
-                                  + std::to_string(GetLevel()->GetMainCamera()->GetMouseWorldPositionToActor().y));
+    // GameEngineDebug::OutPutString("MousePosX: "
+    //                               + std::to_string(GetLevel()->GetMainCamera()->GetMouseWorldPositionToActor().x));
+    // GameEngineDebug::OutPutString("MousePosY: "
+    //                               + std::to_string(GetLevel()->GetMainCamera()->GetMouseWorldPositionToActor().y));
 }
 
 void Penitent::End() {}
@@ -208,11 +161,11 @@ void Penitent::SetAnimation()
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penintent_idle_anim 1");
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penintent_idle_anim");
 
         MetaRenderer_->CreateMetaAnimation(
-            "penintent_idle_anim 1",
-            {"penintent_idle_anim 1.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            "penintent_idle_anim",
+            {"penintent_idle_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
             Data);
     }
 
@@ -232,6 +185,21 @@ void Penitent::SetAnimation()
             "penitent_jump_anim",
             {"penitent_jump_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
             Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_jump_anim",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Fall"); });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penintent_standing_up");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penintent_standing_up",
+            {"penintent_standing_up.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("penintent_standing_up",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
     {
@@ -243,7 +211,20 @@ void Penitent::SetAnimation()
             Data);
 
         MetaRenderer_->AnimationBindEnd("penitent_dodge_anim",
-                                        std::bind(&Penitent::ChangeIdleState, this, std::placeholders::_1));
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penintent_start_run_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penintent_start_run_anim",
+            {"penintent_start_run_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, true},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("penintent_start_run_anim",
+                                        [&](const FrameAnimation_DESC& _Info)
+                                        { MetaRenderer_->ChangeMetaAnimation("penitent_running_anim"); });
     }
 
     {
@@ -256,26 +237,219 @@ void Penitent::SetAnimation()
     }
 
     {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penintent_stop_run_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penintent_stop_run_anim",
+            {"penintent_stop_run_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindFrame(
+            "penintent_stop_run_anim",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                if (true == LeftObstacleCheck() || true == RightObstacleCheck())
+                {
+                    return;
+                }
+
+                GetTransform().SetWorldMove(Dir_ * 300.f * GameEngineTime::GetDeltaTime());
+            });
+
+        MetaRenderer_->AnimationBindEnd("penintent_stop_run_anim",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+    }
+
+
+    {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("death_anim_blood");
 
         MetaRenderer_->CreateMetaAnimation(
             "death_anim_blood",
-            {"death_anim_blood.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, true},
+            {"death_anim_blood.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
             Data);
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_sheathedIdle");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_sheathedIdle",
+            {"penitent_sheathedIdle.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, true},
+            Data);
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_falling_loop_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_falling_loop_anim",
+            {"penitent_falling_loop_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, true},
+            Data);
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_crouch_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_crouch_anim",
+            {"penitent_crouch_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
+            Data);
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_crouch_up_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_crouch_up_anim",
+            {"penitent_crouch_up_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_crouch_up_anim",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_hangonledge_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_hangonledge_anim",
+            {"penitent_hangonledge_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
+            Data);
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_climbledge_reviewed");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_climbledge_reviewed",
+            {"penitent_climbledge_reviewed.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindFrame("penitent_climbledge_reviewed",
+                                          [&](const FrameAnimation_DESC& _Info)
+                                          {
+                                              // if (5 > _Info.CurFrame)
+                                              //{
+                                              //     return;
+                                              // }
+
+                                              // if (0 < Dir_.x) //오른쪽
+                                              //{
+                                              //     GetTransform().SetWorldRightMove(200.f,
+                                              //     GameEngineTime::GetDeltaTime());
+                                              // }
+
+                                              // else if (0 > Dir_.x)  //왼쪽
+                                              //{
+                                              //     GetTransform().SetWorldLeftMove(200.f,
+                                              //     GameEngineTime::GetDeltaTime());
+                                              // }
+                                          });
+
+        MetaRenderer_->AnimationBindEnd("penitent_climbledge_reviewed",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penintent_ladder_climb_loop_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penintent_ladder_climb_loop_anim",
+            {"penintent_ladder_climb_loop_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, true},
+            Data);
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penintent_ladder_up_from_ground");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penintent_ladder_up_from_ground",
+            {"penintent_ladder_up_from_ground.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("penintent_ladder_up_from_ground",
+                                        [&](const FrameAnimation_DESC& _Info) 
+            { 
+                ChangeState("Idle"); 
+            });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_ladder_down_from_ground_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_ladder_down_from_ground_anim",
+            {"penitent_ladder_down_from_ground_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_ladder_down_from_ground_anim",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
     MetaRenderer_->SetPivot(PIVOTMODE::BOT);
 }
 
-bool Penitent::HealthCheck()
+void Penitent::SetPlayerState()
 {
-    if (0 >= HP_)
-    {
-        HP_ = 0;
-        ChangeState("Death");
+    State_.CreateStateMember("Freeze",
+                             std::bind(&Penitent::FreezeUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::FreezeStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::FreezeEnd, this, std::placeholders::_1));
 
-        return false;
-    }
+    State_.CreateStateMember("Idle",
+                             std::bind(&Penitent::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::IdleStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::IdleEnd, this, std::placeholders::_1));
 
-    return true;
+    State_.CreateStateMember("Move",
+                             std::bind(&Penitent::MoveUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::MoveStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::MoveEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember("Jump",
+                             std::bind(&Penitent::JumpUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::JumpStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::JumpEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember("Fall",
+                             std::bind(&Penitent::FallUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::FallStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::FallEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember("Crouch",
+                             std::bind(&Penitent::CrouchUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::CrouchStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::CrouchEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember("Slide",
+                             std::bind(&Penitent::SlideUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::SlideStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::SlideEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember("Dangle",
+                             std::bind(&Penitent::DangleUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::DangleStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::DangleEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember(
+        "LadderClimb",
+        std::bind(&Penitent::LadderClimbUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&Penitent::LadderClimbStart, this, std::placeholders::_1),
+        std::bind(&Penitent::LadderClimbEnd, this, std::placeholders::_1));
+
+    /*
+    State_.CreateStateMember("Recovery",
+                             std::bind(&Penitent::RecoveryUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::RecoveryStart, this, std::placeholders::_1));
+
+    State_.CreateStateMember("Hit",
+                             std::bind(&Penitent::HitUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::HitStart, this, std::placeholders::_1));
+
+    State_.CreateStateMember("Death",
+                             std::bind(&Penitent::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::DeathStart, this, std::placeholders::_1));*/
+
+    State_.ChangeState("Idle");
 }

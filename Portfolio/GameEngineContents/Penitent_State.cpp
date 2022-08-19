@@ -1,77 +1,213 @@
 #include "PreCompile.h"
 #include "Penitent.h"
 #include "PlayerUI.h"
-#include "AttackCorpseEffecter.h"
 #include "MetaTextureRenderer.h"
 #include "MetaSpriteManager.h"
 
-void Penitent::IdleStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penintent_idle_anim 1"); }
+
+void Penitent::FreezeStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penitent_sheathedIdle"); }
+
+void Penitent::FreezeUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Penitent::FreezeEnd(const StateInfo& _Info) {}
+
+void Penitent::IdleStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penintent_idle_anim"); }
 
 void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     if (20000 < GameEngineInput::GetInst()->GetThumbLX() || GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
     {
-        GetTransform().PixLocalPositiveX();
-
-        if (false == RightObstacleCheck())
-        {
-            MetaRenderer_->ChangeMetaAnimation("penitent_running_anim");
-
-            Dir_ = GetTransform().GetRightVector();
-            GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime);
-        }
+        State_.ChangeState("Move");
     }
 
-    if (0 > GameEngineInput::GetInst()->GetThumbLX() || GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
+    else if (0 > GameEngineInput::GetInst()->GetThumbLX() || GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
     {
-        GetTransform().PixLocalNegativeX();
-
-        if (false == LeftObstacleCheck())
-        {
-            MetaRenderer_->ChangeMetaAnimation("penitent_running_anim");
-
-            Dir_ = -(GetTransform().GetLeftVector());
-            GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime);
-        }
+        State_.ChangeState("Move");
     }
 
-    if (GameEngineInput::GetInst()->IsDownKey("PenitentJump") && false == IsJump_ && true == IsGround_
-        || GameEngineInput::GetInst()->IsDownButton("PenitentA") && false == IsJump_ && true == IsGround_)
+    //사다리 내려가기 or 앉기
+    else if (GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
     {
-        State_.ChangeState("Jump");
-        PlayerUI_->SetTear(Tear_ += 123);
+        State_.ChangeState("Crouch");
     }
 
-    if (GameEngineInput::GetInst()->IsDownKey("PenitentRecovery")
-        || GameEngineInput::GetInst()->IsDownButton("PenitentLeftShoulder"))
-    {
-        State_.ChangeState("Recovery");
-    }
-
-    if (GameEngineInput::GetInst()->IsDownKey("PenitentSlide") && true == IsGround_)
+    else if (GameEngineInput::GetInst()->IsPressKey("PenitentSlide"))
     {
         State_.ChangeState("Slide");
     }
 
-    if (GameEngineInput::GetInst()->IsDownKey("PenitentDown"))
+    else if (GameEngineInput::GetInst()->IsDownKey("PenitentJump"))
     {
-        ChangeState("Crouch");
+        State_.ChangeState("Jump");
+    }
+
+    //내리막길
+    if (false == IsGround_)
+    {
+        JumpForce_ = 10.f;
+        State_.ChangeState("Fall");
     }
 
     Gravity_->SetActive(!IsGround_);
 }
 
+void Penitent::IdleEnd(const StateInfo& _Info) {}
+
+void Penitent::MoveStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penintent_start_run_anim"); }
+
+void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
+    {
+        GetTransform().PixLocalPositiveX();
+
+        if (false == RightObstacleCheck())
+        {
+            Dir_ = GetTransform().GetRightVector();
+            GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime);
+        }
+    }
+
+    else if (GameEngineInput::GetInst()->IsUpKey("PenitentRight"))
+    {
+        MetaRenderer_->ChangeMetaAnimation("penintent_stop_run_anim");
+    }
+
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
+    {
+        GetTransform().PixLocalNegativeX();
+
+        if (false == LeftObstacleCheck())
+        {
+            Dir_ = -(GetTransform().GetLeftVector());
+            GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime);
+        }
+    }
+
+    else if (GameEngineInput::GetInst()->IsUpKey("PenitentLeft"))
+    {
+        MetaRenderer_->ChangeMetaAnimation("penintent_stop_run_anim");
+    }
+
+    if (GameEngineInput::GetInst()->IsDownKey("PenitentJump"))
+    {
+        State_.ChangeState("Jump");
+    }
+
+    else if (GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
+    {
+        State_.ChangeState("Crouch");
+    }
+
+    else if (GameEngineInput::GetInst()->IsPressKey("PenitentSlide"))
+    {
+        State_.ChangeState("Slide");
+    }
+
+    //내리막길
+    if (false == IsGround_)
+    {
+        JumpForce_ = 10.f;
+        State_.ChangeState("Fall");
+    }
+
+    Gravity_->SetActive(!IsGround_);
+}
+
+void Penitent::MoveEnd(const StateInfo& _Info) {}
+
+
+void Penitent::JumpStart(const StateInfo& _Info)
+{
+    JumpForce_ = 100.f;
+    MetaRenderer_->ChangeMetaAnimation("penitent_jump_anim");
+}
+
+void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    JumpForce_.y -= _DeltaTime * 100.f;
+
+    Dir_ = GetTransform().GetUpVector() * 10.f;
+
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
+    {
+        GetTransform().PixLocalPositiveX();
+
+        if (false == RightObstacleCheck())
+        {
+            Dir_ += GetTransform().GetRightVector() * 2.5f;
+        }
+    }
+
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
+    {
+        GetTransform().PixLocalNegativeX();
+
+        if (false == LeftObstacleCheck())
+        {
+            Dir_ += -(GetTransform().GetLeftVector() * 2.5f);
+        }
+    }
+
+    GetTransform().SetWorldMove(Dir_ * JumpForce_ * _DeltaTime);
+    Gravity_->SetActive(!IsGround_);
+}
+
+void Penitent::JumpEnd(const StateInfo& _Info) {}
+
+void Penitent::FallStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penitent_falling_loop_anim"); }
+
+void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    JumpForce_.y -= _DeltaTime * 100.f;
+
+    Dir_ = GetTransform().GetUpVector() * 10.f;
+
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
+    {
+        GetTransform().PixLocalPositiveX();
+
+        if (false == RightObstacleCheck())
+        {
+            Dir_ += GetTransform().GetRightVector() * 2.5f;
+        }
+    }
+
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
+    {
+        GetTransform().PixLocalNegativeX();
+
+        if (false == LeftObstacleCheck())
+        {
+            Dir_ += -(GetTransform().GetLeftVector() * 2.5f);
+        }
+    }
+
+    if (true == IsGround_)
+    {
+        State_.ChangeState("Idle");
+        return;
+    }
+
+    GetTransform().SetWorldMove(Dir_ * JumpForce_ * _DeltaTime);
+    Gravity_->SetActive(!IsGround_);
+}
+
+void Penitent::FallEnd(const StateInfo& _Info) { JumpForce_ = 100.f; }
+
 void Penitent::CrouchStart(const StateInfo& _Info)
 {
+    MetaRenderer_->ChangeMetaAnimation("penitent_crouch_anim");
+
     Collider_->GetTransform().SetWorldScale({ColScale_.y, ColScale_.x});
     Collider_->GetTransform().SetWorldMove({0, -50});
 }
 
 void Penitent::CrouchUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    if (true == GameEngineInput::GetInst()->IsUpKey("PenitentDown"))
+    if (GameEngineInput::GetInst()->IsUpKey("PenitentDown"))
     {
-        ChangeState("Idle");
+        MetaRenderer_->ChangeMetaAnimation("penitent_crouch_up_anim");
     }
 }
 
@@ -81,104 +217,13 @@ void Penitent::CrouchEnd(const StateInfo& _Info)
     Collider_->GetTransform().SetWorldMove({0, 50});
 }
 
-void Penitent::DangleStart(const StateInfo& _Info) {}
-
-void Penitent::DangleUpdate(float _DeltaTime, const StateInfo& _Info)
-{
-    Gravity_->SetActive(false);
-
-    if (true == GameEngineInput::GetInst()->IsDownKey("PenitentDown"))
-    {
-        ChangeState("Idle");
-    }
-
-    else if (true == GameEngineInput::GetInst()->IsDownKey("PenitentUp"))
-    {
-
-    }
-}
-
-void Penitent::DangleEnd(const StateInfo& _Info) {}
-
-void Penitent::FreezeStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penintent_idle_anim 1"); }
-
-void Penitent::FreezeUpdate(float _DeltaTime, const StateInfo& _Info) {}
-
-void Penitent::LadderClimbStart(const StateInfo& _Info) { IsGround_ = false; }
-
-void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
-{
-    if (20000 < GameEngineInput::GetInst()->GetThumbLY() || GameEngineInput::GetInst()->IsPressKey("PenitentUp"))
-    {
-        CilmbY_ = 30;
-        GetTransform().SetWorldMove(GetTransform().GetUpVector() * Speed_ * _DeltaTime);
-    }
-
-    if (0 > GameEngineInput::GetInst()->GetThumbLY() || GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
-    {
-        CilmbY_ = -10;
-        GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed_ * _DeltaTime);
-    }
-
-
-    if (true == IsGround_)
-    {
-        State_.ChangeState("Idle");
-    }
-}
-
-
-void Penitent::JumpStart(const StateInfo& _Info)
-{
-    IsJump_ = true;
-
-    MetaRenderer_->ChangeMetaAnimation("penitent_jump_anim");
-}
-
-
-void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
-{
-    JumpTime_ += _DeltaTime;
-
-    Dir_ = GetTransform().GetUpVector() * 2;
-
-    if (20000 < GameEngineInput::GetInst()->GetThumbLX() || GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
-    {
-        GetTransform().PixLocalPositiveX();
-
-        if (false == RightObstacleCheck())
-        {
-            Dir_ += GetTransform().GetRightVector();
-        }
-    }
-
-    if (0 > GameEngineInput::GetInst()->GetThumbLX() || GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
-    {
-        GetTransform().PixLocalNegativeX();
-
-        if (false == LeftObstacleCheck())
-        {
-            Dir_ -= GetTransform().GetLeftVector();
-        }
-    }
-
-    GetTransform().SetWorldMove(Dir_ * 350.f * _DeltaTime);
-
-    if (0.5f <= JumpTime_)
-    {
-        JumpTime_ -= 0.5f;
-        State_.ChangeState("Idle");
-    }
-
-    Gravity_->SetActive(!IsGround_);
-}
-
 void Penitent::SlideStart(const StateInfo& _Info)
 {
+    SlideForce_ = 500.f;
+    MetaRenderer_->ChangeMetaAnimation("penitent_dodge_anim");
+
     Collider_->GetTransform().SetWorldScale({ColScale_.y, ColScale_.x});
     Collider_->GetTransform().SetWorldMove({0, -50});
-
-    MetaRenderer_->ChangeMetaAnimation("penitent_dodge_anim");
 }
 
 void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -187,11 +232,18 @@ void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
     {
         return;
     }
-    
-    SlideTime_ += _DeltaTime;
-    GetTransform().SetWorldMove(Dir_ * 500 * _DeltaTime);
+
+    SlideForce_ -= _DeltaTime * 350.f;
+    GetTransform().SetWorldMove(Dir_ * SlideForce_ * _DeltaTime);
 
     Gravity_->SetActive(!IsGround_);
+
+    //내리막길 문제있음
+    if (false == IsGround_)
+    {
+        JumpForce_ = 10.f;
+        State_.ChangeState("Fall");
+    }
 }
 
 void Penitent::SlideEnd(const StateInfo& _Info)
@@ -200,34 +252,86 @@ void Penitent::SlideEnd(const StateInfo& _Info)
     Collider_->GetTransform().SetWorldMove({0, 50});
 }
 
-void Penitent::RecoveryStart(const StateInfo& _Info)
+void Penitent::DangleStart(const StateInfo& _Info)
 {
-    int Size = static_cast<int>(Flasks_.size() - 1);
+    Gravity_->SetActive(false);
+    MetaRenderer_->ChangeMetaAnimation("penitent_hangonledge_anim");
+}
 
-    if (0 >= Size)
+void Penitent::DangleUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentUp"))
     {
-        State_.ChangeState("Idle");
-        return;
+        GetTransform().SetWorldMove((Dir_ * float4::UP) * 100.f * _DeltaTime);
+        IsDangle_ = true;
+        MetaRenderer_->ChangeMetaAnimation("penitent_climbledge_reviewed");
     }
 
-    for (int i = Size; i >= 0; --i)
+    else if (GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
     {
-        if (true == Flasks_[i])
-        {
-            PlusHP(10);
+        State_.ChangeState("Fall");
+        IsDangle_  = true;
+        JumpForce_ = 10.f;
+    }
+}
 
-            Flasks_[i] = false;
-            PlayerUI_->UseFlask(i);
-            State_.ChangeState("Idle");
-            return;
+void Penitent::DangleEnd(const StateInfo& _Info) {}
+
+void Penitent::LadderClimbStart(const StateInfo& _Info)
+{
+    //한 프레임 false 상태로 만들고 다음 상태일 때 체크
+    IsGround_ = false;
+    MetaRenderer_->ChangeMetaAnimation("penintent_ladder_climb_loop_anim");
+}
+
+void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    if (false == IsLadder_)
+    {
+        if (GameEngineInput::GetInst()->IsPressKey("PenitentUp"))
+        {
+            CilmbY_ = 30.f;
+
+            MetaRenderer_->ChangeMetaAnimation("penintent_ladder_climb_loop_anim");
+            GetTransform().SetWorldMove(GetTransform().GetUpVector() * Speed_ * _DeltaTime);
+        }
+
+        else if (GameEngineInput::GetInst()->IsUpKey("PenitentUp"))
+        {
+            //애니메이션 멈춤
+        }
+
+        if (GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
+        {
+            CilmbY_ = -50;
+
+            MetaRenderer_->ChangeMetaAnimation("penintent_ladder_climb_loop_anim");
+            GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed_ * _DeltaTime);
+        }
+
+        else if (GameEngineInput::GetInst()->IsUpKey("PenitentDown"))
+        {
+            //애니메이션 멈춤
         }
     }
 
-    State_.ChangeState("Idle");
+    if (true == IsGround_)
+    {
+        if (0 > CilmbY_)  //아래 사다리
+        {
+            IsLadder_ = true;
+            Gravity_->SetActive(true);
+            MetaRenderer_->ChangeMetaAnimation("penintent_ladder_up_from_ground");
+        }
+
+        else if (0 < CilmbY_)  //위 사다리
+        {
+            IsLadder_ = true;
+
+            GetTransform().SetWorldUpMove(500.f, _DeltaTime);
+            MetaRenderer_->ChangeMetaAnimation("penitent_ladder_down_from_ground_anim");
+        }
+    }
 }
 
-void Penitent::RecoveryUpdate(float _DeltaTime, const StateInfo& _Info) {}
-
-void Penitent::DeathStart(const StateInfo& _Info) {}
-
-void Penitent::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
+void Penitent::LadderClimbEnd(const StateInfo& _Info) { IsLadder_ = false; }

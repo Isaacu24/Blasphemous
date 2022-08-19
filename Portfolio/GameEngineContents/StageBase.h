@@ -54,7 +54,7 @@ protected:
 
 	virtual void SettingMonster() {};
 
-	virtual void SettingHandrail(){};
+	virtual void SettingLedge() {};
 
 	float4 PlayerLeftPos_;
 	float4 PlayerRightPos_;

@@ -76,7 +76,7 @@ void Fool_knife::Update(float _DeltaTime)
         }
     }
 
-    GameEngineDebug::OutPutString("Fool: " + State_.GetCurStateStateName());
+    //GameEngineDebug::OutPutString("Fool: " + State_.GetCurStateStateName());
 }
 
 void Fool_knife::End() {}

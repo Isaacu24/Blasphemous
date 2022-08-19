@@ -1,5 +1,5 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>d
+#include <GameEngineCore/GameEngineActor.h>
 
 class GameEngineTextureRenderer;
 class FireBallSpawner : public GameEngineActor

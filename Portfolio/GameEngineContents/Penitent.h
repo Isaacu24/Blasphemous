@@ -49,8 +49,9 @@ protected:
     void End() override;
 
     void SetAnimation();
+    void SetPlayerState();
 
-    bool HealthCheck();
+    // bool HealthCheck();
 
     void GroundCheck();
     void LadderCheck();
@@ -61,35 +62,47 @@ protected:
 
     void CollisionCheck();
 
+    void FreezeStart(const StateInfo& _Info);
+    void FreezeUpdate(float _DeltaTime, const StateInfo& _Info);
+    void FreezeEnd(const StateInfo& _Info);
+
     void IdleStart(const StateInfo& _Info);
     void IdleUpdate(float _DeltaTime, const StateInfo& _Info);
+    void IdleEnd(const StateInfo& _Info);
+
+    void MoveStart(const StateInfo& _Info);
+    void MoveUpdate(float _DeltaTime, const StateInfo& _Info);
+    void MoveEnd(const StateInfo& _Info);
+
+    void JumpStart(const StateInfo& _Info);
+    void JumpUpdate(float _DeltaTime, const StateInfo& _Info);
+    void JumpEnd(const StateInfo& _Info);
+
+    void FallStart(const StateInfo& _Info);
+    void FallUpdate(float _DeltaTime, const StateInfo& _Info);
+    void FallEnd(const StateInfo& _Info);
 
     void CrouchStart(const StateInfo& _Info);
     void CrouchUpdate(float _DeltaTime, const StateInfo& _Info);
     void CrouchEnd(const StateInfo& _Info);
 
-    void DangleStart(const StateInfo& _Info);
-    void DangleUpdate(float _DeltaTime, const StateInfo& _Info);
-    void DangleEnd(const StateInfo& _Info);
-
-    void FreezeStart(const StateInfo& _Info);
-    void FreezeUpdate(float _DeltaTime, const StateInfo& _Info);
-
-    void LadderClimbStart(const StateInfo& _Info);
-    void LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info);
-
-    void JumpStart(const StateInfo& _Info);
-    void JumpUpdate(float _DeltaTime, const StateInfo& _Info);
-
     void SlideStart(const StateInfo& _Info);
     void SlideUpdate(float _DeltaTime, const StateInfo& _Info);
     void SlideEnd(const StateInfo& _Info);
 
-    void RecoveryStart(const StateInfo& _Info);
-    void RecoveryUpdate(float _DeltaTime, const StateInfo& _Info);
+    void DangleStart(const StateInfo& _Info);
+    void DangleUpdate(float _DeltaTime, const StateInfo& _Info);
+    void DangleEnd(const StateInfo& _Info);
 
-    void DeathStart(const StateInfo& _Info);
-    void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
+    void LadderClimbStart(const StateInfo& _Info);
+    void LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info);
+    void LadderClimbEnd(const StateInfo& _Info);
+
+    // void RecoveryStart(const StateInfo& _Info);
+    // void RecoveryUpdate(float _DeltaTime, const StateInfo& _Info);
+
+    // void DeathStart(const StateInfo& _Info);
+    // void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
 
     void HitStart(const StateInfo& _Info);
     void HitUpdate(float _DeltaTime, const StateInfo& _Info);
@@ -100,11 +113,6 @@ protected:
     bool HitProjectile(GameEngineCollision* _This, GameEngineCollision* _Other);
 
     bool Dangle(GameEngineCollision* _This, GameEngineCollision* _Other);  //난간 상호작용
-
-    inline void ChangeIdleState(const FrameAnimation_DESC& _Info) 
-    { 
-        State_.ChangeState("Idle");
-    }
 
 private:
     GameEngineStateManager            State_;
@@ -122,6 +130,9 @@ private:
     int   HP_;
     int   MP_;
     float Speed_;
+    float SlideForce_;
+
+    float4 JumpForce_;
 
     float4 Dir_;
 
@@ -130,10 +141,9 @@ private:
     int Tear_;
 
     bool IsGround_;
-    bool IsJump_;
-    bool IsSlide_;
     bool IsDangle_;
-    bool IsInventory_;
+    bool IsLadder_;
+    bool IsOnInventory_;
 
     float JumpTime_;
     float SlideTime_;

@@ -4,8 +4,6 @@
 
 void Penitent::GroundCheck()
 {
-    int a = 0;
-
     float4 Color;
 
     if ("LadderClimb" == State_.GetCurStateStateName())
@@ -22,7 +20,6 @@ void Penitent::GroundCheck()
 
     if (true == Color.CompareInt4D(float4::BLACK))  //¶¥ÀÌ¶ó¸é
     {
-        IsJump_   = false;
         IsDangle_ = false;
         IsGround_ = true;
 
@@ -31,7 +28,6 @@ void Penitent::GroundCheck()
 
     else if (true == Color.CompareInt4D(float4::MAGENTA))
     {
-        IsJump_   = false;
         IsDangle_ = false;
         IsGround_ = true;
 
@@ -60,20 +56,20 @@ void Penitent::LadderCheck()
     float4 MiddleColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x,
                                                                     -(GetTransform().GetWorldPosition().y + 50));
 
-    if (true == LowColor.CompareInt4D(float4::GREEN))
-    {
-        if (GameEngineInput::GetInst()->IsDownKey("PenitentDown"))
-        {
-            CilmbY_ = -50;
-            State_.ChangeState("LadderClimb");
-        }
-    }
-
     if (true == MiddleColor.CompareInt4D(float4::GREEN))
     {
         if (GameEngineInput::GetInst()->IsDownKey("PenitentUp"))
         {
             CilmbY_ = 30.f;
+            State_.ChangeState("LadderClimb");
+        }
+    }
+
+    if (true == LowColor.CompareInt4D(float4::GREEN))
+    {
+        if (GameEngineInput::GetInst()->IsDownKey("PenitentDown"))
+        {
+            CilmbY_ = -50;
             State_.ChangeState("LadderClimb");
         }
     }
@@ -84,7 +80,7 @@ void Penitent::UphillRoadCheck()
     while (true)
     {
         float4 Color = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x,
-                                                                  -(GetTransform().GetWorldPosition().y - 4));
+                                                           -(GetTransform().GetWorldPosition().y - 4));
 
         if (true == Color.CompareInt4D(float4::BLACK) || true == Color.CompareInt4D(float4::MAGENTA))
         {
@@ -106,7 +102,7 @@ bool Penitent::LeftObstacleCheck()
     if ("Slide" == State_.GetCurStateStateName())
     {
         LeftColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x - 20,
-                                                               -(GetTransform().GetWorldPosition().y));
+                                                               -(GetTransform().GetWorldPosition().y + 30));
     }
 
     else
@@ -130,7 +126,7 @@ bool Penitent::RightObstacleCheck()
     if ("Slide" == State_.GetCurStateStateName())
     {
         RightColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x + 20,
-                                                                -(GetTransform().GetWorldPosition().y));
+                                                                -(GetTransform().GetWorldPosition().y + 30));
     }
 
     else
@@ -195,7 +191,7 @@ bool Penitent::HitProjectile(GameEngineCollision* _This, GameEngineCollision* _O
 {
     if ("Hit" != State_.GetCurStateStateName())
     {
-        State_.ChangeState("Hit");
+        // State_.ChangeState("Hit");
         return true;
     }
 
@@ -205,12 +201,12 @@ bool Penitent::HitProjectile(GameEngineCollision* _This, GameEngineCollision* _O
 
 bool Penitent::Dangle(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-    if (false == IsDangle_)
+    if ("Fall" != State_.GetCurStateStateName())
     {
-        IsDangle_ = true;
+        return false;
     }
 
-    else if (true == IsDangle_)
+    if (true == IsDangle_)
     {
         return false;
     }
@@ -220,17 +216,10 @@ bool Penitent::Dangle(GameEngineCollision* _This, GameEngineCollision* _Other)
         return false;
     }
 
-    GameEngineUpdateObject* Root = _This->GetRoot();
+    float4 DanglePos = _Other->GetTransform().GetWorldPosition() + float4{0, -100};
 
-    Penitent* This = dynamic_cast<Penitent*>(Root);
-
-    if (nullptr != This)
-    {
-        float4 DanglePos = _Other->GetTransform().GetWorldPosition() + float4{0, -100};
-
-        This->GetTransform().SetWorldPosition({DanglePos.x, DanglePos.y, static_cast<int>(ACTORORDER::Player)});
-        ChangeState("Dangle");
-    }
+    GetTransform().SetWorldPosition({DanglePos.x, DanglePos.y, static_cast<int>(ACTORORDER::Player)});
+    ChangeState("Dangle");
 
     return true;
 }
