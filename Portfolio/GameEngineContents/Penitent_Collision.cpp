@@ -4,6 +4,8 @@
 
 void Penitent::GroundCheck()
 {
+    int a = 0;
+
     float4 Color;
 
     if ("LadderClimb" == State_.GetCurStateStateName())
