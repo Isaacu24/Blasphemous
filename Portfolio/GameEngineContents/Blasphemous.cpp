@@ -167,7 +167,7 @@ void Blasphemous::LoadResources()
         GameEngineDirectory Dir;
         MovePath(Dir, {"ContentsResources", "Resources", "UI"});
 
-        std::vector<GameEngineFile> Textures = Dir.GetAllFile();
+        std::vector<GameEngineFile> Textures = Dir.GetAllFile() ;
 
         for (size_t i = 0; i < Textures.size(); i++)
         {
@@ -205,19 +205,6 @@ void Blasphemous::LoadResources()
     {
         GameEngineDirectory Dir;
         MovePath(Dir, {"ContentsResources", "Resources", "UI", "Loading"});
-
-        std::vector<GameEngineFile> Textures = Dir.GetAllFile();
-
-        for (size_t i = 0; i < Textures.size(); i++)
-        {
-            GameEngineTexture::Load(Textures[i].GetFullPath());
-        }
-    }
-
-    // Player
-    {
-        GameEngineDirectory Dir;
-        MovePath(Dir, {"ContentsResources", "Resources", "Sprite", "Player"});
 
         std::vector<GameEngineFile> Textures = Dir.GetAllFile();
 

@@ -115,56 +115,9 @@ void Penitent::Start()
     PlayerUI_ = GetLevel()->CreateActor<PlayerUI>();
     PlayerUI_->SetLevelOverOn();
 
+    SetAnimation();
+
     GetTransform().SetLocalScale({2, 2, 1});
-
-    MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
-
-    {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penintent_idle_anim 1");
-
-        MetaRenderer_->CreateMetaAnimation(
-            "penintent_idle_anim 1",
-            {"penintent_idle_anim 1.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
-            Data);
-    }
-
-    {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_aura_anim");
-
-        MetaRenderer_->CreateMetaAnimation(
-            "penitent_aura_anim",
-            {"penitent_aura_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
-            Data);
-    }
-
-    {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_jump_anim");
-
-        MetaRenderer_->CreateMetaAnimation(
-            "penitent_jump_anim",
-            {"penitent_jump_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
-            Data);
-    }
-
-    {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_start_to_run_from_dodge_anim");
-
-        MetaRenderer_->CreateMetaAnimation(
-            "penitent_start_to_run_from_dodge_anim",
-            {"penitent_start_to_run_from_dodge_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
-            Data);
-    }
-
-    {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_running_anim");
-
-        MetaRenderer_->CreateMetaAnimation(
-            "penitent_running_anim",
-            {"penitent_running_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, true},
-            Data);
-    }
-
-    MetaRenderer_->SetPivot(PIVOTMODE::BOT);
 
     State_.CreateStateMember("Freeze",
                              std::bind(&Penitent::FreezeUpdate, this, std::placeholders::_1, std::placeholders::_2),
@@ -249,6 +202,70 @@ void Penitent::Update(float _DeltaTime)
 }
 
 void Penitent::End() {}
+
+void Penitent::SetAnimation()
+{
+    MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penintent_idle_anim 1");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penintent_idle_anim 1",
+            {"penintent_idle_anim 1.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            Data);
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_aura_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_aura_anim",
+            {"penitent_aura_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            Data);
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_jump_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_jump_anim",
+            {"penitent_jump_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            Data);
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_dodge_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_dodge_anim",
+            {"penitent_dodge_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_dodge_anim",
+                                        std::bind(&Penitent::ChangeIdleState, this, std::placeholders::_1));
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_running_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_running_anim",
+            {"penitent_running_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, true},
+            Data);
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("death_anim_blood");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "death_anim_blood",
+            {"death_anim_blood.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, true},
+            Data);
+    }
+
+    MetaRenderer_->SetPivot(PIVOTMODE::BOT);
+}
 
 bool Penitent::HealthCheck()
 {

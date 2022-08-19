@@ -48,6 +48,8 @@ protected:
     void Update(float _DeltaTime) override;
     void End() override;
 
+    void SetAnimation();
+
     bool HealthCheck();
 
     void GroundCheck();
@@ -98,6 +100,11 @@ protected:
     bool HitProjectile(GameEngineCollision* _This, GameEngineCollision* _Other);
 
     bool Dangle(GameEngineCollision* _This, GameEngineCollision* _Other);  //난간 상호작용
+
+    inline void ChangeIdleState(const FrameAnimation_DESC& _Info) 
+    { 
+        State_.ChangeState("Idle");
+    }
 
 private:
     GameEngineStateManager            State_;

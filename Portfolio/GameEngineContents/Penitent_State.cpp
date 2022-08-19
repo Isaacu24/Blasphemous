@@ -93,7 +93,9 @@ void Penitent::DangleUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 
     else if (true == GameEngineInput::GetInst()->IsDownKey("PenitentUp"))
-    {}
+    {
+
+    }
 }
 
 void Penitent::DangleEnd(const StateInfo& _Info) {}
@@ -173,30 +175,21 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Penitent::SlideStart(const StateInfo& _Info)
 {
-    IsSlide_ = true;
     Collider_->GetTransform().SetWorldScale({ColScale_.y, ColScale_.x});
     Collider_->GetTransform().SetWorldMove({0, -50});
 
-    MetaRenderer_->ChangeMetaAnimation("penitent_start_to_run_from_dodge_anim");
+    MetaRenderer_->ChangeMetaAnimation("penitent_dodge_anim");
 }
 
 void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    SlideTime_ += _DeltaTime;
-    GetTransform().SetWorldMove(Dir_ * 500 * _DeltaTime);
-
     if (true == RightObstacleCheck() || true == LeftObstacleCheck())
     {
-        IsSlide_ = false;
-        State_.ChangeState("Idle");
+        return;
     }
-
-    if (1.5f <= SlideTime_)
-    {
-        IsSlide_   = false;
-        SlideTime_ = 0.f;
-        State_.ChangeState("Idle");
-    }
+    
+    SlideTime_ += _DeltaTime;
+    GetTransform().SetWorldMove(Dir_ * 500 * _DeltaTime);
 
     Gravity_->SetActive(!IsGround_);
 }
