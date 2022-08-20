@@ -89,6 +89,8 @@ void MetaTextureRenderer::ChangeMetaAnimation(const std::string& _AnimationName)
     }
 
     CurData_ = FindIter->second;
+
+    MetaSetPivot();
 }
 
 

@@ -102,11 +102,11 @@ bool Penitent::LeftObstacleCheck()
     if ("Slide" == State_.GetCurStateStateName())
     {
         LeftColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x - 30,
-                                                               -(GetTransform().GetWorldPosition().y));
+                                                               -(GetTransform().GetWorldPosition().y + 10));
 
         DebugColliders_[3]->On();
         DebugColliders_[3]->GetTransform().SetWorldPosition(
-            {GetTransform().GetWorldPosition().x - 30, GetTransform().GetWorldPosition().y});
+            { GetTransform().GetWorldPosition().x - 30, GetTransform().GetWorldPosition().y + 10});
         DebugColliders_[3]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
     }
 
@@ -117,7 +117,7 @@ bool Penitent::LeftObstacleCheck()
 
         DebugColliders_[3]->On();
         DebugColliders_[3]->GetTransform().SetWorldPosition(
-            {GetTransform().GetWorldPosition().x - 30, GetTransform().GetWorldPosition().y + 50.f});
+            {GetTransform().GetWorldPosition().x - 30, GetTransform().GetWorldPosition().y + 70.f});
         DebugColliders_[3]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
     }
 
@@ -136,11 +136,11 @@ bool Penitent::RightObstacleCheck()
     if ("Slide" == State_.GetCurStateStateName())
     {
         RightColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x + 30,
-                                                                -(GetTransform().GetWorldPosition().y));
+                                                                -(GetTransform().GetWorldPosition().y + 10));
 
         DebugColliders_[3]->On();
         DebugColliders_[3]->GetTransform().SetWorldPosition(
-            {GetTransform().GetWorldPosition().x + 30, GetTransform().GetWorldPosition().y});
+            {GetTransform().GetWorldPosition().x + 30, GetTransform().GetWorldPosition().y + 10});
         DebugColliders_[3]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
     }
 

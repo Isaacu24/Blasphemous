@@ -98,6 +98,10 @@ protected:
     void LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info);
     void LadderClimbEnd(const StateInfo& _Info);
 
+    void AttackStart(const StateInfo& _Info);
+    void AttackUpdate(float _DeltaTime, const StateInfo& _Info);
+    void AttackEnd(const StateInfo& _Info);
+
     // void RecoveryStart(const StateInfo& _Info);
     // void RecoveryUpdate(float _DeltaTime, const StateInfo& _Info);
 

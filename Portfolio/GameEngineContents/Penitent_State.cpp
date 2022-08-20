@@ -41,6 +41,11 @@ void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
         State_.ChangeState("Jump");
     }
 
+    else if (GameEngineInput::GetInst()->IsPressKey("PenitenAttack"))
+    {
+        State_.ChangeState("Attack");
+    }
+
     //내리막길
     if (false == IsGround_)
     {
@@ -71,6 +76,7 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
     else if (GameEngineInput::GetInst()->IsUpKey("PenitentRight"))
     {
         MetaRenderer_->ChangeMetaAnimation("penintent_stop_run_anim");
+        return;
     }
 
     if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
@@ -87,6 +93,7 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
     else if (GameEngineInput::GetInst()->IsUpKey("PenitentLeft"))
     {
         MetaRenderer_->ChangeMetaAnimation("penintent_stop_run_anim");
+        return;
     }
 
     if (GameEngineInput::GetInst()->IsDownKey("PenitentJump"))
@@ -102,6 +109,11 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
     else if (GameEngineInput::GetInst()->IsPressKey("PenitentSlide"))
     {
         State_.ChangeState("Slide");
+    }
+
+    else if (GameEngineInput::GetInst()->IsPressKey("PenitenAttack"))
+    {
+        State_.ChangeState("Attack");
     }
 
     //내리막길
@@ -345,3 +357,20 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 
 void Penitent::LadderClimbEnd(const StateInfo& _Info) { IsLadder_ = false; }
+
+
+
+void Penitent::AttackStart(const StateInfo& _Info) 
+{
+    MetaRenderer_->ChangeMetaAnimation("penitent_attack_combo_1");
+}
+
+void Penitent::AttackUpdate(float _DeltaTime, const StateInfo& _Info) 
+{
+
+}
+
+void Penitent::AttackEnd(const StateInfo& _Info) 
+{
+
+}

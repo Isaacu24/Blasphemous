@@ -13,7 +13,7 @@ void MetaLevel::Start()
     MetaAnimationGUI_->MetaDir.MoveParentToExitsChildDirectory("ContentsResources");
     MetaAnimationGUI_->MetaDir.Move("ContentsResources");
     MetaAnimationGUI_->MetaDir.Move("Resources");
-    MetaAnimationGUI_->MetaDir.Move("MetaAtlas");
+    MetaAnimationGUI_->MetaDir.Move("MetaAtlas");           
 
     MetaAnimationGUI_->Off();
 }
@@ -24,6 +24,12 @@ void MetaLevel::Update(float _DeltaTime)
 
 void MetaLevel::End() {}
 
-void MetaLevel::OnEvent() { MetaAnimationGUI_->On(); }
+void MetaLevel::LevelStartEvent() 
+{ 
+    MetaAnimationGUI_->On(); 
+}
 
-void MetaLevel::OffEvent() { MetaAnimationGUI_->Off(); }
+void MetaLevel::LevelEndEvent() 
+{
+    MetaAnimationGUI_->Off(); 
+}

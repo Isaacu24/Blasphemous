@@ -54,6 +54,7 @@ void Penitent::Start()
         GameEngineInput::GetInst()->CreateKey("PenitentJump", VK_SPACE);
         GameEngineInput::GetInst()->CreateKey("PenitentSlide", VK_LSHIFT);
         GameEngineInput::GetInst()->CreateKey("PenitentRecovery", 'F');
+        GameEngineInput::GetInst()->CreateKey("PenitenAttack", 'K');
         GameEngineInput::GetInst()->CreateKey("FreeCamera", 'O');
 
         GameEngineInput::GetInst()->CreateKey("PenitentAnimation", '1');
@@ -108,7 +109,7 @@ void Penitent::Start()
         {GetTransform().GetWorldPosition().x - 20, GetTransform().GetWorldPosition().y + 30});
     DebugColliders_[2]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
 
-    // DebugColliders_[3]->On(); 
+    // DebugColliders_[3]->On();
     // DebugColliders_[3]->GetTransform().SetWorldPosition(
     //     {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y - 50});
     // DebugColliders_[3]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
@@ -148,8 +149,7 @@ void Penitent::Update(float _DeltaTime)
 
     GameEngineDebug::OutPutString("PlayerState: " + State_.GetCurStateStateName());
 
-     GameEngineDebug::OutPutString("PenitentZ: "
-                                   + std::to_string(GetTransform().GetWorldPosition().z));
+    GameEngineDebug::OutPutString("PenitentZ: " + std::to_string(GetTransform().GetWorldPosition().z));
 
     // GameEngineDebug::OutPutString("MousePosX: "
     //                               + std::to_string(GetLevel()->GetMainCamera()->GetMouseWorldPositionToActor().x));
@@ -173,20 +173,11 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_aura_anim");
-
-        MetaRenderer_->CreateMetaAnimation(
-            "penitent_aura_anim",
-            {"penitent_aura_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
-            Data);
-    }
-
-    {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_jump_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_jump_anim",
-            {"penitent_jump_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            {"penitent_jump_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false},
             Data);
 
         MetaRenderer_->AnimationBindEnd("penitent_jump_anim",
@@ -198,7 +189,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penintent_standing_up",
-            {"penintent_standing_up.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            {"penintent_standing_up.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false},
             Data);
 
         MetaRenderer_->AnimationBindEnd("penintent_standing_up",
@@ -210,7 +201,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_dodge_anim",
-            {"penitent_dodge_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true},
+            {"penitent_dodge_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
             Data);
 
         MetaRenderer_->AnimationBindEnd("penitent_dodge_anim",
@@ -222,7 +213,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penintent_start_run_anim",
-            {"penintent_start_run_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, true},
+            {"penintent_start_run_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
             Data);
 
         MetaRenderer_->AnimationBindEnd("penintent_start_run_anim",
@@ -244,7 +235,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penintent_stop_run_anim",
-            {"penintent_stop_run_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
+            {"penintent_stop_run_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false},
             Data);
 
         MetaRenderer_->AnimationBindFrame(
@@ -259,8 +250,11 @@ void Penitent::SetAnimation()
                 GetTransform().SetWorldMove(Dir_ * 300.f * GameEngineTime::GetDeltaTime());
             });
 
-        MetaRenderer_->AnimationBindEnd("penintent_stop_run_anim",
-                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+        MetaRenderer_->AnimationBindFrame("penintent_stop_run_anim",
+                                          [&](const FrameAnimation_DESC& _Info) 
+            { 
+                ChangeState("Idle"); 
+            });
     }
 
 
@@ -278,7 +272,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_sheathedIdle",
-            {"penitent_sheathedIdle.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, true},
+            {"penitent_sheathedIdle.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
             Data);
     }
 
@@ -359,7 +353,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penintent_ladder_climb_loop_anim",
-            {"penintent_ladder_climb_loop_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, true},
+            {"penintent_ladder_climb_loop_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
             Data);
     }
 
@@ -372,10 +366,7 @@ void Penitent::SetAnimation()
             Data);
 
         MetaRenderer_->AnimationBindEnd("penintent_ladder_up_from_ground",
-                                        [&](const FrameAnimation_DESC& _Info) 
-            { 
-                ChangeState("Idle"); 
-            });
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
     {
@@ -383,11 +374,40 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_ladder_down_from_ground_anim",
-            {"penitent_ladder_down_from_ground_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true},
+            {"penitent_ladder_down_from_ground_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
             Data);
 
         MetaRenderer_->AnimationBindEnd("penitent_ladder_down_from_ground_anim",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+    }
+
+    //스킬
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_aura_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_aura_anim",
+            {"penitent_aura_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false},
+            Data);
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_charged_attack_v2_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_charged_attack_v2_anim",
+            {"penitent_charged_attack_v2_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false},
+            Data);
+    }
+
+    //공격
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_attack_combo_1");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_attack_combo_1",
+            {"penitent_attack_combo_1.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false},
+            Data);
     }
 
     MetaRenderer_->SetPivot(PIVOTMODE::BOT);
@@ -440,6 +460,11 @@ void Penitent::SetPlayerState()
         std::bind(&Penitent::LadderClimbUpdate, this, std::placeholders::_1, std::placeholders::_2),
         std::bind(&Penitent::LadderClimbStart, this, std::placeholders::_1),
         std::bind(&Penitent::LadderClimbEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember("Attack",
+                             std::bind(&Penitent::AttackUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::AttackStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::AttackEnd, this, std::placeholders::_1));
 
     /*
     State_.CreateStateMember("Recovery",
