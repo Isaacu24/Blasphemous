@@ -209,6 +209,16 @@ void Penitent::CrouchUpdate(float _DeltaTime, const StateInfo& _Info)
     {
         MetaRenderer_->ChangeMetaAnimation("penitent_crouch_up_anim");
     }
+
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
+    {
+        GetTransform().PixLocalPositiveX();
+    }
+
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
+    {
+        GetTransform().PixLocalNegativeX();
+    }
 }
 
 void Penitent::CrouchEnd(const StateInfo& _Info)
