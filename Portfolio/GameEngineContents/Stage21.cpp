@@ -119,7 +119,7 @@ void Stage21::PlayerCameraMove()
 
 void Stage21::End() {}
 
-void Stage21::OnEvent()
+void Stage21::LevelStartEvent()
 {
     if (nullptr == Penitent::GetMainPlayer())
     {
@@ -155,4 +155,4 @@ void Stage21::OnEvent()
     IsLeftExit_  = false;
 }
 
-void Stage21::OffEvent() {}
+void Stage21::LevelEndEvent() {}

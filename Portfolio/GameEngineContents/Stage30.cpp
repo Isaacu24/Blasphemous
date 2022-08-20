@@ -121,7 +121,7 @@ void Stage30::End()
 {
 }
 
-void Stage30::OnEvent()
+void Stage30::LevelStartEvent()
 {
 	if (nullptr == Penitent::GetMainPlayer())
 	{
@@ -162,7 +162,6 @@ void Stage30::OnEvent()
 	GetMainCameraActor()->GetTransform().SetWorldPosition(float4{ Penitent_->GetTransform().GetLocalPosition() + float4{0, CameraOffset_} });
 }
 
-void Stage30::OffEvent()
-{
+void Stage30::LevelEndEvent() {
 }
 

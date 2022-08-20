@@ -136,7 +136,7 @@ void Stage01::Update(float _DeltaTime)
 
 void Stage01::End() {}
 
-void Stage01::OnEvent()
+void Stage01::LevelStartEvent()
 {
     if (nullptr == Penitent::GetMainPlayer())
     {
@@ -188,4 +188,4 @@ void Stage01::OnEvent()
     });
 }
 
-void Stage01::OffEvent() {}
+void Stage01::LevelEndEvent() {}

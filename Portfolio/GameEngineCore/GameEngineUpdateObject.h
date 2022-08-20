@@ -1,8 +1,8 @@
 #pragma once
 #include <string>
 #include <list>
-#include "GameEngineTime.h"
-#include "GameEngineDebugObject.h"
+#include <GameEngineBase/GameEngineTime.h>
+#include <GameEngineBase/GameEngineDebugObject.h>
 
 
 class GameEngineUpdateObject : public GameEngineDebugObject
@@ -27,13 +27,13 @@ public:
 	inline void On()
 	{
 		IsUpdate_ = true;
-		OnEvent();
+		AllOnEvent();
 	}
 
 	inline void Off()
 	{
 		IsUpdate_ = false;
-		OffEvent();
+		AllOffEvent();
 	}
 
 	inline void OnOffSwitch()
@@ -156,15 +156,22 @@ public:
 
 	void AllUpdate(float _DeltaTime);
 
-	void AllOnEvent();
 
-	void AllOffEvent();
+	virtual void LevelStartEvent() {}
+	virtual void LevelEndEvent() { }
 
 protected:
+	void AllLevelStartEvent();
+	void AllLevelEndEvent();
+
+	void AllOnEvent();
+	void AllOffEvent();
+
 	virtual void OnEvent() {}
 	virtual void OffEvent() {}
 
 	virtual void Start() = 0;
+
 	virtual void End() = 0;
 
 	virtual void ReleaseObject(std::list<GameEngineUpdateObject*>& _RelaseList);

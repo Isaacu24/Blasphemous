@@ -12,7 +12,7 @@ enum class PIVOTMODE
 enum class SCALEMODE
 {
 	IMAGE,
-	CUSTOM,	
+	CUSTOM,
 };
 
 struct ColorData
@@ -101,12 +101,15 @@ class FrameAnimation : public GameEngineNameObject
 	GameEngineTexture* Texture;
 	GameEngineFolderTexture* FolderTexture;
 
+	bool Pause;
 	bool bOnceStart;
 	bool bOnceEnd;
 	std::function<void(const FrameAnimation_DESC&)> Frame;
 	std::function<void(const FrameAnimation_DESC&)> End;
 	std::function<void(const FrameAnimation_DESC&)> Start;
 	std::function<void(const FrameAnimation_DESC&, float)> Time;
+
+	void PauseSwtich();
 
 	void Reset();
 
@@ -116,6 +119,7 @@ public:
 	FrameAnimation()
 		: bOnceStart(true)
 		, bOnceEnd(false)
+		, Pause(false)
 	{
 
 	}
@@ -182,6 +186,8 @@ public:
 
 	void ScaleToCutTexture(int _Index);
 
+	void CurAnimationPauseSwitch();
+
 	void CurAnimationReset();
 
 	void CurAnimationSetStartPivotFrame(int SetFrame);
@@ -190,7 +196,6 @@ public:
 	{
 		return ColorData;
 	}
-
 	float4 GetUVData()
 	{
 		return UVData.x;
@@ -200,6 +205,7 @@ public:
 	{
 		UVData.x = _Data.x;
 	}
+
 
 	// 시작 프레임에 들어온다.
 	void AnimationBindStart(const std::string& _AnimationName, std::function<void(const FrameAnimation_DESC&)> _Function)
@@ -253,7 +259,7 @@ public:
 
 		FrameAni[Name].Time = _Function;
 	}
-		
+
 protected:
 	void Start() override;
 
@@ -261,7 +267,7 @@ protected:
 
 	void Update(float _Delta) override;
 
-	FrameAnimation* CurAni;
+	FrameAnimation* CurAni;	
 
 	FrameAnimation_DESC& GetCurAniInfo()
 	{

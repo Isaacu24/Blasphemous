@@ -126,7 +126,7 @@ void Stage20::Update(float _DeltaTime)
 
 void Stage20::End() {}
 
-void Stage20::OnEvent()
+void Stage20::LevelStartEvent()
 {
     if (nullptr == Penitent::GetMainPlayer())
     {
@@ -178,7 +178,7 @@ void Stage20::OnEvent()
     });
 }
 
-void Stage20::OffEvent() {}
+void Stage20::LevelEndEvent() {}
 
 void Stage20::PlayerCameraMove()
 {

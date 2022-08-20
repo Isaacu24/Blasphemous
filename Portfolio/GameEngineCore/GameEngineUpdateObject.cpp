@@ -51,7 +51,7 @@ void GameEngineUpdateObject::AllUpdate(float _DeltaTime)
 	AddAccTime(_DeltaTime);
 	ReleaseUpdate(_DeltaTime);
 	Update(GameEngineTime::GetInst()->GetTimeScale(GetOrder()) * _DeltaTime);
-		
+
 	for (GameEngineUpdateObject* Com : Childs)
 	{
 		//Com->AddAccTime(_DeltaTime);
@@ -62,6 +62,35 @@ void GameEngineUpdateObject::AllUpdate(float _DeltaTime)
 		}
 
 		Com->AllUpdate(_DeltaTime);
+	}
+}
+
+void GameEngineUpdateObject::AllLevelStartEvent()
+{
+	/*this->*/LevelStartEvent();
+
+	for (GameEngineUpdateObject* Com : Childs)
+	{
+		if (false == Com->IsUpdate())
+		{
+			continue;
+		}
+
+		Com->AllLevelStartEvent();
+	}
+}
+void GameEngineUpdateObject::AllLevelEndEvent()
+{
+	/*this->*/LevelEndEvent();
+
+	for (GameEngineUpdateObject* Com : Childs)
+	{
+		if (false == Com->IsUpdate())
+		{
+			continue;
+		}
+
+		Com->AllLevelEndEvent();
 	}
 }
 
@@ -100,7 +129,7 @@ void GameEngineUpdateObject::ReleaseObject(std::list<GameEngineUpdateObject*>& _
 {
 	if (true == IsDeath())
 	{
-		GameEngineUpdateObject::DetachObject();
+		DetachObject();
 		_RelaseList.push_back(this);
 		return;
 	}

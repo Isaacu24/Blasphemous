@@ -180,7 +180,7 @@ void Stage04::BossStateCheck()
 
 void Stage04::End() {}
 
-void Stage04::OnEvent()
+void Stage04::LevelStartEvent()
 {
     if (nullptr == Penitent::GetMainPlayer())
     {
@@ -232,7 +232,7 @@ void Stage04::OnEvent()
     });
 }
 
-void Stage04::OffEvent() {}
+void Stage04::LevelEndEvent() {}
 
 void Stage04::PlayerCameraMove()
 {

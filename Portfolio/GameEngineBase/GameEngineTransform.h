@@ -2,7 +2,6 @@
 #include "GameEngineMath.h"
 #include <DirectXCollision.h>
 #include <GameEngineBase/GameEngineDebugObject.h>
-#include <GameEngineBase/GameEngineUpdateObject.h>
 #include <list>
 
 enum class CollisionType
@@ -104,10 +103,9 @@ public:
 	inline void SetWorldScale(const float4& _World)
 	{
 		float4 Local = _World;
-
 		if (nullptr != Parent)
 		{
-			Local = _World / Parent->Data.WorldScaling; 
+			Local = _World / Parent->Data.WorldScaling;
 		}
 
 		CalculateWorldScale(Local);

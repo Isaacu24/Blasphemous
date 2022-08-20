@@ -200,7 +200,7 @@ void Stage02::Update(float _DeltaTime)
 
 void Stage02::End() {}
 
-void Stage02::OnEvent()
+void Stage02::LevelStartEvent()
 {
     if (nullptr == Penitent::GetMainPlayer())
     {
@@ -225,7 +225,7 @@ void Stage02::OnEvent()
         {
             Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
         }
-
+            
         Penitent_->SetLevelOverOn();
     }
 
@@ -252,4 +252,4 @@ void Stage02::OnEvent()
     });
 }
 
-void Stage02::OffEvent() {}
+void Stage02::LevelEndEvent() {}
