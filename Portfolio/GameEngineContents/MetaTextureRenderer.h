@@ -30,8 +30,9 @@ public:
     void ChangeMetaAnimation(const std::string& _AnimationName);
 
 protected:
+    void Start() override;
     void Update(float _Delta) override;
-
+    void End() override;
 
 private:
     float4 Pivot_;

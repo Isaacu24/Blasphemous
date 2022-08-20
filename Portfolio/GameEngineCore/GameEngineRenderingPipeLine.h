@@ -16,6 +16,8 @@ class GameEngineRenderingPipeLine : public GameEngineRes<GameEngineRenderingPipe
 public:
 	static void AllShaderReset();
 
+	static GameEngineRenderingPipeLine* Create();
+
 	static GameEngineRenderingPipeLine* Create(const std::string& _Name);
 
 public:
@@ -31,25 +33,17 @@ public:
 
 	// void SetInputAssembler1InputLayOutSetting(const std::string& _Name);
 
-	// 범위를 지정하려면 면이 필요하지?
-	// 면을 이루려면 점이 필요하죠?
-	// 리소스는 점을 n개를 버퍼라는 개념으로 그래픽카드한테 쏴주는거다.
-
-	// 이 점은 모니터 공간으로 가야 랜더링
-	// WinApi때 그 좌표계로 가야 한다.
-
 	// 점의 구조를 알려주는 인풋레이아웃도 이 단계에서 세팅된다.
 	void SetInputAssembler1VertexBuffer(const std::string& _Name);
 
 	// 버텍스 쉐이더
-	// 그렇게 넣어준 점을 이동시켜야 내가 원하는 곳에 범위를 잡을수 있다.
-	// 점 하나하나를 원하는 위치에 옮긴다.
 	// 즉 점을 내마음대로 수치를 변경할수 있는 단계
 	void SetVertexShader(const std::string& _Name);
 
+	// 인덱스 버퍼가 세팅된다.
 	void SetInputAssembler2IndexBuffer(const std::string& _Name);
 
-	// 그리고 나서 이 점들을 진짜 모니터 위치로 옮겨주는 역할을 
+	// 점들을 진짜 모니터 위치로 옮겨주는 역할
 	void SetRasterizer(const std::string& _Name);
 
 	void SetPixelShader(const std::string& _Name);
@@ -70,13 +64,16 @@ public:
 		return PixelShader;
 	}
 
+	void Copy(GameEngineRenderingPipeLine* _Original);
+
 protected:
 
 
 private:
 	GameEngineInputLayOut* InputLayOut; // 인풋어셈블러1 세팅
 	GameEngineVertexBuffer* VertexBuffer; // 인풋어셈블러1 세팅
-	
+
+	// 정점을 이렇게 처리해.
 	GameEngineVertexShader* VertexShader; // 버텍스쉐이더 세팅
 
 	GameEngineIndexBuffer* IndexBuffer; // 인풋어셈블러2 세팅
@@ -92,13 +89,6 @@ private:
 
 	GameEngineBlend* Blend; // 아웃풋머저 색상통합 세팅 
 
-
-
-	// 아웃풋 머저중 랜더타겟세팅은 이미 해놨다.
-	// 디바이스의 백버퍼를 사용해서 만든 랜터타겟이 매번 세팅되고 있다.
-	// 거기에 그려라.
-
-	// 내가 세팅해준다.
 
 	// 아래쪽 함수들의 실행
 	void InputAssembler1VertexBufferSetting();

@@ -14,7 +14,6 @@ GameEngineDefaultRenderer::~GameEngineDefaultRenderer()
 void GameEngineDefaultRenderer::Start()
 {
 	GameEngineRenderer::Start();
-
 }
 
 void GameEngineDefaultRenderer::SetPipeLine(const std::string& _Name)
@@ -53,3 +52,15 @@ void GameEngineDefaultRenderer::Render(float _DeltaTime)
 	PipeLine->Rendering();
 }
 
+
+
+GameEngineRenderingPipeLine* GameEngineDefaultRenderer::GetPipeLine()
+{
+	if (false == PipeLine->IsOriginal())
+	{
+		return PipeLine;
+	}
+
+	PipeLine = GetClonePipeLine(PipeLine);
+	return PipeLine;
+}

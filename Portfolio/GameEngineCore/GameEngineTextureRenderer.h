@@ -263,9 +263,9 @@ protected:
 
 	FrameAnimation* CurAni;
 
-	int GetCurFrame()
+	FrameAnimation_DESC& GetCurAniInfo()
 	{
-		return CurAni->Info.CurFrame;
+		return CurAni->Info;
 	}
 
 private:

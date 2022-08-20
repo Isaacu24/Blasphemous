@@ -4,8 +4,6 @@
 
 void Penitent::GroundCheck()
 {
-    int a = 0;
-
     float4 Color;
 
     if ("LadderClimb" == State_.GetCurStateStateName())
@@ -82,7 +80,7 @@ void Penitent::UphillRoadCheck()
     while (true)
     {
         float4 Color = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x,
-                                                           -(GetTransform().GetWorldPosition().y - 4));
+                                                                  -(GetTransform().GetWorldPosition().y - 4));
 
         if (true == Color.CompareInt4D(float4::BLACK) || true == Color.CompareInt4D(float4::MAGENTA))
         {
@@ -103,14 +101,24 @@ bool Penitent::LeftObstacleCheck()
 
     if ("Slide" == State_.GetCurStateStateName())
     {
-        LeftColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x - 20,
-                                                               -(GetTransform().GetWorldPosition().y + 30));
+        LeftColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x - 30,
+                                                               -(GetTransform().GetWorldPosition().y));
+
+        DebugColliders_[3]->On();
+        DebugColliders_[3]->GetTransform().SetWorldPosition(
+            {GetTransform().GetWorldPosition().x - 30, GetTransform().GetWorldPosition().y});
+        DebugColliders_[3]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
     }
 
     else
     {
-        LeftColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x - 20,
-                                                               -(GetTransform().GetWorldPosition().y + 30));
+        LeftColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x - 30,
+                                                               -(GetTransform().GetWorldPosition().y + 70));
+
+        DebugColliders_[3]->On();
+        DebugColliders_[3]->GetTransform().SetWorldPosition(
+            {GetTransform().GetWorldPosition().x - 30, GetTransform().GetWorldPosition().y + 50.f});
+        DebugColliders_[3]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
     }
 
     if (true == LeftColor.CompareInt4D(float4::BLACK))
@@ -127,14 +135,24 @@ bool Penitent::RightObstacleCheck()
 
     if ("Slide" == State_.GetCurStateStateName())
     {
-        RightColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x + 20,
-                                                                -(GetTransform().GetWorldPosition().y + 30));
+        RightColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x + 30,
+                                                                -(GetTransform().GetWorldPosition().y));
+
+        DebugColliders_[3]->On();
+        DebugColliders_[3]->GetTransform().SetWorldPosition(
+            {GetTransform().GetWorldPosition().x + 30, GetTransform().GetWorldPosition().y});
+        DebugColliders_[3]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
     }
 
     else
     {
-        RightColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x + 20,
-                                                                -(GetTransform().GetWorldPosition().y + 30));
+        RightColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x + 30,
+                                                                -(GetTransform().GetWorldPosition().y + 70));
+
+        DebugColliders_[3]->On();
+        DebugColliders_[3]->GetTransform().SetWorldPosition(
+            {GetTransform().GetWorldPosition().x + 30, GetTransform().GetWorldPosition().y + 70});
+        DebugColliders_[3]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
     }
 
     if (true == RightColor.CompareInt4D(float4::BLACK))

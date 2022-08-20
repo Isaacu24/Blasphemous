@@ -108,7 +108,7 @@ void Penitent::Start()
         {GetTransform().GetWorldPosition().x - 20, GetTransform().GetWorldPosition().y + 30});
     DebugColliders_[2]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
 
-    // DebugColliders_[3]->On();
+    // DebugColliders_[3]->On(); 
     // DebugColliders_[3]->GetTransform().SetWorldPosition(
     //     {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y - 50});
     // DebugColliders_[3]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
@@ -147,6 +147,9 @@ void Penitent::Update(float _DeltaTime)
     }
 
     GameEngineDebug::OutPutString("PlayerState: " + State_.GetCurStateStateName());
+
+     GameEngineDebug::OutPutString("PenitentZ: "
+                                   + std::to_string(GetTransform().GetWorldPosition().z));
 
     // GameEngineDebug::OutPutString("MousePosX: "
     //                               + std::to_string(GetLevel()->GetMainCamera()->GetMouseWorldPositionToActor().x));
