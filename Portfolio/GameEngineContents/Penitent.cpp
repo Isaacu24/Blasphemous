@@ -235,7 +235,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penintent_stop_run_anim",
-            {"penintent_stop_run_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false},
+            {"penintent_stop_run_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
             Data);
 
         MetaRenderer_->AnimationBindFrame(
@@ -250,11 +250,8 @@ void Penitent::SetAnimation()
                 GetTransform().SetWorldMove(Dir_ * 300.f * GameEngineTime::GetDeltaTime());
             });
 
-        MetaRenderer_->AnimationBindFrame("penintent_stop_run_anim",
-                                          [&](const FrameAnimation_DESC& _Info) 
-            { 
-                ChangeState("Idle"); 
-            });
+        MetaRenderer_->AnimationBindEnd("penintent_stop_run_anim",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
 
