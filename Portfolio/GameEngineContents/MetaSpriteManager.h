@@ -28,19 +28,18 @@ public:
     std::vector<MetaData>& Find(const std::string& _Name);
 
 	void Load(GameEngineDirectory _Dir);
+	void MetaParsing(const std::string& _AllText); //데이터 파싱
+    std::vector<MetaData> MetaDatas_; //현재 애니메이션의 데이터
 
 protected:
 
 private:
-    std::map<std::string, std::vector<MetaData>> MetaAnimations_;
+    std::map<std::string, std::vector<MetaData>> MetaAnimations_; //모든 애니메이션 정보
 
-    std::vector<MetaData> MetaDatas_;
+    std::vector<GameEngineTexture*>    Textures_; //데이터를 통해 자를 텍스쳐들
 
-    std::vector<GameEngineTexture*>    Textures_;
-    std::vector<std::vector<MetaData>> AllDatas_;
+    std::vector<std::vector<MetaData>> AllDatas_; //한 애니메이션의 모든 메타 데이터
 
-	void MetaParsing(const std::string& _AllText);
-
-    void CutAllTexture();
+    void CutAllTexture(); //데이터를 통한 텍스쳐 자르기	
 };
 

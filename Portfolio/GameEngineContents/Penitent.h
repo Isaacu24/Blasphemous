@@ -136,6 +136,8 @@ private:
     float Speed_;
     float SlideForce_;
 
+    float AttackDir_;
+
     float4 JumpForce_;
 
     float4 Dir_;

@@ -167,7 +167,7 @@ void Blasphemous::LoadResources()
         GameEngineDirectory Dir;
         MovePath(Dir, {"ContentsResources", "Resources", "UI"});
 
-        std::vector<GameEngineFile> Textures = Dir.GetAllFile() ;
+        std::vector<GameEngineFile> Textures = Dir.GetAllFile();
 
         for (size_t i = 0; i < Textures.size(); i++)
         {
@@ -247,9 +247,16 @@ void Blasphemous::LoadResources()
     LoadNormalMonster();
     LoadEffect();
 
+
     {
         GameEngineDirectory Dir;
         MovePath(Dir, {"ContentsResources", "Resources", "MetaAtlas", "Penitent"});
+        MetaSpriteManager::Inst_->Load(Dir);
+    }
+
+    {
+        GameEngineDirectory Dir;
+        MovePath(Dir, {"ContentsResources", "Resources", "MetaAtlas", "MetaMonster", "Normal", "WingedFace"});
         MetaSpriteManager::Inst_->Load(Dir);
     }
 }

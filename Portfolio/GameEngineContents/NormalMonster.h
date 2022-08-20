@@ -1,8 +1,11 @@
 #pragma once
 #include "MonsterBase.h"
+#include <GameEngineCore/GameEngineActor.h>
 
 class Penitent;
-class NormalMonster : public MonsterBase
+class NormalMonster
+    : public MonsterBase
+    , public GameEngineActor
 {
 public:
 	NormalMonster();
@@ -26,6 +29,10 @@ public:
 	//Penitent* GetPlayer();
 
 protected:
+    void Start() override;
+    void Update(float _DeltaTime) override;
+    void End() override;
+
 	bool PatrolStart_;
 	bool PatrolEnd_;
 

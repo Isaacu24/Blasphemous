@@ -77,7 +77,7 @@ void Penitent::Start()
     Collider_->GetTransform().SetWorldMove({0, 30, 1.f});
 
     AttackCollider_ = CreateComponent<GameEngineCollision>();
-    AttackCollider_->GetTransform().SetWorldScale({50.f, 50.f, 1.f});
+    AttackCollider_->GetTransform().SetWorldScale({50.f, 100.f, 1.f});
     AttackCollider_->ChangeOrder(COLLISIONORDER::PlayerAttack);
     AttackCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{0.3f, 0.0f, 1.0f, 0.5f});
     AttackCollider_->Off();
@@ -251,7 +251,10 @@ void Penitent::SetAnimation()
             });
 
         MetaRenderer_->AnimationBindEnd("penintent_stop_run_anim",
-                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+                                        [&](const FrameAnimation_DESC& _Info) 
+            { 
+                ChangeState("Idle"); 
+            });
     }
 
 
@@ -403,11 +406,14 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_attack_combo_1",
-            {"penitent_attack_combo_1.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false},
+            {"penitent_attack_combo_1.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, true},
             Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_attack_combo_1",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
-    MetaRenderer_->SetPivot(PIVOTMODE::BOT);
+    MetaRenderer_->SetPivot(PIVOTMODE::BOT);    
 }
 
 void Penitent::SetPlayerState()

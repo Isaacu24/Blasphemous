@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "MonsterBase.h"
+#include "MetaTextureRenderer.h"
 
 MonsterBase::MonsterBase() 
     : State_{}

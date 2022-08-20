@@ -1,10 +1,7 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
 #include "NormalMonster.h"
 
-class Fool_knife
-    : public GameEngineActor
-    , public NormalMonster
+class Fool_knife : public NormalMonster
 {
 public:
     Fool_knife();

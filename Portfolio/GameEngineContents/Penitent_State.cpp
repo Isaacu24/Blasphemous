@@ -65,10 +65,12 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
     if (GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
     {
         GetTransform().PixLocalPositiveX();
+        Dir_ = GetTransform().GetRightVector();
+
+        AttackDir_ = 1;
 
         if (false == RightObstacleCheck())
         {
-            Dir_ = GetTransform().GetRightVector();
             GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime);
         }
     }
@@ -82,10 +84,12 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
     if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
     {
         GetTransform().PixLocalNegativeX();
+        Dir_ = -(GetTransform().GetLeftVector());
+
+        AttackDir_ = -1;
 
         if (false == LeftObstacleCheck())
         {
-            Dir_ = -(GetTransform().GetLeftVector());
             GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime);
         }
     }
@@ -144,21 +148,17 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
     if (GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
     {
         GetTransform().PixLocalPositiveX();
+        Dir_ += GetTransform().GetRightVector() * 2.5f;
 
-        if (false == RightObstacleCheck())
-        {
-            Dir_ += GetTransform().GetRightVector() * 2.5f;
-        }
+        AttackDir_ = 1;
     }
 
     if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
     {
         GetTransform().PixLocalNegativeX();
+        Dir_ += -(GetTransform().GetLeftVector() * 2.5f);
 
-        if (false == LeftObstacleCheck())
-        {
-            Dir_ += -(GetTransform().GetLeftVector() * 2.5f);
-        }
+        AttackDir_ = -1;
     }
 
     GetTransform().SetWorldMove(Dir_ * JumpForce_ * _DeltaTime);
@@ -178,21 +178,17 @@ void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
     if (GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
     {
         GetTransform().PixLocalPositiveX();
+        Dir_ += GetTransform().GetRightVector() * 2.5f;
 
-        if (false == RightObstacleCheck())
-        {
-            Dir_ += GetTransform().GetRightVector() * 2.5f;
-        }
+        AttackDir_ = 1;
     }
 
     if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
     {
         GetTransform().PixLocalNegativeX();
+        Dir_ += -(GetTransform().GetLeftVector() * 2.5f);
 
-        if (false == LeftObstacleCheck())
-        {
-            Dir_ += -(GetTransform().GetLeftVector() * 2.5f);
-        }
+        AttackDir_ = -1;
     }
 
     if (true == IsGround_)
@@ -257,7 +253,7 @@ void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
 
     SlideForce_ -= _DeltaTime * 350.f;
     GetTransform().SetWorldMove(Dir_ * SlideForce_ * _DeltaTime);
-
+            
     Gravity_->SetActive(!IsGround_);
 
     //내리막길 문제있음
@@ -358,11 +354,20 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Penitent::LadderClimbEnd(const StateInfo& _Info) { IsLadder_ = false; }
 
-
-
-void Penitent::AttackStart(const StateInfo& _Info) 
+void Penitent::AttackStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_attack_combo_1");
+    AttackCollider_->On();
+
+    if (0 < AttackDir_) //오른쪽
+    {
+        AttackCollider_->GetTransform().SetWorldMove({AttackDir_ * 80.f, 50.f});
+    }
+
+    else if (0 > AttackDir_) //왼쪽
+    {
+        AttackCollider_->GetTransform().SetWorldMove({AttackDir_ * 80.f, 50.f});
+    }
 }
 
 void Penitent::AttackUpdate(float _DeltaTime, const StateInfo& _Info) 
@@ -370,7 +375,8 @@ void Penitent::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 
 }
 
-void Penitent::AttackEnd(const StateInfo& _Info) 
+void Penitent::AttackEnd(const StateInfo& _Info)
 {
-
+    AttackCollider_->Off();
+    AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
 }

@@ -2,6 +2,7 @@
 #include "PreCompile.h"
 
 //몬스터의 기본적인 클래스
+class MetaTextureRenderer;
 class GameEngineTextureRenderer;
 class MonsterBase
 {
@@ -36,6 +37,7 @@ public:
 protected:
     GameEngineStateManager State_;
 
+    MetaTextureRenderer*       MetaRenderer_;
     GameEngineTextureRenderer* Renderer_;
     GameEngineTextureRenderer* ColMap_;
 

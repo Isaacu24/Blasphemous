@@ -1,8 +1,7 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
 #include "NormalMonster.h"
 
-class WingedFace : public GameEngineActor, public NormalMonster
+class WingedFace : public NormalMonster
 {
 public:
 	WingedFace();
@@ -30,11 +29,6 @@ public:
 	inline void SetEndPos(float _Pos)
 	{
 		EndPos_ = _Pos;
-	}
-
-	inline void DeathEnd(const FrameAnimation_DESC& _Info)
-	{
-		Death();
 	}
 
 protected:

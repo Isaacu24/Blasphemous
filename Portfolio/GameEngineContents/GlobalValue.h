@@ -54,8 +54,16 @@ enum class COLLISIONORDER
 {
 	Player,
     PlayerAttack,
+    PlayerSkill,
+    PlayerSkill1,
+    PlayerSkill2,
+    MonsterDetect, //몬스터 감지 영역
 	Monster,
+    MonsterAttack,
+    MonsterAttack1,
 	BossMonster,
+    BossMonsterAttack,
+    BossMonsterAttack1,
 	Projectile,
 	Object,
     Handrail, //난간

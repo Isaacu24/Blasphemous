@@ -18,6 +18,11 @@ std::vector<MetaData>& MetaSpriteManager::Insert(const std::string& _Name, std::
 
     std::string UpperName = GameEngineString::ToUpperReturn(_Name);
 
+    if (MetaAnimations_.end() != MetaAnimations_.find(UpperName))
+    {
+        return NewDatas;
+    }
+
     MetaAnimations_.insert(std::make_pair(UpperName, NewDatas));
 
     if (0 == NewDatas.size())
@@ -46,6 +51,23 @@ std::vector<MetaData>& MetaSpriteManager::Find(const std::string& _Name)
 
 void MetaSpriteManager::Load(GameEngineDirectory _Dir)
 {
+    //GameEngineFile LoadFile = GameEngineFile(Path);
+    //LoadFile.Open(OpenMode::Read, FileMode::Text);
+
+    //std::string AllText = LoadFile.GetString();
+
+    //MetaParsing(AllText);
+
+    //if (0 == TargetTexture->GetCutCount())
+    //{
+    //    for (auto& [Index, PosX, PosY, Width, Height, PivotX, PivotY] : MetaDatas_)
+    //    {
+    //        TargetTexture->Cut(PosX, TargetTexture->GetScale().y - PosY - Height, Width, Height);
+    //    }
+    //}
+
+    //MetaSpriteManager::Inst_->Insert(AnimationName, MetaDatas_);
+
     std::vector<GameEngineFile> Textures = _Dir.GetAllFile();
 
     for (size_t i = 0; i < Textures.size(); i++)
@@ -249,5 +271,6 @@ void MetaSpriteManager::CutAllTexture()
     }
 
     Textures_.clear();
+    AllDatas_.clear();
 }
 

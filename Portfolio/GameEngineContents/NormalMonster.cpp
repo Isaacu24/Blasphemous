@@ -7,6 +7,18 @@ NormalMonster::NormalMonster()
 
 NormalMonster::~NormalMonster() {}
 
+void NormalMonster::Start() {
+
+}
+
+void NormalMonster::Update(float _DeltaTime) {
+
+}
+
+void NormalMonster::End() {
+}
+
+
 //Penitent* NormalMonster::GetPlayer() 
 //{ 
 //    if (nullptr == PlayerCollision_)
@@ -62,12 +74,12 @@ bool NormalMonster::LookAtPlayer(GameEngineCollision* _This, GameEngineCollision
 {
     if (_This->GetTransform().GetWorldPosition().x < _Other->GetTransform().GetWorldPosition().x)
     {
-        Renderer_->GetTransform().PixLocalPositiveX();
+        GetTransform().PixLocalPositiveX();
     }
 
     else
     {
-        Renderer_->GetTransform().PixLocalNegativeX();
+        GetTransform().PixLocalNegativeX();
     }
 
     return false;

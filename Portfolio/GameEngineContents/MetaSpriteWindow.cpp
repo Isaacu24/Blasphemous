@@ -173,18 +173,18 @@ void MetaSpriteWindow::AllFolderButton(GameEngineLevel* _Level)
 
                     std::string AllText = Textures[i].GetString();
 
-                    MetaParsing(AllText);
+                    MetaSpriteManager::Inst_->MetaParsing(AllText);
 
                     std::string FileName      = std::filesystem::path{Textures[i].GetFileName()}.filename().string();
                     std::string ImageName     = std::filesystem::path{FileName}.replace_extension("").string();
                     std::string AnimationName = std::filesystem::path{ImageName}.replace_extension("").string();
 
-                    if (0 == MetaDatas_.size())
+                    if (0 == MetaSpriteManager::Inst_->MetaDatas_.size())
                     {
                         int a = 0;
                     }
 
-                    MetaSpriteManager::Inst_->Insert(AnimationName, MetaDatas_);
+                    MetaSpriteManager::Inst_->Insert(AnimationName, MetaSpriteManager::Inst_->MetaDatas_);
 
                     AllDatas_.push_back(MetaDatas_);
                 }
