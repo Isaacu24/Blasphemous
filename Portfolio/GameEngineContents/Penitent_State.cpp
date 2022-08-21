@@ -67,7 +67,7 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
         GetTransform().PixLocalPositiveX();
         Dir_ = GetTransform().GetRightVector();
 
-        AttackDir_ = 1;
+        RealXDir_ = 1;
 
         if (false == RightObstacleCheck())
         {
@@ -86,7 +86,7 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
         GetTransform().PixLocalNegativeX();
         Dir_ = -(GetTransform().GetLeftVector());
 
-        AttackDir_ = -1;
+        RealXDir_ = -1;
 
         if (false == LeftObstacleCheck())
         {
@@ -150,7 +150,7 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
         GetTransform().PixLocalPositiveX();
         Dir_ += GetTransform().GetRightVector() * 3.f;
 
-        AttackDir_ = 1;
+        RealXDir_ = 1;
     }
 
     if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
@@ -158,7 +158,7 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
         GetTransform().PixLocalNegativeX();
         Dir_ += -(GetTransform().GetLeftVector() * 3.f);
 
-        AttackDir_ = -1;
+        RealXDir_ = -1;
     }
 
     GetTransform().SetWorldMove(Dir_ * JumpForce_ * _DeltaTime);
@@ -180,7 +180,7 @@ void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
         GetTransform().PixLocalPositiveX();
         Dir_ += GetTransform().GetRightVector() * 3.f;
 
-        AttackDir_ = 1;
+        RealXDir_ = 1;
     }
 
     if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
@@ -188,7 +188,7 @@ void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
         GetTransform().PixLocalNegativeX();
         Dir_ += -(GetTransform().GetLeftVector() * 3.f);
 
-        AttackDir_ = -1;
+        RealXDir_ = -1;
     }
 
     if (true == IsGround_)
@@ -299,6 +299,8 @@ void Penitent::LadderClimbStart(const StateInfo& _Info)
 {
     //한 프레임 false 상태로 만들고 다음 상태일 때 체크
     IsGround_ = false;
+
+    //위아래 분기 나누어야 함@
     MetaRenderer_->ChangeMetaAnimation("penintent_ladder_climb_loop_anim");
 }
 
@@ -310,26 +312,33 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
         {
             CilmbY_ = 30.f;
 
+            if (true == MetaRenderer_->GetPause())
+            {
+                MetaRenderer_->CurAnimationPauseSwitch();
+            }
+
             MetaRenderer_->ChangeMetaAnimation("penintent_ladder_climb_loop_anim");
             GetTransform().SetWorldMove(GetTransform().GetUpVector() * Speed_ * _DeltaTime);
-        }
-
-        else if (GameEngineInput::GetInst()->IsUpKey("PenitentUp"))
-        {
-            //애니메이션 멈춤
         }
 
         if (GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
         {
             CilmbY_ = -50;
 
+            if (true == MetaRenderer_->GetPause())
+            {
+                MetaRenderer_->CurAnimationPauseSwitch();
+            }
+
             MetaRenderer_->ChangeMetaAnimation("penintent_ladder_climb_loop_anim");
             GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed_ * _DeltaTime);
         }
 
-        else if (GameEngineInput::GetInst()->IsUpKey("PenitentDown"))
+        else if (GameEngineInput::GetInst()->IsUpKey("PenitentUp")
+            || GameEngineInput::GetInst()->IsUpKey("PenitentDown"))
         {
             //애니메이션 멈춤
+            MetaRenderer_->CurAnimationPauseSwitch();
         }
     }
 
@@ -359,14 +368,14 @@ void Penitent::AttackStart(const StateInfo& _Info)
     MetaRenderer_->ChangeMetaAnimation("penitent_attack_combo_1");
     AttackCollider_->On();
 
-    if (0 < AttackDir_) //오른쪽
+    if (0 < RealXDir_)  //오른쪽
     {
-        AttackCollider_->GetTransform().SetWorldMove({AttackDir_ * 80.f, 50.f});
+        AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
     }
 
-    else if (0 > AttackDir_) //왼쪽
+    else if (0 > RealXDir_)  //왼쪽
     {
-        AttackCollider_->GetTransform().SetWorldMove({AttackDir_ * 80.f, 50.f});
+        AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
     }
 }
 

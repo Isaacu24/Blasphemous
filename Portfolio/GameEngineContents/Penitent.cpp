@@ -251,20 +251,7 @@ void Penitent::SetAnimation()
             });
 
         MetaRenderer_->AnimationBindEnd("penintent_stop_run_anim",
-                                        [&](const FrameAnimation_DESC& _Info) 
-            { 
-                ChangeState("Idle"); 
-            });
-    }
-
-
-    {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("death_anim_blood");
-
-        MetaRenderer_->CreateMetaAnimation(
-            "death_anim_blood",
-            {"death_anim_blood.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
-            Data);
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
     {
@@ -353,7 +340,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penintent_ladder_climb_loop_anim",
-            {"penintent_ladder_climb_loop_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            {"penintent_ladder_climb_loop_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, true},
             Data);
     }
 
@@ -362,7 +349,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penintent_ladder_up_from_ground",
-            {"penintent_ladder_up_from_ground.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
+            {"penintent_ladder_up_from_ground.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
             Data);
 
         MetaRenderer_->AnimationBindEnd("penintent_ladder_up_from_ground",
@@ -374,7 +361,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_ladder_down_from_ground_anim",
-            {"penitent_ladder_down_from_ground_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
+            {"penitent_ladder_down_from_ground_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
             Data);
 
         MetaRenderer_->AnimationBindEnd("penitent_ladder_down_from_ground_anim",
@@ -413,7 +400,16 @@ void Penitent::SetAnimation()
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
-    MetaRenderer_->SetPivot(PIVOTMODE::BOT);    
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("death_anim_blood");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "death_anim_blood",
+            {"death_anim_blood.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
+            Data);
+    }
+
+    MetaRenderer_->SetPivot(PIVOTMODE::BOT);
 }
 
 void Penitent::SetPlayerState()

@@ -206,6 +206,10 @@ public:
 		UVData.x = _Data.x;
 	}
 
+	inline bool GetPause()
+	{
+		return CurAni->Pause;
+	}
 
 	// 시작 프레임에 들어온다.
 	void AnimationBindStart(const std::string& _AnimationName, std::function<void(const FrameAnimation_DESC&)> _Function)

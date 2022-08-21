@@ -238,7 +238,7 @@ bool Penitent::Dangle(GameEngineCollision* _This, GameEngineCollision* _Other)
 
     if (static_cast<int>(COLLISIONORDER::LeftLedge) == _Other->GetCollsionOrder())
     {
-        if (0 > AttackDir_)  //왼쪽이라면 
+        if (0 > RealXDir_)  //왼쪽이라면 
         {
             return false;
         }
@@ -246,7 +246,7 @@ bool Penitent::Dangle(GameEngineCollision* _This, GameEngineCollision* _Other)
 
     if (static_cast<int>(COLLISIONORDER::RightLedge) == _Other->GetCollsionOrder())
     {
-        if (0 < AttackDir_)  //오른쪽이라면
+        if (0 < RealXDir_)  //오른쪽이라면
         {
             return false;
         }
