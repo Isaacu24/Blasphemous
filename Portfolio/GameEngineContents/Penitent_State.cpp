@@ -148,7 +148,7 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
     if (GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
     {
         GetTransform().PixLocalPositiveX();
-        Dir_ += GetTransform().GetRightVector() * 2.5f;
+        Dir_ += GetTransform().GetRightVector() * 3.f;
 
         AttackDir_ = 1;
     }
@@ -156,7 +156,7 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
     if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
     {
         GetTransform().PixLocalNegativeX();
-        Dir_ += -(GetTransform().GetLeftVector() * 2.5f);
+        Dir_ += -(GetTransform().GetLeftVector() * 3.f);
 
         AttackDir_ = -1;
     }
@@ -178,7 +178,7 @@ void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
     if (GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
     {
         GetTransform().PixLocalPositiveX();
-        Dir_ += GetTransform().GetRightVector() * 2.5f;
+        Dir_ += GetTransform().GetRightVector() * 3.f;
 
         AttackDir_ = 1;
     }
@@ -186,7 +186,7 @@ void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
     if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
     {
         GetTransform().PixLocalNegativeX();
-        Dir_ += -(GetTransform().GetLeftVector() * 2.5f);
+        Dir_ += -(GetTransform().GetLeftVector() * 3.f);
 
         AttackDir_ = -1;
     }

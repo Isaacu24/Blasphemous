@@ -30,6 +30,11 @@ public:
 
 	void ChangeOrder(int _Order);
 
+	inline int GetCollsionOrder()
+	{
+		return CollsionOrder;
+	}
+
 	template<typename EnumType>
 	bool IsCollision(CollisionType _ThisType, EnumType _GroupOrder
 		, CollisionType _OtherCollision
@@ -57,6 +62,8 @@ protected:
 private:
 	CollisionType DebugType;
 	float4 Color;
+
+	int CollsionOrder;
 
 	void Start() override;
 };

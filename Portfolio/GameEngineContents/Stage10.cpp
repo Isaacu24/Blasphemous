@@ -81,7 +81,7 @@ void Stage10::SettingLedge()
     //첫번째 줄
     {
         GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
-        Collider->ChangeOrder(COLLISIONORDER::Handrail);
+        Collider->ChangeOrder(COLLISIONORDER::RightLedge);
         Collider->GetTransform().SetWorldPosition({980, -830});
         Collider->GetTransform().SetWorldScale({5.0f, 5.0f, 1.0f});
         Collider->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.2f, 0.5f});
@@ -90,7 +90,7 @@ void Stage10::SettingLedge()
 
     {
         GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
-        Collider->ChangeOrder(COLLISIONORDER::Handrail);
+        Collider->ChangeOrder(COLLISIONORDER::LeftLedge);
         Collider->GetTransform().SetWorldPosition({1210, -830});
         Collider->GetTransform().SetWorldScale({5.0f, 5.0f, 1.0f});
         Collider->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.2f, 0.5f});
@@ -99,16 +99,16 @@ void Stage10::SettingLedge()
 
     {
         GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
-        Collider->ChangeOrder(COLLISIONORDER::Handrail);
+        Collider->ChangeOrder(COLLISIONORDER::RightLedge);
         Collider->GetTransform().SetWorldPosition({2290, -830});
         Collider->GetTransform().SetWorldScale({5.0f, 5.0f, 1.0f});
-        Collider->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.2f, 0.5f});
+        Collider->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 1.0f, 1.0f, 0.5f});
         DangleColiders_.push_back(Collider);
     }
 
     {
         GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
-        Collider->ChangeOrder(COLLISIONORDER::Handrail);
+        Collider->ChangeOrder(COLLISIONORDER::LeftLedge);
         Collider->GetTransform().SetWorldPosition({2510, -830});
         Collider->GetTransform().SetWorldScale({5.0f, 5.0f, 1.0f});
         Collider->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.2f, 0.5f});
@@ -117,18 +117,18 @@ void Stage10::SettingLedge()
 
     {
         GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
-        Collider->ChangeOrder(COLLISIONORDER::Handrail);
+        Collider->ChangeOrder(COLLISIONORDER::RightLedge);
         Collider->GetTransform().SetWorldPosition({980, -960});
         Collider->GetTransform().SetWorldScale({5.0f, 5.0f, 1.0f});
-        Collider->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.2f, 0.5f});
+        Collider->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 1.0f, 1.0f, 0.5f});
         DangleColiders_.push_back(Collider);
     }
 
     //두번째 줄
     {
         GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
-        Collider->ChangeOrder(COLLISIONORDER::Handrail);
-        Collider->GetTransform().SetWorldPosition({1000, -1235});
+        Collider->ChangeOrder(COLLISIONORDER::LeftLedge);
+        Collider->GetTransform().SetWorldPosition({1010, -1235});
         Collider->GetTransform().SetWorldScale({5.0f, 5.0f, 1.0f});
         Collider->SetDebugSetting(CollisionType::CT_AABB, float4{0.5f, 0.21f, 0.6f, 0.5f});
         DangleColiders_.push_back(Collider);
@@ -136,7 +136,7 @@ void Stage10::SettingLedge()
 
     {
         GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
-        Collider->ChangeOrder(COLLISIONORDER::Handrail);
+        Collider->ChangeOrder(COLLISIONORDER::RightLedge);
         Collider->GetTransform().SetWorldPosition({1200, -1235});
         Collider->GetTransform().SetWorldScale({5.0f, 5.0f, 1.0f});
         Collider->SetDebugSetting(CollisionType::CT_AABB, float4{0.5f, 0.21f, 0.6f, 0.5f});
@@ -145,8 +145,8 @@ void Stage10::SettingLedge()
 
     {
         GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
-        Collider->ChangeOrder(COLLISIONORDER::Handrail);
-        Collider->GetTransform().SetWorldPosition({1340, -1235});
+        Collider->ChangeOrder(COLLISIONORDER::LeftLedge);
+        Collider->GetTransform().SetWorldPosition({1340, -1220});
         Collider->GetTransform().SetWorldScale({5.0f, 5.0f, 1.0f});
         Collider->SetDebugSetting(CollisionType::CT_AABB, float4{0.5f, 0.31f, 0.6f, 0.5f});
         DangleColiders_.push_back(Collider);
@@ -154,28 +154,28 @@ void Stage10::SettingLedge()
 
     {
         GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
-        Collider->ChangeOrder(COLLISIONORDER::Handrail);
-        Collider->GetTransform().SetWorldPosition({1630, -1235});
+        Collider->ChangeOrder(COLLISIONORDER::RightLedge);
+        Collider->GetTransform().SetWorldPosition({1630, -1220});
         Collider->GetTransform().SetWorldScale({5.0f, 5.0f, 1.0f});
-        Collider->SetDebugSetting(CollisionType::CT_AABB, float4{0.5f, 0.31f, 0.6f, 0.5f});
+        Collider->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 1.0f, 1.0f, 0.5f});
         DangleColiders_.push_back(Collider);
     }
 
     {
         GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
-        Collider->ChangeOrder(COLLISIONORDER::Handrail);
-        Collider->GetTransform().SetWorldPosition({2520, -1235});
+        Collider->ChangeOrder(COLLISIONORDER::LeftLedge);
+        Collider->GetTransform().SetWorldPosition({2520, -1220});
         Collider->GetTransform().SetWorldScale({5.0f, 5.0f, 1.0f});
-        Collider->SetDebugSetting(CollisionType::CT_AABB, float4{0.5f, 0.31f, 0.6f, 0.5f});
+        Collider->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 1.0f, 1.0f, 0.5f});
         DangleColiders_.push_back(Collider);
     }
 
     {
         GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
-        Collider->ChangeOrder(COLLISIONORDER::Handrail);
-        Collider->GetTransform().SetWorldPosition({2810, -1235});
+        Collider->ChangeOrder(COLLISIONORDER::RightLedge);
+        Collider->GetTransform().SetWorldPosition({2810, -1220});
         Collider->GetTransform().SetWorldScale({5.0f, 5.0f, 1.0f});
-        Collider->SetDebugSetting(CollisionType::CT_AABB, float4{0.5f, 0.31f, 0.6f, 0.5f});
+        Collider->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 1.0f, 1.0f, 0.5f});
         DangleColiders_.push_back(Collider);
     }
 
@@ -197,7 +197,7 @@ void Stage10::SettingLedge()
     //    Collider->SetDebugSetting(CollisionType::CT_AABB, float4{0.5f, 0.31f, 0.6f, 0.5f});
     //    DangleColiders_.push_back(Collider);
     //}
-}
+}   
 
 void Stage10::Start()
 {

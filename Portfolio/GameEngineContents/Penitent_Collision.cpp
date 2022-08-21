@@ -182,7 +182,12 @@ void Penitent::CollisionCheck()
                            std::bind(&Penitent::HitMonster, this, std::placeholders::_1, std::placeholders::_2));
 
     Collider_->IsCollision(CollisionType::CT_OBB2D,
-                           COLLISIONORDER::Handrail,
+                           COLLISIONORDER::LeftLedge,
+                           CollisionType::CT_OBB2D,
+                           std::bind(&Penitent::Dangle, this, std::placeholders::_1, std::placeholders::_2));
+
+    Collider_->IsCollision(CollisionType::CT_OBB2D,
+                           COLLISIONORDER::RightLedge,
                            CollisionType::CT_OBB2D,
                            std::bind(&Penitent::Dangle, this, std::placeholders::_1, std::placeholders::_2));
 }
@@ -231,9 +236,20 @@ bool Penitent::Dangle(GameEngineCollision* _This, GameEngineCollision* _Other)
         return false;
     }
 
-    if (true == IsGround_)
+    if (static_cast<int>(COLLISIONORDER::LeftLedge) == _Other->GetCollsionOrder())
     {
-        return false;
+        if (0 > AttackDir_)  //왼쪽이라면 
+        {
+            return false;
+        }
+    }
+
+    if (static_cast<int>(COLLISIONORDER::RightLedge) == _Other->GetCollsionOrder())
+    {
+        if (0 < AttackDir_)  //오른쪽이라면
+        {
+            return false;
+        }
     }
 
     float4 DanglePos = _Other->GetTransform().GetWorldPosition() + float4{0, -100};

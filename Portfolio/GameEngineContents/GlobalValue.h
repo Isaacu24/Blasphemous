@@ -66,7 +66,8 @@ enum class COLLISIONORDER
     BossMonsterAttack1,
 	Projectile,
 	Object,
-    Handrail, //난간
+    LeftLedge,  //난간
+    RightLedge,
 	Debug
 };
 

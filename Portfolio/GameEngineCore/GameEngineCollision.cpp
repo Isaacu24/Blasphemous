@@ -46,6 +46,7 @@ void GameEngineCollision::Start()
 
 void GameEngineCollision::ChangeOrder(int _Order)
 {
+	CollsionOrder = _Order;
 	GetActor()->GetLevel()->PushCollision(this, _Order);
 }
 

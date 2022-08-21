@@ -35,8 +35,6 @@ public:
         ChangeMonsterState("Patrol");
     }
 
-    inline void DeathEnd(const FrameAnimation_DESC& _Info) { Death(); }
-
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
