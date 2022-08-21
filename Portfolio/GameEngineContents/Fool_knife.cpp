@@ -38,7 +38,8 @@ void Fool_knife::Start()
 
     BodyCollider_ = CreateComponent<GameEngineCollision>();
     BodyCollider_->ChangeOrder(COLLISIONORDER::Monster);
-    BodyCollider_->GetTransform().SetWorldScale({400, 300.0f, 1.0f});
+    BodyCollider_->GetTransform().SetWorldScale({50, 150.0f, 1.0f});
+    BodyCollider_->GetTransform().SetWorldMove({0, 100});
 
     State_.CreateStateMember("Idle",
                              std::bind(&Fool_knife::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2),

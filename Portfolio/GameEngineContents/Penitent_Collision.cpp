@@ -106,7 +106,7 @@ bool Penitent::LeftObstacleCheck()
 
         DebugColliders_[3]->On();
         DebugColliders_[3]->GetTransform().SetWorldPosition(
-            { GetTransform().GetWorldPosition().x - 10, GetTransform().GetWorldPosition().y + 30});
+            {GetTransform().GetWorldPosition().x - 10, GetTransform().GetWorldPosition().y + 30});
         DebugColliders_[3]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
     }
 
@@ -166,63 +166,55 @@ bool Penitent::RightObstacleCheck()
 
 void Penitent::CollisionCheck()
 {
-    Collider_->IsCollision(CollisionType::CT_OBB2D,
-                           COLLISIONORDER::Monster,
-                           CollisionType::CT_OBB2D,
-                           std::bind(&Penitent::HitMonster, this, std::placeholders::_1, std::placeholders::_2));
-
-    Collider_->IsCollision(CollisionType::CT_OBB2D,
-                           COLLISIONORDER::Projectile,
-                           CollisionType::CT_OBB2D,
-                           std::bind(&Penitent::HitProjectile, this, std::placeholders::_1, std::placeholders::_2));
-
-    Collider_->IsCollision(CollisionType::CT_OBB2D,
-                           COLLISIONORDER::BossMonster,
-                           CollisionType::CT_OBB2D,
-                           std::bind(&Penitent::HitMonster, this, std::placeholders::_1, std::placeholders::_2));
-
-    Collider_->IsCollision(CollisionType::CT_OBB2D,
-                           COLLISIONORDER::LeftLedge,
-                           CollisionType::CT_OBB2D,
-                           std::bind(&Penitent::Dangle, this, std::placeholders::_1, std::placeholders::_2));
-
-    Collider_->IsCollision(CollisionType::CT_OBB2D,
-                           COLLISIONORDER::RightLedge,
-                           CollisionType::CT_OBB2D,
-                           std::bind(&Penitent::Dangle, this, std::placeholders::_1, std::placeholders::_2));
-}
-
-
-void Penitent::HitStart(const StateInfo& _Info)
-{
-    if ("LadderClimb" == _Info.PrevState)
+    //몬스터 피격
     {
-        State_.ChangeState("LadderClimb");
-        return;
+        BodyCollider_->IsCollision(CollisionType::CT_OBB2D,
+                                   COLLISIONORDER::Monster,
+                                   CollisionType::CT_OBB2D,
+                                   std::bind(&Penitent::KnockBack, this, std::placeholders::_1, std::placeholders::_2));
+
+        BodyCollider_->IsCollision(CollisionType::CT_OBB2D,
+                                   COLLISIONORDER::Projectile,
+                                   CollisionType::CT_OBB2D,
+                                   std::bind(&Penitent::KnockBack, this, std::placeholders::_1, std::placeholders::_2));
+
+        BodyCollider_->IsCollision(CollisionType::CT_OBB2D,
+                                   COLLISIONORDER::BossMonster,
+                                   CollisionType::CT_OBB2D,
+                                   std::bind(&Penitent::KnockBack, this, std::placeholders::_1, std::placeholders::_2));
     }
 
-    State_.ChangeState("Idle");
+    BodyCollider_->IsCollision(CollisionType::CT_OBB2D,
+                               COLLISIONORDER::LeftLedge,
+                               CollisionType::CT_OBB2D,
+                               std::bind(&Penitent::Dangle, this, std::placeholders::_1, std::placeholders::_2));
+
+    BodyCollider_->IsCollision(CollisionType::CT_OBB2D,
+                               COLLISIONORDER::RightLedge,
+                               CollisionType::CT_OBB2D,
+                               std::bind(&Penitent::Dangle, this, std::placeholders::_1, std::placeholders::_2));
 }
-
-void Penitent::HitUpdate(float _DeltaTime, const StateInfo& _Info) {}
-
-void Penitent::HitEnd(const StateInfo& _Info) {}
 
 
 //피격 함수
-bool Penitent::HitMonster(GameEngineCollision* _This, GameEngineCollision* _Other) { return false; }
-
-bool Penitent::HitProjectile(GameEngineCollision* _This, GameEngineCollision* _Other)
+bool Penitent::KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other) 
 {
-    if ("Hit" != State_.GetCurStateStateName())
+    float Dir = _This->GetTransform().GetWorldPosition().x - _Other->GetTransform().GetWorldPosition().x;
+
+    if (0 >= Dir) //몬스터가 오른쪽에 있다.
     {
-        // State_.ChangeState("Hit");
-        return true;
+        RealXDir_ = -1;
     }
 
-    return false;
-}
+    else if (0 < Dir) //몬스터가 왼쪽에 있다.
+    {
+        RealXDir_ = 1;
+    }
 
+    State_.ChangeState("KnockBack");
+
+    return false; 
+}
 
 bool Penitent::Dangle(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
@@ -238,7 +230,7 @@ bool Penitent::Dangle(GameEngineCollision* _This, GameEngineCollision* _Other)
 
     if (static_cast<int>(COLLISIONORDER::LeftLedge) == _Other->GetCollsionOrder())
     {
-        if (0 > RealXDir_)  //왼쪽이라면 
+        if (0 > RealXDir_)  //왼쪽이라면
         {
             return false;
         }

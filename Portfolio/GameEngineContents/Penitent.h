@@ -102,19 +102,18 @@ protected:
     void AttackUpdate(float _DeltaTime, const StateInfo& _Info);
     void AttackEnd(const StateInfo& _Info);
 
+    void KnockBackStart(const StateInfo& _Info);
+    void KnockBackUpdate(float _DeltaTime, const StateInfo& _Info);
+    void KnockBackEnd(const StateInfo& _Info);
+
     // void RecoveryStart(const StateInfo& _Info);
     // void RecoveryUpdate(float _DeltaTime, const StateInfo& _Info);
 
     // void DeathStart(const StateInfo& _Info);
     // void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
 
-    void HitStart(const StateInfo& _Info);
-    void HitUpdate(float _DeltaTime, const StateInfo& _Info);
-    void HitEnd(const StateInfo& _Info);
-
     //피격 함수
-    bool HitMonster(GameEngineCollision* _This, GameEngineCollision* _Other);
-    bool HitProjectile(GameEngineCollision* _This, GameEngineCollision* _Other);
+    bool KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other);
 
     bool Dangle(GameEngineCollision* _This, GameEngineCollision* _Other);  //난간 상호작용
 
@@ -122,7 +121,7 @@ private:
     GameEngineStateManager            State_;
     class PlayerUI*                   PlayerUI_;
     class GravityComponent*           Gravity_;
-    class GameEngineCollision*        Collider_;
+    class GameEngineCollision*        BodyCollider_;
     float4                            ColScale_;
     GameEngineCollision*              AttackCollider_;  // 공격 범위
     std::vector<GameEngineCollision*> DebugColliders_;

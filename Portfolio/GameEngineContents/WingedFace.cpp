@@ -46,7 +46,7 @@ void WingedFace::Start()
 
     BodyCollider_ = CreateComponent<GameEngineCollision>();
     BodyCollider_->ChangeOrder(COLLISIONORDER::Monster);
-    BodyCollider_->GetTransform().SetWorldScale({50.0f, 50.0f, 1.0f});
+    BodyCollider_->GetTransform().SetWorldScale({30.0f, 30.0f, 1.0f});
 
     State_.CreateStateMember("Patrol",
                              std::bind(&WingedFace::PatrolUpdate, this, std::placeholders::_1, std::placeholders::_2),

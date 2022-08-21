@@ -207,8 +207,8 @@ void Penitent::CrouchStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_crouch_anim");
 
-    Collider_->GetTransform().SetWorldScale({ColScale_.y, ColScale_.x});
-    Collider_->GetTransform().SetWorldMove({0, -50});
+    BodyCollider_->GetTransform().SetWorldScale({ColScale_.y, ColScale_.x});
+    BodyCollider_->GetTransform().SetWorldMove({0, -50});
 }
 
 void Penitent::CrouchUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -231,8 +231,8 @@ void Penitent::CrouchUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Penitent::CrouchEnd(const StateInfo& _Info)
 {
-    Collider_->GetTransform().SetWorldScale(ColScale_);
-    Collider_->GetTransform().SetWorldMove({0, 50});
+    BodyCollider_->GetTransform().SetWorldScale(ColScale_);
+    BodyCollider_->GetTransform().SetWorldMove({0, 50});
 }
 
 void Penitent::SlideStart(const StateInfo& _Info)
@@ -240,8 +240,8 @@ void Penitent::SlideStart(const StateInfo& _Info)
     SlideForce_ = 500.f;
     MetaRenderer_->ChangeMetaAnimation("penitent_dodge_anim");
 
-    Collider_->GetTransform().SetWorldScale({ColScale_.y, ColScale_.x});
-    Collider_->GetTransform().SetWorldMove({0, -50});
+    BodyCollider_->GetTransform().SetWorldScale({ColScale_.y, ColScale_.x});
+    BodyCollider_->GetTransform().SetWorldMove({0, -50});
 }
 
 void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -266,8 +266,8 @@ void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Penitent::SlideEnd(const StateInfo& _Info)
 {
-    Collider_->GetTransform().SetWorldScale(ColScale_);
-    Collider_->GetTransform().SetWorldMove({0, 50});
+    BodyCollider_->GetTransform().SetWorldScale(ColScale_);
+    BodyCollider_->GetTransform().SetWorldMove({0, 50});
 }
 
 void Penitent::DangleStart(const StateInfo& _Info)
@@ -281,7 +281,7 @@ void Penitent::DangleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     if (GameEngineInput::GetInst()->IsPressKey("PenitentUp"))
     {
-        IsDangle_ = true;   
+        IsDangle_     = true;
         IsClimbLedge_ = true;
         MetaRenderer_->ChangeMetaAnimation("penitent_climbledge_reviewed");
     }
@@ -302,8 +302,7 @@ void Penitent::DangleUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 }
 
-void Penitent::DangleEnd(const StateInfo& _Info) 
-{ IsClimbLedge_ = false; }
+void Penitent::DangleEnd(const StateInfo& _Info) { IsClimbLedge_ = false; }
 
 void Penitent::LadderClimbStart(const StateInfo& _Info)
 {
@@ -398,3 +397,21 @@ void Penitent::AttackEnd(const StateInfo& _Info)
     AttackCollider_->Off();
     AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
 }
+
+void Penitent::KnockBackStart(const StateInfo& _Info)
+{
+    if ("LadderClimb" == _Info.PrevState)
+    {
+        State_.ChangeState("LadderClimb");
+        return;
+    }
+
+    MetaRenderer_->ChangeMetaAnimation("Penitent_pushback_grounded");
+}
+
+void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info) 
+{
+    GetTransform().SetWorldMove(float4{RealXDir_, 0} * 150.f * _DeltaTime);
+}
+
+void Penitent::KnockBackEnd(const StateInfo& _Info) {}

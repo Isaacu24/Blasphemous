@@ -11,7 +11,7 @@ Penitent::Penitent()
     : State_{}
     , PlayerUI_(nullptr)
     , Gravity_(nullptr)
-    , Collider_(nullptr)
+    , BodyCollider_(nullptr)
     , ColScale_(80, 150)
     , JumpForce_(float4::ZERO)
     , MetaRenderer_(nullptr)
@@ -70,11 +70,11 @@ void Penitent::Start()
 
     Gravity_ = CreateComponent<GravityComponent>();
 
-    Collider_ = CreateComponent<GameEngineCollision>();
-    Collider_->GetTransform().SetWorldScale({50.f, 90.f, 1.f});
-    Collider_->ChangeOrder(COLLISIONORDER::Player);
-    Collider_->SetDebugSetting(CollisionType::CT_OBB, float4{0.0f, 0.0f, 1.0f, 0.5f});
-    Collider_->GetTransform().SetWorldMove({0, 30, 1.f});
+    BodyCollider_ = CreateComponent<GameEngineCollision>();
+    BodyCollider_->GetTransform().SetWorldScale({40.f, 90.f, 1.f});
+    BodyCollider_->ChangeOrder(COLLISIONORDER::Player);
+    BodyCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{0.0f, 0.0f, 1.0f, 0.5f});
+    BodyCollider_->GetTransform().SetWorldMove({0, 30, 1.f});
 
     AttackCollider_ = CreateComponent<GameEngineCollision>();
     AttackCollider_->GetTransform().SetWorldScale({50.f, 100.f, 1.f});
@@ -388,6 +388,18 @@ void Penitent::SetAnimation()
             Data);
     }
 
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("Penitent_pushback_grounded");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "Penitent_pushback_grounded",
+            {"Penitent_pushback_grounded.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("Penitent_pushback_grounded",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+    }
+
     MetaRenderer_->SetPivot(PIVOTMODE::BOT);
 }
 
@@ -443,6 +455,11 @@ void Penitent::SetPlayerState()
                              std::bind(&Penitent::AttackUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&Penitent::AttackStart, this, std::placeholders::_1),
                              std::bind(&Penitent::AttackEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember("KnockBack",
+                             std::bind(&Penitent::KnockBackUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::KnockBackStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::KnockBackEnd, this, std::placeholders::_1));
 
     /*
     State_.CreateStateMember("Recovery",
