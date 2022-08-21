@@ -82,6 +82,10 @@ protected:
     void FallUpdate(float _DeltaTime, const StateInfo& _Info);
     void FallEnd(const StateInfo& _Info);
 
+    void LandingStart(const StateInfo& _Info);
+    void LandingUpdate(float _DeltaTime, const StateInfo& _Info);
+    void LandingEnd(const StateInfo& _Info);
+
     void CrouchStart(const StateInfo& _Info);
     void CrouchUpdate(float _DeltaTime, const StateInfo& _Info);
     void CrouchEnd(const StateInfo& _Info);
@@ -139,6 +143,8 @@ private:
 
     float4 JumpForce_;
 
+    float FallTime_;
+
     float4 Dir_;
 
     float CilmbY_;
@@ -158,4 +164,3 @@ private:
 
     std::vector<bool> Flasks_;
 };
-

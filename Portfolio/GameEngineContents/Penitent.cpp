@@ -74,8 +74,8 @@ void Penitent::Start()
     BodyCollider_->GetTransform().SetWorldScale({40.f, 80.f, 1.f});
     BodyCollider_->ChangeOrder(COLLISIONORDER::Player);
     BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.0f, 0.0f, 1.0f, 0.5f});
-    BodyCollider_->GetTransform().SetWorldMove({0, 30});    
-        
+    BodyCollider_->GetTransform().SetWorldMove({0, 30});
+
     AttackCollider_ = CreateComponent<GameEngineCollision>();
     AttackCollider_->GetTransform().SetWorldScale({50.f, 50.f, 1.f});
     AttackCollider_->ChangeOrder(COLLISIONORDER::PlayerAttack);
@@ -189,10 +189,22 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penintent_standing_up",
-            {"penintent_standing_up.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.03f, false},
+            {"penintent_standing_up.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
             Data);
 
         MetaRenderer_->AnimationBindEnd("penintent_standing_up",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_hardlanding_rocks_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_hardlanding_rocks_anim",
+            {"penitent_hardlanding_rocks_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_hardlanding_rocks_anim",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
@@ -429,6 +441,11 @@ void Penitent::SetPlayerState()
                              std::bind(&Penitent::FallUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&Penitent::FallStart, this, std::placeholders::_1),
                              std::bind(&Penitent::FallEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember("Landing",
+                             std::bind(&Penitent::LandingUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::LandingStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::LandingEnd, this, std::placeholders::_1));
 
     State_.CreateStateMember("Crouch",
                              std::bind(&Penitent::CrouchUpdate, this, std::placeholders::_1, std::placeholders::_2),

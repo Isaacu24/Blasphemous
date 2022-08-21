@@ -172,6 +172,7 @@ void Penitent::FallStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnim
 void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     JumpForce_.y -= _DeltaTime * 100.f;
+    FallTime_ += _DeltaTime;
 
     Dir_ = GetTransform().GetUpVector() * 10.f;
 
@@ -198,7 +199,7 @@ void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
 
     if (true == IsGround_)
     {
-        MetaRenderer_->ChangeMetaAnimation("penintent_standing_up");
+        ChangeState("Landing");
         return;
     }
 
@@ -207,6 +208,31 @@ void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 
 void Penitent::FallEnd(const StateInfo& _Info) { JumpForce_ = 100.f; }
+
+void Penitent::LandingStart(const StateInfo& _Info)
+{
+    if (1.0f <= FallTime_)
+    {
+        MetaRenderer_->ChangeMetaAnimation("penitent_hardlanding_rocks_anim");
+    }
+
+    else
+    {
+        MetaRenderer_->ChangeMetaAnimation("penintent_standing_up");
+
+        //¸ð¼Ç Äµ½½
+        if (GameEngineInput::GetInst()->IsPressKey("PenitentRight")
+            || GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
+        {
+            ChangeState("Move");
+        }
+    }
+}
+
+void Penitent::LandingUpdate(float _DeltaTime, const StateInfo& _Info) { Gravity_->SetActive(!IsGround_); }
+
+void Penitent::LandingEnd(const StateInfo& _Info) { FallTime_ = 0.f; }
+
 
 void Penitent::CrouchStart(const StateInfo& _Info)
 {
