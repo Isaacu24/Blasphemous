@@ -191,9 +191,14 @@ void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
         RealXDir_ = -1;
     }
 
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
+    {
+        JumpForce_.y -= _DeltaTime * 100.f;
+    }
+
     if (true == IsGround_)
     {
-        State_.ChangeState("Idle");
+        MetaRenderer_->ChangeMetaAnimation("penintent_standing_up");
         return;
     }
 
@@ -409,7 +414,7 @@ void Penitent::KnockBackStart(const StateInfo& _Info)
     MetaRenderer_->ChangeMetaAnimation("Penitent_pushback_grounded");
 }
 
-void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info) 
+void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     GetTransform().SetWorldMove(float4{RealXDir_, 0} * 150.f * _DeltaTime);
 }

@@ -166,6 +166,11 @@ bool Penitent::RightObstacleCheck()
 
 void Penitent::CollisionCheck()
 {
+    if ("KnockBack" == State_.GetCurStateStateName())
+    {
+        return;
+    }
+
     //몬스터 피격
     {
         BodyCollider_->IsCollision(CollisionType::CT_OBB2D,
@@ -197,23 +202,23 @@ void Penitent::CollisionCheck()
 
 
 //피격 함수
-bool Penitent::KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other) 
+bool Penitent::KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
     float Dir = _This->GetTransform().GetWorldPosition().x - _Other->GetTransform().GetWorldPosition().x;
 
-    if (0 >= Dir) //몬스터가 오른쪽에 있다.
+    if (0 >= Dir)  //몬스터가 오른쪽에 있다.
     {
         RealXDir_ = -1;
     }
 
-    else if (0 < Dir) //몬스터가 왼쪽에 있다.
+    else if (0 < Dir)  //몬스터가 왼쪽에 있다.
     {
         RealXDir_ = 1;
     }
 
     State_.ChangeState("KnockBack");
 
-    return false; 
+    return false;
 }
 
 bool Penitent::Dangle(GameEngineCollision* _This, GameEngineCollision* _Other)

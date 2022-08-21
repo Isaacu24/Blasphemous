@@ -1,8 +1,7 @@
 #include "PreCompile.h"
 #include "VioletProjectile.h"
 
-VioletProjectile::VioletProjectile()
-{}
+VioletProjectile::VioletProjectile() {}
 
 VioletProjectile::~VioletProjectile() {}
 
@@ -15,19 +14,27 @@ void VioletProjectile::Start()
     Renderer_->CreateFrameAnimationCutTexture("TakeBackProyectileHead",
                                               {"TakeBackProyectileHead.png", 0, 9, 0.1f, true});
     Renderer_->ChangeFrameAnimation("TakeBackProyectile");
-    Renderer_->GetTransform().SetWorldScale({60.f, 40.f, 1.f});
+    Renderer_->GetTransform().SetWorldScale({50.f, 35.f, 1.f});
 
     Collider_ = CreateComponent<GameEngineCollision>();
     Collider_->ChangeOrder(COLLISIONORDER::Projectile);
-    Collider_->GetTransform().SetWorldScale({10.0f, 10.0f, 1.0f});
+    Collider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.9f, 0.0f, 1.0f, 0.5f});
+    Collider_->GetTransform().SetWorldScale({20.0f, 20.0f, 1.0f});
 
-    State_.CreateStateMember("Shoot",
+    State_.CreateStateMember(
+        "Shoot",
         std::bind(&VioletProjectile::ShootUpdate, this, std::placeholders::_1, std::placeholders::_2),
         std::bind(&VioletProjectile::ShootStart, this, std::placeholders::_1));
     State_.CreateStateMember(
         "Explosion",
         std::bind(&VioletProjectile::ExplosionUpdate, this, std::placeholders::_1, std::placeholders::_2),
         std::bind(&VioletProjectile::ExplosionStart, this, std::placeholders::_1));
+    Renderer_->AnimationBindEnd("TakeBackProyectileExplosion", [&](const FrameAnimation_DESC& _Info) 
+        { 
+        Collider_->Death();
+        Death(); 
+        });
+
     State_.ChangeState("Shoot");
 }
 
@@ -65,8 +72,8 @@ void VioletProjectile::ExplosionStart(const StateInfo& _Info)
 {
     Renderer_->GetTransform().SetWorldScale({200.f, 200.f, 1.f});
     Renderer_->ChangeFrameAnimation("TakeBackProyectileExplosion");
-    Renderer_->AnimationBindEnd("TakeBackProyectileExplosion",
-                                std::bind(&VioletProjectile::ExplosionEnd, this, std::placeholders::_1));
 }
 
 void VioletProjectile::ExplosionUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void VioletProjectile::ExplosionEnd(const StateInfo& _Info) { }

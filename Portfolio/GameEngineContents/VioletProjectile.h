@@ -21,19 +21,13 @@ public:
 
 	void ExplosionStart(const StateInfo& _Info);
 	void ExplosionUpdate(float _DeltaTime, const StateInfo& _Info);
+    void ExplosionEnd(const StateInfo& _Info);
 
 	bool Explosion(GameEngineCollision* _This, GameEngineCollision* _Other)
 	{
         IsExplosion_ = true;
-        Collider_->Off();
 		State_.ChangeState("Explosion");
-
 		return true;
-	}
-
-	inline void ExplosionEnd(const FrameAnimation_DESC& _Info)
-	{
-		Death();
 	}
 
 protected:

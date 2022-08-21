@@ -71,15 +71,15 @@ void Penitent::Start()
     Gravity_ = CreateComponent<GravityComponent>();
 
     BodyCollider_ = CreateComponent<GameEngineCollision>();
-    BodyCollider_->GetTransform().SetWorldScale({40.f, 90.f, 1.f});
+    BodyCollider_->GetTransform().SetWorldScale({40.f, 80.f, 1.f});
     BodyCollider_->ChangeOrder(COLLISIONORDER::Player);
-    BodyCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{0.0f, 0.0f, 1.0f, 0.5f});
-    BodyCollider_->GetTransform().SetWorldMove({0, 30, 1.f});
-
+    BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.0f, 0.0f, 1.0f, 0.5f});
+    BodyCollider_->GetTransform().SetWorldMove({0, 30});    
+        
     AttackCollider_ = CreateComponent<GameEngineCollision>();
-    AttackCollider_->GetTransform().SetWorldScale({50.f, 100.f, 1.f});
+    AttackCollider_->GetTransform().SetWorldScale({50.f, 50.f, 1.f});
     AttackCollider_->ChangeOrder(COLLISIONORDER::PlayerAttack);
-    AttackCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{0.3f, 0.0f, 1.0f, 0.5f});
+    AttackCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 0.0f, 1.0f, 0.5f});
     AttackCollider_->Off();
 
     DebugColliders_.resize(10);
@@ -189,7 +189,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penintent_standing_up",
-            {"penintent_standing_up.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false},
+            {"penintent_standing_up.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.03f, false},
             Data);
 
         MetaRenderer_->AnimationBindEnd("penintent_standing_up",

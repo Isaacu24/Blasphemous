@@ -33,12 +33,14 @@ void Fool_knife::Start()
 
     DetectCollider_ = CreateComponent<GameEngineCollision>();
     DetectCollider_->ChangeOrder(COLLISIONORDER::MonsterDetect);
+    DetectCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 0.0f, 1.0f, 0.5f});
     DetectCollider_->GetTransform().SetWorldScale({600.0f, 300.0f, 1.0f});
     DetectCollider_->GetTransform().SetWorldMove({0, 100});
 
     BodyCollider_ = CreateComponent<GameEngineCollision>();
     BodyCollider_->ChangeOrder(COLLISIONORDER::Monster);
-    BodyCollider_->GetTransform().SetWorldScale({50, 150.0f, 1.0f});
+    BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 0.0f, 1.0f, 0.5f});
+    BodyCollider_->GetTransform().SetWorldScale({50, 130.0f, 1.0f});
     BodyCollider_->GetTransform().SetWorldMove({0, 100});
 
     State_.CreateStateMember("Idle",

@@ -42,11 +42,14 @@ void WingedFace::Start()
 
     DetectCollider_ = CreateComponent<GameEngineCollision>();
     DetectCollider_->ChangeOrder(COLLISIONORDER::MonsterDetect);
+    DetectCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 0.0f, 1.0f, 0.5f});
     DetectCollider_->GetTransform().SetWorldScale({300.0f, 300.0f, 1.0f});
 
     BodyCollider_ = CreateComponent<GameEngineCollision>();
     BodyCollider_->ChangeOrder(COLLISIONORDER::Monster);
+    BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 0.0f, 1.0f, 0.5f});
     BodyCollider_->GetTransform().SetWorldScale({30.0f, 30.0f, 1.0f});
+
 
     State_.CreateStateMember("Patrol",
                              std::bind(&WingedFace::PatrolUpdate, this, std::placeholders::_1, std::placeholders::_2),

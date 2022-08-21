@@ -102,7 +102,7 @@ void Stage02::SettingMonster()
     MonsterList_.push_back(FlyingEnemy);
 }
 
-void Stage02::SettingLedge() 
+void Stage02::SettingLedge()
 {
     {
         GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
@@ -119,7 +119,7 @@ void Stage02::SettingLedge()
         Collider->GetTransform().SetWorldPosition({1980, -1300});
         Collider->GetTransform().SetWorldScale({5.0f, 5.0f, 1.0f});
         Collider->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.2f, 0.5f});
-        DangleColiders_.push_back(Collider);    
+        DangleColiders_.push_back(Collider);
     }
 
     {
@@ -132,7 +132,7 @@ void Stage02::SettingLedge()
     }
 }
 
-void Stage02::Start()   
+void Stage02::Start()
 {
     SettingStage();
     SettingLedge();
@@ -224,7 +224,7 @@ void Stage02::LevelStartEvent()
         {
             Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
         }
-            
+
         Penitent_->SetLevelOverOn();
     }
 
