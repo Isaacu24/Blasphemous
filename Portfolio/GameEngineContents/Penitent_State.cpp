@@ -253,7 +253,7 @@ void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
 
     SlideForce_ -= _DeltaTime * 350.f;
     GetTransform().SetWorldMove(Dir_ * SlideForce_ * _DeltaTime);
-            
+
     Gravity_->SetActive(!IsGround_);
 
     //내리막길 문제있음
@@ -276,12 +276,13 @@ void Penitent::DangleStart(const StateInfo& _Info)
     MetaRenderer_->ChangeMetaAnimation("penitent_hangonledge_anim");
 }
 
+
 void Penitent::DangleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     if (GameEngineInput::GetInst()->IsPressKey("PenitentUp"))
     {
-        GetTransform().SetWorldMove((Dir_ * float4::UP) * 100.f * _DeltaTime);
-        IsDangle_ = true;
+        IsDangle_ = true;   
+        IsClimbLedge_ = true;
         MetaRenderer_->ChangeMetaAnimation("penitent_climbledge_reviewed");
     }
 
@@ -291,9 +292,18 @@ void Penitent::DangleUpdate(float _DeltaTime, const StateInfo& _Info)
         IsDangle_  = true;
         JumpForce_ = 10.f;
     }
+
+    if (true == IsClimbLedge_)
+    {
+        float4 StartPos = GetTransform().GetWorldPosition();
+        float4 EndPos   = GetTransform().GetWorldPosition() + float4{RealXDir_ * 100.f, 300.f};
+
+        GetTransform().SetWorldPosition(float4::Lerp(StartPos, EndPos, _DeltaTime));
+    }
 }
 
-void Penitent::DangleEnd(const StateInfo& _Info) {}
+void Penitent::DangleEnd(const StateInfo& _Info) 
+{ IsClimbLedge_ = false; }
 
 void Penitent::LadderClimbStart(const StateInfo& _Info)
 {
@@ -325,17 +335,19 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
         {
             CilmbY_ = -50;
 
+
             if (true == MetaRenderer_->GetPause())
             {
                 MetaRenderer_->CurAnimationPauseSwitch();
             }
+
 
             MetaRenderer_->ChangeMetaAnimation("penintent_ladder_climb_loop_anim");
             GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed_ * _DeltaTime);
         }
 
         else if (GameEngineInput::GetInst()->IsUpKey("PenitentUp")
-            || GameEngineInput::GetInst()->IsUpKey("PenitentDown"))
+                 || GameEngineInput::GetInst()->IsUpKey("PenitentDown"))
         {
             //애니메이션 멈춤
             MetaRenderer_->CurAnimationPauseSwitch();
@@ -379,10 +391,7 @@ void Penitent::AttackStart(const StateInfo& _Info)
     }
 }
 
-void Penitent::AttackUpdate(float _DeltaTime, const StateInfo& _Info) 
-{
-
-}
+void Penitent::AttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Penitent::AttackEnd(const StateInfo& _Info)
 {

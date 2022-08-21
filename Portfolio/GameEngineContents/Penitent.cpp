@@ -310,27 +310,6 @@ void Penitent::SetAnimation()
             {"penitent_climbledge_reviewed.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
             Data);
 
-        MetaRenderer_->AnimationBindFrame("penitent_climbledge_reviewed",
-                                          [&](const FrameAnimation_DESC& _Info)
-                                          {
-                                              // if (5 > _Info.CurFrame)
-                                              //{
-                                              //     return;
-                                              // }
-
-                                              // if (0 < Dir_.x) //¿À¸¥ÂÊ
-                                              //{
-                                              //     GetTransform().SetWorldRightMove(200.f,
-                                              //     GameEngineTime::GetDeltaTime());
-                                              // }
-
-                                              // else if (0 > Dir_.x)  //¿ÞÂÊ
-                                              //{
-                                              //     GetTransform().SetWorldLeftMove(200.f,
-                                              //     GameEngineTime::GetDeltaTime());
-                                              // }
-                                          });
-
         MetaRenderer_->AnimationBindEnd("penitent_climbledge_reviewed",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }

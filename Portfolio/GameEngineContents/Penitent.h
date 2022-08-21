@@ -149,10 +149,14 @@ private:
     bool IsGround_;
     bool IsDangle_;
     bool IsLadder_;
+
     bool IsOnInventory_;
+
+    bool IsClimbLedge_;
 
     float JumpTime_;
     float SlideTime_;
 
     std::vector<bool> Flasks_;
 };
+
