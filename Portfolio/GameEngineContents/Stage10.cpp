@@ -1,7 +1,10 @@
 #include "PreCompile.h"
 #include "Stage10.h"
 #include "Penitent.h"
+#include "Crosscrawler.h"
 #include "BreakableTwistedCorpse.h"
+#include "ShieldMaiden.h"
+#include "LionHead.h"
 
 Stage10::Stage10() {}
 
@@ -75,6 +78,24 @@ void Stage10::SettingStage()
 
     IsLeftExit_ = true;
 }
+
+void Stage10::SettingMonster() 
+{ 
+    Crosscrawler* CrosscrawlerClone = CreateActor<Crosscrawler>(); 
+    CrosscrawlerClone->GetTransform().SetWorldPosition({2200, -1080, static_cast<int>(ACTORORDER::Monster)});
+    CrosscrawlerClone->SetGround(ColMap_);
+    MonsterList_.push_back(CrosscrawlerClone);
+
+    ShieldMaiden* Maiden = CreateActor<ShieldMaiden>();
+    Maiden->GetTransform().SetWorldPosition({1500, -682, static_cast<int>(ACTORORDER::Monster)});
+    Maiden->SetGround(ColMap_);
+    MonsterList_.push_back(CrosscrawlerClone);
+
+    LionHead* LionHeadClone = CreateActor<LionHead>();
+    LionHeadClone->GetTransform().SetWorldPosition({3000, -682, static_cast<int>(ACTORORDER::Monster)});
+    LionHeadClone->SetGround(ColMap_);
+    MonsterList_.push_back(LionHeadClone);
+};
 
 void Stage10::SettingLedge()
 {
@@ -323,6 +344,8 @@ void Stage10::LevelStartEvent()
     GetMainCameraActor()->GetTransform().SetWorldPosition(float4{
         Penitent_->GetTransform().GetLocalPosition() + float4{0, CameraOffset_}
     });
+
+    SettingMonster();
 }
 
 void Stage10::LevelEndEvent() {}

@@ -16,6 +16,7 @@ public:
 protected:
 	void SettingStage() override;
     void SettingLedge() override;
+    void SettingMonster() override;
 
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -25,5 +26,6 @@ protected:
     void LevelEndEvent() override;
 
 private:
+
 };
 

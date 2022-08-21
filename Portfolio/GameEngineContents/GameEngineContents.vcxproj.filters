@@ -200,6 +200,18 @@
     <ClInclude Include="MetaSpriteManager.h">
       <Filter>Content</Filter>
     </ClInclude>
+    <ClInclude Include="LionHead.h">
+      <Filter>Actor\NormalMonster</Filter>
+    </ClInclude>
+    <ClInclude Include="Nun.h">
+      <Filter>Actor\NormalMonster</Filter>
+    </ClInclude>
+    <ClInclude Include="Crosscrawler.h">
+      <Filter>Actor\NormalMonster</Filter>
+    </ClInclude>
+    <ClInclude Include="ShieldMaiden.h">
+      <Filter>Actor\NormalMonster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -403,6 +415,18 @@
     </ClCompile>
     <ClCompile Include="MetaSpriteManager.cpp">
       <Filter>Content</Filter>
+    </ClCompile>
+    <ClCompile Include="LionHead.cpp">
+      <Filter>Actor\NormalMonster</Filter>
+    </ClCompile>
+    <ClCompile Include="Nun.cpp">
+      <Filter>Actor\NormalMonster</Filter>
+    </ClCompile>
+    <ClCompile Include="Crosscrawler.cpp">
+      <Filter>Actor\NormalMonster</Filter>
+    </ClCompile>
+    <ClCompile Include="ShieldMaiden.cpp">
+      <Filter>Actor\NormalMonster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

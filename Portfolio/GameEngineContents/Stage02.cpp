@@ -98,7 +98,6 @@ void Stage02::SettingMonster()
     FlyingEnemy->SetGround(ColMap_);
     FlyingEnemy->SetStartPos(-1150);
     FlyingEnemy->SetEndPos(-1550);
-    FlyingEnemy->GetTransform().SetWorldScale({2, 2, 1});
     MonsterList_.push_back(FlyingEnemy);
 }
 

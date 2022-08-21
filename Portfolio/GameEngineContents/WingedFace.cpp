@@ -13,6 +13,8 @@ WingedFace::~WingedFace() {}
 
 void WingedFace::Start()
 {
+    GetTransform().SetWorldScale({2, 2, 1});
+
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
@@ -95,8 +97,6 @@ void WingedFace::Update(float _DeltaTime)
 }
 
 void WingedFace::End() {}
-
-void WingedFace::PatrolMoveX(float _DeltaTime) {}
 
 void WingedFace::PatrolMoveY(float _DeltaTime)
 {

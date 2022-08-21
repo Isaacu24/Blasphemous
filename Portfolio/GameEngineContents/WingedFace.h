@@ -36,8 +36,7 @@ protected:
 	void Update(float _DeltaTime) override;
 	void End() override;
 
-	void PatrolMoveX(float _DeltaTime) override;
-	void PatrolMoveY(float _DeltaTime) override;
+	void PatrolMoveY(float _DeltaTime) override;	
 
 private:
 	float StartPos_;
