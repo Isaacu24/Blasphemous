@@ -14,26 +14,27 @@ public:
 
     void IdleStart(const StateInfo& _Info);
     void IdleUpdate(float _DeltaTime, const StateInfo& _Info);
+    void IdleEnd(const StateInfo& _Info);
 
     void PatrolStart(const StateInfo& _Info);
     void PatrolUpdate(float _DeltaTime, const StateInfo& _Info);
+    void PatrolEnd(const StateInfo& _Info);
 
     void TrackStart(const StateInfo& _Info);
     void TrackUpdate(float _DeltaTime, const StateInfo& _Info);
+    void TrackEnd(const StateInfo& _Info);
 
     void HurtStart(const StateInfo& _Info);
     void HurtUpdate(float _DeltaTime, const StateInfo& _Info);
+    void HurtEnd(const StateInfo& _Info);
 
     void TurnStart(const StateInfo& _Info);
     void TurnUpdate(float _DeltaTime, const StateInfo& _Info);
+    void TurnEnd(const StateInfo& _Info);
 
     void DeathStart(const StateInfo& _Info);
     void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
-
-    inline void TurnEnd(const FrameAnimation_DESC& _Info)
-    {
-        ChangeMonsterState("Patrol");
-    }
+    void DeathEnd(const StateInfo& _Info);
 
 protected:
     void Start() override;

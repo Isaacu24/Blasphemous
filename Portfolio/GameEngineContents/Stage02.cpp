@@ -136,7 +136,6 @@ void Stage02::Start()
 {
     SettingStage();
     SettingLedge();
-    SettingMonster();
 }
 
 void Stage02::Update(float _DeltaTime)
@@ -250,6 +249,8 @@ void Stage02::LevelStartEvent()
     GetMainCameraActor()->GetTransform().SetWorldPosition(float4{
         Penitent_->GetTransform().GetLocalPosition() + float4{0, 100}
     });
+
+    SettingMonster();
 }
 
 void Stage02::LevelEndEvent() {}

@@ -63,7 +63,7 @@ private:
 
     SPELLTYPE SpellType_;
         
-    GameEngineTextureRenderer* FXSRenderer_;
+    class MetaTextureRenderer* MetaFXSRenderer_;
     class SymbolEffect*        Symbol_;
 
     class FireBallSpawner*       FireBallSpawner_;
@@ -79,8 +79,6 @@ private:
     float VanishingTime_;
 
     bool DecideState(GameEngineCollision* _This, GameEngineCollision* _Other);
-
-    void FXSOff(const FrameAnimation_DESC& _Info) { FXSRenderer_->Off(); }
 
     void ChangeSpellCast(const FrameAnimation_DESC& _Info) { State_.ChangeState("SpellCast"); }
     //void ChangeAppear(const FrameAnimation_DESC& _Info) { State_.ChangeState("Appear"); }

@@ -253,12 +253,6 @@ void Blasphemous::LoadResources()
         MovePath(Dir, {"ContentsResources", "Resources", "MetaAtlas", "Penitent"});
         MetaSpriteManager::Inst_->Load(Dir);
     }
-
-    {
-        GameEngineDirectory Dir;
-        MovePath(Dir, {"ContentsResources", "Resources", "MetaAtlas", "MetaMonster", "Normal", "WingedFace"});
-        MetaSpriteManager::Inst_->Load(Dir);
-    }
 }
 
 //¸Ê ÅØ½ºÃÄ
@@ -284,6 +278,12 @@ void Blasphemous::LoadBossMonster()
 {
     {
         GameEngineDirectory Dir;
+        MovePath(Dir, {"ContentsResources", "Resources", "MetaAtlas", "MetaMonster", "Boss", "Pope"});
+        MetaSpriteManager::Inst_->Load(Dir);
+    }
+
+    {
+        GameEngineDirectory Dir;
         MovePath(Dir, {"ContentsResources", "Resources", "Sprite", "Monster", "Boss", "Pontiff"});
 
         std::vector<GameEngineFile> Textures = Dir.GetAllFile();
@@ -305,22 +305,16 @@ void Blasphemous::LoadBossMonster()
             GameEngineTexture::Load(Textures[i].GetFullPath());
         }
     }
-
-    {
-        GameEngineDirectory Dir;
-        MovePath(Dir, {"ContentsResources", "Resources", "Sprite", "Monster", "Boss", "Pope"});
-
-        std::vector<GameEngineFile> Textures = Dir.GetAllFile();
-
-        for (size_t i = 0; i < Textures.size(); i++)
-        {
-            GameEngineTexture::Load(Textures[i].GetFullPath());
-        }
-    }
 }
 
 void Blasphemous::LoadNormalMonster()
 {
+    {
+        GameEngineDirectory Dir;
+        MovePath(Dir, {"ContentsResources", "Resources", "MetaAtlas", "MetaMonster", "Normal", "WingedFace"});
+        MetaSpriteManager::Inst_->Load(Dir);
+    }
+
     {
         GameEngineDirectory Dir;
         MovePath(Dir, {"ContentsResources", "Resources", "Sprite", "Monster", "Normal", "Fool_knife"});
@@ -332,24 +326,6 @@ void Blasphemous::LoadNormalMonster()
             GameEngineTexture::Load(Textures[i].GetFullPath());
         }
     }
-
-    {
-        GameEngineDirectory Dir;
-        MovePath(Dir,
-                 {"ContentsResources", "Resources", "Sprite", "Monster", "Normal", "WingedFace", "WingedFaceIdle"});
-
-        GameEngineFolderTexture::Load(Dir.GetFullPath());
-    }
-
-
-    {
-        GameEngineDirectory Dir;
-        MovePath(Dir,
-                 {"ContentsResources", "Resources", "Sprite", "Monster", "Normal", "WingedFace", "WingedFaceDeath"});
-
-        GameEngineFolderTexture::Load(Dir.GetFullPath());
-    }
-
 
     {
         GameEngineDirectory Dir;
@@ -376,16 +352,6 @@ void Blasphemous::LoadEffect()
 
 void Blasphemous::CutTexture()
 {
-    // Player
-    // GameEngineTexture::Cut("penintent_idle.png", 8, 2);
-    // GameEngineTexture::Cut("penitent_sheathedIdle.png", 7, 7);
-    // GameEngineTexture::Cut("penitent_verticalattack_LVL3_anim.png", 8, 3);
-    // GameEngineTexture::Cut("penitent_climbledge_reviewed.png", 4, 3);
-    // GameEngineTexture::Cut("penitent_dodge_attack_LVL3.png", 8, 4);
-    // GameEngineTexture::Cut("penitent_falling_ahead_anim 1.png", 3, 2);
-    // GameEngineTexture::Cut("penitent_jumpoff_new.png", 3, 2);
-    // GameEngineTexture::Cut("penitent_respawning_hw.png", 6, 6);
-
     // BossMonster
     GameEngineTexture::Cut("pontiff_closing_face.png", 5, 3);
     GameEngineTexture::Cut("pontiff_closing_torso.png", 5, 3);
@@ -402,14 +368,6 @@ void Blasphemous::CutTexture()
     GameEngineTexture::Cut("elderBrother_jump.png", 4, 7);
     GameEngineTexture::Cut("elderBrother_attack.png", 4, 6);
     GameEngineTexture::Cut("elderBrother_death.png", 5, 10);
-
-    GameEngineTexture::Cut("pope_idle.png", 4, 4);
-    GameEngineTexture::Cut("pope_appear.png", 4, 4);
-    GameEngineTexture::Cut("pope_death.png", 6, 6);
-    GameEngineTexture::Cut("pope_hitReaction.png", 4, 3);
-    GameEngineTexture::Cut("pope_spellCast.png", 8, 7);
-    GameEngineTexture::Cut("pope_spellCast_FXS.png", 8, 7);
-    GameEngineTexture::Cut("pope_vanishing.png", 4, 4);
 
     GameEngineTexture::Cut("pontiff_giantSword_teleportOUT.png", 9, 3);
     GameEngineTexture::Cut("pontiff_giantSword_teleportIN.png", 9, 3);

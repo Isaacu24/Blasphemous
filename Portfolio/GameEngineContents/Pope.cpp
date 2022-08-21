@@ -5,6 +5,8 @@
 #include "ToxicCloudSpawner.h"
 #include "LightiningBoltSpawner.h"
 #include "MagicMissileSpawner.h"
+#include "MetaTextureRenderer.h"
+#include "MetaSpriteManager.h"
 
 Pope::Pope()
     : SpellType_(SPELLTYPE::FIREBALL)
@@ -14,28 +16,73 @@ Pope::~Pope() {}
 
 void Pope::Start()
 {
-    Renderer_ = CreateComponent<GameEngineTextureRenderer>();
-    Renderer_->CreateFrameAnimationCutTexture("pope_idle", {"pope_idle.png", 0, 12, 0.1f, true});
-    Renderer_->CreateFrameAnimationCutTexture("pope_appear", {"pope_appear.png", 0, 14, 0.1f, false});
-    Renderer_->CreateFrameAnimationCutTexture("pope_hitReaction", {"pope_hitReaction.png", 0, 10, 0.1f, true});
-    Renderer_->CreateFrameAnimationCutTexture("pope_spellCast", {"pope_spellCast.png", 0, 54, 0.1f, true});
-    Renderer_->CreateFrameAnimationCutTexture("pope_vanishing", {"pope_vanishing.png", 0, 15, 0.1f, false});
-    Renderer_->CreateFrameAnimationCutTexture("pope_death", {"pope_death.png", 0, 34, 0.1f, true});
-    Renderer_->SetScaleModeImage();
-    Renderer_->SetPivot(PIVOTMODE::BOT);
+    MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
-    FXSRenderer_ = CreateComponent<GameEngineTextureRenderer>();
-    FXSRenderer_->CreateFrameAnimationCutTexture("pope_spellCast_FXS",
-                                                 {"pope_spellCast_FXS.png", 0, 54, 0.1f, true});  //¿Ã∆Â∆Æ
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_idle");
 
-    FXSRenderer_->SetScaleModeImage();
-    FXSRenderer_->SetPivot(PIVOTMODE::BOT);
-    FXSRenderer_->GetTransform().SetLocalPosition({0, 0, static_cast<int>(ACTORORDER::BossMonster)});
-    FXSRenderer_->ChangeFrameAnimation("pope_spellCast_FXS");
-    FXSRenderer_->GetColorData().MulColor = float4{0.3f, 0.7f, 0.99f, 1.f};
+        MetaRenderer_->CreateMetaAnimation(
+            "pope_idle", {"pope_idle.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true}, Data);
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_appear");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "pope_appear", {"pope_appear.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true}, Data);
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_hitReaction");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "pope_hitReaction",
+            {"pope_hitReaction.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            Data);
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_spellCast");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "pope_spellCast", {"pope_spellCast.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true}, Data);
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_vanishing");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "pope_vanishing", {"pope_vanishing.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true}, Data);
+    }
+
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_death");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "pope_death", {"pope_death.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true}, Data);
+    }
+
+    MetaRenderer_->SetPivot(PIVOTMODE::BOT);
+
+    MetaFXSRenderer_ = CreateComponent<MetaTextureRenderer>();
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_spellCast_FXS");
+
+        MetaFXSRenderer_->CreateMetaAnimation(
+            "pope_spellCast_FXS",
+            {"pope_spellCast_FXS.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            Data);
+    }
+
+    MetaFXSRenderer_->SetPivot(PIVOTMODE::BOT);
+    MetaFXSRenderer_->GetTransform().SetLocalPosition({0, 0, static_cast<int>(ACTORORDER::BossMonster)});
+    MetaFXSRenderer_->ChangeMetaAnimation("pope_spellCast_FXS");
+    MetaFXSRenderer_->GetColorData().MulColor = float4{0.3f, 0.7f, 0.99f, 1.f};
 
     Symbol_ = GetLevel()->CreateActor<SymbolEffect>();
-    Symbol_->GetTransform().SetWorldScale({1.5f, 1.5f, 1.f}); 
+    Symbol_->GetTransform().SetWorldScale({1.5f, 1.5f, 1.f});
     Symbol_->GetTransform().SetWorldPosition({2500, -1760, static_cast<int>(ACTORORDER::BossMonster)});
     Symbol_->SetColor(COLORTYPE::PURPLE);
 
@@ -70,9 +117,14 @@ void Pope::Start()
                              std::bind(&Pope::DeathEnd, this, std::placeholders::_1));
 
     DetectCollider_ = CreateComponent<GameEngineCollision>();
-    DetectCollider_->ChangeOrder(COLLISIONORDER::BossMonster);
+    DetectCollider_->ChangeOrder(COLLISIONORDER::MonsterDetect);
     DetectCollider_->GetTransform().SetWorldScale({50.0f, 100.0f, 1.0f});
     DetectCollider_->GetTransform().SetWorldMove({0, 100});
+
+    BodyCollider_ = CreateComponent<GameEngineCollision>();
+    BodyCollider_->ChangeOrder(COLLISIONORDER::BossMonster);
+    BodyCollider_->GetTransform().SetWorldScale({50.0f, 100.0f, 1.0f});
+    BodyCollider_->GetTransform().SetWorldMove({0, 100});
 
     TeleportPos_[0] = float4{1800, -1760};
     TeleportPos_[1] = float4{2100, -1760};
@@ -129,8 +181,8 @@ bool Pope::DecideState(GameEngineCollision* _This, GameEngineCollision* _Other) 
 
 void Pope::IdleStart(const StateInfo& _Info)
 {
-    Renderer_->ChangeFrameAnimation("pope_idle");
-    Renderer_->AnimationBindEnd("pope_idle", std::bind(&Pope::ChangeSpellCast, this, std::placeholders::_1));
+    MetaRenderer_->ChangeMetaAnimation("pope_idle");
+    MetaRenderer_->AnimationBindEnd("pope_idle", std::bind(&Pope::ChangeSpellCast, this, std::placeholders::_1));
 }
 
 void Pope::IdleUpdate(float _DeltaTime, const StateInfo& _Info) {}
@@ -139,16 +191,15 @@ void Pope::IdleEnd(const StateInfo& _Info) { int a = 0; }
 
 void Pope::AppearStart(const StateInfo& _Info)
 {
-    Renderer_->ChangeFrameAnimation("pope_appear");
-    Renderer_->AnimationBindEnd("pope_appear", std::bind(&Pope::ChangeIdleState, this, std::placeholders::_1));
+    MetaRenderer_->ChangeMetaAnimation("pope_appear");
+    MetaRenderer_->AnimationBindEnd("pope_appear", std::bind(&Pope::ChangeIdleState, this, std::placeholders::_1));
 }
 
 void Pope::AppearUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Pope::AppearEnd(const StateInfo& _Info) 
-{ BossUI_->AllOn(); }
+void Pope::AppearEnd(const StateInfo& _Info) { BossUI_->AllOn(); }
 
-void Pope::VanishingStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("pope_vanishing"); }
+void Pope::VanishingStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("pope_vanishing"); }
 
 void Pope::VanishingUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -190,11 +241,11 @@ void Pope::VanishingEnd(const StateInfo& _Info)
 
 void Pope::SpellCastStart(const StateInfo& _Info)
 {
-    Renderer_->ChangeFrameAnimation("pope_spellCast");
+    MetaRenderer_->ChangeMetaAnimation("pope_spellCast");
     // Renderer_->AnimationBindEnd("pope_spellCast", std::bind(&Pope::ChangeIdleState, this, std::placeholders::_1));
 
-    FXSRenderer_->On();
-    FXSRenderer_->ChangeFrameAnimation("pope_spellCast_FXS");
+    MetaFXSRenderer_->On();
+    MetaFXSRenderer_->ChangeMetaAnimation("pope_spellCast_FXS");
     /*FXSRenderer_->AnimationBindEnd("pope_spellCast_FXS",
                                    std::bind(&Pope::AnimationOff, this, std::placeholders::_1));*/
 
@@ -303,8 +354,8 @@ void Pope::SpellCastEnd(const StateInfo& _Info) {}
 
 void Pope::HitStart(const StateInfo& _Info)
 {
-    Renderer_->ChangeFrameAnimation("pope_hitReaction");
-    Renderer_->AnimationBindEnd("pope_hitReaction", std::bind(&Pope::ChangeIdleState, this, std::placeholders::_1));
+    MetaRenderer_->ChangeMetaAnimation("pope_hitReaction");
+    MetaRenderer_->AnimationBindEnd("pope_hitReaction", std::bind(&Pope::ChangeIdleState, this, std::placeholders::_1));
 }
 
 void Pope::HitUpdate(float _DeltaTime, const StateInfo& _Info) {}
@@ -313,8 +364,8 @@ void Pope::HitEnd(const StateInfo& _Info) {}
 
 void Pope::DeathStart(const StateInfo& _Info)
 {
-    Renderer_->ChangeFrameAnimation("pope_death");
-    Renderer_->AnimationBindEnd("pope_death", std::bind(&Pope::ChangeIdleState, this, std::placeholders::_1));
+    MetaRenderer_->ChangeMetaAnimation("pope_death");
+    MetaRenderer_->AnimationBindEnd("pope_death", std::bind(&Pope::ChangeIdleState, this, std::placeholders::_1));
 }
 
 void Pope::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
