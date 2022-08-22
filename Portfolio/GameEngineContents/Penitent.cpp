@@ -209,6 +209,18 @@ void Penitent::SetAnimation()
     }
 
     {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_upward_attack_jump");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_upward_attack_jump",
+            {"penitent_upward_attack_jump.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_upward_attack_jump",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Fall"); });
+    }
+
+    {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penintent_standing_up");
 
         MetaRenderer_->CreateMetaAnimation(
@@ -412,6 +424,18 @@ void Penitent::SetAnimation()
             Data);
 
         MetaRenderer_->AnimationBindEnd("penitent_attack_combo_1",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_upward_attack_clamped_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_upward_attack_clamped_anim",
+            {"penitent_upward_attack_clamped_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_upward_attack_clamped_anim",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 

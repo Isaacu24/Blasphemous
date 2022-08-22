@@ -269,6 +269,9 @@ void Penitent::FallEnd(const StateInfo& _Info) {}
 
 void Penitent::JumpAttackStart(const StateInfo& _Info)
 {
+    //일단 인정하지도 증가하지도 않음.
+    FallTime_ = 0.f;
+
     MetaRenderer_->ChangeMetaAnimation("penitent_jumping_attack_noslashes");
 }
 
@@ -298,6 +301,11 @@ void Penitent::JumpAttackUpdate(float _DeltaTime, const StateInfo& _Info)
         {
             Dir_ += -(GetTransform().GetLeftVector() * 3.f);
         }
+    }
+
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentUp"))
+    {
+        MetaRenderer_->ChangeMetaAnimation("penitent_upward_attack_jump");
     }
 
     if (true == IsGround_)
@@ -541,7 +549,15 @@ void Penitent::AttackStart(const StateInfo& _Info)
     }
 }
 
-void Penitent::AttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
+void Penitent::AttackUpdate(float _DeltaTime, const StateInfo& _Info) 
+{
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentUp"))
+    {
+        MetaRenderer_->ChangeMetaAnimation("penitent_upward_attack_clamped_anim");
+        AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
+        AttackCollider_->GetTransform().SetWorldMove({0.f, 100.f});
+    }
+}
 
 void Penitent::AttackEnd(const StateInfo& _Info)
 {
