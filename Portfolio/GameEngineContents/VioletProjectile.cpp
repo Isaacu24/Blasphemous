@@ -29,11 +29,12 @@ void VioletProjectile::Start()
         "Explosion",
         std::bind(&VioletProjectile::ExplosionUpdate, this, std::placeholders::_1, std::placeholders::_2),
         std::bind(&VioletProjectile::ExplosionStart, this, std::placeholders::_1));
-    Renderer_->AnimationBindEnd("TakeBackProyectileExplosion", [&](const FrameAnimation_DESC& _Info) 
-        { 
-        Collider_->Death();
-        Death(); 
-        });
+
+    Renderer_->AnimationBindEnd("TakeBackProyectileExplosion",
+                                [&](const FrameAnimation_DESC& _Info)
+                                {
+                                    Death();
+                                });
 
     State_.ChangeState("Shoot");
 }
@@ -72,8 +73,10 @@ void VioletProjectile::ExplosionStart(const StateInfo& _Info)
 {
     Renderer_->GetTransform().SetWorldScale({200.f, 200.f, 1.f});
     Renderer_->ChangeFrameAnimation("TakeBackProyectileExplosion");
+
+    Collider_->Death(0.1f);
 }
 
 void VioletProjectile::ExplosionUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void VioletProjectile::ExplosionEnd(const StateInfo& _Info) { }
+void VioletProjectile::ExplosionEnd(const StateInfo& _Info) {}

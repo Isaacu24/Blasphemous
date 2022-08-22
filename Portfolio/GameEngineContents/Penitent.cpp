@@ -267,7 +267,7 @@ void Penitent::SetAnimation()
             { 
                 ChangeState("Idle"); 
             });
-    }
+    } 
 
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_sheathedIdle");

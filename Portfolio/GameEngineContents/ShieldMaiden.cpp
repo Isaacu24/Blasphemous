@@ -3,6 +3,11 @@
 #include "MetaTextureRenderer.h"
 #include "MetaSpriteManager.h"
 
+namespace SHIELD_MAIDEN
+{
+    inline const char* IDLE = "TEST";
+}
+
 ShieldMaiden::ShieldMaiden() {}
 
 ShieldMaiden::~ShieldMaiden() {}

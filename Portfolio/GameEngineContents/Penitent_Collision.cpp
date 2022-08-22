@@ -204,6 +204,12 @@ void Penitent::CollisionCheck()
 //피격 함수
 bool Penitent::KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
+    if (false == IsGround_)
+    {
+        SetDamege(10.f);
+        return false;
+    }
+
     float Dir = _This->GetTransform().GetWorldPosition().x - _Other->GetTransform().GetWorldPosition().x;
 
     if (0 >= Dir)  //몬스터가 오른쪽에 있다.
@@ -218,7 +224,7 @@ bool Penitent::KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other
 
     State_.ChangeState("KnockBack");
 
-    return false;
+    return true;
 }
 
 bool Penitent::Dangle(GameEngineCollision* _This, GameEngineCollision* _Other)

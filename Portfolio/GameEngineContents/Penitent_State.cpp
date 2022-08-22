@@ -175,7 +175,11 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Penitent::JumpEnd(const StateInfo& _Info) {}
 
-void Penitent::FallStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penitent_falling_loop_anim"); }
+void Penitent::FallStart(const StateInfo& _Info) 
+{ 
+    FallTime_ = 0.f;
+    MetaRenderer_->ChangeMetaAnimation("penitent_falling_loop_anim"); 
+}
 
 void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -459,6 +463,7 @@ void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 
     GetTransform().SetWorldMove(float4{RealXDir_, 0} * 150.f * _DeltaTime);
+    Gravity_->SetActive(!IsGround_);
 }
 
 void Penitent::KnockBackEnd(const StateInfo& _Info) {}

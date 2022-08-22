@@ -75,6 +75,11 @@ void WingedFace::Update(float _DeltaTime)
 {
     State_.Update(_DeltaTime);
 
+    if ("Death" == State_.GetCurStateStateName())
+    {
+        return;
+    }
+
     DetectCollider_->IsCollision(
         CollisionType::CT_OBB2D,
         COLLISIONORDER::Player,
@@ -173,6 +178,9 @@ void WingedFace::ShootUpdate(float _DeltaTime, const StateInfo& _Info)
 void WingedFace::DeathStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("bigpatrollinFlyingEnemy_death");
+
+    BodyCollider_->Off();
+    DetectCollider_->Off();
 }
 
 void WingedFace::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}

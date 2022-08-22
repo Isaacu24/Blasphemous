@@ -129,6 +129,15 @@ void Stage02::SettingLedge()
         Collider->SetDebugSetting(CollisionType::CT_AABB, float4{0.1f, 1.0f, 0.2f, 0.5f});
         DangleColiders_.push_back(Collider);
     }
+
+    {
+        GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
+        Collider->ChangeOrder(COLLISIONORDER::LeftLedge);
+        Collider->GetTransform().SetWorldPosition({3170, -1425});
+        Collider->GetTransform().SetWorldScale({5.0f, 5.0f, 1.0f});
+        Collider->SetDebugSetting(CollisionType::CT_AABB, float4{0.1f, 1.0f, 0.2f, 0.5f});
+        DangleColiders_.push_back(Collider);
+    }
 }
 
 void Stage02::Start()

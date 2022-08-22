@@ -57,7 +57,7 @@ void ElderBrother::Start()
     Gravity_ = CreateComponent<GravityComponent>();
 
     DetectCollider_ = CreateComponent<GameEngineCollision>();
-    DetectCollider_->ChangeOrder(COLLISIONORDER::BossMonster);
+    DetectCollider_->ChangeOrder(COLLISIONORDER::MonsterDetect);
     DetectCollider_->GetTransform().SetWorldScale({3000.0f, 1500.0f});
     DetectCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{1.0f, 1.0f, 1.0f, 0.5f});
 

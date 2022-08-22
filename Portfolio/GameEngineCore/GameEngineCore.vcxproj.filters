@@ -8,7 +8,7 @@
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineCore.h">
-      <Filter>GUI\Core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineStateManager.h">
       <Filter>Contents</Filter>
@@ -165,7 +165,7 @@
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineCore.cpp">
-      <Filter>GUI\Core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineStateManager.cpp">
       <Filter>Contents</Filter>
@@ -178,7 +178,7 @@
       <Filter>Object\Component\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineCore_Resources.cpp">
-      <Filter>GUI\Core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineRes.cpp">
       <Filter>Resources</Filter>
@@ -383,7 +383,7 @@
     <Filter Include="Debug">
       <UniqueIdentifier>{63cb1381-9515-4df1-b1fa-66e15abe5510}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GUI\Core">
+    <Filter Include="Core">
       <UniqueIdentifier>{26808072-562e-43d7-a7f8-527f4cf62091}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

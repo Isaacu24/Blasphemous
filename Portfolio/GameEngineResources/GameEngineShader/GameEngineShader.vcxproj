@@ -127,18 +127,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <FxCompile Include="Color.hlsl" />
-    <FxCompile Include="Debug3D.hlsl" />
-    <FxCompile Include="DebugTexture.hlsl">
+    <None Include="Color.hlsl">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="Debug3D.hlsl">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="DebugTexture.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
-    </FxCompile>
-    <FxCompile Include="RenderOption.fx" />
-    <FxCompile Include="Texture.hlsl" />
-    <FxCompile Include="TextureAtlas.hlsl" />
-    <FxCompile Include="TransformHeader.fx">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="RenderOption.fx">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="Texture.hlsl">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="TextureAtlas.hlsl">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="TransformHeader.fx">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </EntryPointName>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Effect</ShaderType>
@@ -147,7 +158,8 @@
       </EntryPointName>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
-    </FxCompile>
+      <FileType>Document</FileType>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -77,7 +77,6 @@ void FrameAnimation::Update(float _Delta)
 		ParentRenderer->SetTexture(Texture, Info.Frames[Info.CurFrame]);
 		ParentRenderer->SetPivot();
 
-		// 잘렸다는 거죠?
 		if (Texture->GetCutCount() != 0)
 		{
 			if (ParentRenderer->ScaleMode == SCALEMODE::IMAGE)
