@@ -262,3 +262,16 @@ bool Penitent::Dangle(GameEngineCollision* _This, GameEngineCollision* _Other)
 
     return true;
 }
+
+bool Penitent::FallCollisionCheck() 
+{
+    float4 Color = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x,
+                                                              -(GetTransform().GetWorldPosition().y - 10));
+
+    if (true == Color.CompareInt4D(float4::BLACK) || true == Color.CompareInt4D(float4::MAGENTA))
+    {
+        return true;
+    }
+
+    return false;
+}

@@ -11,10 +11,7 @@ void Penitent::FreezeUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Penitent::FreezeEnd(const StateInfo& _Info) {}
 
-void Penitent::IdleStart(const StateInfo& _Info) 
-{ 
-    MetaRenderer_->ChangeMetaAnimation("penintent_idle_anim"); 
-}
+void Penitent::IdleStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penintent_idle_anim"); }
 
 void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -52,21 +49,19 @@ void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
     //내리막길
     if (false == IsGround_)
     {
-        JumpForce_ = 10.f;
-        State_.ChangeState("Fall");
+        if (false == FallCollisionCheck())
+        {
+            JumpForce_ = 10.f;
+            State_.ChangeState("Fall");
+        }
     }
 
     Gravity_->SetActive(!IsGround_);
 }
 
-void Penitent::IdleEnd(const StateInfo& _Info) 
-{ 
-}
+void Penitent::IdleEnd(const StateInfo& _Info) {}
 
-void Penitent::MoveStart(const StateInfo& _Info) 
-{ 
-    MetaRenderer_->ChangeMetaAnimation("penintent_start_run_anim"); 
-}
+void Penitent::MoveStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penintent_start_run_anim"); }
 
 void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -131,8 +126,11 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
     //내리막길
     if (false == IsGround_)
     {
-        JumpForce_ = 10.f;
-        State_.ChangeState("Fall");
+        if (false == FallCollisionCheck())
+        {
+            JumpForce_ = 10.f;
+            State_.ChangeState("Fall");
+        }
     }
 
     Gravity_->SetActive(!IsGround_);
@@ -140,10 +138,11 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Penitent::MoveEnd(const StateInfo& _Info) {}
 
-
+bool IsCheck_;
 void Penitent::JumpStart(const StateInfo& _Info)
 {
     JumpForce_ = 100.f;
+    IsCheck_   = true;
     MetaRenderer_->ChangeMetaAnimation("penitent_jump_anim");
 }
 
@@ -151,22 +150,35 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     JumpForce_.y -= _DeltaTime * 100.f;
 
+    //GameEngineDebug::OutPutString("JumpForce_.y : " + std::to_string(JumpForce_.y));
+
+    //if (10.f > JumpForce_.y)
+    //{
+    //    IsCheck_ = false;
+    //}
+
     Dir_ = GetTransform().GetUpVector() * 10.f;
 
     if (GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
     {
         GetTransform().PixLocalPositiveX();
-        Dir_ += GetTransform().GetRightVector() * 3.f;
-
         RealXDir_ = 1;
+
+        if (false == RightObstacleCheck())
+        {
+            Dir_ += GetTransform().GetRightVector() * 3.f;
+        }
     }
 
     if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
     {
         GetTransform().PixLocalNegativeX();
-        Dir_ += -(GetTransform().GetLeftVector() * 3.f);
-
         RealXDir_ = -1;
+
+        if (false == LeftObstacleCheck())
+        {
+            Dir_ += -(GetTransform().GetLeftVector() * 3.f);
+        }
     }
 
     GetTransform().SetWorldMove(Dir_ * JumpForce_ * _DeltaTime);
@@ -175,10 +187,11 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Penitent::JumpEnd(const StateInfo& _Info) {}
 
-void Penitent::FallStart(const StateInfo& _Info) 
-{ 
+void Penitent::FallStart(const StateInfo& _Info)
+{
     FallTime_ = 0.f;
-    MetaRenderer_->ChangeMetaAnimation("penitent_falling_loop_anim"); 
+
+    MetaRenderer_->ChangeMetaAnimation("penitent_falling_loop_anim");
 }
 
 void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -191,17 +204,23 @@ void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
     if (GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
     {
         GetTransform().PixLocalPositiveX();
-        Dir_ += GetTransform().GetRightVector() * 3.f;
-
         RealXDir_ = 1;
+
+        if (false == RightObstacleCheck())
+        {
+            Dir_ += -(GetTransform().GetLeftVector() * 3.f);
+        }
     }
 
     if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
     {
         GetTransform().PixLocalNegativeX();
-        Dir_ += -(GetTransform().GetLeftVector() * 3.f);
-
         RealXDir_ = -1;
+
+        if (false == LeftObstacleCheck())
+        {
+            Dir_ += -(GetTransform().GetLeftVector() * 3.f);
+        }
     }
 
     if (GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
@@ -299,11 +318,14 @@ void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
 
     Gravity_->SetActive(!IsGround_);
 
-    //내리막길 문제있음
+    //내리막길
     if (false == IsGround_)
     {
-        JumpForce_ = 10.f;
-        State_.ChangeState("Fall");
+        if (false == FallCollisionCheck())
+        {
+            JumpForce_ = 10.f;
+            State_.ChangeState("Fall");
+        }
     }
 }
 

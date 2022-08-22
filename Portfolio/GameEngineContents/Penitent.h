@@ -62,6 +62,9 @@ protected:
 
     void CollisionCheck();
 
+    //추락 시 거리 체크: 짧은 높이는 추락 상태가 되지 않음
+    bool FallCollisionCheck();
+
     void FreezeStart(const StateInfo& _Info);
     void FreezeUpdate(float _DeltaTime, const StateInfo& _Info);
     void FreezeEnd(const StateInfo& _Info);
@@ -140,6 +143,8 @@ private:
     float SlideForce_;
 
     float RealXDir_;
+
+    float RunTime_; //달리기 시간 체크
 
     float4 JumpForce_;
 
