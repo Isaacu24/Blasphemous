@@ -54,7 +54,7 @@ void Penitent::Start()
         GameEngineInput::GetInst()->CreateKey("PenitentJump", VK_SPACE);
         GameEngineInput::GetInst()->CreateKey("PenitentSlide", VK_LSHIFT);
         GameEngineInput::GetInst()->CreateKey("PenitentRecovery", 'F');
-        GameEngineInput::GetInst()->CreateKey("PenitenAttack", 'K');
+        GameEngineInput::GetInst()->CreateKey("PenitentAttack", 'K');
         GameEngineInput::GetInst()->CreateKey("FreeCamera", 'O');
 
         GameEngineInput::GetInst()->CreateKey("PenitentAnimation", '1');
@@ -184,6 +184,30 @@ void Penitent::SetAnimation()
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Fall"); });
     }
 
+    //{
+    //    std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_jum_forward_anim");
+
+    //    MetaRenderer_->CreateMetaAnimation(
+    //        "penitent_jum_forward_anim",
+    //        {"penitent_jum_forward_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
+    //        Data);
+
+    //    MetaRenderer_->AnimationBindEnd("penitent_jum_forward_anim",
+    //                                    [&](const FrameAnimation_DESC& _Info) { ChangeState("Fall"); });
+    //}
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_jumping_attack_noslashes");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_jumping_attack_noslashes",
+            {"penitent_jumping_attack_noslashes.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_jumping_attack_noslashes",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Fall"); });
+    }
+
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penintent_standing_up");
 
@@ -263,11 +287,8 @@ void Penitent::SetAnimation()
             });
 
         MetaRenderer_->AnimationBindEnd("penintent_stop_run_anim",
-                                        [&](const FrameAnimation_DESC& _Info) 
-            { 
-                ChangeState("Idle"); 
-            });
-    } 
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+    }
 
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_sheathedIdle");
@@ -480,6 +501,11 @@ void Penitent::SetPlayerState()
                              std::bind(&Penitent::KnockBackUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&Penitent::KnockBackStart, this, std::placeholders::_1),
                              std::bind(&Penitent::KnockBackEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember("JumpAttack",
+                             std::bind(&Penitent::JumpAttackUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::JumpAttackStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::JumpAttackEnd, this, std::placeholders::_1));
 
     /*
     State_.CreateStateMember("Recovery",

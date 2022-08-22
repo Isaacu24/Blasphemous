@@ -109,6 +109,10 @@ protected:
     void AttackUpdate(float _DeltaTime, const StateInfo& _Info);
     void AttackEnd(const StateInfo& _Info);
 
+    void JumpAttackStart(const StateInfo& _Info);
+    void JumpAttackUpdate(float _DeltaTime, const StateInfo& _Info);
+    void JumpAttackEnd(const StateInfo& _Info);
+
     void KnockBackStart(const StateInfo& _Info);
     void KnockBackUpdate(float _DeltaTime, const StateInfo& _Info);
     void KnockBackEnd(const StateInfo& _Info);

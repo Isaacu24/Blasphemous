@@ -22,8 +22,8 @@ void LoadingActor::Start()
 
 	Icon_ = CreateComponent<GameEngineUIRenderer>();
 	Icon_->SetTexture("LoadingSpinningIco_0.png");
-	Icon_->GetTransform().SetWorldPosition({ 520, -250, static_cast<int>(UIORDER::LodingUI) });
-	Icon_->GetTransform().SetWorldScale({ 150, 150 });
+	Icon_->GetTransform().SetWorldPosition({ 530, -240, static_cast<int>(UIORDER::LodingUI) });
+    Icon_->GetTransform().SetWorldScale({200, 200});
 }
 
 void LoadingActor::Update(float _DeltaTime)

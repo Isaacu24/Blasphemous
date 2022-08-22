@@ -41,7 +41,7 @@ void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
         State_.ChangeState("Jump");
     }
 
-    else if (GameEngineInput::GetInst()->IsPressKey("PenitenAttack"))
+    else if (GameEngineInput::GetInst()->IsPressKey("PenitentAttack"))
     {
         State_.ChangeState("Attack");
     }
@@ -61,7 +61,11 @@ void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Penitent::IdleEnd(const StateInfo& _Info) {}
 
-void Penitent::MoveStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penintent_start_run_anim"); }
+void Penitent::MoveStart(const StateInfo& _Info)
+{
+    RunTime_ = 0.f;
+    MetaRenderer_->ChangeMetaAnimation("penintent_start_run_anim");
+}
 
 void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -74,13 +78,23 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 
         if (false == RightObstacleCheck())
         {
+            RunTime_ += _DeltaTime;
+
             GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime);
         }
     }
 
     else if (GameEngineInput::GetInst()->IsUpKey("PenitentRight"))
     {
-        MetaRenderer_->ChangeMetaAnimation("penintent_stop_run_anim");
+        if (1.f <= RunTime_)
+        {
+            MetaRenderer_->ChangeMetaAnimation("penintent_stop_run_anim");
+        }
+
+        else
+        {
+            ChangeState("Idle");
+        }
         return;
     }
 
@@ -93,13 +107,22 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 
         if (false == LeftObstacleCheck())
         {
+            RunTime_ += _DeltaTime;
             GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime);
         }
     }
 
     else if (GameEngineInput::GetInst()->IsUpKey("PenitentLeft"))
     {
-        MetaRenderer_->ChangeMetaAnimation("penintent_stop_run_anim");
+        if (1.f <= RunTime_)
+        {
+            MetaRenderer_->ChangeMetaAnimation("penintent_stop_run_anim");
+        }
+
+        else
+        {
+            ChangeState("Idle");
+        }
         return;
     }
 
@@ -118,7 +141,7 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
         State_.ChangeState("Slide");
     }
 
-    else if (GameEngineInput::GetInst()->IsPressKey("PenitenAttack"))
+    else if (GameEngineInput::GetInst()->IsPressKey("PenitentAttack"))
     {
         State_.ChangeState("Attack");
     }
@@ -138,24 +161,15 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Penitent::MoveEnd(const StateInfo& _Info) {}
 
-bool IsCheck_;
 void Penitent::JumpStart(const StateInfo& _Info)
 {
     JumpForce_ = 100.f;
-    IsCheck_   = true;
     MetaRenderer_->ChangeMetaAnimation("penitent_jump_anim");
 }
 
 void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     JumpForce_.y -= _DeltaTime * 100.f;
-
-    //GameEngineDebug::OutPutString("JumpForce_.y : " + std::to_string(JumpForce_.y));
-
-    //if (10.f > JumpForce_.y)
-    //{
-    //    IsCheck_ = false;
-    //}
 
     Dir_ = GetTransform().GetUpVector() * 10.f;
 
@@ -181,18 +195,24 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
         }
     }
 
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentAttack"))
+    {
+        ChangeState("JumpAttack");
+        return;
+    }
+
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
+    {
+        JumpForce_.y -= _DeltaTime * 100.f;
+    }
+
     GetTransform().SetWorldMove(Dir_ * JumpForce_ * _DeltaTime);
     Gravity_->SetActive(!IsGround_);
 }
 
 void Penitent::JumpEnd(const StateInfo& _Info) {}
 
-void Penitent::FallStart(const StateInfo& _Info)
-{
-    FallTime_ = 0.f;
-
-    MetaRenderer_->ChangeMetaAnimation("penitent_falling_loop_anim");
-}
+void Penitent::FallStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penitent_falling_loop_anim"); }
 
 void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -223,6 +243,12 @@ void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
         }
     }
 
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentAttack"))
+    {
+        ChangeState("JumpAttack");
+        return;
+    }
+
     if (GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
     {
         JumpForce_.y -= _DeltaTime * 100.f;
@@ -238,7 +264,67 @@ void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
     Gravity_->SetActive(!IsGround_);
 }
 
-void Penitent::FallEnd(const StateInfo& _Info) { JumpForce_ = 100.f; }
+void Penitent::FallEnd(const StateInfo& _Info) {}
+
+
+void Penitent::JumpAttackStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("penitent_jumping_attack_noslashes");
+}
+
+void Penitent::JumpAttackUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    JumpForce_.y -= _DeltaTime * 80.f;
+
+    Dir_ = GetTransform().GetUpVector() * 10.f;
+
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
+    {
+        GetTransform().PixLocalPositiveX();
+        RealXDir_ = 1;
+
+        if (false == RightObstacleCheck())
+        {
+            Dir_ += -(GetTransform().GetLeftVector() * 3.f);
+        }
+    }
+
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
+    {
+        GetTransform().PixLocalNegativeX();
+        RealXDir_ = -1;
+
+        if (false == LeftObstacleCheck())
+        {
+            Dir_ += -(GetTransform().GetLeftVector() * 3.f);
+        }
+    }
+
+    if (true == IsGround_)
+    {
+        ChangeState("Landing");
+        return;
+    }
+
+    GetTransform().SetWorldMove(Dir_ * JumpForce_ * _DeltaTime);
+    Gravity_->SetActive(!IsGround_);
+}
+
+void Penitent::JumpAttackEnd(const StateInfo& _Info) {}
+
+void Penitent::KnockBackStart(const StateInfo& _Info)
+{
+    if ("LadderClimb" == _Info.PrevState)
+    {
+        State_.ChangeState("LadderClimb");
+        return;
+    }
+
+    //착지 시에 피격 당할 경우 추락 시간은 0
+    FallTime_ = 0.f;
+
+    MetaRenderer_->ChangeMetaAnimation("Penitent_pushback_grounded");
+}
 
 void Penitent::LandingStart(const StateInfo& _Info)
 {
@@ -461,20 +547,6 @@ void Penitent::AttackEnd(const StateInfo& _Info)
 {
     AttackCollider_->Off();
     AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
-}
-
-void Penitent::KnockBackStart(const StateInfo& _Info)
-{
-    if ("LadderClimb" == _Info.PrevState)
-    {
-        State_.ChangeState("LadderClimb");
-        return;
-    }
-
-    //착지 시에 피격 당할 경우 추락 시간은 0
-    FallTime_ = 0.f;
-
-    MetaRenderer_->ChangeMetaAnimation("Penitent_pushback_grounded");
 }
 
 void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
