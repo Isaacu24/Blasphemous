@@ -30,6 +30,9 @@ enum class ACTORORDER
 	BossMonster,
 	Monster,
 	Object,
+    Object1,
+    Object2,
+    Object3,
 
 	Tile,
 
@@ -52,23 +55,24 @@ enum class ACTORORDER
 
 enum class COLLISIONORDER
 {
-	Player,
+    Player,
     PlayerAttack,
     PlayerSkill,
     PlayerSkill1,
     PlayerSkill2,
-    MonsterDetect, //몬스터 감지 영역
-	Monster,
+    MonsterDetect,  //몬스터 감지 영역
+    Monster,
     MonsterAttack,
     MonsterAttack1,
-	BossMonster,
+    BossMonster,
     BossMonsterAttack,
     BossMonsterAttack1,
-	Projectile,
-	Object,
+    Projectile,
+    Object,
     LeftLedge,  //난간
     RightLedge,
-	Debug
+    Debug,
+    GlassSwitch,
 };
 
 

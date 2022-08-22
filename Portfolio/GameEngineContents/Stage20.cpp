@@ -52,7 +52,6 @@ void Stage20::SettingMonster()
 {
     Pope_ = CreateActor<Pope>();
     Pope_->GetTransform().SetWorldPosition({2500, -1760, static_cast<int>(ACTORORDER::BossMonster)});
-    Pope_->GetTransform().SetWorldScale({1.5f, 1.5f});
     Pope_->SetGround(ColMap_);
     BossMonster_ = Pope_;
     Pope_->Off();

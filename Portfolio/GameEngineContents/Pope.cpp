@@ -16,6 +16,8 @@ Pope::~Pope() {}
 
 void Pope::Start()
 {
+    GetTransform().SetWorldScale({2.f, 2.f, 1.f});
+
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
@@ -54,7 +56,6 @@ void Pope::Start()
         MetaRenderer_->CreateMetaAnimation(
             "pope_vanishing", {"pope_vanishing.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true}, Data);
     }
-
 
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_death");

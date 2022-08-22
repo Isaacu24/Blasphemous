@@ -113,6 +113,10 @@ protected:
     void JumpAttackUpdate(float _DeltaTime, const StateInfo& _Info);
     void JumpAttackEnd(const StateInfo& _Info);
 
+    void DodgeAttackStart(const StateInfo& _Info);
+    void DodgeAttackUpdate(float _DeltaTime, const StateInfo& _Info);
+    void DodgeAttackEnd(const StateInfo& _Info);
+
     void KnockBackStart(const StateInfo& _Info);
     void KnockBackUpdate(float _DeltaTime, const StateInfo& _Info);
     void KnockBackEnd(const StateInfo& _Info);
@@ -148,7 +152,7 @@ private:
 
     float RealXDir_;
 
-    float RunTime_; //달리기 시간 체크
+    float RunTime_;  //달리기 시간 체크
 
     float4 JumpForce_;
 
@@ -159,6 +163,8 @@ private:
     float CilmbY_;
 
     int Tear_;
+
+    int AttackStack_;
 
     bool IsGround_;
     bool IsDangle_;

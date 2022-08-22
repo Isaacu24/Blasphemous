@@ -273,6 +273,18 @@ void Penitent::JumpAttackStart(const StateInfo& _Info)
     FallTime_ = 0.f;
 
     MetaRenderer_->ChangeMetaAnimation("penitent_jumping_attack_noslashes");
+
+    AttackCollider_->On();
+
+    if (0 < RealXDir_)  //오른쪽
+    {
+        AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
+    }
+
+    else if (0 > RealXDir_)  //왼쪽
+    {
+        AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
+    }
 }
 
 void Penitent::JumpAttackUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -306,6 +318,9 @@ void Penitent::JumpAttackUpdate(float _DeltaTime, const StateInfo& _Info)
     if (GameEngineInput::GetInst()->IsPressKey("PenitentUp"))
     {
         MetaRenderer_->ChangeMetaAnimation("penitent_upward_attack_jump");
+
+        AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
+        AttackCollider_->GetTransform().SetWorldMove({0.f, 150.f});
     }
 
     if (true == IsGround_)
@@ -318,7 +333,11 @@ void Penitent::JumpAttackUpdate(float _DeltaTime, const StateInfo& _Info)
     Gravity_->SetActive(!IsGround_);
 }
 
-void Penitent::JumpAttackEnd(const StateInfo& _Info) {}
+void Penitent::JumpAttackEnd(const StateInfo& _Info)
+{
+    AttackCollider_->Off();
+    AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
+}
 
 void Penitent::KnockBackStart(const StateInfo& _Info)
 {
@@ -402,6 +421,12 @@ void Penitent::SlideStart(const StateInfo& _Info)
 
 void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentAttack"))
+    {
+        State_.ChangeState("DodgeAttack");
+        return;
+    }
+
     if (true == RightObstacleCheck() || true == LeftObstacleCheck())
     {
         return;
@@ -442,6 +467,10 @@ void Penitent::DangleUpdate(float _DeltaTime, const StateInfo& _Info)
     {
         IsDangle_     = true;
         IsClimbLedge_ = true;
+
+        //누적된 추락 시간 초기화
+        FallTime_ = 0.f;
+
         MetaRenderer_->ChangeMetaAnimation("penitent_climbledge_reviewed");
     }
 
@@ -455,7 +484,7 @@ void Penitent::DangleUpdate(float _DeltaTime, const StateInfo& _Info)
     if (true == IsClimbLedge_)
     {
         float4 StartPos = GetTransform().GetWorldPosition();
-        float4 EndPos   = GetTransform().GetWorldPosition() + float4{RealXDir_ * 100.f, 300.f};
+        float4 EndPos   = GetTransform().GetWorldPosition() + float4{RealXDir_ * 100.f, 270.f};
 
         GetTransform().SetWorldPosition(float4::Lerp(StartPos, EndPos, _DeltaTime));
     }
@@ -535,7 +564,7 @@ void Penitent::LadderClimbEnd(const StateInfo& _Info) { IsLadder_ = false; }
 
 void Penitent::AttackStart(const StateInfo& _Info)
 {
-    MetaRenderer_->ChangeMetaAnimation("penitent_attack_combo_1");
+    MetaRenderer_->ChangeMetaAnimation("penitent_three_hits_attack_combo_no_slashes");
     AttackCollider_->On();
 
     if (0 < RealXDir_)  //오른쪽
@@ -549,20 +578,27 @@ void Penitent::AttackStart(const StateInfo& _Info)
     }
 }
 
-void Penitent::AttackUpdate(float _DeltaTime, const StateInfo& _Info) 
+void Penitent::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+    if (GameEngineInput::GetInst()->IsDownKey("PenitentAttack"))
+    {
+        ++AttackStack_;
+    }
+
     if (GameEngineInput::GetInst()->IsPressKey("PenitentUp"))
     {
         MetaRenderer_->ChangeMetaAnimation("penitent_upward_attack_clamped_anim");
         AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
-        AttackCollider_->GetTransform().SetWorldMove({0.f, 100.f});
+        AttackCollider_->GetTransform().SetWorldMove({0.f, 150.f});
     }
 }
 
 void Penitent::AttackEnd(const StateInfo& _Info)
 {
-    AttackCollider_->Off();
     AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
+    AttackCollider_->Off();
+
+    AttackStack_ = 0;
 }
 
 void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -577,3 +613,36 @@ void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 
 void Penitent::KnockBackEnd(const StateInfo& _Info) {}
+
+void Penitent::DodgeAttackStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("penitent_dodge_attack_LVL3");
+    AttackCollider_->On();
+
+    if (0 < RealXDir_)  //오른쪽
+    {
+        AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
+    }
+
+    else if (0 > RealXDir_)  //왼쪽
+    {
+        AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
+    }
+}
+
+void Penitent::DodgeAttackUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    if (true == RightObstacleCheck() || true == LeftObstacleCheck())
+    {
+        return;
+    }
+
+    GetTransform().SetWorldMove({RealXDir_ * 300.f * _DeltaTime, 0.f});
+    Gravity_->SetActive(!IsGround_);
+}
+
+void Penitent::DodgeAttackEnd(const StateInfo& _Info)
+{
+    AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
+    AttackCollider_->Off();
+}

@@ -24,5 +24,6 @@ protected:
     void LevelEndEvent() override;
 
 private:
+    class SideFence* Fence_;
 };
 
