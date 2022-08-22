@@ -11,7 +11,10 @@ void Penitent::FreezeUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Penitent::FreezeEnd(const StateInfo& _Info) {}
 
-void Penitent::IdleStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penintent_idle_anim"); }
+void Penitent::IdleStart(const StateInfo& _Info) 
+{ 
+    MetaRenderer_->ChangeMetaAnimation("penintent_idle_anim"); 
+}
 
 void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -56,9 +59,14 @@ void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
     Gravity_->SetActive(!IsGround_);
 }
 
-void Penitent::IdleEnd(const StateInfo& _Info) {}
+void Penitent::IdleEnd(const StateInfo& _Info) 
+{ 
+}
 
-void Penitent::MoveStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penintent_start_run_anim"); }
+void Penitent::MoveStart(const StateInfo& _Info) 
+{ 
+    MetaRenderer_->ChangeMetaAnimation("penintent_start_run_anim"); 
+}
 
 void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -437,11 +445,19 @@ void Penitent::KnockBackStart(const StateInfo& _Info)
         return;
     }
 
+    //착지 시에 피격 당할 경우 추락 시간은 0
+    FallTime_ = 0.f;
+
     MetaRenderer_->ChangeMetaAnimation("Penitent_pushback_grounded");
 }
 
 void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+    if (true == RightObstacleCheck() || true == LeftObstacleCheck())
+    {
+        return;
+    }
+
     GetTransform().SetWorldMove(float4{RealXDir_, 0} * 150.f * _DeltaTime);
 }
 

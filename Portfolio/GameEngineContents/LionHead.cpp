@@ -31,13 +31,13 @@ void LionHead::Start()
     DetectCollider_->ChangeOrder(COLLISIONORDER::MonsterDetect);
     DetectCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 0.0f, 1.0f, 0.5f});
     DetectCollider_->GetTransform().SetWorldScale({300.0f, 300.0f, 1.0f});
-    DetectCollider_->GetTransform().SetWorldMove({0, 100.f});
+    DetectCollider_->GetTransform().SetWorldMove({0, 200.f});
 
     BodyCollider_ = CreateComponent<GameEngineCollision>();
     BodyCollider_->ChangeOrder(COLLISIONORDER::Monster);
     BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 0.0f, 1.0f, 0.5f});
-    BodyCollider_->GetTransform().SetWorldScale({30.0f, 100.0f, 1.0f});
-    BodyCollider_->GetTransform().SetWorldMove({-20, 50.f});
+    BodyCollider_->GetTransform().SetWorldScale({30.0f, 200.0f, 1.0f});
+    BodyCollider_->GetTransform().SetWorldMove({-20, 100.f});
 
     State_.CreateStateMember("Idle",
                              std::bind(&LionHead::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2),
@@ -63,7 +63,10 @@ void LionHead::Update(float _DeltaTime)
 void LionHead::End() {}
 
 void LionHead::IdleStart(const StateInfo& _Info) 
-{ MetaRenderer_->ChangeMetaAnimation("Lionhead_idle_anim"); }
+{ 
+    MetaRenderer_->ChangeMetaAnimation("Lionhead_idle_anim"); 
+}
+
 void LionHead::IdleUpdate(float _DeltaTime, const StateInfo& _Info) {}
 void LionHead::IdleEnd(const StateInfo& _Info) {}
 

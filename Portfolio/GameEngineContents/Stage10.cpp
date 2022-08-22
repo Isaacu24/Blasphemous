@@ -89,7 +89,7 @@ void Stage10::SettingMonster()
     ShieldMaiden* Maiden = CreateActor<ShieldMaiden>();
     Maiden->GetTransform().SetWorldPosition({1500, -682, static_cast<int>(ACTORORDER::Monster)});
     Maiden->SetGround(ColMap_);
-    MonsterList_.push_back(CrosscrawlerClone);
+    MonsterList_.push_back(Maiden);
 
     LionHead* LionHeadClone = CreateActor<LionHead>();
     LionHeadClone->GetTransform().SetWorldPosition({3000, -682, static_cast<int>(ACTORORDER::Monster)});

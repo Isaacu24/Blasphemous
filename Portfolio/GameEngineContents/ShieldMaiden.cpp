@@ -23,7 +23,9 @@ void ShieldMaiden::Start()
     }
 
     MetaRenderer_->ChangeMetaAnimation("shieldMaiden_walking_anim");
-    MetaRenderer_->SetPivot(PIVOTMODE::BOT);
+
+    //해당 몬스터는 피벗을 맞추면 틀어진다
+    //MetaRenderer_->SetPivot(PIVOTMODE::BOT);
 
     Gravity_ = CreateComponent<GravityComponent>();
 

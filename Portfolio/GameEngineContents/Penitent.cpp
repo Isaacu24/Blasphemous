@@ -263,7 +263,10 @@ void Penitent::SetAnimation()
             });
 
         MetaRenderer_->AnimationBindEnd("penintent_stop_run_anim",
-                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+                                        [&](const FrameAnimation_DESC& _Info) 
+            { 
+                ChangeState("Idle"); 
+            });
     }
 
     {
