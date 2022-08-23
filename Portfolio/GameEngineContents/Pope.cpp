@@ -64,7 +64,7 @@ void Pope::Start()
             "pope_death", {"pope_death.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true}, Data);
     }
 
-    MetaRenderer_->SetPivot(PIVOTMODE::BOT);
+    MetaRenderer_->SetPivot(PIVOTMODE::METABOT);
 
     MetaFXSRenderer_ = CreateComponent<MetaTextureRenderer>();
 

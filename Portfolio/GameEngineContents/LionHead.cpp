@@ -23,7 +23,7 @@ void LionHead::Start()
     }
 
     MetaRenderer_->ChangeMetaAnimation("Lionhead_idle_anim");
-    MetaRenderer_->SetPivot(PIVOTMODE::BOT);
+    MetaRenderer_->SetPivot(PIVOTMODE::METABOT);
 
     Gravity_ = CreateComponent<GravityComponent>();
 

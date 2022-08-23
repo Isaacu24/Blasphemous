@@ -32,14 +32,14 @@ void Stage05::SettingStage()
     // NewDeogracias->GetTransform().PixLocalNegativeX();
 
     Door* IronDoor = CreateActor<Door>();
-    IronDoor->GetTransform().SetWorldPosition({ 1107, -520, static_cast<int>(ACTORORDER::Object) });
+    IronDoor->GetTransform().SetWorldPosition({1107, -520, static_cast<int>(ACTORORDER::Object)});
 
     Fence_ = CreateActor<SideFence>();
     Fence_->GetTransform().SetWorldPosition({1390, -530, static_cast<int>(ACTORORDER::Object1)});
 
     GlassSwitch* Glass = CreateActor<GlassSwitch>();
     Glass->SetSideFence(Fence_);
-    Glass->GetTransform().SetWorldPosition({1350, -490, static_cast<int>(ACTORORDER::Object1)});
+    Glass->GetTransform().SetWorldPosition({1350, -490, static_cast<int>(ACTORORDER::Object2)});
 
     GameEngineTextureRenderer* DoorRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     DoorRendrer->SetTexture("1_5_Door.png");
@@ -86,11 +86,13 @@ void Stage05::Update(float _DeltaTime)
         LoadingActor_->Exit("Stage04");
     }
 
+    //Ææ½º°¡ ´ÝÇôÀÖ´Ù¸é
     if (true == Fence_->GetIsClose())
     {
         if (1400 < Penitent_->GetTransform().GetWorldPosition().x)
         {
-            Penitent_->GetTransform().SetWorldPosition({1400, Penitent_->GetTransform().GetWorldPosition().y});
+            Penitent_->GetTransform().SetWorldPosition(
+                {1400, Penitent_->GetTransform().GetWorldPosition().y, Penitent_->GetTransform().GetWorldPosition().z});
             return;
         }
     }

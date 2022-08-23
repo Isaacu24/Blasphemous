@@ -8,5 +8,6 @@
     <None Include="TextureAtlas.hlsl" />
     <None Include="TransformHeader.fx" />
     <None Include="Color.hlsl" />
+    <None Include="TargetMerge.hlsl" />
   </ItemGroup>
 </Project>

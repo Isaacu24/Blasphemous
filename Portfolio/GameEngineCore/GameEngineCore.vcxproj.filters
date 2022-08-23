@@ -99,9 +99,6 @@
     <ClInclude Include="GameEngineFolderTexture.h">
       <Filter>Resources\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngineDepthStencilTexture.h">
-      <Filter>Resources\OutputMerger</Filter>
-    </ClInclude>
     <ClInclude Include="ThirdParty\inc\DirectXTex.h">
       <Filter>ThirdParty\Inc</Filter>
     </ClInclude>
@@ -257,9 +254,6 @@
     </ClCompile>
     <ClCompile Include="GameEngineFolderTexture.cpp">
       <Filter>Resources\Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngineDepthStencilTexture.cpp">
-      <Filter>Resources\OutputMerger</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineGUI.cpp">
       <Filter>GUI</Filter>

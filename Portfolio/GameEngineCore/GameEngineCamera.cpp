@@ -3,6 +3,7 @@
 #include "GameEngineRenderer.h"
 #include "GameEngineActor.h"
 #include "GameEngineLevel.h"
+#include "GameEngineRenderTarget.h"
 #include <GameEngineBase/GameEngineWindow.h>
 
 GameEngineCamera::GameEngineCamera()
@@ -19,8 +20,6 @@ GameEngineCamera::GameEngineCamera()
 	ViewPortDesc.Height = Size.y;
 	ViewPortDesc.MinDepth = 0.0f;
 	ViewPortDesc.MaxDepth = 1.0f;
-
-
 }
 
 GameEngineCamera::~GameEngineCamera()
@@ -34,10 +33,11 @@ bool ZSort(GameEngineRenderer* _Left, GameEngineRenderer* _Right)
 
 void GameEngineCamera::Render(float _DeltaTime)
 {
-	// 순서적으로보면 레스터라이저 단계이지만 변경이 거의 없을거기 때문에.
+	CameraRenderTarget->Clear();
+	CameraRenderTarget->Setting();
+
 	GameEngineDevice::GetContext()->RSSetViewports(1, &ViewPortDesc);
 
-	// 랜더하기 전에 
 	View.LookAtLH(
 		GetActor()->GetTransform().GetLocalPosition(),
 		GetActor()->GetTransform().GetForwardVector(),
@@ -87,7 +87,12 @@ void GameEngineCamera::SetCameraOrder(CAMERAORDER _Order)
 
 void GameEngineCamera::Start()
 {
-	// GetActor()->GetLevel()->PushCamera(this);
+	CameraRenderTarget = GameEngineRenderTarget::Create();
+
+	CameraRenderTarget->CreateRenderTargetTexture(GameEngineWindow::GetScale(), DXGI_FORMAT::DXGI_FORMAT_R32G32B32A32_FLOAT, float4::ZERO);
+
+	CameraRenderTarget->SettingDepthTexture(GameEngineDevice::GetBackBuffer()->GetDepthTexture());
+	// CameraRenderTarget->CreateDepthTexture()
 }
 
 void GameEngineCamera::PushRenderer(GameEngineRenderer* _Renderer)
@@ -153,7 +158,6 @@ float4 GameEngineCamera::GetMouseWorldPosition()
 
 	Pos = Pos * ViewPort;
 	Pos = Pos * ProjectionInvers;
-	// 마우스는 뷰포트의 좌표다?
 
 	return Pos;
 }
@@ -168,7 +172,7 @@ void GameEngineCamera::OverRenderer(GameEngineCamera* _NextCamera)
 {
 	if (nullptr == _NextCamera)
 	{
-		MsgBoxAssert("next camera is nullptr! fuck you");
+		MsgBoxAssert("next camera is nullptr!");
 		return;
 	}
 

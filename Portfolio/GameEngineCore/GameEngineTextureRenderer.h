@@ -4,9 +4,16 @@
 enum class PIVOTMODE
 {
 	CENTER,
-	LEFTTOP,
 	BOT,
+	TOP,
+	LEFT,
+	RIGHT,
+	LEFTTOP,
+	RIGHTTOP,
+	LEFTBOT,
+	RIGHTBOT,
 	CUSTOM,
+	METABOT
 };
 
 enum class SCALEMODE
@@ -28,6 +35,14 @@ struct ColorData
 	}
 };
 
+struct AtlasData
+{
+public:
+	float4 FrameData;
+	float4 PivotPos;
+};
+
+
 class FrameAnimation_DESC
 {
 public:
@@ -43,6 +58,8 @@ public:
 
 	bool Loop;
 	// 아틀라스 애니메이션
+
+	class GameEngineTextureRenderer* Renderer;
 
 public:
 	FrameAnimation_DESC()
@@ -177,6 +194,8 @@ public:
 
 	void SetTexture(GameEngineTexture* _Texture, UINT _Index);
 
+	void SetFolderTextureToIndex(const std::string& _Text, UINT _Index);
+
 	void CreateFrameAnimationFolder(const std::string& _AnimationName, const FrameAnimation_DESC& _Desc);
 
 	void CreateFrameAnimationCutTexture(const std::string& _AnimationName, const FrameAnimation_DESC& _Desc);
@@ -196,6 +215,7 @@ public:
 	{
 		return ColorData;
 	}
+
 	float4 GetUVData()
 	{
 		return UVData.x;
@@ -210,6 +230,7 @@ public:
 	{
 		return CurAni->Pause;
 	}
+
 
 	// 시작 프레임에 들어온다.
 	void AnimationBindStart(const std::string& _AnimationName, std::function<void(const FrameAnimation_DESC&)> _Function)
@@ -271,7 +292,7 @@ protected:
 
 	void Update(float _Delta) override;
 
-	FrameAnimation* CurAni;	
+	FrameAnimation* CurAni;
 
 	FrameAnimation_DESC& GetCurAniInfo()
 	{
@@ -289,6 +310,7 @@ private:
 	float4 UVData;
 
 	ColorData ColorData;
+	AtlasData AtlasDataInst;
 
 	std::map<std::string, FrameAnimation> FrameAni;
 

@@ -458,8 +458,10 @@ void Penitent::DangleStart(const StateInfo& _Info)
 {
     Gravity_->SetActive(false);
     MetaRenderer_->ChangeMetaAnimation("penitent_hangonledge_anim");
-}
 
+    //누적된 추락 시간 초기화
+    FallTime_ = 0.f;
+}
 
 void Penitent::DangleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -467,9 +469,6 @@ void Penitent::DangleUpdate(float _DeltaTime, const StateInfo& _Info)
     {
         IsDangle_     = true;
         IsClimbLedge_ = true;
-
-        //누적된 추락 시간 초기화
-        FallTime_ = 0.f;
 
         MetaRenderer_->ChangeMetaAnimation("penitent_climbledge_reviewed");
     }

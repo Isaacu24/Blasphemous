@@ -226,7 +226,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penintent_standing_up",
-            {"penintent_standing_up.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
+            {"penintent_standing_up.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
             Data);
 
         MetaRenderer_->AnimationBindEnd("penintent_standing_up",
@@ -496,6 +496,13 @@ void Penitent::SetAnimation()
                                           {
                                               if (7 == _Info.CurFrame)
                                               {
+                                                  if (true == RightObstacleCheck() ||
+                                                      true == LeftObstacleCheck())
+                                                  {
+                                                      ChangeState("Idle");
+                                                      return;
+                                                  }
+
                                                   if (0 < AttackStack_)
                                                   {
                                                       AttackStack_ = 0;
@@ -531,7 +538,7 @@ void Penitent::SetAnimation()
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
-    MetaRenderer_->SetPivot(PIVOTMODE::BOT);
+    MetaRenderer_->SetPivot(PIVOTMODE::METABOT);
 }
 
 void Penitent::SetPlayerState()

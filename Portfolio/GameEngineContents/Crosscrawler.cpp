@@ -27,7 +27,7 @@ void Crosscrawler::Start()
     }
 
     MetaRenderer_->ChangeMetaAnimation("crosscrawler_idle");
-    MetaRenderer_->SetPivot(PIVOTMODE::BOT);
+    MetaRenderer_->SetPivot(PIVOTMODE::METABOT);
 
     Gravity_ = CreateComponent<GravityComponent>();
 

@@ -34,7 +34,6 @@ void SideFence::Start()
                                                {"reja_lateral_invertedBell_descending.png", 0, 0, 0.1f, false});
 
     Rendrerer_->ChangeFrameAnimation("reja_lateral_invertedBell_Close");
-    Rendrerer_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Object)});
     Rendrerer_->GetTransform().SetWorldScale({100, 250, 1});
     Rendrerer_->SetPivot(PIVOTMODE::LEFTTOP);
 

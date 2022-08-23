@@ -27,7 +27,7 @@ void Nun::Start()
     }
 
     MetaRenderer_->ChangeMetaAnimation("nun_idle");
-    MetaRenderer_->SetPivot(PIVOTMODE::BOT);
+    MetaRenderer_->SetPivot(PIVOTMODE::METABOT);
 
     Gravity_ = CreateComponent<GravityComponent>();
 
