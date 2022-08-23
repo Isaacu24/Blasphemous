@@ -72,14 +72,14 @@ void LionHead::Start()
     DetectCollider_ = CreateComponent<GameEngineCollision>();
     DetectCollider_->ChangeOrder(COLLISIONORDER::MonsterDetect);
     DetectCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 0.0f, 1.0f, 0.5f});
-    DetectCollider_->GetTransform().SetWorldScale({800.0f, 300.0f, 1.0f});
+    DetectCollider_->GetTransform().SetWorldScale({900.0f, 300.0f, 1.0f});
     DetectCollider_->GetTransform().SetWorldMove({0, 100.f});
 
     BodyCollider_ = CreateComponent<GameEngineCollision>();
     BodyCollider_->ChangeOrder(COLLISIONORDER::Monster);
     BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 0.0f, 1.0f, 0.5f});
-    BodyCollider_->GetTransform().SetWorldScale({30.0f, 300.0f, 1.0f});
-    BodyCollider_->GetTransform().SetWorldMove({-20, 100.f});
+    BodyCollider_->GetTransform().SetWorldScale({30.0f, 400.0f, 1.0f});
+    BodyCollider_->GetTransform().SetWorldMove({-50, 200.f});
 
     State_.CreateStateMember("Idle",
                              std::bind(&LionHead::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2),
@@ -106,6 +106,8 @@ void LionHead::Start()
     SetSpeed(50.f);
     SetTear(300);
 
+    SetCrossroad(300.f);
+
     PatrolStart_ = true;
     PatrolEnd_   = false;
 }
@@ -123,35 +125,6 @@ void LionHead::Update(float _DeltaTime)
 }
 
 void LionHead::End() {}
-
-void LionHead::DamageCheck()
-{
-    //스킬 임시 제외
-    if (false
-        == BodyCollider_->IsCollision(
-            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
-    {
-        IsHit_ = false;
-    }
-
-    if (true == IsHit_)
-    {
-        return;
-    }
-
-    if (true
-        == BodyCollider_->IsCollision(
-            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
-    {
-        MinusHP(10.f);
-        IsHit_ = true;
-    }
-
-    if (0 >= GetHP())
-    {
-        State_.ChangeState("Death");
-    }
-}
 
 void LionHead::IdleStart(const StateInfo& _Info)
 {
@@ -185,7 +158,7 @@ void LionHead::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
             CollisionType::CT_OBB2D,
             COLLISIONORDER::Player,
             CollisionType::CT_OBB2D,
-            std::bind(&LionHead::LookAtPlayer, this, std::placeholders::_1, std::placeholders::_2)))
+            nullptr))
     {
         State_.ChangeState("Track");
     }
@@ -291,22 +264,6 @@ void LionHead::AttackStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAn
 void LionHead::AttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void LionHead::AttackEnd(const StateInfo& _Info) {}
-
-bool LionHead::CrossroadCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
-{
-    PlayerPos_ = _Other->GetTransform().GetWorldPosition();
-
-    float Distance = _This->GetTransform().GetWorldPosition().x - PlayerPos_.x;
-
-    Distance = abs(Distance);
-
-    if (300 >= Distance)
-    {
-        return true;
-    }
-
-    return false;
-}
 
 
 void LionHead::DeathStart(const StateInfo& _Info) 

@@ -2,6 +2,7 @@
 #include "NormalMonster.h"
 
 NormalMonster::NormalMonster()
+    : TrackDistance_(0.f)
 {}
 
 NormalMonster::~NormalMonster() {}
@@ -10,30 +11,13 @@ void NormalMonster::Start() {
 
 }
 
-void NormalMonster::Update(float _DeltaTime) {
+void NormalMonster::Update(float _DeltaTime) 
+{
 
 }
 
 void NormalMonster::End() {
 }
-
-
-//Penitent* NormalMonster::GetPlayer() 
-//{ 
-//    if (nullptr == PlayerCollision_)
-//    {
-//        return nullptr;
-//    }
-//
-//    Penitent* Player = dynamic_cast<Penitent*>(PlayerCollision_->GetRoot()); 
-//
-//    if (nullptr == Player)
-//    {
-//        return nullptr;
-//    }
-//
-//    return Player;
-//}
 
 bool NormalMonster::LeftObstacleCheck(int _X, int _Y)
 {
@@ -86,18 +70,16 @@ bool NormalMonster::LookAtPlayer(GameEngineCollision* _This, GameEngineCollision
 
 bool NormalMonster::TrackPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-    State_.ChangeState("Track");
-
     LookAtPlayer(_This, _Other);
-
-    //PlayerCollision_ = _Other;
 
     float Distance = abs(_This->GetTransform().GetWorldPosition().x - _Other->GetTransform().GetWorldPosition().x);
 
-    if (70.f > Distance)
+    //추격 사정거리 이탈
+    if (TrackDistance_ > Distance)
     {
         IsPlayerLeft_  = false;
         IsPlayerRight_ = false;
+
         return false;
     }
 
@@ -114,4 +96,48 @@ bool NormalMonster::TrackPlayer(GameEngineCollision* _This, GameEngineCollision*
     }
 
     return true;
+}
+
+bool NormalMonster::CrossroadCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
+{
+    float Distance = _This->GetTransform().GetWorldPosition().x - _Other->GetTransform().GetWorldPosition().x;
+
+    Distance = abs(Distance);
+
+    if (Crossroad_ >= Distance)
+    {
+        return true;
+    }
+
+    return false;
+}
+
+
+void NormalMonster::DamageCheck()
+{
+    //스킬 임시 제외
+    if (false
+        == BodyCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+    {
+        IsHit_ = false;
+    }
+
+    if (true == IsHit_)
+    {
+        return;
+    }
+
+    if (true
+        == BodyCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+    {
+        MinusHP(10.f);
+        IsHit_ = true;
+    }
+
+    if (0 >= GetHP())
+    {
+        State_.ChangeState("Death");
+    }
 }

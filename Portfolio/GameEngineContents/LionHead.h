@@ -34,22 +34,14 @@ public:
 
     inline void SetStartPos(const float4& _StartPos) { StartPos_ = _StartPos; }
 
-    bool CrossroadCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
-
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
     void End() override;
 
-    void DamageCheck() override;
-
 private:
     float4 StartPos_;
 
-    float4 PlayerPos_;
-
     float RestTime_;
     bool  IsRest_;
-
-    bool IsHit_;
 };

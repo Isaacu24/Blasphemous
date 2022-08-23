@@ -9,6 +9,8 @@ void Fool_knife::Start()
 {
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
     Renderer_->CreateFrameAnimationCutTexture("fool_idle_knife", {"fool_idle_knife.png", 0, 11, 0.1f, true});
+    Renderer_->AnimationBindEnd("fool_idle_knife",
+                                [&](const FrameAnimation_DESC& _Info) { ChangeMonsterState("Patrol"); });
     Renderer_->CreateFrameAnimationCutTexture("Fool_turn_knife", {"Fool_turn_knife.png", 0, 6, 0.1f, false});
     Renderer_->AnimationBindEnd("Fool_turn_knife",
                                 [&](const FrameAnimation_DESC& _Info) { ChangeMonsterState("Patrol"); });
@@ -72,6 +74,7 @@ void Fool_knife::Start()
     State_.ChangeState("Patrol");
 
     SetSpeed(70.f);
+    SetTrackDistance(70.f);
 
     PatrolStart_ = true;
 }
@@ -148,21 +151,14 @@ void Fool_knife::IdleStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnima
 
 void Fool_knife::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    if (false
+    /*if (false
         == DetectCollider_->IsCollision(
-            CollisionType::CT_OBB2D,
-            COLLISIONORDER::Player,
-            CollisionType::CT_OBB2D,
-            nullptr))
+            CollisionType::CT_OBB2D, COLLISIONORDER::Player, CollisionType::CT_OBB2D, nullptr))
     {
-        State_.ChangeState("Patrol");
-    }
+    }*/
 }
 
-void Fool_knife::IdleEnd(const StateInfo& _Info) 
-{
-
-}
+void Fool_knife::IdleEnd(const StateInfo& _Info) {}
 
 
 void Fool_knife::PatrolStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("Fool_walk_knife"); }
@@ -219,6 +215,16 @@ void Fool_knife::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
         }
 
         GetTransform().SetWorldMove(float4::LEFT * Speed_ * _DeltaTime);
+    }
+
+    if (false
+        == DetectCollider_->IsCollision(
+            CollisionType::CT_OBB2D,
+            COLLISIONORDER::Player,
+            CollisionType::CT_OBB2D,
+            nullptr))
+    {
+        State_.ChangeState("Idle");
     }
 }
 

@@ -164,10 +164,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Nun.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="Option.h">
       <SubType>
       </SubType>
@@ -440,10 +436,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="NormalMonster.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Nun.cpp">
       <SubType>
       </SubType>
     </ClCompile>

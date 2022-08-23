@@ -329,12 +329,6 @@ void Blasphemous::LoadNormalMonster()
 
     {
         GameEngineDirectory Dir;
-        MovePath(Dir, {"ContentsResources", "Resources", "MetaAtlas", "MetaMonster", "Normal", "Nun"});
-        MetaSpriteManager::Inst_->Load(Dir);
-    }
-
-    {
-        GameEngineDirectory Dir;
         MovePath(Dir, {"ContentsResources", "Resources", "MetaAtlas", "MetaMonster", "Normal", "WingedFace"});
         MetaSpriteManager::Inst_->Load(Dir);
     }

@@ -20,6 +20,9 @@ void Crosscrawler::Start()
             "crosscrawler_idle",
             {"crosscrawler_idle.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
             Data);
+
+        MetaRenderer_->AnimationBindEnd("crosscrawler_idle",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeMonsterState("Patrol"); });
     }
 
     {
@@ -36,11 +39,23 @@ void Crosscrawler::Start()
 
         MetaRenderer_->CreateMetaAnimation(
             "crosscrawler_turnaround",
-            {"crosscrawler_turnaround.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            {"crosscrawler_turnaround.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true},
             Data);
 
         MetaRenderer_->AnimationBindEnd("crosscrawler_turnaround",
-                                    [&](const FrameAnimation_DESC& _Info) { ChangeMonsterState("Patrol"); });
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeMonsterState("Patrol"); });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("crosscrawler_attack");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "crosscrawler_attack",
+            {"crosscrawler_attack.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("crosscrawler_attack",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeMonsterState("Track"); });
     }
 
     MetaRenderer_->ChangeMetaAnimation("crosscrawler_idle");
@@ -60,6 +75,11 @@ void Crosscrawler::Start()
     BodyCollider_->GetTransform().SetWorldScale({30.0f, 100.0f, 1.0f});
     BodyCollider_->GetTransform().SetWorldMove({-20, 50.f});
 
+    State_.CreateStateMember("Idle",
+                             std::bind(&Crosscrawler::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Crosscrawler::IdleStart, this, std::placeholders::_1),
+                             std::bind(&Crosscrawler::IdleEnd, this, std::placeholders::_1));
+
     State_.CreateStateMember("Patrol",
                              std::bind(&Crosscrawler::PatrolUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&Crosscrawler::PatrolStart, this, std::placeholders::_1),
@@ -70,10 +90,21 @@ void Crosscrawler::Start()
                              std::bind(&Crosscrawler::TurnStart, this, std::placeholders::_1),
                              std::bind(&Crosscrawler::TurnEnd, this, std::placeholders::_1));
 
+    State_.CreateStateMember("Track",
+                             std::bind(&Crosscrawler::TrackUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Crosscrawler::TrackStart, this, std::placeholders::_1),
+                             std::bind(&Crosscrawler::TrackEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember("Attack",
+                             std::bind(&Crosscrawler::AttackUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Crosscrawler::AttackStart, this, std::placeholders::_1),
+                             std::bind(&Crosscrawler::AttackEnd, this, std::placeholders::_1));
+
     State_.ChangeState("Patrol");
 
     SetSpeed(50.f);
     SetTear(20);
+    SetCrossroad(150.f);
 
     PatrolStart_ = true;
     PatrolEnd_   = false;
@@ -93,9 +124,9 @@ void Crosscrawler::PatrolMoveX(float _DeltaTime)
 {
     if (true == PatrolStart_ && false == PatrolEnd_)
     {
-        if (true == RightObstacleCheck(GetTransform().GetWorldPosition().x + 80, -(GetTransform().GetWorldPosition().y))
+        if (true == RightObstacleCheck(GetTransform().GetWorldPosition().x + 90, -(GetTransform().GetWorldPosition().y))
             && false
-                   == RightObstacleCheck(GetTransform().GetWorldPosition().x + 80,
+                   == RightObstacleCheck(GetTransform().GetWorldPosition().x + 90,
                                          -(GetTransform().GetWorldPosition().y + 30)))
         {
             GetTransform().SetWorldMove(float4::RIGHT * Speed_ * _DeltaTime);
@@ -112,9 +143,9 @@ void Crosscrawler::PatrolMoveX(float _DeltaTime)
 
     else if (false == PatrolStart_ && true == PatrolEnd_)
     {
-        if (true == LeftObstacleCheck(GetTransform().GetWorldPosition().x - 80, -(GetTransform().GetWorldPosition().y))
+        if (true == LeftObstacleCheck(GetTransform().GetWorldPosition().x - 90, -(GetTransform().GetWorldPosition().y))
             && false
-                   == LeftObstacleCheck(GetTransform().GetWorldPosition().x - 80,
+                   == LeftObstacleCheck(GetTransform().GetWorldPosition().x - 90,
                                         -(GetTransform().GetWorldPosition().y + 30)))
         {
             GetTransform().SetWorldMove(float4::LEFT * Speed_ * _DeltaTime);
@@ -130,9 +161,28 @@ void Crosscrawler::PatrolMoveX(float _DeltaTime)
     }
 }
 
+void Crosscrawler::IdleStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("crosscrawler_idle"); }
+
+void Crosscrawler::IdleUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Crosscrawler::IdleEnd(const StateInfo& _Info) {}
+
 void Crosscrawler::PatrolStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("crosscrawler_walking"); }
 
-void Crosscrawler::PatrolUpdate(float _DeltaTime, const StateInfo& _Info) { PatrolMoveX(_DeltaTime); }
+void Crosscrawler::PatrolUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    PatrolMoveX(_DeltaTime);
+
+    if (true
+        == DetectCollider_->IsCollision(
+            CollisionType::CT_OBB2D,
+            COLLISIONORDER::Player,
+            CollisionType::CT_OBB2D,
+            std::bind(&Crosscrawler::TrackPlayer, this, std::placeholders::_1, std::placeholders::_2)))
+    {
+        State_.ChangeState("Track");
+    }
+}
 
 void Crosscrawler::PatrolEnd(const StateInfo& _Info) {}
 
@@ -140,7 +190,7 @@ void Crosscrawler::TurnStart(const StateInfo& _Info) { MetaRenderer_->ChangeMeta
 
 void Crosscrawler::TurnUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Crosscrawler::TurnEnd(const StateInfo& _Info) 
+void Crosscrawler::TurnEnd(const StateInfo& _Info)
 {
     if (true == PatrolStart_ && false == PatrolEnd_)
     {
@@ -152,4 +202,91 @@ void Crosscrawler::TurnEnd(const StateInfo& _Info)
         GetTransform().PixLocalNegativeX();
     }
 }
+
+void Crosscrawler::TrackStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("crosscrawler_walking"); }
+
+void Crosscrawler::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    if (true == IsPlayerLeft_)
+    {
+        if (false
+            == RightObstacleCheck(GetTransform().GetWorldPosition().x + 90, -(GetTransform().GetWorldPosition().y)))
+        {
+            State_.ChangeState("Idle");
+            return;
+        }
+
+        GetTransform().SetWorldMove(float4::RIGHT * Speed_ * _DeltaTime);
+    }
+
+    else if (true == IsPlayerRight_)
+    {
+        if (false
+            == LeftObstacleCheck(GetTransform().GetWorldPosition().x - 90, -(GetTransform().GetWorldPosition().y)))
+        {
+            State_.ChangeState("Idle");
+            return;
+        }
+
+        GetTransform().SetWorldMove(float4::LEFT * Speed_ * _DeltaTime);
+    }
+
+    if (false
+        == DetectCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::Player, CollisionType::CT_OBB2D, nullptr))
+    {
+        // Track or Idle
+        State_.ChangeState("Idle");
+        return;
+    }
+
+    if (true
+        == DetectCollider_->IsCollision(
+            CollisionType::CT_OBB2D,
+            COLLISIONORDER::Player,
+            CollisionType::CT_OBB2D,
+            std::bind(&Crosscrawler::CrossroadCheck, this, std::placeholders::_1, std::placeholders::_2)))
+    {
+        State_.ChangeState("Attack");
+    }
+}
+
+void Crosscrawler::TrackEnd(const StateInfo& _Info) 
+{
+
+}
+
+
+ void Crosscrawler::AttackStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("crosscrawler_attack");
+}
+
+void Crosscrawler::AttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Crosscrawler::AttackEnd(const StateInfo& _Info) {}
+
+
+void Crosscrawler::StunStart(const StateInfo& _Info) 
+{ MetaRenderer_->ChangeMetaAnimation("crosscrawler_stun_anim"); }
+
+void Crosscrawler::StunUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Crosscrawler::StunEnd(const StateInfo& _Info) {}
+
+
+void Crosscrawler::DeathStart(const StateInfo& _Info) 
+{ MetaRenderer_->ChangeMetaAnimation("crosscrawler_death"); }
+
+void Crosscrawler::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Crosscrawler::DeathEnd(const StateInfo& _Info) {}
+
+
+void Crosscrawler::ExecutionStart(const StateInfo& _Info) 
+{ MetaRenderer_->ChangeMetaAnimation("crosscrawler_execution"); }
+
+void Crosscrawler::ExecutionUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Crosscrawler::ExecutionEnd(const StateInfo& _Info) {}
 

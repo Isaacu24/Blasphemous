@@ -203,9 +203,6 @@
     <ClInclude Include="LionHead.h">
       <Filter>Actor\NormalMonster</Filter>
     </ClInclude>
-    <ClInclude Include="Nun.h">
-      <Filter>Actor\NormalMonster</Filter>
-    </ClInclude>
     <ClInclude Include="Crosscrawler.h">
       <Filter>Actor\NormalMonster</Filter>
     </ClInclude>
@@ -417,9 +414,6 @@
       <Filter>Content</Filter>
     </ClCompile>
     <ClCompile Include="LionHead.cpp">
-      <Filter>Actor\NormalMonster</Filter>
-    </ClCompile>
-    <ClCompile Include="Nun.cpp">
       <Filter>Actor\NormalMonster</Filter>
     </ClCompile>
     <ClCompile Include="Crosscrawler.cpp">

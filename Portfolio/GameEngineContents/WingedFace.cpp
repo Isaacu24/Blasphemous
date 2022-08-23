@@ -65,7 +65,7 @@ void WingedFace::Start()
 
     State_.ChangeState("Patrol");
 
-    SetSpeed(150.f);
+    SetSpeed(150.f);    
 
     PatrolStart_ = true;
     PatrolEnd_   = false;
