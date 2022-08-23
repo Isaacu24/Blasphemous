@@ -30,7 +30,7 @@ void ShieldMaiden::Start()
     MetaRenderer_->ChangeMetaAnimation("shieldMaiden_walking_anim");
 
     //해당 몬스터는 피벗을 맞추면 틀어진다
-    //MetaRenderer_->SetPivot(PIVOTMODE::BOT);
+    // MetaRenderer_->SetPivot(PIVOTMODE::BOT);
 
     Gravity_ = CreateComponent<GravityComponent>();
 
@@ -46,17 +46,18 @@ void ShieldMaiden::Start()
     BodyCollider_->GetTransform().SetWorldScale({30.0f, 100.0f, 1.0f});
     BodyCollider_->GetTransform().SetWorldMove({-20, 50.f});
 
-    State_.CreateStateMember("Idle",
-                             std::bind(&ShieldMaiden::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2),
-                             std::bind(&ShieldMaiden::IdleStart, this, std::placeholders::_1),
-                             std::bind(&ShieldMaiden::IdleEnd, this, std::placeholders::_1));
+    State_.CreateStateMember("Patrol",
+                             std::bind(&ShieldMaiden::PatrolUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&ShieldMaiden::PatrolStart, this, std::placeholders::_1),
+                             std::bind(&ShieldMaiden::PatrolEnd, this, std::placeholders::_1));
 
-    State_.ChangeState("Idle");
+    State_.ChangeState("Patrol");
 
-    SetSpeed(150.f);
+    SetSpeed(80.f);
+    SetTear(15);
 
     PatrolStart_ = true;
-    PatrolEnd_   = false;
+    PatrolEnd_   = false;   
 }
 
 void ShieldMaiden::Update(float _DeltaTime)
@@ -69,9 +70,55 @@ void ShieldMaiden::Update(float _DeltaTime)
 
 void ShieldMaiden::End() {}
 
-void ShieldMaiden::IdleStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("shieldMaiden_walking_anim"); }
-void ShieldMaiden::IdleUpdate(float _DeltaTime, const StateInfo& _Info) {}
-void ShieldMaiden::IdleEnd(const StateInfo& _Info) {}
+
+void ShieldMaiden::PatrolMoveX(float _DeltaTime)
+{
+    if (true == PatrolStart_ && false == PatrolEnd_)
+    {
+        if (true
+            == RightObstacleCheck(GetTransform().GetWorldPosition().x + 70,
+                                  -(GetTransform().GetWorldPosition().y)))
+        {
+            GetTransform().SetWorldMove(float4::RIGHT * Speed_ * _DeltaTime);
+        }
+
+        else
+        {
+            GetTransform().PixLocalNegativeX();
+
+            PatrolEnd_   = true;
+            PatrolStart_ = false;
+        }   
+    }
+
+    else if (false == PatrolStart_ && true == PatrolEnd_)
+    {
+        if (true
+            == LeftObstacleCheck(GetTransform().GetWorldPosition().x - 70, -(GetTransform().GetWorldPosition().y)))
+        {
+            GetTransform().SetWorldMove(float4::LEFT * Speed_ * _DeltaTime);
+        }
+
+        else
+        {
+            GetTransform().PixLocalPositiveX();
+
+            PatrolStart_ = true;
+            PatrolEnd_   = false;
+        }
+    }
+}
 
 
-void ShieldMaiden::PatrolMoveX(float _DeltaTime) {}
+void ShieldMaiden::PatrolStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("shieldMaiden_walking_anim");
+}
+
+void ShieldMaiden::PatrolUpdate(float _DeltaTime, const StateInfo& _Info) 
+{ 
+    PatrolMoveX(_DeltaTime); 
+
+}
+
+void ShieldMaiden::PatrolEnd(const StateInfo& _Info) {}

@@ -12,9 +12,13 @@ public:
 	Crosscrawler& operator=(const Crosscrawler& _Other) = delete;
 	Crosscrawler& operator=(Crosscrawler&& _Other) noexcept = delete;
 
-    void IdleStart(const StateInfo& _Info);
-    void IdleUpdate(float _DeltaTime, const StateInfo& _Info);
-    void IdleEnd(const StateInfo& _Info);
+    void PatrolStart(const StateInfo& _Info);
+    void PatrolUpdate(float _DeltaTime, const StateInfo& _Info);
+    void PatrolEnd(const StateInfo& _Info);
+
+    void TurnStart(const StateInfo& _Info);
+    void TurnUpdate(float _DeltaTime, const StateInfo& _Info);
+    void TurnEnd(const StateInfo& _Info);
 
 protected:
     void Start() override;

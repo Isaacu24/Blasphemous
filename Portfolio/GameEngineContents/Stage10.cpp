@@ -56,7 +56,7 @@ void Stage10::SettingStage()
     GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     DoorRenderer->SetTexture("2_1_Door.png");
     DoorRenderer->ScaleToTexture();
-    DoorRenderer->GetTransform().SetWorldPosition({-2, 0, static_cast<int>(ACTORORDER::Door)});
+    DoorRenderer->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Door)});
     DoorRenderer->GetTransform().SetWorldScale(DoorRenderer->GetTransform().GetWorldScale() * 2.f);
 
     GameEngineTextureRenderer* CrowRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
@@ -79,21 +79,29 @@ void Stage10::SettingStage()
     IsLeftExit_ = true;
 }
 
-void Stage10::SettingMonster() 
-{ 
-    Crosscrawler* CrosscrawlerClone = CreateActor<Crosscrawler>(); 
+void Stage10::SettingMonster()
+{
+    Crosscrawler* CrosscrawlerClone = CreateActor<Crosscrawler>();
     CrosscrawlerClone->GetTransform().SetWorldPosition({2200, -1080, static_cast<int>(ACTORORDER::Monster)});
     CrosscrawlerClone->SetGround(ColMap_);
     MonsterList_.push_back(CrosscrawlerClone);
 
-    ShieldMaiden* Maiden = CreateActor<ShieldMaiden>();
-    Maiden->GetTransform().SetWorldPosition({1500, -682, static_cast<int>(ACTORORDER::Monster)});
-    Maiden->SetGround(ColMap_);
-    MonsterList_.push_back(Maiden);
+    //ShieldMaiden* Maiden = CreateActor<ShieldMaiden>();
+    //Maiden->GetTransform().SetWorldPosition({1400, -682, static_cast<int>(ACTORORDER::Monster)});
+    //Maiden->SetGround(ColMap_);
+    //MonsterList_.push_back(Maiden);
+
+    //ShieldMaiden* Maiden1 = CreateActor<ShieldMaiden>();
+    //Maiden1->GetTransform().SetWorldPosition({2200, -682, static_cast<int>(ACTORORDER::Monster)});
+    //Maiden1->SetGround(ColMap_);
+    //Maiden1->PatrolStartEnd(false, true);
+    //MonsterList_.push_back(Maiden1);
 
     LionHead* LionHeadClone = CreateActor<LionHead>();
-    LionHeadClone->GetTransform().SetWorldPosition({3000, -682, static_cast<int>(ACTORORDER::Monster)});
+    LionHeadClone->GetTransform().SetWorldPosition({3600, -682, static_cast<int>(ACTORORDER::Monster)});
+    LionHeadClone->GetTransform().PixLocalNegativeX();
     LionHeadClone->SetGround(ColMap_);
+    LionHeadClone->SetStartPos(LionHeadClone->GetTransform().GetWorldPosition());
     MonsterList_.push_back(LionHeadClone);
 };
 
@@ -218,7 +226,7 @@ void Stage10::SettingLedge()
     //    Collider->SetDebugSetting(CollisionType::CT_AABB, float4{0.5f, 0.31f, 0.6f, 0.5f});
     //    DangleColiders_.push_back(Collider);
     //}
-}   
+}
 
 void Stage10::Start()
 {
@@ -239,10 +247,10 @@ void Stage10::Update(float _DeltaTime)
          Penitent_->GetTransform().GetLocalPosition().y + CameraOffset_,
          CameraZPos_});
 
-    if (-450 < GetMainCameraActor()->GetTransform().GetLocalPosition().y)
+    if (-500 < GetMainCameraActor()->GetTransform().GetLocalPosition().y)
     {
         GetMainCameraActor()->GetTransform().SetWorldPosition(
-            float4{GetMainCameraActor()->GetTransform().GetLocalPosition().x, -450, CameraZPos_});
+            float4{GetMainCameraActor()->GetTransform().GetLocalPosition().x, -500, CameraZPos_});
     }
 
     if (-1680 > GetMainCameraActor()->GetTransform().GetLocalPosition().y)

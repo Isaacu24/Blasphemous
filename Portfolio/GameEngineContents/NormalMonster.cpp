@@ -2,7 +2,6 @@
 #include "NormalMonster.h"
 
 NormalMonster::NormalMonster()
-    : IsCollision_(false)
 {}
 
 NormalMonster::~NormalMonster() {}
@@ -82,7 +81,7 @@ bool NormalMonster::LookAtPlayer(GameEngineCollision* _This, GameEngineCollision
         GetTransform().PixLocalNegativeX();
     }
 
-    return false;
+    return true;
 }
 
 bool NormalMonster::TrackPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)

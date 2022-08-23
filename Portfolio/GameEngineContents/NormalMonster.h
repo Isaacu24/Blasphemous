@@ -16,15 +16,12 @@ public:
 	NormalMonster& operator=(const NormalMonster& _Other) = delete;
 	NormalMonster& operator=(NormalMonster&& _Other) noexcept = delete;
 
-	inline void SetPatrolStart(bool _Start)
-	{
-		PatrolStart_ = _Start;
-	}
+	inline void PatrolStartEnd(bool _Start, bool _End)
+    {
+        PatrolStart_ = _Start;
+        PatrolEnd_   = _End;
+    }
 
-	inline void SetPatrolEnd(bool _End)
-	{
-		PatrolEnd_ = _End;
-	}
 
 	//Penitent* GetPlayer();
 
@@ -39,8 +36,6 @@ protected:
 	bool IsPlayerLeft_;
 	bool IsPlayerRight_;
 
-	bool IsCollision_;
-
 	GameEngineCollision* PlayerCollision_;
 
 	virtual void PatrolMoveX(float _DeltaTime) {};
@@ -51,6 +46,8 @@ protected:
 
 	virtual bool LookAtPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);
 	virtual bool TrackPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);
+
+	virtual void DamageCheck(){};
 
 private:
 };

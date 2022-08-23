@@ -4,17 +4,37 @@
 class ShieldMaiden : public NormalMonster
 {
 public:
-	ShieldMaiden();
-	~ShieldMaiden();
+    ShieldMaiden();
+    ~ShieldMaiden();
 
-	ShieldMaiden(const ShieldMaiden& _Other) = delete;
-	ShieldMaiden(ShieldMaiden&& _Other) noexcept = delete;
-	ShieldMaiden& operator=(const ShieldMaiden& _Other) = delete;
-	ShieldMaiden& operator=(ShieldMaiden&& _Other) noexcept = delete;
+    ShieldMaiden(const ShieldMaiden& _Other)                = delete;
+    ShieldMaiden(ShieldMaiden&& _Other) noexcept            = delete;
+    ShieldMaiden& operator=(const ShieldMaiden& _Other)     = delete;
+    ShieldMaiden& operator=(ShieldMaiden&& _Other) noexcept = delete;
+    
+    void PatrolStart(const StateInfo& _Info);
+    void PatrolUpdate(float _DeltaTime, const StateInfo& _Info);
+    void PatrolEnd(const StateInfo& _Info);
 
-    void IdleStart(const StateInfo& _Info);
-    void IdleUpdate(float _DeltaTime, const StateInfo& _Info);
-    void IdleEnd(const StateInfo& _Info);
+    void TrackStart(const StateInfo& _Info);
+    void TrackUpdate(float _DeltaTime, const StateInfo& _Info);
+    void TrackEnd(const StateInfo& _Info);
+
+    void AttackStart(const StateInfo& _Info);
+    void AttackUpdate(float _DeltaTime, const StateInfo& _Info);
+    void AttackEnd(const StateInfo& _Info);
+
+    void ParryReactionStart(const StateInfo& _Info);
+    void ParryReactionUpdate(float _DeltaTime, const StateInfo& _Info);
+    void ParryReactionEnd(const StateInfo& _Info);
+
+    void StunStart(const StateInfo& _Info);
+    void StunUpdate(float _DeltaTime, const StateInfo& _Info);
+    void StunEnd(const StateInfo& _Info);
+
+    void ExecutionStart(const StateInfo& _Info);
+    void ExecutionUpdate(float _DeltaTime, const StateInfo& _Info);
+    void ExecutionEnd(const StateInfo& _Info);
 
 protected:
     void Start() override;
@@ -24,6 +44,4 @@ protected:
     void PatrolMoveX(float _DeltaTime) override;
 
 private:
-
 };
-
