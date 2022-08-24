@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "GameEngineRenderTarget.h"
+#include "GameEngineRenderSet.h"
 
 ID3D11RenderTargetView* GameEngineRenderTarget::PrevRenderTargetViews = nullptr;
 ID3D11DepthStencilView* GameEngineRenderTarget::PrevDepthStencilView = nullptr;
@@ -13,6 +14,12 @@ GameEngineRenderTarget::GameEngineRenderTarget()
 
 GameEngineRenderTarget::~GameEngineRenderTarget()
 {
+	for (GameEnginePostEffect* Effect : Effects)
+	{
+		delete Effect;
+	}
+
+	Effects.clear();
 }
 
 void GameEngineRenderTarget::GetPrevRenderTarget()
@@ -60,11 +67,25 @@ GameEngineTexture* GameEngineRenderTarget::GetRenderTargetTexture(size_t _Index)
 	return RenderTargets[_Index];
 }
 
+void GameEngineRenderTarget::Copy(GameEngineRenderTarget* _Other, int _Index)
+{
+	Clear();
+
+	MergeShaderResourcesHelper.SetTexture("Tex", _Other->GetRenderTargetTexture(_Index));
+
+	Effect(GameEngineRenderingPipeLine::Find("TargetMerge"), &MergeShaderResourcesHelper);
+}
+
 void GameEngineRenderTarget::Merge(GameEngineRenderTarget* _Other, int _Index)
 {
 	MergeShaderResourcesHelper.SetTexture("Tex", _Other->GetRenderTargetTexture(_Index));
 
 	Effect(GameEngineRenderingPipeLine::Find("TargetMerge"), &MergeShaderResourcesHelper);
+}
+
+void GameEngineRenderTarget::Effect(GameEngineRenderSet& _RenderSet)
+{
+	Effect(_RenderSet.PipeLine, &_RenderSet.ShaderResources);
 }
 
 void GameEngineRenderTarget::Effect(GameEngineRenderingPipeLine* _Other, GameEngineShaderResourcesHelper* _ShaderResourcesHelper)
@@ -140,7 +161,7 @@ void GameEngineRenderTarget::CreateDepthTexture(int _Index)
 	Desc.ArraySize = 1;
 	Desc.Width = RenderTargets[_Index]->GetScale().uix();
 	Desc.Height = RenderTargets[_Index]->GetScale().uiy();
-	//24비트 float + 8비트 unsigned int
+	//             24비트 float + 8비트 unsigned int
 	Desc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
 	Desc.SampleDesc.Count = 1;
 	Desc.SampleDesc.Quality = 0;
@@ -158,6 +179,10 @@ void GameEngineRenderTarget::CreateDepthTexture(int _Index)
 
 void GameEngineRenderTarget::Setting()
 {
+	// int* NewInt = new int[10];
+
+	// GameEngineRenderTarget** NewInt = new GameEngineRenderTarget*[10]
+
 	if (0 == RenderTargetViews.size())
 	{
 		MsgBoxAssert("랜더타겟뷰가 존재하지 않는 랜더타겟을 세팅하려고 했습니다.");
@@ -166,3 +191,13 @@ void GameEngineRenderTarget::Setting()
 	GameEngineDevice::GetContext()->OMSetRenderTargets(static_cast<UINT>(RenderTargetViews.size()), &RenderTargetViews[0], DepthStencilView);
 }
 
+
+void GameEngineRenderTarget::EffectProcess()
+{
+	// Setting();
+
+	for (GameEnginePostEffect* Effect : Effects)
+	{
+		Effect->Effect(this);
+	}
+}

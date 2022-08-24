@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngineCore/CoreMinimal.h>
 
+class MetaTextureRenderer;
 class Penitent : public GameEngineActor
 {
 private:
@@ -49,6 +50,7 @@ protected:
     void End() override;
 
     void SetAnimation();
+    void SetAttackEffect();
     void SetPlayerState();
 
     // bool HealthCheck();
@@ -61,6 +63,8 @@ protected:
     bool RightObstacleCheck();
 
     void CollisionCheck();
+
+    void AttackCheck();
 
     //추락 시 거리 체크: 짧은 높이는 추락 상태가 되지 않음
     bool FallCollisionCheck();
@@ -143,7 +147,9 @@ private:
     GameEngineTextureRenderer*        ColMap_;
     class GameEngineFontRederer*      Font_;
 
-    class MetaTextureRenderer* MetaRenderer_;
+    MetaTextureRenderer* MetaRenderer_;
+    MetaTextureRenderer* MoveEffect_;
+    MetaTextureRenderer* AttackEffect_;
 
     int   HP_;
     int   MP_;

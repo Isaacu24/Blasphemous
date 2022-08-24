@@ -2,35 +2,19 @@
 #include "GameEngineTexture.h"
 #include <vector>
 #include "GameEngineShaderResourcesHelper.h"
+#include "GameEngineRenderer.h"
 
-// Setting 이제부터 여기그려라.
+class GameEnginePostEffect
+{
+public:
+	virtual void EffectInit() = 0;
+	virtual void Effect(class GameEngineRenderTarget* _Render) = 0;
 
-// Copy(수정본) 이 함수를 호출한 랜더타겟의 내용을 모두 지우고 수정본의 내용을 복사해라.
+	virtual ~GameEnginePostEffect()
+	{
 
-// Merge(수정본, 블랜드) 이 함수를 호출한 랜더타겟 위에 수정보느이 내용을 덮어 씌워라.
-
-// Effect() 이 랜더타겟에 무언가 효과를 줘.
-
-// Cameras;
-// 플레이 카메라
-// UI 카메라
-
-// 랜더링 구조
-// 플레이 카메라 => 플레이 랜더타겟 세팅
-//    주인공 배경맵
-
-// 포스트 이펙트라고 합니다.
-
-// UI 카메라 => UI 랜더타겟 세팅
-//    인벤토리 버튼 뭐시기 
-
-// 흐려져라. 포스트 이펙트라고 합니다.
-
-// 백버퍼 랜더타겟->Merge(플레이 랜더타겟)
-// 백버퍼 랜더타겟->Merge(UI 랜더타겟)
-
-// 디바이스에 있는 백버퍼 랜더타겟
-
+	}
+};
 
 // 설명 :
 class GameEngineStatusWindow;
@@ -87,17 +71,15 @@ public:
 
 	GameEngineTexture* GetRenderTargetTexture(size_t _Index);
 
-	//void Copy(GameEngineRenderTarget* _Other);
+	void Copy(GameEngineRenderTarget* _Other, int _Index = 0);
 
-	void Merge(GameEngineRenderTarget* _Other, int _Index);
-
-	// class RenderSet 
-	// {
-	//    GameEngineRenderingPipeLine* Pipe;
-	//    GameEngineShaderResourcesHelper Helper;
-	// }
+	void Merge(GameEngineRenderTarget* _Other, int _Index = 0);
 
 	void Effect(GameEngineRenderingPipeLine* _Other, GameEngineShaderResourcesHelper* _ShaderResourcesHelper);
+
+	void Effect(class GameEngineRenderSet& _RenderSet);
+
+	void EffectProcess();
 
 
 protected:
@@ -115,6 +97,17 @@ protected:
 
 	GameEngineTexture* DepthTexture;
 
+	// Post이펙트 부분
 private:
+	std::list<GameEnginePostEffect*> Effects;
+
+public:
+	template<typename EffectType>
+	void AddEffect()
+	{
+		EffectType* NewEffect = new EffectType();
+		NewEffect->EffectInit();
+		Effects.push_back(NewEffect);
+	}
 };
 

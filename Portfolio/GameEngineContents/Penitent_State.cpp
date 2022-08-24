@@ -508,7 +508,7 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
         {
             CilmbY_ = 30.f;
 
-            if (true == MetaRenderer_->GetPause())
+            if (true == MetaRenderer_->IsCurAnimationPause())
             {
                 MetaRenderer_->CurAnimationPauseSwitch();
             }
@@ -522,7 +522,7 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
             CilmbY_ = -50;
 
 
-            if (true == MetaRenderer_->GetPause())
+            if (true == MetaRenderer_->IsCurAnimationPause())
             {
                 MetaRenderer_->CurAnimationPauseSwitch();
             }
@@ -568,7 +568,7 @@ void Penitent::AttackStart(const StateInfo& _Info)
 
     if (0 < RealXDir_)  //¿À¸¥ÂÊ
     {
-        AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
+        AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});       
     }
 
     else if (0 > RealXDir_)  //¿ÞÂÊ
@@ -587,15 +587,21 @@ void Penitent::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
     if (GameEngineInput::GetInst()->IsPressKey("PenitentUp"))
     {
         MetaRenderer_->ChangeMetaAnimation("penitent_upward_attack_clamped_anim");
+
         AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
         AttackCollider_->GetTransform().SetWorldMove({0.f, 150.f});
     }
+
+    AttackCheck();
 }
 
 void Penitent::AttackEnd(const StateInfo& _Info)
 {
     AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
+    AttackEffect_->GetTransform().SetLocalPosition({0.f, 0.f});
+
     AttackCollider_->Off();
+    AttackEffect_->Off();
 
     AttackStack_ = 0;
 }

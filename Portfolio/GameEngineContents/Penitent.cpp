@@ -119,7 +119,9 @@ void Penitent::Start()
     PlayerUI_->SetTear(Tear_);
 
     GetTransform().SetLocalScale({2, 2, 1});
+
     SetAnimation();
+    SetAttackEffect();
     SetPlayerState();
 }
 
@@ -539,6 +541,26 @@ void Penitent::SetAnimation()
     }
 
     MetaRenderer_->SetPivot(PIVOTMODE::METABOT);
+}
+
+void Penitent::SetAttackEffect() 
+{
+    AttackEffect_ = CreateComponent<MetaTextureRenderer>();
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_attack_spark_1_revision_anim");
+
+        AttackEffect_->CreateMetaAnimation(
+            "penitent_attack_spark_1_revision_anim",
+            {"penitent_attack_spark_1_revision_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true},
+            Data);
+
+        AttackEffect_->AnimationBindEnd("penitent_attack_spark_1_revision_anim",
+                                        [&](const FrameAnimation_DESC& _Info) { AttackEffect_->Off(); });
+    }
+
+    AttackEffect_->SetPivot(PIVOTMODE::METABOT);
+    AttackEffect_->Off();
 }
 
 void Penitent::SetPlayerState()

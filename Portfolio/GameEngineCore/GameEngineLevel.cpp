@@ -3,8 +3,8 @@
 #include "GameEngineActor.h"
 #include "GameEngineRenderer.h"
 #include "GameEngineCamera.h"
-#include "GameEngineCameraActor.h"
 #include "GameEngineRenderTarget.h"
+#include "GameEngineCameraActor.h"
 #include "GameEngineCollision.h"
 #include "GameEngineGUI.h"
 #include "GameEngineCoreDebug.h"
@@ -74,6 +74,7 @@ void GameEngineLevel::ActorLevelStartEvent()
 			{
 				continue;
 			}
+			// 루트 액터만 뭔가를 하는거죠?
 			Actor->AllLevelStartEvent();
 		}
 	}
@@ -102,6 +103,7 @@ void GameEngineLevel::PushRenderer(GameEngineRenderer* _Renderer, int _CameraOrd
 	Cameras[static_cast<UINT>(_Renderer->CameraOrder)]->AllRenderer_[_Renderer->GetOrder()].remove(_Renderer);
 
 	_Renderer->CameraOrder = static_cast<CAMERAORDER>(_CameraOrder);
+	// 다른 카메라로 들어갈수도 있습니다.
 	Cameras[_CameraOrder]->PushRenderer(_Renderer);
 }
 
@@ -161,6 +163,7 @@ void GameEngineLevel::Render(float _DelataTime)
 
 	GameEngineDevice::RenderStart();
 
+	// 이 사이에서 무언가를 해야 합니다.
 	for (size_t i = 0; i < Cameras.size(); i++)
 	{
 		if (nullptr == Cameras[i])
@@ -178,13 +181,26 @@ void GameEngineLevel::Render(float _DelataTime)
 			continue;
 		}
 
+		Cameras[i]->GetCameraRenderTarget()->EffectProcess();
+	}
+
+	for (size_t i = 0; i < Cameras.size(); i++)
+	{
+		if (nullptr == Cameras[i])
+		{
+			continue;
+		}
+
 		GameEngineDevice::GetBackBuffer()->Merge(Cameras[i]->CameraRenderTarget, 0);
 	}
 
+	GameEngineDevice::GetBackBuffer()->EffectProcess();
+
+
+	// 여기서 그려져야 합니다.
 	GameEngineDebug::Debug3DRender();
 
 	GameEngineGUI::GUIRender(this, _DelataTime);
-
 
 	GameEngineDevice::RenderEnd();
 }
@@ -281,6 +297,7 @@ void GameEngineLevel::LevelUpdate(float _DeltaTime)
 }
 
 // 레벨을 이동하는 액터
+// 루트인애가 지우려고 여기로 온다고 생각할 겁니다.
 void GameEngineLevel::RemoveActor(GameEngineActor* _Actor)
 {
 	if (AllActors.end() == AllActors.find(_Actor->GetOrder()))

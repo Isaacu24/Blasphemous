@@ -18,19 +18,19 @@
       <Filter>Object\Component</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineRenderer.h">
-      <Filter>Object\Component\Rendering</Filter>
+      <Filter>Object\Component\Collision\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineRes.h">
       <Filter>Resources</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineCamera.h">
-      <Filter>Object\Component\Rendering</Filter>
+      <Filter>Object\Component\Collision\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineTransformComponent.h">
       <Filter>Object\Component</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineCameraActor.h">
-      <Filter>Object\Component\Rendering</Filter>
+      <Filter>Object\Component\Collision\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="CoreMinimal.h" />
     <ClInclude Include="GameEngineCollision.h">
@@ -46,7 +46,7 @@
       <Filter>Object\Component</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineDefaultRenderer.h">
-      <Filter>Object\Component\Rendering</Filter>
+      <Filter>Object\Component\Collision\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineRenderingPipeLine.h">
       <Filter>Resources</Filter>
@@ -91,7 +91,7 @@
       <Filter>Resources\ShaderResources</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineShaderResourcesHelper.h">
-      <Filter>Object\Component\Rendering</Filter>
+      <Filter>Object\Component\Collision\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineSampler.h">
       <Filter>Resources\Texture</Filter>
@@ -133,16 +133,16 @@
       <Filter>GUI\EngineGUIWindow</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineTextureRenderer.h">
-      <Filter>Object\Component\Rendering\Content</Filter>
+      <Filter>Object\Component\Collision\Rendering\Content</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineUIRenderer.h">
-      <Filter>Object\Component\Rendering\Content</Filter>
+      <Filter>Object\Component\Collision\Rendering\Content</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineFont.h">
       <Filter>Resources\Font</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineFontRenderer.h">
-      <Filter>Object\Component\Rendering\Content</Filter>
+      <Filter>Object\Component\Collision\Rendering\Content</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineCoreDebug.h">
       <Filter>Debug</Filter>
@@ -152,6 +152,12 @@
     </ClInclude>
     <ClInclude Include="GameEngineUpdateObject.h">
       <Filter>Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineBlur.h">
+      <Filter>Object\Component\Collision\Rendering\PostEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineRenderSet.h">
+      <Filter>Object\Component\Collision\Rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -172,7 +178,7 @@
       <Filter>Object\Component</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineRenderer.cpp">
-      <Filter>Object\Component\Rendering</Filter>
+      <Filter>Object\Component\Collision\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineCore_Resources.cpp">
       <Filter>Core</Filter>
@@ -181,13 +187,13 @@
       <Filter>Resources</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineCamera.cpp">
-      <Filter>Object\Component\Rendering</Filter>
+      <Filter>Object\Component\Collision\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineTransformComponent.cpp">
       <Filter>Object\Component</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineCameraActor.cpp">
-      <Filter>Object\Component\Rendering</Filter>
+      <Filter>Object\Component\Collision\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineCollision.cpp">
       <Filter>Object\Component\Collision</Filter>
@@ -202,7 +208,7 @@
       <Filter>Object\Component</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineDefaultRenderer.cpp">
-      <Filter>Object\Component\Rendering</Filter>
+      <Filter>Object\Component\Collision\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineRenderingPipeLine.cpp">
       <Filter>Resources</Filter>
@@ -247,7 +253,7 @@
       <Filter>Resources\ShaderResources</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineShaderResourcesHelper.cpp">
-      <Filter>Object\Component\Rendering</Filter>
+      <Filter>Object\Component\Collision\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineSampler.cpp">
       <Filter>Resources\Texture</Filter>
@@ -280,16 +286,16 @@
       <Filter>GUI\EngineGUIWindow</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineTextureRenderer.cpp">
-      <Filter>Object\Component\Rendering\Content</Filter>
+      <Filter>Object\Component\Collision\Rendering\Content</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineUIRenderer.cpp">
-      <Filter>Object\Component\Rendering\Content</Filter>
+      <Filter>Object\Component\Collision\Rendering\Content</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineFont.cpp">
       <Filter>Resources\Font</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineFontRenderer.cpp">
-      <Filter>Object\Component\Rendering\Content</Filter>
+      <Filter>Object\Component\Collision\Rendering\Content</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineCoreDebug.cpp">
       <Filter>Debug</Filter>
@@ -299,6 +305,12 @@
     </ClCompile>
     <ClCompile Include="GameEngineUpdateObject.cpp">
       <Filter>Object\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineBlur.cpp">
+      <Filter>Object\Component\Collision\Rendering\PostEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineRenderSet.cpp">
+      <Filter>Object\Component\Collision\Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -313,9 +325,6 @@
     </Filter>
     <Filter Include="Object\Component">
       <UniqueIdentifier>{e7912e52-0386-45b4-bf50-049ebcedb9a4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\Component\Rendering">
-      <UniqueIdentifier>{159c3bb7-6922-43be-8efe-4497bb9d7c47}</UniqueIdentifier>
     </Filter>
     <Filter Include="Object\Component\Collision">
       <UniqueIdentifier>{419faf34-473f-447d-a811-d5ec4dcb7149}</UniqueIdentifier>
@@ -368,9 +377,6 @@
     <Filter Include="GUI\EngineGUIWindow">
       <UniqueIdentifier>{c3cfb6c4-29a3-4214-8727-296e061eb068}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\Component\Rendering\Content">
-      <UniqueIdentifier>{dc82f3d8-b5c9-434a-8a53-b2994414e836}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resources\Font">
       <UniqueIdentifier>{d2d5e568-dd36-47ba-b566-194932a71704}</UniqueIdentifier>
     </Filter>
@@ -379,6 +385,15 @@
     </Filter>
     <Filter Include="Core">
       <UniqueIdentifier>{26808072-562e-43d7-a7f8-527f4cf62091}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\Collision\Rendering">
+      <UniqueIdentifier>{159c3bb7-6922-43be-8efe-4497bb9d7c47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\Collision\Rendering\Content">
+      <UniqueIdentifier>{dc82f3d8-b5c9-434a-8a53-b2994414e836}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\Collision\Rendering\PostEffect">
+      <UniqueIdentifier>{500fe652-5dba-4da0-9104-3bbded91d59a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

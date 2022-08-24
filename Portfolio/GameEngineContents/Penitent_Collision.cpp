@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Penitent.h"
-
+#include "MetaSpriteManager.h"
+#include "MetaTextureRenderer.h"
 
 void Penitent::GroundCheck()
 {
@@ -263,7 +264,7 @@ bool Penitent::Dangle(GameEngineCollision* _This, GameEngineCollision* _Other)
     return true;
 }
 
-bool Penitent::FallCollisionCheck() 
+bool Penitent::FallCollisionCheck()
 {
     float4 Color = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x,
                                                               -(GetTransform().GetWorldPosition().y - 10));
@@ -274,4 +275,16 @@ bool Penitent::FallCollisionCheck()
     }
 
     return false;
+}
+
+
+void Penitent::AttackCheck()
+{
+    if (true
+        == AttackCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::Monster, CollisionType::CT_OBB2D, nullptr))
+    {
+        AttackEffect_->On();
+        AttackEffect_->ChangeMetaAnimation("penitent_attack_spark_1_revision_anim");
+    };
 }

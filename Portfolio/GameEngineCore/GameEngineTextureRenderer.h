@@ -226,10 +226,11 @@ public:
 		UVData.x = _Data.x;
 	}
 
-	inline bool GetPause()
-	{
-		return CurAni->Pause;
-	}
+	void CurAnimationPauseOn();
+
+	void CurAnimationPauseOff();
+
+	bool IsCurAnimationPause();
 
 
 	// 시작 프레임에 들어온다.
