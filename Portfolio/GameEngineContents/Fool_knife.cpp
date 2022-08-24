@@ -261,7 +261,12 @@ void Fool_knife::TurnEnd(const StateInfo& _Info)
 }
 
 
-void Fool_knife::DeathStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("Fool_death_knife"); }
+void Fool_knife::DeathStart(const StateInfo& _Info) 
+{ 
+    BodyCollider_->Off();
+    DetectCollider_->Off();
+    Renderer_->ChangeFrameAnimation("Fool_death_knife"); 
+}
 
 void Fool_knife::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
 

@@ -22,8 +22,6 @@ void HitEffect::Start()
         Renderer_->AnimationBindEnd("penitent_attack_spark_1_anim",
                                     [&](const FrameAnimation_DESC& _Info) 
             { 
-                //첫 연속 공격 이후 다시 첫 공격을 시작할 때 애니메이션이 바뀌기 위한 코드
-                Renderer_->ChangeMetaAnimation("penitent_attack_spark_1_anim");
                 Renderer_->Off(); 
             });
     }
@@ -39,6 +37,7 @@ void HitEffect::Start()
         Renderer_->AnimationBindEnd("penitent_attack_spark_1_revision_anim",
                                     [&](const FrameAnimation_DESC& _Info) 
             { 
+                //첫 연속 공격 이후 다시 첫 공격을 시작할 때 애니메이션이 바뀌기 위한 코드
                 Renderer_->ChangeMetaAnimation("penitent_attack_spark_1_anim");
                 Renderer_->Off(); 
             });
@@ -55,7 +54,6 @@ void HitEffect::Start()
         Renderer_->AnimationBindEnd("penitent_attack_spark_2_revision_anim",
                                     [&](const FrameAnimation_DESC& _Info) 
             { 
-                Renderer_->ChangeMetaAnimation("penitent_attack_spark_1_anim");
                 Renderer_->Off(); 
             });
     }
@@ -71,7 +69,6 @@ void HitEffect::Start()
         Renderer_->AnimationBindEnd("penitent_attack_spark_3_revision_anim",
                                     [&](const FrameAnimation_DESC& _Info) 
             { 
-                Renderer_->ChangeMetaAnimation("penitent_attack_spark_1_anim");
                 Renderer_->Off(); 
             });
     }

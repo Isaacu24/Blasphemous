@@ -20,6 +20,7 @@ enum class ACTORORDER
 
 	Temp,
 
+	PlayerEffect,
 	Player,
 	NPC,
 

@@ -214,7 +214,16 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Penitent::JumpEnd(const StateInfo& _Info) {}
 
-void Penitent::FallStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penitent_falling_loop_anim"); }
+void Penitent::FallStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("penitent_falling_loop_anim");
+
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentRight")
+        || GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
+    {
+        MetaRenderer_->ChangeMetaAnimation("penitent_jum_forward_fall_anim");
+    }
+}
 
 void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -592,7 +601,7 @@ void Penitent::AttackEnd(const StateInfo& _Info)
 {
     AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
     AttackCollider_->Off();
-        
+
     AttackStack_ = 0;
 }
 

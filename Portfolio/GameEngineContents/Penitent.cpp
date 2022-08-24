@@ -124,14 +124,17 @@ void Penitent::Start()
 
     MoveEffect_ = GetLevel()->CreateActor<MoveEffect>();
     MoveEffect_->GetTransform().SetWorldScale({2, 2, 1});
+    MoveEffect_->GetTransform().SetLocalPosition({0, 0, static_cast<int>(ACTORORDER::PlayerEffect)});
     MoveEffect_->SetLevelOverOn();
 
     AttackEffect_ = GetLevel()->CreateActor<AttackEffect>();
     AttackEffect_->GetTransform().SetWorldScale({2, 2, 1});
+    AttackEffect_->GetTransform().SetLocalPosition({0, 0, static_cast<int>(ACTORORDER::PlayerEffect)});
     AttackEffect_->SetLevelOverOn();
 
     HitEffect_ = GetLevel()->CreateActor<HitEffect>();
     HitEffect_->GetTransform().SetWorldScale({2, 2, 1});
+    HitEffect_->GetTransform().SetLocalPosition({0, 0, static_cast<int>(ACTORORDER::PlayerEffect)});
     HitEffect_->SetLevelOverOn();
 
     GetTransform().SetLocalScale({2, 2, 1});
@@ -166,7 +169,7 @@ void Penitent::Update(float _DeltaTime)
 
     GameEngineDebug::OutPutString("PlayerState: " + State_.GetCurStateStateName());
 
-    GameEngineDebug::OutPutString("PenitentZ: " + std::to_string(GetTransform().GetWorldPosition().z));
+    GameEngineDebug::OutPutString("PenitentZ: " + std::to_string(HitEffect_->GetTransform().GetWorldPosition().z));
 
     // GameEngineDebug::OutPutString("MousePosX: "
     //                               + std::to_string(GetLevel()->GetMainCamera()->GetMouseWorldPositionToActor().x));
@@ -213,6 +216,19 @@ void Penitent::SetAnimation()
         MetaRenderer_->AnimationBindEnd("penitent_jum_forward_anim",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Fall"); });
     }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_jum_forward_fall_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_jum_forward_fall_anim",
+            {"penitent_jum_forward_fall_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_jum_forward_fall_anim",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Fall"); });
+    }
+
 
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_jumping_attack_noslashes");

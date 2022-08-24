@@ -208,9 +208,9 @@ void Penitent::CollisionCheck()
                                  CollisionType::CT_OBB2D,
                                  std::bind(&Penitent::AttackCheck, this, std::placeholders::_1, std::placeholders::_2));
 
-    if (false == AttackCollider_->IsCollision(CollisionType::CT_OBB2D,
-                                 COLLISIONORDER::Monster,
-                                 CollisionType::CT_OBB2D, nullptr))
+    if (false
+        == AttackCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::Monster, CollisionType::CT_OBB2D, nullptr))
     {
         IsHit_ = false;
     }
@@ -295,12 +295,9 @@ bool Penitent::FallCollisionCheck()
 
 bool Penitent::AttackCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-    // if (false == IsAttack_)
-    //{
-    //     HitEffect_->Renderer_->On();
-    // }
-
-    HitEffect_->GetTransform().SetWorldPosition(_Other->GetTransform().GetWorldPosition());
+    float4 MonsterPos = _Other->GetTransform().GetWorldPosition();
+    HitEffect_->GetTransform().SetWorldPosition(
+        {MonsterPos.x, MonsterPos.y, HitEffect_->GetTransform().GetWorldPosition().z});
 
     if (0 < RealXDir_)  //¿À¸¥ÂÊ
     {

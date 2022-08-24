@@ -34,7 +34,18 @@ void WingedFace::Start()
             {"bigpatrollinFlyingEnemy_death.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
             Data);
 
-        MetaRenderer_->AnimationBindEnd("bigpatrollinFlyingEnemy_death", ([&](const FrameAnimation_DESC& _Info) { Death(); }));
+        MetaRenderer_->AnimationBindFrame("bigpatrollinFlyingEnemy_death",
+                                          (
+                                              [&](const FrameAnimation_DESC& _Info)
+                                              {
+                                                  if (5 >= _Info.CurFrame)
+                                                  {
+                                                      BodyCollider_->Off();
+                                                  }
+                                              }));
+
+        MetaRenderer_->AnimationBindEnd("bigpatrollinFlyingEnemy_death",
+                                        ([&](const FrameAnimation_DESC& _Info) { Death(); }));
     }
 
     MetaRenderer_->ChangeMetaAnimation("bigpatrollinFlyingEnemy_idle");
@@ -65,7 +76,7 @@ void WingedFace::Start()
 
     State_.ChangeState("Patrol");
 
-    SetSpeed(150.f);    
+    SetSpeed(150.f);
 
     PatrolStart_ = true;
     PatrolEnd_   = false;
@@ -90,11 +101,6 @@ void WingedFace::Update(float _DeltaTime)
         == BodyCollider_->IsCollision(
             CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
     {
-        if ("Death" == State_.GetCurStateStateName())
-        {
-            return;
-        }
-
         State_.ChangeState("Death");
     }
 
@@ -139,7 +145,10 @@ void WingedFace::PatrolMoveY(float _DeltaTime)
 }
 
 
-void WingedFace::PatrolStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("bigpatrollinFlyingEnemy_idle"); }
+void WingedFace::PatrolStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("bigpatrollinFlyingEnemy_idle");
+}
 
 void WingedFace::PatrolUpdate(float _DeltaTime, const StateInfo& _Info) { PatrolMoveY(_DeltaTime); }
 
@@ -178,9 +187,9 @@ void WingedFace::ShootUpdate(float _DeltaTime, const StateInfo& _Info)
 void WingedFace::DeathStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("bigpatrollinFlyingEnemy_death");
-
-    BodyCollider_->Off();
     DetectCollider_->Off();
 }
 
-void WingedFace::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
+void WingedFace::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+}
