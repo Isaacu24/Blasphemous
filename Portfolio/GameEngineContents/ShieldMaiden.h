@@ -43,5 +43,10 @@ protected:
 
     void PatrolMoveX(float _DeltaTime) override;
 
+    void DamageCheck() override;
+
 private:
+    GameEngineCollision* ShieldCollider_;
+
+    bool IsBlock_;
 };

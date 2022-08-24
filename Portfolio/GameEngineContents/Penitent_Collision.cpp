@@ -2,6 +2,9 @@
 #include "Penitent.h"
 #include "MetaSpriteManager.h"
 #include "MetaTextureRenderer.h"
+#include "MoveEffect.h"
+#include "HitEffect.h"
+#include "AttackEffect.h"
 
 void Penitent::GroundCheck()
 {
@@ -199,6 +202,16 @@ void Penitent::CollisionCheck()
                                COLLISIONORDER::RightLedge,
                                CollisionType::CT_OBB2D,
                                std::bind(&Penitent::Dangle, this, std::placeholders::_1, std::placeholders::_2));
+
+    if ("Attack" == State_.GetCurStateStateName())
+    {
+        AttackCollider_->IsCollision(
+            CollisionType::CT_OBB2D,
+            COLLISIONORDER::Monster,
+            CollisionType::CT_OBB2D,
+            std::bind(&Penitent::AttackCheck, this, std::placeholders::_1, std::placeholders::_2));
+    }
+    
 }
 
 
@@ -278,13 +291,47 @@ bool Penitent::FallCollisionCheck()
 }
 
 
-void Penitent::AttackCheck()
+bool Penitent::AttackCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-    if (true
-        == AttackCollider_->IsCollision(
-            CollisionType::CT_OBB2D, COLLISIONORDER::Monster, CollisionType::CT_OBB2D, nullptr))
+    if (false == IsAttack_) 
     {
-        AttackEffect_->On();
-        AttackEffect_->ChangeMetaAnimation("penitent_attack_spark_1_revision_anim");
-    };
-}
+        //첫 유효타일 경우 
+        HitEffect_->Renderer_->On();        
+    }
+
+    HitEffect_->GetTransform().SetWorldPosition(_Other->GetTransform().GetWorldPosition());
+
+    if (0 < RealXDir_)  //오른쪽
+    {
+        HitEffect_->GetTransform().PixLocalNegativeX();
+    }
+
+    else if (0 > RealXDir_)  //왼쪽
+    {
+        HitEffect_->GetTransform().PixLocalPositiveX();
+    }
+
+    switch (HitStack_)
+    {
+        case 0:
+            HitEffect_->Renderer_->ChangeMetaAnimation("penitent_attack_spark_1_revision_anim");
+            break;
+
+        case 1:
+            HitEffect_->Renderer_->ChangeMetaAnimation("penitent_attack_spark_2_revision_anim");
+            break;
+
+        case 2:
+            HitEffect_->Renderer_->ChangeMetaAnimation("penitent_attack_spark_3_revision_anim");
+            break;
+
+        default:
+            HitEffect_->Renderer_->ChangeMetaAnimation("penitent_attack_spark_1_anim");
+            HitStack_ = 0;
+            break;
+    }
+
+    //유효타
+    IsAttack_ = true;
+    return true;
+}   

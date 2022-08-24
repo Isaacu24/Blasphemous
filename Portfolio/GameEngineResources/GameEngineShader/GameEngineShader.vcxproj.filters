@@ -21,6 +21,9 @@
     </None>
     <None Include="RenderOption.fx" />
     <None Include="TransformHeader.fx" />
+    <None Include="Bulr.hlsl">
+      <Filter>TargetEffect</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Debug">
@@ -32,10 +35,5 @@
     <Filter Include="TargetEffect">
       <UniqueIdentifier>{d9d839f7-812b-4438-8030-38d11d55a4b5}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Bulr.hlsl">
-      <Filter>TargetEffect</Filter>
-    </FxCompile>
   </ItemGroup>
 </Project>

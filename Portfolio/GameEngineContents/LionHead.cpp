@@ -71,15 +71,15 @@ void LionHead::Start()
 
     DetectCollider_ = CreateComponent<GameEngineCollision>();
     DetectCollider_->ChangeOrder(COLLISIONORDER::MonsterDetect);
-    DetectCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 0.0f, 1.0f, 0.5f});
-    DetectCollider_->GetTransform().SetWorldScale({900.0f, 300.0f, 1.0f});
+    DetectCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{1.0f, 0.7f, 1.0f, 0.5f});
+    DetectCollider_->GetTransform().SetWorldScale({900.0f, 250.0f, 1.0f});
     DetectCollider_->GetTransform().SetWorldMove({0, 100.f});
 
     BodyCollider_ = CreateComponent<GameEngineCollision>();
     BodyCollider_->ChangeOrder(COLLISIONORDER::Monster);
-    BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 0.0f, 1.0f, 0.5f});
-    BodyCollider_->GetTransform().SetWorldScale({30.0f, 400.0f, 1.0f});
-    BodyCollider_->GetTransform().SetWorldMove({-50, 200.f});
+    BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 0.3f, 0.1f, 0.5f});
+    BodyCollider_->GetTransform().SetWorldScale({30.0f, 250.0f, 1.0f});
+    BodyCollider_->GetTransform().SetWorldMove({0, 100.f});
 
     State_.CreateStateMember("Idle",
                              std::bind(&LionHead::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2),
@@ -155,10 +155,7 @@ void LionHead::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 
     if (true
         == DetectCollider_->IsCollision(
-            CollisionType::CT_OBB2D,
-            COLLISIONORDER::Player,
-            CollisionType::CT_OBB2D,
-            nullptr))
+            CollisionType::CT_OBB2D, COLLISIONORDER::Player, CollisionType::CT_OBB2D, nullptr))
     {
         State_.ChangeState("Track");
     }
@@ -228,7 +225,10 @@ void LionHead::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
 
     if (false
         == DetectCollider_->IsCollision(
-            CollisionType::CT_OBB2D, COLLISIONORDER::Player, CollisionType::CT_OBB2D, nullptr))
+            CollisionType::CT_OBB2D,
+            COLLISIONORDER::Player,
+            CollisionType::CT_OBB2D,
+            std::bind(&LionHead::LookAtPlayer, this, std::placeholders::_1, std::placeholders::_2)))
     {
         if (true == IsRest_)
         {
@@ -254,20 +254,28 @@ void LionHead::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void LionHead::TrackEnd(const StateInfo& _Info)
 {
-    DetectCollider_->GetTransform().SetWorldScale({1000.0f, 300.0f, 1.0f});
+    DetectCollider_->GetTransform().SetWorldScale({1000.0f, 250.0f, 1.0f});
 
     IsRest_ = false;
 }
 
-void LionHead::AttackStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("Lionhead_attack_anim"); }
+void LionHead::AttackStart(const StateInfo& _Info)
+{
+    BodyCollider_->GetTransform().SetWorldScale({30.0f, 150.0f, 1.0f});
+    BodyCollider_->GetTransform().SetWorldMove({0, -50.f});
+    MetaRenderer_->ChangeMetaAnimation("Lionhead_attack_anim");
+}
 
 void LionHead::AttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void LionHead::AttackEnd(const StateInfo& _Info) {}
+void LionHead::AttackEnd(const StateInfo& _Info) 
+{
+    BodyCollider_->GetTransform().SetWorldScale({30.0f, 250.0f, 1.0f}); 
+    BodyCollider_->GetTransform().SetWorldMove({0, 50.f});
+}
 
 
-void LionHead::DeathStart(const StateInfo& _Info) 
-{ MetaRenderer_->ChangeMetaAnimation("Lionhead_death_anim"); }
+void LionHead::DeathStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("Lionhead_death_anim"); }
 
 void LionHead::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
 

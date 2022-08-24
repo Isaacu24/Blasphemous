@@ -128,9 +128,6 @@
     <ClInclude Include="WingedFace.h">
       <Filter>Actor\NormalMonster</Filter>
     </ClInclude>
-    <ClInclude Include="BloodSplatters.h">
-      <Filter>Actor\Effect\Player</Filter>
-    </ClInclude>
     <ClInclude Include="VioletProjectile.h">
       <Filter>Actor\Effect\Monster\Normal\WingedFace</Filter>
     </ClInclude>
@@ -208,6 +205,18 @@
     </ClInclude>
     <ClInclude Include="ShieldMaiden.h">
       <Filter>Actor\NormalMonster</Filter>
+    </ClInclude>
+    <ClInclude Include="BloodSplatters.h">
+      <Filter>Actor\Effect\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="HitEffect.h">
+      <Filter>Actor\Effect\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveEffect.h">
+      <Filter>Actor\Effect\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackEffect.h">
+      <Filter>Actor\Effect\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -335,9 +344,6 @@
     <ClCompile Include="WingedFace.cpp">
       <Filter>Actor\NormalMonster</Filter>
     </ClCompile>
-    <ClCompile Include="BloodSplatters.cpp">
-      <Filter>Actor\Effect\Player</Filter>
-    </ClCompile>
     <ClCompile Include="VioletProjectile.cpp">
       <Filter>Actor\Effect\Monster\Normal\WingedFace</Filter>
     </ClCompile>
@@ -421,6 +427,18 @@
     </ClCompile>
     <ClCompile Include="ShieldMaiden.cpp">
       <Filter>Actor\NormalMonster</Filter>
+    </ClCompile>
+    <ClCompile Include="BloodSplatters.cpp">
+      <Filter>Actor\Effect\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="HitEffect.cpp">
+      <Filter>Actor\Effect\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveEffect.cpp">
+      <Filter>Actor\Effect\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackEffect.cpp">
+      <Filter>Actor\Effect\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

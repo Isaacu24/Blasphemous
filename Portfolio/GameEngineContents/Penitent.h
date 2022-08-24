@@ -50,7 +50,6 @@ protected:
     void End() override;
 
     void SetAnimation();
-    void SetAttackEffect();
     void SetPlayerState();
 
     // bool HealthCheck();
@@ -64,7 +63,7 @@ protected:
 
     void CollisionCheck();
 
-    void AttackCheck();
+    bool AttackCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
 
     //추락 시 거리 체크: 짧은 높이는 추락 상태가 되지 않음
     bool FallCollisionCheck();
@@ -148,8 +147,10 @@ private:
     class GameEngineFontRederer*      Font_;
 
     MetaTextureRenderer* MetaRenderer_;
-    MetaTextureRenderer* MoveEffect_;
-    MetaTextureRenderer* AttackEffect_;
+
+    class MoveEffect*   MoveEffect_;
+    class AttackEffect* AttackEffect_;
+    class HitEffect*    HitEffect_;
 
     int   HP_;
     int   MP_;
@@ -171,13 +172,15 @@ private:
     int Tear_;
 
     int AttackStack_;
+    int HitStack_; //피격 이펙트 분기
+
+    bool IsAttack_; //유효타
 
     bool IsGround_;
     bool IsDangle_;
     bool IsLadder_;
 
     bool IsOnInventory_;
-
     bool IsClimbLedge_;
 
     float JumpTime_;

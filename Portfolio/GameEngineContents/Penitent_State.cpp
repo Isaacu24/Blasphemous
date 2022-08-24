@@ -3,7 +3,9 @@
 #include "PlayerUI.h"
 #include "MetaTextureRenderer.h"
 #include "MetaSpriteManager.h"
-
+#include "MoveEffect.h"
+#include "HitEffect.h"
+#include "AttackEffect.h"
 
 void Penitent::FreezeStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penitent_sheathedIdle"); }
 
@@ -565,10 +567,11 @@ void Penitent::AttackStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_three_hits_attack_combo_no_slashes");
     AttackCollider_->On();
+    IsAttack_ = false;
 
     if (0 < RealXDir_)  //¿À¸¥ÂÊ
     {
-        AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});       
+        AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
     }
 
     else if (0 > RealXDir_)  //¿ÞÂÊ
@@ -591,19 +594,16 @@ void Penitent::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
         AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
         AttackCollider_->GetTransform().SetWorldMove({0.f, 150.f});
     }
-
-    AttackCheck();
 }
 
 void Penitent::AttackEnd(const StateInfo& _Info)
 {
     AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
-    AttackEffect_->GetTransform().SetLocalPosition({0.f, 0.f});
-
     AttackCollider_->Off();
-    AttackEffect_->Off();
-
+    //IsAttack_ = false;
+        
     AttackStack_ = 0;
+    HitStack_    = 0;
 }
 
 void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)

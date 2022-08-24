@@ -4,6 +4,10 @@
 #include "PlayerUI.h"
 #include "MetaTextureRenderer.h"
 #include "MetaSpriteManager.h"
+#include "MoveEffect.h"
+#include "HitEffect.h"
+#include "AttackEffect.h"
+
 
 Penitent* Penitent::MainPlayer_ = nullptr;
 
@@ -118,10 +122,21 @@ void Penitent::Start()
     PlayerUI_->SetLevelOverOn();
     PlayerUI_->SetTear(Tear_);
 
+    MoveEffect_ = GetLevel()->CreateActor<MoveEffect>();
+    MoveEffect_->GetTransform().SetWorldScale({2, 2, 1});
+    MoveEffect_->SetLevelOverOn();
+
+    AttackEffect_ = GetLevel()->CreateActor<AttackEffect>();
+    AttackEffect_->GetTransform().SetWorldScale({2, 2, 1});
+    AttackEffect_->SetLevelOverOn();
+
+    HitEffect_ = GetLevel()->CreateActor<HitEffect>();
+    HitEffect_->GetTransform().SetWorldScale({2, 2, 1});
+    HitEffect_->SetLevelOverOn();
+
     GetTransform().SetLocalScale({2, 2, 1});
 
     SetAnimation();
-    SetAttackEffect();
     SetPlayerState();
 }
 
@@ -453,8 +468,8 @@ void Penitent::SetAnimation()
 
     //    MetaRenderer_->CreateMetaAnimation(
     //        "penitent_verticalattack_landing_effects_anim",
-    //        {"penitent_verticalattack_landing_effects_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false},
-    //        Data);
+    //        {"penitent_verticalattack_landing_effects_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f,
+    //        false}, Data);
     //}
 
     //공격
@@ -498,16 +513,36 @@ void Penitent::SetAnimation()
                                           {
                                               if (7 == _Info.CurFrame)
                                               {
-                                                  if (true == RightObstacleCheck() ||
-                                                      true == LeftObstacleCheck())
+                                                  if (true == RightObstacleCheck() || true == LeftObstacleCheck())
                                                   {
                                                       ChangeState("Idle");
                                                       return;
                                                   }
 
-                                                  if (0 < AttackStack_)
+                                                  if (0 < AttackStack_ && true == IsAttack_) //유효타 공격 중
                                                   {
                                                       AttackStack_ = 0;
+                                                      HitStack_    = 1;
+                                                      HitEffect_->Renderer_->On(); //연속 공격 시 이펙트 On
+                                                      return;
+                                                  }
+
+                                                  ChangeState("Idle");
+                                              }
+
+                                              else if (13 == _Info.CurFrame)
+                                              {
+                                                  if (true == RightObstacleCheck() || true == LeftObstacleCheck())
+                                                  {
+                                                      ChangeState("Idle");
+                                                      return;
+                                                  }
+
+                                                  if (1 < AttackStack_ && true == IsAttack_) //유효타 공격 중
+                                                  {
+                                                      AttackStack_ = 0;
+                                                      HitStack_    = 2;
+                                                      HitEffect_->Renderer_->On(); //연속 공격 시 이펙트 On
                                                       return;
                                                   }
 
@@ -543,25 +578,6 @@ void Penitent::SetAnimation()
     MetaRenderer_->SetPivot(PIVOTMODE::METABOT);
 }
 
-void Penitent::SetAttackEffect() 
-{
-    AttackEffect_ = CreateComponent<MetaTextureRenderer>();
-
-    {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_attack_spark_1_revision_anim");
-
-        AttackEffect_->CreateMetaAnimation(
-            "penitent_attack_spark_1_revision_anim",
-            {"penitent_attack_spark_1_revision_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true},
-            Data);
-
-        AttackEffect_->AnimationBindEnd("penitent_attack_spark_1_revision_anim",
-                                        [&](const FrameAnimation_DESC& _Info) { AttackEffect_->Off(); });
-    }
-
-    AttackEffect_->SetPivot(PIVOTMODE::METABOT);
-    AttackEffect_->Off();
-}
 
 void Penitent::SetPlayerState()
 {
@@ -630,11 +646,12 @@ void Penitent::SetPlayerState()
                              std::bind(&Penitent::JumpAttackUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&Penitent::JumpAttackStart, this, std::placeholders::_1),
                              std::bind(&Penitent::JumpAttackEnd, this, std::placeholders::_1));
-    
-    State_.CreateStateMember("DodgeAttack",
-                             std::bind(&Penitent::DodgeAttackUpdate, this, std::placeholders::_1, std::placeholders::_2),
-                             std::bind(&Penitent::DodgeAttackStart, this, std::placeholders::_1),
-                             std::bind(&Penitent::DodgeAttackEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember(
+        "DodgeAttack",
+        std::bind(&Penitent::DodgeAttackUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&Penitent::DodgeAttackStart, this, std::placeholders::_1),
+        std::bind(&Penitent::DodgeAttackEnd, this, std::placeholders::_1));
 
     /*
     State_.CreateStateMember("Recovery",
