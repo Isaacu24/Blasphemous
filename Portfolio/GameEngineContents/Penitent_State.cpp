@@ -575,8 +575,6 @@ void Penitent::LadderClimbEnd(const StateInfo& _Info) { IsLadder_ = false; }
 void Penitent::AttackStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_three_hits_attack_combo_no_slashes");
-    // IsAttack_ = false;
-
     AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
 }
 
@@ -621,17 +619,8 @@ void Penitent::KnockBackEnd(const StateInfo& _Info) {}
 void Penitent::DodgeAttackStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_dodge_attack_LVL3");
-    AttackCollider_->On();
-
-    if (0 < RealXDir_)  //¿À¸¥ÂÊ
-    {
-        AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
-    }
-
-    else if (0 > RealXDir_)  //¿ÞÂÊ
-    {
-        AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
-    }
+    AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
+    BodyCollider_->Off();
 }
 
 void Penitent::DodgeAttackUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -641,7 +630,7 @@ void Penitent::DodgeAttackUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
-    GetTransform().SetWorldMove({RealXDir_ * 300.f * _DeltaTime, 0.f});
+    GetTransform().SetWorldMove({RealXDir_ * 350.f * _DeltaTime, 0.f});
     Gravity_->SetActive(!IsGround_);
 }
 
@@ -649,4 +638,5 @@ void Penitent::DodgeAttackEnd(const StateInfo& _Info)
 {
     AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
     AttackCollider_->Off();
-}
+    BodyCollider_->On();
+}   

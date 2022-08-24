@@ -71,6 +71,7 @@ void HitEffect::Start()
             { 
                 Renderer_->Off(); 
             });
+
     }
 
     Renderer_->SetPivot(PIVOTMODE::METABOT);

@@ -140,10 +140,10 @@ private:
     class PlayerUI*                   PlayerUI_;
     class GravityComponent*           Gravity_;
     class GameEngineCollision*        BodyCollider_;
-    float4                            ColScale_;
     GameEngineCollision*              AttackCollider_;  // 공격 범위
     std::vector<GameEngineCollision*> DebugColliders_;
     GameEngineTextureRenderer*        ColMap_;
+    float4                            ColScale_;
     class GameEngineFontRederer*      Font_;
 
     MetaTextureRenderer* MetaRenderer_;

@@ -203,17 +203,18 @@ void Penitent::CollisionCheck()
                                CollisionType::CT_OBB2D,
                                std::bind(&Penitent::Dangle, this, std::placeholders::_1, std::placeholders::_2));
 
-    AttackCollider_->IsCollision(CollisionType::CT_OBB2D,
-                                 COLLISIONORDER::Monster,
-                                 CollisionType::CT_OBB2D,
-                                 std::bind(&Penitent::AttackCheck, this, std::placeholders::_1, std::placeholders::_2));
+    IsHit_ = AttackCollider_->IsCollision(
+        CollisionType::CT_OBB2D,
+        COLLISIONORDER::Monster,
+        CollisionType::CT_OBB2D,
+        std::bind(&Penitent::AttackCheck, this, std::placeholders::_1, std::placeholders::_2));
 
-    if (false
-        == AttackCollider_->IsCollision(
-            CollisionType::CT_OBB2D, COLLISIONORDER::Monster, CollisionType::CT_OBB2D, nullptr))
-    {
-        IsHit_ = false;
-    }
+    /*   if (false
+           == AttackCollider_->IsCollision(
+               CollisionType::CT_OBB2D, COLLISIONORDER::Monster, CollisionType::CT_OBB2D, nullptr))
+       {
+           IsHit_ = false;
+       }*/
 }
 
 
@@ -329,6 +330,5 @@ bool Penitent::AttackCheck(GameEngineCollision* _This, GameEngineCollision* _Oth
             break;
     }
 
-    IsHit_ = true;
     return true;
 }

@@ -11,7 +11,7 @@
 
 Penitent* Penitent::MainPlayer_ = nullptr;
 
-Penitent::Penitent()
+Penitent::Penitent()    
     : State_{}
     , PlayerUI_(nullptr)
     , Gravity_(nullptr)
@@ -447,59 +447,87 @@ void Penitent::SetAnimation()
             {"penitent_dodge_attack_LVL3.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
             Data);
 
+        MetaRenderer_->AnimationBindFrame("penitent_dodge_attack_LVL3",
+                                          [&](const FrameAnimation_DESC& _Info)
+                                          {
+                                              switch (_Info.CurFrame)
+                                              {
+                                                  case 8:
+                                                      AttackCollider_->On();
+                                                      HitStack_ = 2;
+                                                      break;
+
+                                                  case 10:
+                                                      if (true == IsHit_)
+                                                      {
+                                                          HitEffect_->Renderer_->On();
+                                                          IsHit_ = false;
+                                                      }
+                                                      break;
+
+                                                  case 15:
+                                                      AttackCollider_->Off();
+                                                      break;
+                                              }
+                                          });
+
         MetaRenderer_->AnimationBindEnd("penitent_dodge_attack_LVL3",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
-    //{
-    //    std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_verticalattack_start_anim");
+    {
+        //{
+        //    std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_verticalattack_start_anim");
 
-    //    MetaRenderer_->CreateMetaAnimation(
-    //        "penitent_verticalattack_start_anim",
-    //        {"penitent_verticalattack_start_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false},
-    //        Data);
-    //}
+        //    MetaRenderer_->CreateMetaAnimation(
+        //        "penitent_verticalattack_start_anim",
+        //        {"penitent_verticalattack_start_anim.png", 0, static_cast<unsigned int>(Data.size() - 1),
+        //        0.1f, false}, Data);
+        //}
 
-    //{
-    //    std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_verticalattack_falling_anim");
+        //{
+        //    std::vector<MetaData> Data =
+        //    MetaSpriteManager::Inst_->Find("penitent_verticalattack_falling_anim");
 
-    //    MetaRenderer_->CreateMetaAnimation(
-    //        "penitent_verticalattack_falling_anim",
-    //        {"penitent_verticalattack_falling_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false},
-    //        Data);
-    //}
+        //    MetaRenderer_->CreateMetaAnimation(
+        //        "penitent_verticalattack_falling_anim",
+        //        {"penitent_verticalattack_falling_anim.png", 0, static_cast<unsigned int>(Data.size() - 1),
+        //        0.1f, false}, Data);
+        //}
 
-    //{
-    //    std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_verticalattack_landing");
+        //{
+        //    std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_verticalattack_landing");
 
-    //    MetaRenderer_->CreateMetaAnimation(
-    //        "penitent_verticalattack_landing",
-    //        {"penitent_verticalattack_landing.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false},
-    //        Data);
-    //}
+        //    MetaRenderer_->CreateMetaAnimation(
+        //        "penitent_verticalattack_landing",
+        //        {"penitent_verticalattack_landing.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f,
+        //        false}, Data);
+        //}
 
-    //
-    //{
-    //    std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_verticalattack_landing_effects_anim");
+        //
+        //{
+        //    std::vector<MetaData> Data =
+        //    MetaSpriteManager::Inst_->Find("penitent_verticalattack_landing_effects_anim");
 
-    //    MetaRenderer_->CreateMetaAnimation(
-    //        "penitent_verticalattack_landing_effects_anim",
-    //        {"penitent_verticalattack_landing_effects_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f,
-    //        false}, Data);
-    //}
+        //    MetaRenderer_->CreateMetaAnimation(
+        //        "penitent_verticalattack_landing_effects_anim",
+        //        {"penitent_verticalattack_landing_effects_anim.png", 0, static_cast<unsigned int>(Data.size()
+        //        - 1), 0.1f, false}, Data);
+        //}
 
-    //공격
-    //{
-    //    std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_attack_combo_1");
+        //공격
+        //{
+        //    std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_attack_combo_1");
 
-    //    MetaRenderer_->CreateMetaAnimation(
-    //        "penitent_attack_combo_1",
-    //        {"penitent_attack_combo_1.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, true},
-    //        Data);
+        //    MetaRenderer_->CreateMetaAnimation(
+        //        "penitent_attack_combo_1",
+        //        {"penitent_attack_combo_1.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, true},
+        //        Data);
 
-    //    MetaRenderer_->AnimationBindEnd("penitent_attack_combo_1",
-    //                                    [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
-    //}
+        //    MetaRenderer_->AnimationBindEnd("penitent_attack_combo_1",
+        //                                    [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+        //}
+    }
 
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_upward_attack_clamped_anim");
@@ -715,16 +743,16 @@ void Penitent::SetPlayerState()
 
     /*
     State_.CreateStateMember("Recovery",
-                             std::bind(&Penitent::RecoveryUpdate, this, std::placeholders::_1, std::placeholders::_2),
-                             std::bind(&Penitent::RecoveryStart, this, std::placeholders::_1));
+                             std::bind(&Penitent::RecoveryUpdate, this, std::placeholders::_1,
+    std::placeholders::_2), std::bind(&Penitent::RecoveryStart, this, std::placeholders::_1));
 
     State_.CreateStateMember("Hit",
-                             std::bind(&Penitent::HitUpdate, this, std::placeholders::_1, std::placeholders::_2),
-                             std::bind(&Penitent::HitStart, this, std::placeholders::_1));
+                             std::bind(&Penitent::HitUpdate, this, std::placeholders::_1,
+    std::placeholders::_2), std::bind(&Penitent::HitStart, this, std::placeholders::_1));
 
     State_.CreateStateMember("Death",
-                             std::bind(&Penitent::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2),
-                             std::bind(&Penitent::DeathStart, this, std::placeholders::_1));*/
+                             std::bind(&Penitent::DeathUpdate, this, std::placeholders::_1,
+    std::placeholders::_2), std::bind(&Penitent::DeathStart, this, std::placeholders::_1));*/
 
     State_.ChangeState("Idle");
 }
