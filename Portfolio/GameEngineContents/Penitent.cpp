@@ -511,42 +511,86 @@ void Penitent::SetAnimation()
         MetaRenderer_->AnimationBindFrame("penitent_three_hits_attack_combo_no_slashes",
                                           [&](const FrameAnimation_DESC& _Info)
                                           {
-                                              if (7 == _Info.CurFrame)
+                                              switch (_Info.CurFrame)
                                               {
-                                                  if (true == RightObstacleCheck() || true == LeftObstacleCheck())
-                                                  {
+                                                  case 4:
+                                                      AttackCollider_->On();
+                                                      HitStack_ = 0;
+                                                      break;
+
+                                                  case 5:
+                                                      if (true == IsHit_)
+                                                      {
+                                                          HitEffect_->Renderer_->On();
+                                                          IsHit_ = false;
+                                                      }
+                                                      break;
+
+                                                  case 7:
+                                                      AttackCollider_->Off();
+
+                                                      if (true == RightObstacleCheck() || true == LeftObstacleCheck())
+                                                      {
+                                                          ChangeState("Idle");
+                                                          return;
+                                                      }
+
+                                                      if (0 < AttackStack_)  //유효타 공격 중
+                                                      {
+                                                          AttackStack_ = 0;
+                                                          return;
+                                                      }
+
                                                       ChangeState("Idle");
-                                                      return;
-                                                  }
+                                                      break;
 
-                                                  if (0 < AttackStack_ && true == IsAttack_) //유효타 공격 중
-                                                  {
-                                                      AttackStack_ = 0;
-                                                      HitStack_    = 1;
-                                                      HitEffect_->Renderer_->On(); //연속 공격 시 이펙트 On
-                                                      return;
-                                                  }
+                                                  case 10:
+                                                      AttackCollider_->On();
+                                                      HitStack_ = 1;
+                                                      break;
 
-                                                  ChangeState("Idle");
-                                              }
+                                                  case 11:
+                                                      if (true == IsHit_)
+                                                      {
+                                                          HitEffect_->Renderer_->On();
+                                                          IsHit_ = false;
+                                                      }
+                                                      break;
 
-                                              else if (13 == _Info.CurFrame)
-                                              {
-                                                  if (true == RightObstacleCheck() || true == LeftObstacleCheck())
-                                                  {
+                                                  case 13:
+                                                      AttackCollider_->Off();
+
+                                                      if (true == RightObstacleCheck() || true == LeftObstacleCheck())
+                                                      {
+                                                          ChangeState("Idle");
+                                                          return;
+                                                      }
+
+                                                      if (1 < AttackStack_)  //유효타 공격 중
+                                                      {
+                                                          AttackStack_ = 0;
+                                                          return;
+                                                      }
+
                                                       ChangeState("Idle");
-                                                      return;
-                                                  }
 
-                                                  if (1 < AttackStack_ && true == IsAttack_) //유효타 공격 중
-                                                  {
-                                                      AttackStack_ = 0;
-                                                      HitStack_    = 2;
-                                                      HitEffect_->Renderer_->On(); //연속 공격 시 이펙트 On
-                                                      return;
-                                                  }
+                                                      break;
 
-                                                  ChangeState("Idle");
+                                                  case 19:
+                                                      AttackCollider_->On();
+                                                      HitStack_ = 2;
+                                                      break;
+
+                                                  case 20:
+                                                      if (true == IsHit_)
+                                                      {
+                                                          HitEffect_->Renderer_->On();
+                                                          IsHit_ = false;
+                                                      }
+                                                      break;
+
+                                                  case 22:
+                                                      AttackCollider_->Off();
                                               }
                                           });
 

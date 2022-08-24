@@ -203,15 +203,17 @@ void Penitent::CollisionCheck()
                                CollisionType::CT_OBB2D,
                                std::bind(&Penitent::Dangle, this, std::placeholders::_1, std::placeholders::_2));
 
-    if ("Attack" == State_.GetCurStateStateName())
+    AttackCollider_->IsCollision(CollisionType::CT_OBB2D,
+                                 COLLISIONORDER::Monster,
+                                 CollisionType::CT_OBB2D,
+                                 std::bind(&Penitent::AttackCheck, this, std::placeholders::_1, std::placeholders::_2));
+
+    if (false == AttackCollider_->IsCollision(CollisionType::CT_OBB2D,
+                                 COLLISIONORDER::Monster,
+                                 CollisionType::CT_OBB2D, nullptr))
     {
-        AttackCollider_->IsCollision(
-            CollisionType::CT_OBB2D,
-            COLLISIONORDER::Monster,
-            CollisionType::CT_OBB2D,
-            std::bind(&Penitent::AttackCheck, this, std::placeholders::_1, std::placeholders::_2));
+        IsHit_ = false;
     }
-    
 }
 
 
@@ -293,11 +295,10 @@ bool Penitent::FallCollisionCheck()
 
 bool Penitent::AttackCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-    if (false == IsAttack_) 
-    {
-        //첫 유효타일 경우 
-        HitEffect_->Renderer_->On();        
-    }
+    // if (false == IsAttack_)
+    //{
+    //     HitEffect_->Renderer_->On();
+    // }
 
     HitEffect_->GetTransform().SetWorldPosition(_Other->GetTransform().GetWorldPosition());
 
@@ -331,7 +332,6 @@ bool Penitent::AttackCheck(GameEngineCollision* _This, GameEngineCollision* _Oth
             break;
     }
 
-    //유효타
-    IsAttack_ = true;
+    IsHit_ = true;
     return true;
-}   
+}

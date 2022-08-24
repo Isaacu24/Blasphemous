@@ -174,7 +174,7 @@ private:
     int AttackStack_;
     int HitStack_; //피격 이펙트 분기
 
-    bool IsAttack_; //유효타
+    bool IsHit_; //유효타
 
     bool IsGround_;
     bool IsDangle_;
