@@ -11,7 +11,11 @@ public:
     ShieldMaiden(ShieldMaiden&& _Other) noexcept            = delete;
     ShieldMaiden& operator=(const ShieldMaiden& _Other)     = delete;
     ShieldMaiden& operator=(ShieldMaiden&& _Other) noexcept = delete;
-    
+
+    void IdleStart(const StateInfo& _Info);
+    void IdleUpdate(float _DeltaTime, const StateInfo& _Info);
+    void IdleEnd(const StateInfo& _Info);
+
     void PatrolStart(const StateInfo& _Info);
     void PatrolUpdate(float _DeltaTime, const StateInfo& _Info);
     void PatrolEnd(const StateInfo& _Info);
@@ -35,6 +39,10 @@ public:
     void ExecutionStart(const StateInfo& _Info);
     void ExecutionUpdate(float _DeltaTime, const StateInfo& _Info);
     void ExecutionEnd(const StateInfo& _Info);
+    
+    void DeathStart(const StateInfo& _Info);
+    void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
+    void DeathEnd(const StateInfo& _Info);
 
 protected:
     void Start() override;
@@ -46,7 +54,11 @@ protected:
     void DamageCheck() override;
 
 private:
-    GameEngineCollision* ShieldCollider_;
+    float IdleTime_;
 
-    bool IsBlock_;
+    std::string NextState_;
+
+    class BlockEffect* Effect_;
+
+    float4 Dir_;
 };

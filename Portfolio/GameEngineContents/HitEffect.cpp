@@ -49,7 +49,11 @@ void HitEffect::Start()
             Data);
 
         Renderer_->AnimationBindEnd("penitent_attack_spark_2_revision_anim",
-                                    [&](const FrameAnimation_DESC& _Info) { Renderer_->Off(); });
+                                    [&](const FrameAnimation_DESC& _Info)
+                                    {
+                                        Renderer_->CurAnimationReset();
+                                        Renderer_->Off();
+                                    });
     }
 
     {

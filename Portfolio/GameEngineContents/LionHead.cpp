@@ -61,6 +61,17 @@ void LionHead::Start()
             {"Lionhead_death_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
             Data);
 
+        MetaRenderer_->AnimationBindFrame("Lionhead_death_anim",
+                                          [&](const FrameAnimation_DESC& _Info)
+                                          {
+                                              if (5 == _Info.CurFrame)
+                                              {
+                                                  BodyCollider_->Off();
+                                                  AttackCollider_->Off();
+                                                  DetectCollider_->Off();
+                                              }
+                                          });
+
         MetaRenderer_->AnimationBindEnd("Lionhead_death_anim", [&](const FrameAnimation_DESC& _Info) { Death(); });
     }
 
@@ -71,15 +82,21 @@ void LionHead::Start()
 
     DetectCollider_ = CreateComponent<GameEngineCollision>();
     DetectCollider_->ChangeOrder(COLLISIONORDER::MonsterDetect);
-    DetectCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{1.0f, 0.7f, 1.0f, 0.5f});
+    DetectCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.99f, 0.7f, 0.6f, 0.25f});
     DetectCollider_->GetTransform().SetWorldScale({900.0f, 250.0f, 1.0f});
     DetectCollider_->GetTransform().SetWorldMove({0, 100.f});
 
     BodyCollider_ = CreateComponent<GameEngineCollision>();
     BodyCollider_->ChangeOrder(COLLISIONORDER::Monster);
-    BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 0.3f, 0.1f, 0.5f});
+    BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.99f, 0.7f, 0.6f, 0.5f});
     BodyCollider_->GetTransform().SetWorldScale({30.0f, 250.0f, 1.0f});
     BodyCollider_->GetTransform().SetWorldMove({0, 100.f});
+
+    AttackCollider_ = CreateComponent<GameEngineCollision>();
+    AttackCollider_->ChangeOrder(COLLISIONORDER::Monster);
+    AttackCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{1.0f, 1.0f, 1.0f, 0.25f});
+    AttackCollider_->GetTransform().SetWorldScale({200.0f, 100.0f, 1.0f});
+    AttackCollider_->GetTransform().SetWorldMove({0, -100.f});
 
     State_.CreateStateMember("Idle",
                              std::bind(&LionHead::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2),
@@ -268,9 +285,9 @@ void LionHead::AttackStart(const StateInfo& _Info)
 
 void LionHead::AttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void LionHead::AttackEnd(const StateInfo& _Info) 
+void LionHead::AttackEnd(const StateInfo& _Info)
 {
-    BodyCollider_->GetTransform().SetWorldScale({30.0f, 250.0f, 1.0f}); 
+    BodyCollider_->GetTransform().SetWorldScale({30.0f, 250.0f, 1.0f});
     BodyCollider_->GetTransform().SetWorldMove({0, 50.f});
 }
 

@@ -218,6 +218,9 @@
     <ClInclude Include="AttackEffect.h">
       <Filter>Actor\Effect\Player</Filter>
     </ClInclude>
+    <ClInclude Include="BlockEffect.h">
+      <Filter>Actor\Effect\Monster\Normal\ShieldMaiden</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -440,6 +443,9 @@
     <ClCompile Include="AttackEffect.cpp">
       <Filter>Actor\Effect\Player</Filter>
     </ClCompile>
+    <ClCompile Include="BlockEffect.cpp">
+      <Filter>Actor\Effect\Monster\Normal\ShieldMaiden</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -543,6 +549,9 @@
     </Filter>
     <Filter Include="Content">
       <UniqueIdentifier>{ffadbca4-8bbb-4bd6-876f-53c1da01f51c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Effect\Monster\Normal\ShieldMaiden">
+      <UniqueIdentifier>{2cd8f018-5cb4-487a-a660-97667e967d39}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

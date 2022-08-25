@@ -21,8 +21,7 @@ public:
         PatrolStart_ = _Start;
         PatrolEnd_   = _End;
     }
-
-
+    
     // Penitent* GetPlayer();
 
 protected:
@@ -51,6 +50,9 @@ protected:
 
     virtual bool LookAtPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);
     virtual bool TrackPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);
+
+    virtual bool DetectPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);
+
     virtual bool CrossroadCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
 
     virtual void DamageCheck();

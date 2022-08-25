@@ -2,21 +2,34 @@
 #include "ShieldMaiden.h"
 #include "MetaTextureRenderer.h"
 #include "MetaSpriteManager.h"
+#include "BlockEffect.h"
 
 namespace SHIELD_MAIDEN
 {
     inline const char* IDLE = "TEST";
 }
 
-ShieldMaiden::ShieldMaiden() {}
+ShieldMaiden::ShieldMaiden()
+    : NextState_("Patrol")
+{}
 
 ShieldMaiden::~ShieldMaiden() {}
+
 
 void ShieldMaiden::Start()
 {
     GetTransform().SetWorldScale({2, 2, 1});
 
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("shieldandsword_idle");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "shieldandsword_idle",
+            {"shieldandsword_idle.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            Data);
+    }
 
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("shieldMaiden_walking_anim");
@@ -35,8 +48,49 @@ void ShieldMaiden::Start()
             {"shieldMaiden_attack.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
             Data);
 
+
         MetaRenderer_->AnimationBindEnd("shieldMaiden_attack",
-                                        [&](const FrameAnimation_DESC& _Info) { ChangeMonsterState("Track"); });
+                                        [&](const FrameAnimation_DESC& _Info)
+                                        {
+                                            if (7 == _Info.CurFrame)
+                                            {
+                                                AttackCollider_->On();
+                                            }
+
+                                            else if (8 == _Info.CurFrame)
+                                            {
+                                                AttackCollider_->Off();
+                                            }
+                                        });
+
+        MetaRenderer_->AnimationBindEnd("shieldMaiden_attack",
+                                        [&](const FrameAnimation_DESC& _Info)
+                                        {
+                                            State_.ChangeState("Idle");
+                                            NextState_ = "Track";
+                                        });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("shieldandsword_death");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "shieldandsword_death",
+            {"shieldandsword_death.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            Data);
+
+        MetaRenderer_->AnimationBindFrame("shieldandsword_death",
+                                          [&](const FrameAnimation_DESC& _Info)
+                                          {
+                                              if (5 == _Info.CurFrame)
+                                              {
+                                                  BodyCollider_->Off();
+                                                  AttackCollider_->Off();
+                                                  DetectCollider_->Off();
+                                              }
+                                          });
+
+        MetaRenderer_->AnimationBindEnd("shieldandsword_death", [&](const FrameAnimation_DESC& _Info) { Death(); });
     }
 
     MetaRenderer_->ChangeMetaAnimation("shieldMaiden_walking_anim");
@@ -48,28 +102,31 @@ void ShieldMaiden::Start()
 
     DetectCollider_ = CreateComponent<GameEngineCollision>();
     DetectCollider_->ChangeOrder(COLLISIONORDER::MonsterDetect);
-    DetectCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 0.0f, 1.0f, 0.25f});
+    DetectCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.98f, 0.52f, 0.48f, 0.25f});
     DetectCollider_->GetTransform().SetWorldScale({400.0f, 200.0f, 1.0f});
     DetectCollider_->GetTransform().SetWorldMove({0, 100.f});
 
     BodyCollider_ = CreateComponent<GameEngineCollision>();
     BodyCollider_->ChangeOrder(COLLISIONORDER::Monster);
-    BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 0.0f, 1.0f, 0.5f});
+    BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.98f, 0.52f, 0.48f, 0.5f});
     BodyCollider_->GetTransform().SetWorldScale({30.0f, 100.0f, 1.0f});
     BodyCollider_->GetTransform().SetWorldMove({-20, 50.f});
 
-    ShieldCollider_ = CreateComponent<GameEngineCollision>();
-    ShieldCollider_->ChangeOrder(COLLISIONORDER::MonsterShield);
-    ShieldCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 1.0f, 1.0f, 0.5f});
-    ShieldCollider_->GetTransform().SetWorldScale({30.0f, 100.0f, 1.0f});
-    ShieldCollider_->GetTransform().SetWorldMove({10, 50.f});
-
     AttackCollider_ = CreateComponent<GameEngineCollision>();
     AttackCollider_->ChangeOrder(COLLISIONORDER::MonsterAttack);
-    AttackCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.2f, 0.34f, 0.2f, 0.5f});
-    AttackCollider_->GetTransform().SetWorldScale({100.0f, 200.0f, 1.0f});
-    AttackCollider_->GetTransform().SetWorldMove({70, 50.f});
+    AttackCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{1.0f, 0.0f, 0.0f, 0.25f});
+    AttackCollider_->GetTransform().SetWorldScale({100.0f, 150.0f, 1.0f});
+    AttackCollider_->GetTransform().SetWorldMove({80, 50.f});
     AttackCollider_->Off();
+
+    Effect_ = GetLevel()->CreateActor<BlockEffect>();
+    Effect_->GetTransform().SetWorldScale({2, 2, 1});
+    Effect_->Renderer_->Off();
+
+    State_.CreateStateMember("Idle",
+                             std::bind(&ShieldMaiden::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&ShieldMaiden::IdleStart, this, std::placeholders::_1),
+                             std::bind(&ShieldMaiden::IdleEnd, this, std::placeholders::_1));
 
     State_.CreateStateMember("Patrol",
                              std::bind(&ShieldMaiden::PatrolUpdate, this, std::placeholders::_1, std::placeholders::_2),
@@ -86,7 +143,12 @@ void ShieldMaiden::Start()
                              std::bind(&ShieldMaiden::AttackStart, this, std::placeholders::_1),
                              std::bind(&ShieldMaiden::AttackEnd, this, std::placeholders::_1));
 
-    State_.ChangeState("Patrol");
+    State_.CreateStateMember("Death",
+                             std::bind(&ShieldMaiden::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&ShieldMaiden::DeathStart, this, std::placeholders::_1),
+                             std::bind(&ShieldMaiden::DeathEnd, this, std::placeholders::_1));
+
+    State_.ChangeState("Idle");
 
     SetSpeed(50.f);
     SetTear(15);
@@ -110,7 +172,7 @@ void ShieldMaiden::Update(float _DeltaTime)
 void ShieldMaiden::End() {}
 
 
-void ShieldMaiden::DamageCheck() 
+void ShieldMaiden::DamageCheck()
 {
     if (false
         == BodyCollider_->IsCollision(
@@ -124,27 +186,57 @@ void ShieldMaiden::DamageCheck()
         return;
     }
 
-    if (true
-        == ShieldCollider_->IsCollision(
-            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+    if (true == IsPlayerLeft_)
     {
-        IsBlock_ = true;
+        if (Dir_.CompareInt4D(float4::LEFT))
+        {
+            if (true
+                == BodyCollider_->IsCollision(
+                    CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+            {
+                float4 EffectPos = GetTransform().GetWorldPosition();
+                Effect_->GetTransform().SetWorldPosition(
+                    {EffectPos.x + (Dir_.x * 60.f), EffectPos.y - 100.f, static_cast<int>(ACTORORDER::MonsterEffect)});
+
+                Effect_->Renderer_->On();
+            }
+
+            return;
+        }
+    }
+
+    else if (true == IsPlayerRight_)
+    {
+        if (Dir_.CompareInt4D(float4::RIGHT))
+        {
+            if (true
+                == BodyCollider_->IsCollision(
+                    CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+            {
+                float4 EffectPos = GetTransform().GetWorldPosition();
+                Effect_->GetTransform().SetWorldPosition(
+                    {EffectPos.x + (Dir_.x * 10.f), EffectPos.y - 100.f, static_cast<int>(ACTORORDER::MonsterEffect)});
+
+                Effect_->Renderer_->On();
+            }
+
+            return;
+        }
     }
 
     if (true
         == BodyCollider_->IsCollision(
             CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
     {
-        if (true == IsBlock_)
-        {
-            return;
-        }
-
         IsHit_ = true;
-        MinusHP(10.f);
+        MinusHP(30.f);
+    }
+
+    if (0 >= GetHP())
+    {
+        State_.ChangeState("Death");
     }
 }
-
 
 
 void ShieldMaiden::PatrolMoveX(float _DeltaTime)
@@ -184,6 +276,30 @@ void ShieldMaiden::PatrolMoveX(float _DeltaTime)
 }
 
 
+void ShieldMaiden::IdleStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("shieldandsword_idle");
+    IdleTime_ = 0;
+}
+
+void ShieldMaiden::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    DetectCollider_->IsCollision(
+        CollisionType::CT_OBB2D,
+        COLLISIONORDER::Player,
+        CollisionType::CT_OBB2D,
+        std::bind(&ShieldMaiden::DetectPlayer, this, std::placeholders::_1, std::placeholders::_2));
+
+    IdleTime_ += _DeltaTime;
+
+    if (2.5f <= IdleTime_)
+    {
+        State_.ChangeState(NextState_);
+    }
+}
+
+void ShieldMaiden::IdleEnd(const StateInfo& _Info) {}
+
 void ShieldMaiden::PatrolStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("shieldMaiden_walking_anim");
@@ -221,12 +337,18 @@ void ShieldMaiden::TrackStart(const StateInfo& _Info)
 
 void ShieldMaiden::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+    DetectCollider_->IsCollision(
+        CollisionType::CT_OBB2D,
+        COLLISIONORDER::Player,
+        CollisionType::CT_OBB2D,
+        std::bind(&ShieldMaiden::DetectPlayer, this, std::placeholders::_1, std::placeholders::_2));
+
     if (false
         == DetectCollider_->IsCollision(
             CollisionType::CT_OBB2D,
             COLLISIONORDER::Player,
             CollisionType::CT_OBB2D,
-            std::bind(&ShieldMaiden::TrackPlayer, this, std::placeholders::_1, std::placeholders::_2)))
+            std::bind(&ShieldMaiden::DetectPlayer, this, std::placeholders::_1, std::placeholders::_2)))
     {
         State_.ChangeState("Patrol");
         return;
@@ -245,12 +367,16 @@ void ShieldMaiden::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
 
     if (true == IsPlayerLeft_)
     {
-        GetTransform().SetWorldMove(float4::RIGHT * Speed_ * _DeltaTime);
+        Dir_ = float4::LEFT;
+        GetTransform().PixLocalNegativeX();
+        GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime);
     }
 
     else if (true == IsPlayerRight_)
     {
-        GetTransform().SetWorldMove(float4::LEFT * Speed_ * _DeltaTime);
+        Dir_ = float4::RIGHT;
+        GetTransform().PixLocalPositiveX();
+        GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime);
     }
 }
 
@@ -260,12 +386,14 @@ void ShieldMaiden::AttackStart(const StateInfo& _Info)
 {
     if (true == IsPlayerRight_)
     {
-        GetTransform().PixLocalNegativeX();
+        Dir_ = float4::RIGHT;
+        GetTransform().PixLocalPositiveX();
     }
 
     else if (true == IsPlayerLeft_)
     {
-        GetTransform().PixLocalPositiveX();
+        Dir_ = float4::LEFT;
+        GetTransform().PixLocalNegativeX();
     }
 
     MetaRenderer_->ChangeMetaAnimation("shieldMaiden_attack");
@@ -274,18 +402,17 @@ void ShieldMaiden::AttackStart(const StateInfo& _Info)
 
 void ShieldMaiden::AttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void ShieldMaiden::AttackEnd(const StateInfo& _Info) 
-{
-    AttackCollider_->Off(); 
-}
+void ShieldMaiden::AttackEnd(const StateInfo& _Info) { AttackCollider_->Off(); }
 
-void ShieldMaiden::ParryReactionStart(const StateInfo& _Info) 
-{
-}
+void ShieldMaiden::ParryReactionStart(const StateInfo& _Info) {}
 
-void ShieldMaiden::ParryReactionUpdate(float _DeltaTime, const StateInfo& _Info) 
-{
-
-}
+void ShieldMaiden::ParryReactionUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void ShieldMaiden::ParryReactionEnd(const StateInfo& _Info) {}
+
+
+void ShieldMaiden::DeathStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("shieldandsword_death"); }
+
+void ShieldMaiden::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void ShieldMaiden::DeathEnd(const StateInfo& _Info) {}

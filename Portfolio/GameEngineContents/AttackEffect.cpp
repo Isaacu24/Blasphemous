@@ -21,7 +21,11 @@ void AttackEffect::Start()
             Data);
 
         Renderer_->AnimationBindEnd("penitent_jumping_attack_slasheslvl1",
-                                    [&](const FrameAnimation_DESC& _Info) { Renderer_->Off(); });
+                                    [&](const FrameAnimation_DESC& _Info) 
+            { 
+                Renderer_->CurAnimationReset();
+                Renderer_->Off(); 
+            });
     }
 
     {
@@ -33,7 +37,11 @@ void AttackEffect::Start()
             Data);
 
         Renderer_->AnimationBindEnd("penitent_jumping_attack_slasheslvl2",
-                                    [&](const FrameAnimation_DESC& _Info) { Renderer_->Off(); });
+                                    [&](const FrameAnimation_DESC& _Info) 
+            { 
+                Renderer_->CurAnimationReset();
+                Renderer_->Off(); 
+            });
     }
 
     {
@@ -45,7 +53,10 @@ void AttackEffect::Start()
             Data);
 
         Renderer_->AnimationBindEnd("penitent_verticalattack_landing_effects_anim",
-                                    [&](const FrameAnimation_DESC& _Info) { Renderer_->Off(); });
+                                    [&](const FrameAnimation_DESC& _Info) 
+            {
+                Renderer_->Off(); 
+            });
     }
 
     Renderer_->SetPivot(PIVOTMODE::METABOT);

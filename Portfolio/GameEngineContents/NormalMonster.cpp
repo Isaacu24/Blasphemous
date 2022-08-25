@@ -7,17 +7,11 @@ NormalMonster::NormalMonster()
 
 NormalMonster::~NormalMonster() {}
 
-void NormalMonster::Start() {
+void NormalMonster::Start() {}
 
-}
+void NormalMonster::Update(float _DeltaTime) {}
 
-void NormalMonster::Update(float _DeltaTime) 
-{
-
-}
-
-void NormalMonster::End() {
-}
+void NormalMonster::End() {}
 
 bool NormalMonster::LeftObstacleCheck(int _X, int _Y)
 {
@@ -68,6 +62,8 @@ bool NormalMonster::LookAtPlayer(GameEngineCollision* _This, GameEngineCollision
     return true;
 }
 
+
+
 bool NormalMonster::TrackPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
     LookAtPlayer(_This, _Other);
@@ -83,20 +79,32 @@ bool NormalMonster::TrackPlayer(GameEngineCollision* _This, GameEngineCollision*
         return false;
     }
 
-    if (_This->GetTransform().GetWorldPosition().x < _Other->GetTransform().GetWorldPosition().x)
-    {
-        IsPlayerLeft_  = true;
-        IsPlayerRight_ = false;
-    }
+    DetectPlayer(_This, _Other);
 
-    else
+    return true;
+}
+
+
+bool NormalMonster::DetectPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)
+{
+    float Distance = abs(_This->GetTransform().GetWorldPosition().x - _Other->GetTransform().GetWorldPosition().x);
+
+    if (_This->GetTransform().GetWorldPosition().x < _Other->GetTransform().GetWorldPosition().x)
     {
         IsPlayerRight_ = true;
         IsPlayerLeft_  = false;
     }
 
+    else
+    {
+        IsPlayerLeft_  = true;
+        IsPlayerRight_ = false;
+    }
+
     return true;
 }
+
+
 
 bool NormalMonster::CrossroadCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
 {

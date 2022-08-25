@@ -17,35 +17,41 @@ void Penitent::IdleStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnim
 
 void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    if (20000 < GameEngineInput::GetInst()->GetThumbLX() || GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
+    if (20000 < GameEngineInput::GetInst()->GetThumbLX() || true == GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
     {
         State_.ChangeState("Move");
     }
 
-    else if (0 > GameEngineInput::GetInst()->GetThumbLX() || GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
+    else if (0 > GameEngineInput::GetInst()->GetThumbLX()
+             || true == GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
     {
         State_.ChangeState("Move");
     }
 
     //사다리 내려가기 or 앉기
-    else if (GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
+    else if (true == GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
     {
         State_.ChangeState("Crouch");
     }
 
-    else if (GameEngineInput::GetInst()->IsPressKey("PenitentSlide"))
+    else if (true == GameEngineInput::GetInst()->IsPressKey("PenitentSlide"))
     {
         State_.ChangeState("Slide");
     }
 
-    else if (GameEngineInput::GetInst()->IsDownKey("PenitentJump"))
+    else if (true == GameEngineInput::GetInst()->IsDownKey("PenitentJump"))
     {
         State_.ChangeState("Jump");
     }
 
-    else if (GameEngineInput::GetInst()->IsPressKey("PenitentAttack"))
+    else if (true == GameEngineInput::GetInst()->IsPressKey("PenitentAttack"))
     {
         State_.ChangeState("Attack");
+    }
+
+    else if (true == GameEngineInput::GetInst()->IsDownKey("PenitentParry"))
+    {
+        State_.ChangeState("Parrying");
     }
 
     //내리막길
@@ -373,7 +379,24 @@ void Penitent::KnockBackStart(const StateInfo& _Info)
     FallTime_ = 0.f;
 
     MetaRenderer_->ChangeMetaAnimation("Penitent_pushback_grounded");
+
+    BodyCollider_->Off();
 }
+
+void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    if (true == RightObstacleCheck() || true == LeftObstacleCheck())
+    {
+        return;
+    }
+
+    GetTransform().SetWorldMove(float4{RealXDir_, 0} * 150.f * _DeltaTime);
+    Gravity_->SetActive(!IsGround_);
+}
+
+void Penitent::KnockBackEnd(const StateInfo& _Info) 
+{
+    BodyCollider_->On(); }
 
 void Penitent::LandingStart(const StateInfo& _Info)
 {
@@ -381,11 +404,11 @@ void Penitent::LandingStart(const StateInfo& _Info)
     {
         MetaRenderer_->ChangeMetaAnimation("penitent_verticalattack_landing");
 
-        
         float4 PlayerPos = GetTransform().GetWorldPosition();
 
         AttackEffect_->Renderer_->On();
-        AttackEffect_->GetTransform().SetWorldPosition({PlayerPos.x, PlayerPos.y, static_cast<int>(ACTORORDER::PlayerEffect)});
+        AttackEffect_->GetTransform().SetWorldPosition(
+            {PlayerPos.x, PlayerPos.y, static_cast<int>(ACTORORDER::PlayerEffect)});
         AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_verticalattack_landing_effects_anim");
         AttackEffect_->Renderer_->CurAnimationReset();
         return;
@@ -406,10 +429,18 @@ void Penitent::LandingStart(const StateInfo& _Info)
         {
             ChangeState("Move");
         }
+
+        else if (GameEngineInput::GetInst()->IsPressKey("PenitentAttack"))
+        {
+            ChangeState("Attack");
+        }
     }
 }
 
-void Penitent::LandingUpdate(float _DeltaTime, const StateInfo& _Info) { Gravity_->SetActive(!IsGround_); }
+void Penitent::LandingUpdate(float _DeltaTime, const StateInfo& _Info) 
+{ 
+    Gravity_->SetActive(!IsGround_); 
+}
 
 void Penitent::LandingEnd(const StateInfo& _Info) { FallTime_ = 0.f; }
 
@@ -618,6 +649,8 @@ void Penitent::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
         AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
         AttackCollider_->GetTransform().SetWorldMove({0.f, 150.f});
     }
+
+    Gravity_->SetActive(!IsGround_);
 }
 
 void Penitent::AttackEnd(const StateInfo& _Info)
@@ -628,23 +661,11 @@ void Penitent::AttackEnd(const StateInfo& _Info)
     AttackStack_ = 0;
 }
 
-void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
-{
-    if (true == RightObstacleCheck() || true == LeftObstacleCheck())
-    {
-        return;
-    }
-
-    GetTransform().SetWorldMove(float4{RealXDir_, 0} * 150.f * _DeltaTime);
-    Gravity_->SetActive(!IsGround_);
-}
-
-void Penitent::KnockBackEnd(const StateInfo& _Info) {}
-
 void Penitent::DodgeAttackStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_dodge_attack_LVL3");
     AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
+    AttackCollider_->ChangeOrder(COLLISIONORDER::PlayerSkill);
     BodyCollider_->Off();
 }
 
@@ -663,6 +684,7 @@ void Penitent::DodgeAttackEnd(const StateInfo& _Info)
 {
     AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
     AttackCollider_->Off();
+    AttackCollider_->ChangeOrder(COLLISIONORDER::PlayerAttack);
     BodyCollider_->On();
 }
 
@@ -690,7 +712,7 @@ void Penitent::VerticalAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 
     Dir_ = GetTransform().GetUpVector() * 10.f;
 
-    if (true == IsGround_)
+    if (true == IsGround_)  
     {
         ChangeState("Landing");
         return;
@@ -704,4 +726,17 @@ void Penitent::VerticalAttackEnd(const StateInfo& _Info)
 {
     AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
     AttackCollider_->Off();
+}
+
+void Penitent::ParryingStart(const StateInfo& _Info) 
+{ 
+    MetaRenderer_->ChangeMetaAnimation("penitent_parry_failed");
+}
+
+void Penitent::ParryingUpdate(float _DeltaTime, const StateInfo& _Info) {
+
+}
+
+void Penitent::ParryingEnd(const StateInfo& _Info) {
+
 }

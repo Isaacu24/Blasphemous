@@ -28,8 +28,10 @@ enum class ACTORORDER
     
 	Temp3,
 
+	BossMonsterEffect,
 	BossMonster,
-	Monster,
+    MonsterEffect,
+    Monster,
 	Object,
     Object1,
     Object2,

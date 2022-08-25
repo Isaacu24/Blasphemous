@@ -59,6 +59,7 @@ void Penitent::Start()
         GameEngineInput::GetInst()->CreateKey("PenitentSlide", VK_LSHIFT);
         GameEngineInput::GetInst()->CreateKey("PenitentRecovery", 'F');
         GameEngineInput::GetInst()->CreateKey("PenitentAttack", 'K');
+        GameEngineInput::GetInst()->CreateKey("PenitentParry", 'J');
         GameEngineInput::GetInst()->CreateKey("FreeCamera", 'O');
 
         GameEngineInput::GetInst()->CreateKey("PenitentAnimation", '1');
@@ -204,13 +205,12 @@ void Penitent::SetAnimation()
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Fall"); });
     }
 
-    //따로 상태 만들어야 함@
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_jum_forward_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_jum_forward_anim",
-            {"penitent_jum_forward_anim.png", 0, static_cast<unsigned int>(Data.size() - 4), 0.07f, false},
+            {"penitent_jum_forward_anim.png", 0, static_cast<unsigned int>(Data.size() - 4), 0.06f, false},
             Data);
 
         MetaRenderer_->AnimationBindEnd("penitent_jum_forward_anim",
@@ -666,6 +666,23 @@ void Penitent::SetAnimation()
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
+    //패링
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_parry_failed");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_parry_failed",
+            {"penitent_parry_failed.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_parry_failed",
+                                        [&](const FrameAnimation_DESC& _Info) 
+            { 
+                ChangeState("Idle"); 
+            });
+    }
+
+
     MetaRenderer_->SetPivot(PIVOTMODE::METABOT);
 }
 
@@ -749,6 +766,11 @@ void Penitent::SetPlayerState()
         std::bind(&Penitent::VerticalAttackUpdate, this, std::placeholders::_1, std::placeholders::_2),
         std::bind(&Penitent::VerticalAttackStart, this, std::placeholders::_1),
         std::bind(&Penitent::VerticalAttackEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember("Parrying",
+                             std::bind(&Penitent::ParryingUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::ParryingStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::ParryingEnd, this, std::placeholders::_1));
 
     /*
     State_.CreateStateMember("Recovery",
