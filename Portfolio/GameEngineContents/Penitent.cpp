@@ -11,7 +11,7 @@
 
 Penitent* Penitent::MainPlayer_ = nullptr;
 
-Penitent::Penitent()    
+Penitent::Penitent()
     : State_{}
     , PlayerUI_(nullptr)
     , Gravity_(nullptr)
@@ -210,7 +210,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_jum_forward_anim",
-            {"penitent_jum_forward_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
+            {"penitent_jum_forward_anim.png", 0, static_cast<unsigned int>(Data.size() - 4), 0.07f, false},
             Data);
 
         MetaRenderer_->AnimationBindEnd("penitent_jum_forward_anim",
@@ -452,27 +452,30 @@ void Penitent::SetAnimation()
                                           {
                                               switch (_Info.CurFrame)
                                               {
-                                                  case 8:
+                                                  case 5:
                                                       AttackCollider_->On();
                                                       HitStack_ = 2;
                                                       break;
 
-                                                  case 10:
-                                                      if (true == IsHit_)
-                                                      {
-                                                          HitEffect_->Renderer_->On();
-                                                          IsHit_ = false;
-                                                      }
-                                                      break;
-
-                                                  case 15:
+                                                  case 18:
                                                       AttackCollider_->Off();
                                                       break;
+                                              }
+
+
+                                              if (true == IsHit_)
+                                              {
+                                                  HitEffect_->Renderer_->On();
+                                                  IsHit_ = false;
                                               }
                                           });
 
         MetaRenderer_->AnimationBindEnd("penitent_dodge_attack_LVL3",
-                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+                                        [&](const FrameAnimation_DESC& _Info)
+                                        {
+                                            ChangeState("Idle");
+                                            HitEffect_->Renderer_->Off();   
+                                        });
     }
 
     {

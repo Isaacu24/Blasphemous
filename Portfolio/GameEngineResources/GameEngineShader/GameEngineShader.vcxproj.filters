@@ -21,7 +21,7 @@
     </None>
     <None Include="RenderOption.fx" />
     <None Include="TransformHeader.fx" />
-    <None Include="Bulr.hlsl">
+    <None Include="Blur.hlsl">
       <Filter>TargetEffect</Filter>
     </None>
   </ItemGroup>

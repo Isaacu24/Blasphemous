@@ -175,7 +175,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Bulr.hlsl">
+    <None Include="Blur.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>

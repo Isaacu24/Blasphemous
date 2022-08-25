@@ -209,12 +209,12 @@ void Penitent::CollisionCheck()
         CollisionType::CT_OBB2D,
         std::bind(&Penitent::HitEffectCheck, this, std::placeholders::_1, std::placeholders::_2));
 
-       //if (false
-       //    == AttackCollider_->IsCollision(
-       //        CollisionType::CT_OBB2D, COLLISIONORDER::Monster, CollisionType::CT_OBB2D, nullptr))
-       //{
-       //    IsHit_ = false;
-       //}
+       if (false    
+           == AttackCollider_->IsCollision(
+               CollisionType::CT_OBB2D, COLLISIONORDER::Monster, CollisionType::CT_OBB2D, nullptr))
+       {
+           IsHit_ = false;
+       }    
 }
 
 

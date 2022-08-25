@@ -180,6 +180,8 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
         GetTransform().PixLocalPositiveX();
         RealXDir_ = 1;
 
+        MetaRenderer_->ChangeMetaAnimation("penitent_jum_forward_anim");
+
         if (false == RightObstacleCheck())
         {
             Dir_ += GetTransform().GetRightVector() * 3.f;
@@ -190,6 +192,8 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
     {
         GetTransform().PixLocalNegativeX();
         RealXDir_ = -1;
+
+        MetaRenderer_->ChangeMetaAnimation("penitent_jum_forward_anim");
 
         if (false == LeftObstacleCheck())
         {
@@ -639,4 +643,4 @@ void Penitent::DodgeAttackEnd(const StateInfo& _Info)
     AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
     AttackCollider_->Off();
     BodyCollider_->On();
-}   
+}
