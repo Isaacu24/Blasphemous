@@ -63,7 +63,7 @@ protected:
 
     void CollisionCheck();
 
-    bool AttackCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
+    bool HitEffectCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
 
     //추락 시 거리 체크: 짧은 높이는 추락 상태가 되지 않음
     bool FallCollisionCheck();

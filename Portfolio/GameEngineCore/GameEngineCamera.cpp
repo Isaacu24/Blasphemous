@@ -36,8 +36,10 @@ void GameEngineCamera::Render(float _DeltaTime)
 	CameraRenderTarget->Clear();
 	CameraRenderTarget->Setting();
 
+	// 순서적으로보면 레스터라이저 단계이지만 변경이 거의 없을거기 때문에.
 	GameEngineDevice::GetContext()->RSSetViewports(1, &ViewPortDesc);
 
+	// 랜더하기 전에 
 	View.LookAtLH(
 		GetActor()->GetTransform().GetLocalPosition(),
 		GetActor()->GetTransform().GetForwardVector(),
@@ -97,7 +99,7 @@ void GameEngineCamera::Start()
 
 void GameEngineCamera::PushRenderer(GameEngineRenderer* _Renderer)
 {
-	AllRenderer_[_Renderer->GetOrder()].push_back(_Renderer);
+	AllRenderer_[_Renderer->RenderingOrder].push_back(_Renderer);
 }
 
 void GameEngineCamera::Release(float _DelataTime)
@@ -158,6 +160,7 @@ float4 GameEngineCamera::GetMouseWorldPosition()
 
 	Pos = Pos * ViewPort;
 	Pos = Pos * ProjectionInvers;
+	// 마우스는 뷰포트의 좌표다?
 
 	return Pos;
 }
@@ -168,11 +171,22 @@ float4 GameEngineCamera::GetMouseWorldPositionToActor()
 	return GetTransform().GetWorldPosition() + GetMouseWorldPosition();
 }
 
+void GameEngineCamera::ChangeRenderingOrder(GameEngineRenderer* _Renderer, int _ChangeOrder)
+{
+	// 0번째에서 삭제되고
+	AllRenderer_[_Renderer->GetRenderingOrder()].remove(_Renderer);
+
+	_Renderer->RenderingOrder = _ChangeOrder;
+
+	// 10000번째로 이동한다.
+	AllRenderer_[_Renderer->GetRenderingOrder()].push_back(_Renderer);
+}
+
 void GameEngineCamera::OverRenderer(GameEngineCamera* _NextCamera)
 {
 	if (nullptr == _NextCamera)
 	{
-		MsgBoxAssert("next camera is nullptr!");
+		MsgBoxAssert("next camera is nullptr! fuck you");
 		return;
 	}
 

@@ -98,13 +98,15 @@ void GameEngineLevel::ActorLevelEndEvent()
 
 void GameEngineLevel::PushRenderer(GameEngineRenderer* _Renderer, int _CameraOrder)
 {
-	// 기존 자신이 있던 자리에서 지우고
+	GameEngineCamera* PrevCamera = Cameras[static_cast<UINT>(_Renderer->CameraOrder)];
 
-	Cameras[static_cast<UINT>(_Renderer->CameraOrder)]->AllRenderer_[_Renderer->GetOrder()].remove(_Renderer);
+	PrevCamera->AllRenderer_[_Renderer->GetRenderingOrder()].remove(_Renderer);
 
 	_Renderer->CameraOrder = static_cast<CAMERAORDER>(_CameraOrder);
-	// 다른 카메라로 들어갈수도 있습니다.
+
+	GameEngineCamera* NextCamera = Cameras[_CameraOrder];
 	Cameras[_CameraOrder]->PushRenderer(_Renderer);
+	_Renderer->Camera = NextCamera;
 }
 
 void GameEngineLevel::PushCamera(GameEngineCamera* _Camera, int _CameraOrder)
