@@ -120,6 +120,10 @@ protected:
     void DodgeAttackUpdate(float _DeltaTime, const StateInfo& _Info);
     void DodgeAttackEnd(const StateInfo& _Info);
 
+    void VerticalAttackStart(const StateInfo& _Info);
+    void VerticalAttackUpdate(float _DeltaTime, const StateInfo& _Info);
+    void VerticalAttackEnd(const StateInfo& _Info);
+
     void KnockBackStart(const StateInfo& _Info);
     void KnockBackUpdate(float _DeltaTime, const StateInfo& _Info);
     void KnockBackEnd(const StateInfo& _Info);
@@ -172,9 +176,9 @@ private:
     int Tear_;
 
     int AttackStack_;
-    int HitStack_; //피격 이펙트 분기
+    int HitStack_;  //피격 이펙트 분기
 
-    bool IsHit_; //유효타
+    bool IsHit_;  //유효타
 
     bool IsGround_;
     bool IsDangle_;
@@ -182,6 +186,8 @@ private:
 
     bool IsOnInventory_;
     bool IsClimbLedge_;
+
+    bool ReadySkill_; //스킬 준비 여부
 
     float JumpTime_;
     float SlideTime_;

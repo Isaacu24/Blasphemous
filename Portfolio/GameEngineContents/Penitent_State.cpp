@@ -201,6 +201,13 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
         }
     }
 
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentAttack")
+        && GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
+    {
+        ChangeState("VerticalAttack");
+        return;
+    }
+
     if (GameEngineInput::GetInst()->IsPressKey("PenitentAttack"))
     {
         ChangeState("JumpAttack");
@@ -370,6 +377,20 @@ void Penitent::KnockBackStart(const StateInfo& _Info)
 
 void Penitent::LandingStart(const StateInfo& _Info)
 {
+    if ("VerticalAttack" == _Info.PrevState)
+    {
+        MetaRenderer_->ChangeMetaAnimation("penitent_verticalattack_landing");
+
+        
+        float4 PlayerPos = GetTransform().GetWorldPosition();
+
+        AttackEffect_->Renderer_->On();
+        AttackEffect_->GetTransform().SetWorldPosition({PlayerPos.x, PlayerPos.y, static_cast<int>(ACTORORDER::PlayerEffect)});
+        AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_verticalattack_landing_effects_anim");
+        AttackEffect_->Renderer_->CurAnimationReset();
+        return;
+    }
+
     if (1.0f <= FallTime_)
     {
         MetaRenderer_->ChangeMetaAnimation("penitent_hardlanding_rocks_anim");
@@ -643,4 +664,44 @@ void Penitent::DodgeAttackEnd(const StateInfo& _Info)
     AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
     AttackCollider_->Off();
     BodyCollider_->On();
+}
+
+void Penitent::VerticalAttackStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("penitent_verticalattack_start_anim");
+    FallTime_ = 0;
+
+    ReadySkill_ = false;
+    Gravity_->SetActive(false);
+
+    AttackCollider_->On();
+    AttackCollider_->GetTransform().SetWorldMove({0.f, -100.f});
+    BodyCollider_->Off();
+}
+
+void Penitent::VerticalAttackUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    if (false == ReadySkill_)
+    {
+        return;
+    }
+
+    JumpForce_.y -= _DeltaTime * 150.f;
+
+    Dir_ = GetTransform().GetUpVector() * 10.f;
+
+    if (true == IsGround_)
+    {
+        ChangeState("Landing");
+        return;
+    }
+
+    GetTransform().SetWorldMove(Dir_ * JumpForce_ * _DeltaTime);
+    Gravity_->SetActive(!IsGround_);
+}
+
+void Penitent::VerticalAttackEnd(const StateInfo& _Info)
+{
+    AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
+    AttackCollider_->Off();
 }
