@@ -40,16 +40,16 @@ void Stage04::SettingStage()
     GameEngineTextureRenderer* BeforeParallaxRenderer3 = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer3->SetTexture("1_4_BeforeParallax_3.png");
     BeforeParallaxRenderer3->ScaleToTexture();
-    BeforeParallaxRenderer3->GetTransform().SetWorldPosition({0, -220, static_cast<int>(ACTORORDER::BeforeParallax3)});
+    BeforeParallaxRenderer3->GetTransform().SetWorldPosition({50, -220, static_cast<int>(ACTORORDER::BeforeParallax3)});
     BeforeParallaxRenderer3->GetTransform().SetWorldScale(BeforeParallaxRenderer3->GetTransform().GetWorldScale()
-                                                          * 2.f);
+                                                          * 2.5f);
 
     GameEngineTextureRenderer* BeforeParallaxRenderer4 = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer4->SetTexture("1_4_BeforeParallax_4.png");
     BeforeParallaxRenderer4->ScaleToTexture();
-    BeforeParallaxRenderer4->GetTransform().SetWorldPosition({0, -400, static_cast<int>(ACTORORDER::BeforeParallax4)});
+    BeforeParallaxRenderer4->GetTransform().SetWorldPosition({50, -400, static_cast<int>(ACTORORDER::BeforeParallax4)});
     BeforeParallaxRenderer4->GetTransform().SetWorldScale(BeforeParallaxRenderer4->GetTransform().GetWorldScale()
-                                                          * 2.f);
+                                                          * 2.5f);
 
     GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     StageRenderer->SetTexture("1_4_Tile.png");
@@ -85,7 +85,7 @@ void Stage04::SettingStage()
 void Stage04::SettingMonster()
 {
     ElderBrother_ = CreateActor<ElderBrother>();
-    ElderBrother_->GetTransform().SetWorldPosition({2000, -1200, static_cast<int>(ACTORORDER::BeforeParallax2)});
+    ElderBrother_->GetTransform().SetWorldPosition({2300, -1200, static_cast<int>(ACTORORDER::BeforeParallax2)});
     ElderBrother_->SetGround(ColMap_);
     BossMonster_ = ElderBrother_;
 }
@@ -104,27 +104,41 @@ void Stage04::Update(float _DeltaTime)
         IsChangeCameraPos_ = true;
     }
 
+    StageFlowUpdate(_DeltaTime);
+}
+
+void Stage04::BossStateCheck()
+{
+    if (nullptr == BossMonster_)
+    {
+        return;
+    }
+}
+
+
+void Stage04::End() {}
+
+void Stage04::StageFlowUpdate(float _DeltaTime)
+{
     switch (CurrentFlow_)
     {
         case STAGEFLOW::NORMAL:
             PlayerCameraMove();
 
-            if (1300 < Penitent_->GetTransform().GetWorldPosition().x && false == IsEvent_)
+            if (1300 < Penitent_->GetTransform().GetWorldPosition().x)
             {
                 Penitent_->ChangeState("Freeze");
-                ElderBrother_->ChangeState("Appear");
+                ElderBrother_->EventOn();
+
                 CurrentFlow_ = STAGEFLOW::BOSSAPPEAR;
             }
             break;
         case STAGEFLOW::BOSSAPPEAR:
-
             GetMainCameraActor()->GetTransform().SetWorldRightMove(50.f, _DeltaTime);
 
-            if (true == ElderBrother_->GetEventEnd())
+            if (true == ElderBrother_->GetBossEvent())
             {
-                IsEvent_ = true;
                 Penitent_->ChangeState("Idle");
-                CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
 
                 Font_ = Stage_->CreateComponent<GameEngineFontRenderer>();
                 Font_->SetColor({0.65f, 0.65f, 0.45f, 1.0f});
@@ -132,6 +146,8 @@ void Stage04::Update(float _DeltaTime)
                 Font_->SetText("Ä§¹¬ÇÏ´Â ºñÅºÀÇ ÆÄ¼ö²Û", "NeoµÕ±Ù¸ð");
                 Font_->SetSize(30);
                 Font_->ChangeCamera(CAMERAORDER::UICAMERA);
+
+                CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
             }
             break;
         case STAGEFLOW::BOSSCOMBAT:
@@ -163,22 +179,14 @@ void Stage04::Update(float _DeltaTime)
             }
 
             break;
+        case STAGEFLOW::BOSSDEAD:
+            PlayerCameraMove();
+            break;
         default:
             PlayerCameraMove();
             break;
     }
 }
-
-void Stage04::BossStateCheck()
-{
-    if (nullptr == BossMonster_)
-    {
-        return;
-    }
-}
-
-
-void Stage04::End() {}
 
 void Stage04::LevelStartEvent()
 {

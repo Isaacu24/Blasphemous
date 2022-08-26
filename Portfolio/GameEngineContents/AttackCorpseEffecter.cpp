@@ -31,7 +31,7 @@ void AttackCorpseEffecter::Update(float _DeltaTime)
 		if (DEFAULT_DELAY_TIME < DelayTime_)
 		{
 			++Index_;
-			DelayTime_ -= DEFAULT_DELAY_TIME;
+			DelayTime_ = 0.f;
 
 			CorpseGroundEffect* Effect = GetLevel()->CreateActor<CorpseGroundEffect>();
 			Effect->GetTransform().SetWorldPosition({ CreatePos_.x, CreatePos_.y, static_cast<int>(ACTORORDER::BossMonster) });

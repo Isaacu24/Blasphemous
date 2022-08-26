@@ -70,7 +70,7 @@ void Stage20::Update(float _DeltaTime)
         case STAGEFLOW::NORMAL:
             PlayerCameraMove();
 
-            if (2000.f <= Penitent_->GetTransform().GetWorldPosition().x && false == IsEvent_)
+            if (2000.f <= Penitent_->GetTransform().GetWorldPosition().x)
             {
                 Penitent_->ChangeState("Freeze");
                 CurrentFlow_ = STAGEFLOW::BOSSAPPEAR;
@@ -117,6 +117,7 @@ void Stage20::Update(float _DeltaTime)
         case STAGEFLOW::BOSSCOMBAT:
             break;
         case STAGEFLOW::BOSSDEAD:
+            PlayerCameraMove();
             break;
         default:
             break;

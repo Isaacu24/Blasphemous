@@ -1,6 +1,8 @@
 #include "BossMonster.h"
 
 
-BossMonster::BossMonster() {}
+BossMonster::BossMonster()
+    : BossEvent_(false)
+{}
 
 BossMonster::~BossMonster() {}

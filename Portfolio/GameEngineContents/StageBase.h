@@ -56,6 +56,8 @@ protected:
 
 	virtual void SettingLedge() {};
 
+	virtual void StageFlowUpdate(float _DeltaTime) {};
+
 	float4 PlayerLeftPos_;
 	float4 PlayerRightPos_;
 
@@ -69,9 +71,6 @@ protected:
 	class GameEngineFontRenderer* Font_;
 
 	float CameraOffset_;
-
-	bool IsEvent_;
-
 
 private:
 

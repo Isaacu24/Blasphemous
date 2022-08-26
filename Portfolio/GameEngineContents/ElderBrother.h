@@ -4,6 +4,16 @@
 #include "AttackCorpseEffecter.h"
 #include "JumpCorpseEffecter.h"
 #include "GravityActor.h"
+#include <GameEngineBase/GameEngineRandom.h>
+
+enum class APPEARFLOW
+{
+    Attack,
+    JumpStart,
+    Jump,
+    Fall,
+    Appear
+};
 
 class GravityActor;
 class JumpCorpseEffecter;
@@ -21,19 +31,25 @@ public:
     ElderBrother& operator=(const ElderBrother& _Other)     = delete;
     ElderBrother& operator=(ElderBrother&& _Other) noexcept = delete;
 
-    void FreezeStart(const StateInfo& _Info);
-    void FreezeUpdate(float _DeltaTime, const StateInfo& _Info);
-
     void AppearStart(const StateInfo& _Info);
     void AppearUpdate(float _DeltaTime, const StateInfo& _Info);
     void AppearEnd(const StateInfo& _Info);
 
     void IdleStart(const StateInfo& _Info);
     void IdleUpdate(float _DeltaTime, const StateInfo& _Info);
+    void IdleEnd(const StateInfo& _Info);
 
     void JumpStart(const StateInfo& _Info);
     void JumpUpdate(float _DeltaTime, const StateInfo& _Info);
     void JumpEnd(const StateInfo& _Info);
+
+    void FallStart(const StateInfo& _Info);
+    void FallUpdate(float _DeltaTime, const StateInfo& _Info);
+    void FallEnd(const StateInfo& _Info);
+
+    void LandStart(const StateInfo& _Info);
+    void LandUpdate(float _DeltaTime, const StateInfo& _Info);
+    void LandEnd(const StateInfo& _Info);
 
     void AttackStart(const StateInfo& _Info);
     void AttackUpdate(float _DeltaTime, const StateInfo& _Info);
@@ -41,10 +57,13 @@ public:
 
     void DeathStart(const StateInfo& _Info);
     void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
+    void DeathEnd(const StateInfo& _Info);
 
-    bool DecideState(GameEngineCollision* _This, GameEngineCollision* _Other);
+    bool DetectPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);
 
     inline void ChangeState(const std::string& _State) { State_.ChangeState(_State); }
+
+    inline void EventOn() { EventOn_ = true; }
 
 protected:
     void Start() override;
@@ -63,64 +82,22 @@ private:
 
     float4 Target_;
 
+    APPEARFLOW Flow_;
+
     bool IsDecide_;
 
-    float DecideTime_;
-    float AppearTime_;
+    float4 JumpForce_;
 
-    float JumpForce_;
+    float DecideTime_;
+    float JumpHoldTime_;
 
     float Alpha_;
     bool  IsJump_;
+    bool  EventOn_;
 
-    inline void JumpFrame(const FrameAnimation_DESC& _Info, float _DeltaTime)
-    {
-        if (10 == _Info.CurFrame)
-        {
-            IsJump_ = true;
-        }
+    float Distance_;
 
-        if (19 == _Info.CurFrame)
-        {
-            IsJump_ = false;
-            JumpEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{0, 50});
-            JumpEffecter_->CreateEffect();
-        }
+    int AttackCount_;
 
-        if (25 == _Info.CurFrame)
-        {
-            //JumpCollider_->On();
-        }
-    }
-
-    inline void AttackFrame(const FrameAnimation_DESC& _Info)
-    {
-        if (16 == _Info.CurFrame)
-        {
-            AffectChecker->Move();
-            AffectChecker->On();
-
-            //AttackCollider_->On();
-        }
-
-        if (17 < _Info.CurFrame)
-        {
-            if (nullptr == AffectChecker)
-            {
-                return;
-            }
-
-            if (Dir_.CompareInt4D(float4::LEFT))
-            {
-                AttackEffecter_->SetCreatePos(AffectChecker->GetTransform().GetWorldPosition() + float4{0, 60});
-                AttackEffecter_->CreateEffect();
-            }
-
-            else
-            {
-                AttackEffecter_->SetCreatePos(AffectChecker->GetTransform().GetWorldPosition() + float4{0, 60});
-                AttackEffecter_->CreateEffect();
-            }
-        }
-    }
+    GameEngineRandom Random_;
 };

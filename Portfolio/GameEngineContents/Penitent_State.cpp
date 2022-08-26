@@ -733,7 +733,8 @@ void Penitent::ParryingStart(const StateInfo& _Info)
     MetaRenderer_->ChangeMetaAnimation("penitent_parry_failed");
 }
 
-void Penitent::ParryingUpdate(float _DeltaTime, const StateInfo& _Info) {
+void Penitent::ParryingUpdate(float _DeltaTime, const StateInfo& _Info) 
+{
 
 }
 

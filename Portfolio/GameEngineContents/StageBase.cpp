@@ -13,7 +13,6 @@ StageBase::StageBase()
 	, CameraZPos_(-1400.f)
 	, IsChangeCameraPos_(false)
 	, CameraOffset_(200.f)
-    , IsEvent_(false)
 {
 }
 

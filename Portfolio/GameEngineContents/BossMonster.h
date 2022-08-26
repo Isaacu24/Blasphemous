@@ -14,11 +14,13 @@ public:
     BossMonster& operator=(const BossMonster& _Other)     = delete;
     BossMonster& operator=(BossMonster&& _Other) noexcept = delete;
 
-    inline bool GetEventEnd() { return IsEventEnd_; }
+    inline void GetBossEvent(bool _Event) { BossEvent_ = _Event; }
+
+    inline bool GetBossEvent() { return BossEvent_; }
 
 protected:
     BossUI* BossUI_;
-    bool IsEventEnd_;
+    bool BossEvent_;
 
 private:
 };
