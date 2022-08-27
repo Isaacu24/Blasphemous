@@ -37,8 +37,6 @@ protected:
 
     float TrackDistance_;  // X축 사정거리
     float Crossroad_;
-
-    bool IsHit_;
     
    GameEngineCollision* PlayerCollision_;
 
@@ -54,8 +52,6 @@ protected:
     virtual bool DetectPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);
 
     virtual bool CrossroadCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
-
-    virtual void DamageCheck();
 
     inline void SetTrackDistance(float _Distance) { TrackDistance_ = _Distance; }
 

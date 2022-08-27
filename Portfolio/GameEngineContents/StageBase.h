@@ -68,8 +68,6 @@ protected:
 
 	bool IsChangeCameraPos_;
 
-	class GameEngineFontRenderer* Font_;
-
 	float CameraOffset_;
 
 private:

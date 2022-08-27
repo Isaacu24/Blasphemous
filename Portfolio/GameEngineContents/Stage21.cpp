@@ -70,13 +70,6 @@ void Stage21::Update(float _DeltaTime)
         case STAGEFLOW::BOSSAPPEAR:
             if ("Appear" != Pontiff_->GetState())
             {
-                Font_ = Stage_->CreateComponent<GameEngineFontRenderer>();
-                Font_->SetColor({0.88f, 0.88f, 0.65f, 1.0f});
-                Font_->SetScreenPostion({470, 600, -100.f});
-                Font_->SetText("마지막 기적의 아들", "Neo둥근모");
-                Font_->SetSize(35);
-                Font_->ChangeCamera(CAMERAORDER::UICAMERA);
-
                 CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
             }
             break;

@@ -59,3 +59,32 @@ bool MonsterBase::UphillRoadCheck(int _X, int _Y)
     }
 }
 
+
+void MonsterBase::DamageCheck()
+{
+    //스킬 임시 제외
+    if (false
+        == BodyCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+    {
+        IsHit_ = false;
+    }
+
+    if (true == IsHit_)
+    {
+        return;
+    }
+
+    if (true
+        == BodyCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+    {
+        MinusHP(10.f);
+        IsHit_ = true;
+    }
+
+    if (0 >= GetHP())
+    {
+        State_.ChangeState("Death");
+    }
+}

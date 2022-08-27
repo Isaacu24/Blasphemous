@@ -123,6 +123,7 @@ void Pontiff::AppearEnd(const StateInfo& _Info)
 {
     Face_->On(); 
     BossUI_->AllOn();
+    BossUI_->SetBossName("마지막 기적의 아들");
 }
 
 void Pontiff::OpeningStart(const StateInfo& _Info)

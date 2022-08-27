@@ -34,6 +34,8 @@ public:
         BarFrame_->On();
     }
 
+    void SetBossName(const std::string& _Name) { Font_->SetText(_Name, "NeoµÕ±Ù¸ð"); }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
@@ -44,6 +46,8 @@ private:
     LeftTopUI* HPBar_;
 
     BossMonster* Boss_;
+
+    GameEngineFontRenderer* Font_;
 
     // class GameEngineFontRenderer* TitleName_;
 };

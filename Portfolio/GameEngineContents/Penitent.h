@@ -183,6 +183,7 @@ private:
     int HitStack_;  //피격 이펙트 분기
 
     bool IsHit_;  //유효타
+    bool IsBossHit_;  //유효타
 
     bool IsGround_;
     bool IsDangle_;

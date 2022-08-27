@@ -1,5 +1,6 @@
 #pragma once
 #include "PreCompile.h"
+#include "BloodSplatters.h"
 
 //몬스터의 기본적인 클래스
 class MetaTextureRenderer;
@@ -54,6 +55,8 @@ public:
 protected:
     GameEngineStateManager State_;
 
+    BloodSplatters* BloodEffect_;
+
     MetaTextureRenderer*       MetaRenderer_;
     GameEngineTextureRenderer* Renderer_;
     GameEngineTextureRenderer* ColMap_;
@@ -70,10 +73,13 @@ protected:
 
     int Tear_;  //플레이어에게 전달한 눈물
 
+    bool IsHit_;
+
     bool IsGround_;
 
     bool GroundCheck(int _X, int _Y);
     bool UphillRoadCheck(int _X, int _Y);
+    virtual void DamageCheck();
 
 private:
 };

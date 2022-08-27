@@ -566,7 +566,7 @@ void Penitent::SetAnimation()
                                                       break;
 
                                                   case 5:
-                                                      if (true == IsHit_)
+                                                      if (true == IsHit_ || true == IsBossHit_)
                                                       {
                                                           HitEffect_->Renderer_->On();
                                                           IsHit_ = false;
@@ -597,7 +597,7 @@ void Penitent::SetAnimation()
                                                       break;
 
                                                   case 11:
-                                                      if (true == IsHit_)
+                                                      if (true == IsHit_ || true == IsBossHit_)
                                                       {
                                                           HitEffect_->Renderer_->On();
                                                           IsHit_ = false;
@@ -629,7 +629,7 @@ void Penitent::SetAnimation()
                                                       break;
 
                                                   case 20:
-                                                      if (true == IsHit_)
+                                                      if (true == IsHit_ || true == IsBossHit_)
                                                       {
                                                           HitEffect_->Renderer_->On();
                                                           IsHit_ = false;

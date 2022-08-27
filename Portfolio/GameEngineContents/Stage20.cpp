@@ -84,37 +84,28 @@ void Stage20::Update(float _DeltaTime)
 
             else
             {
-                if (nullptr == Font_)
-                {
-                    Font_ = Stage_->CreateComponent<GameEngineFontRenderer>();
-                    Font_->SetColor({0.65f, 0.65f, 0.45f, 1.0f});
-                    Font_->SetScreenPostion({470, 590, -100.f});
-                    Font_->SetText("에스크리바르 교황 성하", "Neo둥근모");
-                    Font_->SetSize(30);
-                    Font_->ChangeCamera(CAMERAORDER::UICAMERA);
+                Penitent_->ChangeState("Idle");
 
-                    Penitent_->ChangeState("Idle");
+                Pope_->On();
+                Pope_->GetTransform().PixLocalNegativeX();
+                Pope_->ChangeMonsterState("Appear");
+                Pope_->SetTarget(Penitent_);
 
-                    Pope_->On();
-                    Pope_->GetTransform().PixLocalNegativeX();
-                    Pope_->ChangeMonsterState("Appear");
-                    Pope_->SetTarget(Penitent_);
-                }
-
-                if (1660.f > Penitent_->GetTransform().GetLocalPosition().x)
-                {
-                    Penitent_->GetTransform().SetWorldPosition(
-                        {1660.f, Penitent_->GetTransform().GetWorldPosition().y});
-                }
-
-                else if (2900.f < Penitent_->GetTransform().GetLocalPosition().x)
-                {
-                    Penitent_->GetTransform().SetWorldPosition(
-                        {2900.f, Penitent_->GetTransform().GetWorldPosition().y});
-                }
+                CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
             }
             break;
         case STAGEFLOW::BOSSCOMBAT:
+            PlayerCameraMove();
+
+            if (1660.f > Penitent_->GetTransform().GetLocalPosition().x)
+            {
+                Penitent_->GetTransform().SetWorldPosition({1660.f, Penitent_->GetTransform().GetWorldPosition().y});
+            }
+
+            else if (2900.f < Penitent_->GetTransform().GetLocalPosition().x)
+            {
+                Penitent_->GetTransform().SetWorldPosition({2900.f, Penitent_->GetTransform().GetWorldPosition().y});
+            }
             break;
         case STAGEFLOW::BOSSDEAD:
             PlayerCameraMove();

@@ -65,10 +65,14 @@ public:
 
     inline void EventOn() { EventOn_ = true; }
 
+    inline bool GetDeathEvent() { return DeathEventOn_; }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
     void End() override;
+
+    void DamageCheck() override;
 
 private:
     float4 Dir_;
@@ -77,8 +81,6 @@ private:
     JumpCorpseEffecter*   JumpEffecter_;
 
     GravityActor* AffectChecker;
-
-    GameEngineCollision* JumpCollider_;
 
     float4 Target_;
 
@@ -91,9 +93,12 @@ private:
     float DecideTime_;
     float JumpHoldTime_;
 
+    float RealXDir_;
+
     float Alpha_;
     bool  IsJump_;
     bool  EventOn_;
+    bool  DeathEventOn_;
 
     float Distance_;
 

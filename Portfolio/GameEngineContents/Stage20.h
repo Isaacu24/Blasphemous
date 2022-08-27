@@ -25,7 +25,7 @@ protected:
     void LevelEndEvent() override;
 
 private:
-    class Pope*   Pope_;
+    class Pope* Pope_;
 
 	void PlayerCameraMove();
 };

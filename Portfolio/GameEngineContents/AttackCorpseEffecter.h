@@ -6,38 +6,34 @@ class GameEngineTextureRenderer;
 class AttackCorpseEffecter : public GameEngineActor
 {
 public:
-	AttackCorpseEffecter();
-	~AttackCorpseEffecter();
+    AttackCorpseEffecter();
+    ~AttackCorpseEffecter();
 
-	AttackCorpseEffecter(const AttackCorpseEffecter& _Other) = delete;
-	AttackCorpseEffecter(AttackCorpseEffecter&& _Other) noexcept = delete;
-	AttackCorpseEffecter& operator=(const AttackCorpseEffecter& _Other) = delete;
-	AttackCorpseEffecter& operator=(AttackCorpseEffecter&& _Other) noexcept = delete;
+    AttackCorpseEffecter(const AttackCorpseEffecter& _Other)                = delete;
+    AttackCorpseEffecter(AttackCorpseEffecter&& _Other) noexcept            = delete;
+    AttackCorpseEffecter& operator=(const AttackCorpseEffecter& _Other)     = delete;
+    AttackCorpseEffecter& operator=(AttackCorpseEffecter&& _Other) noexcept = delete;
 
-	inline void SetCreatePos(float4 _Pos)
-	{
-		CreatePos_ = _Pos;
-	}
+    inline void SetCreatePos(float4 _Pos) { CreatePos_ = _Pos; }
 
-	inline void CreateEffect()
-	{
-		IsCreate_ = true;
-	}
+    inline void CreateEffect() { IsCreate_ = true; }
 
-protected:	
-	void Start() override;
-	void Update(float _DeltaTime) override;
-	void End() override;
+    inline void SetDir(float _X) { DirX_ = _X; }
+
+protected:
+    void Start() override;
+    void Update(float _DeltaTime) override;
+    void End() override;
 
 private:
-	float4 CreatePos_;
-	float DelayTime_;
+    float4 CreatePos_;
+    float  DelayTime_;
 
-	float4 Dir_;
+    float DirX_;
 
-	int Index_;
+    int Index_;
 
-	bool IsCreate_;
+    bool IsCreate_;
 };
 
 //¿Ã∆Â∆Æ ±∏¡∂

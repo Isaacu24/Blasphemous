@@ -165,15 +165,10 @@ void Pope::Update(float _DeltaTime)
 {
     State_.Update(_DeltaTime);
 
-    if (true
-        == DetectCollider_->IsCollision(
-            CollisionType::CT_OBB2D,
-            COLLISIONORDER::Player,
-            CollisionType::CT_OBB2D,
-            std::bind(&Pope::DecideState, this, std::placeholders::_1, std::placeholders::_2)))
-    {
-        int a = 0;
-    }
+    DetectCollider_->IsCollision(CollisionType::CT_OBB2D,
+                                 COLLISIONORDER::Player,
+                                 CollisionType::CT_OBB2D,
+                                 std::bind(&Pope::DecideState, this, std::placeholders::_1, std::placeholders::_2));
 }
 
 void Pope::End() {}
@@ -198,7 +193,11 @@ void Pope::AppearStart(const StateInfo& _Info)
 
 void Pope::AppearUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Pope::AppearEnd(const StateInfo& _Info) { BossUI_->AllOn(); }
+void Pope::AppearEnd(const StateInfo& _Info) 
+{ 
+    BossUI_->AllOn(); 
+    BossUI_->SetBossName("에스크리바르 교황 성하");
+}
 
 void Pope::VanishingStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("pope_vanishing"); }
 

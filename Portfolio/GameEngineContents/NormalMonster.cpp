@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "NormalMonster.h"
+#include "BloodSplatters.h"
 
 NormalMonster::NormalMonster()
     : TrackDistance_(0.f)
@@ -7,7 +8,7 @@ NormalMonster::NormalMonster()
 
 NormalMonster::~NormalMonster() {}
 
-void NormalMonster::Start() {}
+void NormalMonster::Start() { BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>(); }
 
 void NormalMonster::Update(float _DeltaTime) {}
 
@@ -63,7 +64,6 @@ bool NormalMonster::LookAtPlayer(GameEngineCollision* _This, GameEngineCollision
 }
 
 
-
 bool NormalMonster::TrackPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
     LookAtPlayer(_This, _Other);
@@ -105,7 +105,6 @@ bool NormalMonster::DetectPlayer(GameEngineCollision* _This, GameEngineCollision
 }
 
 
-
 bool NormalMonster::CrossroadCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
     float Distance = _This->GetTransform().GetWorldPosition().x - _Other->GetTransform().GetWorldPosition().x;
@@ -118,34 +117,4 @@ bool NormalMonster::CrossroadCheck(GameEngineCollision* _This, GameEngineCollisi
     }
 
     return false;
-}
-
-
-void NormalMonster::DamageCheck()
-{
-    //스킬 임시 제외
-    if (false
-        == BodyCollider_->IsCollision(
-            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
-    {
-        IsHit_ = false;
-    }
-
-    if (true == IsHit_)
-    {
-        return;
-    }
-
-    if (true
-        == BodyCollider_->IsCollision(
-            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
-    {
-        MinusHP(10.f);
-        IsHit_ = true;
-    }
-
-    if (0 >= GetHP())
-    {
-        State_.ChangeState("Death");
-    }
 }

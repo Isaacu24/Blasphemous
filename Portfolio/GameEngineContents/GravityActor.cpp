@@ -27,8 +27,25 @@ void GravityActor::Update(float _DeltaTime)
 {
 	if (true == IsMove_)
 	{
-		Alpha_ += _DeltaTime;
-		GetTransform().SetWorldPosition(float4::LerpLimit(StartPos_, EndPos_, Alpha_));
+		//Alpha_ += _DeltaTime;
+        GetTransform().SetWorldMove({(Dir_.x * 800.f * _DeltaTime), 0.f});
+		//(float4::LerpLimit(StartPos_, EndPos_, Alpha_));
+
+		if (0 > Dir_.x)
+        {
+            if (EndPos_.x > GetTransform().GetWorldPosition().x)
+            {
+                IsMove_ = false;
+			}
+		}
+
+		else
+		{
+            if (EndPos_.x < GetTransform().GetWorldPosition().x)
+            {
+                IsMove_ = false;
+            }
+		}
 	}
 
 	GroundCheck();

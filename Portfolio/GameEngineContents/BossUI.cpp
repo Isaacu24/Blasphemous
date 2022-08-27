@@ -27,6 +27,11 @@ void BossUI::SetBossUI()
 
     HPBar_->GetTransform().SetWorldPosition({-292, -300});
     BarFrame_->GetTransform().SetWorldPosition({-350, -277});
+
+    Font_ = CreateComponent<GameEngineFontRenderer>();
+    Font_->SetColor({0.65f, 0.65f, 0.45f, 1.0f});
+    Font_->SetScreenPostion({450, 590, -100.f});
+    Font_->SetSize(30);
 }
 
 void BossUI::Update(float _DeltaTime) {}

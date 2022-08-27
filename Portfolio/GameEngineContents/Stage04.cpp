@@ -40,16 +40,16 @@ void Stage04::SettingStage()
     GameEngineTextureRenderer* BeforeParallaxRenderer3 = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer3->SetTexture("1_4_BeforeParallax_3.png");
     BeforeParallaxRenderer3->ScaleToTexture();
-    BeforeParallaxRenderer3->GetTransform().SetWorldPosition({50, -220, static_cast<int>(ACTORORDER::BeforeParallax3)});
+    BeforeParallaxRenderer3->GetTransform().SetWorldPosition({0, -220, static_cast<int>(ACTORORDER::BeforeParallax3)});
     BeforeParallaxRenderer3->GetTransform().SetWorldScale(BeforeParallaxRenderer3->GetTransform().GetWorldScale()
-                                                          * 2.5f);
+                                                          * 2.f);
 
     GameEngineTextureRenderer* BeforeParallaxRenderer4 = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer4->SetTexture("1_4_BeforeParallax_4.png");
     BeforeParallaxRenderer4->ScaleToTexture();
-    BeforeParallaxRenderer4->GetTransform().SetWorldPosition({50, -400, static_cast<int>(ACTORORDER::BeforeParallax4)});
+    BeforeParallaxRenderer4->GetTransform().SetWorldPosition({0, -400, static_cast<int>(ACTORORDER::BeforeParallax4)});
     BeforeParallaxRenderer4->GetTransform().SetWorldScale(BeforeParallaxRenderer4->GetTransform().GetWorldScale()
-                                                          * 2.5f);
+                                                          * 2.f);
 
     GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     StageRenderer->SetTexture("1_4_Tile.png");
@@ -140,13 +140,6 @@ void Stage04::StageFlowUpdate(float _DeltaTime)
             {
                 Penitent_->ChangeState("Idle");
 
-                Font_ = Stage_->CreateComponent<GameEngineFontRenderer>();
-                Font_->SetColor({0.65f, 0.65f, 0.45f, 1.0f});
-                Font_->SetScreenPostion({450, 590, -100.f});
-                Font_->SetText("Ä§¹¬ÇÏ´Â ºñÅºÀÇ ÆÄ¼ö²Û", "NeoµÕ±Ù¸ð");
-                Font_->SetSize(30);
-                Font_->ChangeCamera(CAMERAORDER::UICAMERA);
-
                 CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
             }
             break;
@@ -178,6 +171,10 @@ void Stage04::StageFlowUpdate(float _DeltaTime)
                     float4{1850, GetMainCameraActor()->GetTransform().GetLocalPosition().y, CameraZPos_});
             }
 
+            if (true == ElderBrother_->GetDeathEvent())
+            {
+                CurrentFlow_ = STAGEFLOW::BOSSDEAD;
+            }
             break;
         case STAGEFLOW::BOSSDEAD:
             PlayerCameraMove();
