@@ -2,6 +2,7 @@
 #include "ElderBrother.h"
 #include "GravityActor.h"
 #include "BloodSplatters.h"
+#include "HardLandingEffect.h "
 
 namespace
 {
@@ -22,26 +23,42 @@ void ElderBrother::Start()
     Renderer_->CreateFrameAnimationCutTexture("elderBrother_idle", {"elderBrother_idle.png", 0, 9, 0.1f, true});
 
     Renderer_->CreateFrameAnimationCutTexture("elderBrother_jumpStart", {"elderBrother_jump.png", 0, 8, 0.07f, false});
-    Renderer_->AnimationBindEnd("elderBrother_jumpStart",
+    Renderer_->CreateFrameAnimationCutTexture("elderBrother_jumpStart_event",
+                                              {"elderBrother_jump.png", 0, 8, 0.07f, false});
+
+    Renderer_->AnimationBindFrame(
+        "elderBrother_jumpStart",
+        [&](const FrameAnimation_DESC& _Info)
+        {
+            if (3 == _Info.CurFrame)
+            {
+                LandEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{0, 50});
+                LandEffect_->GetRenderer()->On();
+                LandEffect_->GetRenderer()->ChangeMetaAnimation("penitent_hardlanding_effects");
+            }
+        });
+
+    Renderer_->AnimationBindFrame("elderBrother_jumpStart",
+                                  [&](const FrameAnimation_DESC& _Info)
+                                  {
+                                      IsJump_ = true;
+                                      Renderer_->ChangeFrameAnimation("elderBrother_jump");
+                                  });
+
+    Renderer_->AnimationBindEnd("elderBrother_jumpStart_event",
                                 [&](const FrameAnimation_DESC& _Info)
                                 {
-                                    if (false == BossEvent_)
-                                    {
-                                        Flow_ = APPEARFLOW::Jump;
-                                        Renderer_->CurAnimationReset();
-                                    }
-
-                                    else
-                                    {
-                                        IsJump_ = true;
-                                    }
-
+                                    Flow_ = APPEARFLOW::Jump;
+                                    Renderer_->CurAnimationReset();
+                                    
+                                    IsJump_ = true;
                                     Renderer_->ChangeFrameAnimation("elderBrother_jump");
                                 });
 
     Renderer_->CreateFrameAnimationCutTexture("elderBrother_jump", {"elderBrother_jump.png", 9, 14, 0.07f, true});
 
     Renderer_->CreateFrameAnimationCutTexture("elderBrother_land", {"elderBrother_jump.png", 15, 24, 0.07f, false});
+    Renderer_->CreateFrameAnimationCutTexture("elderBrother_land_event", {"elderBrother_jump.png", 0, 8, 0.07f, false});
 
     Renderer_->AnimationBindFrame(
         "elderBrother_land",
@@ -55,6 +72,7 @@ void ElderBrother::Start()
         });
 
     Renderer_->AnimationBindEnd("elderBrother_land", [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+    Renderer_->AnimationBindEnd("elderBrother_land_event", [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
 
     Renderer_->CreateFrameAnimationCutTexture("elderBrother_attack", {"elderBrother_attack.png", 0, 23, 0.08f, false});
 
@@ -62,11 +80,6 @@ void ElderBrother::Start()
         "elderBrother_attack",
         [&](const FrameAnimation_DESC& _Info)
         {
-            if (false == BossEvent_)
-            {
-                return;
-            }
-
             if (16 == _Info.CurFrame)
             {
                 AffectChecker->Move();
@@ -109,29 +122,26 @@ void ElderBrother::Start()
             }
         });
 
-    Renderer_->AnimationBindEnd("elderBrother_attack",
+    Renderer_->AnimationBindEnd("elderBrother_attack", [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+
+    Renderer_->CreateFrameAnimationCutTexture("elderBrother_attack_event",
+                                              {"elderBrother_attack.png", 0, 8, 0.07f, false});
+
+    Renderer_->AnimationBindEnd("elderBrother_attack_event",
                                 [&](const FrameAnimation_DESC& _Info)
                                 {
-                                    if (false == BossEvent_)
+                                    if (0 == AttackCount_)
                                     {
-                                        if (0 == AttackCount_)
-                                        {
-                                            ++AttackCount_;
-                                            Flow_ = APPEARFLOW::Attack;
-                                        }
-
-                                        else if (1 == AttackCount_)
-                                        {
-                                            Flow_ = APPEARFLOW::JumpStart;
-                                        }
-
-                                        Renderer_->CurAnimationReset();
+                                        ++AttackCount_;
+                                        Flow_ = APPEARFLOW::Attack;
                                     }
 
-                                    else
+                                    else if (1 == AttackCount_)
                                     {
-                                        ChangeState("Idle");
+                                        Flow_ = APPEARFLOW::JumpStart;
                                     }
+
+                                    Renderer_->CurAnimationReset();
                                 });
 
     Renderer_->CreateFrameAnimationCutTexture("elderBrother_death", {"elderBrother_death.png", 0, 48, 0.07f, false});
@@ -219,15 +229,19 @@ void ElderBrother::Start()
     BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
     BloodEffect_->SetScale(200, 200);
     BloodEffect_->GetRenderer()->Off();
+
+    LandEffect_ = GetLevel()->CreateActor<HardLandingEffect>();
+    LandEffect_->GetTransform().SetWorldScale({2.5f, 2.5f, 1});
+    LandEffect_->GetRenderer()->Off();
 }
 
 void ElderBrother::Update(float _DeltaTime)
 {
     State_.Update(_DeltaTime);
 
-    if (true == GroundCheck(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y + 79.f)))
+    if (true == GroundCheck(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y + 59.f)))
     {
-        if (true == UphillRoadCheck(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y + 80.f)))
+        if (true == UphillRoadCheck(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y + 60.f)))
         {
             GetTransform().SetWorldMove(float4::UP);
         }
@@ -260,8 +274,8 @@ void ElderBrother::DamageCheck()
 
         BloodEffect_->GetTransform().SetWorldPosition(
             {BodyCollider_->GetTransform().GetWorldPosition().x + (-(Dir_.x) * 75.f),
-                                                       BodyCollider_->GetTransform().GetWorldPosition().y,
-                                                       static_cast<int>(ACTORORDER::PlayerEffect)});
+             BodyCollider_->GetTransform().GetWorldPosition().y,
+             static_cast<int>(ACTORORDER::PlayerEffect)});
         BloodEffect_->GetRenderer()->On();
         BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
 
@@ -290,10 +304,10 @@ void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
     switch (Flow_)
     {
         case APPEARFLOW::Attack:
-            Renderer_->ChangeFrameAnimation("elderBrother_attack");
+            Renderer_->ChangeFrameAnimation("elderBrother_attack_event");
             break;
         case APPEARFLOW::JumpStart:
-            Renderer_->ChangeFrameAnimation("elderBrother_jumpStart");
+            Renderer_->ChangeFrameAnimation("elderBrother_jumpStart_event");
             break;
         case APPEARFLOW::Jump:
             JumpForce_.y -= _DeltaTime * 200.f;
@@ -326,7 +340,7 @@ void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
 
             if (true == IsGround_)
             {
-                Renderer_->ChangeFrameAnimation("elderBrother_land");
+                Renderer_->ChangeFrameAnimation("elderBrother_land_event");
                 Flow_ = APPEARFLOW::Appear;
             }
             break;
@@ -472,7 +486,14 @@ void ElderBrother::FallUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void ElderBrother::FallEnd(const StateInfo& _Info) {}
 
-void ElderBrother::LandStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("elderBrother_land"); }
+void ElderBrother::LandStart(const StateInfo& _Info)
+{
+    Renderer_->ChangeFrameAnimation("elderBrother_land");
+
+    LandEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{0, 50});
+    LandEffect_->GetRenderer()->On();
+    LandEffect_->GetRenderer()->ChangeMetaAnimation("penitent_hardlanding_effects");
+}
 
 void ElderBrother::LandUpdate(float _DeltaTime, const StateInfo& _Info) { Gravity_->SetActive(!IsGround_); }
 

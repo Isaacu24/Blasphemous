@@ -221,6 +221,9 @@
     <ClInclude Include="BlockEffect.h">
       <Filter>Actor\Effect\Monster\Normal\ShieldMaiden</Filter>
     </ClInclude>
+    <ClInclude Include="HardLandingEffect.h">
+      <Filter>Actor\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -445,6 +448,9 @@
     </ClCompile>
     <ClCompile Include="BlockEffect.cpp">
       <Filter>Actor\Effect\Monster\Normal\ShieldMaiden</Filter>
+    </ClCompile>
+    <ClCompile Include="HardLandingEffect.cpp">
+      <Filter>Actor\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

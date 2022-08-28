@@ -5,6 +5,7 @@
 #include "JumpCorpseEffecter.h"
 #include "GravityActor.h"
 #include <GameEngineBase/GameEngineRandom.h>
+#include "MetaTextureRenderer.h"
 
 enum class APPEARFLOW
 {
@@ -81,6 +82,8 @@ private:
     JumpCorpseEffecter*   JumpEffecter_;
 
     GravityActor* AffectChecker;
+
+    class HardLandingEffect* LandEffect_;
 
     float4 Target_;
 
