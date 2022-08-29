@@ -26,7 +26,7 @@ void Stage21::SettingStage()
     GameEngineTextureRenderer* BeforeLayerRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeLayerRenderer1->SetTexture("12_3_BeforeLayer_1.png");
     BeforeLayerRenderer1->ScaleToTexture();
-    BeforeLayerRenderer1->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BeforeLayer2)});
+    BeforeLayerRenderer1->GetTransform().SetWorldPosition({0, -3, static_cast<int>(ACTORORDER::BeforeLayer2)});
     BeforeLayerRenderer1->GetTransform().SetWorldScale(BeforeLayerRenderer1->GetTransform().GetWorldScale() * 2.f);
 
     GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();

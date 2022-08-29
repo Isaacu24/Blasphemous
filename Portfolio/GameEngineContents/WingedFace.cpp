@@ -162,7 +162,7 @@ void WingedFace::ShootUpdate(float _DeltaTime, const StateInfo& _Info)
 
         VioletProjectile* LeftProjectile = GetLevel()->CreateActor<VioletProjectile>();
         LeftProjectile->SetGround(ColMap_);
-        LeftProjectile->SetDirection(float4::LEFT);
+        LeftProjectile->SetDirectionX(float4::LEFT);
         LeftProjectile->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x - 55.f,
                                                          GetTransform().GetWorldPosition().y,
                                                          static_cast<int>(ACTORORDER::AfterParallax5)});
@@ -170,7 +170,7 @@ void WingedFace::ShootUpdate(float _DeltaTime, const StateInfo& _Info)
 
         VioletProjectile* RightProjectile = GetLevel()->CreateActor<VioletProjectile>();
         RightProjectile->SetGround(ColMap_);
-        RightProjectile->SetDirection(float4::RIGHT);
+        RightProjectile->SetDirectionX(float4::RIGHT);
         RightProjectile->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x + 55.f,
                                                           GetTransform().GetWorldPosition().y,
                                                           static_cast<int>(ACTORORDER::AfterParallax5)});

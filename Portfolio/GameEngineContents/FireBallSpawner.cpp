@@ -41,7 +41,7 @@ void FireBallSpawner::CreateFireBall(const FrameAnimation_DESC& _Info)
         FireBall* Clone = GetLevel()->CreateActor<FireBall>();
         Clone->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
         Clone->SetGround(ColMap_);
-        Clone->SetSpeed(500.f);
+        Clone->SetSpeed(600.f);
         Clone->SetDirection(Dir_);
 
         ++BallCount_;

@@ -37,7 +37,7 @@ protected:
 	
 	void Shoot(float _DeltaTime) override
 	{ 
-        GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime); 
+        GetTransform().SetWorldMove({(Dir_.x * Speed_ * _DeltaTime), (Dir_.y * Speed_ * _DeltaTime)}); 
     }
 
 private:

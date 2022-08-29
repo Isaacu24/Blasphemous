@@ -16,7 +16,7 @@ public:
 
     virtual void SetGround(GameEngineTextureRenderer* _Texture) { ColMap_ = _Texture; }
 
-    virtual void SetDirection(float4 _Dir)
+    virtual void SetDirectionX(float4 _Dir)
     {
         Dir_ = _Dir;
 
@@ -30,6 +30,8 @@ public:
             Renderer_->GetTransform().PixLocalNegativeX();
         }
     }
+    
+    virtual void SetDirection(float4 _Dir){};
 
     virtual void SetSpeed(float _Speed) { Speed_ = _Speed; }
 

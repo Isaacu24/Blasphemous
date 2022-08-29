@@ -95,8 +95,6 @@ void Stage20::Update(float _DeltaTime)
             }
             break;
         case STAGEFLOW::BOSSCOMBAT:
-            PlayerCameraMove();
-
             if (1660.f > Penitent_->GetTransform().GetLocalPosition().x)
             {
                 Penitent_->GetTransform().SetWorldPosition({1660.f, Penitent_->GetTransform().GetWorldPosition().y});
@@ -105,6 +103,16 @@ void Stage20::Update(float _DeltaTime)
             else if (2900.f < Penitent_->GetTransform().GetLocalPosition().x)
             {
                 Penitent_->GetTransform().SetWorldPosition({2900.f, Penitent_->GetTransform().GetWorldPosition().y});
+            }
+
+            if (true == Pope_->IsDeath())
+            {
+                ChangeTime_ += _DeltaTime;
+
+                if (3.f <= ChangeTime_)
+                {
+                    GEngine::ChangeLevel("Stage21");
+                }
             }
             break;
         case STAGEFLOW::BOSSDEAD:

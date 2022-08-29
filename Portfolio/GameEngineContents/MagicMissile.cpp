@@ -26,7 +26,7 @@ void MagicMissile::Start()
 void MagicMissile::Update(float _DeltaTime) 
 { 
     Speed_ += _DeltaTime * 300.f;
-    GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime); 
+    GetTransform().SetWorldMove({(Dir_.x * Speed_ * _DeltaTime), (Dir_.y * Speed_ * _DeltaTime)});
 }
 
 void MagicMissile::End() {}

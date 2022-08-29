@@ -36,6 +36,10 @@ public:
 
     void SetBossName(const std::string& _Name) { Font_->SetText(_Name, "NeoµÕ±Ù¸ð"); }
 
+    void SetFontPosition(float4 _Value) { Font_->SetScreenPostion(_Value); }
+
+    void SetFontSize(float _Value) { Font_->SetSize(_Value); }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;

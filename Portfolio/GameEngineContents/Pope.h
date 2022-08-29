@@ -58,6 +58,8 @@ protected:
 
     void CreateSpawner();
 
+    void DamageCheck() override;
+
 private:
     float4 TeleportPos_[4];
 
@@ -74,13 +76,9 @@ private:
     GameEngineActor* Target_;  // Player
 
     GameEngineRandom Random_;
-    int              AppearPos_;
 
     float VanishingTime_;
 
-    bool DecideState(GameEngineCollision* _This, GameEngineCollision* _Other);
-
-    void ChangeSpellCast(const FrameAnimation_DESC& _Info) { State_.ChangeState("SpellCast"); }
-    //void ChangeAppear(const FrameAnimation_DESC& _Info) { State_.ChangeState("Appear"); }
-
+    bool IsVanishing_;
+    
 };

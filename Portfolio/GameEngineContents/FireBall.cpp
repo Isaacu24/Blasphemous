@@ -1,5 +1,7 @@
 #include "PreCompile.h"
 #include "FireBall.h"
+#include "MetaSpriteManager.h"
+#include "MetaTextureRenderer.h"
 
 FireBall::FireBall() {}
 
@@ -9,10 +11,23 @@ FireBall::~FireBall() {}
 void FireBall::Start()
 {
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
-    Renderer_->CreateFrameAnimationCutTexture("pope_fireBall", {"pope_fireBall.png", 0, 9, 0.1f, true});
-    Renderer_->CreateFrameAnimationFolder("FireBallExplosion", FrameAnimation_DESC{"FireBallExplosion", 0.1f, false});
+    Renderer_->CreateFrameAnimationCutTexture("pope_fireBall", {"pope_fireBall.png", 0, 9, 0.07f, true});
+
+    MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("fireTrap_projectile_destroyed");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "fireTrap_projectile_destroyed", {"fireTrap_projectile_destroyed.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true}, Data);
+    
+        MetaRenderer_->AnimationBindEnd("fireTrap_projectile_destroyed", [&](const FrameAnimation_DESC& _Info) { Death(); });
+    }
+
+    MetaRenderer_->Off();
+
     Renderer_->ChangeFrameAnimation("pope_fireBall");
-    Renderer_->GetTransform().SetWorldScale({300.f, 300.f, 1.f});
+    Renderer_->GetTransform().SetWorldScale({300.f, 350.f, 1.f});
     Renderer_->SetPivot(PIVOTMODE::CENTER);
 
     Collider_ = CreateComponent<GameEngineCollision>();
@@ -59,14 +74,14 @@ void FireBall::ShootUpdate(float _DeltaTime, const StateInfo& _Info) { Shoot(_De
 
 void FireBall::ExplosionStart(const StateInfo& _Info)
 {
-    Renderer_->ChangeFrameAnimation("FireBallExplosion");
+    Renderer_->Off();
+    Collider_->Off();
 
-    Renderer_->ChangeFrameAnimation("FireBallExplosion");
-    Renderer_->AnimationBindEnd("FireBallExplosion", std::bind(&FireBall::ExplosionEnd, this, std::placeholders::_1));
+    GetTransform().SetWorldScale({3.5f, 3.5f, 1});
+    MetaRenderer_->On();
 
-    Renderer_->GetColorData().MulColor = float4{0.88f, 0.4f, 0.33f, 1.0f};
-
-    Renderer_->GetTransform().SetWorldScale({100.f, 100.f});
+    MetaRenderer_->ChangeMetaAnimation("fireTrap_projectile_destroyed");
+    MetaRenderer_->GetColorData().MulColor = float4{0.88f, 0.4f, 0.33f, 1.0f};
 }
 
 void FireBall::ExplosionUpdate(float _DeltaTime, const StateInfo& _Info) {}

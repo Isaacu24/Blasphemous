@@ -18,22 +18,24 @@ public:
     LightiningBoltSpawner& operator=(const LightiningBoltSpawner& _Other)     = delete;
     LightiningBoltSpawner& operator=(LightiningBoltSpawner&& _Other) noexcept = delete;
 
-    void Strike() { IsStrike_ = true; }
+    inline void Strike() { IsStrike_ = true; }
 
-    void SetTarget(GameEngineActor* _Target) { Target_ = _Target; }
+    inline void SetTarget(GameEngineActor* _Target) { Target_ = _Target; }
 
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
     void End() override;
-    
+
 private:
     BOLTTYPE CurType_;
 
     bool IsStrike_;
 
+    float PosY_;
+
     GameEngineActor* Target_;
 
     float DelayTime_;
-    int StrikeCount_;
+    int   StrikeCount_;
 };

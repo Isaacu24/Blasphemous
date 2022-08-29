@@ -67,6 +67,8 @@ private:
     class LightiningBoltSpawner* LightiningBoltSpawner_;
     class MagicMissileSpawner*   MagicMissileSpawner_;
 
+    class PlatformSpawner* PlatformSpawner_;
+
     float AscensionSpeed_;
 
     float Time_;

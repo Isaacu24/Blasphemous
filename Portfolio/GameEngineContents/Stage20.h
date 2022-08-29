@@ -27,6 +27,8 @@ protected:
 private:
     class Pope* Pope_;
 
+	float ChangeTime_;
+
 	void PlayerCameraMove();
 };
 

@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Pontiff.h"
 #include "GiantSword.h"
+#include "PlatformSpawner.h"
 
 Pontiff::Pontiff() {}
 
@@ -18,13 +19,13 @@ void Pontiff::Start()
                                             {"pontiff_opening_helmet.png", 0, 0, 0.0f, false});
     Helmet_->CreateFrameAnimationCutTexture("pontiff_closing_helmet",
                                             {"pontiff_closing_helmet.png", 0, 0, 0.0f, false});
-    Helmet_->GetTransform().SetLocalScale({950, 1300});
+    Helmet_->GetTransform().SetLocalScale({900, 1300});
     Helmet_->GetTransform().SetLocalMove({0, 50});
 
     Body_->CreateFrameAnimationCutTexture("pontiff_idle_torso", {"pontiff_idle_torso.png", 0, 30, 0.2f, true});
     Body_->CreateFrameAnimationCutTexture("pontiff_opening_torso", {"pontiff_opening_torso.png", 0, 17, 0.1f, true});
     Body_->CreateFrameAnimationCutTexture("pontiff_closing_torso", {"pontiff_closing_torso.png", 0, 14, 0.1f, true});
-    Body_->GetTransform().SetLocalScale({950, 1100});
+    Body_->GetTransform().SetLocalScale({900, 1100});
     Body_->GetTransform().SetLocalMove({0, 35});
 
     Face_->CreateFrameAnimationCutTexture("pontiff_openIdle_face", {"pontiff_openIdle_face.png", 0, 30, 0.2f, true});
@@ -38,6 +39,8 @@ void Pontiff::Start()
 
     Face_->GetTransform().SetLocalScale({950, 1300});
     Face_->GetTransform().SetLocalMove({0, 50, -1});
+
+    PlatformSpawner_ = GetLevel()->CreateActor<PlatformSpawner>();
 
     State_.CreateStateMember("Appear",
                              std::bind(&Pontiff::AppearUpdate, this, std::placeholders::_1, std::placeholders::_2),
@@ -84,6 +87,7 @@ void Pontiff::Start()
 
     Collider_ = CreateComponent<GameEngineCollision>();
     Collider_->ChangeOrder(COLLISIONORDER::BossMonster);
+    Collider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{1.0f, 0.0f, 1.0f, 0.5f});
     Collider_->GetTransform().SetWorldScale({150.f, 150.f, 1.0f});
     Collider_->GetTransform().SetWorldMove({-30, 70});
 }
@@ -101,6 +105,8 @@ void Pontiff::AppearStart(const StateInfo& _Info)
     Helmet_->ChangeFrameAnimation("pontiff_opening_helmet");
     Body_->ChangeFrameAnimation("pontiff_idle_torso");
     Face_->Off();
+
+    PlatformSpawner_->CreateFristPattern();
 }
 
 void Pontiff::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -124,6 +130,8 @@ void Pontiff::AppearEnd(const StateInfo& _Info)
     Face_->On(); 
     BossUI_->AllOn();
     BossUI_->SetBossName("마지막 기적의 아들");
+    BossUI_->SetFontPosition({480, 590, -100.f});
+    BossUI_->SetFontSize(35);
 }
 
 void Pontiff::OpeningStart(const StateInfo& _Info)

@@ -1,4 +1,5 @@
 #pragma once
+#include <GameEngineCore/GameEngineActor.h>
 
 enum class SpawnerOrder
 {
@@ -6,12 +7,11 @@ enum class SpawnerOrder
 	SecondPattern,
 	ThirdPattern,
 	FourthPattern,
-	FifthPattern
 };
 
 //플랫폼 생성 위치를 알려주는 클래스
 class GameEngineLevel;
-class PlatformSpawner
+class PlatformSpawner : public GameEngineActor
 {
 public:
 	PlatformSpawner();
@@ -22,18 +22,22 @@ public:
 	PlatformSpawner& operator=(const PlatformSpawner& _Other) = delete;
 	PlatformSpawner& operator=(PlatformSpawner&& _Other) noexcept = delete;
 
-	void CreateFristPattern(GameEngineLevel* _Level);
-	void CreateSecondPattern(GameEngineLevel* _Level);
-	void CreateThirdPattern(GameEngineLevel* _Level);
-	void CreateFourthPattern(GameEngineLevel* _Level);
-	void CreateFifthPattern(GameEngineLevel* _Level);
+	void CreateFristPattern();
+	void CreateSecondPattern();
+	void CreateThirdPattern();
+	void CreateFourthPattern();
 
 protected:
+    void Start() override;
+    void Update(float _DeltaTime) override;
+    void End() override;
 
 private:
 	SpawnerOrder CurrentOrder_;
 
-
+	float CreateTime_;
+	
+	bool IsCreate_;
 };
 
  

@@ -21,7 +21,6 @@ public:
     { 
         Dir_ = _Dir; 
         Dir_.Normalize();
-        Dir_ = float4{Dir_.x, -1, 0};
     }
 
 protected:

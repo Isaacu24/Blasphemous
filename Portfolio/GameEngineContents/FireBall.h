@@ -6,6 +6,8 @@ class FireBall
     : public Projectile
     , public GameEngineActor
 {
+    friend class FireBallSpawner;
+
 public:
     FireBall();
     ~FireBall();
@@ -28,18 +30,19 @@ public:
         return true;
     }
 
-    inline void ExplosionEnd(const FrameAnimation_DESC& _Info) { Death(); }
-
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
     void End() override;
 
-    void Shoot(float _DeltaTime) override 
+    void Shoot(float _DeltaTime) override
     {
-        Speed_ += _DeltaTime * 200.f;
-        GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime); 
+        Speed_ += _DeltaTime * 300.f;
+        GetTransform().SetWorldMove({(Dir_.x * Speed_ * _DeltaTime), (Dir_.y * Speed_ * _DeltaTime)}); 
     }
 
+    void SetDirection(float4 _Dir) override { Dir_ = _Dir; };
+
 private:
+    MetaTextureRenderer* MetaRenderer_;
 };

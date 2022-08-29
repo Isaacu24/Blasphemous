@@ -24,6 +24,8 @@ enum class ACTORORDER
 	Player,
 	NPC,
 
+	Platform,
+
     Temp2,
     
 	Temp3,
@@ -59,6 +61,7 @@ enum class ACTORORDER
 enum class COLLISIONORDER
 {
     Player,
+    PlayerFoot,
     PlayerAttack,
     PlayerSkill,
     PlayerSkill1,
@@ -77,6 +80,7 @@ enum class COLLISIONORDER
     RightLedge,
     Debug,
     GlassSwitch,
+    Platform,
 };
 
 

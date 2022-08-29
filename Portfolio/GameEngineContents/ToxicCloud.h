@@ -28,19 +28,16 @@ public:
         return true;
     }
 
-    void ExplosionEnd(const FrameAnimation_DESC& _Info) { Death(); }
-
-    void CloudEnd(const FrameAnimation_DESC& _Info, GameEngineTextureRenderer* _Cloud) 
-    { 
-        _Cloud->Off(); 
-    }
-
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
     void End() override;
 
-    void Shoot(float _DeltaTime) override { GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime); }
+    void Shoot(float _DeltaTime) override 
+    { 
+        Speed_ += _DeltaTime * 150;
+        GetTransform().SetWorldMove({(Dir_.x * Speed_ * _DeltaTime), (Dir_.y * Speed_ * _DeltaTime)}); 
+    }
 
 private:
     GameEngineTextureRenderer* ExplsionV1_;

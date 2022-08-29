@@ -240,6 +240,12 @@ void Blasphemous::LoadResources()
         }
     }
 
+    {
+        GameEngineDirectory Dir;
+        MovePath(Dir, {"ContentsResources", "Resources", "MetaAtlas", "MetaObject"});
+        MetaSpriteManager::Inst_->Load(Dir);
+    }
+
     GameEngineFont::Load("±Ã¼­");
     GameEngineFont::Load("NeoµÕ±Ù¸ð");
 
@@ -343,13 +349,6 @@ void Blasphemous::LoadNormalMonster()
         {
             GameEngineTexture::Load(Textures[i].GetFullPath());
         }
-    }
-
-    {
-        GameEngineDirectory Dir;
-        MovePath(Dir, {"ContentsResources", "Resources", "Sprite", "Effect", "FireBallExplosion"});
-
-        GameEngineFolderTexture::Load(Dir.GetFullPath());
     }
 }
 

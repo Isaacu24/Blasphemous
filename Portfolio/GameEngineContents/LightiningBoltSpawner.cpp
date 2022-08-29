@@ -31,17 +31,18 @@ void LightiningBoltSpawner::Update(float _DeltaTime)
     {
         case BOLTTYPE::Pair:
             {
+                float4 TargetPos = Target_->GetTransform().GetWorldPosition();
+
                 {
                     LightiningBolt* Bolt = GetLevel()->CreateActor<LightiningBolt>();
-                    Bolt->GetTransform().SetWorldPosition(Target_->GetTransform().GetWorldPosition() + float4{50, 310});
+                    Bolt->GetTransform().SetWorldPosition({TargetPos.x - 50.f, GetTransform().GetWorldPosition().y});
                 }
 
                 {
                     LightiningBolt* Bolt = GetLevel()->CreateActor<LightiningBolt>();
-                    Bolt->GetTransform().SetWorldPosition(Target_->GetTransform().GetWorldPosition()
-                                                          + float4{-50, 310});
+                    Bolt->GetTransform().SetWorldPosition({TargetPos.x + 50.f, GetTransform().GetWorldPosition().y});
                 }
-               
+
                 DelayTime_ -= 2.0f;
                 CurType_ = BOLTTYPE::Alone;
 
@@ -50,16 +51,16 @@ void LightiningBoltSpawner::Update(float _DeltaTime)
             break;
         case BOLTTYPE::Alone:
             {
+                float4 TargetPos = Target_->GetTransform().GetWorldPosition();
+
                 LightiningBolt* Bolt = GetLevel()->CreateActor<LightiningBolt>();
-                Bolt->GetTransform().SetWorldPosition(Target_->GetTransform().GetWorldPosition() + float4{0, 310});
+                Bolt->GetTransform().SetWorldPosition({TargetPos.x, GetTransform().GetWorldPosition().y});
 
                 DelayTime_ -= 2.0f;
                 CurType_ = BOLTTYPE::Pair;
 
                 ++StrikeCount_;
             }
-            break;
-        default:
             break;
     }
 }

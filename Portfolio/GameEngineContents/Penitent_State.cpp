@@ -302,8 +302,6 @@ void Penitent::JumpAttackStart(const StateInfo& _Info)
 
     MetaRenderer_->ChangeMetaAnimation("penitent_jumping_attack_noslashes");
 
-    AttackCollider_->On();
-
     if (0 < RealXDir_)  //¿À¸¥ÂÊ
     {
         AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
@@ -645,7 +643,6 @@ void Penitent::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
     {
         MetaRenderer_->ChangeMetaAnimation("penitent_upward_attack_clamped_anim");
 
-        AttackCollider_->On();
         AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
         AttackCollider_->GetTransform().SetWorldMove({0.f, 150.f});
     }
@@ -656,8 +653,6 @@ void Penitent::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 void Penitent::AttackEnd(const StateInfo& _Info)
 {
     AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
-    AttackCollider_->Off();
-
     AttackStack_ = 0;
 }
 

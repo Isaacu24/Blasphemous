@@ -45,6 +45,13 @@ void Penitent::GroundCheck()
     {
         IsGround_ = false;
     }
+
+    if (true
+        == PlatformCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::Platform, CollisionType::CT_OBB2D, nullptr))
+    {
+        IsGround_ = true;
+    }
 }
 
 void Penitent::LadderCheck()

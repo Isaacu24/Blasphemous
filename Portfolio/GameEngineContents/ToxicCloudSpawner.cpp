@@ -12,21 +12,22 @@ void ToxicCloudSpawner::Update(float _DeltaTime)
 {
     DelayTime_ += _DeltaTime;
 
-    if (1.0f <= DelayTime_)
+    if (0.5f <= DelayTime_)
     {
         float XPos = Random_.RandomFloat(2000, 2800);
 
-        DelayTime_ -= 1.0f;
+        DelayTime_ -= 0.5f;
 
         ToxicCloud* Clone = GetLevel()->CreateActor<ToxicCloud>();
-        Clone->GetTransform().SetLocalPosition({XPos, -1300, static_cast<int>(ACTORORDER::BossMonster)});
+        Clone->GetTransform().SetWorldPosition({XPos, -1300, static_cast<int>(ACTORORDER::BossMonster)});
         Clone->SetGround(ColMap_);
-        Clone->SetDirection(Dir_);
+        Clone->SetDirectionX(Dir_);
 
         ++CloudCount_;
 
         if (10 == CloudCount_)
         {
+            CloudCount_ = 0;
             Off();
         }
     }

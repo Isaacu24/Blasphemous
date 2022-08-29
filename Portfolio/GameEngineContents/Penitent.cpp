@@ -87,6 +87,11 @@ void Penitent::Start()
     AttackCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 0.0f, 1.0f, 0.5f});
     AttackCollider_->Off();
 
+    PlatformCollider_ = CreateComponent<GameEngineCollision>();
+    PlatformCollider_->GetTransform().SetWorldScale({10.f, 10.f, 1.f});
+    PlatformCollider_->ChangeOrder(COLLISIONORDER::PlayerFoot);
+    PlatformCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.0f, 0.0f, 0.0f, 1.f});
+
     DebugColliders_.resize(10);
 
     for (size_t i = 0; i < DebugColliders_.size(); i++)
@@ -172,6 +177,7 @@ void Penitent::Update(float _DeltaTime)
 
     GameEngineDebug::OutPutString("PenitentZ: " + std::to_string(HitEffect_->GetTransform().GetWorldPosition().z));
 
+
     // GameEngineDebug::OutPutString("MousePosX: "
     //                               + std::to_string(GetLevel()->GetMainCamera()->GetMouseWorldPositionToActor().x));
     // GameEngineDebug::OutPutString("MousePosY: "
@@ -237,6 +243,27 @@ void Penitent::SetAnimation()
             "penitent_jumping_attack_noslashes",
             {"penitent_jumping_attack_noslashes.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
             Data);
+
+        MetaRenderer_->AnimationBindFrame("penitent_jumping_attack_noslashes",
+                                          [&](const FrameAnimation_DESC& _Info)
+                                          {
+                                              switch (_Info.CurFrame)
+                                              {
+                                                  case 5:
+                                                      AttackCollider_->On();
+                                                      break;
+                                                  case 6:
+                                                      if (true == IsHit_ || true == IsBossHit_)
+                                                      {
+                                                          HitEffect_->Renderer_->On();
+                                                          IsHit_ = false;
+                                                      }
+                                                      break;
+                                                  case 7:
+                                                      AttackCollider_->Off();
+                                                      break;
+                                              }
+                                          });
 
         MetaRenderer_->AnimationBindEnd("penitent_jumping_attack_noslashes",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Fall"); });
@@ -462,7 +489,7 @@ void Penitent::SetAnimation()
                                                       break;
                                               }
 
-                                              if (true == IsHit_)
+                                              if (true == IsHit_ || true == IsBossHit_)
                                               {
                                                   HitEffect_->Renderer_->On();
                                                   IsHit_ = false;
@@ -540,8 +567,33 @@ void Penitent::SetAnimation()
             {"penitent_upward_attack_clamped_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true},
             Data);
 
-        MetaRenderer_->AnimationBindEnd("penitent_upward_attack_clamped_anim",
-                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+        MetaRenderer_->AnimationBindFrame("penitent_upward_attack_clamped_anim",
+                                          [&](const FrameAnimation_DESC& _Info)
+                                          {
+                                              switch (_Info.CurFrame)
+                                              {
+                                                  case 5:
+                                                      AttackCollider_->On();
+                                                      HitStack_ = 0;
+                                                      break;
+
+                                                  case 6:
+                                                      if (true == IsHit_ || true == IsBossHit_)
+                                                      {
+                                                          HitEffect_->Renderer_->On();
+                                                          IsHit_ = false;
+                                                      }
+                                                      break;
+
+                                                  case 7:
+                                                      AttackCollider_->Off();
+                                                      break;
+                                              }
+                                          });
+        {
+            MetaRenderer_->AnimationBindEnd("penitent_upward_attack_clamped_anim",
+                                            [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+        }
     }
 
     {
@@ -676,10 +728,7 @@ void Penitent::SetAnimation()
             Data);
 
         MetaRenderer_->AnimationBindEnd("penitent_parry_failed",
-                                        [&](const FrameAnimation_DESC& _Info) 
-            { 
-                ChangeState("Idle"); 
-            });
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
 
