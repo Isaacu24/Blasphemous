@@ -79,7 +79,10 @@ protected:
 
     bool GroundCheck(int _X, int _Y);
     bool UphillRoadCheck(int _X, int _Y);
+
     virtual void DamageCheck();
+    virtual void DamageCheck(float _Damage);
 
 private:
 };
+

@@ -13,10 +13,9 @@ public:
     Platform& operator=(const Platform& _Other)     = delete;
     Platform& operator=(Platform&& _Other) noexcept = delete;
 
-    inline void SetDeathTime(float _Time) 
-    { 
-        DeathTime_ = _Time; 
-    }
+    inline void SetDeathTime(float _Time) { DeathTime_ = _Time; }
+
+    inline MetaTextureRenderer* GetRenderer() { return MetaRenderer_; }
 
 protected:
     void Start() override;

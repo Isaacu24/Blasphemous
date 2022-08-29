@@ -28,25 +28,10 @@ void Platform::Start()
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("ashplatform_64x64_anim");
 
-        std::vector<MetaData> NewData = {};
-        NewData.resize(11);
-
-        NewData[0]  = Data[0];
-        NewData[1]  = Data[3];
-        NewData[2]  = Data[2];
-        NewData[3]  = Data[1];
-        NewData[4]  = Data[10];
-        NewData[5]  = Data[9];
-        NewData[6]  = Data[8];
-        NewData[7]  = Data[6];
-        NewData[8]  = Data[5];
-        NewData[9]  = Data[7];
-        NewData[10] = Data[4];
-
         MetaRenderer_->CreateMetaAnimation(
             "ashplatform_64x64_anim",
-            {"ashplatform_64x64_anim.png", 0, static_cast<unsigned int>(NewData.size() - 1), 0.15f, true},
-            NewData);
+            {"ashplatform_64x64_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            Data);
     }
 
     {

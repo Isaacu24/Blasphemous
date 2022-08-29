@@ -128,6 +128,10 @@ protected:
     void KnockBackUpdate(float _DeltaTime, const StateInfo& _Info);
     void KnockBackEnd(const StateInfo& _Info);
 
+    void KnockUpStart(const StateInfo& _Info);
+    void KnockUpUpdate(float _DeltaTime, const StateInfo& _Info);
+    void KnockUpEnd(const StateInfo& _Info);
+
     void ParryingStart(const StateInfo& _Info);
     void ParryingUpdate(float _DeltaTime, const StateInfo& _Info);
     void ParryingEnd(const StateInfo& _Info);

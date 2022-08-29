@@ -247,18 +247,6 @@ bool Penitent::KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other
         return false;
     }
 
-    float Dir = _This->GetTransform().GetWorldPosition().x - _Other->GetTransform().GetWorldPosition().x;
-
-    if (0 >= Dir)  //몬스터가 오른쪽에 있다.
-    {
-        RealXDir_ = -1;
-    }
-
-    else if (0 < Dir)  //몬스터가 왼쪽에 있다.
-    {
-        RealXDir_ = 1;
-    }
-
     State_.ChangeState("KnockBack");
 
     return true;

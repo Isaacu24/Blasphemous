@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "PlatformSpawner.h"
 #include "Platform.h"
+#include "MetaTextureRenderer.h"
 
 PlatformSpawner::PlatformSpawner()
     : CurrentOrder_(SpawnerOrder::FristPattern)
@@ -12,23 +13,23 @@ PlatformSpawner::~PlatformSpawner() {}
 
 void PlatformSpawner::CreateFristPattern()
 {
-    std::vector<Platform*> Platforms;
+    Platforms_.clear();
 
     for (int i = 0; i < 6; i++)
     {
-        Platforms.push_back(GetLevel()->CreateActor<Platform>());
+        Platforms_.push_back(GetLevel()->CreateActor<Platform>());
 
         float4 Pos = GetTransform().GetWorldPosition();
-        Platforms[i]->GetTransform().SetWorldScale({2.f, 2.f, 1});
-        Platforms[i]->SetDeathTime(7.f);
+        Platforms_[i]->GetTransform().SetWorldScale({2.f, 2.f, 1});
+        Platforms_[i]->SetDeathTime(7.f);
     }
 
-    Platforms[0]->GetTransform().SetWorldPosition({650, -650, static_cast<int>(ACTORORDER::Platform)});
-    Platforms[1]->GetTransform().SetWorldPosition({800, -800, static_cast<int>(ACTORORDER::Platform)});
-    Platforms[2]->GetTransform().SetWorldPosition({1000, -650, static_cast<int>(ACTORORDER::Platform)});
-    Platforms[3]->GetTransform().SetWorldPosition({1500, -650, static_cast<int>(ACTORORDER::Platform)});
-    Platforms[4]->GetTransform().SetWorldPosition({1700, -800, static_cast<int>(ACTORORDER::Platform)});
-    Platforms[5]->GetTransform().SetWorldPosition({1850, -650, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[0]->GetTransform().SetWorldPosition({650, -650, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[1]->GetTransform().SetWorldPosition({800, -800, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[2]->GetTransform().SetWorldPosition({1000, -650, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[3]->GetTransform().SetWorldPosition({1500, -650, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[4]->GetTransform().SetWorldPosition({1700, -800, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[5]->GetTransform().SetWorldPosition({1850, -650, static_cast<int>(ACTORORDER::Platform)});
 
     IsCreate_ = true;
 
@@ -37,71 +38,81 @@ void PlatformSpawner::CreateFristPattern()
 
 void PlatformSpawner::CreateSecondPattern()
 {
-    std::vector<Platform*> Platforms;
+    Platforms_.clear();
 
     for (int i = 0; i < 6; i++)
     {
-        Platforms.push_back(GetLevel()->CreateActor<Platform>());
+        Platforms_.push_back(GetLevel()->CreateActor<Platform>());
 
         float4 Pos = GetTransform().GetWorldPosition();
-        Platforms[i]->GetTransform().SetWorldScale({2.f, 2.f, 1});
-        Platforms[i]->SetDeathTime(7.f);
+        Platforms_[i]->GetTransform().SetWorldScale({2.f, 2.f, 1});
+        Platforms_[i]->SetDeathTime(7.f);
     }
 
-    Platforms[0]->GetTransform().SetWorldPosition({700, -800, static_cast<int>(ACTORORDER::Platform)});
-    Platforms[1]->GetTransform().SetWorldPosition({800, -550, static_cast<int>(ACTORORDER::Platform)});
-    Platforms[2]->GetTransform().SetWorldPosition({1100, -650, static_cast<int>(ACTORORDER::Platform)});
-    Platforms[3]->GetTransform().SetWorldPosition({1400, -650, static_cast<int>(ACTORORDER::Platform)});
-    Platforms[4]->GetTransform().SetWorldPosition({1700, -550, static_cast<int>(ACTORORDER::Platform)});
-    Platforms[5]->GetTransform().SetWorldPosition({1800, -800, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[0]->GetTransform().SetWorldPosition({700, -800, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[1]->GetTransform().SetWorldPosition({800, -550, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[2]->GetTransform().SetWorldPosition({1100, -650, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[3]->GetTransform().SetWorldPosition({1400, -650, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[4]->GetTransform().SetWorldPosition({1700, -550, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[5]->GetTransform().SetWorldPosition({1800, -800, static_cast<int>(ACTORORDER::Platform)});
 
     CurrentOrder_ = SpawnerOrder::ThirdPattern;
 }
 
 void PlatformSpawner::CreateThirdPattern()
 {
-    std::vector<Platform*> Platforms;
+    Platforms_.clear();
 
     for (int i = 0; i < 6; i++)
     {
-        Platforms.push_back(GetLevel()->CreateActor<Platform>());
+        Platforms_.push_back(GetLevel()->CreateActor<Platform>());
 
         float4 Pos = GetTransform().GetWorldPosition();
-        Platforms[i]->GetTransform().SetWorldScale({2.f, 2.f, 1});
-        Platforms[i]->SetDeathTime(7.f);
+        Platforms_[i]->GetTransform().SetWorldScale({2.f, 2.f, 1});
+        Platforms_[i]->SetDeathTime(7.f);
     }
 
-    Platforms[0]->GetTransform().SetWorldPosition({800, -650, static_cast<int>(ACTORORDER::Platform)});
-    Platforms[1]->GetTransform().SetWorldPosition({900, -550, static_cast<int>(ACTORORDER::Platform)});
-    Platforms[2]->GetTransform().SetWorldPosition({1100, -600, static_cast<int>(ACTORORDER::Platform)});
-    Platforms[3]->GetTransform().SetWorldPosition({1400, -600, static_cast<int>(ACTORORDER::Platform)});
-    Platforms[4]->GetTransform().SetWorldPosition({1600, -550, static_cast<int>(ACTORORDER::Platform)});
-    Platforms[5]->GetTransform().SetWorldPosition({1700, -650, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[0]->GetTransform().SetWorldPosition({800, -650, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[1]->GetTransform().SetWorldPosition({900, -550, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[2]->GetTransform().SetWorldPosition({1100, -600, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[3]->GetTransform().SetWorldPosition({1400, -600, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[4]->GetTransform().SetWorldPosition({1600, -550, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[5]->GetTransform().SetWorldPosition({1700, -650, static_cast<int>(ACTORORDER::Platform)});
 
     CurrentOrder_ = SpawnerOrder::FourthPattern;
 }
 
-void PlatformSpawner::CreateFourthPattern() 
-{ 
-        std::vector<Platform*> Platforms;
+void PlatformSpawner::CreateFourthPattern()
+{
+    Platforms_.clear();
 
     for (int i = 0; i < 6; i++)
     {
-        Platforms.push_back(GetLevel()->CreateActor<Platform>());
+        Platforms_.push_back(GetLevel()->CreateActor<Platform>());
 
         float4 Pos = GetTransform().GetWorldPosition();
-        Platforms[i]->GetTransform().SetWorldScale({2.f, 2.f, 1});
-        Platforms[i]->SetDeathTime(7.f);
+        Platforms_[i]->GetTransform().SetWorldScale({2.f, 2.f, 1});
+        Platforms_[i]->SetDeathTime(7.f);
     }
 
-    Platforms[0]->GetTransform().SetWorldPosition({900, -800, static_cast<int>(ACTORORDER::Platform)});
-    Platforms[1]->GetTransform().SetWorldPosition({1100, -500, static_cast<int>(ACTORORDER::Platform)});
-    Platforms[2]->GetTransform().SetWorldPosition({1150, -750, static_cast<int>(ACTORORDER::Platform)});
-    Platforms[3]->GetTransform().SetWorldPosition({1450, -750, static_cast<int>(ACTORORDER::Platform)});
-    Platforms[4]->GetTransform().SetWorldPosition({1500, -500, static_cast<int>(ACTORORDER::Platform)});
-    Platforms[5]->GetTransform().SetWorldPosition({1600, -800, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[0]->GetTransform().SetWorldPosition({900, -800, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[1]->GetTransform().SetWorldPosition({1100, -500, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[2]->GetTransform().SetWorldPosition({1150, -750, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[3]->GetTransform().SetWorldPosition({1450, -750, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[4]->GetTransform().SetWorldPosition({1500, -500, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[5]->GetTransform().SetWorldPosition({1600, -800, static_cast<int>(ACTORORDER::Platform)});
 
-    CurrentOrder_ = SpawnerOrder::FristPattern; 
+    CurrentOrder_ = SpawnerOrder::FristPattern;
+}
+
+void PlatformSpawner::DeathPlatform() 
+{
+    for (int i = 0; i < Platforms_.size(); i++)
+    {
+        Platforms_[i]->GetRenderer()->ChangeMetaAnimation("bloodsand_platform_64x64_visible_to_novisible");
+    }
+
+    Platforms_.clear();
 }
 
 
@@ -121,7 +132,7 @@ void PlatformSpawner::Update(float _DeltaTime)
         switch (CurrentOrder_)
         {
             case SpawnerOrder::FristPattern:
-                CreateFristPattern();   
+                CreateFristPattern();
                 break;
             case SpawnerOrder::SecondPattern:
                 CreateSecondPattern();
@@ -131,6 +142,9 @@ void PlatformSpawner::Update(float _DeltaTime)
                 break;
             case SpawnerOrder::FourthPattern:
                 CreateFourthPattern();
+                break;
+            case SpawnerOrder::Death:
+                DeathPlatform();
                 break;
         }
 

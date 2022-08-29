@@ -26,7 +26,7 @@ void Stage21::SettingStage()
     GameEngineTextureRenderer* BeforeLayerRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeLayerRenderer1->SetTexture("12_3_BeforeLayer_1.png");
     BeforeLayerRenderer1->ScaleToTexture();
-    BeforeLayerRenderer1->GetTransform().SetWorldPosition({0, -3, static_cast<int>(ACTORORDER::BeforeLayer2)});
+    BeforeLayerRenderer1->GetTransform().SetWorldPosition({0, -5, static_cast<int>(ACTORORDER::BeforeLayer2)});
     BeforeLayerRenderer1->GetTransform().SetWorldScale(BeforeLayerRenderer1->GetTransform().GetWorldScale() * 2.f);
 
     GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
@@ -65,22 +65,19 @@ void Stage21::Update(float _DeltaTime)
     switch (CurrentFlow_)
     {
         case STAGEFLOW::NORMAL:
-            PlayerCameraMove();
             break;
         case STAGEFLOW::BOSSAPPEAR:
             if ("Appear" != Pontiff_->GetState())
             {
-                CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
+                 CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
             }
             break;
         case STAGEFLOW::BOSSCOMBAT:
-            PlayerCameraMove();
             break;
         case STAGEFLOW::BOSSDEAD:
             break;
-        default:
-            break;
     }
+
     PlayerCameraMove();
 }
 
@@ -91,6 +88,16 @@ void Stage21::PlayerCameraMove()
     {
         GetMainCameraActor()->GetTransform().SetWorldMove({0, 0, CameraZPos_});
         IsChangeCameraPos_ = true;
+    }
+
+    GetMainCameraActor()->GetTransform().SetWorldPosition({GetMainCameraActor()->GetTransform().GetWorldPosition().x,
+                                                           Penitent_->GetTransform().GetLocalPosition().y + 275.f,
+                                                           CameraZPos_});
+
+    if (-600 < GetMainCameraActor()->GetTransform().GetWorldPosition().y)
+    {
+        GetMainCameraActor()->GetTransform().SetWorldPosition(
+            {GetMainCameraActor()->GetTransform().GetWorldPosition().x, -600, CameraZPos_});
     }
 
     if (680 > Penitent_->GetTransform().GetWorldPosition().x)

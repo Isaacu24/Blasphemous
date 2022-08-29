@@ -3,17 +3,29 @@
 #include "MetaSpriteManager.h"
 #include "MetaTextureRenderer.h"
 
-MoveEffect::MoveEffect() 
-{
-}
+MoveEffect::MoveEffect() {}
 
-MoveEffect::~MoveEffect() 
-{
-}
+MoveEffect::~MoveEffect() {}
 
-void MoveEffect::Start() 
+void MoveEffect::Start()
 {
     Renderer_ = CreateComponent<MetaTextureRenderer>();
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_running_dust_anim");
+
+        Renderer_->CreateMetaAnimation(
+            "penitent_running_dust_anim",
+            {"penitent_running_dust_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            Data);
+
+        Renderer_->AnimationBindEnd("penitent_running_dust_anim",
+                                    [&](const FrameAnimation_DESC& _Info)
+                                    {
+                                        Renderer_->CurAnimationReset();
+                                        Renderer_->Off();
+                                    });
+    }
 
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent-stop-running-dust");
@@ -24,8 +36,12 @@ void MoveEffect::Start()
             Data);
 
         Renderer_->AnimationBindEnd("penitent-stop-running-dust",
-                                    [&](const FrameAnimation_DESC& _Info) { Renderer_->Off(); });
-    }   
+                                    [&](const FrameAnimation_DESC& _Info)
+                                    {
+                                        Renderer_->CurAnimationReset();
+                                        Renderer_->Off();
+                                    });
+    }
 
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent-jumping-landing-dust-anim");
@@ -36,7 +52,62 @@ void MoveEffect::Start()
             Data);
 
         Renderer_->AnimationBindEnd("penitent-jumping-landing-dust-anim",
-                                    [&](const FrameAnimation_DESC& _Info) { Renderer_->Off(); });
+                                    [&](const FrameAnimation_DESC& _Info)
+                                    {
+                                        Renderer_->CurAnimationReset();
+                                        Renderer_->Off();
+                                    });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_start_dodge_dust_anim");
+
+        Renderer_->CreateMetaAnimation(
+            "penitent_start_dodge_dust_anim",
+            {"penitent_start_dodge_dust_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true},
+            Data);
+
+        Renderer_->AnimationBindEnd("penitent_start_dodge_dust_anim",
+                                    [&](const FrameAnimation_DESC& _Info)
+                                    {
+                                        Renderer_->CurAnimationReset();
+                                        Renderer_->Off();
+                                    });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_stop_dodge_dust_anim");
+
+        Renderer_->CreateMetaAnimation(
+            "penitent_stop_dodge_dust_anim",
+            {"penitent_stop_dodge_dust_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true},
+            Data);
+
+        Renderer_->AnimationBindEnd("penitent_stop_dodge_dust_anim",
+                                    [&](const FrameAnimation_DESC& _Info)
+                                    {
+                                        Renderer_->CurAnimationReset();
+                                        Renderer_->Off();
+                                    });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_pushback_grounded_dust_effect_anim");
+
+        Renderer_->CreateMetaAnimation("penitent_pushback_grounded_dust_effect_anim",
+                                       {"penitent_pushback_grounded_dust_effect_anim.png",
+                                        0,
+                                        static_cast<unsigned int>(Data.size() - 1),
+                                        0.07f,
+                                        true},
+                                       Data);
+
+        Renderer_->AnimationBindEnd("penitent_pushback_grounded_dust_effect_anim",
+                                    [&](const FrameAnimation_DESC& _Info)
+                                    {
+                                        Renderer_->CurAnimationReset();
+                                        Renderer_->Off();
+                                    });
     }
 
     Renderer_->SetPivot(PIVOTMODE::METABOT);

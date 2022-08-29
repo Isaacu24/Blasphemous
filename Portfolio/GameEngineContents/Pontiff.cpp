@@ -2,6 +2,8 @@
 #include "Pontiff.h"
 #include "GiantSword.h"
 #include "PlatformSpawner.h"
+#include "PontiffMainBody.h"
+
 
 Pontiff::Pontiff() {}
 
@@ -9,14 +11,18 @@ Pontiff::~Pontiff() {}
 
 void Pontiff::Start()
 {
-    Helmet_   = CreateComponent<GameEngineTextureRenderer>();
-    Body_     = CreateComponent<GameEngineTextureRenderer>();
-    Face_     = CreateComponent<GameEngineTextureRenderer>();
-    MainBody_ = CreateComponent<GameEngineTextureRenderer>();
+    Helmet_ = CreateComponent<GameEngineTextureRenderer>();
+    Body_   = CreateComponent<GameEngineTextureRenderer>();
+    Face_   = CreateComponent<GameEngineTextureRenderer>();
+
+    MainBody_ = GetLevel()->CreateActor<PontiffMainBody>();
+    MainBody_->Off();
 
     Helmet_->CreateFrameAnimationCutTexture("pontiff_idle_helmet", {"pontiff_idle_helmet.png", 0, 30, 0.2f, true});
+
     Helmet_->CreateFrameAnimationCutTexture("pontiff_opening_helmet",
                                             {"pontiff_opening_helmet.png", 0, 0, 0.0f, false});
+
     Helmet_->CreateFrameAnimationCutTexture("pontiff_closing_helmet",
                                             {"pontiff_closing_helmet.png", 0, 0, 0.0f, false});
     Helmet_->GetTransform().SetLocalScale({900, 1300});
@@ -35,7 +41,7 @@ void Pontiff::Start()
     Face_->CreateFrameAnimationCutTexture("pontiff_closing_face", {"pontiff_closing_face.png", 0, 14, 0.1f, false});
 
     Face_->CreateFrameAnimationCutTexture("pontiff_openedIdle_face_DEATH",
-                                          {"pontiff_openedIdle_face_DEATH.png", 0, 64, 0.2f, true});
+                                          {"pontiff_openedIdle_face_DEATH.png", 0, 64, 0.1f, false});
 
     Face_->GetTransform().SetLocalScale({950, 1300});
     Face_->GetTransform().SetLocalMove({0, 50, -1});
@@ -73,10 +79,6 @@ void Pontiff::Start()
                              std::bind(&Pontiff::DeathEnd, this, std::placeholders::_1));
     State_.ChangeState("Appear");
 
-    MainBody_->SetTexture("pontiff-boss-fight-spritesheet_8.png");
-    MainBody_->GetTransform().SetLocalScale({500, 520});
-    MainBody_->Off();
-
     GiantSword_ = GetLevel()->CreateActor<GiantSword>();
     GiantSword_->GetTransform().SetWorldPosition({1400, -600, static_cast<int>(ACTORORDER::BossMonster)});
 
@@ -85,16 +87,21 @@ void Pontiff::Start()
     BossUI_->SetBossUI();
     BossUI_->AllOff();
 
-    Collider_ = CreateComponent<GameEngineCollision>();
-    Collider_->ChangeOrder(COLLISIONORDER::BossMonster);
-    Collider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{1.0f, 0.0f, 1.0f, 0.5f});
-    Collider_->GetTransform().SetWorldScale({150.f, 150.f, 1.0f});
-    Collider_->GetTransform().SetWorldMove({-30, 70});
+    BodyCollider_ = CreateComponent<GameEngineCollision>();
+    BodyCollider_->ChangeOrder(COLLISIONORDER::BossMonster);
+    BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{1.0f, 0.0f, 1.0f, 0.5f});
+    BodyCollider_->GetTransform().SetWorldScale({150.f, 150.f, 1.0f});
+    BodyCollider_->GetTransform().SetWorldMove({-30, 70});
 }
 
-void Pontiff::Update(float _DeltaTime) 
-{ 
-    State_.Update(_DeltaTime); 
+void Pontiff::Update(float _DeltaTime)
+{
+    State_.Update(_DeltaTime);
+
+    if ("Death" != State_.GetCurStateStateName())
+    {
+        MonsterBase::DamageCheck(10.f);
+    }
 }
 
 void Pontiff::End() {}
@@ -113,11 +120,6 @@ void Pontiff::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     Time_ += _DeltaTime;
 
-    if (false == GiantSword_->IsUpdate())
-    {
-        State_.ChangeState("CloseIdle");
-    }
-
     if (3.f <= Time_)
     {
         Time_ = 0.f;
@@ -125,9 +127,9 @@ void Pontiff::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 }
 
-void Pontiff::AppearEnd(const StateInfo& _Info) 
+void Pontiff::AppearEnd(const StateInfo& _Info)
 {
-    Face_->On(); 
+    Face_->On();
     BossUI_->AllOn();
     BossUI_->SetBossName("마지막 기적의 아들");
     BossUI_->SetFontPosition({480, 590, -100.f});
@@ -139,72 +141,68 @@ void Pontiff::OpeningStart(const StateInfo& _Info)
     Helmet_->ChangeFrameAnimation("pontiff_opening_helmet");
     Body_->ChangeFrameAnimation("pontiff_opening_torso");
     Face_->ChangeFrameAnimation("pontiff_opening_face");
-
-    Face_->AnimationBindEnd("pontiff_opening_face", std::bind(&Pontiff::OpenAnimationEnd, this, std::placeholders::_1));
 }
 
 void Pontiff::OpeningUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Pontiff::OpeningEnd(const StateInfo& _Info) {}
 
-void Pontiff::OpenIdleStart(const StateInfo& _Info) 
+void Pontiff::OpenIdleStart(const StateInfo& _Info)
 {
     Helmet_->ChangeFrameAnimation("pontiff_idle_helmet");
     Body_->ChangeFrameAnimation("pontiff_idle_torso");
     Face_->ChangeFrameAnimation("pontiff_openIdle_face");
-
-    Face_->AnimationBindEnd("pontiff_openIdle_face",
-                            std::bind(&Pontiff::OpenIdleAnimationEnd, this, std::placeholders::_1));
 }
 
 void Pontiff::OpenIdleUpdate(float _DeltaTime, const StateInfo& _Info) {}
 void Pontiff::OpenIdleEnd(const StateInfo& _Info) {}
 
-void Pontiff::ClosingStart(const StateInfo& _Info) 
+void Pontiff::ClosingStart(const StateInfo& _Info)
 {
     Helmet_->ChangeFrameAnimation("pontiff_closing_helmet");
     Body_->ChangeFrameAnimation("pontiff_closing_torso");
     Face_->ChangeFrameAnimation("pontiff_closing_face");
-
-    Face_->AnimationBindEnd("pontiff_closing_face",
-                            std::bind(&Pontiff::CloseAnimationEnd, this, std::placeholders::_1));
 }
 
 void Pontiff::ClosingUpdate(float _DeltaTime, const StateInfo& _Info) {}
 void Pontiff::ClosingEnd(const StateInfo& _Info) {}
 
-void Pontiff::CloseIdleStart(const StateInfo& _Info) 
+void Pontiff::CloseIdleStart(const StateInfo& _Info)
 {
     Face_->Off();
     Helmet_->ChangeFrameAnimation("pontiff_idle_helmet");
     Body_->ChangeFrameAnimation("pontiff_idle_torso");
-
-    Body_->AnimationBindEnd("pontiff_idle_torso",
-                            std::bind(&Pontiff::CloseIdleAnimationEnd, this, std::placeholders::_1));
 }
 
-void Pontiff::CloseIdleUpdate(float _DeltaTime, const StateInfo& _Info) 
-{
+void Pontiff::CloseIdleUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-}
-
-void Pontiff::CloseIdleEnd(const StateInfo& _Info) 
-{ Face_->On(); }
+void Pontiff::CloseIdleEnd(const StateInfo& _Info) { Face_->On(); }
 
 
 void Pontiff::DeathStart(const StateInfo& _Info)
 {
     MainBody_->On();
+    AscensionSpeed_ = 100; 
+
     MainBody_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
                                                 GetTransform().GetWorldPosition().y - 200,
-                                                static_cast<int>(ACTORORDER::BossMonster)});
+                                                static_cast<int>(ACTORORDER::BeforeLayer5)});
+
+    PlatformSpawner_->SetSpawnerOrder(SpawnerOrder::Death);
+
+    Face_->ChangeFrameAnimation("pontiff_openedIdle_face_DEATH");
+
+    BossUI_->AllOff();
+
+    Body_->CurAnimationPauseOn();
+    Helmet_->CurAnimationPauseOn();
 }
 
 void Pontiff::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    AscensionSpeed_ += _DeltaTime * 350.f;
+    AscensionSpeed_ += 500.f * _DeltaTime;
 
     MainBody_->GetTransform().SetWorldMove(float4::UP * AscensionSpeed_ * _DeltaTime);
 }
 
-void Pontiff::DeathEnd(const StateInfo& _Info) { AscensionSpeed_ = 0; }
+void Pontiff::DeathEnd(const StateInfo& _Info) { }

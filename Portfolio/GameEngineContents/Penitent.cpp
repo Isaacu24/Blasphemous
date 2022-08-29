@@ -173,9 +173,11 @@ void Penitent::Update(float _DeltaTime)
         PlayerUI_->Inventory_->Off();
     }
 
-    GameEngineDebug::OutPutString("PlayerState: " + State_.GetCurStateStateName());
+    //GameEngineDebug::OutPutString("PlayerState: " + State_.GetCurStateStateName());
 
-    GameEngineDebug::OutPutString("PenitentZ: " + std::to_string(HitEffect_->GetTransform().GetWorldPosition().z));
+    GameEngineDebug::OutPutString("RealX: " + std::to_string(RealXDir_));
+    GameEngineDebug::OutPutString("RealX: " + std::to_string(RealXDir_));
+    GameEngineDebug::OutPutString("RealX: " + std::to_string(RealXDir_));
 
 
     // GameEngineDebug::OutPutString("MousePosX: "
@@ -249,17 +251,32 @@ void Penitent::SetAnimation()
                                           {
                                               switch (_Info.CurFrame)
                                               {
-                                                  case 5:
+                                                  case 2:
                                                       AttackCollider_->On();
+                                                      HitStack_ = 0;
                                                       break;
-                                                  case 6:
+                                                  case 3:
                                                       if (true == IsHit_ || true == IsBossHit_)
                                                       {
                                                           HitEffect_->Renderer_->On();
                                                           IsHit_ = false;
                                                       }
                                                       break;
+                                                  case 4:
+                                                      AttackCollider_->Off();
+                                                      break;
                                                   case 7:
+                                                      AttackCollider_->On();
+                                                      HitStack_ = 1;
+                                                      break;
+                                                  case 8:
+                                                      if (true == IsHit_ || true == IsBossHit_)
+                                                      {
+                                                          HitEffect_->Renderer_->On();
+                                                          IsHit_ = false;
+                                                      }
+                                                      break;
+                                                  case 9:
                                                       AttackCollider_->Off();
                                                       break;
                                               }
@@ -269,6 +286,7 @@ void Penitent::SetAnimation()
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Fall"); });
     }
 
+    //점프 업 공격
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_upward_attack_jump");
 
@@ -276,6 +294,30 @@ void Penitent::SetAnimation()
             "penitent_upward_attack_jump",
             {"penitent_upward_attack_jump.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
             Data);
+
+        MetaRenderer_->AnimationBindFrame("penitent_upward_attack_jump",
+                                          [&](const FrameAnimation_DESC& _Info)
+                                          {
+                                              switch (_Info.CurFrame)
+                                              {
+                                                  case 4:
+                                                      AttackCollider_->On();
+                                                      HitStack_ = 0;
+                                                      break;
+
+                                                  case 5:
+                                                      if (true == IsHit_ || true == IsBossHit_)
+                                                      {
+                                                          HitEffect_->Renderer_->On();
+                                                          IsHit_ = false;
+                                                      }
+                                                      break;
+
+                                                  case 6:
+                                                      AttackCollider_->Off();
+                                                      break;
+                                              }
+                                          });
 
         MetaRenderer_->AnimationBindEnd("penitent_upward_attack_jump",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Fall"); });
@@ -313,8 +355,21 @@ void Penitent::SetAnimation()
             {"penitent_dodge_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
             Data);
 
-        MetaRenderer_->AnimationBindEnd("penitent_dodge_anim",
-                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+        MetaRenderer_->AnimationBindEnd(
+            "penitent_dodge_anim",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                if (true == GameEngineInput::GetInst()->IsFreeKey("PenitentRight")
+                    && true == GameEngineInput::GetInst()->IsFreeKey("PenitentLeft"))
+                {
+                    MoveEffect_->Renderer_->On();
+                    MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()
+                                                                 + float4{RealXDir_ * 50.f, 0});
+                    MoveEffect_->Renderer_->ChangeMetaAnimation("penitent_stop_dodge_dust_anim");
+                }
+
+                ChangeState("Idle");
+            });
     }
 
     {
@@ -337,6 +392,30 @@ void Penitent::SetAnimation()
             "penitent_running_anim",
             {"penitent_running_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, true},
             Data);
+
+        MetaRenderer_->AnimationBindFrame(
+            "penitent_running_anim",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                if (0 == _Info.CurFrame || 2 == _Info.CurFrame || 4 == _Info.CurFrame || 6 == _Info.CurFrame)
+                {
+                    MoveEffect_->Renderer_->On();
+                    MoveEffect_->Renderer_->ChangeMetaAnimation("penitent_running_dust_anim");
+
+                    if (1 == RealXDir_)
+                    {
+                        MoveEffect_->GetTransform().PixLocalPositiveX();
+                    }
+
+                    else if (-1 == RealXDir_)
+                    {
+                        MoveEffect_->GetTransform().PixLocalNegativeX();
+                    }
+
+                    MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()
+                                                                 + float4{-(RealXDir_ * 50.f), 0});
+                }
+            });
     }
 
     {
@@ -707,6 +786,19 @@ void Penitent::SetAnimation()
     }
 
     {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_getting_up_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_getting_up_anim",
+            {"penitent_getting_up_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_getting_up_anim",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+    }
+
+
+    {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("Penitent_pushback_grounded");
 
         MetaRenderer_->CreateMetaAnimation(
@@ -714,8 +806,37 @@ void Penitent::SetAnimation()
             {"Penitent_pushback_grounded.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
             Data);
 
+        MetaRenderer_->AnimationBindFrame(
+            "Penitent_pushback_grounded",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                if (9 == _Info.CurFrame)
+                {
+                    MoveEffect_->Renderer_->On();
+                }
+
+                if (9 <= _Info.CurFrame)
+                {
+                    MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
+                    MoveEffect_->Renderer_->ChangeMetaAnimation("penitent_pushback_grounded_dust_effect_anim");
+                }
+            });
+
         MetaRenderer_->AnimationBindEnd("Penitent_pushback_grounded",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_throwback_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_throwback_anim",
+            {"penitent_throwback_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_throwback_anim",
+                                        [&](const FrameAnimation_DESC& _Info)
+                                        { MetaRenderer_->ChangeMetaAnimation("penitent_getting_up_anim"); });
     }
 
     //패링

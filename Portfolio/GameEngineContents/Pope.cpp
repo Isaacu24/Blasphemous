@@ -258,7 +258,7 @@ void Pope::VanishingEnd(const StateInfo& _Info)
 
     int AppearPos_ = Random_.RandomInt(0, 3);
 
-     switch (AppearPos_)
+    switch (AppearPos_)
     {
         case 0:
             GetTransform().PixLocalPositiveX();

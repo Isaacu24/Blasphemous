@@ -88,3 +88,32 @@ void MonsterBase::DamageCheck()
         State_.ChangeState("Death");
     }
 }
+
+void MonsterBase::DamageCheck(float _Damage)
+{
+    //스킬 임시 제외
+    if (false
+        == BodyCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+    {
+        IsHit_ = false;
+    }
+
+    if (true == IsHit_)
+    {
+        return;
+    }
+
+    if (true
+        == BodyCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+    {
+        MinusHP(_Damage);
+        IsHit_ = true;
+    }
+
+    if (0 >= GetHP())
+    {
+        State_.ChangeState("Death");
+    }
+}

@@ -17,7 +17,8 @@ void Penitent::IdleStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnim
 
 void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    if (20000 < GameEngineInput::GetInst()->GetThumbLX() || true == GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
+    if (20000 < GameEngineInput::GetInst()->GetThumbLX()
+        || true == GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
     {
         State_.ChangeState("Move");
     }
@@ -97,6 +98,12 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
         if (1.f <= RunTime_)
         {
             MetaRenderer_->ChangeMetaAnimation("penintent_stop_run_anim");
+
+            MoveEffect_->Renderer_->On();
+            MoveEffect_->GetTransform().PixLocalPositiveX();
+            MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()
+                                                         + float4{RealXDir_ * 50.f, 0});
+            MoveEffect_->Renderer_->ChangeMetaAnimation("penitent-stop-running-dust");
         }
 
         else
@@ -125,6 +132,12 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
         if (1.f <= RunTime_)
         {
             MetaRenderer_->ChangeMetaAnimation("penintent_stop_run_anim");
+
+            MoveEffect_->Renderer_->On();
+            MoveEffect_->GetTransform().PixLocalNegativeX();
+            MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()
+                                                         + float4{RealXDir_ * 50.f, 0});
+            MoveEffect_->Renderer_->ChangeMetaAnimation("penitent-stop-running-dust");
         }
 
         else
@@ -173,6 +186,10 @@ void Penitent::JumpStart(const StateInfo& _Info)
 {
     JumpForce_ = 100.f;
     MetaRenderer_->ChangeMetaAnimation("penitent_jump_anim");
+
+    MoveEffect_->Renderer_->On();
+    MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
+    MoveEffect_->Renderer_->ChangeMetaAnimation("penitent-jumping-landing-dust-anim");
 }
 
 void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -280,6 +297,7 @@ void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
     if (GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
     {
         JumpForce_.y -= _DeltaTime * 100.f;
+        FallTime_ += _DeltaTime / 2;
     }
 
     if (true == IsGround_)
@@ -373,11 +391,8 @@ void Penitent::KnockBackStart(const StateInfo& _Info)
         return;
     }
 
-    //착지 시에 피격 당할 경우 추락 시간은 0
     FallTime_ = 0.f;
-
     MetaRenderer_->ChangeMetaAnimation("Penitent_pushback_grounded");
-
     BodyCollider_->Off();
 }
 
@@ -388,13 +403,42 @@ void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
-    GetTransform().SetWorldMove(float4{RealXDir_, 0} * 150.f * _DeltaTime);
+    GetTransform().SetWorldMove(float4{-(RealXDir_), 0} * 150.f * _DeltaTime);
     Gravity_->SetActive(!IsGround_);
 }
 
 void Penitent::KnockBackEnd(const StateInfo& _Info) 
+{ 
+    BodyCollider_->On();
+}
+
+void Penitent::KnockUpStart(const StateInfo& _Info)
 {
-    BodyCollider_->On(); }
+    if ("LadderClimb" == _Info.PrevState)
+    {
+        State_.ChangeState("LadderClimb");
+        return;
+    }
+
+    FallTime_ = 0.f;
+
+    MetaRenderer_->ChangeMetaAnimation("penitent_throwback_anim");
+
+    BodyCollider_->Off();
+}
+
+void Penitent::KnockUpUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    if (true == RightObstacleCheck() || true == LeftObstacleCheck())
+    {
+        return;
+    }
+
+    GetTransform().SetWorldMove(float4{RealXDir_, 0} * 150.f * _DeltaTime);
+    Gravity_->SetActive(!IsGround_);
+}
+
+void Penitent::KnockUpEnd(const StateInfo& _Info) { BodyCollider_->On(); }
 
 void Penitent::LandingStart(const StateInfo& _Info)
 {
@@ -412,7 +456,7 @@ void Penitent::LandingStart(const StateInfo& _Info)
         return;
     }
 
-    if (1.0f <= FallTime_)
+    if (0.9f <= FallTime_)
     {
         MetaRenderer_->ChangeMetaAnimation("penitent_hardlanding_rocks_anim");
     }
@@ -435,10 +479,7 @@ void Penitent::LandingStart(const StateInfo& _Info)
     }
 }
 
-void Penitent::LandingUpdate(float _DeltaTime, const StateInfo& _Info) 
-{ 
-    Gravity_->SetActive(!IsGround_); 
-}
+void Penitent::LandingUpdate(float _DeltaTime, const StateInfo& _Info) { Gravity_->SetActive(!IsGround_); }
 
 void Penitent::LandingEnd(const StateInfo& _Info) { FallTime_ = 0.f; }
 
@@ -482,6 +523,21 @@ void Penitent::SlideStart(const StateInfo& _Info)
 
     BodyCollider_->GetTransform().SetWorldScale({ColScale_.y, ColScale_.x});
     BodyCollider_->GetTransform().SetWorldMove({0, -50});
+
+    MoveEffect_->Renderer_->On();
+
+    if (1 == RealXDir_)
+    {
+        MoveEffect_->GetTransform().PixLocalPositiveX();
+    }
+
+    else if (-1 == RealXDir_)
+    {
+        MoveEffect_->GetTransform().PixLocalNegativeX();
+    }
+
+    MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{RealXDir_ * 50.f, 0});
+    MoveEffect_->Renderer_->ChangeMetaAnimation("penitent_start_dodge_dust_anim");
 }
 
 void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -507,6 +563,8 @@ void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
     {
         if (false == FallCollisionCheck())
         {
+            MoveEffect_->Renderer_->Off();
+
             JumpForce_ = 10.f;
             State_.ChangeState("Fall");
         }
@@ -707,7 +765,7 @@ void Penitent::VerticalAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 
     Dir_ = GetTransform().GetUpVector() * 10.f;
 
-    if (true == IsGround_)  
+    if (true == IsGround_)
     {
         ChangeState("Landing");
         return;
@@ -723,16 +781,8 @@ void Penitent::VerticalAttackEnd(const StateInfo& _Info)
     AttackCollider_->Off();
 }
 
-void Penitent::ParryingStart(const StateInfo& _Info) 
-{ 
-    MetaRenderer_->ChangeMetaAnimation("penitent_parry_failed");
-}
+void Penitent::ParryingStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penitent_parry_failed"); }
 
-void Penitent::ParryingUpdate(float _DeltaTime, const StateInfo& _Info) 
-{
+void Penitent::ParryingUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-}
-
-void Penitent::ParryingEnd(const StateInfo& _Info) {
-
-}
+void Penitent::ParryingEnd(const StateInfo& _Info) {}

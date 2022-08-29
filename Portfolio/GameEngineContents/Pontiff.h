@@ -54,9 +54,8 @@ private:
     class GameEngineTextureRenderer* Helmet_;
     GameEngineTextureRenderer*       Body_;
     GameEngineTextureRenderer*       Face_;
-    GameEngineTextureRenderer*       MainBody_;
 
-    GameEngineCollision* Collider_;
+    class PontiffMainBody* MainBody_;
 
     class GiantSword* GiantSword_;
 
@@ -72,17 +71,6 @@ private:
     float AscensionSpeed_;
 
     float Time_;
-
-    void OpenAnimationEnd(const FrameAnimation_DESC& _Info) { State_.ChangeState("OpenIdle"); }
-
-    void OpenIdleAnimationEnd(const FrameAnimation_DESC& _Info) { State_.ChangeState("Closing"); }
-
-    void CloseAnimationEnd(const FrameAnimation_DESC& _Info) { State_.ChangeState("CloseIdle"); }
-
-    void CloseIdleAnimationEnd(const FrameAnimation_DESC& _Info) 
-    { 
-        State_.ChangeState("Opening"); 
-    }
 };
 
 

@@ -224,6 +224,9 @@
     <ClInclude Include="HardLandingEffect.h">
       <Filter>Actor\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="PontiffMainBody.h">
+      <Filter>Actor\BossMonster\Pontiff</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -451,6 +454,9 @@
     </ClCompile>
     <ClCompile Include="HardLandingEffect.cpp">
       <Filter>Actor\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="PontiffMainBody.cpp">
+      <Filter>Actor\BossMonster\Pontiff</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

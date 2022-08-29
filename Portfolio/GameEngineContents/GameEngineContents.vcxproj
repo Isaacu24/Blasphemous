@@ -212,6 +212,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PontiffMainBody.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Pope.h">
       <SubType>
       </SubType>
@@ -505,6 +509,10 @@
     </ClCompile>
     <ClCompile Include="Penitent_State.cpp" />
     <ClCompile Include="Pontiff.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PontiffMainBody.cpp">
       <SubType>
       </SubType>
     </ClCompile>
