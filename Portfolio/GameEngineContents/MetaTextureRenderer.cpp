@@ -6,9 +6,9 @@ MetaTextureRenderer::MetaTextureRenderer() {}
 MetaTextureRenderer::~MetaTextureRenderer() {}
 
 
-void MetaTextureRenderer::Start() 
-{ 
-    GameEngineTextureRenderer::Start(); 
+void MetaTextureRenderer::Start()
+{
+    GameEngineTextureRenderer::Start();
 
     GetClonePipeLine(GetPipeLine());
 }
@@ -23,18 +23,17 @@ void MetaTextureRenderer::Update(float _Delta)
     }
 }
 
-void MetaTextureRenderer::End() 
-{ 
-    GameEngineTextureRenderer::End(); 
-}
+void MetaTextureRenderer::End() { GameEngineTextureRenderer::End(); }
 
 void MetaTextureRenderer::MetaSetPivot()
 {
-    float X = CurData_[GetCurAniInfo().CurFrame].PivotX - 0.5f;
-    float Y = (1 - CurData_[GetCurAniInfo().CurFrame].PivotY) - 0.5f;
+    int Index_ = GetCurAniInfo().Frames[GetCurAniInfo().CurFrame];
 
-    float Width  = abs(X * CurData_[GetCurAniInfo().CurFrame].Width);
-    float Height = abs(Y * CurData_[GetCurAniInfo().CurFrame].Height);
+    float X = CurData_[Index_].PivotX - 0.5f;
+    float Y = (1 - CurData_[Index_].PivotY) - 0.5f;
+
+    float Width  = abs(X * CurData_[Index_].Width);
+    float Height = abs(Y * CurData_[Index_].Height);
 
     // 1사분면일 때
     if (0.f < X && 0.f > Y)
@@ -60,7 +59,7 @@ void MetaTextureRenderer::MetaSetPivot()
         GetTransform().SetLocalPosition({-(Width), (Height)});
     }
 
-    ScaleToCutTexture(GetCurAniInfo().CurFrame);
+    ScaleToCutTexture(Index_);
 }
 
 void MetaTextureRenderer::CreateMetaAnimation(const std::string&         _AnimationName,

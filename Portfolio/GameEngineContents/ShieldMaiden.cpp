@@ -119,6 +119,9 @@ void ShieldMaiden::Start()
     AttackCollider_->GetTransform().SetWorldMove({80, 50.f});
     AttackCollider_->Off();
 
+    BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
+    BloodEffect_->GetRenderer()->Off();
+
     Effect_ = GetLevel()->CreateActor<BlockEffect>();
     Effect_->GetTransform().SetWorldScale({2, 2, 1});
     Effect_->Renderer_->Off();
@@ -166,6 +169,7 @@ void ShieldMaiden::Update(float _DeltaTime)
     IsGround_ = GroundCheck(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y));
     Gravity_->SetActive(!IsGround_);
 
+    //쉴드 메이든만의 데미지 체크
     DamageCheck();
 }
 
@@ -230,6 +234,13 @@ void ShieldMaiden::DamageCheck()
     {
         IsHit_ = true;
         MinusHP(30.f);
+
+        BloodEffect_->GetRenderer()->On();
+        BloodEffect_->GetTransform().SetWorldPosition(
+            {BodyCollider_->GetTransform().GetWorldPosition().x + (-(Dir_.x) * 30.f),
+             BodyCollider_->GetTransform().GetWorldPosition().y,
+             static_cast<int>(ACTORORDER::PlayerEffect)});
+        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
     }
 
     if (0 >= GetHP())

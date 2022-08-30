@@ -42,13 +42,13 @@ void Stage21::SettingStage()
 
     Stage_->GetTransform().SetLocalMove(Offset);
 
-    GetMainCameraActor()->GetTransform().SetWorldPosition({1250, -670});
+    GetMainCameraActor()->GetTransform().SetWorldPosition({1260, -670});
 }
 
 void Stage21::SettingMonster()
 {
     Pontiff_ = CreateActor<Pontiff>();
-    Pontiff_->GetTransform().SetWorldPosition({1250, -520, static_cast<int>(ACTORORDER::BeforeLayer1)});
+    Pontiff_->GetTransform().SetWorldPosition({1260, -520, static_cast<int>(ACTORORDER::BeforeLayer1)});
     BossMonster_ = Pontiff_;
 }
 

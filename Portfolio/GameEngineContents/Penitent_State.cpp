@@ -166,7 +166,7 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
     {
         State_.ChangeState("Attack");
     }
-
+        
     //내리막길
     if (false == IsGround_)
     {
@@ -189,7 +189,7 @@ void Penitent::JumpStart(const StateInfo& _Info)
 
     MoveEffect_->Renderer_->On();
     MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
-    MoveEffect_->Renderer_->ChangeMetaAnimation("penitent-jumping-landing-dust-anim");
+    MoveEffect_->Renderer_->ChangeMetaAnimation("penitent-jumping-dust-anim");
 }
 
 void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -318,15 +318,23 @@ void Penitent::JumpAttackStart(const StateInfo& _Info)
     //일단 인정하지도 증가하지도 않음.
     FallTime_ = 0.f;
 
+    AttackEffect_->Renderer_->On();
+    AttackEffect_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
+                                                    GetTransform().GetWorldPosition().y,
+                                                    static_cast<int>(ACTORORDER::PlayerEffect)});
+    AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_jumping_attack_slasheslvl2");
+
     MetaRenderer_->ChangeMetaAnimation("penitent_jumping_attack_noslashes");
 
     if (0 < RealXDir_)  //오른쪽
     {
+        AttackEffect_->GetTransform().PixLocalPositiveX();
         AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
     }
 
     else if (0 > RealXDir_)  //왼쪽
     {
+        AttackEffect_->GetTransform().PixLocalNegativeX();
         AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
     }
 }
@@ -334,6 +342,9 @@ void Penitent::JumpAttackStart(const StateInfo& _Info)
 void Penitent::JumpAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     JumpForce_.y -= _DeltaTime * 80.f;
+    AttackEffect_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
+                                                    GetTransform().GetWorldPosition().y,
+                                                    static_cast<int>(ACTORORDER::PlayerEffect)});
 
     Dir_ = GetTransform().GetUpVector() * 10.f;
 
@@ -407,10 +418,7 @@ void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
     Gravity_->SetActive(!IsGround_);
 }
 
-void Penitent::KnockBackEnd(const StateInfo& _Info) 
-{ 
-    BodyCollider_->On();
-}
+void Penitent::KnockBackEnd(const StateInfo& _Info) { BodyCollider_->On(); }
 
 void Penitent::KnockUpStart(const StateInfo& _Info)
 {
@@ -464,6 +472,10 @@ void Penitent::LandingStart(const StateInfo& _Info)
     else
     {
         MetaRenderer_->ChangeMetaAnimation("penintent_standing_up");
+
+        MoveEffect_->Renderer_->On();
+        MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
+        MoveEffect_->Renderer_->ChangeMetaAnimation("penitent-landing-dust-anim");
 
         //모션 캔슬
         if (GameEngineInput::GetInst()->IsPressKey("PenitentRight")
@@ -712,6 +724,8 @@ void Penitent::AttackEnd(const StateInfo& _Info)
 {
     AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
     AttackStack_ = 0;
+
+    AttackEffect_->Renderer_->Off();
 }
 
 void Penitent::DodgeAttackStart(const StateInfo& _Info)

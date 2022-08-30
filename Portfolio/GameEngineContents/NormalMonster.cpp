@@ -8,7 +8,10 @@ NormalMonster::NormalMonster()
 
 NormalMonster::~NormalMonster() {}
 
-void NormalMonster::Start() { BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>(); }
+void NormalMonster::Start()
+{
+
+}
 
 void NormalMonster::Update(float _DeltaTime) {}
 
@@ -117,4 +120,41 @@ bool NormalMonster::CrossroadCheck(GameEngineCollision* _This, GameEngineCollisi
     }
 
     return false;
+}
+
+
+void NormalMonster::DamageCheck(float _Damage, float _Offset)
+{
+    //스킬 임시 제외
+    if (false
+        == BodyCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+    {
+        IsHit_ = false;
+    }
+
+    if (true == IsHit_)
+    {
+        return;
+    }
+
+    if (true
+        == BodyCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+    {
+        MinusHP(_Damage);
+        IsHit_ = true;
+
+        BloodEffect_->GetTransform().SetWorldPosition(
+            {BodyCollider_->GetTransform().GetWorldPosition().x + (-(Dir_.x) * _Offset),
+             BodyCollider_->GetTransform().GetWorldPosition().y,
+             static_cast<int>(ACTORORDER::PlayerEffect)});
+        BloodEffect_->GetRenderer()->On();
+        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
+    }
+
+    if (0 >= GetHP())
+    {
+        State_.ChangeState("Death");
+    }
 }

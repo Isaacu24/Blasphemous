@@ -29,6 +29,10 @@ protected:
     void Update(float _DeltaTime) override;
     void End() override;
 
+    void DamageCheck(float _Damage, float _Offset) override;
+
+    float4 Dir_;
+
     bool PatrolStart_;
     bool PatrolEnd_;
 

@@ -83,24 +83,13 @@ void Fool_knife::Update(float _DeltaTime)
 {
     State_.Update(_DeltaTime);
 
-    if ("Death" == State_.GetCurStateStateName())
-    {
-        return;
-    }
-
     IsGround_ = GroundCheck(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y + 35));
     Gravity_->SetActive(!IsGround_);
 
-    if (true
-        == BodyCollider_->IsCollision(
-            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+    if ("Death" != State_.GetCurStateStateName())
     {
-        if ("Hurt" == State_.GetCurStateStateName())
-        {
-            return;
-        }
-
         State_.ChangeState("Hurt");
+        NormalMonster::DamageCheck(10.f, 10.f);
     }
 
     // GameEngineDebug::OutPutString("Fool: " + State_.GetCurStateStateName());
@@ -234,8 +223,6 @@ void Fool_knife::TrackEnd(const StateInfo& _Info) {}
 void Fool_knife::HurtStart(const StateInfo& _Info)
 {
     Renderer_->ChangeFrameAnimation("Fool_hurt_knife");
-
-    MinusHP(30.f);
 }
 
 void Fool_knife::HurtUpdate(float _DeltaTime, const StateInfo& _Info) {}

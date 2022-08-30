@@ -47,11 +47,19 @@ void MoveEffect::Start()
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent-jumping-landing-dust-anim");
 
         Renderer_->CreateMetaAnimation(
-            "penitent-jumping-landing-dust-anim",
-            {"penitent-jumping-landing-dust-anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true},
-            Data);
+            "penitent-jumping-dust-anim", {"penitent-jumping-landing-dust-anim.png", 0, 3, 0.07f, false}, Data);
 
-        Renderer_->AnimationBindEnd("penitent-jumping-landing-dust-anim",
+        Renderer_->AnimationBindEnd("penitent-jumping-dust-anim",
+                                    [&](const FrameAnimation_DESC& _Info)
+                                    {
+                                        Renderer_->CurAnimationReset();
+                                        Renderer_->Off();
+                                    });
+
+        Renderer_->CreateMetaAnimation(
+            "penitent-landing-dust-anim", {"penitent-jumping-landing-dust-anim.png", 4, 6, 0.07f, false}, Data);
+
+        Renderer_->AnimationBindEnd("penitent-landing-dust-anim",
                                     [&](const FrameAnimation_DESC& _Info)
                                     {
                                         Renderer_->CurAnimationReset();

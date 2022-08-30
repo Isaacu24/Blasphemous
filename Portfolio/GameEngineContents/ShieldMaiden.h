@@ -59,6 +59,4 @@ private:
     std::string NextState_;
 
     class BlockEffect* Effect_;
-
-    float4 Dir_;
 };

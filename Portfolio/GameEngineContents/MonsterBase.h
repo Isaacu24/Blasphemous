@@ -18,9 +18,9 @@ public:
 
     inline void SetHP(float _Value) { HP_ = _Value; }
 
-    inline void MinusHP(float _Value) 
-    { 
-        HP_ -= _Value; 
+    inline void MinusHP(float _Value)
+    {
+        HP_ -= _Value;
 
         if (0 > HP_)
         {
@@ -28,10 +28,10 @@ public:
         }
     }
 
-    inline float PlusHP(float _Value) 
+    inline float PlusHP(float _Value)
     {
-        HP_ += _Value; 
-        
+        HP_ += _Value;
+
         if (100 < HP_)
         {
             HP_ = 100;
@@ -81,8 +81,10 @@ protected:
     bool UphillRoadCheck(int _X, int _Y);
 
     virtual void DamageCheck();
+
     virtual void DamageCheck(float _Damage);
+
+    virtual void DamageCheck(float _Damage, float _Offset){};
 
 private:
 };
-

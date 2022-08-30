@@ -292,7 +292,7 @@ void GameEngineTextureRenderer::CreateFrameAnimationFolder(const std::string& _A
 			NewAni.Info.Frames.push_back(i);
 		}
 	}
-}
+}	
 
 void GameEngineTextureRenderer::CreateFrameAnimationCutTexture(const std::string& _AnimationName, const FrameAnimation_DESC& _Desc)
 {

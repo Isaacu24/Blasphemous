@@ -173,7 +173,7 @@ void Penitent::Update(float _DeltaTime)
         PlayerUI_->Inventory_->Off();
     }
 
-    //GameEngineDebug::OutPutString("PlayerState: " + State_.GetCurStateStateName());
+    // GameEngineDebug::OutPutString("PlayerState: " + State_.GetCurStateStateName());
 
     GameEngineDebug::OutPutString("RealX: " + std::to_string(RealXDir_));
     GameEngineDebug::OutPutString("RealX: " + std::to_string(RealXDir_));
@@ -686,91 +686,108 @@ void Penitent::SetAnimation()
                                             true},
                                            Data);
 
-        MetaRenderer_->AnimationBindFrame("penitent_three_hits_attack_combo_no_slashes",
-                                          [&](const FrameAnimation_DESC& _Info)
-                                          {
-                                              switch (_Info.CurFrame)
-                                              {
-                                                  case 4:
-                                                      AttackCollider_->On();
-                                                      HitStack_ = 0;
-                                                      break;
+        MetaRenderer_->AnimationBindFrame(
+            "penitent_three_hits_attack_combo_no_slashes",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                switch (_Info.CurFrame)
+                {
+                    case 4:
+                        AttackCollider_->On();
+                        HitStack_ = 0;
 
-                                                  case 5:
-                                                      if (true == IsHit_ || true == IsBossHit_)
-                                                      {
-                                                          HitEffect_->Renderer_->On();
-                                                          IsHit_ = false;
-                                                      }
-                                                      break;
+                        AttackEffect_->Renderer_->On();
+                        AttackEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
+                        AttackEffect_->Renderer_->ChangeMetaAnimation("three_hits_attack_slashes_lvl1_anim_0");
+                        break;
 
-                                                  case 7:
-                                                      AttackCollider_->Off();
+                    case 5:
+                        if (true == IsHit_ || true == IsBossHit_)
+                        {
+                            HitEffect_->Renderer_->On();
+                            IsHit_ = false;
+                        }
+                        break;
 
-                                                      if (true == RightObstacleCheck() || true == LeftObstacleCheck())
-                                                      {
-                                                          ChangeState("Idle");
-                                                          return;
-                                                      }
+                    case 7:
+                        AttackCollider_->Off();
 
-                                                      if (0 < AttackStack_)  //유효타 공격 중
-                                                      {
-                                                          AttackStack_ = 0;
-                                                          return;
-                                                      }
+                        if (true == RightObstacleCheck() || true == LeftObstacleCheck())
+                        {
+                            ChangeState("Idle");
+                            return;
+                        }
 
-                                                      ChangeState("Idle");
-                                                      break;
+                        if (0 < AttackStack_)  //유효타 공격 중
+                        {
+                            AttackStack_ = 0;
+                            return;
+                        }
 
-                                                  case 10:
-                                                      AttackCollider_->On();
-                                                      HitStack_ = 1;
-                                                      break;
+                        ChangeState("Idle");
+                        break;
 
-                                                  case 11:
-                                                      if (true == IsHit_ || true == IsBossHit_)
-                                                      {
-                                                          HitEffect_->Renderer_->On();
-                                                          IsHit_ = false;
-                                                      }
-                                                      break;
+                    case 8:
+                        AttackEffect_->Renderer_->On();
+                        AttackEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
+                        AttackEffect_->Renderer_->ChangeMetaAnimation("three_hits_attack_slashes_lvl1_anim_1");
+                        break;
 
-                                                  case 13:
-                                                      AttackCollider_->Off();
+                    case 10:
+                        AttackCollider_->On();
+                        HitStack_ = 1;
+                        break;
 
-                                                      if (true == RightObstacleCheck() || true == LeftObstacleCheck())
-                                                      {
-                                                          ChangeState("Idle");
-                                                          return;
-                                                      }
+                    case 11:
+                        if (true == IsHit_ || true == IsBossHit_)
+                        {
+                            HitEffect_->Renderer_->On();
+                            IsHit_ = false;
+                        }
+                        break;
 
-                                                      if (1 < AttackStack_)  //유효타 공격 중
-                                                      {
-                                                          AttackStack_ = 0;
-                                                          return;
-                                                      }
+                    case 13:
+                        AttackCollider_->Off();
 
-                                                      ChangeState("Idle");
+                        if (true == RightObstacleCheck() || true == LeftObstacleCheck())
+                        {
+                            ChangeState("Idle");
+                            return;
+                        }
 
-                                                      break;
+                        if (1 < AttackStack_)  //유효타 공격 중
+                        {
+                            AttackStack_ = 0;
+                            return;
+                        }
 
-                                                  case 19:
-                                                      AttackCollider_->On();
-                                                      HitStack_ = 2;
-                                                      break;
+                        ChangeState("Idle");
 
-                                                  case 20:
-                                                      if (true == IsHit_ || true == IsBossHit_)
-                                                      {
-                                                          HitEffect_->Renderer_->On();
-                                                          IsHit_ = false;
-                                                      }
-                                                      break;
+                        break;
 
-                                                  case 22:
-                                                      AttackCollider_->Off();
-                                              }
-                                          });
+                    case 18:
+                        AttackEffect_->Renderer_->On();
+                        AttackEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
+                        AttackEffect_->Renderer_->ChangeMetaAnimation("three_hits_attack_slashes_lvl1_anim_2");
+                        break;
+
+                    case 19:
+                        AttackCollider_->On();
+                        HitStack_ = 2;
+                        break;
+
+                    case 20:
+                        if (true == IsHit_ || true == IsBossHit_)
+                        {
+                            HitEffect_->Renderer_->On();
+                            IsHit_ = false;
+                        }
+                        break;
+
+                    case 22:
+                        AttackCollider_->Off();
+                }
+            });
 
         MetaRenderer_->AnimationBindEnd("penitent_three_hits_attack_combo_no_slashes",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });

@@ -44,5 +44,4 @@ protected:
     void PatrolMoveX(float _DeltaTime) override;
 
 private:
-    float4 Dir_;
 };

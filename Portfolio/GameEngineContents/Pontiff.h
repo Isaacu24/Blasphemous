@@ -68,6 +68,8 @@ private:
 
     class PlatformSpawner* PlatformSpawner_;
 
+    bool IsAscension_;
+
     float AscensionSpeed_;
 
     float Time_;

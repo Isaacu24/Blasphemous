@@ -98,6 +98,9 @@ void LionHead::Start()
     AttackCollider_->GetTransform().SetWorldScale({200.0f, 100.0f, 1.0f});
     AttackCollider_->GetTransform().SetWorldMove({0, -100.f});
 
+    BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
+    BloodEffect_->GetRenderer()->Off();
+
     State_.CreateStateMember("Idle",
                              std::bind(&LionHead::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&LionHead::IdleStart, this, std::placeholders::_1),
@@ -136,7 +139,10 @@ void LionHead::Update(float _DeltaTime)
     IsGround_ = GroundCheck(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y - 10));
     Gravity_->SetActive(!IsGround_);
 
-    DamageCheck();
+    if ("Death" != State_.GetCurStateStateName())
+    {
+        NormalMonster::DamageCheck(10.f, 75.f);
+    }
 
     GameEngineDebug::OutPutString("LionHead State" + State_.GetCurStateStateName());
 }

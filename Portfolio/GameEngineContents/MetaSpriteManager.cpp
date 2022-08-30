@@ -156,11 +156,11 @@ void MetaSpriteManager::MetaParsing(const std::string& _AllText)
 
         std::string CutDataString = _AllText.substr(StartPos, EndPos - StartPos);
 
-        int   Index  = 0;
-        int   StartX = 0;
-        int   StartY = 0;
-        int   SizeX  = 0;
-        int   SizeY  = 0;
+        int  Index  = 0;
+        float StartX = 0;
+        float  StartY = 0;
+        float  SizeX  = 0;
+        float  SizeY  = 0;
         float PivotX = 0;
         float PivotY = 0;
 
@@ -177,7 +177,7 @@ void MetaSpriteManager::MetaParsing(const std::string& _AllText)
 
             IndexString = IndexString.substr(UnderBarPos + 1, IndexString.size() - UnderBarPos);
 
-            Index = atoi(IndexString.c_str());
+            Index = atof(IndexString.c_str());
         }
 
         {
@@ -187,7 +187,7 @@ void MetaSpriteManager::MetaParsing(const std::string& _AllText)
             std::string XString
                 = CutDataString.substr(DataStartPos + FindString.size(), DataEndpos - DataStartPos + FindString.size());
 
-            StartX = atoi(XString.c_str());
+            StartX = atof(XString.c_str());
         }
 
         {
@@ -196,7 +196,7 @@ void MetaSpriteManager::MetaParsing(const std::string& _AllText)
             size_t      DataEndpos   = CutDataString.find("\n", DataStartPos);
             std::string XString
                 = CutDataString.substr(DataStartPos + FindString.size(), DataEndpos - DataStartPos + FindString.size());
-            StartY = atoi(XString.c_str());
+            StartY = atof(XString.c_str());
         }
 
         {
@@ -205,7 +205,7 @@ void MetaSpriteManager::MetaParsing(const std::string& _AllText)
             size_t      DataEndpos   = CutDataString.find("\n", DataStartPos);
             std::string XString
                 = CutDataString.substr(DataStartPos + FindString.size(), DataEndpos - DataStartPos + FindString.size());
-            SizeX = atoi(XString.c_str());
+            SizeX = atof(XString.c_str());
         }
 
         {
@@ -216,7 +216,7 @@ void MetaSpriteManager::MetaParsing(const std::string& _AllText)
             std::string XString
                 = CutDataString.substr(DataStartPos + FindString.size(), DataEndpos - DataStartPos + FindString.size());
 
-            SizeY = atoi(XString.c_str());
+            SizeY = atof(XString.c_str());
         }
 
         {

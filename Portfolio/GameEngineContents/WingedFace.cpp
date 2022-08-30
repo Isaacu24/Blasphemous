@@ -62,7 +62,9 @@ void WingedFace::Start()
     BodyCollider_->ChangeOrder(COLLISIONORDER::Monster);
     BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 0.0f, 1.0f, 0.5f});
     BodyCollider_->GetTransform().SetWorldScale({30.0f, 30.0f, 1.0f});
-
+    
+    BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
+    BloodEffect_->GetRenderer()->Off();
 
     State_.CreateStateMember("Patrol",
                              std::bind(&WingedFace::PatrolUpdate, this, std::placeholders::_1, std::placeholders::_2),
@@ -86,22 +88,15 @@ void WingedFace::Update(float _DeltaTime)
 {
     State_.Update(_DeltaTime);
 
-    if ("Death" == State_.GetCurStateStateName())
-    {
-        return;
-    }
-
     DetectCollider_->IsCollision(
         CollisionType::CT_OBB2D,
         COLLISIONORDER::Player,
         CollisionType::CT_OBB2D,
         std::bind(&WingedFace::LookAtPlayer, this, std::placeholders::_1, std::placeholders::_2));
 
-    if (true
-        == BodyCollider_->IsCollision(
-            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+    if ("Death" != State_.GetCurStateStateName())
     {
-        State_.ChangeState("Death");
+        NormalMonster::DamageCheck(50.f, 5.f);
     }
 
     // GameEngineDebug::OutPutString("FaceY : " + std::to_string(GetTransform().GetWorldPosition().y));

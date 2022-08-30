@@ -43,6 +43,22 @@ void Pontiff::Start()
     Face_->CreateFrameAnimationCutTexture("pontiff_openedIdle_face_DEATH",
                                           {"pontiff_openedIdle_face_DEATH.png", 0, 64, 0.1f, false});
 
+    Face_->AnimationBindFrame("pontiff_openedIdle_face_DEATH",
+                                [&](const FrameAnimation_DESC& _Info)
+                                {
+                                    if (35 == _Info.CurFrame)
+                                    {
+                                        MainBody_->On();
+                                        MainBody_->GetTransform().SetWorldPosition(
+                                            {GetTransform().GetWorldPosition().x,
+                                             GetTransform().GetWorldPosition().y - 200,
+                                             static_cast<int>(ACTORORDER::BeforeLayer5)});
+
+                                        IsAscension_ = true;
+                                    }
+                                });
+
+
     Face_->GetTransform().SetLocalScale({950, 1300});
     Face_->GetTransform().SetLocalMove({0, 50, -1});
 
@@ -112,8 +128,6 @@ void Pontiff::AppearStart(const StateInfo& _Info)
     Helmet_->ChangeFrameAnimation("pontiff_opening_helmet");
     Body_->ChangeFrameAnimation("pontiff_idle_torso");
     Face_->Off();
-
-    PlatformSpawner_->CreateFristPattern();
 }
 
 void Pontiff::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -134,6 +148,8 @@ void Pontiff::AppearEnd(const StateInfo& _Info)
     BossUI_->SetBossName("마지막 기적의 아들");
     BossUI_->SetFontPosition({480, 590, -100.f});
     BossUI_->SetFontSize(35);
+
+    PlatformSpawner_->CreateFristPattern();
 }
 
 void Pontiff::OpeningStart(const StateInfo& _Info)
@@ -181,12 +197,7 @@ void Pontiff::CloseIdleEnd(const StateInfo& _Info) { Face_->On(); }
 
 void Pontiff::DeathStart(const StateInfo& _Info)
 {
-    MainBody_->On();
-    AscensionSpeed_ = 100; 
-
-    MainBody_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
-                                                GetTransform().GetWorldPosition().y - 200,
-                                                static_cast<int>(ACTORORDER::BeforeLayer5)});
+    AscensionSpeed_ = 100;
 
     PlatformSpawner_->SetSpawnerOrder(SpawnerOrder::Death);
 
@@ -200,9 +211,11 @@ void Pontiff::DeathStart(const StateInfo& _Info)
 
 void Pontiff::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    AscensionSpeed_ += 500.f * _DeltaTime;
-
-    MainBody_->GetTransform().SetWorldMove(float4::UP * AscensionSpeed_ * _DeltaTime);
+    if (true == IsAscension_)
+    {
+        AscensionSpeed_ += 500.f * _DeltaTime;
+        MainBody_->GetTransform().SetWorldMove(float4::UP * AscensionSpeed_ * _DeltaTime);
+    }
 }
 
-void Pontiff::DeathEnd(const StateInfo& _Info) { }
+void Pontiff::DeathEnd(const StateInfo& _Info) {}
