@@ -51,21 +51,41 @@ void Platform::Start()
                                     [&](const FrameAnimation_DESC& _Info)
                                     { MetaRenderer_->ChangeMetaAnimation("ashplatform_64x64_anim"); });
 
+    MetaRenderer_->AnimationBindFrame(
+        "bloodsand_platform_64x64_novisible_to_visible",
+        [&](const FrameAnimation_DESC& _Info)
+        {
+            if (1 == _Info.CurFrame)
+            {
+                MetaRenderer_->GetColorData().MulColor = float4{5.0f, 5.0f, 5.0f, 1.0f};
+            }
+
+            if (5 == _Info.CurFrame)
+            {
+                MetaRenderer_->GetColorData().MulColor = float4{1.0f, 1.0f, 1.0f, 1.0f};
+            }
+        });
+
+
+    MetaRenderer_->AnimationBindEnd("bloodsand_platform_64x64_visible_to_novisible",
+                                    [&](const FrameAnimation_DESC& _Info) { Death(); });
 
     MetaRenderer_->AnimationBindFrame("bloodsand_platform_64x64_visible_to_novisible",
                                       [&](const FrameAnimation_DESC& _Info)
                                       {
+                                          if (1 == _Info.CurFrame)
+                                          {
+                                              MetaRenderer_->GetColorData().MulColor = float4{5.0f, 5.0f, 5.0f, 1.0f};
+                                          }
+
                                           if (6 == _Info.CurFrame)
                                           {
                                               Collider_->Off();
                                           }
                                       });
 
-    MetaRenderer_->AnimationBindEnd("bloodsand_platform_64x64_visible_to_novisible",
-                                    [&](const FrameAnimation_DESC& _Info) { Death(); });
-
-    MetaRenderer_->SetPivot(PIVOTMODE::TOP);
     MetaRenderer_->ChangeMetaAnimation("bloodsand_platform_64x64_novisible_to_visible");
+    MetaRenderer_->SetPivot(PIVOTMODE::TOP);
 
     Collider_ = CreateComponent<GameEngineCollision>();
     Collider_->ChangeOrder(COLLISIONORDER::Platform);

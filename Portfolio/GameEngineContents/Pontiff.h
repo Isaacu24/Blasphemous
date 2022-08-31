@@ -7,6 +7,8 @@ class Pontiff
     : public GameEngineActor
     , public BossMonster
 {
+    friend class GiantSword;
+
 public:
     Pontiff();
     ~Pontiff();

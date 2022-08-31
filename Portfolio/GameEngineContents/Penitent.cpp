@@ -175,11 +175,6 @@ void Penitent::Update(float _DeltaTime)
 
     // GameEngineDebug::OutPutString("PlayerState: " + State_.GetCurStateStateName());
 
-    GameEngineDebug::OutPutString("RealX: " + std::to_string(RealXDir_));
-    GameEngineDebug::OutPutString("RealX: " + std::to_string(RealXDir_));
-    GameEngineDebug::OutPutString("RealX: " + std::to_string(RealXDir_));
-
-
     // GameEngineDebug::OutPutString("MousePosX: "
     //                               + std::to_string(GetLevel()->GetMainCamera()->GetMouseWorldPositionToActor().x));
     // GameEngineDebug::OutPutString("MousePosY: "

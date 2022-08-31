@@ -98,6 +98,7 @@ void Pontiff::Start()
 
     GiantSword_ = GetLevel()->CreateActor<GiantSword>();
     GiantSword_->GetTransform().SetWorldPosition({1400, -600, static_cast<int>(ACTORORDER::BossMonster)});
+    GiantSword_->SetPontiff(this);
 
     BossUI_ = GetLevel()->CreateActor<BossUI>();
     BossUI_->SetBossMonster(this);
@@ -119,6 +120,8 @@ void Pontiff::Update(float _DeltaTime)
     {
         MonsterBase::DamageCheck(10.f);
     }
+
+    GameEngineDebug::OutPutString("Pontiff : " + State_.GetCurStateStateName());
 }
 
 void Pontiff::End() {}
@@ -153,8 +156,11 @@ void Pontiff::AppearEnd(const StateInfo& _Info)
     PlatformSpawner_->CreateFristPattern();
 }
 
+
 void Pontiff::OpeningStart(const StateInfo& _Info)
 {
+    BodyCollider_->On();
+
     Helmet_->ChangeFrameAnimation("pontiff_opening_helmet");
     Body_->ChangeFrameAnimation("pontiff_opening_torso");
     Face_->ChangeFrameAnimation("pontiff_opening_face");
@@ -163,6 +169,7 @@ void Pontiff::OpeningStart(const StateInfo& _Info)
 void Pontiff::OpeningUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Pontiff::OpeningEnd(const StateInfo& _Info) {}
+
 
 void Pontiff::OpenIdleStart(const StateInfo& _Info)
 {
@@ -174,15 +181,20 @@ void Pontiff::OpenIdleStart(const StateInfo& _Info)
 void Pontiff::OpenIdleUpdate(float _DeltaTime, const StateInfo& _Info) {}
 void Pontiff::OpenIdleEnd(const StateInfo& _Info) {}
 
+
 void Pontiff::ClosingStart(const StateInfo& _Info)
 {
+    BodyCollider_->Off();
+
     Helmet_->ChangeFrameAnimation("pontiff_closing_helmet");
     Body_->ChangeFrameAnimation("pontiff_closing_torso");
     Face_->ChangeFrameAnimation("pontiff_closing_face");
 }
 
 void Pontiff::ClosingUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
 void Pontiff::ClosingEnd(const StateInfo& _Info) {}
+
 
 void Pontiff::CloseIdleStart(const StateInfo& _Info)
 {
@@ -208,6 +220,8 @@ void Pontiff::DeathStart(const StateInfo& _Info)
 
     Body_->CurAnimationPauseOn();
     Helmet_->CurAnimationPauseOn();
+
+    BodyCollider_->Off();
 }
 
 void Pontiff::DeathUpdate(float _DeltaTime, const StateInfo& _Info)

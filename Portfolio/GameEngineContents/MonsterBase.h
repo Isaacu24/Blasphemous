@@ -84,6 +84,8 @@ protected:
 
     virtual void DamageCheck(float _Damage);
 
+    virtual void DamageCheck(float _Damage, const std::string& _State);
+
     virtual void DamageCheck(float _Damage, float _Offset){};
 
 private:
