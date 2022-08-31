@@ -16,6 +16,8 @@ public:
     Pontiff& operator=(const Pontiff& _Other)     = delete;
     Pontiff& operator=(Pontiff&& _Other) noexcept = delete;
 
+    inline bool GetLose() { return IsLose_; }
+
     void AppearStart(const StateInfo& _Info);
     void AppearUpdate(float _DeltaTime, const StateInfo& _Info);
     void AppearEnd(const StateInfo& _Info);
@@ -40,10 +42,7 @@ public:
     void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
     void DeathEnd(const StateInfo& _Info);
 
-    const std::string GetState() 
-    { 
-        return State_.GetCurStateStateName(); 
-    }
+    const std::string GetState() { return State_.GetCurStateStateName(); }
 
 protected:
     void Start() override;
@@ -67,6 +66,8 @@ private:
     class MagicMissileSpawner*   MagicMissileSpawner_;
 
     class PlatformSpawner* PlatformSpawner_;
+
+    bool IsLose_;
 
     bool IsAscension_;
 

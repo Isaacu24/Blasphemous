@@ -89,9 +89,6 @@
     <ClInclude Include="Pontiff.h">
       <Filter>Actor\BossMonster\Pontiff</Filter>
     </ClInclude>
-    <ClInclude Include="GiantSword.h">
-      <Filter>Actor\BossMonster\Pontiff</Filter>
-    </ClInclude>
     <ClInclude Include="Platform.h">
       <Filter>Actor\BossMonster\Pontiff</Filter>
     </ClInclude>
@@ -227,6 +224,12 @@
     <ClInclude Include="PontiffMainBody.h">
       <Filter>Actor\BossMonster\Pontiff</Filter>
     </ClInclude>
+    <ClInclude Include="GiantSword.h">
+      <Filter>Actor\BossMonster\Pontiff\GiantSword</Filter>
+    </ClInclude>
+    <ClInclude Include="SwordIris.h">
+      <Filter>Actor\BossMonster\Pontiff\GiantSword</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -315,9 +318,6 @@
       <Filter>Component</Filter>
     </ClCompile>
     <ClCompile Include="Pontiff.cpp">
-      <Filter>Actor\BossMonster\Pontiff</Filter>
-    </ClCompile>
-    <ClCompile Include="GiantSword.cpp">
       <Filter>Actor\BossMonster\Pontiff</Filter>
     </ClCompile>
     <ClCompile Include="Platform.cpp">
@@ -458,6 +458,12 @@
     <ClCompile Include="PontiffMainBody.cpp">
       <Filter>Actor\BossMonster\Pontiff</Filter>
     </ClCompile>
+    <ClCompile Include="GiantSword.cpp">
+      <Filter>Actor\BossMonster\Pontiff\GiantSword</Filter>
+    </ClCompile>
+    <ClCompile Include="SwordIris.cpp">
+      <Filter>Actor\BossMonster\Pontiff\GiantSword</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -564,6 +570,9 @@
     </Filter>
     <Filter Include="Actor\Effect\Monster\Normal\ShieldMaiden">
       <UniqueIdentifier>{2cd8f018-5cb4-487a-a660-97667e967d39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\BossMonster\Pontiff\GiantSword">
+      <UniqueIdentifier>{be997806-2233-4e3a-944d-1d6f671bc9bb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

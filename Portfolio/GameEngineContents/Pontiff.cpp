@@ -43,21 +43,22 @@ void Pontiff::Start()
     Face_->CreateFrameAnimationCutTexture("pontiff_openedIdle_face_DEATH",
                                           {"pontiff_openedIdle_face_DEATH.png", 0, 64, 0.1f, false});
 
-    Face_->AnimationBindFrame("pontiff_openedIdle_face_DEATH",
-                                [&](const FrameAnimation_DESC& _Info)
-                                {
-                                    if (35 == _Info.CurFrame)
-                                    {
-                                        MainBody_->On();
-                                        MainBody_->GetTransform().SetWorldPosition(
-                                            {GetTransform().GetWorldPosition().x,
-                                             GetTransform().GetWorldPosition().y - 200,
-                                             static_cast<int>(ACTORORDER::BeforeLayer5)});
+    Face_->AnimationBindFrame(
+        "pontiff_openedIdle_face_DEATH",
+        [&](const FrameAnimation_DESC& _Info)
+        {
+            if (35 == _Info.CurFrame)
+            {
+                MainBody_->On();
+                MainBody_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
+                                                            GetTransform().GetWorldPosition().y - 200,
+                                                            static_cast<int>(ACTORORDER::BeforeLayer5)});
 
-                                        IsAscension_ = true;
-                                    }
-                                });
+                IsAscension_ = true;
+            }
+        });
 
+    Face_->AnimationBindEnd("pontiff_openedIdle_face_DEATH", [&](const FrameAnimation_DESC& _Info) { IsLose_ = true; });
 
     Face_->GetTransform().SetLocalScale({950, 1300});
     Face_->GetTransform().SetLocalMove({0, 50, -1});

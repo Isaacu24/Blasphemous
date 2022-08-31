@@ -23,6 +23,15 @@ void SideFence::Start()
 
     Rendrerer_->CreateFrameAnimationCutTexture("reja_lateral_invertedBell_descending",
                                                {"reja_lateral_invertedBell_descending.png", Order, 0.1f, true});
+    
+    Rendrerer_->AnimationBindFrame("reja_lateral_invertedBell_descending",
+                                   [&](const FrameAnimation_DESC& _Info)
+                                   {
+                                       if (15 == _Info.CurFrame)
+                                       {
+                                           IsClose_ = false;
+                                       }
+                                   });
 
     Rendrerer_->AnimationBindEnd("reja_lateral_invertedBell_descending",
                                  [&](const FrameAnimation_DESC& _Info)

@@ -47,6 +47,9 @@ void Fool_knife::Start()
     BodyCollider_->GetTransform().SetWorldScale({50, 130.0f, 1.0f});
     BodyCollider_->GetTransform().SetWorldMove({0, 100});
 
+    BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
+    BloodEffect_->GetRenderer()->Off();
+
     State_.CreateStateMember("Idle",
                              std::bind(&Fool_knife::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&Fool_knife::IdleStart, this, std::placeholders::_1),
@@ -83,19 +86,54 @@ void Fool_knife::Update(float _DeltaTime)
 {
     State_.Update(_DeltaTime);
 
+    DamageCheck();
+
     IsGround_ = GroundCheck(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y + 35));
     Gravity_->SetActive(!IsGround_);
-
-    if ("Death" != State_.GetCurStateStateName())
-    {
-        State_.ChangeState("Hurt");
-        NormalMonster::DamageCheck(10.f, 10.f);
-    }
 
     // GameEngineDebug::OutPutString("Fool: " + State_.GetCurStateStateName());
 }
 
 void Fool_knife::End() {}
+
+void Fool_knife::DamageCheck()
+{
+    if ("Death" != State_.GetCurStateStateName() || "Hurt" != State_.GetCurStateStateName())
+    {
+        if (false
+            == BodyCollider_->IsCollision(
+                CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+        {
+            IsHit_ = false;
+        }
+
+        if (true == IsHit_)
+        {
+            return;
+        }
+
+        if (true
+            == BodyCollider_->IsCollision(
+                CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+        {
+            MinusHP(10.f);
+            IsHit_ = true;
+            State_.ChangeState("Hurt");
+
+            BloodEffect_->GetRenderer()->On();
+            BloodEffect_->GetTransform().SetWorldPosition(
+                {BodyCollider_->GetTransform().GetWorldPosition().x + (-(Dir_.x) * 10.f),
+                 BodyCollider_->GetTransform().GetWorldPosition().y,
+                 static_cast<int>(ACTORORDER::PlayerEffect)});
+            BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
+        }
+
+        if (0 >= GetHP())
+        {
+            State_.ChangeState("Death");
+        }
+    }
+}
 
 
 void Fool_knife::PatrolMoveX(float _DeltaTime)
@@ -138,14 +176,7 @@ void Fool_knife::PatrolMoveX(float _DeltaTime)
 
 void Fool_knife::IdleStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("fool_idle_knife"); }
 
-void Fool_knife::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
-{
-    /*if (false
-        == DetectCollider_->IsCollision(
-            CollisionType::CT_OBB2D, COLLISIONORDER::Player, CollisionType::CT_OBB2D, nullptr))
-    {
-    }*/
-}
+void Fool_knife::IdleUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Fool_knife::IdleEnd(const StateInfo& _Info) {}
 
@@ -208,10 +239,7 @@ void Fool_knife::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
 
     if (false
         == DetectCollider_->IsCollision(
-            CollisionType::CT_OBB2D,
-            COLLISIONORDER::Player,
-            CollisionType::CT_OBB2D,
-            nullptr))
+            CollisionType::CT_OBB2D, COLLISIONORDER::Player, CollisionType::CT_OBB2D, nullptr))
     {
         State_.ChangeState("Idle");
     }
@@ -220,10 +248,7 @@ void Fool_knife::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
 void Fool_knife::TrackEnd(const StateInfo& _Info) {}
 
 
-void Fool_knife::HurtStart(const StateInfo& _Info)
-{
-    Renderer_->ChangeFrameAnimation("Fool_hurt_knife");
-}
+void Fool_knife::HurtStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("Fool_hurt_knife"); }
 
 void Fool_knife::HurtUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
@@ -248,11 +273,11 @@ void Fool_knife::TurnEnd(const StateInfo& _Info)
 }
 
 
-void Fool_knife::DeathStart(const StateInfo& _Info) 
-{ 
+void Fool_knife::DeathStart(const StateInfo& _Info)
+{
     BodyCollider_->Off();
     DetectCollider_->Off();
-    Renderer_->ChangeFrameAnimation("Fool_death_knife"); 
+    Renderer_->ChangeFrameAnimation("Fool_death_knife");
 }
 
 void Fool_knife::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}

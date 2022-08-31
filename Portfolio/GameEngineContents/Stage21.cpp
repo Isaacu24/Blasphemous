@@ -73,8 +73,13 @@ void Stage21::Update(float _DeltaTime)
             }
             break;
         case STAGEFLOW::BOSSCOMBAT:
+            if (true == Pontiff_->GetLose())
+            {
+                CurrentFlow_ = STAGEFLOW::BOSSDEAD;
+            }
             break;
         case STAGEFLOW::BOSSDEAD:
+            GEngine::ChangeLevel("Stage20");
             break;
     }
 

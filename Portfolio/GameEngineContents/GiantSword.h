@@ -30,6 +30,8 @@ public:
 	void AttackUpdate(float _DeltaTime, const StateInfo& _Info);
 	void AttackEnd(const StateInfo& _Info);
 
+	bool LookAtPlayer(GameEngineCollision * _This, GameEngineCollision* _Other);
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -40,9 +42,7 @@ private:
 
 	GameEngineTextureRenderer* IrisRenderer_; //µ¿°ø
 	GameEngineTextureRenderer* EyeRenderer_; //´«
-	GameEngineTextureRenderer* EyeLidRenderer_; //´«²¨Ç®(Animation
-
-	GameEngineCollision* Collider_;
+	//GameEngineTextureRenderer* EyeLidRenderer_; //´«²¨Ç®(Animation1
 
 	float Time_;
 

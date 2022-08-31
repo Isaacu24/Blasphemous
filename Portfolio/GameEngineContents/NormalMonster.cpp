@@ -145,11 +145,11 @@ void NormalMonster::DamageCheck(float _Damage, float _Offset)
         MinusHP(_Damage);
         IsHit_ = true;
 
+        BloodEffect_->GetRenderer()->On();
         BloodEffect_->GetTransform().SetWorldPosition(
             {BodyCollider_->GetTransform().GetWorldPosition().x + (-(Dir_.x) * _Offset),
              BodyCollider_->GetTransform().GetWorldPosition().y,
              static_cast<int>(ACTORORDER::PlayerEffect)});
-        BloodEffect_->GetRenderer()->On();
         BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
     }
 

@@ -43,5 +43,7 @@ protected:
 
     void PatrolMoveX(float _DeltaTime) override;
 
+    void DamageCheck() override;
+
 private:
 };

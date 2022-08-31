@@ -429,6 +429,8 @@ void Pope::DeathStart(const StateInfo& _Info)
     LightiningBoltSpawner_->Death();
     MagicMissileSpawner_->Death();
 
+    BossUI_->AllOff();
+
     MetaRenderer_->ChangeMetaAnimation("pope_death");
 }
 

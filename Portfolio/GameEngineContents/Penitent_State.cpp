@@ -55,6 +55,11 @@ void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
         State_.ChangeState("Parrying");
     }
 
+    else if (true == GameEngineInput::GetInst()->IsDownKey("PenitentRecovery"))
+    {
+        State_.ChangeState("Recovery");
+    }
+
     //내리막길
     if (false == IsGround_)
     {
@@ -166,7 +171,7 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
     {
         State_.ChangeState("Attack");
     }
-        
+
     //내리막길
     if (false == IsGround_)
     {
@@ -322,7 +327,13 @@ void Penitent::JumpAttackStart(const StateInfo& _Info)
     AttackEffect_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
                                                     GetTransform().GetWorldPosition().y,
                                                     static_cast<int>(ACTORORDER::PlayerEffect)});
+
     AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_jumping_attack_slasheslvl2");
+
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentUp"))
+    {
+        AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_upward_attack_slash_lvl1");
+    }
 
     MetaRenderer_->ChangeMetaAnimation("penitent_jumping_attack_noslashes");
 
@@ -392,6 +403,8 @@ void Penitent::JumpAttackEnd(const StateInfo& _Info)
 {
     AttackCollider_->Off();
     AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
+
+    AttackEffect_->Renderer_->Off();
 }
 
 void Penitent::KnockBackStart(const StateInfo& _Info)
@@ -411,6 +424,12 @@ void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     if (true == RightObstacleCheck() || true == LeftObstacleCheck())
     {
+        return;
+    }
+
+    if (false == IsGround_)
+    {
+        ChangeState("Fall");
         return;
     }
 
@@ -700,6 +719,16 @@ void Penitent::AttackStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_three_hits_attack_combo_no_slashes");
     AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
+
+    if (1 == RealXDir_)
+    {
+        AttackEffect_->GetTransform().PixLocalPositiveX();
+    }
+
+    else if (-1 == RealXDir_)
+    {
+        AttackEffect_->GetTransform().PixLocalNegativeX();
+    }
 }
 
 void Penitent::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -724,8 +753,6 @@ void Penitent::AttackEnd(const StateInfo& _Info)
 {
     AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
     AttackStack_ = 0;
-
-    AttackEffect_->Renderer_->Off();
 }
 
 void Penitent::DodgeAttackStart(const StateInfo& _Info)
@@ -764,7 +791,7 @@ void Penitent::VerticalAttackStart(const StateInfo& _Info)
     Gravity_->SetActive(false);
 
     AttackCollider_->On();
-    AttackCollider_->GetTransform().SetWorldMove({0.f, -100.f});
+    AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
     BodyCollider_->Off();
 }
 
@@ -789,14 +816,54 @@ void Penitent::VerticalAttackUpdate(float _DeltaTime, const StateInfo& _Info)
     Gravity_->SetActive(!IsGround_);
 }
 
-void Penitent::VerticalAttackEnd(const StateInfo& _Info)
-{
-    AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
-    AttackCollider_->Off();
-}
+void Penitent::VerticalAttackEnd(const StateInfo& _Info) { AttackCollider_->Off(); }
 
 void Penitent::ParryingStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penitent_parry_failed"); }
 
 void Penitent::ParryingUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Penitent::ParryingEnd(const StateInfo& _Info) {}
+
+void Penitent::RecoveryStart(const StateInfo& _Info)
+{
+    int Size = static_cast<int>(Flasks_.size() - 1);
+
+    for (int i = Size; i >= 0; --i)
+    {
+        if (true == Flasks_[i])
+        {
+            Flasks_[i] = false;
+            PlayerUI_->UseFlask(i);
+
+            MetaRenderer_->ChangeMetaAnimation("penitent_healthpotion_consuming_anim");
+
+            AttackEffect_->Renderer_->On();
+
+            if (1 == RealXDir_)
+            {
+                AttackEffect_->GetTransform().PixLocalPositiveX();
+            }
+
+            else if (-1 == RealXDir_)
+            {
+                AttackEffect_->GetTransform().PixLocalNegativeX();
+            }
+
+            AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_healthpotion_consuming_aura_anim");
+            AttackEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
+            return;
+        }
+    }
+
+    State_.ChangeState("Idle");
+}
+
+void Penitent::RecoveryUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Penitent::RecoveryEnd(const StateInfo& _Info) {}
+
+void Penitent::DeathStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("death_anim_blood"); }
+
+void Penitent::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Penitent::DeathEnd(const StateInfo& _Info) {}

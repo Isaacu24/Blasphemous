@@ -29,6 +29,8 @@ private:
 
 	float ChangeTime_;
 
+	float4 PlayerReturnPos_;
+
 	void PlayerCameraMove();
 };
 

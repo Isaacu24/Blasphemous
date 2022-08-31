@@ -111,6 +111,9 @@ void Stage20::Update(float _DeltaTime)
 
                 if (3.f <= ChangeTime_)
                 {
+                    CurrentFlow_ = STAGEFLOW::BOSSDEAD;
+                    PlayerReturnPos_ = Penitent_->GetTransform().GetWorldPosition();
+
                     GEngine::ChangeLevel("Stage21");
                 }
             }
@@ -149,6 +152,12 @@ void Stage20::LevelStartEvent()
         else if (true == IsLeftExit_)
         {
             Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
+        }
+
+        if (STAGEFLOW::BOSSDEAD == CurrentFlow_)
+        {
+            Penitent_->GetTransform().SetWorldPosition(PlayerReturnPos_);
+            Penitent_->ChangeState("Idle");
         }
 
         Penitent_->SetLevelOverOn();
@@ -222,3 +231,4 @@ void Stage20::PlayerCameraMove()
         LoadingActor_->Exit("Stage30");
     }
 }
+

@@ -295,29 +295,31 @@ void Penitent::SetAnimation()
             {"penitent_upward_attack_jump.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
             Data);
 
-        MetaRenderer_->AnimationBindFrame("penitent_upward_attack_jump",
-                                          [&](const FrameAnimation_DESC& _Info)
-                                          {
-                                              switch (_Info.CurFrame)
-                                              {
-                                                  case 4:
-                                                      AttackCollider_->On();
-                                                      HitStack_ = 0;
-                                                      break;
+        MetaRenderer_->AnimationBindFrame(
+            "penitent_upward_attack_jump",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                switch (_Info.CurFrame)
+                {
+                    case 4:
+                        AttackCollider_->On();
+                        HitStack_ = 0;
+                        break;
 
-                                                  case 5:
-                                                      if (true == IsHit_ || true == IsBossHit_)
-                                                      {
-                                                          HitEffect_->Renderer_->On();
-                                                          IsHit_ = false;
-                                                      }
-                                                      break;
+                    case 5:
+                        if (true == IsHit_ || true == IsBossHit_)
+                        {
+                            HitEffect_->Renderer_->On();
+                            IsHit_ = false;
+                        }
+                        break;
 
-                                                  case 6:
-                                                      AttackCollider_->Off();
-                                                      break;
-                                              }
-                                          });
+                    case 6:
+                        AttackCollider_->Off();
+                        AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_upward_attack_slash_lvl1");
+                        break;
+                }
+            });
 
         MetaRenderer_->AnimationBindEnd("penitent_upward_attack_jump",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Fall"); });
@@ -646,29 +648,36 @@ void Penitent::SetAnimation()
             {"penitent_upward_attack_clamped_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true},
             Data);
 
-        MetaRenderer_->AnimationBindFrame("penitent_upward_attack_clamped_anim",
-                                          [&](const FrameAnimation_DESC& _Info)
-                                          {
-                                              switch (_Info.CurFrame)
-                                              {
-                                                  case 5:
-                                                      AttackCollider_->On();
-                                                      HitStack_ = 0;
-                                                      break;
+        MetaRenderer_->AnimationBindFrame(
+            "penitent_upward_attack_clamped_anim",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                switch (_Info.CurFrame)
+                {
+                    case 5:
+                        AttackCollider_->On();
+                        HitStack_ = 0;
 
-                                                  case 6:
-                                                      if (true == IsHit_ || true == IsBossHit_)
-                                                      {
-                                                          HitEffect_->Renderer_->On();
-                                                          IsHit_ = false;
-                                                      }
-                                                      break;
+                        AttackEffect_->Renderer_->On();
+                        AttackEffect_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
+                                                                        GetTransform().GetWorldPosition().y,
+                                                                        static_cast<int>(ACTORORDER::PlayerEffect)});
+                        AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_upward_attack_slash_lvl1");
+                        break;
 
-                                                  case 7:
-                                                      AttackCollider_->Off();
-                                                      break;
-                                              }
-                                          });
+                    case 6:
+                        if (true == IsHit_ || true == IsBossHit_)
+                        {
+                            HitEffect_->Renderer_->On();
+                            IsHit_ = false;
+                        }
+                        break;
+
+                    case 7:
+                        AttackCollider_->Off();
+                        break;
+                }
+            });
         {
             MetaRenderer_->AnimationBindEnd("penitent_upward_attack_clamped_anim",
                                             [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
@@ -794,15 +803,6 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("death_anim_blood");
-
-        MetaRenderer_->CreateMetaAnimation(
-            "death_anim_blood",
-            {"death_anim_blood.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
-            Data);
-    }
-
-    {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_getting_up_anim");
 
         MetaRenderer_->CreateMetaAnimation(
@@ -829,7 +829,7 @@ void Penitent::SetAnimation()
             {
                 if (9 == _Info.CurFrame)
                 {
-                    MoveEffect_->Renderer_->On();
+                    MoveEffect_->Renderer_->On();   
                 }
 
                 if (9 <= _Info.CurFrame)
@@ -869,6 +869,28 @@ void Penitent::SetAnimation()
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
+    //È¸º¹
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_healthpotion_consuming_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_healthpotion_consuming_anim",
+            {"penitent_healthpotion_consuming_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_healthpotion_consuming_anim",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+    }
+
+    //Á×À½
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("death_anim_blood");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "death_anim_blood",
+            {"death_anim_blood.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
+            Data);
+    }
 
     MetaRenderer_->SetPivot(PIVOTMODE::METABOT);
 }
@@ -959,11 +981,13 @@ void Penitent::SetPlayerState()
                              std::bind(&Penitent::ParryingStart, this, std::placeholders::_1),
                              std::bind(&Penitent::ParryingEnd, this, std::placeholders::_1));
 
-    /*
     State_.CreateStateMember("Recovery",
-                             std::bind(&Penitent::RecoveryUpdate, this, std::placeholders::_1,
-    std::placeholders::_2), std::bind(&Penitent::RecoveryStart, this, std::placeholders::_1));
+                             std::bind(&Penitent::RecoveryUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::RecoveryStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::RecoveryEnd, this, std::placeholders::_1));
 
+
+    /*
     State_.CreateStateMember("Hit",
                              std::bind(&Penitent::HitUpdate, this, std::placeholders::_1,
     std::placeholders::_2), std::bind(&Penitent::HitStart, this, std::placeholders::_1));
