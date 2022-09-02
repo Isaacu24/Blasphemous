@@ -12,23 +12,26 @@ void GiantSword::Start()
     EyeRenderer_ = CreateComponent<GameEngineTextureRenderer>();
     EyeRenderer_->SetTexture("pontiff_giantSword_eyeGlobeSprite.png");
     EyeRenderer_->GetTransform().SetLocalScale({125, 400});
+    EyeRenderer_->Off();
 
     IrisRenderer_ = CreateComponent<GameEngineTextureRenderer>();
     IrisRenderer_->SetTexture("pontiff_giantSword_irisSprite.png");
     IrisRenderer_->GetTransform().SetLocalScale({125, 400});
     IrisRenderer_->SetPivot(PIVOTMODE::CUSTOM);
+    IrisRenderer_->Off();
 
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 
     Renderer_->CreateFrameAnimationCutTexture("pontiff_giantSword_teleportOUT",
                                               {"pontiff_giantSword_teleportOUT.png", 0, 19, 0.1f, false});
     Renderer_->AnimationBindEnd("pontiff_giantSword_teleportOUT",
-                                [&](const FrameAnimation_DESC&) { State_.ChangeState("Visible"); });
+                                [&](const FrameAnimation_DESC&)
+                                { Renderer_->SetTexture("pontiff_giantSword_swordSprite.png"); });
 
     Renderer_->CreateFrameAnimationCutTexture("pontiff_giantSword_teleportIN",
                                               {"pontiff_giantSword_teleportIN.png", 0, 26, 0.1f, false});
-
-    Renderer_->ChangeFrameAnimation("pontiff_giantSword_teleportOUT");
+    Renderer_->AnimationBindEnd("pontiff_giantSword_teleportIN",
+                                [&](const FrameAnimation_DESC&) { State_.ChangeState("Visible"); });
 
     Renderer_->GetTransform().SetLocalScale({125, 400});
 
@@ -41,7 +44,10 @@ void GiantSword::Start()
     BodyCollider_->ChangeOrder(COLLISIONORDER::BossMonster);
     BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{1.0f, 0.97f, 0.0f, 0.5f});
     BodyCollider_->GetTransform().SetWorldScale({50.f, 300.f, 1.0f});
-    BodyCollider_->GetTransform().SetWorldMove({0, 50});
+    BodyCollider_->GetTransform().SetWorldMove({0, 0});
+
+    BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
+    BloodEffect_->GetRenderer()->Off();
 
     State_.CreateStateMember(
         "TeleportIN",
@@ -89,71 +95,75 @@ void GiantSword::Update(float _DeltaTime)
 void GiantSword::End() {}
 
 
+//화면에서 퇴장
 void GiantSword::TeleportINStart(const StateInfo& _Info)
 {
-    Pontiff_->ChangeMonsterState("Closing");
+    Renderer_->ChangeFrameAnimation("pontiff_giantSword_teleportIN");
 
-    Renderer_->ChangeFrameAnimation("pontiff_giantSword_teleportOut");
+    Pontiff_->ChangeMonsterState("Opening");
+    BodyCollider_->Off();
 }
 
-void GiantSword::TeleportINUpdate(float _DeltaTime, const StateInfo& _Info)
-{
-    if (5 <= _Info.StateTime)
-    {
-        State_.ChangeState("TeleportOut");
-    }
-
-    //if (0 < GetHP())
-    //{
-    //    MonsterBase::DamageCheck(50.f, "TeleportOut");
-    //}
-}
+void GiantSword::TeleportINUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void GiantSword::TeleportINEnd(const StateInfo& _Info) {}
 
 
+//화면에 등장
 void GiantSword::TeleportOutStart(const StateInfo& _Info)
 {
-    Pontiff_->ChangeMonsterState("Opening");
+    Renderer_->ChangeFrameAnimation("pontiff_giantSword_teleportOUT");
 
-    Renderer_->ChangeFrameAnimation("pontiff_giantSword_teleportIN");
+    if ("CloseIdle" != Pontiff_->GetState())
+    {
+        Pontiff_->ChangeMonsterState("Closing");
+    }
+
+    BodyCollider_->On();
 }
 
-void GiantSword::TeleportOutUpdate(float _DeltaTime, const StateInfo& _Info) {}
+void GiantSword::TeleportOutUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    if (true
+        == BodyCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+    {
+        BloodEffect_->GetTransform().SetWorldPosition({BodyCollider_->GetTransform().GetWorldPosition().x,
+                                                       BodyCollider_->GetTransform().GetWorldPosition().y,
+                                                       static_cast<int>(ACTORORDER::PlayerEffect)});
+        BloodEffect_->GetRenderer()->On();
+        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
+    }
+
+    MonsterBase::DamageCheck(50.f, "TeleportIN");
+}
 
 void GiantSword::TeleportOutEnd(const StateInfo& _Info) {}
 
 
-void GiantSword::VisibleStart(const StateInfo& _Info) 
+void GiantSword::VisibleStart(const StateInfo& _Info)
 {
     SetHP(100);
     Renderer_->Off();
-    BodyCollider_->Off();
-
-    EyeRenderer_->Off();
-    IrisRenderer_->Off();
 }
 
-void GiantSword::VisibleUpdate(float _DeltaTime, const StateInfo& _Info) 
+void GiantSword::VisibleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    if (5 <= _Info.StateTime)
+    if ("Death" == Pontiff_->GetState())
     {
-        State_.ChangeState("TeleportIN");
+        return;
+    }
+
+    if (5 < _Info.StateTime)
+    {
+        State_.ChangeState("TeleportOut");
     }
 }
 
-void GiantSword::VisibleEnd(const StateInfo& _Info) 
-{ 
-    Renderer_->On(); 
-    BodyCollider_->On();
-
-    EyeRenderer_->On();
-    IrisRenderer_->On();
-}
+void GiantSword::VisibleEnd(const StateInfo& _Info) { Renderer_->On(); }
 
 
-
-void GiantSword::AttackStart(const StateInfo& _Info) { Renderer_->SetTexture("pontiff_giantSword_swordSprite.png"); }
+void GiantSword::AttackStart(const StateInfo& _Info) {}
 
 void GiantSword::AttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
@@ -162,32 +172,9 @@ void GiantSword::AttackEnd(const StateInfo& _Info) {}
 
 void GiantSword::TrackStart(const StateInfo& _Info) {}
 
-void GiantSword::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
-{
-}
+void GiantSword::TrackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void GiantSword::TrackEnd(const StateInfo& _Info) {}
 
 
-bool GiantSword::LookAtPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)
-{
-    float4 Dir = _Other->GetTransform().GetWorldPosition() - _This->GetTransform().GetWorldPosition();
-
-    Dir.Normalize();
-
-    float4 LimitDistance = (EyeRenderer_->GetTransform().GetWorldPosition() + float4{0, 10})
-                         - IrisRenderer_->GetTransform().GetWorldPosition();
-
-    if (10 > LimitDistance.x && 10 > LimitDistance.y && -10 < LimitDistance.x && -10 < LimitDistance.y)
-    {
-        IrisRenderer_->GetTransform().SetWorldMove(Dir * 150 * GameEngineTime::GetDeltaTime());
-    }
-
-    else
-    {
-        LimitDistance.Normalize();
-        IrisRenderer_->GetTransform().SetWorldMove(LimitDistance * 150 * GameEngineTime::GetDeltaTime());
-    }
-
-    return true;
-}
+bool GiantSword::LookAtPlayer(GameEngineCollision* _This, GameEngineCollision* _Other) { return false; }

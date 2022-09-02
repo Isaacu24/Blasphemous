@@ -1,8 +1,11 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 #include <GameEngineBase/GameEngineRandom.h>
+#include "SpawnerBase.h"
 
-class ToxicCloudSpawner : public GameEngineActor
+class ToxicCloudSpawner 
+    : public GameEngineActor
+    , public SpawnerBase 
 {
 public:
 	ToxicCloudSpawner();

@@ -22,5 +22,7 @@ protected:
     BossUI* BossUI_;
     bool BossEvent_;
 
+    void DamageCheck(float _Damage) override;
+
 private:
 };

@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include "SpawnerBase.h"
 
 enum class BOLTTYPE
 {
@@ -7,7 +8,9 @@ enum class BOLTTYPE
     Alone
 };
 
-class LightiningBoltSpawner : public GameEngineActor
+class LightiningBoltSpawner 
+    : public GameEngineActor
+    , public SpawnerBase
 {
 public:
     LightiningBoltSpawner();

@@ -230,6 +230,15 @@
     <ClInclude Include="SwordIris.h">
       <Filter>Actor\BossMonster\Pontiff\GiantSword</Filter>
     </ClInclude>
+    <ClInclude Include="AnguishBeamSpawner.h">
+      <Filter>Actor\Effect\Monster\Boss\Pontiff</Filter>
+    </ClInclude>
+    <ClInclude Include="AnguishBeam.h">
+      <Filter>Actor\Effect\Monster\Boss\Pontiff</Filter>
+    </ClInclude>
+    <ClInclude Include="SpawnerBase.h">
+      <Filter>Actor\Effect\Monster\Boss</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -463,6 +472,15 @@
     </ClCompile>
     <ClCompile Include="SwordIris.cpp">
       <Filter>Actor\BossMonster\Pontiff\GiantSword</Filter>
+    </ClCompile>
+    <ClCompile Include="AnguishBeamSpawner.cpp">
+      <Filter>Actor\Effect\Monster\Boss\Pontiff</Filter>
+    </ClCompile>
+    <ClCompile Include="AnguishBeam.cpp">
+      <Filter>Actor\Effect\Monster\Boss\Pontiff</Filter>
+    </ClCompile>
+    <ClCompile Include="SpawnerBase.cpp">
+      <Filter>Actor\Effect\Monster\Boss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

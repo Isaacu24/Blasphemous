@@ -140,9 +140,13 @@ protected:
     void RecoveryUpdate(float _DeltaTime, const StateInfo& _Info);
     void RecoveryEnd(const StateInfo& _Info);
 
-     void DeathStart(const StateInfo& _Info);
-     void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
-     void DeathEnd(const StateInfo& _Info);
+    void ReturnToPortStart(const StateInfo& _Info);
+    void ReturnToPortUpdate(float _DeltaTime, const StateInfo& _Info);
+    void ReturnToPortEnd(const StateInfo& _Info);
+
+    void DeathStart(const StateInfo& _Info);
+    void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
+    void DeathEnd(const StateInfo& _Info);
 
 
     //피격 함수

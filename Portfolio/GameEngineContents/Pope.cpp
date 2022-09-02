@@ -174,41 +174,16 @@ void Pope::CreateSpawner()
     MagicMissileSpawner_ = GetLevel()->CreateActor<MagicMissileSpawner>();
     MagicMissileSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BossMonster)});
     MagicMissileSpawner_->Off();
+
+    BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
+    BloodEffect_->GetRenderer()->Off();
 }
 
 void Pope::Update(float _DeltaTime)
 {
     State_.Update(_DeltaTime);
 
-    DamageCheck();
-}
-
-void Pope::DamageCheck()
-{
-    if (false
-        == BodyCollider_->IsCollision(
-            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
-    {
-        IsHit_ = false;
-    }
-
-    if (true == IsHit_)
-    {
-        return;
-    }
-
-    if (true
-        == BodyCollider_->IsCollision(
-            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
-    {
-        IsHit_ = true;
-        MinusHP(10.f);
-    }
-
-    if (0 >= GetHP())
-    {
-        State_.ChangeState("Death");
-    }
+    BossMonster::DamageCheck(10.f);
 }
 
 void Pope::End() {}

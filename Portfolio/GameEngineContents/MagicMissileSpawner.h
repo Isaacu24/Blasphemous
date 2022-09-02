@@ -1,7 +1,10 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
-
-class MagicMissileSpawner : public GameEngineActor
+#include "SpawnerBase.h"
+ 
+class MagicMissileSpawner 
+    : public GameEngineActor
+    , public SpawnerBase
 {
 public:
     MagicMissileSpawner();

@@ -60,6 +60,11 @@ void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
         State_.ChangeState("Recovery");
     }
 
+    else if (true == GameEngineInput::GetInst()->IsDownKey("PenitentTelport"))
+    {
+        State_.ChangeState("ReturnToPort");
+    }
+
     //내리막길
     if (false == IsGround_)
     {
@@ -418,6 +423,12 @@ void Penitent::KnockBackStart(const StateInfo& _Info)
     FallTime_ = 0.f;
     MetaRenderer_->ChangeMetaAnimation("Penitent_pushback_grounded");
     BodyCollider_->Off();
+
+    HitEffect_->Renderer_->On();
+    HitEffect_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
+                                                 GetTransform().GetWorldPosition().y,
+                                                 static_cast<int>(ACTORORDER::BehindEffect)});
+    HitEffect_->Renderer_->ChangeMetaAnimation("pushback_sparks_anim");
 }
 
 void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -433,11 +444,22 @@ void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
+    HitEffect_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
+                                                 GetTransform().GetWorldPosition().y + 75.f,
+                                                 static_cast<int>(ACTORORDER::BehindEffect)});
+
     GetTransform().SetWorldMove(float4{-(RealXDir_), 0} * 150.f * _DeltaTime);
     Gravity_->SetActive(!IsGround_);
 }
 
-void Penitent::KnockBackEnd(const StateInfo& _Info) { BodyCollider_->On(); }
+void Penitent::KnockBackEnd(const StateInfo& _Info)
+{
+    BodyCollider_->On();
+
+    HitEffect_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
+                                                 GetTransform().GetWorldPosition().y,
+                                                 static_cast<int>(ACTORORDER::PlayerEffect)});
+}
 
 void Penitent::KnockUpStart(const StateInfo& _Info)
 {
@@ -755,6 +777,8 @@ void Penitent::AttackEnd(const StateInfo& _Info)
     AttackStack_ = 0;
 }
 
+
+
 void Penitent::DodgeAttackStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_dodge_attack_LVL3");
@@ -781,6 +805,8 @@ void Penitent::DodgeAttackEnd(const StateInfo& _Info)
     AttackCollider_->ChangeOrder(COLLISIONORDER::PlayerAttack);
     BodyCollider_->On();
 }
+
+
 
 void Penitent::VerticalAttackStart(const StateInfo& _Info)
 {
@@ -818,11 +844,15 @@ void Penitent::VerticalAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Penitent::VerticalAttackEnd(const StateInfo& _Info) { AttackCollider_->Off(); }
 
+
+
 void Penitent::ParryingStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penitent_parry_failed"); }
 
 void Penitent::ParryingUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Penitent::ParryingEnd(const StateInfo& _Info) {}
+
+
 
 void Penitent::RecoveryStart(const StateInfo& _Info)
 {
@@ -861,6 +891,21 @@ void Penitent::RecoveryStart(const StateInfo& _Info)
 void Penitent::RecoveryUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Penitent::RecoveryEnd(const StateInfo& _Info) {}
+
+
+void Penitent::ReturnToPortStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("RegresoAPuerto-Prayer");
+
+    AttackEffect_->Renderer_->On();
+    AttackEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
+    AttackEffect_->Renderer_->ChangeMetaAnimation("guardian_lady_protect_and_vanish");
+}
+
+void Penitent::ReturnToPortUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Penitent::ReturnToPortEnd(const StateInfo& _Info) {}
+
 
 void Penitent::DeathStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("death_anim_blood"); }
 

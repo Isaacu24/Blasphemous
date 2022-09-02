@@ -122,6 +122,25 @@ void AttackEffect::Start()
             });
     }
 
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("guardian_lady_protect_and_vanish");
+
+        Renderer_->CreateMetaAnimation("guardian_lady_protect_and_vanish",
+                                       {"guardian_lady_protect_and_vanish.png",
+                                        0,
+                                        static_cast<unsigned int>(Data.size() - 1),
+                                        0.07f,
+                                        false},
+                                       Data);
+
+        Renderer_->AnimationBindEnd("guardian_lady_protect_and_vanish",
+                                    [&](const FrameAnimation_DESC& _Info)
+                                    {
+                                        Renderer_->CurAnimationReset();
+                                        Renderer_->Off();
+                                    });
+    }
+
     Renderer_->SetPivot(PIVOTMODE::METABOT);
 }
 

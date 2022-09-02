@@ -18,6 +18,7 @@ void LightiningBoltSpawner::Update(float _DeltaTime)
     if (6 == StrikeCount_)
     {
         StrikeCount_ = 0;
+        SpawnerEnd_  = true;
         Off();
         return;
     }

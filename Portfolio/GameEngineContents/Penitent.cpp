@@ -60,6 +60,7 @@ void Penitent::Start()
         GameEngineInput::GetInst()->CreateKey("PenitentRecovery", 'F');
         GameEngineInput::GetInst()->CreateKey("PenitentAttack", 'K');
         GameEngineInput::GetInst()->CreateKey("PenitentParry", 'J');
+        GameEngineInput::GetInst()->CreateKey("PenitentTelport", 'B');
         GameEngineInput::GetInst()->CreateKey("FreeCamera", 'O');
 
         GameEngineInput::GetInst()->CreateKey("PenitentAnimation", '1');
@@ -870,7 +871,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_healthpotion_consuming_anim",
-            {"penitent_healthpotion_consuming_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
+            {"penitent_healthpotion_consuming_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
             Data);
 
         MetaRenderer_->AnimationBindEnd("penitent_healthpotion_consuming_anim",
@@ -886,7 +887,19 @@ void Penitent::SetAnimation()
             {"death_anim_blood.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
             Data);
     }
+    
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("RegresoAPuerto-Prayer");
 
+        MetaRenderer_->CreateMetaAnimation(
+            "RegresoAPuerto-Prayer",
+            {"RegresoAPuerto-Prayer.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("RegresoAPuerto-Prayer",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+    }
+    
     MetaRenderer_->SetPivot(PIVOTMODE::METABOT);
 }
 
@@ -980,6 +993,12 @@ void Penitent::SetPlayerState()
                              std::bind(&Penitent::RecoveryUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&Penitent::RecoveryStart, this, std::placeholders::_1),
                              std::bind(&Penitent::RecoveryEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember("ReturnToPort",
+                             std::bind(&Penitent::ReturnToPortUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::ReturnToPortStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::ReturnToPortEnd, this, std::placeholders::_1));
+    
 
 
     /*

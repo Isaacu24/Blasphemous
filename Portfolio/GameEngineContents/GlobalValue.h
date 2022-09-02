@@ -22,6 +22,8 @@ enum class ACTORORDER
 
 	PlayerEffect,
 	Player,
+    BehindEffect,
+
 	NPC,
 
 	Platform,

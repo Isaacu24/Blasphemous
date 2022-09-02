@@ -49,6 +49,8 @@ void Stage21::SettingMonster()
 {
     Pontiff_ = CreateActor<Pontiff>();
     Pontiff_->GetTransform().SetWorldPosition({1260, -520, static_cast<int>(ACTORORDER::BeforeLayer1)});
+    Pontiff_->SetGround(ColMap_);
+    Pontiff_->CreateSpawner();
     BossMonster_ = Pontiff_;
 }
 
@@ -158,6 +160,8 @@ void Stage21::LevelStartEvent()
 
     IsRightExit_ = false;
     IsLeftExit_  = false;
+
+    Pontiff_->SetTarget(Penitent_);
 }
 
 void Stage21::LevelEndEvent() {}

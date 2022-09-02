@@ -28,6 +28,7 @@ void ToxicCloudSpawner::Update(float _DeltaTime)
         if (10 == CloudCount_)
         {
             CloudCount_ = 0;
+            SpawnerEnd_ = true;
             Off();
         }
     }

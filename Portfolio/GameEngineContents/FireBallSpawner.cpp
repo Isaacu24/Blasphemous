@@ -7,6 +7,8 @@ FireBallSpawner::FireBallSpawner() {}
 FireBallSpawner::~FireBallSpawner() {}
 
 
+//스포너 자체도 회전해야함
+
 void FireBallSpawner::Start()
 {
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
@@ -18,7 +20,7 @@ void FireBallSpawner::Start()
     Renderer_->AnimationBindFrame("pope_fireBallVortex",
                                 std::bind(&FireBallSpawner::CreateFireBall, this, std::placeholders::_1));
 
-    GetTransform().SetLocalRotate(Dir_);
+    //GetTransform().SetLocalRotate(Dir_);
 }
 
 void FireBallSpawner::Update(float _DeltaTime)
@@ -26,6 +28,7 @@ void FireBallSpawner::Update(float _DeltaTime)
     if (10 == BallCount_)
     {
         Off();
+        SpawnerEnd_ = true;
         BallCount_ = 0;
     }
 }

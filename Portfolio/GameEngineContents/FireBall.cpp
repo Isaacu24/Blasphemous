@@ -19,9 +19,12 @@ void FireBall::Start()
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("fireTrap_projectile_destroyed");
 
         MetaRenderer_->CreateMetaAnimation(
-            "fireTrap_projectile_destroyed", {"fireTrap_projectile_destroyed.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true}, Data);
-    
-        MetaRenderer_->AnimationBindEnd("fireTrap_projectile_destroyed", [&](const FrameAnimation_DESC& _Info) { Death(); });
+            "fireTrap_projectile_destroyed",
+            {"fireTrap_projectile_destroyed.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("fireTrap_projectile_destroyed",
+                                        [&](const FrameAnimation_DESC& _Info) { Death(); });
     }
 
     MetaRenderer_->Off();
@@ -61,6 +64,11 @@ void FireBall::Update(float _DeltaTime)
                                COLLISIONORDER::Player,
                                CollisionType::CT_OBB2D,
                                std::bind(&FireBall::Explosion, this, std::placeholders::_1, std::placeholders::_2));
+
+        Collider_->IsCollision(CollisionType::CT_OBB2D,
+                               COLLISIONORDER::Platform,
+                               CollisionType::CT_OBB2D,
+                               std::bind(&FireBall::Explosion, this, std::placeholders::_1, std::placeholders::_2));
     }
 
     State_.Update(_DeltaTime);
@@ -77,7 +85,7 @@ void FireBall::ExplosionStart(const StateInfo& _Info)
     Renderer_->Off();
     Collider_->Off();
 
-    GetTransform().SetWorldScale({3.5f, 3.5f, 1});
+    GetTransform().SetWorldScale({3.f, 3.f, 1});
     MetaRenderer_->On();
 
     MetaRenderer_->ChangeMetaAnimation("fireTrap_projectile_destroyed");

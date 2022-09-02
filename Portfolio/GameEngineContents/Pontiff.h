@@ -1,6 +1,17 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include <GameEngineBase/GameEngineRandom.h>
 #include "BossMonster.h"
+
+enum class SPELLTYPE
+{
+    FIREBALL,
+    TOXICCLOUD,
+    LIGHTININGBOLT,
+    MAGICMISSILE,
+    ANGUISHBEAM,
+    NONE
+};
 
 //두번째 교황
 class Pontiff
@@ -46,12 +57,28 @@ public:
 
     const std::string GetState() { return State_.GetCurStateStateName(); }
 
+    void SpellCast(float _DeltaTime);
+
+    void FireBall(float _DeltaTime);
+    void ToxicCloud();
+    void LightiningBolt();
+    void Magicmissile();
+    void AnguishBeam();
+
+    void CreateSpawner();
+        
+    
+    void SetTarget(GameEngineActor* _Target) { Target_ = _Target; }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
     void End() override;
 
 private:
+    SPELLTYPE CurType_;
+    SPELLTYPE PervType_;
+
     class GameEngineTextureRenderer* Helmet_;
     GameEngineTextureRenderer*       Body_;
     GameEngineTextureRenderer*       Face_;
@@ -60,14 +87,19 @@ private:
 
     class GiantSword* GiantSword_;
 
-    class SymbolEffect* Symbol_;
+    class SymbolEffect* Symbol_[2];
 
-    class FireBallSpawner*       FireBallSpawner_;
+    class FireBallSpawner*       FireBallSpawner_[6];
     class ToxicCloudSpawner*     ToxicCloudSpawner_;
     class LightiningBoltSpawner* LightiningBoltSpawner_;
     class MagicMissileSpawner*   MagicMissileSpawner_;
+    class AnguishBeamSpawner*    AnguishBeamSpawner_;
 
     class PlatformSpawner* PlatformSpawner_;
+
+    GameEngineRandom Random_;
+
+    GameEngineActor* Target_;
 
     bool IsLose_;
 
@@ -76,6 +108,11 @@ private:
     float AscensionSpeed_;
 
     float Time_;
+    float SpellTime_;
+
+    int SpellCount_;
+    
+    bool IsSpellCastStart_;
 };
 
 

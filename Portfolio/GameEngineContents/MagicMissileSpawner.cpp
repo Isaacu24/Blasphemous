@@ -22,6 +22,7 @@ void MagicMissileSpawner::Update(float _DeltaTime)
     if (8 == MissileCount_)
     {
         Off();
+        SpawnerEnd_ = true;
         MissileCount_ = 0;
         return;
     }

@@ -1,8 +1,11 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include "SpawnerBase.h"
 
 class GameEngineTextureRenderer;
-class FireBallSpawner : public GameEngineActor
+class FireBallSpawner
+    : public GameEngineActor
+    , public SpawnerBase
 {
 public:
     FireBallSpawner();
