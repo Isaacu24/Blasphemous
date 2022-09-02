@@ -1,4 +1,3 @@
-
 struct Input
 {
     float4 Pos : POSITION;
@@ -28,6 +27,11 @@ float4 TargetMerge_PS(Output _Input) : SV_Target0
     if (Color.a <= 0.0f)
     {
         clip(-1);
+    }
+    
+    if (Color.a >= 1.0f)
+    {
+        Color.a = 1.0f;
     }
     
     return Color;
