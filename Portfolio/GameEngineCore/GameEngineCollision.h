@@ -29,7 +29,6 @@ public:
 	}
 
 	void ChangeOrder(int _Order);
-
 	inline int GetCollsionOrder()
 	{
 		return CollsionOrder;
@@ -43,8 +42,6 @@ public:
 		return IsCollision(_ThisType, static_cast<int>(_GroupOrder), _OtherCollision, _Function);
 	}
 
-	// 충돌을 했냐 안했냐?
-	// 넣어줘야할 함수의 리턴하는 bool값이 true라는 건 이제 더이상 충돌체크를 하지 말라는 end의 true이다.
 	bool IsCollision(CollisionType _ThisType, int _GroupOrder
 		, CollisionType _OtherType
 		, std::function<bool(GameEngineCollision* _This, GameEngineCollision* _Other)> _Function = nullptr);
@@ -57,14 +54,21 @@ public:
 
 	virtual void DebugRender();
 
+	void SetUIDebugCamera();
+
+	void SetDebugCamera(CAMERAORDER _Order)
+	{
+		DebugCameraOrder = _Order;
+	}
+
 protected:
 
 private:
+	CAMERAORDER DebugCameraOrder;
+
 	CollisionType DebugType;
 	float4 Color;
-
 	int CollsionOrder;
-
 	void Start() override;
 };
 
