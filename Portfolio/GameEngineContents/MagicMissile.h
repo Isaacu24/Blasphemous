@@ -21,14 +21,14 @@ protected:
     void Update(float _DeltaTime) override;
     void End() override;
 
-    void MissileEnd(const FrameAnimation_DESC& _Info) { Death(); }
-
 
 private:
     GameEngineTextureRenderer* Renderer_;
     GameEngineCollision*       Collider_;
 
     float Speed_;
+
+    bool IsExplosion_;
 
     float4 Dir_;
 };
