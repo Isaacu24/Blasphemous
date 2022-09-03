@@ -64,11 +64,6 @@ void FireBall::Update(float _DeltaTime)
                                COLLISIONORDER::Player,
                                CollisionType::CT_OBB2D,
                                std::bind(&FireBall::Explosion, this, std::placeholders::_1, std::placeholders::_2));
-
-        Collider_->IsCollision(CollisionType::CT_OBB2D,
-                               COLLISIONORDER::Platform,
-                               CollisionType::CT_OBB2D,
-                               std::bind(&FireBall::Explosion, this, std::placeholders::_1, std::placeholders::_2));
     }
 
     State_.Update(_DeltaTime);
@@ -85,7 +80,7 @@ void FireBall::ExplosionStart(const StateInfo& _Info)
     Renderer_->Off();
     Collider_->Off();
 
-    GetTransform().SetWorldScale({3.f, 3.f, 1});
+    GetTransform().SetWorldScale({2.5f, 2.5f, 1});
     MetaRenderer_->On();
 
     MetaRenderer_->ChangeMetaAnimation("fireTrap_projectile_destroyed");

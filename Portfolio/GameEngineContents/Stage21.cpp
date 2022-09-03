@@ -160,8 +160,6 @@ void Stage21::LevelStartEvent()
 
     IsRightExit_ = false;
     IsLeftExit_  = false;
-
-    Pontiff_->SetTarget(Penitent_);
 }
 
 void Stage21::LevelEndEvent() {}

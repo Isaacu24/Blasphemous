@@ -88,7 +88,8 @@ void Penitent::MoveStart(const StateInfo& _Info)
 
 void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    if (GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
+    if (true == GameEngineInput::GetInst()->IsPressKey("PenitentRight")
+        || 20000 < GameEngineInput::GetInst()->GetThumbLX())
     {
         GetTransform().PixLocalPositiveX();
         Dir_ = GetTransform().GetRightVector();
@@ -103,7 +104,8 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
         }
     }
 
-    else if (GameEngineInput::GetInst()->IsUpKey("PenitentRight"))
+    else if (true == GameEngineInput::GetInst()->IsUpKey("PenitentRight")
+             || 20000 < GameEngineInput::GetInst()->GetThumbLX())
     {
         if (1.f <= RunTime_)
         {
@@ -123,7 +125,7 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
-    if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft") || 0 > GameEngineInput::GetInst()->GetThumbLX())
     {
         GetTransform().PixLocalNegativeX();
         Dir_ = -(GetTransform().GetLeftVector());
@@ -137,7 +139,7 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
         }
     }
 
-    else if (GameEngineInput::GetInst()->IsUpKey("PenitentLeft"))
+    else if (GameEngineInput::GetInst()->IsUpKey("PenitentLeft") || 0 > GameEngineInput::GetInst()->GetThumbLX())
     {
         if (1.f <= RunTime_)
         {
@@ -328,10 +330,11 @@ void Penitent::JumpAttackStart(const StateInfo& _Info)
     //일단 인정하지도 증가하지도 않음.
     FallTime_ = 0.f;
 
+    float EffectZ = AO_PLAYEREFFECT;
+
     AttackEffect_->Renderer_->On();
     AttackEffect_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
-                                                    GetTransform().GetWorldPosition().y,
-                                                    static_cast<int>(ACTORORDER::PlayerEffect)});
+                                                    GetTransform().GetWorldPosition().y, EffectZ});
 
     AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_jumping_attack_slasheslvl2");
 
@@ -358,9 +361,11 @@ void Penitent::JumpAttackStart(const StateInfo& _Info)
 void Penitent::JumpAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     JumpForce_.y -= _DeltaTime * 80.f;
+
+    float EffectZ = AO_PLAYEREFFECT;
+
     AttackEffect_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
-                                                    GetTransform().GetWorldPosition().y,
-                                                    static_cast<int>(ACTORORDER::PlayerEffect)});
+                                                    GetTransform().GetWorldPosition().y, EffectZ});
 
     Dir_ = GetTransform().GetUpVector() * 10.f;
 
@@ -425,9 +430,6 @@ void Penitent::KnockBackStart(const StateInfo& _Info)
     BodyCollider_->Off();
 
     HitEffect_->Renderer_->On();
-    HitEffect_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
-                                                 GetTransform().GetWorldPosition().y,
-                                                 static_cast<int>(ACTORORDER::BehindEffect)});
     HitEffect_->Renderer_->ChangeMetaAnimation("pushback_sparks_anim");
 }
 
@@ -444,22 +446,16 @@ void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
-    HitEffect_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
-                                                 GetTransform().GetWorldPosition().y + 75.f,
-                                                 static_cast<int>(ACTORORDER::BehindEffect)});
+    float EffectZ = AO_PLAYEREFFECT;
+
+    HitEffect_->GetTransform().SetWorldPosition(
+        {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y + 75.f, EffectZ});
 
     GetTransform().SetWorldMove(float4{-(RealXDir_), 0} * 150.f * _DeltaTime);
     Gravity_->SetActive(!IsGround_);
 }
 
-void Penitent::KnockBackEnd(const StateInfo& _Info)
-{
-    BodyCollider_->On();
-
-    HitEffect_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
-                                                 GetTransform().GetWorldPosition().y,
-                                                 static_cast<int>(ACTORORDER::PlayerEffect)});
-}
+void Penitent::KnockBackEnd(const StateInfo& _Info) { BodyCollider_->On(); }
 
 void Penitent::KnockUpStart(const StateInfo& _Info)
 {
@@ -496,10 +492,10 @@ void Penitent::LandingStart(const StateInfo& _Info)
         MetaRenderer_->ChangeMetaAnimation("penitent_verticalattack_landing");
 
         float4 PlayerPos = GetTransform().GetWorldPosition();
+        float  EffectZ   = AO_PLAYEREFFECT;
 
         AttackEffect_->Renderer_->On();
-        AttackEffect_->GetTransform().SetWorldPosition(
-            {PlayerPos.x, PlayerPos.y, static_cast<int>(ACTORORDER::PlayerEffect)});
+        AttackEffect_->GetTransform().SetWorldPosition({PlayerPos.x, PlayerPos.y, EffectZ});
         AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_verticalattack_landing_effects_anim");
         AttackEffect_->Renderer_->CurAnimationReset();
         return;
@@ -778,7 +774,6 @@ void Penitent::AttackEnd(const StateInfo& _Info)
 }
 
 
-
 void Penitent::DodgeAttackStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_dodge_attack_LVL3");
@@ -805,7 +800,6 @@ void Penitent::DodgeAttackEnd(const StateInfo& _Info)
     AttackCollider_->ChangeOrder(COLLISIONORDER::PlayerAttack);
     BodyCollider_->On();
 }
-
 
 
 void Penitent::VerticalAttackStart(const StateInfo& _Info)
@@ -845,13 +839,11 @@ void Penitent::VerticalAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 void Penitent::VerticalAttackEnd(const StateInfo& _Info) { AttackCollider_->Off(); }
 
 
-
 void Penitent::ParryingStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penitent_parry_failed"); }
 
 void Penitent::ParryingUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Penitent::ParryingEnd(const StateInfo& _Info) {}
-
 
 
 void Penitent::RecoveryStart(const StateInfo& _Info)

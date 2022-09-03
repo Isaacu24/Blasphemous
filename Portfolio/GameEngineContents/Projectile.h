@@ -3,7 +3,7 @@
 
 class GameEngineCollision;
 class GameEngineTextureRenderer;
-class Projectile 
+class Projectile
 {
 public:
     Projectile();
@@ -30,8 +30,8 @@ public:
             Renderer_->GetTransform().PixLocalNegativeX();
         }
     }
-    
-    virtual void SetDirection(float4 _Dir){};
+
+    virtual void SetDirection(float4 _Dir) { Dir_ = _Dir; };
 
     virtual void SetSpeed(float _Speed) { Speed_ = _Speed; }
 
@@ -46,9 +46,8 @@ protected:
     float4 Dir_;
     float  Speed_;
     bool   IsExplosion_;
-    
+
     virtual void Shoot(float _DeltaTime){};
 
 private:
-
 };

@@ -165,7 +165,7 @@ void ElderBrother::Start()
     AttackEffecter_ = GetLevel()->CreateActor<AttackCorpseEffecter>();
     JumpEffecter_   = GetLevel()->CreateActor<JumpCorpseEffecter>();
 
-    AffectChecker = GetLevel()->CreateActor<GravityActor>(ACTORORDER::BossMonster);
+    AffectChecker = GetLevel()->CreateActor<GravityActor>(ACTORORDER::Monster);
     AffectChecker->Off();
 
     State_.CreateStateMember("Appear",
@@ -325,7 +325,7 @@ void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
 
                 GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
                                                  GetTransform().GetWorldPosition().y,
-                                                 static_cast<int>(ACTORORDER::BossMonster)});
+                                                 static_cast<int>(ACTORORDER::Monster)});
 
                 Flow_ = APPEARFLOW::Fall;
             }
@@ -437,7 +437,7 @@ void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 
     float4 LerpPos = float4::LerpLimit(GetTransform().GetWorldPosition(), Target_, Alpha_);
-    GetTransform().SetWorldPosition({LerpPos.x, LerpPos.y, static_cast<int>(ACTORORDER::BossMonster)});
+    GetTransform().SetWorldPosition({LerpPos.x, LerpPos.y, static_cast<int>(ACTORORDER::Monster)});
 
     Gravity_->SetActive(!IsGround_);
     GetTransform().SetWorldMove(Dir_ * JumpForce_ * _DeltaTime);
@@ -474,7 +474,7 @@ void ElderBrother::FallUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 
     float4 LerpPos = float4::LerpLimit(GetTransform().GetWorldPosition(), Target_, Alpha_);
-    GetTransform().SetWorldPosition({LerpPos.x, LerpPos.y, static_cast<int>(ACTORORDER::BossMonster)});
+    GetTransform().SetWorldPosition({LerpPos.x, LerpPos.y, static_cast<int>(ACTORORDER::Monster)});
 
     float4 Distance = Target_ - GetTransform().GetWorldPosition();
 

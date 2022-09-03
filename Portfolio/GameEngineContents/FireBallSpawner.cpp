@@ -8,7 +8,6 @@ FireBallSpawner::~FireBallSpawner() {}
 
 
 //스포너 자체도 회전해야함
-
 void FireBallSpawner::Start()
 {
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
@@ -18,23 +17,34 @@ void FireBallSpawner::Start()
     Renderer_->GetTransform().SetWorldScale({300, 300});
 
     Renderer_->AnimationBindFrame("pope_fireBallVortex",
-                                std::bind(&FireBallSpawner::CreateFireBall, this, std::placeholders::_1));
-
-    //GetTransform().SetLocalRotate(Dir_);
+                                  std::bind(&FireBallSpawner::CreateFireBall, this, std::placeholders::_1));
 }
 
 void FireBallSpawner::Update(float _DeltaTime)
 {
-    if (10 == BallCount_)
+    switch (SpawnerType_)
     {
-        Off();
-        SpawnerEnd_ = true;
-        BallCount_ = 0;
+        case SPAWNERTYPE::SP_LOWLEVLE:
+            if (10 == BallCount_)
+            {
+                Off();
+                SpawnerEnd_ = true;
+                BallCount_  = 0;
+            }
+            break;
+
+        case SPAWNERTYPE::SP_HIGHLEVLE:
+            if (5 == BallCount_)
+            {
+                Off();
+                SpawnerEnd_ = true;
+                BallCount_  = 0;
+            }
+            break;
     }
 }
 
 void FireBallSpawner::End() {}
-
 
 
 void FireBallSpawner::CreateFireBall(const FrameAnimation_DESC& _Info)
@@ -45,7 +55,11 @@ void FireBallSpawner::CreateFireBall(const FrameAnimation_DESC& _Info)
         Clone->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
         Clone->SetGround(ColMap_);
         Clone->SetSpeed(600.f);
-        Clone->SetDirection(Dir_);
+
+        float4 Dir = Target_->GetTransform().GetWorldPosition() - GetTransform().GetWorldPosition();
+        Dir.Normalize();
+
+        Clone->SetDirection(Dir);
 
         ++BallCount_;
     }

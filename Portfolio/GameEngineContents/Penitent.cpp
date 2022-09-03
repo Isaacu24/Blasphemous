@@ -129,19 +129,21 @@ void Penitent::Start()
     PlayerUI_->SetLevelOverOn();
     PlayerUI_->SetTear(Tear_);
 
+    float EffectZ = AO_PLAYEREFFECT;
+
     MoveEffect_ = GetLevel()->CreateActor<MoveEffect>();
     MoveEffect_->GetTransform().SetWorldScale({2, 2, 1});
-    MoveEffect_->GetTransform().SetLocalPosition({0, 0, static_cast<int>(ACTORORDER::PlayerEffect)});
+    MoveEffect_->GetTransform().SetLocalPosition({0, 0, EffectZ});
     MoveEffect_->SetLevelOverOn();
 
     AttackEffect_ = GetLevel()->CreateActor<AttackEffect>();
     AttackEffect_->GetTransform().SetWorldScale({2, 2, 1});
-    AttackEffect_->GetTransform().SetLocalPosition({0, 0, static_cast<int>(ACTORORDER::PlayerEffect)});
+    AttackEffect_->GetTransform().SetLocalPosition({0, 0, EffectZ});
     AttackEffect_->SetLevelOverOn();
 
     HitEffect_ = GetLevel()->CreateActor<HitEffect>();
     HitEffect_->GetTransform().SetWorldScale({2, 2, 1});
-    HitEffect_->GetTransform().SetLocalPosition({0, 0, static_cast<int>(ACTORORDER::PlayerEffect)});
+    HitEffect_->GetTransform().SetLocalPosition({0, 0, EffectZ});
     HitEffect_->SetLevelOverOn();
 
     GetTransform().SetLocalScale({2, 2, 1});
@@ -651,14 +653,18 @@ void Penitent::SetAnimation()
                 switch (_Info.CurFrame)
                 {
                     case 5:
-                        AttackCollider_->On();
-                        HitStack_ = 0;
+                        {
+                            AttackCollider_->On();
+                            HitStack_ = 0;
 
-                        AttackEffect_->Renderer_->On();
-                        AttackEffect_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
-                                                                        GetTransform().GetWorldPosition().y,
-                                                                        static_cast<int>(ACTORORDER::PlayerEffect)});
-                        AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_upward_attack_slash_lvl1");
+                            float EffectZ = AO_PLAYEREFFECT;
+
+                            AttackEffect_->Renderer_->On();
+                            AttackEffect_->GetTransform().SetWorldPosition(
+                                {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, EffectZ});
+                            AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_upward_attack_slash_lvl1");
+                        }
+
                         break;
 
                     case 6:
@@ -825,7 +831,7 @@ void Penitent::SetAnimation()
             {
                 if (9 == _Info.CurFrame)
                 {
-                    MoveEffect_->Renderer_->On();   
+                    MoveEffect_->Renderer_->On();
                 }
 
                 if (9 <= _Info.CurFrame)
@@ -887,7 +893,7 @@ void Penitent::SetAnimation()
             {"death_anim_blood.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
             Data);
     }
-    
+
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("RegresoAPuerto-Prayer");
 
@@ -899,7 +905,7 @@ void Penitent::SetAnimation()
         MetaRenderer_->AnimationBindEnd("RegresoAPuerto-Prayer",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
-    
+
     MetaRenderer_->SetPivot(PIVOTMODE::METABOT);
 }
 
@@ -994,11 +1000,11 @@ void Penitent::SetPlayerState()
                              std::bind(&Penitent::RecoveryStart, this, std::placeholders::_1),
                              std::bind(&Penitent::RecoveryEnd, this, std::placeholders::_1));
 
-    State_.CreateStateMember("ReturnToPort",
-                             std::bind(&Penitent::ReturnToPortUpdate, this, std::placeholders::_1, std::placeholders::_2),
-                             std::bind(&Penitent::ReturnToPortStart, this, std::placeholders::_1),
-                             std::bind(&Penitent::ReturnToPortEnd, this, std::placeholders::_1));
-    
+    State_.CreateStateMember(
+        "ReturnToPort",
+        std::bind(&Penitent::ReturnToPortUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&Penitent::ReturnToPortStart, this, std::placeholders::_1),
+        std::bind(&Penitent::ReturnToPortEnd, this, std::placeholders::_1));
 
 
     /*

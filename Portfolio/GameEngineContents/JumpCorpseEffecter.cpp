@@ -35,7 +35,7 @@ void JumpCorpseEffecter::Update(float _DeltaTime)
 			Corpse* NewCorpse = GetLevel()->CreateActor<Corpse>();
 			NewCorpse->SetCreatePos({ CreatePos_.x + PosX, CreatePos_.y });
 
-			NewCorpse->GetTransform().SetWorldPosition({ CreatePos_.x + PosX, CreatePos_.y , static_cast<int>(ACTORORDER::BossMonster) });
+			NewCorpse->GetTransform().SetWorldPosition({ CreatePos_.x + PosX, CreatePos_.y , static_cast<int>(ACTORORDER::Monster) });
 
 			if (3 < Index_)
 			{

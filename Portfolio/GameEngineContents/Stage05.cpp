@@ -35,11 +35,11 @@ void Stage05::SettingStage()
     IronDoor->GetTransform().SetWorldPosition({1107, -520, static_cast<int>(ACTORORDER::Object)});
 
     Fence_ = CreateActor<SideFence>();
-    Fence_->GetTransform().SetWorldPosition({1390, -530, static_cast<int>(ACTORORDER::Object1)});
+    Fence_->GetTransform().SetWorldPosition({1390, -530, static_cast<int>(ACTORORDER::Object)});
 
     GlassSwitch* Glass = CreateActor<GlassSwitch>();
     Glass->SetSideFence(Fence_);
-    Glass->GetTransform().SetWorldPosition({1350, -490, static_cast<int>(ACTORORDER::Object2)});
+    Glass->GetTransform().SetWorldPosition({1350, -490, static_cast<int>(ACTORORDER::Object)});
 
     GameEngineTextureRenderer* DoorRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     DoorRendrer->SetTexture("1_5_Door.png");

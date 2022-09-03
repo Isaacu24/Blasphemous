@@ -112,7 +112,7 @@ void Pontiff::Start()
     State_.ChangeState("Appear");
 
     GiantSword_ = GetLevel()->CreateActor<GiantSword>();
-    GiantSword_->GetTransform().SetWorldPosition({1400, -600, static_cast<int>(ACTORORDER::BossMonster)});
+    GiantSword_->GetTransform().SetWorldPosition({1400, -600, static_cast<int>(ACTORORDER::Monster)});
     GiantSword_->SetPontiff(this);
 
     BossUI_ = GetLevel()->CreateActor<BossUI>();
@@ -132,19 +132,18 @@ void Pontiff::Start()
 
     Symbol_[0] = GetLevel()->CreateActor<SymbolEffect>();
     Symbol_[0]->GetTransform().SetWorldScale({2, 2, 1});
-    Symbol_[0]->GetTransform().SetWorldPosition({860, -600, static_cast<int>(ACTORORDER::BossMonsterEffect)});
+    Symbol_[0]->GetTransform().SetWorldPosition({860, -600, static_cast<int>(ACTORORDER::MonsterEffect)});
     Symbol_[0]->Renderer_->Off();
 
     Symbol_[1] = GetLevel()->CreateActor<SymbolEffect>();
     Symbol_[1]->GetTransform().SetWorldScale({2, 2, 1});
-    Symbol_[1]->GetTransform().SetWorldPosition({1660, -600, static_cast<int>(ACTORORDER::BossMonsterEffect)});
+    Symbol_[1]->GetTransform().SetWorldPosition({1660, -600, static_cast<int>(ACTORORDER::MonsterEffect)});
     Symbol_[1]->Renderer_->Off();
 }
 
 void Pontiff::Update(float _DeltaTime)
 {
     State_.Update(_DeltaTime);
-    SpellCast(_DeltaTime);
 
     if ("Death" != State_.GetCurStateStateName())
     {
@@ -152,92 +151,27 @@ void Pontiff::Update(float _DeltaTime)
     }
 
     GameEngineDebug::OutPutString("Pontiff : " + State_.GetCurStateStateName());
+
+    if (false == IsSpellCast_)
+    {
+        FireBall(_DeltaTime);
+    }
+
+    if (true == IsSpellCast_)
+    {
+        if (true == FireBallSpawner_[5]->GetSpawnerEnd())
+        {
+            RestTime_ += _DeltaTime;
+
+            if (3.f < RestTime_)
+            {
+                IsSpellCast_ = false;
+            }
+        }
+    }
 }
 
 void Pontiff::End() {}
-
-
-void Pontiff::SpellCast(float _DeltaTime)
-{
-    switch (PervType_)
-    {
-        case SPELLTYPE::NONE:
-            break;
-        case SPELLTYPE::FIREBALL:
-            if (true == FireBallSpawner_[5]->GetSpawnerEnd())
-            {
-                IsSpellCastStart_ = true;
-            }
-            break;
-        case SPELLTYPE::TOXICCLOUD:
-            if (true == ToxicCloudSpawner_->GetSpawnerEnd())
-            {
-                IsSpellCastStart_ = true;
-            }
-            break;
-        case SPELLTYPE::LIGHTININGBOLT:
-            if (true == LightiningBoltSpawner_->GetSpawnerEnd())
-            {
-                IsSpellCastStart_ = true;
-            }
-            break;
-        case SPELLTYPE::MAGICMISSILE:
-            if (true == MagicMissileSpawner_->GetSpawnerEnd())
-            {
-                IsSpellCastStart_ = true;
-            }
-            break;
-        case SPELLTYPE::ANGUISHBEAM:
-            if (true == AnguishBeamSpawner_->GetSpawnerEnd())
-            {
-                IsSpellCastStart_ = true;
-            }
-            break;
-    }
-
-    if (false == IsSpellCastStart_)
-    {
-        return;
-    }
-
-    int Num = Random_.RandomInt(0, static_cast<int>(SPELLTYPE::ANGUISHBEAM));
-
-    CurType_ = static_cast<SPELLTYPE>(Num);
-
-    Symbol_[0]->Renderer_->On();
-    Symbol_[1]->Renderer_->On();
-
-    switch (CurType_)
-    {
-        case SPELLTYPE::FIREBALL:
-            FireBall(_DeltaTime);
-            PervType_ = SPELLTYPE::FIREBALL;
-            break;
-
-        case SPELLTYPE::TOXICCLOUD:
-            ToxicCloud();
-            PervType_ = SPELLTYPE::TOXICCLOUD;
-            break;
-
-        case SPELLTYPE::LIGHTININGBOLT:
-            LightiningBolt();
-            PervType_ = SPELLTYPE::LIGHTININGBOLT;
-            break;
-
-        case SPELLTYPE::MAGICMISSILE:
-            Magicmissile();
-            PervType_ = SPELLTYPE::MAGICMISSILE;
-            break;
-
-        case SPELLTYPE::ANGUISHBEAM:
-            AnguishBeam();
-            PervType_ = SPELLTYPE::ANGUISHBEAM;
-            break;
-    }
-
-    IsSpellCastStart_ = false;
-}
-
 
 void Pontiff::FireBall(float _DeltaTime)
 {
@@ -246,125 +180,67 @@ void Pontiff::FireBall(float _DeltaTime)
 
     SpellTime_ += _DeltaTime;
 
-    if (0.1f > SpellTime_)
+    if (1.f < SpellTime_)
     {
         SpellTime_ = 0.f;
-        return;
+
+        FireBallSpawner_[SpellCount_]->On();
+        FireBallSpawner_[SpellCount_]->SetGround(ColMap_);
+
+        if (2 < SpellCount_)
+        {
+            FireBallSpawner_[SpellCount_]->GetTransform().SetWorldPosition(
+                {950.f + (175.f * SpellCount_), -250.f - (50.f * SpellCount_)});
+        }
+
+        else
+        {
+            FireBallSpawner_[SpellCount_]->GetTransform().SetWorldPosition(
+                {650.f + (175.f * SpellCount_), -500.f + (50.f * SpellCount_)});
+        }
+
+        FireBallSpawner_[SpellCount_]->SetTarget(Penitent::GetMainPlayer());
+     
+        ++SpellCount_;
     }
 
-    ++SpellCount_;
-
-    FireBallSpawner_[SpellCount_]->On();
-    FireBallSpawner_[SpellCount_]->SetGround(ColMap_);
-    FireBallSpawner_[SpellCount_]->GetTransform().SetWorldPosition(
-        {GetTransform().GetWorldPosition().x + (50 * SpellCount_), GetTransform().GetWorldPosition().y + 500});
-    FireBallSpawner_[SpellCount_]->SetDirection(Target_->GetTransform().GetWorldPosition()
-                                                -FireBallSpawner_[SpellCount_]->GetTransform().GetWorldPosition());
-
-    FireBallSpawner_[SpellCount_]->SetSpawnerEnd(false);
-
-    if (5 >= SpellCount_)
+    if (6 == SpellCount_)
     {
-        return;
+        SpellCount_  = 0;
+        IsSpellCast_ = true;
     }
-
-    SpellCount_ = 0;
-    CurType_ = SPELLTYPE::NONE;
 }
-
-void Pontiff::ToxicCloud()
-{
-    Symbol_[0]->SetColor(COLORTYPE::GREEN);
-    Symbol_[1]->SetColor(COLORTYPE::GREEN);
-
-    ToxicCloudSpawner_->On();
-    ToxicCloudSpawner_->SetGround(ColMap_);
-    ToxicCloudSpawner_->GetTransform().SetWorldPosition(
-        {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y + 500});
-
-    ToxicCloudSpawner_->SetSpawnerEnd(false);
-
-     CurType_ = SPELLTYPE::NONE;
-}
-
-void Pontiff::LightiningBolt()
-{
-    Symbol_[0]->SetColor(COLORTYPE::BLUE);
-    Symbol_[1]->SetColor(COLORTYPE::BLUE);
-
-    LightiningBoltSpawner_->On();
-    LightiningBoltSpawner_->SetTarget(Target_);
-
-    LightiningBoltSpawner_->SetSpawnerEnd(false);
-
-    CurType_ = SPELLTYPE::NONE;
-}
-
-void Pontiff::Magicmissile()
-{
-    Symbol_[0]->SetColor(COLORTYPE::PURPLE);
-    Symbol_[1]->SetColor(COLORTYPE::PURPLE);
-
-    MagicMissileSpawner_->On();
-    MagicMissileSpawner_->SetDirection(float4::LEFT);
-    MagicMissileSpawner_->GetTransform().SetWorldPosition(
-        {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y + 100.f});
-
-    MagicMissileSpawner_->SetSpawnerEnd(false);
-
-    CurType_ = SPELLTYPE::NONE;
-}
-
-void Pontiff::AnguishBeam()
-{
-    Symbol_[0]->SetColor(COLORTYPE::PURPLE);
-    Symbol_[1]->SetColor(COLORTYPE::PURPLE);
-
-    AnguishBeamSpawner_->On();
-
-    int Num = Random_.RandomInt(0, 1);
-
-    if (1 == Num)
-    {
-        AnguishBeamSpawner_->CreateOnce();
-    }
-
-    else
-    {
-        AnguishBeamSpawner_->CreateTwice();
-    }
-
-    AnguishBeamSpawner_->SetSpawnerEnd(false);
-
-    CurType_ = SPELLTYPE::NONE;
-}
-
 
 void Pontiff::CreateSpawner()
 {
     for (size_t i = 0; i < 6; i++)
     {
         FireBallSpawner_[i] = GetLevel()->CreateActor<FireBallSpawner>();
-        FireBallSpawner_[i]->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BossMonster)});
+        FireBallSpawner_[i]->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Monster)});
         FireBallSpawner_[i]->SetGround(ColMap_);
+        FireBallSpawner_[i]->SetSpawnerType(SPAWNERTYPE::SP_HIGHLEVLE);
         FireBallSpawner_[i]->Off();
     }
 
     ToxicCloudSpawner_ = GetLevel()->CreateActor<ToxicCloudSpawner>();
-    ToxicCloudSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BossMonster)});
+    ToxicCloudSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Monster)});
     ToxicCloudSpawner_->SetGround(ColMap_);
+    ToxicCloudSpawner_->SetSpawnerType(SPAWNERTYPE::SP_HIGHLEVLE);
     ToxicCloudSpawner_->Off();
 
     LightiningBoltSpawner_ = GetLevel()->CreateActor<LightiningBoltSpawner>();
-    LightiningBoltSpawner_->GetTransform().SetWorldPosition({0, -1460, static_cast<int>(ACTORORDER::BossMonster)});
+    LightiningBoltSpawner_->GetTransform().SetWorldPosition({0, -1460, static_cast<int>(ACTORORDER::Monster)});
+    LightiningBoltSpawner_->SetSpawnerType(SPAWNERTYPE::SP_HIGHLEVLE);
     LightiningBoltSpawner_->Off();
 
     MagicMissileSpawner_ = GetLevel()->CreateActor<MagicMissileSpawner>();
-    MagicMissileSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BossMonster)});
+    MagicMissileSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Monster)});
+    MagicMissileSpawner_->SetSpawnerType(SPAWNERTYPE::SP_HIGHLEVLE);
     MagicMissileSpawner_->Off();
 
     AnguishBeamSpawner_ = GetLevel()->CreateActor<AnguishBeamSpawner>();
-    AnguishBeamSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BossMonster)});
+    AnguishBeamSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Monster)});
+    AnguishBeamSpawner_->SetSpawnerType(SPAWNERTYPE::SP_HIGHLEVLE);
     AnguishBeamSpawner_->Off();
 }
 
@@ -396,8 +272,6 @@ void Pontiff::AppearEnd(const StateInfo& _Info)
     BossUI_->SetFontSize(35);
 
     PlatformSpawner_->CreateFristPattern();
-
-    IsSpellCastStart_ = true;
 }
 
 

@@ -15,55 +15,68 @@ void LightiningBoltSpawner::Update(float _DeltaTime)
 {
     DelayTime_ += _DeltaTime;
 
-    if (6 == StrikeCount_)
+    switch (SpawnerType_)
     {
-        StrikeCount_ = 0;
-        SpawnerEnd_  = true;
-        Off();
-        return;
-    }
-
-    if (2.0f >= DelayTime_)
-    {
-        return;
-    }
-
-    switch (CurType_)
-    {
-        case BOLTTYPE::Pair:
+        case SPAWNERTYPE::SP_LOWLEVLE:
             {
-                float4 TargetPos = Target_->GetTransform().GetWorldPosition();
-
+                if (6 == StrikeCount_)
                 {
-                    LightiningBolt* Bolt = GetLevel()->CreateActor<LightiningBolt>();
-                    Bolt->GetTransform().SetWorldPosition({TargetPos.x - 50.f, GetTransform().GetWorldPosition().y});
+                    SpawnerEnd_  = true;
+                    StrikeCount_ = 0;
+                    Off();
+                    return;
                 }
 
+                if (2.0f >= DelayTime_)
                 {
-                    LightiningBolt* Bolt = GetLevel()->CreateActor<LightiningBolt>();
-                    Bolt->GetTransform().SetWorldPosition({TargetPos.x + 50.f, GetTransform().GetWorldPosition().y});
+                    return;
                 }
 
-                DelayTime_ -= 2.0f;
-                CurType_ = BOLTTYPE::Alone;
+                switch (CurType_)
+                {
+                    case BOLTTYPE::Pair:
+                        {
+                            float4 TargetPos = Target_->GetTransform().GetWorldPosition();
 
-                ++StrikeCount_;
+                            {
+                                LightiningBolt* Bolt = GetLevel()->CreateActor<LightiningBolt>();
+                                Bolt->GetTransform().SetWorldPosition(
+                                    {TargetPos.x - 50.f, GetTransform().GetWorldPosition().y});
+                            }
+
+                            {
+                                LightiningBolt* Bolt = GetLevel()->CreateActor<LightiningBolt>();
+                                Bolt->GetTransform().SetWorldPosition(
+                                    {TargetPos.x + 50.f, GetTransform().GetWorldPosition().y});
+                            }
+
+                            DelayTime_ -= 2.0f;
+                            CurType_ = BOLTTYPE::Alone;
+
+                            ++StrikeCount_;
+                        }
+                        break;
+                    case BOLTTYPE::Alone:
+                        {
+                            float4 TargetPos = Target_->GetTransform().GetWorldPosition();
+
+                            LightiningBolt* Bolt = GetLevel()->CreateActor<LightiningBolt>();
+                            Bolt->GetTransform().SetWorldPosition({TargetPos.x, GetTransform().GetWorldPosition().y});
+
+                            DelayTime_ -= 2.0f;
+                            CurType_ = BOLTTYPE::Pair;
+
+                            ++StrikeCount_;
+                        }
+                        break;
+                }
             }
             break;
-        case BOLTTYPE::Alone:
-            {
-                float4 TargetPos = Target_->GetTransform().GetWorldPosition();
 
-                LightiningBolt* Bolt = GetLevel()->CreateActor<LightiningBolt>();
-                Bolt->GetTransform().SetWorldPosition({TargetPos.x, GetTransform().GetWorldPosition().y});
-
-                DelayTime_ -= 2.0f;
-                CurType_ = BOLTTYPE::Pair;
-
-                ++StrikeCount_;
-            }
+        case SPAWNERTYPE::SP_HIGHLEVLE:
             break;
     }
 }
 
 void LightiningBoltSpawner::End() {}
+    

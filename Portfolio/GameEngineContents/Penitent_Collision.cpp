@@ -282,7 +282,9 @@ bool Penitent::Dangle(GameEngineCollision* _This, GameEngineCollision* _Other)
 
     float4 DanglePos = _Other->GetTransform().GetWorldPosition() + float4{0, -100};
 
-    GetTransform().SetWorldPosition({DanglePos.x, DanglePos.y, static_cast<int>(ACTORORDER::Player)});
+    float PlayerZ = AO_PLAYER;
+
+    GetTransform().SetWorldPosition({DanglePos.x, DanglePos.y, PlayerZ});
     ChangeState("Dangle");
 
     return true;

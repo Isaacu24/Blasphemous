@@ -24,7 +24,7 @@ protected:
 
 private:
     float DelayTime_;
-
+    
     //짝수라면 위, 홀수라면 아래
     int MissileCount_;
 

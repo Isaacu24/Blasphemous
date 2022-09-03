@@ -18,52 +18,62 @@ void Stage10::SettingStage()
     ColMap_ = Stage_->CreateComponent<GameEngineTextureRenderer>();
     ColMap_->SetTexture("2_1_Colmap.png");
     ColMap_->ScaleToTexture();
-    ColMap_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::ColMap)});
+
+    float ColmapZ = AO_COLMAP;
+    ColMap_->GetTransform().SetWorldPosition({0, 0, ColmapZ});
 
     GameEngineTextureRenderer* BeforeParallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer->SetTexture("2_1_BeforeParallax_0.png");
     BeforeParallaxRenderer->ScaleToTexture();
+    float BeforeParallaxZ = AO_BEFOREPARALLAX0;
+    BeforeParallaxRenderer->GetTransform().SetWorldPosition({0, 0, BeforeParallaxZ});
     BeforeParallaxRenderer->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BeforeParallax2)});
     BeforeParallaxRenderer->GetTransform().SetWorldScale(BeforeParallaxRenderer->GetTransform().GetWorldScale() * 2.0f);
 
     GameEngineTextureRenderer* BeforeParallaxRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer1->SetTexture("2_1_BeforeParallax_1.png");
     BeforeParallaxRenderer1->ScaleToTexture();
-    BeforeParallaxRenderer1->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BeforeParallax3)});
+    float BeforeParalla1Z = AO_BEFOREPARALLAX1;
+    BeforeParallaxRenderer1->GetTransform().SetWorldPosition({0, 0, BeforeParalla1Z});
     BeforeParallaxRenderer1->GetTransform().SetWorldScale(BeforeParallaxRenderer1->GetTransform().GetWorldScale()
                                                           * 2.f);
 
     GameEngineTextureRenderer* BeforeParallaxRenderer2 = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer2->SetTexture("2_1_BeforeParallax_2.png");
     BeforeParallaxRenderer2->ScaleToTexture();
-    BeforeParallaxRenderer2->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BeforeParallax4)});
+    float BeforeParalla2Z = AO_BEFOREPARALLAX2;
+    BeforeParallaxRenderer2->GetTransform().SetWorldPosition({0, 0, BeforeParalla2Z});
     BeforeParallaxRenderer2->GetTransform().SetWorldScale(BeforeParallaxRenderer2->GetTransform().GetWorldScale()
                                                           * 2.f);
 
     GameEngineTextureRenderer* BeforeParallaxRenderer3 = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer3->SetTexture("2_1_BeforeParallax_3.png");
     BeforeParallaxRenderer3->ScaleToTexture();
-    BeforeParallaxRenderer3->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BeforeParallax5)});
+    float BeforeParalla3Z = AO_BEFOREPARALLAX3;
+    BeforeParallaxRenderer3->GetTransform().SetWorldPosition({0, 0, BeforeParalla3Z});
     BeforeParallaxRenderer3->GetTransform().SetWorldScale(BeforeParallaxRenderer3->GetTransform().GetWorldScale()
                                                           * 2.f);
 
     GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     StageRenderer->SetTexture("2_1_Tile.png");
     StageRenderer->ScaleToTexture();
-    StageRenderer->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Tile)});
+    float TileZ = AO_TILE;
+    StageRenderer->GetTransform().SetWorldPosition({0, 0, TileZ});
     StageRenderer->GetTransform().SetWorldScale(StageRenderer->GetTransform().GetWorldScale() * 2.f);
     
     GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     DoorRenderer->SetTexture("2_1_Door.png");
     DoorRenderer->ScaleToTexture();
-    DoorRenderer->GetTransform().SetWorldPosition({7, 0, static_cast<int>(ACTORORDER::Door)});
+    float DOORZ = AO_DOOR;
+    DoorRenderer->GetTransform().SetWorldPosition({0, 0, DOORZ});
     DoorRenderer->GetTransform().SetWorldScale(DoorRenderer->GetTransform().GetWorldScale() * 2.f);
 
     GameEngineTextureRenderer* CrowRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     CrowRenderer->CreateFrameAnimationCutTexture("crow_idle_anim", {"crow_idle_anim.png", 0, 101, 0.1f, true});
     CrowRenderer->ChangeFrameAnimation("crow_idle_anim");
     CrowRenderer->ScaleToCutTexture(1);
-    CrowRenderer->GetTransform().SetWorldPosition({-1580, 555, static_cast<int>(ACTORORDER::Object)});
+    float ObjectZ = AO_OBJECT;
+    CrowRenderer->GetTransform().SetWorldPosition({-1580, 555, ObjectZ});
     CrowRenderer->GetTransform().SetWorldScale(CrowRenderer->GetTransform().GetWorldScale() * 2.f);
 
     float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
@@ -73,33 +83,37 @@ void Stage10::SettingStage()
 
     Stage_->GetTransform().SetLocalMove(Offset);
 
-    PlayerRightPos_ = float4{3950, -682, static_cast<int>(ACTORORDER::Player)};
-    PlayerLeftPos_  = float4{300, -682, static_cast<int>(ACTORORDER::Player)};
+    float PlayerZ = AO_PLAYER;
+
+    PlayerRightPos_ = float4{3950, -682, PlayerZ};
+    PlayerLeftPos_  = float4{300, -682, PlayerZ};
 
     IsLeftExit_ = true;
 }
 
 void Stage10::SettingMonster()
 {
+    float MonsterZ = AO_MONSTER;
+
     Crosscrawler* CrosscrawlerClone = CreateActor<Crosscrawler>();
-    CrosscrawlerClone->GetTransform().SetWorldPosition({2200, -1080, static_cast<int>(ACTORORDER::Monster)});
+    CrosscrawlerClone->GetTransform().SetWorldPosition({2200, -1080, MonsterZ});
     CrosscrawlerClone->SetGround(ColMap_);
     MonsterList_.push_back(CrosscrawlerClone);
 
     ShieldMaiden* Maiden = CreateActor<ShieldMaiden>();
-    Maiden->GetTransform().SetWorldPosition({1400, -682, static_cast<int>(ACTORORDER::Monster)});
+    Maiden->GetTransform().SetWorldPosition({1400, -682, MonsterZ});
     Maiden->SetGround(ColMap_);
     Maiden->SetSpeed(60.f);
     MonsterList_.push_back(Maiden);
 
     ShieldMaiden* Maiden1 = CreateActor<ShieldMaiden>();
-    Maiden1->GetTransform().SetWorldPosition({2200, -682, static_cast<int>(ACTORORDER::Monster)});
+    Maiden1->GetTransform().SetWorldPosition({2200, -682, MonsterZ});
     Maiden1->SetGround(ColMap_);
     Maiden1->PatrolStartEnd(false, true);
     MonsterList_.push_back(Maiden1);
 
     LionHead* LionHeadClone = CreateActor<LionHead>();
-    LionHeadClone->GetTransform().SetWorldPosition({3600, -682, static_cast<int>(ACTORORDER::Monster)});
+    LionHeadClone->GetTransform().SetWorldPosition({3600, -682, MonsterZ});
     LionHeadClone->GetTransform().PixLocalNegativeX();
     LionHeadClone->SetGround(ColMap_);
     LionHeadClone->SetStartPos(LionHeadClone->GetTransform().GetWorldPosition());

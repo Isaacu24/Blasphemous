@@ -55,21 +55,12 @@ public:
     void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
     void DeathEnd(const StateInfo& _Info);
 
+    void FireBall(float _DeltaTime);
+
     const std::string GetState() { return State_.GetCurStateStateName(); }
 
-    void SpellCast(float _DeltaTime);
-
-    void FireBall(float _DeltaTime);
-    void ToxicCloud();
-    void LightiningBolt();
-    void Magicmissile();
-    void AnguishBeam();
-
     void CreateSpawner();
-        
     
-    void SetTarget(GameEngineActor* _Target) { Target_ = _Target; }
-
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
@@ -109,12 +100,10 @@ private:
 
     float Time_;
     float SpellTime_;
+    float RestTime_;
 
     int SpellCount_;
     
-    bool IsSpellCastStart_;
+    bool IsSpellCast_;
 };
 
-
-//플랫폼 생성기 클래스도 만들어야 함.
-//그건 플랫폼스포너(혹은 스테이지. 근데 아마 따로 클래스를 만드는 편이 좋다.)가 할 일.

@@ -31,13 +31,13 @@ void AttackCorpseEffecter::Update(float _DeltaTime)
             CorpseGroundEffect* Effect = GetLevel()->CreateActor<CorpseGroundEffect>();
             Effect->GetTransform().SetWorldPosition({CreatePos_.x + ((DirX_ * 30.f) * Index_),
                                                      CreatePos_.y,
-                                                     static_cast<int>(ACTORORDER::BossMonsterEffect)});
+                                                     static_cast<int>(ACTORORDER::MonsterEffect)});
 
             Corpse* NewCorpse = GetLevel()->CreateActor<Corpse>();
             NewCorpse->SetCreatePos(CreatePos_);
             NewCorpse->GetTransform().SetWorldPosition({CreatePos_.x + ((DirX_ * 30.f) * Index_),
                                                         CreatePos_.y,
-                                                        static_cast<int>(ACTORORDER::BossMonsterEffect)});
+                                                        static_cast<int>(ACTORORDER::MonsterEffect)});
 
             if (5 == Index_)
             {

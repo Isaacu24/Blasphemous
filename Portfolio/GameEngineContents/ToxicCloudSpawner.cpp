@@ -12,25 +12,57 @@ void ToxicCloudSpawner::Update(float _DeltaTime)
 {
     DelayTime_ += _DeltaTime;
 
-    if (0.5f <= DelayTime_)
+    switch (SpawnerType_)
     {
-        float XPos = Random_.RandomFloat(2000, 2800);
+        case SPAWNERTYPE::SP_LOWLEVLE:
+            if (0.5f <= DelayTime_)
+            {
+                float XPos = Random_.RandomFloat(2000, 2800);
 
-        DelayTime_ -= 0.5f;
+                DelayTime_ -= 0.5f;
 
-        ToxicCloud* Clone = GetLevel()->CreateActor<ToxicCloud>();
-        Clone->GetTransform().SetWorldPosition({XPos, -1300, static_cast<int>(ACTORORDER::BossMonster)});
-        Clone->SetGround(ColMap_);
-        Clone->SetDirectionX(Dir_);
+                ToxicCloud* Clone = GetLevel()->CreateActor<ToxicCloud>();
+                Clone->GetTransform().SetWorldPosition({XPos, -1300, static_cast<int>(ACTORORDER::Monster)});
+                Clone->SetGround(ColMap_);
 
-        ++CloudCount_;
+                float4 Dir = Target_->GetTransform().GetWorldPosition() - GetTransform().GetWorldPosition();
+                Dir.Normalize();
 
-        if (10 == CloudCount_)
-        {
-            CloudCount_ = 0;
-            SpawnerEnd_ = true;
-            Off();
-        }
+                Clone->SetDirectionX(Dir);
+
+                ++CloudCount_;
+
+                if (10 == CloudCount_)
+                {
+                    SpawnerEnd_ = true;
+                    CloudCount_ = 0;
+                    Off();
+                }
+            }
+            break;
+
+        case SPAWNERTYPE::SP_HIGHLEVLE:
+            if (0.5f <= DelayTime_)
+            {
+                float XPos = Random_.RandomFloat(2000, 2800);
+
+                DelayTime_ -= 0.5f;
+
+                ToxicCloud* Clone = GetLevel()->CreateActor<ToxicCloud>();
+                Clone->GetTransform().SetWorldPosition({XPos, -1300, static_cast<int>(ACTORORDER::Monster)});
+                Clone->SetGround(ColMap_);
+                Clone->SetDirectionX(Dir_);
+
+                ++CloudCount_;
+
+                if (10 == CloudCount_)
+                {
+                    SpawnerEnd_ = true;
+                    CloudCount_ = 0;
+                    Off();
+                }
+            }
+            break;
     }
 }
 

@@ -142,10 +142,10 @@ void Pope::Start()
     BodyCollider_->GetTransform().SetWorldScale({50.0f, 100.0f, 1.0f});
     BodyCollider_->GetTransform().SetWorldMove({0, 100});
 
-    TeleportPos_[0] = float4{1800, -1760, static_cast<int>(ACTORORDER::BossMonster)};
-    TeleportPos_[1] = float4{2100, -1760, static_cast<int>(ACTORORDER::BossMonster)};
-    TeleportPos_[2] = float4{2500, -1760, static_cast<int>(ACTORORDER::BossMonster)};
-    TeleportPos_[3] = float4{2800, -1760, static_cast<int>(ACTORORDER::BossMonster)};
+    TeleportPos_[0] = float4{1800, -1760, static_cast<int>(ACTORORDER::Monster)};
+    TeleportPos_[1] = float4{2100, -1760, static_cast<int>(ACTORORDER::Monster)};
+    TeleportPos_[2] = float4{2500, -1760, static_cast<int>(ACTORORDER::Monster)};
+    TeleportPos_[3] = float4{2800, -1760, static_cast<int>(ACTORORDER::Monster)};
 
     CreateSpawner();
 
@@ -158,21 +158,21 @@ void Pope::Start()
 void Pope::CreateSpawner()
 {
     FireBallSpawner_ = GetLevel()->CreateActor<FireBallSpawner>();
-    FireBallSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BossMonster)});
+    FireBallSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Monster)});
     FireBallSpawner_->SetGround(ColMap_);
     FireBallSpawner_->Off();
 
     ToxicCloudSpawner_ = GetLevel()->CreateActor<ToxicCloudSpawner>();
-    ToxicCloudSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BossMonster)});
+    ToxicCloudSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Monster)});
     ToxicCloudSpawner_->SetGround(ColMap_);
     ToxicCloudSpawner_->Off();
 
     LightiningBoltSpawner_ = GetLevel()->CreateActor<LightiningBoltSpawner>();
-    LightiningBoltSpawner_->GetTransform().SetWorldPosition({0, -1460, static_cast<int>(ACTORORDER::BossMonster)});
+    LightiningBoltSpawner_->GetTransform().SetWorldPosition({0, -1460, static_cast<int>(ACTORORDER::Monster)});
     LightiningBoltSpawner_->Off();
 
     MagicMissileSpawner_ = GetLevel()->CreateActor<MagicMissileSpawner>();
-    MagicMissileSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BossMonster)});
+    MagicMissileSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Monster)});
     MagicMissileSpawner_->Off();
 
     BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
@@ -341,8 +341,7 @@ void Pope::SpellCastUpdate(float _DeltaTime, const StateInfo& _Info)
     {
         case SPELLTYPE::FIREBALL:
             {
-                FireBallSpawner_->SetDirection(Target_->GetTransform().GetWorldPosition()
-                                               - FireBallSpawner_->GetTransform().GetWorldPosition());
+                FireBallSpawner_->SetTarget(Penitent::GetMainPlayer());
 
                 if (false == FireBallSpawner_->IsUpdate())
                 {
@@ -353,8 +352,7 @@ void Pope::SpellCastUpdate(float _DeltaTime, const StateInfo& _Info)
 
         case SPELLTYPE::TOXICCLOUD:
 
-            ToxicCloudSpawner_->SetDirection(Target_->GetTransform().GetWorldPosition()
-                                             - ToxicCloudSpawner_->GetTransform().GetWorldPosition());
+            ToxicCloudSpawner_->SetTarget(Penitent::GetMainPlayer());
 
             if (false == ToxicCloudSpawner_->IsUpdate())
             {

@@ -1,11 +1,12 @@
 #include "PreCompile.h"
 #include "SpawnerBase.h"
 
-SpawnerBase::SpawnerBase() 
+SpawnerBase::SpawnerBase()
+    : SpawnerType_(SPAWNERTYPE::SP_LOWLEVLE)
 {
 }
 
-SpawnerBase::~SpawnerBase() 
+SpawnerBase::~SpawnerBase()     
 {
 }
 

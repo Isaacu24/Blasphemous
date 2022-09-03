@@ -14,38 +14,48 @@ void MagicMissileSpawner::Update(float _DeltaTime)
 {
 	DelayTime_ += _DeltaTime; 
 
-	if (1.0f >= DelayTime_)
+    switch (SpawnerType_)
     {
-        return;
-	}
+        case SPAWNERTYPE::SP_LOWLEVLE:
+            {
+                if (1.0f >= DelayTime_)
+                {
+                    return;
+                }
 
-    if (8 == MissileCount_)
-    {
-        Off();
-        SpawnerEnd_ = true;
-        MissileCount_ = 0;
-        return;
+                if (8 == MissileCount_)
+                {
+                    Off();
+                    SpawnerEnd_   = true;
+                    MissileCount_ = 0;
+                    return;
+                }
+
+                if (0 == MissileCount_ % 2)  //Â¦¼ö(À§)
+                {
+                    MagicMissile* Missile = GetLevel()->CreateActor<MagicMissile>();
+                    Missile->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{0, 50});
+                    Missile->SetDirection(Dir_);
+
+                    DelayTime_ = 0.f;
+                    ++MissileCount_;
+                }
+
+                else  //È¦¼ö(¾Æ·¡)
+                {
+                    MagicMissile* Missile = GetLevel()->CreateActor<MagicMissile>();
+                    Missile->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{0, -50});
+                    Missile->SetDirection(Dir_);
+
+                    DelayTime_ = 0.f;
+                    ++MissileCount_;
+                }
+            }
+            break;
+
+        case SPAWNERTYPE::SP_HIGHLEVLE:
+            break;
     }
-
-	if (0 == MissileCount_ % 2) //Â¦¼ö(À§)
-    {
-        MagicMissile* Missile = GetLevel()->CreateActor<MagicMissile>();
-        Missile->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{0, 50});
-        Missile->SetDirection(Dir_);
-
-        DelayTime_ = 0.f;
-        ++MissileCount_;
-	}
-
-	else //È¦¼ö(¾Æ·¡)
-	{
-        MagicMissile* Missile = GetLevel()->CreateActor<MagicMissile>();
-        Missile->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{0, -50});
-        Missile->SetDirection(Dir_);
-
-        DelayTime_ = 0.f;
-        ++MissileCount_;
-	}
 }
 
 void MagicMissileSpawner::End() {}
