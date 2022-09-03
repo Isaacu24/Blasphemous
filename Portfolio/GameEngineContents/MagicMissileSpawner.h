@@ -28,5 +28,7 @@ private:
     //짝수라면 위, 홀수라면 아래
     int MissileCount_;
 
+    bool IsCreate_;
+
     float4 Dir_;
 };

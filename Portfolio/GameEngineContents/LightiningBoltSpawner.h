@@ -21,7 +21,6 @@ public:
     LightiningBoltSpawner& operator=(const LightiningBoltSpawner& _Other)     = delete;
     LightiningBoltSpawner& operator=(LightiningBoltSpawner&& _Other) noexcept = delete;
 
-    inline void Strike() { IsStrike_ = true; }
 
     inline void SetTarget(GameEngineActor* _Target) { Target_ = _Target; }
 

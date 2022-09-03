@@ -239,6 +239,9 @@
     <ClInclude Include="SpawnerBase.h">
       <Filter>Actor\Effect\Monster\Boss</Filter>
     </ClInclude>
+    <ClInclude Include="MultipleMagicMissile.h">
+      <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -481,6 +484,9 @@
     </ClCompile>
     <ClCompile Include="SpawnerBase.cpp">
       <Filter>Actor\Effect\Monster\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="MultipleMagicMissile.cpp">
+      <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

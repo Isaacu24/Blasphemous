@@ -14,15 +14,15 @@ public:
 
     void SetDirection(float4 _Dir) { Dir_ = _Dir; }
 
+    inline void SetSpeed(float _Speed) { Speed_ = _Speed; }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
     void End() override;
 
-    void MissileEnd(const FrameAnimation_DESC& _Info) 
-    {
-        Death();
-    }
+    void MissileEnd(const FrameAnimation_DESC& _Info) { Death(); }
+
 
 private:
     GameEngineTextureRenderer* Renderer_;

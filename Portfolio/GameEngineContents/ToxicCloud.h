@@ -35,11 +35,10 @@ protected:
 
     void Shoot(float _DeltaTime) override 
     { 
-        Speed_ += _DeltaTime * 150;
+        Speed_ += _DeltaTime * 300;
         GetTransform().SetWorldMove({(Dir_.x * Speed_ * _DeltaTime), (Dir_.y * Speed_ * _DeltaTime)}); 
     }
 
 private:
     GameEngineTextureRenderer* ExplsionV1_;
-    GameEngineTextureRenderer* ExplsionV2_;
 };

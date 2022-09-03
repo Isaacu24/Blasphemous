@@ -10,7 +10,6 @@ enum class SPELLTYPE
     LIGHTININGBOLT,
     MAGICMISSILE,
     ANGUISHBEAM,
-    NONE
 };
 
 //두번째 교황
@@ -55,11 +54,20 @@ public:
     void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
     void DeathEnd(const StateInfo& _Info);
 
+    void SpellCast(float _DeltaTime);
+    void SpellCastEndCheck(float _DeltaTime);
+
     void FireBall(float _DeltaTime);
+    void ToxicCloud();
+    void LightiningBolt();
+    void MagicMissile();
+    void AnguishBeam();
 
     const std::string GetState() { return State_.GetCurStateStateName(); }
 
     void CreateSpawner();
+
+    SPELLTYPE RandomSpell();
     
 protected:
     void Start() override;
@@ -93,8 +101,9 @@ private:
     GameEngineActor* Target_;
 
     bool IsLose_;
-
     bool IsAscension_;
+    bool IsSpellCast_;
+    bool IsOnceCasting_;
 
     float AscensionSpeed_;
 
@@ -104,6 +113,5 @@ private:
 
     int SpellCount_;
     
-    bool IsSpellCast_;
 };
 

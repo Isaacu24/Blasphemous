@@ -11,7 +11,7 @@ void LightiningBolt::Start()
 {
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
     Renderer_->CreateFrameAnimationCutTexture("lightningBolt_Tileable_fxs",
-                                              {"lightningBolt_Tileable_fxs.png", 0, 76, 0.05f, false});
+                                              {"lightningBolt_Tileable_fxs.png", 0, 76, 0.055f, false});
     Renderer_->ChangeFrameAnimation("lightningBolt_Tileable_fxs");
     Renderer_->AnimationBindFrame("lightningBolt_Tileable_fxs",
                                 std::bind(&LightiningBolt::Strike, this, std::placeholders::_1));
