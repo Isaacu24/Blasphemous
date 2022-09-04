@@ -104,6 +104,23 @@ void Penitent::UphillRoadCheck()
             break;
         }
     }
+
+    while (true)
+    {
+        bool IsPlatform = PlatformUpCollider_->IsCollision(
+                CollisionType::CT_OBB2D, COLLISIONORDER::Platform, CollisionType::CT_OBB2D, nullptr);
+
+        if (true == IsPlatform)
+        {
+            GetTransform().SetWorldMove(float4::UP);
+            continue;
+        }
+
+        else
+        {
+            break;
+        }
+    }
 }
 
 bool Penitent::LeftObstacleCheck()
@@ -244,7 +261,7 @@ bool Penitent::KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other
     if (false == IsGround_)
     {
         SetDamege(10.f);
-        return false;
+        return true;
     }
 
     State_.ChangeState("KnockBack");

@@ -38,6 +38,7 @@ public:
     void TrackEnd(const StateInfo& _Info);
 
     bool LookAtPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);
+    bool TrackToPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);
 
 protected:
     void Start() override;

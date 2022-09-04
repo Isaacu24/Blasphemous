@@ -18,7 +18,15 @@ public:
     Penitent(Penitent&& _Other) noexcept            = delete;
     Penitent& operator=(Penitent&& _Other) noexcept = delete;
 
-    inline void SetHP(int _Value) { HP_ = _Value; }
+    inline void SetHP(int _Value)
+    {
+        HP_ = _Value;
+
+        if (0 > HP_)
+        {
+            HP_ = 0;
+        }
+    }
 
     inline int GetHP() { return HP_; }
 
@@ -42,7 +50,15 @@ public:
 
     inline void ChangeState(const std::string& _State) { State_.ChangeState(_State); }
 
-    inline void SetDamege(int _Damage) { HP_ -= _Damage; }
+    inline void SetDamege(int _Damage)
+    {
+        HP_ -= _Damage;
+
+        if (0 > HP_)
+        {
+            HP_ = 0;
+        }
+    }
 
 protected:
     void Start() override;
@@ -161,6 +177,7 @@ private:
     class GameEngineCollision*        BodyCollider_;
     GameEngineCollision*              AttackCollider_;  // 공격 범위
     GameEngineCollision*              PlatformCollider_;
+    GameEngineCollision*              PlatformUpCollider_;
     std::vector<GameEngineCollision*> DebugColliders_;
     GameEngineTextureRenderer*        ColMap_;
     float4                            ColScale_;

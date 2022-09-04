@@ -333,8 +333,8 @@ void Penitent::JumpAttackStart(const StateInfo& _Info)
     float EffectZ = AO_PLAYEREFFECT;
 
     AttackEffect_->Renderer_->On();
-    AttackEffect_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
-                                                    GetTransform().GetWorldPosition().y, EffectZ});
+    AttackEffect_->GetTransform().SetWorldPosition(
+        {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, EffectZ});
 
     AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_jumping_attack_slasheslvl2");
 
@@ -364,8 +364,8 @@ void Penitent::JumpAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 
     float EffectZ = AO_PLAYEREFFECT;
 
-    AttackEffect_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
-                                                    GetTransform().GetWorldPosition().y, EffectZ});
+    AttackEffect_->GetTransform().SetWorldPosition(
+        {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, EffectZ});
 
     Dir_ = GetTransform().GetUpVector() * 10.f;
 
@@ -443,7 +443,6 @@ void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
     if (false == IsGround_)
     {
         ChangeState("Fall");
-        return;
     }
 
     float EffectZ = AO_PLAYEREFFECT;
@@ -456,6 +455,7 @@ void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 
 void Penitent::KnockBackEnd(const StateInfo& _Info) { BodyCollider_->On(); }
+
 
 void Penitent::KnockUpStart(const StateInfo& _Info)
 {
@@ -484,6 +484,7 @@ void Penitent::KnockUpUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 
 void Penitent::KnockUpEnd(const StateInfo& _Info) { BodyCollider_->On(); }
+
 
 void Penitent::LandingStart(const StateInfo& _Info)
 {

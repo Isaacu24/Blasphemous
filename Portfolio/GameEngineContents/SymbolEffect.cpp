@@ -19,8 +19,10 @@ void SymbolEffect::Start()
                                     Renderer_->ChangeFrameAnimation("pope_twistedOne_symbol_loop");
                                 });
 
+
     Renderer_->CreateFrameAnimationCutTexture("pope_twistedOne_symbol_loop",
                                               {"pope_twistedOne_symbol.png", 6, 17, 0.07f, true});
+
 
     Renderer_->CreateFrameAnimationCutTexture("pope_twistedOne_symbol_disAppear",
                                               {"pope_twistedOne_symbol.png", 18, 23, 0.07f, false});
@@ -28,9 +30,21 @@ void SymbolEffect::Start()
     Renderer_->AnimationBindEnd("pope_twistedOne_symbol_disAppear",
                                 [&](const FrameAnimation_DESC& _Info) { Renderer_->Off(); });
 
+
+    Renderer_->CreateFrameAnimationCutTexture("pope_twistedOne_symbol",
+                                              {"pope_twistedOne_symbol.png", 0, 23, 0.07f, false});
+
+    Renderer_->AnimationBindEnd("pope_twistedOne_symbol",
+                                [&](const FrameAnimation_DESC& _Info)
+                                {
+                                    Renderer_->CurAnimationReset();
+                                    Renderer_->Off();
+                                });
+
     Renderer_->SetScaleModeImage();
     Renderer_->SetPivot(PIVOTMODE::BOT);
     Renderer_->ChangeFrameAnimation("pope_twistedOne_symbol_appear");
+    Renderer_->Off();
 }
 
 void SymbolEffect::Update(float _DeltaTime) {}

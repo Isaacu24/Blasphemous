@@ -37,6 +37,7 @@ private:
     float PosY_;
 
     GameEngineActor* Target_;
+    class LightiningBolt*  Bolt_;
 
     float DelayTime_;
     int   StrikeCount_;

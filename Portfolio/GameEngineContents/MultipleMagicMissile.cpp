@@ -36,9 +36,20 @@ void MultipleMagicMissile::Start()
     }
 
     {
+        std::vector<unsigned int> Frames = {};
+        Frames.resize(8);
+
+        Frames[0] = 7;
+        Frames[1] = 6;
+        Frames[2] = 5;
+        Frames[3] = 4;
+        Frames[4] = 3;
+        Frames[5] = 2;
+        Frames[6] = 1;
+        Frames[7] = 0;
+
         MetaRenderer_->CreateMetaAnimation(
-            "Death",
-            {"BurntFaceHandShootingEffectBeam.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.09f, true},
+            "Death", {"BurntFaceHandShootingEffectBeam.png", Frames, 0.09f, true},
             Data);
 
         MetaRenderer_->AnimationBindEnd("Death",

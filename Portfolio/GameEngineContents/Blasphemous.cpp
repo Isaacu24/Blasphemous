@@ -389,6 +389,7 @@ void Blasphemous::CutTexture()
     GameEngineTexture::Cut("pontiff_giantSword_teleportOUT.png", 9, 3);
     GameEngineTexture::Cut("pontiff_giantSword_teleportIN.png", 9, 3);
     GameEngineTexture::Cut("pontiff_giantSword_eyeLids.png", 5, 4);
+    GameEngineTexture::Cut("pontiff_giantSword_swordSprite.png", 1, 1);
 
     // NormalMonster
     GameEngineTexture::Cut("Fool_death_knife.png", 4, 4);

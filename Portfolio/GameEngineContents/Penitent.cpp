@@ -89,9 +89,18 @@ void Penitent::Start()
     AttackCollider_->Off();
 
     PlatformCollider_ = CreateComponent<GameEngineCollision>();
-    PlatformCollider_->GetTransform().SetWorldScale({10.f, 10.f, 1.f});
+    PlatformCollider_->GetTransform().SetWorldPosition(
+        {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y});
+    PlatformCollider_->GetTransform().SetWorldScale({10, 10, 1});
     PlatformCollider_->ChangeOrder(COLLISIONORDER::PlayerFoot);
     PlatformCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.0f, 0.0f, 0.0f, 1.f});
+
+    PlatformUpCollider_ = CreateComponent<GameEngineCollision>();
+    PlatformUpCollider_->GetTransform().SetWorldPosition(
+        {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y + 1});
+    PlatformUpCollider_->GetTransform().SetWorldScale({50, 10, 1});
+    PlatformUpCollider_->ChangeOrder(COLLISIONORDER::PlayerFoot);
+    PlatformUpCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{1.0f, 0.0f, 1.0f, 1.f});
 
     DebugColliders_.resize(10);
 
@@ -104,26 +113,21 @@ void Penitent::Start()
         DebugColliders_[i]->Off();
     }
 
-    DebugColliders_[0]->On();
-    DebugColliders_[0]->GetTransform().SetWorldPosition(
-        {GetTransform().GetWorldPosition().x,
-         (GetTransform().GetWorldPosition().y + CilmbY_)});  //사다리 타기 시 땅 감지
-    DebugColliders_[0]->SetDebugSetting(CollisionType::CT_AABB, float4{0.8f, 0.2f, 0.95f, 0.5f});
+    // DebugColliders_[0]->On();
+    // DebugColliders_[0]->GetTransform().SetWorldPosition(
+    //     {GetTransform().GetWorldPosition().x,
+    //      (GetTransform().GetWorldPosition().y + CilmbY_)});  //사다리 타기 시 땅 감지
+    // DebugColliders_[0]->SetDebugSetting(CollisionType::CT_AABB, float4{0.8f, 0.2f, 0.95f, 0.5f});
 
-    DebugColliders_[1]->On();
-    DebugColliders_[1]->GetTransform().SetWorldPosition(
-        {GetTransform().GetWorldPosition().x + 20, (GetTransform().GetWorldPosition().y + 30)});
-    DebugColliders_[1]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
+    // DebugColliders_[1]->On();
+    // DebugColliders_[1]->GetTransform().SetWorldPosition(
+    //     {GetTransform().GetWorldPosition().x + 20, (GetTransform().GetWorldPosition().y + 30)});
+    // DebugColliders_[1]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
 
-    DebugColliders_[2]->On();
-    DebugColliders_[2]->GetTransform().SetWorldPosition(
-        {GetTransform().GetWorldPosition().x - 20, GetTransform().GetWorldPosition().y + 30});
-    DebugColliders_[2]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
-
-    // DebugColliders_[3]->On();
-    // DebugColliders_[3]->GetTransform().SetWorldPosition(
-    //     {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y - 50});
-    // DebugColliders_[3]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
+    // DebugColliders_[2]->On();
+    // DebugColliders_[2]->GetTransform().SetWorldPosition(
+    //     {GetTransform().GetWorldPosition().x - 20, GetTransform().GetWorldPosition().y + 30});
+    // DebugColliders_[2]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
 
     PlayerUI_ = GetLevel()->CreateActor<PlayerUI>();
     PlayerUI_->SetLevelOverOn();
@@ -176,7 +180,9 @@ void Penitent::Update(float _DeltaTime)
         PlayerUI_->Inventory_->Off();
     }
 
-    // GameEngineDebug::OutPutString("PlayerState: " + State_.GetCurStateStateName());
+    GameEngineDebug::OutPutString("PlayerState: " + State_.GetCurStateStateName());
+
+    GameEngineDebug::OutPutString("Player HP: " + std::to_string(GetHP()));
 
     // GameEngineDebug::OutPutString("MousePosX: "
     //                               + std::to_string(GetLevel()->GetMainCamera()->GetMouseWorldPositionToActor().x));

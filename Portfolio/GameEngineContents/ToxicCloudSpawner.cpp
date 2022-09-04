@@ -10,6 +10,17 @@ void ToxicCloudSpawner::Start() {}
 
 void ToxicCloudSpawner::Update(float _DeltaTime)
 {
+    if (true == IsStop_)
+    {
+        if (true == Cloud_->IsDeath())
+        {
+            Off();
+            SpawnerEnd_ = true;
+        }
+
+        return;
+    }
+
     DelayTime_ += _DeltaTime;
 
     switch (SpawnerType_)
@@ -27,7 +38,7 @@ void ToxicCloudSpawner::Update(float _DeltaTime)
 
                 float4 Dir = Target_->GetTransform().GetWorldPosition() - GetTransform().GetWorldPosition();
                 Dir.Normalize();
-                Dir = 0;
+                Dir.z = 0;
                 Clone->SetDirectionX(Dir);
 
                 ++CloudCount_;
@@ -48,22 +59,21 @@ void ToxicCloudSpawner::Update(float _DeltaTime)
 
                 DelayTime_ -= 0.5f;
 
-                ToxicCloud* Clone = GetLevel()->CreateActor<ToxicCloud>();
-                Clone->GetTransform().SetWorldPosition({XPos, -350, static_cast<int>(ACTORORDER::Monster)});
-                Clone->SetGround(ColMap_);
+                Cloud_ = GetLevel()->CreateActor<ToxicCloud>();
+                Cloud_->GetTransform().SetWorldPosition({XPos, -350, static_cast<int>(ACTORORDER::Monster)});
+                Cloud_->SetGround(ColMap_);
 
                 float4 Dir = Target_->GetTransform().GetWorldPosition() - GetTransform().GetWorldPosition();
                 Dir.Normalize();
                 Dir.z = 0;
-                Clone->SetDirectionX(Dir);
+                Cloud_->SetDirectionX(Dir);
 
                 ++CloudCount_;
 
                 if (15 == CloudCount_)
                 {
-                    SpawnerEnd_ = true;
                     CloudCount_ = 0;
-                    Off();
+                    IsStop_     = true;
                 }
             }
             break;

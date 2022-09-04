@@ -13,6 +13,16 @@ void LightiningBoltSpawner::Start() {}
 
 void LightiningBoltSpawner::Update(float _DeltaTime)
 {
+    if (true == IsStop_)
+    {
+        if (true == Bolt_->IsDeath())
+        {
+            Off();
+            SpawnerEnd_ = true;
+        }
+        return;
+    }
+
     DelayTime_ += _DeltaTime;
 
     switch (SpawnerType_)
@@ -77,9 +87,8 @@ void LightiningBoltSpawner::Update(float _DeltaTime)
             {
                 if (3 == StrikeCount_)
                 {
-                    SpawnerEnd_  = true;
+                    IsStop_      = true;
                     StrikeCount_ = 0;
-                    Off();
                     return;
                 }
 
@@ -91,9 +100,9 @@ void LightiningBoltSpawner::Update(float _DeltaTime)
                 float4 TargetPos = Target_->GetTransform().GetWorldPosition();
 
                 {
-                    LightiningBolt* Bolt = GetLevel()->CreateActor<LightiningBolt>();
-                    Bolt->GetTransform().SetWorldScale({1.15f, 1.3f, 1});
-                    Bolt->GetTransform().SetWorldPosition({TargetPos.x, GetTransform().GetWorldPosition().y});
+                    Bolt_ = GetLevel()->CreateActor<LightiningBolt>();
+                    Bolt_->GetTransform().SetWorldScale({1.15f, 1.3f, 1});
+                    Bolt_->GetTransform().SetWorldPosition({TargetPos.x, GetTransform().GetWorldPosition().y});
                 }
 
                 DelayTime_ -= 2.0f;

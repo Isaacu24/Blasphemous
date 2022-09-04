@@ -15,6 +15,9 @@ public:
     ToxicCloud& operator=(const ToxicCloud& _Other)     = delete;
     ToxicCloud& operator=(ToxicCloud&& _Other) noexcept = delete;
 
+    void IdleStart(const StateInfo& _Info);
+    void IdleUpdate(float _DeltaTime, const StateInfo& _Info);
+
     void ShootStart(const StateInfo& _Info);
     void ShootUpdate(float _DeltaTime, const StateInfo& _Info);
 
@@ -35,8 +38,12 @@ protected:
 
     void Shoot(float _DeltaTime) override 
     { 
-        Speed_ += _DeltaTime * 300;
+        Speed_ += _DeltaTime * 300.f;
         GetTransform().SetWorldMove({(Dir_.x * Speed_ * _DeltaTime), (Dir_.y * Speed_ * _DeltaTime)}); 
+    }
+
+    void BackMove(float _DeltaTime) 
+    { GetTransform().SetWorldUpMove(50, _DeltaTime); 
     }
 
 private:

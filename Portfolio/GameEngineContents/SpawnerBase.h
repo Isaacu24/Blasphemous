@@ -34,6 +34,7 @@ protected:
 
     bool SpawnerEnd_;
 
+    bool IsStop_;
 
 private:
 };

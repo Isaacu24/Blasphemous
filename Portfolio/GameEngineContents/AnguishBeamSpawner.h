@@ -24,5 +24,8 @@ protected:
     void End() override;
 
 private:
+
+	class AnguishBeam* Beam_;
+
  };
 

@@ -20,11 +20,13 @@ public:
 
     void CreateFireBall(const FrameAnimation_DESC& _Info);
 
-    void SetDirection(float4 _Dir) 
-    { 
-        Dir_ = _Dir; 
+    void SetDirection(float4 _Dir)
+    {
+        Dir_ = _Dir;
         Dir_.Normalize();
     }
+
+    inline GameEngineTextureRenderer* GetRenderer() { return Renderer_; }
 
 protected:
     void Start() override;
@@ -39,4 +41,6 @@ private:
     int BallCount_;
 
     float4 Dir_;
+
+    class FireBall* FireBall_;
 };

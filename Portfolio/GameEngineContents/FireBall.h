@@ -30,6 +30,8 @@ public:
         return true;
     }
 
+    inline void SetWeight(float _Value) { Weight_ = _Value; }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
@@ -37,12 +39,14 @@ protected:
 
     void Shoot(float _DeltaTime) override
     {
-        Speed_ += _DeltaTime * 300.f;
-        GetTransform().SetWorldMove({(Dir_.x * Speed_ * _DeltaTime), (Dir_.y * Speed_ * _DeltaTime)}); 
+        Speed_ += _DeltaTime * Weight_;
+        GetTransform().SetWorldMove({(Dir_.x * Speed_ * _DeltaTime), (Dir_.y * Speed_ * _DeltaTime)});
     }
 
     void SetDirection(float4 _Dir) override { Dir_ = _Dir; };
 
 private:
     MetaTextureRenderer* MetaRenderer_;
+
+    float Weight_;
 };

@@ -36,8 +36,11 @@ private:
 
     float4 Dir_;
 
+    class ToxicCloud* Cloud_;
+
     float DelayTime_;
 
     int CloudCount_;
+
 };
 

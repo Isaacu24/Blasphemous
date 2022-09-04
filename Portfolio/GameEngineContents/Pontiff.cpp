@@ -12,6 +12,7 @@
 
 Pontiff::Pontiff()
     : CurType_(SPELLTYPE::FIREBALL)
+    , IsSpellCast_(true)
 {}
 
 Pontiff::~Pontiff() {}
@@ -111,7 +112,7 @@ void Pontiff::Start()
     State_.ChangeState("Appear");
 
     GiantSword_ = GetLevel()->CreateActor<GiantSword>();
-    GiantSword_->GetTransform().SetWorldPosition({1400, -600, static_cast<int>(ACTORORDER::Monster)});
+    GiantSword_->GetTransform().SetWorldPosition({1250, -600, static_cast<int>(ACTORORDER::Monster)});
     GiantSword_->SetPontiff(this);
 
     BossUI_ = GetLevel()->CreateActor<BossUI>();
@@ -138,8 +139,6 @@ void Pontiff::Start()
     Symbol_[1]->GetTransform().SetWorldScale({2, 2, 1});
     Symbol_[1]->GetTransform().SetWorldPosition({1660, -600, static_cast<int>(ACTORORDER::BossMonsterEffect)});
     Symbol_[1]->Renderer_->Off();
-
-    CurType_ = RandomSpell();
 }
 
 void Pontiff::Update(float _DeltaTime)
@@ -151,7 +150,7 @@ void Pontiff::Update(float _DeltaTime)
         BossMonster::DamageCheck(10.f);
     }
 
-    GameEngineDebug::OutPutString("Pontiff : " + State_.GetCurStateStateName());
+    //GameEngineDebug::OutPutString("Pontiff : " + State_.GetCurStateStateName());
 
     if (false == IsSpellCast_)
     {
@@ -168,6 +167,12 @@ void Pontiff::End() {}
 
 void Pontiff::SpellCast(float _DeltaTime)
 {
+    if (true == Symbol_[0]->Renderer_->IsUpdate()
+        || true == Symbol_[0]->Renderer_->IsUpdate())
+    {
+        return;
+    }
+
     if (SPELLTYPE::FIREBALL == CurType_)
     {
         FireBall(_DeltaTime);
@@ -180,7 +185,7 @@ void Pontiff::SpellCast(float _DeltaTime)
             return;
         }
 
-        IsSpellCast_ = true;
+        IsSpellCast_   = true;
         IsOnceCasting_ = true;
 
         switch (CurType_)
@@ -208,9 +213,6 @@ void Pontiff::SpellCastEndCheck(float _DeltaTime)
         case SPELLTYPE::FIREBALL:
             if (true == FireBallSpawner_[5]->GetSpawnerEnd())
             {
-                Symbol_[0]->Off();
-                Symbol_[1]->Off();
-
                 RestTime_ += _DeltaTime;
 
                 if (3.f < RestTime_)
@@ -227,9 +229,6 @@ void Pontiff::SpellCastEndCheck(float _DeltaTime)
         case SPELLTYPE::TOXICCLOUD:
             if (true == ToxicCloudSpawner_->GetSpawnerEnd())
             {
-                Symbol_[0]->Off();
-                Symbol_[1]->Off();
-
                 RestTime_ += _DeltaTime;
 
                 if (3.f < RestTime_)
@@ -246,9 +245,6 @@ void Pontiff::SpellCastEndCheck(float _DeltaTime)
         case SPELLTYPE::LIGHTININGBOLT:
             if (true == LightiningBoltSpawner_->GetSpawnerEnd())
             {
-                Symbol_[0]->Off();
-                Symbol_[1]->Off();
-
                 RestTime_ += _DeltaTime;
 
                 if (3.f < RestTime_)
@@ -265,9 +261,6 @@ void Pontiff::SpellCastEndCheck(float _DeltaTime)
         case SPELLTYPE::MAGICMISSILE:
             if (true == MagicMissileSpawner_->GetSpawnerEnd())
             {
-                Symbol_[0]->Off();
-                Symbol_[1]->Off();
-
                 RestTime_ += _DeltaTime;
 
                 if (3.f < RestTime_)
@@ -284,9 +277,6 @@ void Pontiff::SpellCastEndCheck(float _DeltaTime)
         case SPELLTYPE::ANGUISHBEAM:
             if (true == AnguishBeamSpawner_->GetSpawnerEnd())
             {
-                Symbol_[0]->Off();
-                Symbol_[1]->Off();
-
                 RestTime_ += _DeltaTime;
 
                 if (3.f < RestTime_)
@@ -303,7 +293,6 @@ void Pontiff::SpellCastEndCheck(float _DeltaTime)
     }
 }
 
-
 void Pontiff::FireBall(float _DeltaTime)
 {
     SpellTime_ += _DeltaTime;
@@ -313,18 +302,19 @@ void Pontiff::FireBall(float _DeltaTime)
         SpellTime_ = 0.f;
 
         FireBallSpawner_[SpellCount_]->On();
+        FireBallSpawner_[SpellCount_]->GetRenderer()->On();
         FireBallSpawner_[SpellCount_]->SetGround(ColMap_);
 
         if (2 < SpellCount_)
         {
             FireBallSpawner_[SpellCount_]->GetTransform().SetWorldPosition(
-                {950.f + (175.f * SpellCount_), -250.f - (50.f * SpellCount_)});
+                {950.f + (175.f * SpellCount_), -200.f - (50.f * SpellCount_)});
         }
 
         else
         {
             FireBallSpawner_[SpellCount_]->GetTransform().SetWorldPosition(
-                {650.f + (175.f * SpellCount_), -500.f + (50.f * SpellCount_)});
+                {650.f + (175.f * SpellCount_), -450.f + (50.f * SpellCount_)});
         }
 
         FireBallSpawner_[SpellCount_]->SetTarget(Penitent::GetMainPlayer());
@@ -381,48 +371,57 @@ void Pontiff::AnguishBeam()
 SPELLTYPE Pontiff::RandomSpell()
 {
     int Random = Random_.RandomInt(0, static_cast<int>(SPELLTYPE::ANGUISHBEAM));
-    // SPELLTYPE Spell  = static_cast<SPELLTYPE>(Random);
-    SPELLTYPE Spell = SPELLTYPE::MAGICMISSILE;
+    SPELLTYPE Spell = static_cast<SPELLTYPE>(Random);
 
     IsOnceCasting_ = false;
 
     switch (Random)
     {
         case 0:
-            Symbol_[0]->On();
-            Symbol_[1]->On();
+            Symbol_[0]->Renderer_->On();
+            Symbol_[0]->Renderer_->ChangeFrameAnimation("pope_twistedOne_symbol");
+            Symbol_[1]->Renderer_->On();
+            Symbol_[1]->Renderer_->ChangeFrameAnimation("pope_twistedOne_symbol");
 
             Symbol_[0]->SetColor(COLORTYPE::RED);
             Symbol_[1]->SetColor(COLORTYPE::RED);
             break;
 
         case 1:
-            Symbol_[0]->On();
-            Symbol_[1]->On();
+            Symbol_[0]->Renderer_->On();
+            Symbol_[0]->Renderer_->ChangeFrameAnimation("pope_twistedOne_symbol");
+            Symbol_[1]->Renderer_->On();
+            Symbol_[1]->Renderer_->ChangeFrameAnimation("pope_twistedOne_symbol");
 
             Symbol_[0]->SetColor(COLORTYPE::GREEN);
             Symbol_[1]->SetColor(COLORTYPE::GREEN);
             break;
 
         case 2:
-            Symbol_[0]->On();
-            Symbol_[1]->On();
+            Symbol_[0]->Renderer_->On();
+            Symbol_[0]->Renderer_->ChangeFrameAnimation("pope_twistedOne_symbol");
+            Symbol_[1]->Renderer_->On();
+            Symbol_[1]->Renderer_->ChangeFrameAnimation("pope_twistedOne_symbol");
 
             Symbol_[0]->SetColor(COLORTYPE::BLUE);
             Symbol_[1]->SetColor(COLORTYPE::BLUE);
             break;
 
         case 3:
-            Symbol_[0]->On();
-            Symbol_[1]->On();
+            Symbol_[0]->Renderer_->On();
+            Symbol_[0]->Renderer_->ChangeFrameAnimation("pope_twistedOne_symbol");
+            Symbol_[1]->Renderer_->On();
+            Symbol_[1]->Renderer_->ChangeFrameAnimation("pope_twistedOne_symbol");
 
             Symbol_[0]->SetColor(COLORTYPE::PURPLE);
             Symbol_[1]->SetColor(COLORTYPE::PURPLE);
             break;
 
         case 4:
-            Symbol_[0]->On();
-            Symbol_[1]->On();
+            Symbol_[0]->Renderer_->On();
+            Symbol_[0]->Renderer_->ChangeFrameAnimation("pope_twistedOne_symbol");
+            Symbol_[1]->Renderer_->On();
+            Symbol_[1]->Renderer_->ChangeFrameAnimation("pope_twistedOne_symbol");
 
             Symbol_[0]->SetColor(COLORTYPE::PURPLE);
             Symbol_[1]->SetColor(COLORTYPE::PURPLE);
@@ -463,7 +462,7 @@ void Pontiff::CreateSpawner()
     AnguishBeamSpawner_ = GetLevel()->CreateActor<AnguishBeamSpawner>();
     AnguishBeamSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BossMonster)});
     AnguishBeamSpawner_->SetSpawnerType(SPAWNERTYPE::SP_HIGHLEVLE);
-    AnguishBeamSpawner_->Off(); 
+    AnguishBeamSpawner_->Off();
 }
 
 void Pontiff::AppearStart(const StateInfo& _Info)
@@ -493,8 +492,11 @@ void Pontiff::AppearEnd(const StateInfo& _Info)
     BossUI_->SetFontSize(35);
 
     PlatformSpawner_->CreateFristPattern();
-}
 
+    //주문 시작
+    IsSpellCast_ = false; 
+    CurType_     = RandomSpell();
+}
 
 void Pontiff::OpeningStart(const StateInfo& _Info)
 {
@@ -561,6 +563,19 @@ void Pontiff::DeathStart(const StateInfo& _Info)
     GiantSword_->Off();
 
     PlatformSpawner_->SetSpawnerOrder(SpawnerOrder::Death);
+
+    for (size_t i = 0; i < 6; i++)
+    {
+        FireBallSpawner_[i]->Death();
+    }
+
+    ToxicCloudSpawner_->Death();
+    LightiningBoltSpawner_->Death();
+    MagicMissileSpawner_->Death();
+    AnguishBeamSpawner_->Death();
+
+    Symbol_[0]->Death();
+    Symbol_[1]->Death();
 }
 
 void Pontiff::DeathUpdate(float _DeltaTime, const StateInfo& _Info)

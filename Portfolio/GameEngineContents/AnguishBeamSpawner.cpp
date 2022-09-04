@@ -11,34 +11,45 @@ AnguishBeamSpawner::~AnguishBeamSpawner() {}
 
 void AnguishBeamSpawner::Start() {}
 
-void AnguishBeamSpawner::Update(float _DeltaTime) {}
+void AnguishBeamSpawner::Update(float _DeltaTime)
+{
+    if (true == IsStop_)
+    {
+        if (true == Beam_->IsDeath())
+        {
+            SpawnerEnd_ = true;
+        }
+    }
+}
 
 void AnguishBeamSpawner::End() {}
 
 
-void AnguishBeamSpawner::CreateOnce() 
-{ 
-	AnguishBeam* Beam = GetLevel()->CreateActor<AnguishBeam>(); 
-	Beam->GetTransform().SetWorldPosition(float4{1000, -800, static_cast<int>(ACTORORDER::MonsterEffect)});
-    Beam->MetaRenderer_->ChangeMetaAnimation("threeAnguishBigBeam");
+void AnguishBeamSpawner::CreateOnce()
+{
+    Beam_ = GetLevel()->CreateActor<AnguishBeam>();
+    Beam_->GetTransform().SetWorldScale({2.f, 2.25f, 1.f});
+    Beam_->GetTransform().SetWorldPosition(float4{1250, -965, static_cast<int>(ACTORORDER::MonsterEffect)});
+    Beam_->MetaRenderer_->ChangeMetaAnimation("threeAnguishBigBeam");
 
-    SpawnerEnd_ = true;
+    IsStop_ = true;
 }
 
-void AnguishBeamSpawner::CreateTwice() 
+void AnguishBeamSpawner::CreateTwice()
 {
-	{
-        AnguishBeam* Beam = GetLevel()->CreateActor<AnguishBeam>();
-        Beam->GetTransform().SetWorldPosition(float4{500, -800, static_cast<int>(ACTORORDER::MonsterEffect)});
-        Beam->MetaRenderer_->ChangeMetaAnimation("threeAnguishBigBeam");
-	}
+    {
+        Beam_ = GetLevel()->CreateActor<AnguishBeam>();
+        Beam_->GetTransform().SetWorldScale({2.f, 2.25f, 1.f});
+        Beam_->GetTransform().SetWorldPosition(float4{600, -965, static_cast<int>(ACTORORDER::MonsterEffect)});
+        Beam_->MetaRenderer_->ChangeMetaAnimation("threeAnguishBigBeam");
+    }
 
-	{
-        AnguishBeam* Beam = GetLevel()->CreateActor<AnguishBeam>();
-        Beam->GetTransform().SetWorldPosition(float4{1500, -800, static_cast<int>(ACTORORDER::MonsterEffect)});
-        Beam->MetaRenderer_->ChangeMetaAnimation("threeAnguishBigBeam");
-	}
+    {
+        Beam_ = GetLevel()->CreateActor<AnguishBeam>();
+        Beam_->GetTransform().SetWorldScale({2.f, 2.25f, 1.f});
+        Beam_->GetTransform().SetWorldPosition(float4{1900, -965, static_cast<int>(ACTORORDER::MonsterEffect)});
+        Beam_->MetaRenderer_->ChangeMetaAnimation("threeAnguishBigBeam");
+    }
 
-    SpawnerEnd_ = true;
-
+    IsStop_ = true;
 }
