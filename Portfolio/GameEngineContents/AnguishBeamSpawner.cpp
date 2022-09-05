@@ -13,13 +13,7 @@ void AnguishBeamSpawner::Start() {}
 
 void AnguishBeamSpawner::Update(float _DeltaTime)
 {
-    if (true == IsStop_)
-    {
-        if (true == Beam_->IsDeath())
-        {
-            SpawnerEnd_ = true;
-        }
-    }
+
 }
 
 void AnguishBeamSpawner::End() {}
@@ -32,7 +26,7 @@ void AnguishBeamSpawner::CreateOnce()
     Beam_->GetTransform().SetWorldPosition(float4{1250, -965, static_cast<int>(ACTORORDER::MonsterEffect)});
     Beam_->MetaRenderer_->ChangeMetaAnimation("threeAnguishBigBeam");
 
-    IsStop_ = true;
+    SpawnerEnd_ = true;
 }
 
 void AnguishBeamSpawner::CreateTwice()
@@ -51,5 +45,5 @@ void AnguishBeamSpawner::CreateTwice()
         Beam_->MetaRenderer_->ChangeMetaAnimation("threeAnguishBigBeam");
     }
 
-    IsStop_ = true;
+    SpawnerEnd_ = true;
 }

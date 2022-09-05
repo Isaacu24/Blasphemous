@@ -8,7 +8,6 @@
 #include "HitEffect.h"
 #include "AttackEffect.h"
 
-
 Penitent* Penitent::MainPlayer_ = nullptr;
 
 Penitent::Penitent()
@@ -896,16 +895,46 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "death_anim_blood",
-            {"death_anim_blood.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
+            {"death_anim_blood.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
             Data);
+
+        MetaRenderer_->AnimationBindEnd(
+            "death_anim_blood",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                if ("" == LastSavePoint_)
+                {
+                    GEngine::ChangeLevel("Stage01");
+                }
+
+                else
+                {
+                    GEngine::ChangeLevel(LastSavePoint_);
+                }
+                Off();
+            });
     }
 
+    //리스폰
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_respawning_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_respawning_anim",
+            {"penitent_respawning_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_respawning_anim",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+    }
+
+    //텔레포트
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("RegresoAPuerto-Prayer");
 
         MetaRenderer_->CreateMetaAnimation(
             "RegresoAPuerto-Prayer",
-            {"RegresoAPuerto-Prayer.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
+            {"RegresoAPuerto-Prayer.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
             Data);
 
         MetaRenderer_->AnimationBindEnd("RegresoAPuerto-Prayer",
@@ -1012,15 +1041,15 @@ void Penitent::SetPlayerState()
         std::bind(&Penitent::ReturnToPortStart, this, std::placeholders::_1),
         std::bind(&Penitent::ReturnToPortEnd, this, std::placeholders::_1));
 
-
-    /*
-    State_.CreateStateMember("Hit",
-                             std::bind(&Penitent::HitUpdate, this, std::placeholders::_1,
-    std::placeholders::_2), std::bind(&Penitent::HitStart, this, std::placeholders::_1));
-
     State_.CreateStateMember("Death",
-                             std::bind(&Penitent::DeathUpdate, this, std::placeholders::_1,
-    std::placeholders::_2), std::bind(&Penitent::DeathStart, this, std::placeholders::_1));*/
+                             std::bind(&Penitent::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::DeathStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::DeathEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember("Respawn",
+                             std::bind(&Penitent::RespawnUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::RespawnStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::RespawnEnd, this, std::placeholders::_1));
 
     State_.ChangeState("Idle");
 }

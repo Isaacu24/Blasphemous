@@ -71,7 +71,7 @@ void Stage21::Update(float _DeltaTime)
         case STAGEFLOW::BOSSAPPEAR:
             if ("Appear" != Pontiff_->GetState())
             {
-                 CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
+                CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
             }
             break;
         case STAGEFLOW::BOSSCOMBAT:
@@ -85,11 +85,11 @@ void Stage21::Update(float _DeltaTime)
             break;
     }
 
-    PlayerCameraMove();
+    PlayerCameraMove(_DeltaTime);
 }
 
 
-void Stage21::PlayerCameraMove()
+void Stage21::PlayerCameraMove(float _DeltaTime)
 {
     if (false == IsChangeCameraPos_)
     {
@@ -97,9 +97,11 @@ void Stage21::PlayerCameraMove()
         IsChangeCameraPos_ = true;
     }
 
-    GetMainCameraActor()->GetTransform().SetWorldPosition({GetMainCameraActor()->GetTransform().GetWorldPosition().x,
-                                                           Penitent_->GetTransform().GetLocalPosition().y + 275.f,
-                                                           CameraZPos_});
+    float4 CamPos    = GetMainCameraActor()->GetTransform().GetWorldPosition();
+    float4 PlayerPos = Penitent_->GetTransform().GetWorldPosition() + float4{0, 300};
+    float4 CurPos    = float4::LerpLimit(CamPos, PlayerPos, _DeltaTime * 5);
+
+    GetMainCameraActor()->GetTransform().SetWorldPosition({1250, CurPos.y, CameraZPos_});
 
     if (-600 < GetMainCameraActor()->GetTransform().GetWorldPosition().y)
     {
@@ -162,4 +164,28 @@ void Stage21::LevelStartEvent()
     IsLeftExit_  = false;
 }
 
-void Stage21::LevelEndEvent() {}
+void Stage21::LevelEndEvent() 
+{
+    if (false == Penitent_->IsUpdate())
+    {
+        if (nullptr == Guilt_)
+        {
+            Guilt_ = CreateActor<PenitentGuilt>();
+        }
+
+        else
+        {
+            return;
+        }
+
+        if (true == Penitent_->GetIsFallDeath())
+        {
+            Guilt_->GetTransform().SetWorldPosition(float4{});
+        }
+
+        else
+        {
+            Guilt_->GetTransform().SetLocalPosition(Penitent_->GetTransform().GetWorldPosition() + float4{0, 0, -1.0f});
+        }
+    }
+}

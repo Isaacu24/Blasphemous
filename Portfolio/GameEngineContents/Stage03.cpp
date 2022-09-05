@@ -94,6 +94,11 @@ void Stage03::SettingStage()
     PlayerRightPos_ = float4{3200, -1067, static_cast<int>(ACTORORDER::Player)};
     PlayerLeftPos_  = float4{150, -1067, static_cast<int>(ACTORORDER::Player)};
 
+    ButtonRenderer_ = CreateActor<GameEngineActor>()->CreateComponent<GameEngineUIRenderer>();
+    ButtonRenderer_->GetTransform().SetWorldScale({50, 50, 1});
+    ButtonRenderer_->SetTexture("KB_SPACE.png");
+    ButtonRenderer_->Off();
+
     IsLeftExit_ = true;
 }
 
@@ -107,15 +112,16 @@ void Stage03::Update(float _DeltaTime)
         IsChangeCameraPos_ = true;
     }
 
-    GetMainCameraActor()->GetTransform().SetWorldPosition(
-        {Penitent_->GetTransform().GetLocalPosition().x,
-         Penitent_->GetTransform().GetLocalPosition().y + CameraOffset_,
-         CameraZPos_});
+    float4 CamPos = GetMainCameraActor()->GetTransform().GetWorldPosition();
+    float4 PlayerPos = Penitent_->GetTransform().GetWorldPosition() + float4{0, CameraOffset_};
+    float4 CurPos    = float4::LerpLimit(CamPos, PlayerPos, _DeltaTime * 5);
 
-    if (-755 < GetMainCameraActor()->GetTransform().GetWorldPosition().y)
+    GetMainCameraActor()->GetTransform().SetWorldPosition({CurPos.x, CurPos.y, CameraZPos_});
+
+    if (-500 < GetMainCameraActor()->GetTransform().GetWorldPosition().y)
     {
         GetMainCameraActor()->GetTransform().SetWorldPosition(
-            float4{Penitent_->GetTransform().GetLocalPosition().x, -755, CameraZPos_});
+            float4{GetMainCameraActor()->GetTransform().GetLocalPosition().x, -500, CameraZPos_});
     }
 
     if (670 > GetMainCameraActor()->GetTransform().GetWorldPosition().x)
@@ -157,6 +163,27 @@ void Stage03::Update(float _DeltaTime)
         LoadingActor_ = CreateActor<LoadingActor>();
         LoadingActor_->Exit("Stage04");
     }
+
+    float4 Distance = GetMainCamera()->GetTransform().GetWorldPosition() - PrieDieu_->GetTransform().GetWorldPosition();
+
+    GameEngineDebug::OutPutString("Distance X" + std::to_string(Distance.x));
+    GameEngineDebug::OutPutString("Distance Y" + std::to_string(Distance.y));
+
+    if (50 > Distance.x && -50 < Distance.x && 50 > Distance.x && -50 < Distance.y)
+    {
+        if (false == ButtonRenderer_->IsUpdate())
+        {
+            ButtonRenderer_->On();
+        }
+    }
+
+    else
+    {
+        if (true == ButtonRenderer_->IsUpdate())
+        {
+            ButtonRenderer_->Off();
+        }
+    }
 }
 
 
@@ -171,6 +198,9 @@ void Stage03::LevelStartEvent()
         Penitent_->SetGround(ColMap_);
 
         Penitent_->SetLevelOverOn();
+        Penitent_->ChangeState("Respawn");
+        Penitent_->GetTransform().SetWorldPosition({1800, -1067, static_cast<int>(ACTORORDER::Player)});
+        Penitent_->On();
     }
 
     else if (nullptr != Penitent::GetMainPlayer())
@@ -189,6 +219,9 @@ void Stage03::LevelStartEvent()
         }
 
         Penitent_->SetLevelOverOn();
+        Penitent_->ChangeState("Respawn");
+        Penitent_->GetTransform().SetWorldPosition({1800, -1067, static_cast<int>(ACTORORDER::Player)});
+        Penitent_->On();
     }
 
     if (nullptr == LoadingActor_)
@@ -214,4 +247,28 @@ void Stage03::LevelStartEvent()
     });
 }
 
-void Stage03::LevelEndEvent() {}
+void Stage03::LevelEndEvent() 
+{
+    if (false == Penitent_->IsUpdate())
+    {
+        if (nullptr == Guilt_)
+        {
+            Guilt_ = CreateActor<PenitentGuilt>();
+        }
+
+        else
+        {
+            return;
+        }
+
+        if (true == Penitent_->GetIsFallDeath())
+        {
+            Guilt_->GetTransform().SetWorldPosition(float4{});
+        }
+
+        else
+        {
+            Guilt_->GetTransform().SetLocalPosition(Penitent_->GetTransform().GetWorldPosition() + float4{0, 0, -1.0f});
+        }
+    }
+}

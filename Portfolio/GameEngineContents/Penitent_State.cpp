@@ -13,7 +13,12 @@ void Penitent::FreezeUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Penitent::FreezeEnd(const StateInfo& _Info) {}
 
-void Penitent::IdleStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penintent_idle_anim"); }
+
+void Penitent::IdleStart(const StateInfo& _Info)
+{
+    FallTime_ = 0.1f;
+    MetaRenderer_->ChangeMetaAnimation("penintent_idle_anim");
+}
 
 void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -62,7 +67,8 @@ void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 
     else if (true == GameEngineInput::GetInst()->IsDownKey("PenitentTelport"))
     {
-        State_.ChangeState("ReturnToPort");
+        State_.ChangeState("Death");
+        // State_.ChangeState("ReturnToPort");
     }
 
     //내리막길
@@ -193,6 +199,7 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 
 void Penitent::MoveEnd(const StateInfo& _Info) {}
+
 
 void Penitent::JumpStart(const StateInfo& _Info)
 {
@@ -890,9 +897,9 @@ void Penitent::ReturnToPortStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("RegresoAPuerto-Prayer");
 
-    AttackEffect_->Renderer_->On();
-    AttackEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
-    AttackEffect_->Renderer_->ChangeMetaAnimation("guardian_lady_protect_and_vanish");
+    // AttackEffect_->Renderer_->On();
+    // AttackEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
+    // AttackEffect_->Renderer_->ChangeMetaAnimation("guardian_lady_protect_and_vanish");
 }
 
 void Penitent::ReturnToPortUpdate(float _DeltaTime, const StateInfo& _Info) {}
@@ -900,8 +907,31 @@ void Penitent::ReturnToPortUpdate(float _DeltaTime, const StateInfo& _Info) {}
 void Penitent::ReturnToPortEnd(const StateInfo& _Info) {}
 
 
-void Penitent::DeathStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("death_anim_blood"); }
+void Penitent::DeathStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("death_anim_blood");
+}
 
 void Penitent::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Penitent::DeathEnd(const StateInfo& _Info) {}
+
+
+void Penitent::RespawnStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("penitent_respawning_anim");
+
+    AttackEffect_->Renderer_->On();
+    AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_respawning_anim_querubs");
+}
+
+void Penitent::RespawnUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    float EffectZ = AO_PLAYEREFFECT;
+    AttackEffect_->GetTransform().SetWorldPosition(
+        {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, EffectZ});
+
+    Gravity_->SetActive(!IsGround_);
+}
+
+void Penitent::RespawnEnd(const StateInfo& _Info) {}

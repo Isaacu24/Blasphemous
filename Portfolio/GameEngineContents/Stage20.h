@@ -31,6 +31,6 @@ private:
 
 	float4 PlayerReturnPos_;
 
-	void PlayerCameraMove();
+	void PlayerCameraMove(float _DeltaTime);
 };
 

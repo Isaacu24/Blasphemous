@@ -31,6 +31,6 @@ protected:
 private:
 	class ElderBrother* ElderBrother_;
 
-	void PlayerCameraMove();
+	void PlayerCameraMove(float _DeltaTime);
 };
 

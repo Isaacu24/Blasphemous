@@ -164,4 +164,28 @@ void Stage05::LevelStartEvent()
     IsLeftExit_  = false;
 }
 
-void Stage05::LevelEndEvent() {}
+void Stage05::LevelEndEvent() 
+{
+    if (false == Penitent_->IsUpdate())
+    {
+        if (nullptr == Guilt_)
+        {
+            Guilt_ = CreateActor<PenitentGuilt>();
+        }
+
+        else
+        {
+            return;
+        }
+
+        if (true == Penitent_->GetIsFallDeath())
+        {
+            Guilt_->GetTransform().SetWorldPosition(float4{});
+        }
+
+        else
+        {
+            Guilt_->GetTransform().SetLocalPosition(Penitent_->GetTransform().GetWorldPosition() + float4{0, 0, -1.0f});
+        }
+    }
+}

@@ -23,8 +23,7 @@ void AnguishBeam::Start()
         MetaRenderer_->CreateMetaAnimation(
             "threeAnguishBigBeam", {"threeAnguishBigBeam.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true}, Data);
 
-        MetaRenderer_->AnimationBindEnd("threeAnguishBigBeam",
-                                        [&](const FrameAnimation_DESC& _Info) { MetaRenderer_->Off(); });
+        MetaRenderer_->AnimationBindEnd("threeAnguishBigBeam", [&](const FrameAnimation_DESC& _Info) { Death(); });
     }
 
     MetaRenderer_->SetPivot(PIVOTMODE::METABOT);

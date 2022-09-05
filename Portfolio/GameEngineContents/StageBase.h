@@ -1,4 +1,5 @@
 #pragma once
+#include "PenitentGuilt.h"
 
 enum class STAGEFLOW
 {
@@ -69,6 +70,8 @@ protected:
 	bool IsChangeCameraPos_;
 
 	float CameraOffset_;
+
+	class PenitentGuilt* Guilt_;
 
 private:
 

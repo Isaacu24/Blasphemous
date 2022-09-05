@@ -61,7 +61,9 @@ public:
 		{
 			return IsDeath_ || true == Parent->IsDeath();
 		}
-		else {
+
+		else 
+		{
 			return IsDeath_;
 		}
 	}

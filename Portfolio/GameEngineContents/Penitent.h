@@ -60,6 +60,10 @@ public:
         }
     }
 
+    inline void SetLastSavePoint(const std::string& _LevelName) { LastSavePoint_ = _LevelName; }
+
+    inline bool GetIsFallDeath() { return IsFallDeath_; }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
@@ -68,14 +72,14 @@ protected:
     void SetAnimation();
     void SetPlayerState();
 
-    // bool HealthCheck();
-
     void GroundCheck();
     void LadderCheck();
     void UphillRoadCheck();
 
     bool LeftObstacleCheck();
     bool RightObstacleCheck();
+
+    void DeadZoneCheck();
 
     void CollisionCheck();
 
@@ -164,6 +168,9 @@ protected:
     void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
     void DeathEnd(const StateInfo& _Info);
 
+    void RespawnStart(const StateInfo& _Info);
+    void RespawnUpdate(float _DeltaTime, const StateInfo& _Info);
+    void RespawnEnd(const StateInfo& _Info);
 
     //피격 함수
     bool KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other);
@@ -188,6 +195,8 @@ private:
     class MoveEffect*   MoveEffect_;
     class AttackEffect* AttackEffect_;
     class HitEffect*    HitEffect_;
+
+    std::string LastSavePoint_;
 
     int   HP_;
     int   MP_;
@@ -227,4 +236,6 @@ private:
     float SlideTime_;
 
     std::vector<bool> Flasks_;
+
+    bool IsFallDeath_;
 };

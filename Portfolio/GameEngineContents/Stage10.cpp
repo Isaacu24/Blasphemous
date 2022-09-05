@@ -5,6 +5,7 @@
 #include "BreakableTwistedCorpse.h"
 #include "ShieldMaiden.h"
 #include "LionHead.h"
+#include "DeadZone.h"
 
 Stage10::Stage10() {}
 
@@ -60,7 +61,7 @@ void Stage10::SettingStage()
     float TileZ = AO_TILE;
     StageRenderer->GetTransform().SetWorldPosition({0, 0, TileZ});
     StageRenderer->GetTransform().SetWorldScale(StageRenderer->GetTransform().GetWorldScale() * 2.f);
-    
+
     GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     DoorRenderer->SetTexture("2_1_Door.png");
     DoorRenderer->ScaleToTexture();
@@ -89,6 +90,9 @@ void Stage10::SettingStage()
     PlayerLeftPos_  = float4{300, -682, PlayerZ};
 
     IsLeftExit_ = true;
+
+    DeadZone* Zone = CreateActor<DeadZone>();
+    Zone->GetTransform().SetWorldPosition({1500, -2500, 0});
 }
 
 void Stage10::SettingMonster()
@@ -257,10 +261,11 @@ void Stage10::Update(float _DeltaTime)
         IsChangeCameraPos_ = true;
     }
 
-    GetMainCameraActor()->GetTransform().SetWorldPosition(
-        {Penitent_->GetTransform().GetLocalPosition().x,
-         Penitent_->GetTransform().GetLocalPosition().y + CameraOffset_,
-         CameraZPos_});
+    float4 CamPos    = GetMainCameraActor()->GetTransform().GetWorldPosition();
+    float4 PlayerPos = Penitent_->GetTransform().GetWorldPosition() + float4{0, CameraOffset_};
+    float4 CurPos    = float4::LerpLimit(CamPos, PlayerPos, _DeltaTime * 5);
+
+    GetMainCameraActor()->GetTransform().SetWorldPosition({CurPos.x, CurPos.y, CameraZPos_});
 
     if (-500 < GetMainCameraActor()->GetTransform().GetLocalPosition().y)
     {
@@ -326,6 +331,7 @@ void Stage10::LevelStartEvent()
         Penitent_->SetGround(ColMap_);
 
         Penitent_->SetLevelOverOn();
+        Penitent_->SetLastSavePoint("Stage03");
     }
 
     else if (nullptr != Penitent::GetMainPlayer())
@@ -344,6 +350,7 @@ void Stage10::LevelStartEvent()
         }
 
         Penitent_->SetLevelOverOn();
+        Penitent_->SetLastSavePoint("Stage03");
     }
 
     if (nullptr == LoadingActor_)
@@ -371,4 +378,28 @@ void Stage10::LevelStartEvent()
     SettingMonster();
 }
 
-void Stage10::LevelEndEvent() {}
+void Stage10::LevelEndEvent() 
+{
+    if (false == Penitent_->IsUpdate())
+    {
+        if (nullptr == Guilt_)
+        {
+            Guilt_ = CreateActor<PenitentGuilt>();
+        }
+
+        else
+        {
+            return;
+        }
+
+        if (true == Penitent_->GetIsFallDeath())
+        {
+            Guilt_->GetTransform().SetWorldPosition(float4{});
+        }
+
+        else
+        {
+            Guilt_->GetTransform().SetLocalPosition(Penitent_->GetTransform().GetWorldPosition() + float4{0, 0, -1.0f});
+        }
+    }
+}

@@ -96,11 +96,11 @@ void AttackEffect::Start()
                                        Data);
 
         Renderer_->AnimationBindEnd("penitent_verticalattack_landing_effects_anim",
-                                    [&](const FrameAnimation_DESC& _Info) 
-            { 
-                Renderer_->CurAnimationReset();
-                Renderer_->Off(); 
-            });
+                                    [&](const FrameAnimation_DESC& _Info)
+                                    {
+                                        Renderer_->CurAnimationReset();
+                                        Renderer_->Off();
+                                    });
     }
 
     {
@@ -115,25 +115,38 @@ void AttackEffect::Start()
                                        Data);
 
         Renderer_->AnimationBindEnd("penitent_healthpotion_consuming_aura_anim",
-                                    [&](const FrameAnimation_DESC& _Info) 
-            { 
-                Renderer_->CurAnimationReset();
-                Renderer_->Off(); 
-            });
+                                    [&](const FrameAnimation_DESC& _Info)
+                                    {
+                                        Renderer_->CurAnimationReset();
+                                        Renderer_->Off();
+                                    });
     }
 
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("guardian_lady_protect_and_vanish");
 
-        Renderer_->CreateMetaAnimation("guardian_lady_protect_and_vanish",
-                                       {"guardian_lady_protect_and_vanish.png",
-                                        0,
-                                        static_cast<unsigned int>(Data.size() - 1),
-                                        0.07f,
-                                        false},
-                                       Data);
+        Renderer_->CreateMetaAnimation(
+            "guardian_lady_protect_and_vanish",
+            {"guardian_lady_protect_and_vanish.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
+            Data);
 
         Renderer_->AnimationBindEnd("guardian_lady_protect_and_vanish",
+                                    [&](const FrameAnimation_DESC& _Info)
+                                    {
+                                        Renderer_->CurAnimationReset();
+                                        Renderer_->Off();
+                                    });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_respawning_anim_querubs");
+
+        Renderer_->CreateMetaAnimation(
+            "penitent_respawning_anim_querubs",
+            {"penitent_respawning_anim_querubs.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
+            Data);
+
+        Renderer_->AnimationBindEnd("penitent_respawning_anim_querubs",
                                     [&](const FrameAnimation_DESC& _Info)
                                     {
                                         Renderer_->CurAnimationReset();

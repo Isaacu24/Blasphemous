@@ -16,6 +16,8 @@ public:
 
     inline void SetSpeed(float _Speed) { Speed_ = _Speed; }
 
+    inline void SetWeight(float _Speed) { Weight_ = _Speed; }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
@@ -27,6 +29,7 @@ private:
     GameEngineCollision*       Collider_;
 
     float Speed_;
+    float Weight_;
 
     bool IsExplosion_;
 

@@ -22,16 +22,15 @@ void FireBallSpawner::Start()
 
 void FireBallSpawner::Update(float _DeltaTime)
 {
-    if (true == IsStop_)
-    {
-        if (true == FireBall_->IsDeath())
-        {
-            Off();
-            SpawnerEnd_ = true;
-        }
+    //if (true == IsStop_)
+    //{
+    //    if (true == FireBall_->IsDeath())
+    //    {
 
-        return;
-    }
+    //    }
+
+    //    return;
+    //}
 
     switch (SpawnerType_)
     {
@@ -47,9 +46,9 @@ void FireBallSpawner::Update(float _DeltaTime)
         case SPAWNERTYPE::SP_HIGHLEVLE:
             if (5 == BallCount_)
             {
-                Renderer_->Off();
-                IsStop_ = true;
+                SpawnerEnd_ = true;
                 BallCount_  = 0;
+                Off();
             }
             break;
     }
@@ -62,25 +61,25 @@ void FireBallSpawner::CreateFireBall(const FrameAnimation_DESC& _Info)
 {
     if (39 == _Info.CurFrame)
     {
-        FireBall_ = GetLevel()->CreateActor<FireBall>();
-        FireBall_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
-        FireBall_->SetGround(ColMap_);
+        FireBall* Clone = GetLevel()->CreateActor<FireBall>();
+        Clone->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
+        Clone->SetGround(ColMap_);
 
         if (SPAWNERTYPE::SP_HIGHLEVLE == SpawnerType_)
         {
-            FireBall_->SetSpeed(350.f);
-            FireBall_->SetWeight(500.f);
+            Clone->SetSpeed(350.f);
+            Clone->SetWeight(500.f);
         }
 
         else
         {
-            FireBall_->SetSpeed(500.f);
+            Clone->SetSpeed(500.f);
         }
 
         float4 Dir = Target_->GetTransform().GetWorldPosition() - GetTransform().GetWorldPosition();
         Dir.Normalize();
 
-        FireBall_->SetDirection(Dir);
+        Clone->SetDirection(Dir);
 
         ++BallCount_;
     }

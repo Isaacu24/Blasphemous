@@ -410,6 +410,9 @@ void Blasphemous::CutTexture()
     GameEngineTexture::Cut("reja_lateral_invertedBell_descending.png", 7, 3);
     // GameEngineTexture::Cut("breakableTwistedCorpse04.png", 5, 3);
 
+    GameEngineTexture::Cut("guiltSystem_blinkFxs.png", 7, 5);
+    GameEngineTexture::Cut("guiltDropVanish.png", 5, 2);
+
     // Effect
     GameEngineTexture::Cut("BloodSplatters.png", 5, 5);
     GameEngineTexture::Cut("BloodSplattersV3.png", 4, 4);

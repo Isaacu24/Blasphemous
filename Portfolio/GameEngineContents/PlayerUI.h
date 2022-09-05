@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include <GameEngineCore/CoreMinimal.h>
 #include "Inventory.h"
 
 class LeftTopUI;
@@ -15,11 +16,27 @@ public:
 	PlayerUI(PlayerUI&& _Other) noexcept = delete;
 	PlayerUI& operator=(const PlayerUI& _Other) = delete;
 	PlayerUI& operator=(PlayerUI&& _Other) noexcept = delete;
-
+		
 	void SetTear(int Value);
 	void UseFlask(int _Index);
 
 	void Damage();
+	
+    void PlayerDeathStart(const StateInfo& _Info);
+    void PlayerDeathUpdate(float _DeltaTime, const StateInfo& _Info);
+    void PlayerDeathEnd(const StateInfo& _Info);
+
+    void BossDeathStart(const StateInfo& _Info);
+    void BossDeathUpdate(float _DeltaTime, const StateInfo& _Info);
+    void BossDeathEnd(const StateInfo& _Info);
+
+    void FinalBossDeathStart(const StateInfo& _Info);
+    void FinalBossDeathUpdate(float _DeltaTime, const StateInfo& _Info);
+    void FinalBossDeathEnd(const StateInfo& _Info);
+	
+    void BehindScreenStart(const StateInfo& _Info);
+    void BehindScreenUpdate(float _DeltaTime, const StateInfo& _Info);
+    void BehindScreenEnd(const StateInfo& _Info);
 
 protected:
 	void Start() override;
@@ -27,6 +44,8 @@ protected:
 	void End() override;
 
 private:
+    GameEngineStateManager ScreenState_;
+
 	LeftTopUI* BarFrame_;
 
 	Inventory* Inventory_;
@@ -35,11 +54,22 @@ private:
 
 	GameEngineUIRenderer* TearFrame_;
 
+	GameEngineUIRenderer* ScreenRenderer_;
+    GameEngineUIRenderer* BackRenderer_;
+
 	std::vector<GameEngineUIRenderer*> TearRenderers_;
 
 	LeftTopUI* HPBar_;
 	LeftTopUI* MPBar_;
 
+	bool IsDeath_;
+
+	bool IsReverse_;
+
+	float Alpha_;
+    float BackAlpha_;
+
+	float ScreenTime_;
 };
 
 

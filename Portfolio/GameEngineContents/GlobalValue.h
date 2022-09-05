@@ -127,12 +127,15 @@ enum class COLLISIONORDER
     Debug,
     GlassSwitch,
     Platform,
+    DeadZone
 };
 
 
 enum class UIORDER
 {
     LodingUI = 0,
+    ScreenUI,
+    BackScreenUI,
     Inventory,
     InteractionUI,
     MonterUI,

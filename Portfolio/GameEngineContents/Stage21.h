@@ -29,5 +29,5 @@ protected:
 private:
     class Pontiff* Pontiff_;
 
-    void PlayerCameraMove();
+    void PlayerCameraMove(float _DeltaTime);
 };

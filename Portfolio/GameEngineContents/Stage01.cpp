@@ -69,25 +69,27 @@ void Stage01::SettingStage()
 void Stage01::Start()
 {
     SettingStage();
-        
+
     GameEngineInput::GetInst()->CreateKey("TransUI", 'J');
 }
 
 void Stage01::Update(float _DeltaTime)
 {
-    if (true == GameEngineInput::GetInst()->IsDownKey("TransUI"))
     {
-        float4x4 World = Penitent_->GetTransform().GetWorldWorld();
+        // if (true == GameEngineInput::GetInst()->IsDownKey("TransUI"))
+        //{
+        //    float4x4 World = Penitent_->GetTransform().GetWorldWorld();
 
-        World = World * GetMainCamera()->GetView();
-        World = World * GetMainCamera()->GetProjectionMatrix();
+        //    World = World * GetMainCamera()->GetView();
+        //    World = World * GetMainCamera()->GetProjectionMatrix();
 
-        float4x4 ViewPort;
-        ViewPort.ViewPort(1280, 720, 0, 0, 0, 1);
+        //    float4x4 ViewPort;
+        //    ViewPort.ViewPort(1280, 720, 0, 0, 0, 1);
 
-        World = World * ViewPort;
+        //    World = World * ViewPort;
 
-        int a = 0;
+        //    int a = 0;
+        //}
     }
 
     if (false == IsChangeCameraPos_)
@@ -96,15 +98,16 @@ void Stage01::Update(float _DeltaTime)
         IsChangeCameraPos_ = true;
     }
 
-    GetMainCameraActor()->GetTransform().SetWorldPosition(
-        {Penitent_->GetTransform().GetLocalPosition().x,
-         Penitent_->GetTransform().GetLocalPosition().y + CameraOffset_,
-         CameraZPos_});
+    float4 CamPos    = GetMainCameraActor()->GetTransform().GetWorldPosition();
+    float4 PlayerPos = Penitent_->GetTransform().GetWorldPosition() + float4{0, CameraOffset_};
+    float4 CurPos    = float4::LerpLimit(CamPos, PlayerPos, _DeltaTime * 5);
+
+    GetMainCameraActor()->GetTransform().SetWorldPosition({CurPos.x, CurPos.y, CameraZPos_});
 
     if (-700 < GetMainCameraActor()->GetTransform().GetWorldPosition().y)
     {
         GetMainCameraActor()->GetTransform().SetWorldPosition(
-            float4{Penitent_->GetTransform().GetLocalPosition().x, -700, CameraZPos_});
+            float4{GetMainCameraActor()->GetTransform().GetLocalPosition().x, -700, CameraZPos_});
     }
 
     if (690 > GetMainCameraActor()->GetTransform().GetWorldPosition().x)
@@ -117,7 +120,7 @@ void Stage01::Update(float _DeltaTime)
     {
         GetMainCameraActor()->GetTransform().SetWorldPosition(
             float4{3150, GetMainCameraActor()->GetTransform().GetLocalPosition().y, CameraZPos_});
-    }
+    }   
 
     if (3650 < Penitent_->GetTransform().GetWorldPosition().x && false == IsRightExit_)
     {
@@ -163,6 +166,8 @@ void Stage01::LevelStartEvent()
         }
 
         Penitent_->SetLevelOverOn();
+        Penitent_->ChangeState("Idle");
+        Penitent_->On();
     }
 
     if (nullptr == LoadingActor_)
@@ -188,4 +193,30 @@ void Stage01::LevelStartEvent()
     });
 }
 
-void Stage01::LevelEndEvent() {}
+void Stage01::LevelEndEvent() 
+{
+    if (false == Penitent_->IsUpdate())
+    {
+        if (nullptr == Guilt_)
+        {
+            Guilt_ = CreateActor<PenitentGuilt>();
+        }
+
+        else
+        {
+            return;
+        }
+
+        if (true == Penitent_->GetIsFallDeath())
+        {
+            //마지막 도약 포지션을 기억한 후 해당 포지션에 길티 생성
+            Guilt_->GetTransform().SetWorldPosition(float4{});
+        }
+
+        else
+        {
+            //도약하지 않았을 때에는 죽은 위치에 길티를 생성
+            Guilt_->GetTransform().SetLocalPosition(Penitent_->GetTransform().GetWorldPosition() + float4{0, 0, -1.0f});
+        }
+    }
+}

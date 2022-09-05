@@ -242,8 +242,11 @@
     <ClInclude Include="MultipleMagicMissile.h">
       <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
     </ClInclude>
-    <ClInclude Include="PenitentGuilty.h">
+    <ClInclude Include="PenitentGuilt.h">
       <Filter>Actor\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="DeadZone.h">
+      <Filter>Actor\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -491,8 +494,11 @@
     <ClCompile Include="MultipleMagicMissile.cpp">
       <Filter>Actor\Effect\Monster\Boss\Pope</Filter>
     </ClCompile>
-    <ClCompile Include="PenitentGuilty.cpp">
+    <ClCompile Include="PenitentGuilt.cpp">
       <Filter>Actor\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="DeadZone.cpp">
+      <Filter>Actor\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

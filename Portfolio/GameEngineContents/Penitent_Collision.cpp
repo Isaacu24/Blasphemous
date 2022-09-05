@@ -108,7 +108,7 @@ void Penitent::UphillRoadCheck()
     while (true)
     {
         bool IsPlatform = PlatformUpCollider_->IsCollision(
-                CollisionType::CT_OBB2D, COLLISIONORDER::Platform, CollisionType::CT_OBB2D, nullptr);
+            CollisionType::CT_OBB2D, COLLISIONORDER::Platform, CollisionType::CT_OBB2D, nullptr);
 
         if (true == IsPlatform)
         {
@@ -191,6 +191,20 @@ bool Penitent::RightObstacleCheck()
     return false;
 }
 
+void Penitent::DeadZoneCheck()
+{
+    IsFallDeath_ = BodyCollider_->IsCollision(
+        CollisionType::CT_OBB2D,
+        COLLISIONORDER::DeadZone,
+        CollisionType::CT_OBB2D,
+        nullptr);
+
+    if (true == IsFallDeath_)
+    {
+        State_.ChangeState("Death");
+    }
+}
+
 
 void Penitent::CollisionCheck()
 {
@@ -252,6 +266,8 @@ void Penitent::CollisionCheck()
     {
         IsBossHit_ = false;
     }
+
+    DeadZoneCheck();
 }
 
 
@@ -310,7 +326,7 @@ bool Penitent::Dangle(GameEngineCollision* _This, GameEngineCollision* _Other)
 bool Penitent::FallCollisionCheck()
 {
     float4 Color = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x,
-                                                              -(GetTransform().GetWorldPosition().y - 10));
+                                                              -(GetTransform().GetWorldPosition().y - 15));
 
     if (true == Color.CompareInt4D(float4::BLACK) || true == Color.CompareInt4D(float4::MAGENTA))
     {

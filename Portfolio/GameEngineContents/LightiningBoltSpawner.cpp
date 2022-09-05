@@ -13,15 +13,15 @@ void LightiningBoltSpawner::Start() {}
 
 void LightiningBoltSpawner::Update(float _DeltaTime)
 {
-    if (true == IsStop_)
-    {
-        if (true == Bolt_->IsDeath())
-        {
-            Off();
-            SpawnerEnd_ = true;
-        }
-        return;
-    }
+    //if (true == IsStop_)
+    //{
+    //    if (true == Bolt_->IsDeath())
+    //    {
+    //        Off();
+    //        SpawnerEnd_ = true;
+    //    }
+    //    return;
+    //}
 
     DelayTime_ += _DeltaTime;
 
@@ -87,8 +87,9 @@ void LightiningBoltSpawner::Update(float _DeltaTime)
             {
                 if (3 == StrikeCount_)
                 {
-                    IsStop_      = true;
                     StrikeCount_ = 0;
+                    SpawnerEnd_ = true;
+                    Off();
                     return;
                 }
 

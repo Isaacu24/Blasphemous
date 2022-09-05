@@ -215,7 +215,7 @@ void Pontiff::SpellCastEndCheck(float _DeltaTime)
             {
                 RestTime_ += _DeltaTime;
 
-                if (3.f < RestTime_)
+                if (5.f < RestTime_)
                 {
                     RestTime_ = 0;
 
@@ -231,7 +231,7 @@ void Pontiff::SpellCastEndCheck(float _DeltaTime)
             {
                 RestTime_ += _DeltaTime;
 
-                if (3.f < RestTime_)
+                if (5.f < RestTime_)
                 {
                     RestTime_ = 0;
 
@@ -247,7 +247,7 @@ void Pontiff::SpellCastEndCheck(float _DeltaTime)
             {
                 RestTime_ += _DeltaTime;
 
-                if (3.f < RestTime_)
+                if (5.f < RestTime_)
                 {
                     RestTime_ = 0;
 
@@ -263,7 +263,7 @@ void Pontiff::SpellCastEndCheck(float _DeltaTime)
             {
                 RestTime_ += _DeltaTime;
 
-                if (3.f < RestTime_)
+                if (5.f < RestTime_)
                 {
                     RestTime_ = 0;
 
@@ -279,7 +279,7 @@ void Pontiff::SpellCastEndCheck(float _DeltaTime)
             {
                 RestTime_ += _DeltaTime;
 
-                if (3.f < RestTime_)
+                if (5.f < RestTime_)
                 {
                     RestTime_ = 0;
 

@@ -68,7 +68,7 @@ void Stage20::Update(float _DeltaTime)
     switch (CurrentFlow_)
     {
         case STAGEFLOW::NORMAL:
-            PlayerCameraMove();
+            PlayerCameraMove(_DeltaTime);
 
             if (2000.f <= Penitent_->GetTransform().GetWorldPosition().x)
             {
@@ -119,9 +119,7 @@ void Stage20::Update(float _DeltaTime)
             }
             break;
         case STAGEFLOW::BOSSDEAD:
-            PlayerCameraMove();
-            break;
-        default:
+            PlayerCameraMove(_DeltaTime);
             break;
     }
 }
@@ -186,9 +184,33 @@ void Stage20::LevelStartEvent()
     });
 }
 
-void Stage20::LevelEndEvent() {}
+void Stage20::LevelEndEvent() 
+{
+    if (false == Penitent_->IsUpdate())
+    {
+        if (nullptr == Guilt_)
+        {
+            Guilt_ = CreateActor<PenitentGuilt>();
+        }
 
-void Stage20::PlayerCameraMove()
+        else
+        {
+            return;
+        }
+
+        if (true == Penitent_->GetIsFallDeath())
+        {
+            Guilt_->GetTransform().SetWorldPosition(float4{});
+        }
+
+        else
+        {
+            Guilt_->GetTransform().SetLocalPosition(Penitent_->GetTransform().GetWorldPosition() + float4{0, 0, -1.0f});
+        }
+    }
+}
+
+void Stage20::PlayerCameraMove(float _DeltaTime)
 {
     if (false == IsChangeCameraPos_)
     {
@@ -196,8 +218,11 @@ void Stage20::PlayerCameraMove()
         IsChangeCameraPos_ = true;
     }
 
-    GetMainCameraActor()->GetTransform().SetWorldPosition(
-        {Penitent_->GetTransform().GetLocalPosition().x, -1540, CameraZPos_});
+    float4 CamPos    = GetMainCameraActor()->GetTransform().GetWorldPosition();
+    float4 PlayerPos = Penitent_->GetTransform().GetWorldPosition() + float4{0, CameraOffset_};
+    float4 CurPos    = float4::LerpLimit(CamPos, PlayerPos, _DeltaTime * 5);
+
+    GetMainCameraActor()->GetTransform().SetWorldPosition({CurPos.x, CurPos.y, CameraZPos_});
 
     if (940 > GetMainCameraActor()->GetTransform().GetLocalPosition().x)
     {

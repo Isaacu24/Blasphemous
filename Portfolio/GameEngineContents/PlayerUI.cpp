@@ -57,9 +57,49 @@ void PlayerUI::Start()
     }
 
     TearRenderers_.resize(10);
+
+    BackRenderer_ = CreateComponent<GameEngineUIRenderer>();
+    BackRenderer_->SetTexture("BlackBackground.png");
+    BackRenderer_->ScaleToTexture();
+    BackRenderer_->GetColorData().MulColor = float4{1.f, 1.f, 1.f, 0.0f};
+    BackRenderer_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(UIORDER::BackScreenUI)});
+
+    ScreenRenderer_ = CreateComponent<GameEngineUIRenderer>();
+    ScreenRenderer_->SetTexture("Death_Screen.png");
+    ScreenRenderer_->ScaleToTexture();
+    ScreenRenderer_->GetColorData().MulColor = float4{1.f, 1.f, 1.f, 0.0f};
+    ScreenRenderer_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(UIORDER::ScreenUI)});
+
+    ScreenState_.CreateStateMember(
+        "PlayerDeath",
+        std::bind(&PlayerUI::PlayerDeathUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&PlayerUI::PlayerDeathStart, this, std::placeholders::_1),
+        std::bind(&PlayerUI::PlayerDeathEnd, this, std::placeholders::_1));
+
+    ScreenState_.CreateStateMember(
+        "BossDeath",
+        std::bind(&PlayerUI::BossDeathUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&PlayerUI::BossDeathStart, this, std::placeholders::_1),
+        std::bind(&PlayerUI::BossDeathEnd, this, std::placeholders::_1));
+
+    ScreenState_.CreateStateMember(
+        "FinalBossDeath",
+        std::bind(&PlayerUI::FinalBossDeathUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&PlayerUI::FinalBossDeathStart, this, std::placeholders::_1),
+        std::bind(&PlayerUI::FinalBossDeathEnd, this, std::placeholders::_1));
+
+    ScreenState_.CreateStateMember(
+        "BehindScreen",
+        std::bind(&PlayerUI::BehindScreenUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&PlayerUI::BehindScreenStart, this, std::placeholders::_1),
+        std::bind(&PlayerUI::BehindScreenEnd, this, std::placeholders::_1));
+
+    ScreenState_.ChangeState("FinalBossDeath");
+
+    IsDeath_ = true;
 }
 
-void PlayerUI::Update(float _DeltaTime) {}
+void PlayerUI::Update(float _DeltaTime) { ScreenState_.Update(_DeltaTime); }
 
 void PlayerUI::End() {}
 
@@ -109,7 +149,6 @@ void PlayerUI::SetTear(int _Value)
     }
 }
 
-
 void PlayerUI::UseFlask(int _Index)
 {
     Flasks_[_Index]->SetTexture("Empty_Flask.png");
@@ -119,9 +158,194 @@ void PlayerUI::UseFlask(int _Index)
     HPBar_->Renderer_->SetUVData(HP);
 }
 
-void PlayerUI::Damage() 
+void PlayerUI::Damage()
 {
     //이미 값이 줄여져서 들어옴
     float HP = Penitent::GetMainPlayer()->GetHP() / 100.f;
     HPBar_->Renderer_->SetUVData(HP);
 }
+
+
+void PlayerUI::PlayerDeathStart(const StateInfo& _Info)
+{
+    ScreenRenderer_->SetTexture("Death_Screen.png");
+    ScreenRenderer_->ScaleToTexture();
+    ScreenRenderer_->GetTransform().SetWorldScale(ScreenRenderer_->GetTransform().GetWorldScale() * 2);
+
+    Alpha_      = 0.f;
+    ScreenTime_ = 0.f;
+
+    IsReverse_ = false;
+}
+
+void PlayerUI::PlayerDeathUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    if (false == IsReverse_)
+    {
+        Alpha_ += _DeltaTime * 0.2f;
+
+        if (1 < Alpha_)
+        {
+            Alpha_ = 1.0f;
+            ScreenTime_ += _DeltaTime;
+        }
+
+        if (2.f < ScreenTime_)
+        {
+            ScreenTime_ = 0.f;
+            IsReverse_  = true;
+        }
+    }
+
+    else
+    {
+        Alpha_ -= _DeltaTime * 0.2f;
+
+        if (0 > Alpha_)
+        {
+            Alpha_ = 0.0f;
+            ScreenState_.ChangeState("BehindScreen");
+        }
+    }
+
+    ScreenRenderer_->GetColorData().MulColor = float4{1.f, 1.f, 1.f, Alpha_};
+}
+
+void PlayerUI::PlayerDeathEnd(const StateInfo& _Info) {}
+
+
+void PlayerUI::BossDeathStart(const StateInfo& _Info)
+{
+    ScreenRenderer_->SetTexture("boss-defeated-screen-title.png");
+    ScreenRenderer_->ScaleToTexture();
+    ScreenRenderer_->GetTransform().SetWorldScale(ScreenRenderer_->GetTransform().GetWorldScale() * 2);
+
+    Alpha_      = 0.f;
+    BackAlpha_  = 0.f;
+    ScreenTime_ = 0.f;
+
+    IsReverse_ = false;
+}
+
+void PlayerUI::BossDeathUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    if (false == IsReverse_)
+    {
+        Alpha_ += _DeltaTime * 0.2f;
+        BackAlpha_ += _DeltaTime * 0.1f;
+
+        if (1 < Alpha_)
+        {
+            Alpha_ = 1.0f;
+            ScreenTime_ += _DeltaTime;
+        }
+
+        if (0.5f < BackAlpha_)
+        {
+            BackAlpha_ = 0.5f;
+        }
+
+        if (2.f < ScreenTime_)
+        {
+            ScreenTime_ = 0.f;
+            IsReverse_  = true;
+        }
+    }
+
+    else
+    {
+        Alpha_ -= _DeltaTime * 0.2f;
+        BackAlpha_ -= _DeltaTime * 0.1f;
+
+        if (0 > Alpha_)
+        {
+            Alpha_ = 0.0f;
+            ScreenState_.ChangeState("BehindScreen");
+        }
+
+        if (0 > BackAlpha_)
+        {
+            BackAlpha_ = 0.0f;
+            ScreenState_.ChangeState("BehindScreen");
+        }
+    }
+
+    ScreenRenderer_->GetColorData().MulColor = float4{1.f, 1.f, 1.f, Alpha_};
+    BackRenderer_->GetColorData().MulColor   = float4{1.f, 1.f, 1.f, BackAlpha_};
+}
+
+void PlayerUI::BossDeathEnd(const StateInfo& _Info) {}
+
+
+void PlayerUI::FinalBossDeathStart(const StateInfo& _Info)
+{
+    ScreenRenderer_->SetTexture("pontiff-defeated-screen-title.png");
+    ScreenRenderer_->ScaleToTexture();
+    ScreenRenderer_->GetTransform().SetWorldScale(ScreenRenderer_->GetTransform().GetWorldScale() * 2);
+
+    Alpha_      = 0.f;
+    BackAlpha_  = 0.f;
+    ScreenTime_ = 0.f;
+
+    IsReverse_ = false;
+}
+
+void PlayerUI::FinalBossDeathUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    if (false == IsReverse_)
+    {
+        Alpha_ += _DeltaTime * 0.2f;
+        BackAlpha_ += _DeltaTime * 0.1f;
+
+        if (1 < Alpha_)
+        {
+            Alpha_ = 1.0f;
+            ScreenTime_ += _DeltaTime;
+        }
+
+        if (0.5f < BackAlpha_)
+        {
+            BackAlpha_ = 0.5f;
+        }
+
+        if (2.f < ScreenTime_)
+        {
+            ScreenTime_ = 0.f;
+            IsReverse_  = true;
+        }
+    }
+
+    else
+    {
+        Alpha_ -= _DeltaTime * 0.2f;
+        BackAlpha_ -= _DeltaTime * 0.1f;
+
+        if (0 > Alpha_)
+        {
+            Alpha_ = 0.0f;
+            ScreenState_.ChangeState("BehindScreen");
+        }
+
+        if (0 > BackAlpha_)
+        {
+            BackAlpha_ = 0.0f;
+            ScreenState_.ChangeState("BehindScreen");
+        }
+    }
+
+    ScreenRenderer_->GetColorData().MulColor = float4{1.f, 1.f, 1.f, Alpha_};
+    BackRenderer_->GetColorData().MulColor   = float4{1.f, 1.f, 1.f, BackAlpha_};
+}
+
+void PlayerUI::FinalBossDeathEnd(const StateInfo& _Info) {}
+
+
+void PlayerUI::BehindScreenStart(const StateInfo& _Info) 
+{
+    ScreenRenderer_->GetColorData().MulColor = float4{1.f, 1.f, 1.f, 0};
+    BackRenderer_->GetColorData().MulColor   = float4{1.f, 1.f, 1.f, 0};
+}
+
+void PlayerUI::BehindScreenUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void PlayerUI::BehindScreenEnd(const StateInfo& _Info) {}

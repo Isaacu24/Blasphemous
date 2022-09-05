@@ -30,7 +30,10 @@ void GiantSword::Start()
                                 {
                                     IrisRenderer_->On();
                                     EyeRenderer_->On();
+
                                     Renderer_->ChangeFrameAnimation("pontiff_giantSword_swordSprite");
+
+                                    State_.ChangeState("Track");
                                 });
 
     Renderer_->CreateFrameAnimationCutTexture("pontiff_giantSword_teleportIN",
@@ -103,6 +106,9 @@ void GiantSword::End() {}
 //화면에서 퇴장
 void GiantSword::TeleportINStart(const StateInfo& _Info)
 {
+    EyeRenderer_->Off();
+    IrisRenderer_->Off();
+
     Renderer_->ChangeFrameAnimation("pontiff_giantSword_teleportIN");
 
     Pontiff_->ChangeMonsterState("Opening");
@@ -117,6 +123,8 @@ void GiantSword::TeleportINEnd(const StateInfo& _Info) {}
 //화면에 등장
 void GiantSword::TeleportOutStart(const StateInfo& _Info)
 {
+    GetTransform().SetWorldRotation({0, 0, 0});
+
     Renderer_->ChangeFrameAnimation("pontiff_giantSword_teleportOUT");
 
     if ("CloseIdle" != Pontiff_->GetState())
@@ -139,18 +147,6 @@ void GiantSword::TeleportOutUpdate(float _DeltaTime, const StateInfo& _Info)
         BloodEffect_->GetRenderer()->On();
         BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
     }
-
-    DetectCollider_->IsCollision(
-        CollisionType::CT_OBB2D,
-        COLLISIONORDER::Player,
-        CollisionType::CT_OBB2D,
-        std::bind(&GiantSword::TrackToPlayer, this, std::placeholders::_1, std::placeholders::_2));
-
-    DetectCollider_->IsCollision(
-        CollisionType::CT_OBB2D,
-        COLLISIONORDER::Player,
-        CollisionType::CT_OBB2D,
-        std::bind(&GiantSword::LookAtPlayer, this, std::placeholders::_1, std::placeholders::_2));
 
     MonsterBase::DamageCheck(50.f, "TeleportIN");
 }
@@ -187,9 +183,34 @@ void GiantSword::AttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 void GiantSword::AttackEnd(const StateInfo& _Info) {}
 
 
-void GiantSword::TrackStart(const StateInfo& _Info) {}
+void GiantSword::TrackStart(const StateInfo& _Info) 
+{
 
-void GiantSword::TrackUpdate(float _DeltaTime, const StateInfo& _Info) {}
+}
+
+void GiantSword::TrackUpdate(float _DeltaTime, const StateInfo& _Info) 
+{
+    if (true
+        == BodyCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+    {
+        BloodEffect_->GetTransform().SetWorldPosition({BodyCollider_->GetTransform().GetWorldPosition().x,
+                                                       BodyCollider_->GetTransform().GetWorldPosition().y,
+                                                       static_cast<int>(ACTORORDER::PlayerEffect)});
+        BloodEffect_->GetRenderer()->On();
+        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
+    }
+
+    MonsterBase::DamageCheck(50.f, "TeleportIN");
+
+    TrackToPlayer();
+
+    DetectCollider_->IsCollision(
+        CollisionType::CT_OBB2D,
+        COLLISIONORDER::Player,
+        CollisionType::CT_OBB2D,
+        std::bind(&GiantSword::LookAtPlayer, this, std::placeholders::_1, std::placeholders::_2));
+}
 
 void GiantSword::TrackEnd(const StateInfo& _Info) {}
 
@@ -210,19 +231,19 @@ bool GiantSword::LookAtPlayer(GameEngineCollision* _This, GameEngineCollision* _
             {Dir.x * 100.f * GameEngineTime::GetDeltaTime(), Dir.y * 100.f * GameEngineTime::GetDeltaTime()});
     }
 
-    //else
+    // else
     //{
-    //    IrisRenderer_->GetTransform().SetWorldMove(
-    //        {-Dir.x * 100.f * GameEngineTime::GetDeltaTime(), -Dir.y * 100.f * GameEngineTime::GetDeltaTime()});
-    //    GameEngineDebug::OutPutString(std::to_string(C));
-    //}
+    //     IrisRenderer_->GetTransform().SetWorldMove(
+    //         {-Dir.x * 100.f * GameEngineTime::GetDeltaTime(), -Dir.y * 100.f * GameEngineTime::GetDeltaTime()});
+    //     GameEngineDebug::OutPutString(std::to_string(C));
+    // }
 
     return true;
 }
 
-bool GiantSword::TrackToPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)
+bool GiantSword::TrackToPlayer()
 {
-    float4 Dir = _This->GetTransform().GetWorldPosition() - _Other->GetTransform().GetWorldPosition();
+    float4 Dir = GetTransform().GetWorldPosition() - Penitent::GetMainPlayer()->GetTransform().GetWorldPosition();
 
     float DistanceX = abs(Dir.x);
     float DistanceY = abs(Dir.y);
@@ -234,8 +255,6 @@ bool GiantSword::TrackToPlayer(GameEngineCollision* _This, GameEngineCollision* 
     float Angle = Dir.x / 10;
 
     GetTransform().SetWorldRotation({0, 0, Angle});
-
-    // GameEngineDebug::OutPutString("*****" + std::to_string(Angle));
 
     if (DistanceX <= 200)
     {
@@ -255,7 +274,7 @@ bool GiantSword::TrackToPlayer(GameEngineCollision* _This, GameEngineCollision* 
         GetTransform().SetWorldMove({-NDir.x * Speed_ * GameEngineTime::GetDeltaTime(), 0});
     }
 
-    if (DistanceY > 250)
+    if (DistanceY > 210)
     {
         SetSpeed(350.f);
         GetTransform().SetWorldMove({0, -NDir.y * Speed_ * GameEngineTime::GetDeltaTime()});

@@ -154,14 +154,16 @@ void Stage02::Update(float _DeltaTime)
         IsChangeCameraPos_ = true;
     }
 
-    GetMainCameraActor()->GetTransform().SetWorldPosition({Penitent_->GetTransform().GetLocalPosition().x,
-                                                           Penitent_->GetTransform().GetLocalPosition().y + 200,
-                                                           CameraZPos_});
+    float4 CamPos    = GetMainCameraActor()->GetTransform().GetWorldPosition();
+    float4 PlayerPos = Penitent_->GetTransform().GetWorldPosition() + float4{0, CameraOffset_};
+    float4 CurPos    = float4::LerpLimit(CamPos, PlayerPos, _DeltaTime * 5);
+
+    GetMainCameraActor()->GetTransform().SetWorldPosition({CurPos.x, CurPos.y, CameraZPos_});
 
     if (-1285 < GetMainCameraActor()->GetTransform().GetWorldPosition().y)
     {
         GetMainCameraActor()->GetTransform().SetWorldPosition(
-            float4{Penitent_->GetTransform().GetLocalPosition().x, -1285, CameraZPos_});
+            float4{GetMainCameraActor()->GetTransform().GetLocalPosition().x, -1285, CameraZPos_});
     }
 
     if (700 > GetMainCameraActor()->GetTransform().GetWorldPosition().x)
@@ -261,4 +263,28 @@ void Stage02::LevelStartEvent()
     SettingMonster();
 }
 
-void Stage02::LevelEndEvent() {}
+void Stage02::LevelEndEvent() 
+{
+    if (false == Penitent_->IsUpdate())
+    {
+        if (nullptr == Guilt_)
+        {
+            Guilt_ = CreateActor<PenitentGuilt>();
+        }
+
+        else
+        {
+            return;
+        }
+
+        if (true == Penitent_->GetIsFallDeath())
+        {
+            Guilt_->GetTransform().SetWorldPosition(float4{});
+        }
+
+        else
+        {
+            Guilt_->GetTransform().SetLocalPosition(Penitent_->GetTransform().GetWorldPosition() + float4{0, 0, -1.0f});
+        }
+    }
+}
