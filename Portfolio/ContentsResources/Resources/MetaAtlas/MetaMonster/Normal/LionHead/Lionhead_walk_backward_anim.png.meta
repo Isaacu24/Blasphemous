@@ -1,0 +1,816 @@
+fileFormatVersion: 2
+guid: e27ff921b8638d44dac61928b97e6df7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Lionhead_walk_backward_anim_0
+  - first:
+      213: 21300002
+    second: Lionhead_walk_backward_anim_1
+  - first:
+      213: 21300004
+    second: Lionhead_walk_backward_anim_2
+  - first:
+      213: 21300006
+    second: Lionhead_walk_backward_anim_3
+  - first:
+      213: 21300008
+    second: Lionhead_walk_backward_anim_4
+  - first:
+      213: 21300010
+    second: Lionhead_walk_backward_anim_5
+  - first:
+      213: 21300012
+    second: Lionhead_walk_backward_anim_6
+  - first:
+      213: 21300014
+    second: Lionhead_walk_backward_anim_7
+  - first:
+      213: 21300016
+    second: Lionhead_walk_backward_anim_8
+  - first:
+      213: 21300018
+    second: Lionhead_walk_backward_anim_9
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 4
+  maxTextureSize: 512
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Lionhead_walk_backward_anim_0
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 117
+        width: 92
+        height: 113
+      alignment: 9
+      pivot: {x: 0.6043478, y: 0.058761057}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 33.999992, y: -51.5}
+        - {x: 19.999992, y: -56.5}
+        - {x: -35.000008, y: -56.5}
+        - {x: -46.000008, y: -21.5}
+        - {x: -46.000008, y: 54.5}
+        - {x: -33.000008, y: 56.5}
+        - {x: 38.999992, y: 56.5}
+        - {x: 44.999992, y: 40.5}
+        - {x: 45.999992, y: 26.5}
+        - {x: 45.999992, y: -12.5}
+        - {x: 27.999992, y: -6.5}
+        - {x: 22.999992, y: -1.5}
+        - {x: 27.999992, y: -7.5}
+        - {x: 32.999992, y: -9.5}
+      physicsShape:
+      - - {x: 32.999992, y: -16.5}
+        - {x: 30.999992, y: -11.5}
+        - {x: 27.999992, y: -7.5}
+        - {x: 22.999992, y: -1.5}
+        - {x: 27.999992, y: -6.5}
+        - {x: 45.999992, y: -12.5}
+        - {x: 45.999992, y: 9.5}
+        - {x: 43.999992, y: 17.5}
+        - {x: 44.999992, y: 40.5}
+        - {x: 35.999992, y: 56.5}
+        - {x: 9.999992, y: 56.5}
+        - {x: -6.0000076, y: 44.5}
+        - {x: -17.000008, y: 31.5}
+        - {x: -24.000008, y: 37.5}
+        - {x: -46.000008, y: 37.5}
+        - {x: -46.000008, y: 23.5}
+        - {x: -45.000008, y: 17.5}
+        - {x: -33.000008, y: 11.5}
+        - {x: -11.000008, y: -0.5}
+        - {x: -7.0000076, y: -19.5}
+        - {x: -15.000008, y: -54.5}
+        - {x: -9.000008, y: -56.5}
+        - {x: 17.999992, y: -56.5}
+        - {x: 30.999992, y: -50.5}
+        - {x: 22.999992, y: -42.5}
+        - {x: 32.999992, y: -21.5}
+      - - {x: 3.9999924, y: -43.5}
+        - {x: 3.9999924, y: -40.5}
+        - {x: 13.999992, y: -25.5}
+        - {x: 14.999992, y: -22.5}
+        - {x: 11.999992, y: -28.5}
+        - {x: 11.999992, y: -34.5}
+        - {x: 10.999992, y: -35.5}
+        - {x: 5.9999924, y: -44.5}
+        - {x: 4.9999924, y: -47.5}
+        - {x: 5.9999924, y: -49.5}
+        - {x: 6.9999924, y: -48.5}
+      - - {x: 23.999992, y: 8.5}
+        - {x: 25.999992, y: 13.5}
+        - {x: 29.999992, y: 11.5}
+        - {x: 27.999992, y: 5.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lionhead_walk_backward_anim_1
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 0
+        width: 88
+        height: 108
+      alignment: 9
+      pivot: {x: 0.59772724, y: 0.0337037}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7.9999924, y: -54}
+        - {x: 5.9999924, y: -52}
+        - {x: 5.9999924, y: -53}
+        - {x: 4.9999924, y: -54}
+        - {x: -20.000008, y: -54}
+        - {x: -44.000008, y: 6}
+        - {x: -44.000008, y: 39}
+        - {x: -11.000008, y: 54}
+        - {x: 36.999992, y: 54}
+        - {x: 43.999992, y: 52}
+        - {x: 43.999992, y: -15}
+        - {x: 39.999992, y: -14}
+        - {x: 26.999992, y: -8}
+        - {x: 25.999992, y: -6}
+        - {x: 26.999992, y: -9}
+        - {x: 32.999992, y: -17}
+        - {x: 29.999992, y: -30}
+        - {x: 21.999992, y: -45}
+        - {x: 26.999992, y: -47}
+        - {x: 27.999992, y: -50}
+        - {x: 23.999992, y: -54}
+      physicsShape:
+      - - {x: 5.9999924, y: -48}
+        - {x: 5.9999924, y: -52}
+        - {x: 7.9999924, y: -54}
+        - {x: 23.999992, y: -54}
+        - {x: 27.999992, y: -50}
+        - {x: 26.999992, y: -47}
+        - {x: 21.999992, y: -45}
+        - {x: 29.999992, y: -30}
+        - {x: 32.999992, y: -17}
+        - {x: 26.999992, y: -9}
+        - {x: 23.999992, y: -4}
+        - {x: 24.999992, y: -6}
+        - {x: 26.999992, y: -8}
+        - {x: 39.999992, y: -14}
+        - {x: 43.999992, y: -15}
+        - {x: 43.999992, y: 28}
+        - {x: 36.999992, y: 48}
+        - {x: 30.999992, y: 54}
+        - {x: 7.9999924, y: 54}
+        - {x: -8.000008, y: 42}
+        - {x: -44.000008, y: 37}
+        - {x: -44.000008, y: 13}
+        - {x: -22.000008, y: 0}
+        - {x: -8.000008, y: -13}
+        - {x: -19.000008, y: -49}
+        - {x: -10.000008, y: -54}
+        - {x: 4.9999924, y: -54}
+        - {x: 5.9999924, y: -53}
+        - {x: 5.9999924, y: -50}
+        - {x: 4.9999924, y: -48}
+      - - {x: 23.999992, y: 8}
+        - {x: 25.999992, y: 10}
+        - {x: 27.999992, y: 10}
+        - {x: 24.999992, y: 4}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lionhead_walk_backward_anim_2
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 111
+        width: 87
+        height: 109
+      alignment: 9
+      pivot: {x: 0.6160919, y: 0.07009174}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -4.5000114, y: -51.5}
+        - {x: -2.5000114, y: -54.5}
+        - {x: -26.500011, y: -54.5}
+        - {x: -43.50001, y: -32.5}
+        - {x: -43.50001, y: 45.5}
+        - {x: -33.50001, y: 54.5}
+        - {x: 42.49999, y: 54.5}
+        - {x: 43.49999, y: 53.5}
+        - {x: 43.49999, y: -18.5}
+        - {x: 34.49999, y: -43.5}
+        - {x: 35.49999, y: -46.5}
+        - {x: 31.499989, y: -50.5}
+      physicsShape:
+      - - {x: 13.499989, y: -18.5}
+        - {x: 13.499989, y: -49.5}
+        - {x: 15.499989, y: -50.5}
+        - {x: 31.499989, y: -50.5}
+        - {x: 35.49999, y: -46.5}
+        - {x: 34.49999, y: -43.5}
+        - {x: 33.49999, y: -26.5}
+        - {x: 43.49999, y: -11.5}
+        - {x: 43.49999, y: 6.5}
+        - {x: 39.49999, y: 26.5}
+        - {x: 40.49999, y: 49.5}
+        - {x: 31.499989, y: 54.5}
+        - {x: 6.4999886, y: 54.5}
+        - {x: -7.5000114, y: 42.5}
+        - {x: -12.500011, y: 29.5}
+        - {x: -19.500011, y: 41.5}
+        - {x: -35.50001, y: 42.5}
+        - {x: -43.50001, y: 42.5}
+        - {x: -43.50001, y: 23.5}
+        - {x: -31.500011, y: 16.5}
+        - {x: -18.500011, y: 5.5}
+        - {x: -8.500011, y: -17.5}
+        - {x: -28.500011, y: -40.5}
+        - {x: -27.500011, y: -45.5}
+        - {x: -17.500011, y: -54.5}
+        - {x: -2.5000114, y: -54.5}
+        - {x: -4.5000114, y: -51.5}
+        - {x: -8.500011, y: -37.5}
+        - {x: 8.499989, y: -25.5}
+      - - {x: 23.499989, y: 6.5}
+        - {x: 24.499989, y: 11.5}
+        - {x: 27.499989, y: 10.5}
+        - {x: 27.499989, y: 5.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lionhead_walk_backward_anim_3
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 111
+        width: 86
+        height: 107
+      alignment: 9
+      pivot: {x: 0.6116279, y: 0.08074766}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -38.000008, y: -53.5}
+        - {x: -43.000008, y: -51.5}
+        - {x: -43.000008, y: 53.5}
+        - {x: 31.999992, y: 53.5}
+        - {x: 40.999992, y: 48.5}
+        - {x: 42.999992, y: 32.5}
+        - {x: 42.999992, y: -51.5}
+        - {x: 31.999992, y: -53.5}
+      physicsShape:
+      - - {x: 17.999992, y: -21.5}
+        - {x: 15.999992, y: -46.5}
+        - {x: 19.999992, y: -48.5}
+        - {x: 35.999992, y: -49.5}
+        - {x: 40.999992, y: -42.5}
+        - {x: 30.999992, y: -37.5}
+        - {x: 33.999992, y: -23.5}
+        - {x: 42.999992, y: -11.5}
+        - {x: 42.999992, y: -2.5}
+        - {x: 41.999992, y: -0.5}
+        - {x: 37.999992, y: 19.5}
+        - {x: 39.999992, y: 33.5}
+        - {x: 38.999992, y: 47.5}
+        - {x: 31.999992, y: 53.5}
+        - {x: 7.9999924, y: 53.5}
+        - {x: -7.0000076, y: 40.5}
+        - {x: -10.000008, y: 32.5}
+        - {x: -19.000008, y: 46.5}
+        - {x: -43.000008, y: 45.5}
+        - {x: -43.000008, y: 26.5}
+        - {x: -32.000008, y: 19.5}
+        - {x: -21.000008, y: 18.5}
+        - {x: -12.000008, y: -6.5}
+        - {x: -22.000008, y: -24.5}
+        - {x: -36.000008, y: -44.5}
+        - {x: -33.000008, y: -53.5}
+        - {x: -15.000008, y: -53.5}
+        - {x: -16.000008, y: -41.5}
+        - {x: -0.0000076293945, y: -24.5}
+        - {x: 6.9999924, y: -10.5}
+      - - {x: 24.999992, y: 10.5}
+        - {x: 25.999992, y: 10.5}
+        - {x: 25.999992, y: 6.5}
+        - {x: 23.999992, y: 7.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lionhead_walk_backward_anim_4
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 0
+        width: 86
+        height: 111
+      alignment: 9
+      pivot: {x: 0.59999996, y: 0.07783783}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35.000008, y: -55.5}
+        - {x: -43.000008, y: 0.5}
+        - {x: -43.000008, y: 48.5}
+        - {x: -27.000008, y: 55.5}
+        - {x: 42.999992, y: 55.5}
+        - {x: 42.999992, y: -55.5}
+      physicsShape:
+      - - {x: 18.999992, y: -20.5}
+        - {x: 15.999992, y: -49.5}
+        - {x: 39.999992, y: -53.5}
+        - {x: 41.999992, y: -44.5}
+        - {x: 33.999992, y: -39.5}
+        - {x: 32.999992, y: -11.5}
+        - {x: 40.999992, y: -10.5}
+        - {x: 42.999992, y: -8.5}
+        - {x: 42.999992, y: -1.5}
+        - {x: 41.999992, y: 0.5}
+        - {x: 36.999992, y: 22.5}
+        - {x: 38.999992, y: 49.5}
+        - {x: 31.999992, y: 55.5}
+        - {x: 5.9999924, y: 55.5}
+        - {x: -8.000008, y: 42.5}
+        - {x: -19.000008, y: 47.5}
+        - {x: -43.000008, y: 46.5}
+        - {x: -43.000008, y: 27.5}
+        - {x: -32.000008, y: 20.5}
+        - {x: -22.000008, y: 21.5}
+        - {x: -15.000008, y: 7.5}
+        - {x: -11.000008, y: 3.5}
+        - {x: -18.000008, y: -20.5}
+        - {x: -23.000008, y: -23.5}
+        - {x: -33.000008, y: -41.5}
+        - {x: -35.000008, y: -49.5}
+        - {x: -35.000008, y: -55.5}
+        - {x: -20.000008, y: -55.5}
+        - {x: -17.000008, y: -39.5}
+        - {x: -2.0000076, y: -23.5}
+        - {x: 2.9999924, y: -15.5}
+      - - {x: 23.999992, y: 9.5}
+        - {x: 23.999992, y: 12.5}
+        - {x: 24.999992, y: 11.5}
+        - {x: 24.999992, y: 8.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lionhead_walk_backward_anim_5
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 0
+        width: 92
+        height: 117
+      alignment: 9
+      pivot: {x: 0.6369565, y: 0.07384615}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 45.999992, y: -58.5}
+        - {x: -46.000008, y: -58.5}
+        - {x: -46.000008, y: 50.5}
+        - {x: -25.000008, y: 58.5}
+        - {x: 40.999992, y: 58.5}
+        - {x: 45.999992, y: 56.5}
+      physicsShape:
+      - - {x: 18.999992, y: -45.5}
+        - {x: 27.999992, y: -50.5}
+        - {x: 38.999992, y: -51.5}
+        - {x: 41.999992, y: -44.5}
+        - {x: 33.999992, y: -38.5}
+        - {x: 36.999992, y: -21.5}
+        - {x: 36.999992, y: -11.5}
+        - {x: 44.999992, y: -9.5}
+        - {x: 45.999992, y: -9.5}
+        - {x: 45.999992, y: 2.5}
+        - {x: 35.999992, y: 3.5}
+        - {x: 39.999992, y: 11.5}
+        - {x: 42.999992, y: 52.5}
+        - {x: 35.999992, y: 58.5}
+        - {x: 8.999992, y: 58.5}
+        - {x: -4.0000076, y: 46.5}
+        - {x: -14.000008, y: 33.5}
+        - {x: -24.000008, y: 45.5}
+        - {x: -46.000008, y: 43.5}
+        - {x: -46.000008, y: 34.5}
+        - {x: -43.000008, y: 27.5}
+        - {x: -34.000008, y: 19.5}
+        - {x: -16.000008, y: 21.5}
+        - {x: -16.000008, y: 9.5}
+        - {x: -10.000008, y: -2.5}
+        - {x: -14.000008, y: -25.5}
+        - {x: -25.000008, y: -47.5}
+        - {x: -27.000008, y: -52.5}
+        - {x: -27.000008, y: -58.5}
+        - {x: -12.000008, y: -58.5}
+        - {x: 1.9999924, y: -31.5}
+        - {x: 9.999992, y: -11.5}
+        - {x: 20.999992, y: -17.5}
+      - - {x: 24.999992, y: 10.5}
+        - {x: 24.999992, y: 11.5}
+        - {x: 26.999992, y: 15.5}
+        - {x: 26.999992, y: 9.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lionhead_walk_backward_anim_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 115
+        width: 93
+        height: 117
+      alignment: 9
+      pivot: {x: 0.6408602, y: 0.07384615}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 41.499992, y: -58.5}
+        - {x: -46.500008, y: -58.5}
+        - {x: -46.500008, y: 58.5}
+        - {x: 46.499992, y: 58.5}
+        - {x: 46.499992, y: -50.5}
+      physicsShape:
+      - - {x: 13.499992, y: -39.5}
+        - {x: 20.499992, y: -52.5}
+        - {x: 32.499992, y: -53.5}
+        - {x: 34.499992, y: -45.5}
+        - {x: 29.499992, y: -37.5}
+        - {x: 37.499992, y: -21.5}
+        - {x: 38.499992, y: -11.5}
+        - {x: 45.499992, y: -9.5}
+        - {x: 46.499992, y: -8.5}
+        - {x: 46.499992, y: 0.5}
+        - {x: 38.499992, y: 4.5}
+        - {x: 40.499992, y: 10.5}
+        - {x: 42.499992, y: 20.5}
+        - {x: 42.499992, y: 52.5}
+        - {x: 35.499992, y: 58.5}
+        - {x: 8.499992, y: 58.5}
+        - {x: -5.5000076, y: 46.5}
+        - {x: -46.500008, y: 40.5}
+        - {x: -46.500008, y: 31.5}
+        - {x: -42.500008, y: 24.5}
+        - {x: -32.500008, y: 16.5}
+        - {x: -15.500008, y: 18.5}
+        - {x: -15.500008, y: 10.5}
+        - {x: -8.500008, y: -1.5}
+        - {x: -12.500008, y: -24.5}
+        - {x: -25.500008, y: -46.5}
+        - {x: -23.500008, y: -58.5}
+        - {x: -5.5000076, y: -58.5}
+        - {x: -4.5000076, y: -39.5}
+        - {x: 7.4999924, y: -22.5}
+        - {x: 17.499992, y: -15.5}
+      - - {x: 25.499992, y: 12.5}
+        - {x: 28.499992, y: 12.5}
+        - {x: 27.499992, y: 7.5}
+        - {x: 25.499992, y: 8.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lionhead_walk_backward_anim_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 95
+        height: 115
+      alignment: 9
+      pivot: {x: 0.6063158, y: 0.07513043}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23.500008, y: -57.5}
+        - {x: -47.500008, y: -7.5}
+        - {x: -47.500008, y: 51.5}
+        - {x: -44.500008, y: 55.5}
+        - {x: -32.500008, y: 57.5}
+        - {x: 39.499992, y: 57.5}
+        - {x: 46.499992, y: 37.5}
+        - {x: 47.499992, y: 34.5}
+        - {x: 47.499992, y: -24.5}
+        - {x: 20.499992, y: -57.5}
+      physicsShape:
+      - - {x: 11.499992, y: -24.5}
+        - {x: 13.499992, y: -11.5}
+        - {x: 12.499992, y: -23.5}
+        - {x: 4.4999924, y: -41.5}
+        - {x: 16.499992, y: -52.5}
+        - {x: 24.499992, y: -50.5}
+        - {x: 26.499992, y: -32.5}
+        - {x: 37.499992, y: -22.5}
+        - {x: 41.499992, y: -13.5}
+        - {x: 47.499992, y: -11.5}
+        - {x: 47.499992, y: 4.5}
+        - {x: 44.499992, y: 8.5}
+        - {x: 38.499992, y: 29.5}
+        - {x: 40.499992, y: 37.5}
+        - {x: 39.499992, y: 51.5}
+        - {x: 32.499992, y: 57.5}
+        - {x: 7.4999924, y: 57.5}
+        - {x: -7.5000076, y: 45.5}
+        - {x: -12.500008, y: 30.5}
+        - {x: -18.500008, y: 35.5}
+        - {x: -25.500008, y: 41.5}
+        - {x: -38.500008, y: 40.5}
+        - {x: -47.500008, y: 39.5}
+        - {x: -47.500008, y: 28.5}
+        - {x: -34.500008, y: 14.5}
+        - {x: -18.500008, y: 12.5}
+        - {x: -4.5000076, y: -23.5}
+        - {x: -11.500008, y: -27.5}
+        - {x: -23.500008, y: -56.5}
+        - {x: -21.500008, y: -57.5}
+        - {x: 6.4999924, y: -57.5}
+        - {x: 5.4999924, y: -51.5}
+        - {x: -4.5000076, y: -44.5}
+        - {x: 5.4999924, y: -33.5}
+      - - {x: 24.499992, y: 8.5}
+        - {x: 25.499992, y: 14.5}
+        - {x: 29.499992, y: 7.5}
+        - {x: 26.499992, y: 7.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lionhead_walk_backward_anim_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 96
+        height: 115
+      alignment: 9
+      pivot: {x: 0.58958334, y: 0.07513043}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -45, y: -57.5}
+        - {x: -48, y: -43.5}
+        - {x: -48, y: 57.5}
+        - {x: 40, y: 57.5}
+        - {x: 48, y: 43.5}
+        - {x: 48, y: -27.5}
+        - {x: 25, y: -57.5}
+      physicsShape:
+      - - {x: 36, y: -18.5}
+        - {x: 31, y: -7.5}
+        - {x: 43, y: -9.5}
+        - {x: 47, y: -9.5}
+        - {x: 48, y: -8.5}
+        - {x: 48, y: 1.5}
+        - {x: 40, y: 4.5}
+        - {x: 46, y: 11.5}
+        - {x: 40, y: 26.5}
+        - {x: 40, y: 51.5}
+        - {x: 33, y: 57.5}
+        - {x: 9, y: 57.5}
+        - {x: -6, y: 45.5}
+        - {x: -12, y: 27.5}
+        - {x: -19, y: 36.5}
+        - {x: -25, y: 42.5}
+        - {x: -48, y: 40.5}
+        - {x: -48, y: 29.5}
+        - {x: -35, y: 14.5}
+        - {x: -15, y: 18.5}
+        - {x: -16, y: 8.5}
+        - {x: -10, y: -5.5}
+        - {x: 1, y: -24.5}
+        - {x: -12, y: -44.5}
+        - {x: -17, y: -57.5}
+        - {x: 18, y: -57.5}
+        - {x: 28, y: -48.5}
+        - {x: 19, y: -42.5}
+        - {x: 36, y: -23.5}
+      - - {x: 6, y: -40.5}
+        - {x: 8, y: -37.5}
+        - {x: 3, y: -43.5}
+        - {x: 5, y: -43.5}
+      - - {x: 19, y: -20.5}
+        - {x: 19, y: -21.5}
+        - {x: 18, y: -22.5}
+        - {x: 19, y: -22.5}
+      - - {x: 24, y: 9.5}
+        - {x: 27, y: 13.5}
+        - {x: 30, y: 13.5}
+        - {x: 27, y: 8.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lionhead_walk_backward_anim_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 115
+        width: 95
+        height: 116
+      alignment: 9
+      pivot: {x: 0.59578943, y: 0.074482754}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: -58}
+        - {x: -47.5, y: 15}
+        - {x: -47.5, y: 49}
+        - {x: -31.5, y: 58}
+        - {x: 47.5, y: 58}
+        - {x: 47.5, y: -58}
+      physicsShape:
+      - - {x: 37.5, y: -16}
+        - {x: 29.5, y: -5}
+        - {x: 47.5, y: -11}
+        - {x: 47.5, y: 2}
+        - {x: 40.5, y: 6}
+        - {x: 45.5, y: 13}
+        - {x: 40.5, y: 30}
+        - {x: 42.5, y: 52}
+        - {x: 35.5, y: 58}
+        - {x: 10.5, y: 58}
+        - {x: -5.5, y: 46}
+        - {x: -10.5, y: 35}
+        - {x: -25.5, y: 41}
+        - {x: -38.5, y: 40}
+        - {x: -47.5, y: 39}
+        - {x: -47.5, y: 30}
+        - {x: -43.5, y: 23}
+        - {x: -34.5, y: 15}
+        - {x: -20.5, y: 16}
+        - {x: -7.5, y: -12}
+        - {x: -0.5, y: -23}
+        - {x: -4.5, y: -31}
+        - {x: -9.5, y: -42}
+        - {x: -13.5, y: -57}
+        - {x: -11.5, y: -58}
+        - {x: 15.5, y: -58}
+        - {x: 22.5, y: -54}
+        - {x: 25.5, y: -49}
+        - {x: 33.5, y: -28}
+      - - {x: 5.5, y: -44}
+        - {x: 5.5, y: -41}
+        - {x: 8.5, y: -37}
+        - {x: 10.5, y: -35}
+        - {x: 12.5, y: -31}
+        - {x: 15.5, y: -28}
+        - {x: 12.5, y: -28}
+        - {x: 12.5, y: -32}
+        - {x: 9.5, y: -37}
+        - {x: 8.5, y: -40}
+        - {x: 3.5, y: -45}
+        - {x: 4.5, y: -45}
+      - - {x: 23.5, y: 9}
+        - {x: 26.5, y: 15}
+        - {x: 29.5, y: 14}
+        - {x: 28.5, y: 7}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Lionhead_walk_backward_anim_0: 21300000
+      Lionhead_walk_backward_anim_9: 21300018
+      Lionhead_walk_backward_anim_4: 21300008
+      Lionhead_walk_backward_anim_7: 21300014
+      Lionhead_walk_backward_anim_8: 21300016
+      Lionhead_walk_backward_anim_5: 21300010
+      Lionhead_walk_backward_anim_6: 21300012
+      Lionhead_walk_backward_anim_1: 21300002
+      Lionhead_walk_backward_anim_3: 21300006
+      Lionhead_walk_backward_anim_2: 21300004
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

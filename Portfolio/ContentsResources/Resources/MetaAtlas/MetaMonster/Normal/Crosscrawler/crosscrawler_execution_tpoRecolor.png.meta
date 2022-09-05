@@ -1,0 +1,3845 @@
+fileFormatVersion: 2
+guid: edf343e7b27243144a2dc5bc53d29ad6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: crosscrawler_execution_0
+  - first:
+      213: 21300002
+    second: crosscrawler_execution_1
+  - first:
+      213: 21300004
+    second: crosscrawler_execution_2
+  - first:
+      213: 21300006
+    second: crosscrawler_execution_3
+  - first:
+      213: 21300008
+    second: crosscrawler_execution_4
+  - first:
+      213: 21300010
+    second: crosscrawler_execution_5
+  - first:
+      213: 21300012
+    second: crosscrawler_execution_6
+  - first:
+      213: 21300014
+    second: crosscrawler_execution_7
+  - first:
+      213: 21300016
+    second: crosscrawler_execution_8
+  - first:
+      213: 21300018
+    second: crosscrawler_execution_9
+  - first:
+      213: 21300020
+    second: crosscrawler_execution_10
+  - first:
+      213: 21300022
+    second: crosscrawler_execution_11
+  - first:
+      213: 21300024
+    second: crosscrawler_execution_12
+  - first:
+      213: 21300026
+    second: crosscrawler_execution_13
+  - first:
+      213: 21300028
+    second: crosscrawler_execution_14
+  - first:
+      213: 21300030
+    second: crosscrawler_execution_15
+  - first:
+      213: 21300032
+    second: crosscrawler_execution_16
+  - first:
+      213: 21300034
+    second: crosscrawler_execution_17
+  - first:
+      213: 21300036
+    second: crosscrawler_execution_18
+  - first:
+      213: 21300038
+    second: crosscrawler_execution_19
+  - first:
+      213: 21300040
+    second: crosscrawler_execution_20
+  - first:
+      213: 21300042
+    second: crosscrawler_execution_21
+  - first:
+      213: 21300044
+    second: crosscrawler_execution_22
+  - first:
+      213: 21300046
+    second: crosscrawler_execution_23
+  - first:
+      213: 21300048
+    second: crosscrawler_execution_24
+  - first:
+      213: 21300050
+    second: crosscrawler_execution_25
+  - first:
+      213: 21300052
+    second: crosscrawler_execution_26
+  - first:
+      213: 21300054
+    second: crosscrawler_execution_27
+  - first:
+      213: 21300056
+    second: crosscrawler_execution_28
+  - first:
+      213: 21300058
+    second: crosscrawler_execution_29
+  - first:
+      213: 21300060
+    second: crosscrawler_execution_30
+  - first:
+      213: 21300062
+    second: crosscrawler_execution_31
+  - first:
+      213: 21300064
+    second: crosscrawler_execution_32
+  - first:
+      213: 21300066
+    second: crosscrawler_execution_33
+  - first:
+      213: 21300068
+    second: crosscrawler_execution_34
+  - first:
+      213: 21300070
+    second: crosscrawler_execution_35
+  - first:
+      213: 21300072
+    second: crosscrawler_execution_36
+  - first:
+      213: 21300074
+    second: crosscrawler_execution_37
+  - first:
+      213: 21300076
+    second: crosscrawler_execution_38
+  - first:
+      213: 21300078
+    second: crosscrawler_execution_39
+  - first:
+      213: 21300080
+    second: crosscrawler_execution_40
+  - first:
+      213: 21300082
+    second: crosscrawler_execution_41
+  - first:
+      213: 21300084
+    second: crosscrawler_execution_42
+  - first:
+      213: 21300086
+    second: crosscrawler_execution_43
+  - first:
+      213: 21300088
+    second: crosscrawler_execution_44
+  - first:
+      213: 21300090
+    second: crosscrawler_execution_45
+  - first:
+      213: 21300092
+    second: crosscrawler_execution_46
+  - first:
+      213: 21300094
+    second: crosscrawler_execution_47
+  - first:
+      213: 21300096
+    second: crosscrawler_execution_48
+  - first:
+      213: 21300098
+    second: crosscrawler_execution_49
+  - first:
+      213: 21300100
+    second: crosscrawler_execution_50
+  - first:
+      213: 21300102
+    second: crosscrawler_execution_51
+  - first:
+      213: 21300104
+    second: crosscrawler_execution_52
+  - first:
+      213: 21300106
+    second: crosscrawler_execution_53
+  - first:
+      213: 21300108
+    second: crosscrawler_execution_54
+  - first:
+      213: 21300110
+    second: crosscrawler_execution_55
+  - first:
+      213: 21300112
+    second: crosscrawler_execution_56
+  - first:
+      213: 21300114
+    second: crosscrawler_execution_57
+  - first:
+      213: 21300116
+    second: crosscrawler_execution_58
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 4
+  maxTextureSize: 1024
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: crosscrawler_execution_0
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 220
+        width: 67
+        height: 72
+      alignment: 9
+      pivot: {x: 0.93835837, y: 0.0033333302}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27.499985, y: -36.000008}
+        - {x: -33.499985, y: -32.000008}
+        - {x: -33.499985, y: -23.000008}
+        - {x: 10.500015, y: 35.999992}
+        - {x: 23.500015, y: 35.999992}
+        - {x: 33.500015, y: -9.000008}
+        - {x: 33.500015, y: -36.000008}
+      physicsShape:
+      - - {x: 33.500015, y: -26.000008}
+        - {x: 32.500015, y: -20.000008}
+        - {x: 30.500015, y: 1.9999924}
+        - {x: 21.500015, y: 16.999992}
+        - {x: 19.500015, y: 31.999992}
+        - {x: 18.500015, y: 35.999992}
+        - {x: 12.500015, y: 35.999992}
+        - {x: 9.500015, y: 15.999992}
+        - {x: -3.4999847, y: 4.9999924}
+        - {x: -5.4999847, y: -6.0000076}
+        - {x: -32.499985, y: -22.000008}
+        - {x: -33.499985, y: -24.000008}
+        - {x: -33.499985, y: -30.000008}
+        - {x: -16.499985, y: -26.000008}
+        - {x: -13.499985, y: -30.000008}
+        - {x: -6.4999847, y: -35.000008}
+        - {x: -6.4999847, y: -36.000008}
+        - {x: 4.5000153, y: -36.000008}
+        - {x: 14.500015, y: -22.000008}
+        - {x: 24.500015, y: -36.000008}
+        - {x: 33.500015, y: -36.000008}
+      - - {x: 4.5000153, y: -12.000008}
+        - {x: 3.5000153, y: -12.000008}
+        - {x: 1.5000153, y: -14.000008}
+        - {x: 2.5000153, y: -15.000008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_1
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 0
+        width: 69
+        height: 71
+      alignment: 9
+      pivot: {x: 0.9546378, y: 0.0033802784}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19.499985, y: -35.5}
+        - {x: -34.499985, y: -27.5}
+        - {x: -34.499985, y: -5.5}
+        - {x: 9.500015, y: 35.5}
+        - {x: 27.500015, y: 35.5}
+        - {x: 34.500015, y: -5.5}
+        - {x: 34.500015, y: -35.5}
+      physicsShape:
+      - - {x: 26.500015, y: -35.5}
+        - {x: 34.500015, y: -35.5}
+        - {x: 34.500015, y: -29.5}
+        - {x: 29.500015, y: -10.5}
+        - {x: 29.500015, y: 1.5}
+        - {x: 19.500015, y: 23.5}
+        - {x: 17.500015, y: 35.5}
+        - {x: 11.500015, y: 35.5}
+        - {x: 5.5000153, y: 14.5}
+        - {x: -7.4999847, y: -1.5}
+        - {x: -2.4999847, y: -7.5}
+        - {x: -31.499985, y: -19.5}
+        - {x: -34.499985, y: -22.5}
+        - {x: -34.499985, y: -27.5}
+        - {x: -30.499985, y: -28.5}
+        - {x: -9.499985, y: -23.5}
+        - {x: -9.499985, y: -27.5}
+        - {x: -8.499985, y: -30.5}
+        - {x: -6.4999847, y: -35.5}
+        - {x: 5.5000153, y: -35.5}
+        - {x: 6.5000153, y: -33.5}
+        - {x: 14.500015, y: -23.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_2
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 0
+        width: 61
+        height: 69
+      alignment: 9
+      pivot: {x: 1.0142624, y: 0.0034782575}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17.499985, y: -34.5}
+        - {x: -30.499985, y: -31.5}
+        - {x: -30.499985, y: -15.5}
+        - {x: 2.5000153, y: 34.5}
+        - {x: 22.500015, y: 34.5}
+        - {x: 30.500015, y: 5.5}
+        - {x: 30.500015, y: -34.5}
+      physicsShape:
+      - - {x: 30.500015, y: -34.5}
+        - {x: 30.500015, y: -17.5}
+        - {x: 27.500015, y: 2.5}
+        - {x: 16.500015, y: 34.5}
+        - {x: 9.500015, y: 34.5}
+        - {x: 6.5000153, y: 31.5}
+        - {x: 7.5000153, y: 12.5}
+        - {x: 2.5000153, y: 5.5}
+        - {x: -24.499985, y: -13.5}
+        - {x: -30.499985, y: -16.5}
+        - {x: -30.499985, y: -21.5}
+        - {x: -18.499985, y: -20.5}
+        - {x: -5.4999847, y: -34.5}
+        - {x: 6.5000153, y: -34.5}
+        - {x: 16.500015, y: -22.5}
+        - {x: 22.500015, y: -33.5}
+        - {x: 23.500015, y: -34.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_3
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 177
+        width: 58
+        height: 68
+      alignment: 9
+      pivot: {x: 1.049483, y: 0.0035294085}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23.999985, y: -34.000008}
+        - {x: -28.999985, y: -28.000008}
+        - {x: -28.999985, y: 7.9999924}
+        - {x: 2.0000153, y: 33.999992}
+        - {x: 14.000015, y: 33.999992}
+        - {x: 29.000015, y: -14.000008}
+        - {x: 29.000015, y: -34.000008}
+        - {x: 21.000015, y: -34.000008}
+        - {x: 13.000015, y: -27.000008}
+        - {x: 9.000015, y: -32.000008}
+        - {x: 7.0000153, y: -34.000008}
+      physicsShape:
+      - - {x: 29.000015, y: -34.000008}
+        - {x: 29.000015, y: -17.000008}
+        - {x: 23.000015, y: 0.9999924}
+        - {x: 13.000015, y: 33.999992}
+        - {x: 8.000015, y: 33.999992}
+        - {x: 5.0000153, y: 30.999992}
+        - {x: 3.0000153, y: 4.9999924}
+        - {x: -7.9999847, y: -9.000008}
+        - {x: -28.999985, y: -15.000008}
+        - {x: -28.999985, y: -23.000008}
+        - {x: -3.9999847, y: -23.000008}
+        - {x: -3.9999847, y: -34.000008}
+        - {x: 7.0000153, y: -34.000008}
+        - {x: 9.000015, y: -32.000008}
+        - {x: 13.000015, y: -27.000008}
+        - {x: 21.000015, y: -34.000008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_4
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 207
+        width: 53
+        height: 65
+      alignment: 9
+      pivot: {x: 1.091887, y: 0.0036923042}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14.499985, y: -32.500008}
+        - {x: -26.499985, y: -26.500008}
+        - {x: -26.499985, y: -15.500008}
+        - {x: -5.4999847, y: 5.4999924}
+        - {x: 1.5000153, y: 32.499992}
+        - {x: 9.500015, y: 32.499992}
+        - {x: 26.500015, y: 5.4999924}
+        - {x: 26.500015, y: -32.500008}
+      physicsShape:
+      - - {x: 26.500015, y: -9.500008}
+        - {x: 25.500015, y: -6.5000076}
+        - {x: 26.500015, y: -3.5000076}
+        - {x: 26.500015, y: 4.4999924}
+        - {x: 19.500015, y: 11.499992}
+        - {x: 8.500015, y: 32.499992}
+        - {x: 2.5000153, y: 32.499992}
+        - {x: 2.5000153, y: 11.499992}
+        - {x: -5.4999847, y: 5.4999924}
+        - {x: -5.4999847, y: -5.5000076}
+        - {x: -26.499985, y: -16.500008}
+        - {x: -26.499985, y: -24.500008}
+        - {x: -7.4999847, y: -20.500008}
+        - {x: -5.4999847, y: -32.500008}
+        - {x: 4.5000153, y: -32.500008}
+        - {x: 6.5000153, y: -30.500008}
+        - {x: 13.500015, y: -32.500008}
+        - {x: 26.500015, y: -32.500008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_5
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 430
+        width: 55
+        height: 78
+      alignment: 9
+      pivot: {x: 1.0158184, y: -0.035384618}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23.500015, y: -38.999992}
+        - {x: -27.499985, y: -38.999992}
+        - {x: -27.499985, y: 3.0000076}
+        - {x: -1.4999847, y: 39.000008}
+        - {x: 18.500015, y: 39.000008}
+        - {x: 27.500015, y: 27.000008}
+        - {x: 27.500015, y: -26.999992}
+      physicsShape:
+      - - {x: 27.500015, y: 15.000008}
+        - {x: 9.500015, y: 39.000008}
+        - {x: 0.50001526, y: 39.000008}
+        - {x: -1.4999847, y: 18.000008}
+        - {x: -14.499985, y: 8.000008}
+        - {x: -9.499985, y: -1.9999924}
+        - {x: -26.499985, y: -11.999992}
+        - {x: -27.499985, y: -13.999992}
+        - {x: -27.499985, y: -22.999992}
+        - {x: -18.499985, y: -27.999992}
+        - {x: -17.499985, y: -30.999992}
+        - {x: -10.499985, y: -30.999992}
+        - {x: -5.4999847, y: -26.999992}
+        - {x: 4.5000153, y: -38.999992}
+        - {x: 12.500015, y: -38.999992}
+        - {x: 15.500015, y: -23.999992}
+        - {x: 22.500015, y: -31.999992}
+        - {x: 27.500015, y: -24.999992}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_6
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 76
+        width: 26
+        height: 72
+      alignment: 9
+      pivot: {x: 1.4950004, y: -0.14944445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: -36}
+        - {x: -13, y: 36}
+        - {x: 13, y: 36}
+        - {x: 13, y: -36}
+      physicsShape:
+      - - {x: 5, y: 36}
+        - {x: 2, y: 32}
+        - {x: -4, y: 11}
+        - {x: -11, y: 9}
+        - {x: -13, y: 6}
+        - {x: -13, y: -32}
+        - {x: -8, y: -36}
+        - {x: 7, y: -36}
+        - {x: 13, y: -34}
+        - {x: 13, y: 21}
+        - {x: 10, y: 36}
+      - - {x: 2, y: -22}
+        - {x: 2, y: -26}
+        - {x: 3, y: -32}
+        - {x: 4, y: -31}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_7
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 62
+        width: 45
+        height: 65
+      alignment: 9
+      pivot: {x: 0.863778, y: -0.27323076}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 8.500015, y: -32.5}
+        - {x: -22.499985, y: -32.5}
+        - {x: -22.499985, y: 1.5}
+        - {x: -21.499985, y: 9.5}
+        - {x: -0.49998474, y: 28.5}
+        - {x: 3.5000153, y: 32.5}
+        - {x: 8.500015, y: 32.5}
+        - {x: 18.500015, y: 16.5}
+        - {x: 22.500015, y: 0.5}
+        - {x: 22.500015, y: -18.5}
+      physicsShape:
+      - - {x: 5.5000153, y: 1.5}
+        - {x: 5.5000153, y: 7.5}
+        - {x: 19.500015, y: -11.5}
+        - {x: 22.500015, y: -11.5}
+        - {x: 22.500015, y: -0.5}
+        - {x: 14.500015, y: 14.5}
+        - {x: 8.500015, y: 23.5}
+        - {x: 8.500015, y: 32.5}
+        - {x: 3.5000153, y: 32.5}
+        - {x: -0.49998474, y: 28.5}
+        - {x: -16.499985, y: 6.5}
+        - {x: -22.499985, y: -9.5}
+        - {x: -22.499985, y: -32.5}
+        - {x: -13.499985, y: -32.5}
+        - {x: -4.4999847, y: -29.5}
+        - {x: 4.5000153, y: -15.5}
+        - {x: 2.5000153, y: -8.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_8
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 442
+        width: 70
+        height: 70
+      alignment: 9
+      pivot: {x: 0.7410002, y: -0.32514286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: -34.999992}
+        - {x: 8, y: -32.999992}
+        - {x: 8, y: -30.999992}
+        - {x: 15, y: -25.999992}
+        - {x: 18, y: -25.999992}
+        - {x: 19, y: -28.999992}
+        - {x: 16, y: -33.999992}
+        - {x: 12, y: -34.999992}
+      - - {x: 35, y: -13.999992}
+        - {x: 25, y: -16.999992}
+        - {x: 24, y: -20.999992}
+        - {x: 21, y: -22.999992}
+        - {x: 20, y: -22.999992}
+        - {x: 18, y: -20.999992}
+        - {x: 20, y: -15.999992}
+        - {x: 20, y: -15.999992}
+        - {x: 10, y: -0.9999924}
+        - {x: 9, y: -22.999992}
+        - {x: -5, y: -34.999992}
+        - {x: -28, y: -34.999992}
+        - {x: -35, y: -27.999992}
+        - {x: -35, y: 26.000008}
+        - {x: -19, y: 35.000008}
+        - {x: 18, y: 35.000008}
+        - {x: 35, y: 28.000008}
+      physicsShape:
+      - - {x: 3, y: -15.999992}
+        - {x: 6, y: -1.9999924}
+        - {x: 3, y: 10.000008}
+        - {x: 7, y: 28.000008}
+        - {x: 24, y: 9.000008}
+        - {x: 22, y: -12.999992}
+        - {x: 24, y: -14.999992}
+        - {x: 26, y: -14.999992}
+        - {x: 35, y: -11.999992}
+        - {x: 35, y: 17.000008}
+        - {x: 32, y: 21.000008}
+        - {x: 24, y: 29.000008}
+        - {x: 10, y: 35.000008}
+        - {x: -10, y: 35.000008}
+        - {x: -29, y: 28.000008}
+        - {x: -35, y: 23.000008}
+        - {x: -35, y: 11.000008}
+        - {x: -34, y: 5.0000076}
+        - {x: -22, y: -8.999992}
+        - {x: -33, y: -15.999992}
+        - {x: -34, y: -20.999992}
+        - {x: -24, y: -34.999992}
+        - {x: -17, y: -34.999992}
+        - {x: -14, y: -31.999992}
+        - {x: -4, y: -26.999992}
+        - {x: 3, y: -19.999992}
+      - - {x: 8, y: -30.999992}
+        - {x: 8, y: -32.999992}
+        - {x: 9, y: -34.999992}
+        - {x: 12, y: -34.999992}
+        - {x: 16, y: -33.999992}
+        - {x: 19, y: -28.999992}
+        - {x: 18, y: -25.999992}
+        - {x: 15, y: -25.999992}
+      - - {x: 20, y: -15.999992}
+        - {x: 18, y: -20.999992}
+        - {x: 20, y: -22.999992}
+        - {x: 21, y: -22.999992}
+        - {x: 24, y: -20.999992}
+        - {x: 25, y: -16.999992}
+        - {x: 23, y: -14.999992}
+      - - {x: -20, y: 18.000008}
+        - {x: -16, y: 20.000008}
+        - {x: -13, y: 20.000008}
+        - {x: -16, y: 13.000008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 105
+        height: 76
+      alignment: 9
+      pivot: {x: 0.82733345, y: -0.36526316}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 52.5, y: -38}
+        - {x: -52.5, y: -38}
+        - {x: -52.5, y: 21}
+        - {x: -41.5, y: 38}
+        - {x: 40.5, y: 38}
+        - {x: 52.5, y: 27}
+      physicsShape:
+      - - {x: 23.5, y: -25}
+        - {x: 24.5, y: -11}
+        - {x: 21.5, y: -1}
+        - {x: 14.5, y: 11}
+        - {x: 15.5, y: 29}
+        - {x: 36.5, y: 20}
+        - {x: 50.5, y: 4}
+        - {x: 52.5, y: 4}
+        - {x: 52.5, y: 18}
+        - {x: 41.5, y: 28}
+        - {x: 27.5, y: 36}
+        - {x: 18.5, y: 38}
+        - {x: -18.5, y: 38}
+        - {x: -28.5, y: 36}
+        - {x: -41.5, y: 28}
+        - {x: -52.5, y: 18}
+        - {x: -52.5, y: 2}
+        - {x: -49.5, y: 4}
+        - {x: -38.5, y: 20}
+        - {x: -9.5, y: 30}
+        - {x: 7.5, y: 28}
+        - {x: -0.5, y: 10}
+        - {x: -12.5, y: 10}
+        - {x: -11.5, y: 1}
+        - {x: -46.5, y: -14}
+        - {x: -51.5, y: -22}
+        - {x: -44.5, y: -24}
+        - {x: -22.5, y: -15}
+        - {x: -16.5, y: -17}
+        - {x: -5.5, y: -12}
+        - {x: -15.5, y: -19}
+        - {x: -16.5, y: -24}
+        - {x: -6.5, y: -38}
+        - {x: 0.5, y: -38}
+        - {x: 2.5, y: -35}
+        - {x: 2.5, y: -32}
+        - {x: 13.5, y: -30}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_10
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 207
+        width: 69
+        height: 75
+      alignment: 9
+      pivot: {x: 1.2010146, y: -0.37013334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23.499985, y: -20.500008}
+        - {x: -34.499985, y: -12.500008}
+        - {x: -34.499985, y: 37.499992}
+        - {x: 34.500015, y: 37.499992}
+        - {x: 34.500015, y: -28.500008}
+        - {x: 25.500015, y: -37.500008}
+        - {x: 8.500015, y: -37.500008}
+      physicsShape:
+      - - {x: 34.500015, y: 0.49999237}
+        - {x: 28.500015, y: 14.499992}
+        - {x: 24.500015, y: 37.499992}
+        - {x: 19.500015, y: 37.499992}
+        - {x: 16.500015, y: 34.499992}
+        - {x: 15.500015, y: 23.499992}
+        - {x: 0.50001526, y: 6.4999924}
+        - {x: 8.500015, y: 0.49999237}
+        - {x: 1.5000153, y: -6.5000076}
+        - {x: -20.499985, y: -10.500008}
+        - {x: -30.499985, y: 3.4999924}
+        - {x: -31.499985, y: 12.499992}
+        - {x: -33.499985, y: 14.499992}
+        - {x: -34.499985, y: 14.499992}
+        - {x: -34.499985, y: -4.5000076}
+        - {x: -31.499985, y: -9.500008}
+        - {x: -22.499985, y: -19.500008}
+        - {x: -7.4999847, y: -17.500008}
+        - {x: 7.5000153, y: -26.500008}
+        - {x: 12.500015, y: -37.500008}
+        - {x: 19.500015, y: -37.500008}
+        - {x: 22.500015, y: -34.500008}
+        - {x: 25.500015, y: -24.500008}
+        - {x: 34.500015, y: -21.500008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43305410000000000800000000000000
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_11
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 233
+        width: 51
+        height: 78
+      alignment: 9
+      pivot: {x: 1.2523532, y: -0.29179487}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 8.500019, y: -39.000008}
+        - {x: -25.49998, y: -10.000008}
+        - {x: -25.49998, y: 5.9999924}
+        - {x: 6.500019, y: 38.999992}
+        - {x: 20.50002, y: 38.999992}
+        - {x: 25.50002, y: 20.999992}
+        - {x: 25.50002, y: -39.000008}
+      physicsShape:
+      - - {x: 6.500019, y: 38.999992}
+        - {x: 1.5000191, y: 18.999992}
+        - {x: -7.499981, y: 6.9999924}
+        - {x: -21.49998, y: 4.9999924}
+        - {x: -25.49998, y: 3.9999924}
+        - {x: -25.49998, y: -2.0000076}
+        - {x: -1.4999809, y: -5.0000076}
+        - {x: -7.499981, y: -19.000008}
+        - {x: 9.500019, y: -39.000008}
+        - {x: 15.500019, y: -39.000008}
+        - {x: 25.50002, y: -32.000008}
+        - {x: 25.50002, y: 12.999992}
+        - {x: 11.500019, y: 38.999992}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63305410000000000800000000000000
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_12
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 442
+        width: 43
+        height: 70
+      alignment: 9
+      pivot: {x: 1.2993026, y: -0.32514286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5.5, y: -34.999992}
+        - {x: -21.5, y: 17.000008}
+        - {x: -21.5, y: 35.000008}
+        - {x: 21.5, y: 35.000008}
+        - {x: 21.5, y: -24.999992}
+        - {x: 14.5, y: -30.999992}
+        - {x: 5.5, y: -34.999992}
+      physicsShape:
+      - - {x: 14.5, y: 35.000008}
+        - {x: 4.5, y: 12.000008}
+        - {x: -16.5, y: 23.000008}
+        - {x: -21.5, y: 23.000008}
+        - {x: -21.5, y: 17.000008}
+        - {x: -10.5, y: 1.0000076}
+        - {x: -6.5, y: -19.999992}
+        - {x: -4.5, y: -34.999992}
+        - {x: 5.5, y: -34.999992}
+        - {x: 14.5, y: -30.999992}
+        - {x: 21.5, y: -24.999992}
+        - {x: 21.5, y: 35.000008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83305410000000000800000000000000
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_13
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 0
+        width: 124
+        height: 62
+      alignment: 9
+      pivot: {x: 0.660242, y: -0.22193548}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.999985, y: -31}
+        - {x: -61.999985, y: 10}
+        - {x: -61.999985, y: 29}
+        - {x: -50.999985, y: 31}
+        - {x: -1.9999847, y: 31}
+        - {x: 39.000015, y: 19}
+        - {x: 59.000015, y: 13}
+        - {x: 62.000015, y: 11}
+        - {x: 62.000015, y: 4}
+        - {x: 56.000015, y: 1}
+        - {x: 30.000015, y: -5}
+        - {x: 5.0000153, y: -31}
+      physicsShape:
+      - - {x: 6.0000153, y: -23}
+        - {x: 13.000015, y: -17}
+        - {x: 13.000015, y: -12}
+        - {x: 19.000015, y: -4}
+        - {x: 18.000015, y: 5}
+        - {x: 12.000015, y: 11}
+        - {x: -7.9999847, y: 19}
+        - {x: 23.000015, y: 12}
+        - {x: 37.000015, y: 7}
+        - {x: 27.000015, y: 3}
+        - {x: 30.000015, y: -2}
+        - {x: 42.000015, y: -2}
+        - {x: 56.000015, y: 1}
+        - {x: 62.000015, y: 4}
+        - {x: 62.000015, y: 11}
+        - {x: 59.000015, y: 13}
+        - {x: 39.000015, y: 19}
+        - {x: 25.000015, y: 22}
+        - {x: -9.999985, y: 28}
+        - {x: -13.999985, y: 31}
+        - {x: -20.999985, y: 31}
+        - {x: -25.999985, y: 29}
+        - {x: -27.999985, y: 27}
+        - {x: -26.999985, y: 24}
+        - {x: -19.999985, y: 21}
+        - {x: -37.999985, y: 22}
+        - {x: -60.999985, y: 22}
+        - {x: -61.999985, y: 20}
+        - {x: -61.999985, y: 14}
+        - {x: -29.999985, y: 10}
+        - {x: -18.999985, y: -1}
+        - {x: -11.999985, y: -6}
+        - {x: -22.999985, y: -12}
+        - {x: -23.999985, y: -17}
+        - {x: -12.999985, y: -27}
+        - {x: -13.999985, y: -31}
+        - {x: -6.9999847, y: -31}
+        - {x: -4.9999847, y: -28}
+        - {x: -4.9999847, y: -25}
+        - {x: -7.9999847, y: -20}
+      - - {x: 4.0000153, y: 1}
+        - {x: -0.99998474, y: 1}
+        - {x: -1.9999847, y: 0}
+        - {x: -0.99998474, y: -1}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3305410000000000800000000000000
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_14
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 0
+        width: 113
+        height: 69
+      alignment: 9
+      pivot: {x: 0.6891151, y: -0.06898551}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 55.5, y: 2.5}
+        - {x: 53.5, y: 4.5}
+        - {x: 54.5, y: 7.5}
+        - {x: 56.5, y: 7.5}
+        - {x: 56.5, y: 2.5}
+      - - {x: -26.5, y: -34.5}
+        - {x: -56.5, y: -6.5}
+        - {x: -56.5, y: 25.499996}
+        - {x: -38.5, y: 34.499996}
+        - {x: 0.5, y: 34.499996}
+        - {x: 52.5, y: 7.5}
+        - {x: 53.5, y: 5.5}
+        - {x: 53.5, y: 4.5}
+        - {x: 53.5, y: 1.5}
+        - {x: 6.5, y: -34.5}
+      physicsShape:
+      - - {x: 13.5, y: -26.5}
+        - {x: 23.5, y: -10.5}
+        - {x: 27.5, y: -5.5}
+        - {x: 51.5, y: 1.5}
+        - {x: 53.5, y: 3.5}
+        - {x: 52.5, y: 7.5}
+        - {x: 33.5, y: 4.5}
+        - {x: 17.5, y: 2.5}
+        - {x: 10.5, y: 11.5}
+        - {x: -3.5, y: 20.5}
+        - {x: -10.5, y: 34.499996}
+        - {x: -16.5, y: 34.499996}
+        - {x: -18.5, y: 20.5}
+        - {x: -25.5, y: 22.5}
+        - {x: -55.5, y: 22.5}
+        - {x: -56.5, y: 20.5}
+        - {x: -56.5, y: 13.5}
+        - {x: -55.5, y: 9.5}
+        - {x: -37.5, y: -3.5}
+        - {x: -13.5, y: -8.5}
+        - {x: -24.5, y: -16.5}
+        - {x: -13.5, y: -25.5}
+        - {x: -6.5, y: -34.5}
+        - {x: 0.5, y: -34.5}
+        - {x: 3.5, y: -31.5}
+        - {x: 2.5, y: -16.5}
+        - {x: 9.5, y: -22.5}
+      - - {x: -44.5, y: 11.5}
+        - {x: -50.5, y: 13.5}
+        - {x: -50.5, y: 12.5}
+        - {x: -49.5, y: 12.5}
+        - {x: -46.5, y: 11.5}
+        - {x: -38.5, y: 11.5}
+        - {x: -37.5, y: 10.5}
+        - {x: -25.5, y: 8.5}
+      - - {x: 53.5, y: 4.5}
+        - {x: 55.5, y: 2.5}
+        - {x: 56.5, y: 2.5}
+        - {x: 56.5, y: 7.5}
+        - {x: 54.5, y: 7.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3305410000000000800000000000000
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_15
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 0
+        width: 82
+        height: 51
+      alignment: 9
+      pivot: {x: 0.7667074, y: 0.043921564}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -36.999985, y: -7.5}
+        - {x: -40.999985, y: -6.5}
+        - {x: -40.999985, y: 0.5}
+        - {x: -13.999985, y: 25.500002}
+        - {x: 14.000015, y: 25.500002}
+        - {x: 35.000015, y: -1.5}
+        - {x: 41.000015, y: -16.5}
+        - {x: 41.000015, y: -25.5}
+        - {x: -5.9999847, y: -25.5}
+        - {x: -17.999985, y: -20.5}
+      physicsShape:
+      - - {x: 41.000015, y: -19.5}
+        - {x: 37.000015, y: -16.5}
+        - {x: 30.000015, y: -11.5}
+        - {x: 20.000015, y: -1.5}
+        - {x: 27.000015, y: 7.5}
+        - {x: 4.0000153, y: 14.500002}
+        - {x: 1.0000153, y: 21.500002}
+        - {x: -0.99998474, y: 25.500002}
+        - {x: -6.9999847, y: 25.500002}
+        - {x: -10.999985, y: 15.500002}
+        - {x: -8.999985, y: 10.500002}
+        - {x: -40.999985, y: -0.5}
+        - {x: -40.999985, y: -6.5}
+        - {x: -36.999985, y: -7.5}
+        - {x: -3.9999847, y: -9.5}
+        - {x: -16.999985, y: -15.5}
+        - {x: -17.999985, y: -20.5}
+        - {x: -5.9999847, y: -25.5}
+        - {x: 41.000015, y: -25.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3305410000000000800000000000000
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_16
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 0
+        width: 83
+        height: 50
+      alignment: 9
+      pivot: {x: 0.75747, y: 0.044799995}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18.499985, y: -25}
+        - {x: -41.499985, y: -16}
+        - {x: -41.499985, y: -1}
+        - {x: -9.499985, y: 25.000002}
+        - {x: 6.5000153, y: 25.000002}
+        - {x: 41.500015, y: -9}
+        - {x: 41.500015, y: -25}
+      physicsShape:
+      - - {x: 41.500015, y: -18}
+        - {x: 18.500015, y: 0}
+        - {x: 23.500015, y: 5}
+        - {x: 23.500015, y: 7}
+        - {x: 19.500015, y: 10.000002}
+        - {x: 1.5000153, y: 12.000002}
+        - {x: -1.4999847, y: 25.000002}
+        - {x: -6.4999847, y: 25.000002}
+        - {x: -9.499985, y: 22.000002}
+        - {x: -17.499985, y: 8}
+        - {x: -39.499985, y: 1}
+        - {x: -41.499985, y: -2}
+        - {x: -41.499985, y: -7}
+        - {x: -35.499985, y: -7}
+        - {x: -9.499985, y: -6}
+        - {x: -17.499985, y: -15}
+        - {x: -17.499985, y: -20}
+        - {x: -10.499985, y: -25}
+        - {x: 21.500015, y: -25}
+        - {x: 21.500015, y: -21}
+        - {x: 35.500015, y: -25}
+        - {x: 41.500015, y: -25}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04305410000000000800000000000000
+      internalID: 21300032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_17
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 0
+        width: 83
+        height: 50
+      alignment: 9
+      pivot: {x: 0.7454218, y: 0.044799995}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28.499985, y: -25}
+        - {x: -41.499985, y: -9}
+        - {x: -41.499985, y: -3}
+        - {x: -39.499985, y: 0}
+        - {x: -10.499985, y: 16.000002}
+        - {x: -10.499985, y: 22.000002}
+        - {x: -7.4999847, y: 25.000002}
+        - {x: -1.4999847, y: 25.000002}
+        - {x: 20.500015, y: 10.000002}
+        - {x: 41.500015, y: -18}
+        - {x: 41.500015, y: -25}
+      physicsShape:
+      - - {x: 41.500015, y: -19}
+        - {x: 37.500015, y: -15}
+        - {x: 19.500015, y: -2}
+        - {x: 21.500015, y: 7}
+        - {x: 20.500015, y: 10.000002}
+        - {x: -1.4999847, y: 25.000002}
+        - {x: -7.4999847, y: 25.000002}
+        - {x: -10.499985, y: 22.000002}
+        - {x: -10.499985, y: 16.000002}
+        - {x: -39.499985, y: 0}
+        - {x: -41.499985, y: -3}
+        - {x: -41.499985, y: -8}
+        - {x: -35.499985, y: -8}
+        - {x: -12.499985, y: -4}
+        - {x: -17.499985, y: -15}
+        - {x: -17.499985, y: -24}
+        - {x: -12.499985, y: -25}
+        - {x: 21.500015, y: -25}
+        - {x: 22.500015, y: -22}
+        - {x: 35.500015, y: -25}
+        - {x: 41.500015, y: -25}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24305410000000000800000000000000
+      internalID: 21300034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_18
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 0
+        width: 82
+        height: 51
+      alignment: 9
+      pivot: {x: 0.7423172, y: 0.043921564}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -34.999985, y: -9.5}
+        - {x: -40.999985, y: -9.5}
+        - {x: -40.999985, y: -1.5}
+        - {x: -13.999985, y: 25.500002}
+        - {x: 9.000015, y: 25.500002}
+        - {x: 33.000015, y: 18.500002}
+        - {x: 41.000015, y: -7.5}
+        - {x: 41.000015, y: -25.5}
+        - {x: -8.999985, y: -25.5}
+        - {x: -14.999985, y: -22.5}
+      physicsShape:
+      - - {x: 41.000015, y: -25.5}
+        - {x: 41.000015, y: -19.5}
+        - {x: 21.000015, y: -1.5}
+        - {x: 25.000015, y: 11.500002}
+        - {x: 9.000015, y: 9.500002}
+        - {x: -0.99998474, y: 25.500002}
+        - {x: -6.9999847, y: 25.500002}
+        - {x: -9.999985, y: 22.500002}
+        - {x: -8.999985, y: 7.5}
+        - {x: -38.999985, y: -1.5}
+        - {x: -40.999985, y: -4.5}
+        - {x: -40.999985, y: -9.5}
+        - {x: -34.999985, y: -9.5}
+        - {x: -8.999985, y: -4.5}
+        - {x: -16.999985, y: -14.5}
+        - {x: -14.999985, y: -22.5}
+        - {x: -8.999985, y: -25.5}
+        - {x: 18.000015, y: -25.5}
+        - {x: 20.000015, y: -17.5}
+        - {x: 33.000015, y: -25.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44305410000000000800000000000000
+      internalID: 21300036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 451
+        width: 81
+        height: 53
+      alignment: 9
+      pivot: {x: 0.7391359, y: 0.042264145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17.5, y: -26.49999}
+        - {x: -40.5, y: -9.49999}
+        - {x: -40.5, y: -1.4999905}
+        - {x: -9.5, y: 23.50001}
+        - {x: -8.5, y: 26.50001}
+        - {x: -0.5, y: 26.50001}
+        - {x: 21.5, y: 12.50001}
+        - {x: 40.5, y: -17.49999}
+        - {x: 40.5, y: -26.49999}
+      physicsShape:
+      - - {x: 40.5, y: -19.49999}
+        - {x: 22.5, y: -5.4999905}
+        - {x: 21.5, y: 1.5000095}
+        - {x: 18.5, y: 9.50001}
+        - {x: 1.5, y: 9.50001}
+        - {x: 0.5, y: 22.50001}
+        - {x: -1.5, y: 26.50001}
+        - {x: -6.5, y: 26.50001}
+        - {x: -9.5, y: 23.50001}
+        - {x: -10.5, y: 8.50001}
+        - {x: -40.5, y: -2.4999905}
+        - {x: -40.5, y: -9.49999}
+        - {x: -34.5, y: -9.49999}
+        - {x: -11.5, y: -5.4999905}
+        - {x: -16.5, y: -14.49999}
+        - {x: -14.5, y: -22.49999}
+        - {x: -5.5, y: -26.49999}
+        - {x: 18.5, y: -26.49999}
+        - {x: 23.5, y: -23.49999}
+        - {x: 35.5, y: -26.49999}
+        - {x: 40.5, y: -26.49999}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64305410000000000800000000000000
+      internalID: 21300038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_20
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 69
+        width: 77
+        height: 53
+      alignment: 9
+      pivot: {x: 0.76454556, y: 0.0045282976}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27.499989, y: -12.499998}
+        - {x: -38.49999, y: -12.499998}
+        - {x: -38.49999, y: -6.499998}
+        - {x: -4.4999886, y: 23.500002}
+        - {x: -1.4999886, y: 26.500002}
+        - {x: 3.5000114, y: 26.500002}
+        - {x: 38.50001, y: -20.499998}
+        - {x: 38.50001, y: -26.499998}
+        - {x: -9.499989, y: -26.499998}
+      physicsShape:
+      - - {x: 38.50001, y: -22.499998}
+        - {x: 24.500011, y: -3.499998}
+        - {x: 14.500011, y: 6.500002}
+        - {x: 5.5000114, y: 17.500002}
+        - {x: 3.5000114, y: 26.500002}
+        - {x: -1.4999886, y: 26.500002}
+        - {x: -4.4999886, y: 23.500002}
+        - {x: -3.4999886, y: 6.500002}
+        - {x: -30.499989, y: -2.499998}
+        - {x: -38.49999, y: -7.499998}
+        - {x: -38.49999, y: -12.499998}
+        - {x: -27.499989, y: -12.499998}
+        - {x: -6.4999886, y: -9.499998}
+        - {x: -12.499989, y: -16.499998}
+        - {x: -14.499989, y: -21.499998}
+        - {x: -5.4999886, y: -26.499998}
+        - {x: 11.500011, y: -26.499998}
+        - {x: 17.500011, y: -21.499998}
+        - {x: 29.500011, y: -26.499998}
+        - {x: 38.50001, y: -26.499998}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84305410000000000800000000000000
+      internalID: 21300040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_21
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 71
+        width: 67
+        height: 68
+      alignment: 9
+      pivot: {x: 0.72940314, y: 0.0035294085}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 24.500015, y: -5}
+        - {x: 26.500015, y: -8}
+        - {x: 26.500015, y: -7}
+      physicsShape:
+      - - {x: 33.500015, y: -26}
+        - {x: 32.500015, y: -19}
+        - {x: 26.500015, y: -11}
+        - {x: 26.500015, y: -8}
+        - {x: 24.500015, y: -5}
+        - {x: 26.500015, y: -7}
+        - {x: 26.500015, y: -11}
+        - {x: 28.500015, y: -13}
+        - {x: 32.500015, y: -14}
+        - {x: 33.500015, y: -14}
+        - {x: 33.500015, y: 1}
+        - {x: 32.500015, y: 3}
+        - {x: 21.500015, y: 34}
+        - {x: 14.500015, y: 34}
+        - {x: 10.500015, y: 12}
+        - {x: -1.4999847, y: 4}
+        - {x: -33.499985, y: -22}
+        - {x: -33.499985, y: -28}
+        - {x: -29.499985, y: -28}
+        - {x: -6.4999847, y: -30}
+        - {x: -8.499985, y: -34}
+        - {x: 7.5000153, y: -34}
+        - {x: 15.500015, y: -30}
+        - {x: 23.500015, y: -34}
+        - {x: 33.500015, y: -34}
+      - - {x: 4.5000153, y: -11}
+        - {x: 5.5000153, y: -10}
+        - {x: 1.5000153, y: -12}
+        - {x: 2.5000153, y: -12}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4305410000000000800000000000000
+      internalID: 21300042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_22
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 311
+        width: 52
+        height: 76
+      alignment: 9
+      pivot: {x: 0.6321156, y: 0.042631578}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 26.000015, y: -37.99999}
+        - {x: -25.999985, y: -37.99999}
+        - {x: -25.999985, y: -21.999989}
+        - {x: 2.0000153, y: 31.000011}
+        - {x: 7.0000153, y: 38.00001}
+        - {x: 13.000015, y: 38.00001}
+        - {x: 26.000015, y: 21.000011}
+      physicsShape:
+      - - {x: -4.9999847, y: -37.99999}
+        - {x: 9.000015, y: -21.999989}
+        - {x: 17.000015, y: -36.99999}
+        - {x: 24.000015, y: -36.99999}
+        - {x: 26.000015, y: -34.99999}
+        - {x: 26.000015, y: -32.99999}
+        - {x: 17.000015, y: -0.99998856}
+        - {x: 26.000015, y: 7.0000114}
+        - {x: 26.000015, y: 16.000011}
+        - {x: 17.000015, y: 20.000011}
+        - {x: 13.000015, y: 38.00001}
+        - {x: 7.0000153, y: 38.00001}
+        - {x: 5.0000153, y: 31.000011}
+        - {x: -16.999985, y: -3.9999886}
+        - {x: -25.999985, y: -27.999989}
+        - {x: -25.999985, y: -37.99999}
+        - {x: -22.999985, y: -37.99999}
+        - {x: -19.999985, y: -34.99999}
+        - {x: -14.999985, y: -32.99999}
+        - {x: -12.999985, y: -37.99999}
+      - - {x: -5.9999847, y: -10.999989}
+        - {x: -1.9999847, y: -6.9999886}
+        - {x: -1.9999847, y: -4.9999886}
+        - {x: -2.9999847, y: -6.9999886}
+        - {x: -1.9999847, y: -7.9999886}
+        - {x: -5.9999847, y: -11.999989}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4305410000000000800000000000000
+      internalID: 21300044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_23
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 80
+        width: 53
+        height: 77
+      alignment: 9
+      pivot: {x: 0.5447172, y: 0.042077918}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23.500015, y: -38.5}
+        - {x: -26.499985, y: -38.5}
+        - {x: -26.499985, y: 16.5}
+        - {x: -1.4999847, y: 38.5}
+        - {x: 19.500015, y: 38.5}
+        - {x: 26.500015, y: 36.5}
+        - {x: 26.500015, y: -23.5}
+      physicsShape:
+      - - {x: 17.500015, y: -37.5}
+        - {x: 19.500015, y: -32.5}
+        - {x: 11.500015, y: -6.5}
+        - {x: 9.500015, y: -0.5}
+        - {x: 26.500015, y: 12.5}
+        - {x: 26.500015, y: 24.5}
+        - {x: 10.500015, y: 18.5}
+        - {x: 9.500015, y: 38.5}
+        - {x: 3.5000153, y: 38.5}
+        - {x: -0.49998474, y: 24.5}
+        - {x: -8.499985, y: 12.5}
+        - {x: -18.499985, y: 7.5}
+        - {x: -21.499985, y: -8.5}
+        - {x: -26.499985, y: -16.5}
+        - {x: -26.499985, y: -29.5}
+        - {x: -23.499985, y: -38.5}
+        - {x: -9.499985, y: -38.5}
+        - {x: -5.4999847, y: -28.5}
+        - {x: 2.5000153, y: -21.5}
+        - {x: 9.500015, y: -37.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4305410000000000800000000000000
+      internalID: 21300046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_24
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 0
+        width: 53
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5635851, y: 0.0655}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.499985, y: -38}
+        - {x: -26.499985, y: -33}
+        - {x: -26.499985, y: -10}
+        - {x: -24.499985, y: -5}
+        - {x: -3.4999847, y: 40}
+        - {x: 13.500015, y: 40}
+        - {x: 22.500015, y: 32}
+        - {x: 26.500015, y: 26}
+        - {x: 26.500015, y: -3}
+        - {x: 17.500015, y: -33}
+        - {x: 17.500015, y: -34}
+        - {x: 13.500015, y: -38}
+        - {x: -0.49998474, y: -32}
+        - {x: -1.4999847, y: -40}
+        - {x: -8.499985, y: -40}
+      physicsShape:
+      - - {x: 17.500015, y: -34}
+        - {x: 17.500015, y: -33}
+        - {x: 11.500015, y: -5}
+        - {x: 26.500015, y: 14}
+        - {x: 26.500015, y: 26}
+        - {x: 23.500015, y: 25}
+        - {x: 9.500015, y: 40}
+        - {x: 2.5000153, y: 40}
+        - {x: -18.499985, y: 8}
+        - {x: -15.499985, y: -9}
+        - {x: -26.499985, y: -16}
+        - {x: -26.499985, y: -27}
+        - {x: -18.499985, y: -33}
+        - {x: -16.499985, y: -38}
+        - {x: -8.499985, y: -40}
+        - {x: -1.4999847, y: -40}
+        - {x: -0.49998474, y: -32}
+        - {x: 13.500015, y: -38}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05305410000000000800000000000000
+      internalID: 21300048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_25
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 157
+        width: 53
+        height: 76
+      alignment: 9
+      pivot: {x: 0.582453, y: 0.0031578918}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 20.500015, y: -38.000008}
+        - {x: -26.499985, y: -38.000008}
+        - {x: -26.499985, y: -2.0000076}
+        - {x: 0.50001526, y: 37.999992}
+        - {x: 7.5000153, y: 37.999992}
+        - {x: 23.500015, y: 23.999992}
+        - {x: 26.500015, y: 24.999992}
+        - {x: 26.500015, y: -11.000008}
+      physicsShape:
+      - - {x: 17.500015, y: -38.000008}
+        - {x: 18.500015, y: -36.000008}
+        - {x: 26.500015, y: -11.000008}
+        - {x: 12.500015, y: -1.0000076}
+        - {x: 26.500015, y: 13.999992}
+        - {x: 26.500015, y: 24.999992}
+        - {x: 23.500015, y: 23.999992}
+        - {x: 7.5000153, y: 37.999992}
+        - {x: 0.50001526, y: 37.999992}
+        - {x: -12.499985, y: 5.9999924}
+        - {x: -26.499985, y: -4.0000076}
+        - {x: -26.499985, y: -26.000008}
+        - {x: -13.499985, y: -24.000008}
+        - {x: -16.499985, y: -37.000008}
+        - {x: -16.499985, y: -38.000008}
+        - {x: -5.4999847, y: -38.000008}
+        - {x: 4.5000153, y: -29.000008}
+        - {x: 7.5000153, y: -37.000008}
+        - {x: 10.500015, y: -38.000008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25305410000000000800000000000000
+      internalID: 21300050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_26
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 435
+        width: 55
+        height: 77
+      alignment: 9
+      pivot: {x: 0.6340002, y: 0.00311688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24.499985, y: -38.499992}
+        - {x: -27.499985, y: -33.499992}
+        - {x: -27.499985, y: 2.5000076}
+        - {x: -0.49998474, y: 38.500008}
+        - {x: 10.500015, y: 38.500008}
+        - {x: 27.500015, y: 35.500008}
+        - {x: 27.500015, y: -2.4999924}
+        - {x: 20.500015, y: -38.499992}
+      physicsShape:
+      - - {x: 13.500015, y: -38.499992}
+        - {x: 18.500015, y: -38.499992}
+        - {x: 20.500015, y: -37.499992}
+        - {x: 17.500015, y: -10.499992}
+        - {x: 16.500015, y: 0.5000076}
+        - {x: 27.500015, y: 16.500008}
+        - {x: 27.500015, y: 26.500008}
+        - {x: 8.500015, y: 19.500008}
+        - {x: 7.5000153, y: 33.500008}
+        - {x: 6.5000153, y: 38.500008}
+        - {x: 0.50001526, y: 38.500008}
+        - {x: -5.4999847, y: 16.500008}
+        - {x: -23.499985, y: 6.5000076}
+        - {x: -27.499985, y: -1.4999924}
+        - {x: -27.499985, y: -10.499992}
+        - {x: -20.499985, y: -12.499992}
+        - {x: -26.499985, y: -18.499992}
+        - {x: -26.499985, y: -22.499992}
+        - {x: -25.499985, y: -24.499992}
+        - {x: -12.499985, y: -24.499992}
+        - {x: -14.499985, y: -38.499992}
+        - {x: -2.4999847, y: -38.499992}
+        - {x: 3.5000153, y: -22.499992}
+        - {x: 5.5000153, y: -28.499992}
+        - {x: 8.500015, y: -36.499992}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45305410000000000800000000000000
+      internalID: 21300052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_27
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 358
+        width: 57
+        height: 77
+      alignment: 9
+      pivot: {x: 0.62929845, y: 0.00311688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27.499985, y: -38.499992}
+        - {x: -28.499985, y: -37.499992}
+        - {x: -28.499985, y: 0.5000076}
+        - {x: 1.5000153, y: 38.500008}
+        - {x: 25.500015, y: 38.500008}
+        - {x: 28.500015, y: 36.500008}
+        - {x: 28.500015, y: -26.499992}
+        - {x: 25.500015, y: -38.499992}
+      physicsShape:
+      - - {x: 18.500015, y: -38.499992}
+        - {x: 20.500015, y: -37.499992}
+        - {x: 16.500015, y: -3.4999924}
+        - {x: 28.500015, y: 16.500008}
+        - {x: 28.500015, y: 26.500008}
+        - {x: 11.500015, y: 19.500008}
+        - {x: 8.500015, y: 38.500008}
+        - {x: 2.5000153, y: 38.500008}
+        - {x: -3.4999847, y: 16.500008}
+        - {x: -28.499985, y: -1.4999924}
+        - {x: -28.499985, y: -9.499992}
+        - {x: -21.499985, y: -12.499992}
+        - {x: -26.499985, y: -18.499992}
+        - {x: -26.499985, y: -22.499992}
+        - {x: -25.499985, y: -24.499992}
+        - {x: -12.499985, y: -24.499992}
+        - {x: -14.499985, y: -38.499992}
+        - {x: -2.4999847, y: -38.499992}
+        - {x: 4.5000153, y: -24.499992}
+        - {x: 8.500015, y: -36.499992}
+        - {x: 13.500015, y: -38.499992}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65305410000000000800000000000000
+      internalID: 21300054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_28
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 139
+        width: 59
+        height: 77
+      alignment: 9
+      pivot: {x: 0.6249154, y: 0.00311688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28.499985, y: -38.500008}
+        - {x: -29.499985, y: -37.500008}
+        - {x: -29.499985, y: 8.499992}
+        - {x: 1.5000153, y: 38.499992}
+        - {x: 11.500015, y: 38.499992}
+        - {x: 29.500015, y: 32.499992}
+        - {x: 29.500015, y: -20.500008}
+        - {x: 25.500015, y: -38.500008}
+      physicsShape:
+      - - {x: 22.500015, y: 8.499992}
+        - {x: 29.500015, y: 16.499992}
+        - {x: 29.500015, y: 24.499992}
+        - {x: 25.500015, y: 25.499992}
+        - {x: 10.500015, y: 16.499992}
+        - {x: 10.500015, y: 33.499992}
+        - {x: 9.500015, y: 38.499992}
+        - {x: 4.5000153, y: 38.499992}
+        - {x: 1.5000153, y: 35.499992}
+        - {x: -15.499985, y: 6.4999924}
+        - {x: -29.499985, y: -1.5000076}
+        - {x: -29.499985, y: -20.500008}
+        - {x: -26.499985, y: -22.500008}
+        - {x: -25.499985, y: -24.500008}
+        - {x: -12.499985, y: -24.500008}
+        - {x: -14.499985, y: -38.500008}
+        - {x: 18.500015, y: -38.500008}
+        - {x: 20.500015, y: -37.500008}
+        - {x: 16.500015, y: -22.500008}
+      - - {x: -8.499985, y: -1.5000076}
+        - {x: -8.499985, y: -0.5000076}
+        - {x: -11.499985, y: -1.5000076}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85305410000000000800000000000000
+      internalID: 21300056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_29
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 430
+        width: 68
+        height: 74
+      alignment: 9
+      pivot: {x: 0.29220605, y: 0.00324324}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21, y: 15.000008}
+        - {x: 19, y: 17.000008}
+        - {x: 19, y: 18.000008}
+        - {x: 22, y: 21.000008}
+        - {x: 25, y: 20.000008}
+        - {x: 25, y: 23.000008}
+        - {x: 27, y: 27.000008}
+        - {x: 34, y: 27.000008}
+        - {x: 34, y: 21.000008}
+        - {x: 29, y: 18.000008}
+        - {x: 25, y: 18.000008}
+        - {x: 22, y: 15.000008}
+      - - {x: 8, y: 4.0000076}
+        - {x: 6, y: 6.0000076}
+        - {x: 8, y: 11.000008}
+        - {x: 10, y: 11.000008}
+        - {x: 14, y: 7.0000076}
+        - {x: 14, y: 6.0000076}
+        - {x: 12, y: 4.0000076}
+      - - {x: 16, y: 9.000008}
+        - {x: 14, y: 11.000008}
+        - {x: 14, y: 12.000008}
+        - {x: 17, y: 15.000008}
+        - {x: 18, y: 15.000008}
+        - {x: 20, y: 13.000008}
+        - {x: 20, y: 11.000008}
+        - {x: 18, y: 9.000008}
+      - - {x: 0, y: -36.999992}
+        - {x: -34, y: -36.999992}
+        - {x: -34, y: -19.999992}
+        - {x: -29, y: 4.0000076}
+        - {x: -30, y: 7.0000076}
+        - {x: -13, y: 28.000008}
+        - {x: -9, y: 37.000008}
+        - {x: -4, y: 37.000008}
+        - {x: 2, y: 18.000008}
+        - {x: 4, y: 13.000008}
+        - {x: 4, y: -3.9999924}
+        - {x: -2, y: -8.999992}
+        - {x: -4, y: -7.9999924}
+        - {x: -7, y: -6.9999924}
+        - {x: 1, y: -33.999992}
+      physicsShape:
+      - - {x: 1, y: -33.999992}
+        - {x: -7, y: -6.9999924}
+        - {x: -10, y: -5.9999924}
+        - {x: -4, y: -7.9999924}
+        - {x: -2, y: -8.999992}
+        - {x: 4, y: -3.9999924}
+        - {x: 4, y: 13.000008}
+        - {x: 2, y: 18.000008}
+        - {x: -4, y: 37.000008}
+        - {x: -9, y: 37.000008}
+        - {x: -13, y: 28.000008}
+        - {x: -30, y: 7.0000076}
+        - {x: -29, y: 4.0000076}
+        - {x: -34, y: -19.999992}
+        - {x: -34, y: -36.999992}
+        - {x: -22, y: -36.999992}
+        - {x: -13, y: -24.999992}
+        - {x: -10, y: -36.999992}
+        - {x: 0, y: -36.999992}
+      - - {x: 8, y: 11.000008}
+        - {x: 6, y: 6.0000076}
+        - {x: 8, y: 4.0000076}
+        - {x: 12, y: 4.0000076}
+        - {x: 14, y: 6.0000076}
+        - {x: 14, y: 7.0000076}
+        - {x: 10, y: 11.000008}
+      - - {x: 17, y: 15.000008}
+        - {x: 14, y: 12.000008}
+        - {x: 14, y: 11.000008}
+        - {x: 16, y: 9.000008}
+        - {x: 18, y: 9.000008}
+        - {x: 20, y: 11.000008}
+        - {x: 20, y: 13.000008}
+        - {x: 18, y: 15.000008}
+      - - {x: 19, y: 18.000008}
+        - {x: 19, y: 17.000008}
+        - {x: 21, y: 15.000008}
+        - {x: 22, y: 15.000008}
+        - {x: 25, y: 18.000008}
+        - {x: 25, y: 20.000008}
+        - {x: 22, y: 21.000008}
+      - - {x: 27, y: 27.000008}
+        - {x: 25, y: 23.000008}
+        - {x: 25, y: 18.000008}
+        - {x: 29, y: 18.000008}
+        - {x: 34, y: 21.000008}
+        - {x: 34, y: 27.000008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5305410000000000800000000000000
+      internalID: 21300058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_30
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 356
+        width: 68
+        height: 74
+      alignment: 9
+      pivot: {x: 0.29220605, y: 0.00324324}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 15, y: 8.000008}
+        - {x: 12, y: 11.000008}
+        - {x: 13, y: 14.000008}
+        - {x: 19, y: 14.000008}
+        - {x: 20, y: 11.000008}
+      - - {x: 8, y: 2.0000076}
+        - {x: 6, y: 4.0000076}
+        - {x: 6, y: 7.0000076}
+        - {x: 8, y: 9.000008}
+        - {x: 13, y: 9.000008}
+        - {x: 14, y: 6.0000076}
+        - {x: 9, y: 2.0000076}
+      - - {x: 31, y: 21.000008}
+        - {x: 29, y: 22.000008}
+        - {x: 29, y: 25.000008}
+        - {x: 31, y: 27.000008}
+        - {x: 34, y: 27.000008}
+        - {x: 34, y: 21.000008}
+      - - {x: 5, y: -36.999992}
+        - {x: -34, y: -36.999992}
+        - {x: -34, y: 1.0000076}
+        - {x: -33, y: 6.0000076}
+        - {x: -13, y: 28.000008}
+        - {x: -9, y: 37.000008}
+        - {x: -3, y: 37.000008}
+        - {x: 5, y: 21.000008}
+      physicsShape:
+      - - {x: -4, y: -8.999992}
+        - {x: 3, y: -7.9999924}
+        - {x: 5, y: -2.9999924}
+        - {x: 5, y: 0.0000076293945}
+        - {x: 1, y: 5.0000076}
+        - {x: -3, y: 37.000008}
+        - {x: -9, y: 37.000008}
+        - {x: -13, y: 28.000008}
+        - {x: -14, y: 19.000008}
+        - {x: -33, y: 6.0000076}
+        - {x: -28, y: -9.999992}
+        - {x: -34, y: -28.999992}
+        - {x: -34, y: -36.999992}
+        - {x: -22, y: -36.999992}
+        - {x: -14, y: -22.999992}
+        - {x: -10, y: -36.999992}
+        - {x: 3, y: -36.999992}
+      - - {x: 6, y: 7.0000076}
+        - {x: 6, y: 4.0000076}
+        - {x: 8, y: 2.0000076}
+        - {x: 9, y: 2.0000076}
+        - {x: 14, y: 6.0000076}
+        - {x: 13, y: 9.000008}
+        - {x: 8, y: 9.000008}
+      - - {x: 15, y: 8.000008}
+        - {x: 20, y: 11.000008}
+        - {x: 19, y: 14.000008}
+        - {x: 13, y: 14.000008}
+        - {x: 12, y: 11.000008}
+      - - {x: 29, y: 25.000008}
+        - {x: 29, y: 22.000008}
+        - {x: 31, y: 21.000008}
+        - {x: 34, y: 21.000008}
+        - {x: 34, y: 27.000008}
+        - {x: 31, y: 27.000008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5305410000000000800000000000000
+      internalID: 21300060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_31
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 282
+        width: 68
+        height: 74
+      alignment: 9
+      pivot: {x: 0.29220605, y: 0.00324324}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12, y: 9.000008}
+        - {x: 12, y: 14.000008}
+        - {x: 22, y: 22.000008}
+        - {x: 27, y: 22.000008}
+        - {x: 27, y: 23.000008}
+        - {x: 32, y: 27.000008}
+        - {x: 34, y: 27.000008}
+        - {x: 34, y: 22.000008}
+        - {x: 32, y: 20.000008}
+        - {x: 28, y: 20.000008}
+        - {x: 28, y: 16.000008}
+        - {x: 23, y: 8.000008}
+        - {x: 15, y: 8.000008}
+        - {x: 13, y: 9.000008}
+        - {x: 14, y: 6.0000076}
+        - {x: 12, y: 4.0000076}
+        - {x: 7, y: 4.0000076}
+        - {x: 6, y: 7.0000076}
+        - {x: 8, y: 9.000008}
+      - - {x: 0, y: -36.999992}
+        - {x: -34, y: -36.999992}
+        - {x: -34, y: -19.999992}
+        - {x: -29, y: 4.0000076}
+        - {x: -30, y: 7.0000076}
+        - {x: -13, y: 28.000008}
+        - {x: -9, y: 37.000008}
+        - {x: -4, y: 37.000008}
+        - {x: 4, y: 16.000008}
+        - {x: 4, y: -3.9999924}
+        - {x: -2, y: -10.999992}
+        - {x: -4, y: -7.9999924}
+        - {x: -7, y: -6.9999924}
+        - {x: 1, y: -33.999992}
+      physicsShape:
+      - - {x: 1, y: -33.999992}
+        - {x: -7, y: -6.9999924}
+        - {x: -10, y: -5.9999924}
+        - {x: -4, y: -7.9999924}
+        - {x: -2, y: -10.999992}
+        - {x: 4, y: -3.9999924}
+        - {x: 4, y: 10.000008}
+        - {x: -1, y: 17.000008}
+        - {x: -4, y: 37.000008}
+        - {x: -9, y: 37.000008}
+        - {x: -13, y: 28.000008}
+        - {x: -30, y: 7.0000076}
+        - {x: -29, y: 4.0000076}
+        - {x: -27, y: -5.9999924}
+        - {x: -34, y: -19.999992}
+        - {x: -34, y: -36.999992}
+        - {x: -22, y: -36.999992}
+        - {x: -13, y: -24.999992}
+        - {x: -10, y: -36.999992}
+        - {x: 0, y: -36.999992}
+      - - {x: 6, y: 7.0000076}
+        - {x: 7, y: 4.0000076}
+        - {x: 12, y: 4.0000076}
+        - {x: 14, y: 6.0000076}
+        - {x: 13, y: 9.000008}
+        - {x: 8, y: 9.000008}
+      - - {x: 22, y: 22.000008}
+        - {x: 12, y: 14.000008}
+        - {x: 12, y: 9.000008}
+        - {x: 15, y: 8.000008}
+        - {x: 23, y: 8.000008}
+        - {x: 28, y: 16.000008}
+        - {x: 28, y: 22.000008}
+      - - {x: 27, y: 23.000008}
+        - {x: 28, y: 20.000008}
+        - {x: 32, y: 20.000008}
+        - {x: 34, y: 22.000008}
+        - {x: 34, y: 27.000008}
+        - {x: 32, y: 27.000008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5305410000000000800000000000000
+      internalID: 21300062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_32
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 74
+        width: 67
+        height: 74
+      alignment: 9
+      pivot: {x: 0.29656732, y: 0.00324324}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2.5000153, y: -37}
+        - {x: -33.499985, y: -37}
+        - {x: -33.499985, y: 6}
+        - {x: -10.499985, y: 37}
+        - {x: -2.4999847, y: 37}
+        - {x: 5.5000153, y: 5}
+        - {x: 5.5000153, y: -20}
+      - - {x: 8.500015, y: 2}
+        - {x: 6.5000153, y: 4}
+        - {x: 6.5000153, y: 7}
+        - {x: 8.500015, y: 9}
+        - {x: 12.500015, y: 9}
+        - {x: 12.500015, y: 17}
+        - {x: 29.500015, y: 27}
+        - {x: 33.500015, y: 27}
+        - {x: 33.500015, y: 19}
+        - {x: 17.500015, y: 8}
+        - {x: 13.500015, y: 8}
+        - {x: 14.500015, y: 6}
+        - {x: 9.500015, y: 2}
+      physicsShape:
+      - - {x: -1.4999847, y: -19}
+        - {x: 3.5000153, y: -8}
+        - {x: 5.5000153, y: -3}
+        - {x: 5.5000153, y: 1}
+        - {x: 0.50001526, y: 7}
+        - {x: 0.50001526, y: 10}
+        - {x: -2.4999847, y: 37}
+        - {x: -8.499985, y: 37}
+        - {x: -12.499985, y: 28}
+        - {x: -13.499985, y: 19}
+        - {x: -32.499985, y: 6}
+        - {x: -27.499985, y: -10}
+        - {x: -33.499985, y: -29}
+        - {x: -33.499985, y: -37}
+        - {x: -21.499985, y: -37}
+        - {x: -13.499985, y: -23}
+        - {x: -9.499985, y: -37}
+        - {x: 2.5000153, y: -37}
+      - - {x: 6.5000153, y: 7}
+        - {x: 6.5000153, y: 4}
+        - {x: 8.500015, y: 2}
+        - {x: 9.500015, y: 2}
+        - {x: 14.500015, y: 6}
+        - {x: 13.500015, y: 9}
+        - {x: 8.500015, y: 9}
+      - - {x: 29.500015, y: 27}
+        - {x: 12.500015, y: 17}
+        - {x: 12.500015, y: 9}
+        - {x: 13.500015, y: 8}
+        - {x: 17.500015, y: 8}
+        - {x: 33.500015, y: 19}
+        - {x: 33.500015, y: 27}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06305410000000000800000000000000
+      internalID: 21300064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_33
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 0
+        width: 67
+        height: 74
+      alignment: 9
+      pivot: {x: 0.29656732, y: 0.00324324}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14.500015, y: 7}
+        - {x: 11.500015, y: 10}
+        - {x: 11.500015, y: 12}
+        - {x: 20.500015, y: 21}
+        - {x: 27.500015, y: 26}
+        - {x: 33.500015, y: 26}
+        - {x: 33.500015, y: 20}
+        - {x: 19.500015, y: 9}
+      - - {x: 7.5000153, y: 3}
+        - {x: 6.5000153, y: 6}
+        - {x: 8.500015, y: 8}
+        - {x: 12.500015, y: 8}
+        - {x: 13.500015, y: 5}
+        - {x: 11.500015, y: 3}
+      - - {x: 4.5000153, y: -37}
+        - {x: -33.499985, y: -37}
+        - {x: -33.499985, y: -20}
+        - {x: -31.499985, y: 8}
+        - {x: -11.499985, y: 37}
+        - {x: -2.4999847, y: 37}
+        - {x: 4.5000153, y: 10}
+      physicsShape:
+      - - {x: 0.50001526, y: -36}
+        - {x: 0.50001526, y: -35}
+        - {x: -1.4999847, y: -21}
+        - {x: 4.5000153, y: -9}
+        - {x: 4.5000153, y: 0}
+        - {x: 1.5000153, y: 8}
+        - {x: -3.4999847, y: 37}
+        - {x: -10.499985, y: 37}
+        - {x: -19.499985, y: 13}
+        - {x: -31.499985, y: 8}
+        - {x: -32.499985, y: -20}
+        - {x: -33.499985, y: -25}
+        - {x: -33.499985, y: -37}
+        - {x: -24.499985, y: -37}
+        - {x: -14.499985, y: -21}
+        - {x: -9.499985, y: -37}
+        - {x: -0.49998474, y: -37}
+      - - {x: 6.5000153, y: 6}
+        - {x: 7.5000153, y: 3}
+        - {x: 11.500015, y: 3}
+        - {x: 13.500015, y: 5}
+        - {x: 12.500015, y: 8}
+        - {x: 8.500015, y: 8}
+      - - {x: 20.500015, y: 21}
+        - {x: 11.500015, y: 12}
+        - {x: 11.500015, y: 10}
+        - {x: 14.500015, y: 7}
+        - {x: 19.500015, y: 9}
+        - {x: 33.500015, y: 20}
+        - {x: 33.500015, y: 26}
+        - {x: 27.500015, y: 26}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26305410000000000800000000000000
+      internalID: 21300066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_34
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 292
+        width: 65
+        height: 73
+      alignment: 9
+      pivot: {x: 0.30569246, y: 0.003287668}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 13.500015, y: 5.5000076}
+        - {x: 10.500015, y: 8.500008}
+        - {x: 10.500015, y: 10.500008}
+        - {x: 19.500015, y: 19.500008}
+        - {x: 26.500015, y: 24.500008}
+        - {x: 32.500015, y: 24.500008}
+        - {x: 32.500015, y: 18.500008}
+        - {x: 18.500015, y: 7.5000076}
+      - - {x: 3.5000153, y: -36.499992}
+        - {x: -32.499985, y: -36.499992}
+        - {x: -32.499985, y: -7.4999924}
+        - {x: -16.499985, y: 36.500008}
+        - {x: -3.4999847, y: 36.500008}
+        - {x: 3.5000153, y: 30.500008}
+      physicsShape:
+      - - {x: -1.4999847, y: -32.499992}
+        - {x: -2.4999847, y: -13.499992}
+        - {x: 3.5000153, y: -3.4999924}
+        - {x: 3.5000153, y: 21.500008}
+        - {x: 2.5000153, y: 23.500008}
+        - {x: -4.4999847, y: 20.500008}
+        - {x: -5.4999847, y: 36.500008}
+        - {x: -11.499985, y: 36.500008}
+        - {x: -17.499985, y: 21.500008}
+        - {x: -23.499985, y: 13.500008}
+        - {x: -25.499985, y: 6.5000076}
+        - {x: -32.499985, y: -16.499992}
+        - {x: -32.499985, y: -36.499992}
+        - {x: -21.499985, y: -36.499992}
+        - {x: -15.499985, y: -25.499992}
+        - {x: -9.499985, y: -36.499992}
+        - {x: -0.49998474, y: -36.499992}
+      - - {x: 19.500015, y: 19.500008}
+        - {x: 10.500015, y: 10.500008}
+        - {x: 10.500015, y: 8.500008}
+        - {x: 13.500015, y: 5.5000076}
+        - {x: 18.500015, y: 7.5000076}
+        - {x: 32.500015, y: 18.500008}
+        - {x: 32.500015, y: 24.500008}
+        - {x: 26.500015, y: 24.500008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46305410000000000800000000000000
+      internalID: 21300068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_35
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 436
+        width: 64
+        height: 73
+      alignment: 9
+      pivot: {x: 0.3260939, y: 0.003287668}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3.9999847, y: 36.500008}
+        - {x: 0.000015258789, y: 22.500008}
+        - {x: 2.0000153, y: 23.500008}
+        - {x: 6.0000153, y: 23.500008}
+        - {x: 7.0000153, y: 22.500008}
+        - {x: 7.0000153, y: 15.500008}
+        - {x: 3.0000153, y: 14.500008}
+        - {x: 8.000015, y: -3.4999924}
+        - {x: 8.000015, y: -14.499992}
+        - {x: 5.0000153, y: -36.499992}
+        - {x: -31.999985, y: -36.499992}
+        - {x: -31.999985, y: -15.499992}
+        - {x: -19.999985, y: 11.500008}
+        - {x: -9.999985, y: 36.500008}
+      - - {x: 13.000015, y: 3.5000076}
+        - {x: 10.000015, y: 6.5000076}
+        - {x: 10.000015, y: 8.500008}
+        - {x: 19.000015, y: 17.500008}
+        - {x: 26.000015, y: 22.500008}
+        - {x: 32.000015, y: 22.500008}
+        - {x: 32.000015, y: 16.500008}
+        - {x: 18.000015, y: 5.5000076}
+      physicsShape:
+      - - {x: -1.9999847, y: -16.499992}
+        - {x: 8.000015, y: -7.4999924}
+        - {x: 8.000015, y: -3.4999924}
+        - {x: -1.9999847, y: 13.500008}
+        - {x: -3.9999847, y: 36.500008}
+        - {x: -9.999985, y: 36.500008}
+        - {x: -19.999985, y: 11.500008}
+        - {x: -22.999985, y: -3.4999924}
+        - {x: -31.999985, y: -17.499992}
+        - {x: -31.999985, y: -36.499992}
+        - {x: -22.999985, y: -36.499992}
+        - {x: -13.999985, y: -23.499992}
+        - {x: -8.999985, y: -36.499992}
+        - {x: 3.0000153, y: -36.499992}
+      - - {x: 19.000015, y: 17.500008}
+        - {x: 10.000015, y: 8.500008}
+        - {x: 10.000015, y: 6.5000076}
+        - {x: 13.000015, y: 3.5000076}
+        - {x: 18.000015, y: 5.5000076}
+        - {x: 32.000015, y: 16.500008}
+        - {x: 32.000015, y: 22.500008}
+        - {x: 26.000015, y: 22.500008}
+      - - {x: -2.9999847, y: 18.500008}
+        - {x: 1.0000153, y: 14.500008}
+        - {x: 7.0000153, y: 15.500008}
+        - {x: 7.0000153, y: 22.500008}
+        - {x: 6.0000153, y: 23.500008}
+        - {x: 2.0000153, y: 23.500008}
+        - {x: -2.9999847, y: 19.500008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66305410000000000800000000000000
+      internalID: 21300070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_36
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 216
+        width: 60
+        height: 75
+      alignment: 9
+      pivot: {x: 0.5145002, y: 0.01653333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 3.9999866, y: 37.499992}
+        - {x: 14.999987, y: 22.499992}
+        - {x: 16.999987, y: 25.499992}
+        - {x: 20.999987, y: 25.499992}
+        - {x: 24.999987, y: 24.499992}
+        - {x: 24.999987, y: 20.499992}
+        - {x: 23.999987, y: 18.499992}
+        - {x: 18.999987, y: 17.499992}
+        - {x: 17.999987, y: 18.499992}
+        - {x: 17.999987, y: -37.500008}
+        - {x: -23.000013, y: -37.500008}
+        - {x: -30.000013, y: -34.500008}
+        - {x: -30.000013, y: -15.500008}
+        - {x: -3.0000134, y: 37.499992}
+      - - {x: 29.999987, y: -5.5000076}
+        - {x: 21.999987, y: -5.5000076}
+        - {x: 21.999987, y: 0.49999237}
+        - {x: 23.999987, y: 1.4999924}
+        - {x: 29.999987, y: 1.4999924}
+      physicsShape:
+      - - {x: 12.999987, y: -37.500008}
+        - {x: 13.999987, y: -36.500008}
+        - {x: 10.999987, y: -8.500008}
+        - {x: 17.999987, y: -5.5000076}
+        - {x: 17.999987, y: -2.5000076}
+        - {x: 14.999987, y: 4.4999924}
+        - {x: 16.999987, y: 14.499992}
+        - {x: 4.9999866, y: 17.499992}
+        - {x: 4.9999866, y: 26.499992}
+        - {x: 2.9999866, y: 37.499992}
+        - {x: -3.0000134, y: 37.499992}
+        - {x: -12.000013, y: 13.499992}
+        - {x: -20.000013, y: -3.5000076}
+        - {x: -14.000013, y: -10.500008}
+        - {x: -30.000013, y: -18.500008}
+        - {x: -30.000013, y: -29.500008}
+        - {x: -20.000013, y: -37.500008}
+        - {x: -10.000013, y: -37.500008}
+        - {x: -3.0000134, y: -26.500008}
+        - {x: 3.9999866, y: -36.500008}
+        - {x: 4.9999866, y: -37.500008}
+      - - {x: 23.999987, y: 1.4999924}
+        - {x: 21.999987, y: 0.49999237}
+        - {x: 21.999987, y: -5.5000076}
+        - {x: 29.999987, y: -5.5000076}
+        - {x: 29.999987, y: 1.4999924}
+      - - {x: 16.999987, y: 25.499992}
+        - {x: 14.999987, y: 22.499992}
+        - {x: 14.999987, y: 21.499992}
+        - {x: 18.999987, y: 17.499992}
+        - {x: 23.999987, y: 18.499992}
+        - {x: 24.999987, y: 20.499992}
+        - {x: 24.999987, y: 24.499992}
+        - {x: 20.999987, y: 25.499992}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86305410000000000800000000000000
+      internalID: 21300072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_37
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 367
+        width: 75
+        height: 75
+      alignment: 9
+      pivot: {x: 0.69160014, y: 0.003199997}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 33.5, y: 16.500008}
+        - {x: 29.5, y: 20.500008}
+        - {x: 29.5, y: -37.499992}
+        - {x: -22.5, y: -37.499992}
+        - {x: -37.5, y: -14.499992}
+        - {x: -37.5, y: 0.5000076}
+        - {x: 6.5, y: 37.500008}
+        - {x: 29.5, y: 37.500008}
+        - {x: 29.5, y: 21.500008}
+        - {x: 32.5, y: 24.500008}
+        - {x: 37.5, y: 23.500008}
+        - {x: 37.5, y: 17.500008}
+      physicsShape:
+      - - {x: 16.5, y: -37.499992}
+        - {x: 26.5, y: -37.499992}
+        - {x: 26.5, y: -35.499992}
+        - {x: 19.5, y: -11.499992}
+        - {x: 23.5, y: 2.5000076}
+        - {x: 29.5, y: 10.500008}
+        - {x: 29.5, y: 17.500008}
+        - {x: 19.5, y: 18.500008}
+        - {x: 17.5, y: 37.500008}
+        - {x: 11.5, y: 37.500008}
+        - {x: 2.5, y: 12.500008}
+        - {x: -8.5, y: 9.500008}
+        - {x: -10.5, y: 0.5000076}
+        - {x: -32.5, y: -3.4999924}
+        - {x: -37.5, y: -5.4999924}
+        - {x: -37.5, y: -13.499992}
+        - {x: -15.5, y: -12.499992}
+        - {x: -19.5, y: -16.499992}
+        - {x: -22.5, y: -23.499992}
+        - {x: -21.5, y: -28.499992}
+        - {x: -7.5, y: -25.499992}
+        - {x: -9.5, y: -37.499992}
+        - {x: 0.5, y: -37.499992}
+        - {x: 8.5, y: -21.499992}
+        - {x: 11.5, y: -29.499992}
+        - {x: 15.5, y: -36.499992}
+      - - {x: 1.5, y: -4.4999924}
+        - {x: 0.5, y: -3.4999924}
+        - {x: -1.5, y: -9.499992}
+        - {x: 0.5, y: -8.499992}
+      - - {x: 29.5, y: 21.500008}
+        - {x: 29.5, y: 20.500008}
+        - {x: 33.5, y: 16.500008}
+        - {x: 37.5, y: 17.500008}
+        - {x: 37.5, y: 23.500008}
+        - {x: 32.5, y: 24.500008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6305410000000000800000000000000
+      internalID: 21300074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_38
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 76
+        width: 78
+        height: 75
+      alignment: 9
+      pivot: {x: 0.70346165, y: 0.003199997}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 35, y: 16.5}
+        - {x: 31, y: 20.5}
+        - {x: 31, y: 3.5}
+        - {x: 18, y: -21.5}
+        - {x: 20, y: -20.5}
+        - {x: 24, y: -20.5}
+        - {x: 26, y: -22.5}
+        - {x: 28, y: -31.5}
+        - {x: 28, y: -37.5}
+        - {x: 17, y: -37.5}
+        - {x: 14, y: -30.5}
+        - {x: 14, y: -29.5}
+        - {x: 10, y: -37.5}
+        - {x: -9, y: -37.5}
+        - {x: -20, y: -30.5}
+        - {x: -18, y: -20.5}
+        - {x: -16, y: -18.5}
+        - {x: 1, y: -9.5}
+        - {x: -6, y: -12.5}
+        - {x: -22, y: -16.5}
+        - {x: -39, y: -15.5}
+        - {x: -39, y: -8.5}
+        - {x: 12, y: 37.5}
+        - {x: 19, y: 37.5}
+        - {x: 31, y: 26.5}
+        - {x: 31, y: 21.5}
+        - {x: 34, y: 24.5}
+        - {x: 39, y: 23.5}
+        - {x: 39, y: 17.5}
+      physicsShape:
+      - - {x: 31, y: 17.5}
+        - {x: 21, y: 18.5}
+        - {x: 19, y: 37.5}
+        - {x: 13, y: 37.5}
+        - {x: 4, y: 13.5}
+        - {x: -9, y: 6.5}
+        - {x: -9, y: -1.5}
+        - {x: -31, y: -4.5}
+        - {x: -36, y: -7.5}
+        - {x: -39, y: -9.5}
+        - {x: -39, y: -15.5}
+        - {x: -22, y: -16.5}
+        - {x: -6, y: -12.5}
+        - {x: 1, y: -9.5}
+        - {x: -16, y: -18.5}
+        - {x: -18, y: -20.5}
+        - {x: -17, y: -27.5}
+        - {x: -8, y: -36.5}
+        - {x: -8, y: -37.5}
+        - {x: 3, y: -37.5}
+        - {x: 21, y: -11.5}
+        - {x: 25, y: 2.5}
+        - {x: 31, y: 10.5}
+      - - {x: 14, y: -30.5}
+        - {x: 17, y: -37.5}
+        - {x: 28, y: -37.5}
+        - {x: 28, y: -31.5}
+        - {x: 26, y: -22.5}
+        - {x: 24, y: -20.5}
+        - {x: 20, y: -20.5}
+        - {x: 14, y: -23.5}
+      - - {x: 31, y: 21.5}
+        - {x: 31, y: 20.5}
+        - {x: 35, y: 16.5}
+        - {x: 39, y: 17.5}
+        - {x: 39, y: 23.5}
+        - {x: 34, y: 24.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6305410000000000800000000000000
+      internalID: 21300076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_39
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 144
+        width: 77
+        height: 75
+      alignment: 9
+      pivot: {x: 0.69961053, y: 0.003199997}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 34.5, y: 16.499992}
+        - {x: 30.5, y: 20.499992}
+        - {x: 30.5, y: -37.500008}
+        - {x: -11.5, y: -37.500008}
+        - {x: -18.5, y: -26.500008}
+        - {x: -20.5, y: -20.500008}
+        - {x: -17.5, y: -18.500008}
+        - {x: -6.5, y: -13.500008}
+        - {x: -22.5, y: -17.500008}
+        - {x: -38.5, y: -18.500008}
+        - {x: -38.5, y: -11.500008}
+        - {x: 11.5, y: 37.499992}
+        - {x: 18.5, y: 37.499992}
+        - {x: 30.5, y: 21.499992}
+        - {x: 33.5, y: 24.499992}
+        - {x: 38.5, y: 23.499992}
+        - {x: 38.5, y: 17.499992}
+      physicsShape:
+      - - {x: 29.5, y: 9.499992}
+        - {x: 30.5, y: 10.499992}
+        - {x: 30.5, y: 16.499992}
+        - {x: 20.5, y: 18.499992}
+        - {x: 18.5, y: 37.499992}
+        - {x: 12.5, y: 37.499992}
+        - {x: -1.5, y: 14.499992}
+        - {x: -12.5, y: -0.5000076}
+        - {x: -33.5, y: -8.500008}
+        - {x: -38.5, y: -11.500008}
+        - {x: -38.5, y: -18.500008}
+        - {x: -22.5, y: -17.500008}
+        - {x: -6.5, y: -13.500008}
+        - {x: -2.5, y: -9.500008}
+        - {x: -1.5, y: -10.500008}
+        - {x: 1.5, y: -9.500008}
+        - {x: 0.5, y: -10.500008}
+        - {x: -1.5, y: -10.500008}
+        - {x: -4.5, y: -12.500008}
+        - {x: -17.5, y: -18.500008}
+        - {x: -20.5, y: -20.500008}
+        - {x: -18.5, y: -26.500008}
+        - {x: -3.5, y: -23.500008}
+        - {x: -9.5, y: -37.500008}
+        - {x: 28.5, y: -37.500008}
+        - {x: 24.5, y: -15.500008}
+        - {x: 19.5, y: -1.5000076}
+      - - {x: 30.5, y: 21.499992}
+        - {x: 30.5, y: 20.499992}
+        - {x: 34.5, y: 16.499992}
+        - {x: 38.5, y: 17.499992}
+        - {x: 38.5, y: 23.499992}
+        - {x: 33.5, y: 24.499992}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6305410000000000800000000000000
+      internalID: 21300078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_40
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 69
+        width: 77
+        height: 75
+      alignment: 9
+      pivot: {x: 0.69961053, y: 0.003199997}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 34.5, y: 16.5}
+        - {x: 30.5, y: 20.5}
+        - {x: 30.5, y: -37.5}
+        - {x: -33.5, y: -37.5}
+        - {x: -38.5, y: -19.5}
+        - {x: -38.5, y: -12.5}
+        - {x: 10.5, y: 37.5}
+        - {x: 18.5, y: 37.5}
+        - {x: 30.5, y: 23.5}
+        - {x: 30.5, y: 21.5}
+        - {x: 33.5, y: 24.5}
+        - {x: 38.5, y: 23.5}
+        - {x: 38.5, y: 17.5}
+      physicsShape:
+      - - {x: 27.5, y: -34.5}
+        - {x: 20.5, y: -7.5}
+        - {x: 24.5, y: 2.5}
+        - {x: 30.5, y: 10.5}
+        - {x: 30.5, y: 17.5}
+        - {x: 20.5, y: 18.5}
+        - {x: 18.5, y: 37.5}
+        - {x: 11.5, y: 37.5}
+        - {x: 0.5, y: 13.5}
+        - {x: -14.5, y: -2.5}
+        - {x: -34.5, y: -8.5}
+        - {x: -38.5, y: -12.5}
+        - {x: -38.5, y: -17.5}
+        - {x: -34.5, y: -17.5}
+        - {x: -6.5, y: -13.5}
+        - {x: -19.5, y: -19.5}
+        - {x: -20.5, y: -24.5}
+        - {x: -15.5, y: -26.5}
+        - {x: -3.5, y: -22.5}
+        - {x: -8.5, y: -36.5}
+        - {x: -8.5, y: -37.5}
+        - {x: 2.5, y: -37.5}
+        - {x: 8.5, y: -25.5}
+        - {x: 16.5, y: -37.5}
+        - {x: 26.5, y: -37.5}
+      - - {x: 3.5, y: -8.5}
+        - {x: 1.5, y: -8.5}
+        - {x: -4.5, y: -11.5}
+        - {x: -3.5, y: -13.5}
+      - - {x: 30.5, y: 21.5}
+        - {x: 30.5, y: 20.5}
+        - {x: 34.5, y: 16.5}
+        - {x: 38.5, y: 17.5}
+        - {x: 38.5, y: 23.5}
+        - {x: 33.5, y: 24.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07305410000000000800000000000000
+      internalID: 21300080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_41
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 376
+        width: 77
+        height: 75
+      alignment: 9
+      pivot: {x: 0.69961053, y: 0.003199997}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 34.5, y: 16.500008}
+        - {x: 30.5, y: 20.500008}
+        - {x: 30.5, y: 0.5000076}
+        - {x: 23.5, y: -23.499992}
+        - {x: 20.5, y: -35.499992}
+        - {x: 17.5, y: -37.499992}
+        - {x: -10.5, y: -37.499992}
+        - {x: -38.5, y: -17.499992}
+        - {x: -38.5, y: -9.499992}
+        - {x: 11.5, y: 37.500008}
+        - {x: 18.5, y: 37.500008}
+        - {x: 30.5, y: 23.500008}
+        - {x: 30.5, y: 21.500008}
+        - {x: 33.5, y: 24.500008}
+        - {x: 38.5, y: 23.500008}
+        - {x: 38.5, y: 17.500008}
+      physicsShape:
+      - - {x: 20.5, y: -35.499992}
+        - {x: 23.5, y: -23.499992}
+        - {x: 20.5, y: -7.4999924}
+        - {x: 30.5, y: 9.500008}
+        - {x: 30.5, y: 17.500008}
+        - {x: 20.5, y: 18.500008}
+        - {x: 18.5, y: 37.500008}
+        - {x: 12.5, y: 37.500008}
+        - {x: -0.5, y: 12.500008}
+        - {x: -22.5, y: -2.4999924}
+        - {x: -38.5, y: -10.499992}
+        - {x: -38.5, y: -17.499992}
+        - {x: -34.5, y: -17.499992}
+        - {x: -19.5, y: -19.499992}
+        - {x: -20.5, y: -24.499992}
+        - {x: -14.5, y: -26.499992}
+        - {x: -8.5, y: -36.499992}
+        - {x: -8.5, y: -37.499992}
+        - {x: 1.5, y: -37.499992}
+        - {x: 9.5, y: -19.499992}
+        - {x: 13.5, y: -32.499992}
+      - - {x: 3.5, y: -8.499992}
+        - {x: 1.5, y: -8.499992}
+        - {x: -4.5, y: -11.499992}
+        - {x: -3.5, y: -13.499992}
+      - - {x: 30.5, y: 21.500008}
+        - {x: 30.5, y: 20.500008}
+        - {x: 34.5, y: 16.500008}
+        - {x: 38.5, y: 17.500008}
+        - {x: 38.5, y: 23.500008}
+        - {x: 33.5, y: 24.500008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27305410000000000800000000000000
+      internalID: 21300082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 301
+        width: 77
+        height: 75
+      alignment: 9
+      pivot: {x: 0.69961053, y: 0.003199997}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 34.5, y: 16.500008}
+        - {x: 30.5, y: 20.500008}
+        - {x: 30.5, y: -12.499992}
+        - {x: 24.5, y: -34.499992}
+        - {x: 17.5, y: -37.499992}
+        - {x: -9.5, y: -37.499992}
+        - {x: -19.5, y: -31.499992}
+        - {x: -38.5, y: -17.499992}
+        - {x: -38.5, y: -12.499992}
+        - {x: 5.5, y: 37.500008}
+        - {x: 19.5, y: 37.500008}
+        - {x: 30.5, y: 27.500008}
+        - {x: 30.5, y: 21.500008}
+        - {x: 33.5, y: 24.500008}
+        - {x: 38.5, y: 23.500008}
+        - {x: 38.5, y: 17.500008}
+      physicsShape:
+      - - {x: 24.5, y: -34.499992}
+        - {x: 22.5, y: -7.4999924}
+        - {x: 24.5, y: 2.5000076}
+        - {x: 30.5, y: 10.500008}
+        - {x: 30.5, y: 17.500008}
+        - {x: 20.5, y: 18.500008}
+        - {x: 18.5, y: 37.500008}
+        - {x: 11.5, y: 37.500008}
+        - {x: -13.5, y: -3.4999924}
+        - {x: -34.5, y: -8.499992}
+        - {x: -38.5, y: -12.499992}
+        - {x: -38.5, y: -17.499992}
+        - {x: -34.5, y: -17.499992}
+        - {x: -19.5, y: -19.499992}
+        - {x: -20.5, y: -24.499992}
+        - {x: -14.5, y: -26.499992}
+        - {x: -3.5, y: -22.499992}
+        - {x: -8.5, y: -36.499992}
+        - {x: -8.5, y: -37.499992}
+        - {x: 0.5, y: -37.499992}
+        - {x: 1.5, y: -36.499992}
+        - {x: 10.5, y: -22.499992}
+        - {x: 16.5, y: -34.499992}
+      - - {x: 3.5, y: -8.499992}
+        - {x: 1.5, y: -8.499992}
+        - {x: -4.5, y: -11.499992}
+        - {x: -3.5, y: -13.499992}
+      - - {x: 30.5, y: 21.500008}
+        - {x: 30.5, y: 20.500008}
+        - {x: 34.5, y: 16.500008}
+        - {x: 38.5, y: 17.500008}
+        - {x: 38.5, y: 23.500008}
+        - {x: 33.5, y: 24.500008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47305410000000000800000000000000
+      internalID: 21300084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_43
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 226
+        width: 77
+        height: 75
+      alignment: 9
+      pivot: {x: 0.69961053, y: 0.003199997}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 34.5, y: 16.499992}
+        - {x: 30.5, y: 20.499992}
+        - {x: 30.5, y: -17.500008}
+        - {x: 25.5, y: -37.500008}
+        - {x: -12.5, y: -37.500008}
+        - {x: -38.5, y: -19.500008}
+        - {x: -38.5, y: 15.499992}
+        - {x: -4.5, y: 37.499992}
+        - {x: 30.5, y: 37.499992}
+        - {x: 30.5, y: 21.499992}
+        - {x: 33.5, y: 24.499992}
+        - {x: 38.5, y: 23.499992}
+        - {x: 38.5, y: 17.499992}
+      physicsShape:
+      - - {x: 24.5, y: -26.500008}
+        - {x: 20.5, y: -7.5000076}
+        - {x: 24.5, y: 2.4999924}
+        - {x: 30.5, y: 10.499992}
+        - {x: 30.5, y: 17.499992}
+        - {x: 20.5, y: 18.499992}
+        - {x: 18.5, y: 37.499992}
+        - {x: 11.5, y: 37.499992}
+        - {x: -13.5, y: -3.5000076}
+        - {x: -34.5, y: -8.500008}
+        - {x: -38.5, y: -12.500008}
+        - {x: -38.5, y: -17.500008}
+        - {x: -34.5, y: -17.500008}
+        - {x: -19.5, y: -19.500008}
+        - {x: -20.5, y: -24.500008}
+        - {x: -14.5, y: -26.500008}
+        - {x: -3.5, y: -22.500008}
+        - {x: -8.5, y: -36.500008}
+        - {x: -8.5, y: -37.500008}
+        - {x: 1.5, y: -37.500008}
+        - {x: 9.5, y: -21.500008}
+        - {x: 11.5, y: -30.500008}
+        - {x: 20.5, y: -34.500008}
+      - - {x: 3.5, y: -8.500008}
+        - {x: 1.5, y: -8.500008}
+        - {x: -4.5, y: -11.500008}
+        - {x: -3.5, y: -13.500008}
+      - - {x: 30.5, y: 21.499992}
+        - {x: 30.5, y: 20.499992}
+        - {x: 34.5, y: 16.499992}
+        - {x: 38.5, y: 17.499992}
+        - {x: 38.5, y: 23.499992}
+        - {x: 33.5, y: 24.499992}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67305410000000000800000000000000
+      internalID: 21300086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_44
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 151
+        width: 77
+        height: 75
+      alignment: 9
+      pivot: {x: 0.69961053, y: 0.003199997}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 34.5, y: 16.499992}
+        - {x: 30.5, y: 20.499992}
+        - {x: 30.5, y: -37.500008}
+        - {x: -27.5, y: -37.500008}
+        - {x: -38.5, y: -27.500008}
+        - {x: -38.5, y: 12.499992}
+        - {x: -2.5, y: 37.499992}
+        - {x: 30.5, y: 37.499992}
+        - {x: 30.5, y: 21.499992}
+        - {x: 33.5, y: 24.499992}
+        - {x: 38.5, y: 23.499992}
+        - {x: 38.5, y: 17.499992}
+      physicsShape:
+      - - {x: 19.5, y: -33.500008}
+        - {x: 26.5, y: -27.500008}
+        - {x: 21.5, y: -1.5000076}
+        - {x: 29.5, y: 9.499992}
+        - {x: 30.5, y: 10.499992}
+        - {x: 30.5, y: 16.499992}
+        - {x: 20.5, y: 18.499992}
+        - {x: 18.5, y: 37.499992}
+        - {x: 11.5, y: 37.499992}
+        - {x: -13.5, y: -3.5000076}
+        - {x: -34.5, y: -8.500008}
+        - {x: -38.5, y: -12.500008}
+        - {x: -38.5, y: -17.500008}
+        - {x: -34.5, y: -17.500008}
+        - {x: -19.5, y: -19.500008}
+        - {x: -20.5, y: -24.500008}
+        - {x: -14.5, y: -26.500008}
+        - {x: -8.5, y: -36.500008}
+        - {x: -8.5, y: -37.500008}
+        - {x: 0.5, y: -37.500008}
+        - {x: 1.5, y: -36.500008}
+        - {x: 10.5, y: -22.500008}
+        - {x: 15.5, y: -32.500008}
+      - - {x: 3.5, y: -8.500008}
+        - {x: 1.5, y: -8.500008}
+        - {x: -4.5, y: -11.500008}
+        - {x: -3.5, y: -13.500008}
+      - - {x: 30.5, y: 21.499992}
+        - {x: 30.5, y: 20.499992}
+        - {x: 34.5, y: 16.499992}
+        - {x: 38.5, y: 17.499992}
+        - {x: 38.5, y: 23.499992}
+        - {x: 33.5, y: 24.499992}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87305410000000000800000000000000
+      internalID: 21300088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_45
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 293
+        width: 77
+        height: 74
+      alignment: 9
+      pivot: {x: 0.69961053, y: 0.00324324}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 34.5, y: 16.000008}
+        - {x: 30.5, y: 20.000008}
+        - {x: 30.5, y: -19.999992}
+        - {x: 26.5, y: -36.999992}
+        - {x: -20.5, y: -36.999992}
+        - {x: -34.5, y: -17.999992}
+        - {x: -38.5, y: -17.999992}
+        - {x: -38.5, y: 12.000008}
+        - {x: -1.5, y: 37.000008}
+        - {x: 30.5, y: 37.000008}
+        - {x: 30.5, y: 21.000008}
+        - {x: 33.5, y: 24.000008}
+        - {x: 38.5, y: 23.000008}
+        - {x: 38.5, y: 17.000008}
+      physicsShape:
+      - - {x: 26.5, y: -20.999992}
+        - {x: 21.5, y: -6.9999924}
+        - {x: 30.5, y: 10.000008}
+        - {x: 30.5, y: 16.000008}
+        - {x: 20.5, y: 18.000008}
+        - {x: 18.5, y: 37.000008}
+        - {x: 12.5, y: 37.000008}
+        - {x: 7.5, y: 23.000008}
+        - {x: -8.5, y: 4.0000076}
+        - {x: -13.5, y: -3.9999924}
+        - {x: -34.5, y: -8.999992}
+        - {x: -38.5, y: -12.999992}
+        - {x: -38.5, y: -17.999992}
+        - {x: -34.5, y: -17.999992}
+        - {x: -6.5, y: -13.999992}
+        - {x: -19.5, y: -19.999992}
+        - {x: -23.5, y: -25.999992}
+        - {x: -7.5, y: -27.999992}
+        - {x: -9.5, y: -36.999992}
+        - {x: 1.5, y: -36.999992}
+        - {x: 9.5, y: -20.999992}
+        - {x: 15.5, y: -31.999992}
+        - {x: 20.5, y: -34.999992}
+      - - {x: 3.5, y: -8.999992}
+        - {x: 1.5, y: -8.999992}
+        - {x: -4.5, y: -11.999992}
+        - {x: -3.5, y: -13.999992}
+      - - {x: 30.5, y: 21.000008}
+        - {x: 30.5, y: 20.000008}
+        - {x: 34.5, y: 16.000008}
+        - {x: 38.5, y: 17.000008}
+        - {x: 38.5, y: 23.000008}
+        - {x: 33.5, y: 24.000008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7305410000000000800000000000000
+      internalID: 21300090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_46
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 219
+        width: 77
+        height: 74
+      alignment: 9
+      pivot: {x: 0.6866235, y: 0.00324324}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 34.5, y: 17.999992}
+        - {x: 30.5, y: 21.999992}
+        - {x: 30.5, y: -19.000008}
+        - {x: 25.5, y: -37.000008}
+        - {x: -10.5, y: -37.000008}
+        - {x: -26.5, y: -25.000008}
+        - {x: -19.5, y: -19.000008}
+        - {x: -8.5, y: -14.000008}
+        - {x: -10.5, y: -12.000008}
+        - {x: -34.5, y: -18.000008}
+        - {x: -38.5, y: -18.000008}
+        - {x: -38.5, y: -13.000008}
+        - {x: 8.5, y: 32.999992}
+        - {x: 11.5, y: 36.999992}
+        - {x: 17.5, y: 36.999992}
+        - {x: 30.5, y: 27.999992}
+        - {x: 30.5, y: 22.999992}
+        - {x: 33.5, y: 25.999992}
+        - {x: 38.5, y: 24.999992}
+        - {x: 38.5, y: 18.999992}
+      physicsShape:
+      - - {x: 19.5, y: 0.9999924}
+        - {x: 29.5, y: 9.999992}
+        - {x: 30.5, y: 11.999992}
+        - {x: 30.5, y: 18.999992}
+        - {x: 19.5, y: 21.999992}
+        - {x: 16.5, y: 36.999992}
+        - {x: 11.5, y: 36.999992}
+        - {x: 8.5, y: 32.999992}
+        - {x: -7.5, y: 4.9999924}
+        - {x: -34.5, y: -10.000008}
+        - {x: -38.5, y: -13.000008}
+        - {x: -38.5, y: -18.000008}
+        - {x: -34.5, y: -18.000008}
+        - {x: -10.5, y: -12.000008}
+        - {x: -8.5, y: -14.000008}
+        - {x: 0.5, y: -9.000008}
+        - {x: -19.5, y: -19.000008}
+        - {x: -26.5, y: -25.000008}
+        - {x: -10.5, y: -28.000008}
+        - {x: -9.5, y: -37.000008}
+        - {x: 0.5, y: -37.000008}
+        - {x: 18.5, y: -34.000008}
+        - {x: 24.5, y: -25.000008}
+      - - {x: 30.5, y: 22.999992}
+        - {x: 30.5, y: 21.999992}
+        - {x: 34.5, y: 17.999992}
+        - {x: 38.5, y: 18.999992}
+        - {x: 38.5, y: 24.999992}
+        - {x: 33.5, y: 25.999992}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7305410000000000800000000000000
+      internalID: 21300092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_47
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 62
+        width: 78
+        height: 72
+      alignment: 9
+      pivot: {x: 0.70346165, y: 0.0033333302}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 35.000015, y: 21}
+        - {x: 31.000015, y: 25}
+        - {x: 31.000015, y: 26}
+        - {x: 34.000015, y: 29}
+        - {x: 39.000015, y: 28}
+        - {x: 39.000015, y: 22}
+      - - {x: -27.999985, y: -17}
+        - {x: -38.999985, y: -19}
+        - {x: -38.999985, y: -11}
+        - {x: 4.0000153, y: 36}
+        - {x: 12.000015, y: 36}
+        - {x: 32.000015, y: 22}
+        - {x: 32.000015, y: -24}
+        - {x: 19.000015, y: -36}
+        - {x: -12.999985, y: -36}
+        - {x: -19.999985, y: -28}
+      physicsShape:
+      - - {x: 23.000015, y: -29}
+        - {x: 25.000015, y: -20}
+        - {x: 23.000015, y: -6}
+        - {x: 27.000015, y: 7}
+        - {x: 32.000015, y: 12}
+        - {x: 32.000015, y: 20}
+        - {x: 27.000015, y: 22}
+        - {x: 23.000015, y: 15}
+        - {x: 12.000015, y: 36}
+        - {x: 5.0000153, y: 36}
+        - {x: 3.0000153, y: 16}
+        - {x: -4.9999847, y: 3}
+        - {x: -38.999985, y: -11}
+        - {x: -38.999985, y: -19}
+        - {x: -27.999985, y: -17}
+        - {x: 4.0000153, y: -7}
+        - {x: -16.999985, y: -18}
+        - {x: -15.999985, y: -26}
+        - {x: -4.9999847, y: -31}
+        - {x: -7.9999847, y: -35}
+        - {x: -7.9999847, y: -36}
+        - {x: 2.0000153, y: -36}
+        - {x: 10.000015, y: -24}
+        - {x: 13.000015, y: -29}
+        - {x: 20.000015, y: -33}
+      - - {x: 31.000015, y: 26}
+        - {x: 31.000015, y: 25}
+        - {x: 35.000015, y: 21}
+        - {x: 39.000015, y: 22}
+        - {x: 39.000015, y: 28}
+        - {x: 34.000015, y: 29}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7305410000000000800000000000000
+      internalID: 21300094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_48
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 134
+        width: 73
+        height: 73
+      alignment: 9
+      pivot: {x: 0.7379453, y: 0.003287668}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 32.50001, y: 24.499992}
+        - {x: 28.500011, y: 27.499992}
+        - {x: 28.500011, y: 28.499992}
+        - {x: 31.500011, y: 31.499992}
+        - {x: 35.50001, y: 31.499992}
+        - {x: 36.50001, y: 30.499992}
+        - {x: 36.50001, y: 25.499992}
+      - - {x: -28.499989, y: -36.500008}
+        - {x: -36.49999, y: -21.500008}
+        - {x: -36.49999, y: -11.500008}
+        - {x: -10.499989, y: 36.499992}
+        - {x: 13.500011, y: 36.499992}
+        - {x: 31.500011, y: 21.499992}
+        - {x: 31.500011, y: -36.500008}
+      physicsShape:
+      - - {x: 24.500011, y: -29.500008}
+        - {x: 26.500011, y: -20.500008}
+        - {x: 24.500011, y: -5.5000076}
+        - {x: 25.500011, y: 7.4999924}
+        - {x: 31.500011, y: 11.499992}
+        - {x: 31.500011, y: 14.499992}
+        - {x: 28.500011, y: 20.499992}
+        - {x: 26.500011, y: 19.499992}
+        - {x: 19.500011, y: 18.499992}
+        - {x: 11.500011, y: 36.499992}
+        - {x: 5.5000114, y: 36.499992}
+        - {x: 4.5000114, y: 22.499992}
+        - {x: 1.5000114, y: 8.499992}
+        - {x: -10.499989, y: 0.49999237}
+        - {x: -36.49999, y: -13.500008}
+        - {x: -36.49999, y: -20.500008}
+        - {x: -31.499989, y: -20.500008}
+        - {x: 1.5000114, y: -9.500008}
+        - {x: -14.499989, y: -19.500008}
+        - {x: -14.499989, y: -27.500008}
+        - {x: -2.4999886, y: -23.500008}
+        - {x: -6.4999886, y: -35.500008}
+        - {x: -6.4999886, y: -36.500008}
+        - {x: 3.5000114, y: -36.500008}
+        - {x: 11.500011, y: -25.500008}
+        - {x: 14.500011, y: -29.500008}
+        - {x: 21.500011, y: -33.500008}
+      - - {x: 31.500011, y: 31.499992}
+        - {x: 28.500011, y: 28.499992}
+        - {x: 28.500011, y: 27.499992}
+        - {x: 32.50001, y: 24.499992}
+        - {x: 36.50001, y: 25.499992}
+        - {x: 36.50001, y: 30.499992}
+        - {x: 35.50001, y: 31.499992}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08305410000000000800000000000000
+      internalID: 21300096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_49
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 122
+        width: 74
+        height: 55
+      alignment: 9
+      pivot: {x: 0.8495947, y: 0.0043636323}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 37.000015, y: -27.499998}
+        - {x: -36.999985, y: -27.499998}
+        - {x: -36.999985, y: 24.500002}
+        - {x: -23.999985, y: 27.500002}
+        - {x: 37.000015, y: 27.500002}
+      physicsShape:
+      - - {x: 30.000015, y: -24.499998}
+        - {x: 34.000015, y: -20.499998}
+        - {x: 31.000015, y: -4.499998}
+        - {x: 37.000015, y: -1.4999981}
+        - {x: 37.000015, y: 10.500002}
+        - {x: 35.000015, y: 14.500002}
+        - {x: 20.000015, y: 13.500002}
+        - {x: 11.000015, y: 27.500002}
+        - {x: 5.0000153, y: 27.500002}
+        - {x: 5.0000153, y: 21.500002}
+        - {x: 2.0000153, y: 11.500002}
+        - {x: -7.9999847, y: 11.500002}
+        - {x: -23.999985, y: 6.500002}
+        - {x: -36.999985, y: 0.5000019}
+        - {x: -36.999985, y: -7.499998}
+        - {x: 4.0000153, y: -0.4999981}
+        - {x: -5.9999847, y: -7.499998}
+        - {x: -3.9999847, y: -13.499998}
+        - {x: 2.0000153, y: -27.499998}
+        - {x: 10.000015, y: -27.499998}
+        - {x: 12.000015, y: -25.499998}
+        - {x: 12.000015, y: -15.499998}
+        - {x: 19.000015, y: -15.499998}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28305410000000000800000000000000
+      internalID: 21300098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_50
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 245
+        width: 72
+        height: 48
+      alignment: 9
+      pivot: {x: 0.8870835, y: 0.004999995}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -33.999985, y: 3.9999943}
+        - {x: -35.999985, y: 4.9999943}
+        - {x: -35.999985, y: 18.999994}
+        - {x: -17.999985, y: 23.999994}
+        - {x: 21.000015, y: 23.999994}
+        - {x: 36.000015, y: -0.000005722046}
+        - {x: 36.000015, y: -18.000006}
+        - {x: 22.000015, y: -24.000006}
+        - {x: -9.999985, y: -24.000006}
+      physicsShape:
+      - - {x: 36.000015, y: -1.0000057}
+        - {x: 11.000015, y: 23.999994}
+        - {x: 4.0000153, y: 23.999994}
+        - {x: -5.9999847, y: 14.999994}
+        - {x: -19.999985, y: 12.999994}
+        - {x: -35.999985, y: 10.999994}
+        - {x: -35.999985, y: 4.9999943}
+        - {x: -33.999985, y: 3.9999943}
+        - {x: -3.9999847, y: 1.9999943}
+        - {x: -6.9999847, y: -7.0000057}
+        - {x: -1.9999847, y: -24.000006}
+        - {x: 12.000015, y: -24.000006}
+        - {x: 13.000015, y: -19.000006}
+        - {x: 23.000015, y: -24.000006}
+        - {x: 36.000015, y: -17.000006}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48305410000000000800000000000000
+      internalID: 21300100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_51
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 440
+        width: 61
+        height: 47
+      alignment: 9
+      pivot: {x: 0.997869, y: 0.005106378}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2.5000153, y: -23.49999}
+        - {x: -30.499985, y: 3.5000095}
+        - {x: -30.499985, y: 11.50001}
+        - {x: -27.499985, y: 13.50001}
+        - {x: 9.500015, y: 17.50001}
+        - {x: 10.500015, y: 23.50001}
+        - {x: 17.500015, y: 23.50001}
+        - {x: 30.500015, y: -3.4999905}
+        - {x: 30.500015, y: -19.49999}
+        - {x: 16.500015, y: -23.49999}
+      physicsShape:
+      - - {x: 29.500015, y: -2.4999905}
+        - {x: 15.500015, y: 23.50001}
+        - {x: 10.500015, y: 23.50001}
+        - {x: 9.500015, y: 17.50001}
+        - {x: -27.499985, y: 13.50001}
+        - {x: -30.499985, y: 11.50001}
+        - {x: -30.499985, y: 5.5000095}
+        - {x: -10.499985, y: 1.5000095}
+        - {x: -0.49998474, y: 0.50000954}
+        - {x: 6.5000153, y: 2.5000095}
+        - {x: -0.49998474, y: -1.4999905}
+        - {x: -3.4999847, y: -7.4999905}
+        - {x: 3.5000153, y: -23.49999}
+        - {x: 14.500015, y: -23.49999}
+        - {x: 16.500015, y: -17.49999}
+        - {x: 30.500015, y: -19.49999}
+        - {x: 30.500015, y: -5.4999905}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68305410000000000800000000000000
+      internalID: 21300102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_52
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 345
+        width: 61
+        height: 48
+      alignment: 9
+      pivot: {x: 0.9650821, y: 0.046666663}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 30.500015, y: -23.99999}
+        - {x: -30.499985, y: -23.99999}
+        - {x: -30.499985, y: 24.00001}
+        - {x: 21.500015, y: 24.00001}
+        - {x: 30.500015, y: -9.99999}
+      physicsShape:
+      - - {x: 7.5000153, y: 24.00001}
+        - {x: 1.5000153, y: 17.00001}
+        - {x: -30.499985, y: 16.00001}
+        - {x: -30.499985, y: 11.00001}
+        - {x: -25.499985, y: 9.00001}
+        - {x: -10.499985, y: 5.0000095}
+        - {x: 6.5000153, y: 0.000009536743}
+        - {x: -7.4999847, y: -0.99999046}
+        - {x: -0.49998474, y: -14.99999}
+        - {x: 1.5000153, y: -23.99999}
+        - {x: 12.500015, y: -23.99999}
+        - {x: 15.500015, y: -17.99999}
+        - {x: 21.500015, y: -23.99999}
+        - {x: 30.500015, y: -23.99999}
+        - {x: 30.500015, y: -12.99999}
+        - {x: 28.500015, y: -3.9999905}
+        - {x: 20.500015, y: 12.00001}
+        - {x: 15.500015, y: 24.00001}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88305410000000000800000000000000
+      internalID: 21300104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_53
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 393
+        width: 62
+        height: 47
+      alignment: 9
+      pivot: {x: 0.9495163, y: 0.005106378}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1.9999847, y: -23.49999}
+        - {x: -30.999985, y: 5.5000095}
+        - {x: -30.999985, y: 13.50001}
+        - {x: 9.000015, y: 18.50001}
+        - {x: 10.000015, y: 23.50001}
+        - {x: 16.000015, y: 23.50001}
+        - {x: 29.000015, y: -0.49999046}
+        - {x: 31.000015, y: -9.49999}
+        - {x: 31.000015, y: -23.49999}
+      physicsShape:
+      - - {x: 31.000015, y: -9.49999}
+        - {x: 29.000015, y: -0.49999046}
+        - {x: 20.000015, y: 11.50001}
+        - {x: 16.000015, y: 23.50001}
+        - {x: 10.000015, y: 23.50001}
+        - {x: 9.000015, y: 18.50001}
+        - {x: 0.000015258789, y: 16.50001}
+        - {x: -30.999985, y: 13.50001}
+        - {x: -30.999985, y: 7.5000095}
+        - {x: -1.9999847, y: 0.50000954}
+        - {x: -7.9999847, y: -6.4999905}
+        - {x: -7.9999847, y: -8.49999}
+        - {x: -4.9999847, y: -11.49999}
+        - {x: 1.0000153, y: -23.49999}
+        - {x: 15.000015, y: -23.49999}
+        - {x: 16.000015, y: -22.49999}
+        - {x: 19.000015, y: -23.49999}
+        - {x: 31.000015, y: -23.49999}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8305410000000000800000000000000
+      internalID: 21300106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_54
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 293
+        width: 66
+        height: 52
+      alignment: 9
+      pivot: {x: 0.9374244, y: 0.06230769}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0.000015258789, y: -23.99999}
+        - {x: -32.999985, y: 0.000009536743}
+        - {x: -32.999985, y: 9.00001}
+        - {x: 11.000015, y: 21.00001}
+        - {x: 12.000015, y: 26.00001}
+        - {x: 20.000015, y: 26.00001}
+        - {x: 33.000015, y: -1.9999905}
+        - {x: 33.000015, y: -25.99999}
+        - {x: 3.0000153, y: -25.99999}
+      physicsShape:
+      - - {x: 33.000015, y: -5.9999905}
+        - {x: 29.000015, y: 1.0000095}
+        - {x: 18.000015, y: 26.00001}
+        - {x: 12.000015, y: 26.00001}
+        - {x: 11.000015, y: 21.00001}
+        - {x: 9.000015, y: 10.00001}
+        - {x: -1.9999847, y: 12.00001}
+        - {x: -32.999985, y: 9.00001}
+        - {x: -32.999985, y: 3.0000095}
+        - {x: -8.999985, y: -2.9999905}
+        - {x: -7.9999847, y: -8.99999}
+        - {x: -3.9999847, y: -10.99999}
+        - {x: 0.000015258789, y: -23.99999}
+        - {x: 3.0000153, y: -25.99999}
+        - {x: 14.000015, y: -25.99999}
+        - {x: 18.000015, y: -20.99999}
+        - {x: 26.000015, y: -25.99999}
+        - {x: 33.000015, y: -24.99999}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8305410000000000800000000000000
+      internalID: 21300108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_55
+      rect:
+        serializedVersion: 2
+        x: 922
+        y: 0
+        width: 69
+        height: 60
+      alignment: 9
+      pivot: {x: 0.9401451, y: 0.003999996}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17.499985, y: -30}
+        - {x: -34.499985, y: -20}
+        - {x: -34.499985, y: -11}
+        - {x: 10.500015, y: 20.000002}
+        - {x: 13.500015, y: 30.000002}
+        - {x: 24.500015, y: 30.000002}
+        - {x: 34.500015, y: -1}
+        - {x: 34.500015, y: -30}
+      physicsShape:
+      - - {x: 34.500015, y: -4}
+        - {x: 25.500015, y: 7.000002}
+        - {x: 19.500015, y: 30.000002}
+        - {x: 13.500015, y: 30.000002}
+        - {x: 10.500015, y: 20.000002}
+        - {x: 1.5000153, y: 7.000002}
+        - {x: -34.499985, y: -11}
+        - {x: -34.499985, y: -18}
+        - {x: -19.499985, y: -15}
+        - {x: -0.49998474, y: -10}
+        - {x: -7.4999847, y: -15}
+        - {x: -7.4999847, y: -19}
+        - {x: -6.4999847, y: -22}
+        - {x: 0.50001526, y: -30}
+        - {x: 13.500015, y: -30}
+        - {x: 20.500015, y: -20}
+        - {x: 27.500015, y: -30}
+        - {x: 34.500015, y: -30}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8305410000000000800000000000000
+      internalID: 21300110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_56
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 291
+        width: 66
+        height: 67
+      alignment: 9
+      pivot: {x: 0.9374244, y: 0.0035820862}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28.999985, y: -25.499992}
+        - {x: -32.999985, y: -24.499992}
+        - {x: -32.999985, y: -17.499992}
+        - {x: 12.000015, y: 33.500008}
+        - {x: 21.000015, y: 33.500008}
+        - {x: 33.000015, y: -1.4999924}
+        - {x: 33.000015, y: -12.499992}
+        - {x: 31.000015, y: -14.499992}
+        - {x: 29.000015, y: -14.499992}
+        - {x: 26.000015, y: -11.499992}
+        - {x: 26.000015, y: -12.499992}
+        - {x: 32.000015, y: -18.499992}
+        - {x: 33.000015, y: -25.499992}
+        - {x: 33.000015, y: -33.499992}
+        - {x: -18.999985, y: -33.499992}
+      physicsShape:
+      - - {x: 33.000015, y: -25.499992}
+        - {x: 32.000015, y: -18.499992}
+        - {x: 26.000015, y: -12.499992}
+        - {x: 26.000015, y: -8.499992}
+        - {x: 23.000015, y: -5.4999924}
+        - {x: 26.000015, y: -7.4999924}
+        - {x: 26.000015, y: -11.499992}
+        - {x: 29.000015, y: -14.499992}
+        - {x: 31.000015, y: -14.499992}
+        - {x: 33.000015, y: -12.499992}
+        - {x: 33.000015, y: -1.4999924}
+        - {x: 21.000015, y: 33.500008}
+        - {x: 14.000015, y: 33.500008}
+        - {x: 10.000015, y: 12.500008}
+        - {x: -32.999985, y: -17.499992}
+        - {x: -32.999985, y: -24.499992}
+        - {x: -28.999985, y: -25.499992}
+        - {x: -18.999985, y: -27.499992}
+        - {x: -4.9999847, y: -33.499992}
+        - {x: 7.0000153, y: -33.499992}
+        - {x: 15.000015, y: -19.499992}
+        - {x: 25.000015, y: -33.499992}
+        - {x: 33.000015, y: -33.499992}
+      - - {x: -0.99998474, y: -15.499992}
+        - {x: 4.0000153, y: -11.499992}
+        - {x: 2.0000153, y: -11.499992}
+        - {x: -1.9999847, y: -14.499992}
+        - {x: -1.9999847, y: -15.499992}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09305410000000000800000000000000
+      internalID: 21300112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_57
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 365
+        width: 66
+        height: 71
+      alignment: 9
+      pivot: {x: 0.9374244, y: 0.0033802784}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9.999985, y: -35.499992}
+        - {x: -32.999985, y: -31.499992}
+        - {x: -32.999985, y: -21.499992}
+        - {x: 11.000015, y: 35.500008}
+        - {x: 19.000015, y: 35.500008}
+        - {x: 32.000015, y: 3.5000076}
+        - {x: 33.000015, y: -8.499992}
+        - {x: 33.000015, y: -35.499992}
+        - {x: 24.000015, y: -35.499992}
+        - {x: 12.000015, y: -24.499992}
+        - {x: 4.0000153, y: -35.499992}
+      physicsShape:
+      - - {x: 33.000015, y: -10.499992}
+        - {x: 31.000015, y: 2.5000076}
+        - {x: 19.000015, y: 35.500008}
+        - {x: 12.000015, y: 35.500008}
+        - {x: 7.0000153, y: 10.500008}
+        - {x: -5.9999847, y: 8.500008}
+        - {x: -9.999985, y: -5.4999924}
+        - {x: -32.999985, y: -22.499992}
+        - {x: -32.999985, y: -29.499992}
+        - {x: -15.999985, y: -24.499992}
+        - {x: -12.999985, y: -29.499992}
+        - {x: -6.9999847, y: -35.499992}
+        - {x: 4.0000153, y: -35.499992}
+        - {x: 12.000015, y: -24.499992}
+        - {x: 24.000015, y: -35.499992}
+        - {x: 33.000015, y: -35.499992}
+      - - {x: 5.0000153, y: -11.499992}
+        - {x: 4.0000153, y: -11.499992}
+        - {x: 2.0000153, y: -13.499992}
+        - {x: 3.0000153, y: -14.499992}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29305410000000000800000000000000
+      internalID: 21300114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosscrawler_execution_58
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 148
+        width: 67
+        height: 72
+      alignment: 9
+      pivot: {x: 0.93835837, y: 0.0033333302}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.499985, y: -36.000008}
+        - {x: -33.499985, y: -33.000008}
+        - {x: -33.499985, y: -7.0000076}
+        - {x: 5.5000153, y: 35.999992}
+        - {x: 23.500015, y: 35.999992}
+        - {x: 33.500015, y: -9.000008}
+        - {x: 33.500015, y: -36.000008}
+      physicsShape:
+      - - {x: 33.500015, y: -26.000008}
+        - {x: 32.500015, y: -20.000008}
+        - {x: 30.500015, y: 1.9999924}
+        - {x: 21.500015, y: 16.999992}
+        - {x: 19.500015, y: 31.999992}
+        - {x: 18.500015, y: 35.999992}
+        - {x: 13.500015, y: 35.999992}
+        - {x: 10.500015, y: 26.999992}
+        - {x: 9.500015, y: 12.999992}
+        - {x: -5.4999847, y: 5.9999924}
+        - {x: -9.499985, y: -9.000008}
+        - {x: -33.499985, y: -23.000008}
+        - {x: -33.499985, y: -30.000008}
+        - {x: -16.499985, y: -26.000008}
+        - {x: -13.499985, y: -30.000008}
+        - {x: -7.4999847, y: -36.000008}
+        - {x: 4.5000153, y: -36.000008}
+        - {x: 15.500015, y: -23.000008}
+        - {x: 24.500015, y: -36.000008}
+        - {x: 33.500015, y: -36.000008}
+      - - {x: 4.5000153, y: -12.000008}
+        - {x: 3.5000153, y: -12.000008}
+        - {x: 1.5000153, y: -14.000008}
+        - {x: 2.5000153, y: -15.000008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49305410000000000800000000000000
+      internalID: 21300116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      crosscrawler_execution_23: 21300046
+      crosscrawler_execution_26: 21300052
+      crosscrawler_execution_53: 21300106
+      crosscrawler_execution_7: 21300014
+      crosscrawler_execution_5: 21300010
+      crosscrawler_execution_34: 21300068
+      crosscrawler_execution_6: 21300012
+      crosscrawler_execution_9: 21300018
+      crosscrawler_execution_24: 21300048
+      crosscrawler_execution_12: 21300024
+      crosscrawler_execution_13: 21300026
+      crosscrawler_execution_52: 21300104
+      crosscrawler_execution_46: 21300092
+      crosscrawler_execution_42: 21300084
+      crosscrawler_execution_14: 21300028
+      crosscrawler_execution_54: 21300108
+      crosscrawler_execution_36: 21300072
+      crosscrawler_execution_10: 21300020
+      crosscrawler_execution_28: 21300056
+      crosscrawler_execution_43: 21300086
+      crosscrawler_execution_45: 21300090
+      crosscrawler_execution_48: 21300096
+      crosscrawler_execution_37: 21300074
+      crosscrawler_execution_2: 21300004
+      crosscrawler_execution_16: 21300032
+      crosscrawler_execution_47: 21300094
+      crosscrawler_execution_56: 21300112
+      crosscrawler_execution_17: 21300034
+      crosscrawler_execution_58: 21300116
+      crosscrawler_execution_55: 21300110
+      crosscrawler_execution_22: 21300044
+      crosscrawler_execution_8: 21300016
+      crosscrawler_execution_11: 21300022
+      crosscrawler_execution_21: 21300042
+      crosscrawler_execution_27: 21300054
+      crosscrawler_execution_35: 21300070
+      crosscrawler_execution_57: 21300114
+      crosscrawler_execution_33: 21300066
+      crosscrawler_execution_25: 21300050
+      crosscrawler_execution_29: 21300058
+      crosscrawler_execution_32: 21300064
+      crosscrawler_execution_39: 21300078
+      crosscrawler_execution_50: 21300100
+      crosscrawler_execution_19: 21300038
+      crosscrawler_execution_40: 21300080
+      crosscrawler_execution_49: 21300098
+      crosscrawler_execution_3: 21300006
+      crosscrawler_execution_15: 21300030
+      crosscrawler_execution_38: 21300076
+      crosscrawler_execution_18: 21300036
+      crosscrawler_execution_20: 21300040
+      crosscrawler_execution_41: 21300082
+      crosscrawler_execution_51: 21300102
+      crosscrawler_execution_30: 21300060
+      crosscrawler_execution_4: 21300008
+      crosscrawler_execution_31: 21300062
+      crosscrawler_execution_1: 21300002
+      crosscrawler_execution_0: 21300000
+      crosscrawler_execution_44: 21300088
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

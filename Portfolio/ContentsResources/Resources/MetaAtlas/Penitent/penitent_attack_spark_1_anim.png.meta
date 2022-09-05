@@ -1,0 +1,599 @@
+fileFormatVersion: 2
+guid: 61ed79459bece1246a6542b1d17f9c2b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: penitent_attack_spark_1_anim_1
+  - first:
+      213: 21300002
+    second: penitent_attack_spark_1_anim_2
+  - first:
+      213: 21300004
+    second: penitent_attack_spark_1_anim_3
+  - first:
+      213: 21300006
+    second: penitent_attack_spark_1_anim_4
+  - first:
+      213: 21300008
+    second: penitent_attack_spark_1_anim_5
+  - first:
+      213: 21300010
+    second: penitent_attack_spark_1_anim_6
+  - first:
+      213: 21300012
+    second: penitent_attack_spark_1_anim_7
+  - first:
+      213: 21300014
+    second: penitent_attack_spark_1_anim_8
+  - first:
+      213: 21300016
+    second: penitent_attack_spark_1_anim_9
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 4
+  maxTextureSize: 916
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: penitent_attack_spark_1_anim_1
+      rect:
+        serializedVersion: 2
+        x: 234.05132
+        y: 257.1089
+        width: 145.89737
+        height: 41.846107
+      alignment: 9
+      pivot: {x: 0.26674014, y: 0.30882478}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 54.000015, y: -3.031952}
+        - {x: -1.9999847, y: -21.031952}
+        - {x: -72.999985, y: -21.031952}
+        - {x: -72.999985, y: -11.031952}
+        - {x: -22.999985, y: 20.968048}
+        - {x: 68.000015, y: 20.968048}
+        - {x: 72.000015, y: 19.968048}
+        - {x: 73.000015, y: 17.968048}
+        - {x: 73.000015, y: 15.968048}
+        - {x: 61.000015, y: 10.968048}
+        - {x: 33.000015, y: 2.968048}
+        - {x: 36.000015, y: 2.968048}
+      physicsShape:
+      - - {x: 4.0000153, y: -13.031952}
+        - {x: 10.000015, y: -12.031952}
+        - {x: 23.000015, y: -10.031952}
+        - {x: 25.000015, y: -4.031952}
+        - {x: 33.000015, y: -3.031952}
+        - {x: 37.000015, y: -0.031951904}
+        - {x: 36.000015, y: 2.968048}
+        - {x: 31.000015, y: 2.968048}
+        - {x: 33.000015, y: 2.968048}
+        - {x: 61.000015, y: 10.968048}
+        - {x: 73.000015, y: 15.968048}
+        - {x: 73.000015, y: 17.968048}
+        - {x: 72.000015, y: 19.968048}
+        - {x: 67.000015, y: 19.968048}
+        - {x: 46.000015, y: 14.968048}
+        - {x: 44.000015, y: 16.968048}
+        - {x: 39.000015, y: 17.968048}
+        - {x: 33.000015, y: 20.968048}
+        - {x: 5.0000153, y: 20.968048}
+        - {x: -6.9999847, y: 16.968048}
+        - {x: -16.999985, y: 12.968048}
+        - {x: -24.999985, y: 0.9680481}
+        - {x: -32.999985, y: -4.031952}
+        - {x: -66.999985, y: -13.031952}
+        - {x: -72.999985, y: -18.031952}
+        - {x: -71.999985, y: -21.031952}
+        - {x: -67.999985, y: -21.031952}
+        - {x: -59.999985, y: -20.031952}
+        - {x: -20.999985, y: -9.031952}
+        - {x: -16.999985, y: -15.031952}
+        - {x: -3.9999847, y: -13.031952}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_attack_spark_1_anim_2
+      rect:
+        serializedVersion: 2
+        x: 465.05133
+        y: 258.1089
+        width: 145.89737
+        height: 40.889183
+      alignment: 9
+      pivot: {x: 0.25303176, y: 0.29159582}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -4.000004, y: -20.55349}
+        - {x: -73, y: -20.55349}
+        - {x: -73, y: 10.44651}
+        - {x: -16.000004, y: 20.44651}
+        - {x: 73, y: 20.44651}
+        - {x: 73, y: 14.44651}
+        - {x: 52.999996, y: -15.55349}
+      physicsShape:
+      - - {x: 3.9999962, y: -9.55349}
+        - {x: 14.999996, y: -9.55349}
+        - {x: 24.999996, y: -5.5534897}
+        - {x: 26.999996, y: -3.5534897}
+        - {x: 40.999996, y: 2.4465103}
+        - {x: 43.999996, y: 6.4465103}
+        - {x: 68, y: 14.44651}
+        - {x: 73, y: 17.44651}
+        - {x: 72, y: 20.44651}
+        - {x: 65, y: 20.44651}
+        - {x: 43.999996, y: 17.44651}
+        - {x: 32.999996, y: 20.44651}
+        - {x: 18.999996, y: 20.44651}
+        - {x: 11.999996, y: 18.44651}
+        - {x: 5.999996, y: 17.44651}
+        - {x: -9.000004, y: 10.44651}
+        - {x: -17.000004, y: 0.44651031}
+        - {x: -25.000004, y: 0.44651031}
+        - {x: -54.000004, y: -8.55349}
+        - {x: -66, y: -13.55349}
+        - {x: -73, y: -17.55349}
+        - {x: -72, y: -20.55349}
+        - {x: -68, y: -20.55349}
+        - {x: -60.000004, y: -19.55349}
+        - {x: -29.000004, y: -10.55349}
+        - {x: -10.000004, y: -6.5534897}
+        - {x: -6.000004, y: -13.55349}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_attack_spark_1_anim_3
+      rect:
+        serializedVersion: 2
+        x: 695.0335
+        y: 259.1089
+        width: 138.81714
+        height: 39.878204
+      alignment: 9
+      pivot: {x: 0.25886205, y: 0.2739119}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -68.44209, y: -20.048}
+        - {x: -69.44209, y: -17.048}
+        - {x: -65.44209, y: -14.048}
+        - {x: 23.557903, y: 19.952}
+        - {x: 48.557903, y: 19.952}
+        - {x: 66.55791, y: 18.952}
+        - {x: 69.55791, y: 17.952}
+        - {x: 69.55791, y: 14.952}
+        - {x: 36.557903, y: -7.0480003}
+        - {x: -58.442097, y: -20.048}
+      physicsShape:
+      - - {x: 18.557903, y: -6.0480003}
+        - {x: 36.557903, y: -7.0480003}
+        - {x: 47.557903, y: 3.9519997}
+        - {x: 49.557903, y: 6.9519997}
+        - {x: 61.557903, y: 10.952}
+        - {x: 69.55791, y: 14.952}
+        - {x: 69.55791, y: 17.952}
+        - {x: 66.55791, y: 18.952}
+        - {x: 53.557903, y: 16.952}
+        - {x: 40.557903, y: 19.952}
+        - {x: 27.557903, y: 19.952}
+        - {x: 17.557903, y: 14.952}
+        - {x: 3.5579033, y: 4.9519997}
+        - {x: -4.4420967, y: 3.9519997}
+        - {x: -30.442097, y: -4.0480003}
+        - {x: -47.442097, y: -9.048}
+        - {x: -65.44209, y: -14.048}
+        - {x: -69.44209, y: -17.048}
+        - {x: -68.44209, y: -20.048}
+        - {x: -64.44209, y: -20.048}
+        - {x: -57.442097, y: -19.048}
+        - {x: -44.442097, y: -15.048}
+        - {x: -26.442097, y: -11.048}
+        - {x: -8.442097, y: -6.0480003}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_attack_spark_1_anim_4
+      rect:
+        serializedVersion: 2
+        x: 11.033501
+        y: 148.10889
+        width: 138.81714
+        height: 38.878204
+      alignment: 9
+      pivot: {x: 0.23725095, y: 0.25523594}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -53.442074, y: -19.547985}
+        - {x: -69.44208, y: -19.547985}
+        - {x: -69.44208, y: -14.547985}
+        - {x: 26.557926, y: 19.452015}
+        - {x: 69.55792, y: 19.452015}
+        - {x: 69.55792, y: 14.452015}
+        - {x: 46.557926, y: 1.4520149}
+      physicsShape:
+      - - {x: 9.557926, y: -0.5479851}
+        - {x: 24.557926, y: 1.4520149}
+        - {x: 33.557926, y: -0.5479851}
+        - {x: 45.557926, y: 2.452015}
+        - {x: 49.557926, y: 9.452015}
+        - {x: 64.55792, y: 13.452015}
+        - {x: 69.55792, y: 15.452015}
+        - {x: 69.55792, y: 19.452015}
+        - {x: 57.557926, y: 19.452015}
+        - {x: 50.557926, y: 16.452015}
+        - {x: 46.557926, y: 19.452015}
+        - {x: 40.557926, y: 19.452015}
+        - {x: 31.557926, y: 18.452015}
+        - {x: 11.557926, y: 6.452015}
+        - {x: 7.557926, y: 7.452015}
+        - {x: -65.44208, y: -13.547985}
+        - {x: -69.44208, y: -16.547985}
+        - {x: -68.44208, y: -19.547985}
+        - {x: -64.44208, y: -19.547985}
+        - {x: -57.442074, y: -18.547985}
+        - {x: -45.442074, y: -14.547985}
+        - {x: -34.442074, y: -12.547985}
+        - {x: -15.442074, y: -7.547985}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_attack_spark_1_anim_5
+      rect:
+        serializedVersion: 2
+        x: 238.05132
+        y: 148.05132
+        width: 119.79933
+        height: 34.935776
+      alignment: 9
+      pivot: {x: 0.29145974, y: 0.2856867}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -58.95097, y: -17.5192}
+        - {x: -59.95097, y: -15.519199}
+        - {x: -59.95097, y: -13.519199}
+        - {x: -52.95097, y: -9.519199}
+        - {x: 52.04903, y: 17.4808}
+        - {x: 58.04903, y: 17.4808}
+        - {x: 60.04903, y: 16.4808}
+        - {x: 60.04903, y: 13.480801}
+        - {x: 53.04903, y: 10.480801}
+        - {x: -33.95097, y: -14.519199}
+        - {x: -53.95097, y: -17.5192}
+      physicsShape:
+      - - {x: 53.04903, y: 10.480801}
+        - {x: 60.04903, y: 13.480801}
+        - {x: 60.04903, y: 16.4808}
+        - {x: 57.04903, y: 17.4808}
+        - {x: 56.04903, y: 17.4808}
+        - {x: 43.04903, y: 14.480801}
+        - {x: 35.04903, y: 12.480801}
+        - {x: 16.04903, y: 7.4808006}
+        - {x: -3.9509697, y: 2.4808006}
+        - {x: -19.95097, y: -2.5191994}
+        - {x: -42.95097, y: -8.519199}
+        - {x: -52.95097, y: -10.519199}
+        - {x: -59.95097, y: -13.519199}
+        - {x: -59.95097, y: -14.519199}
+        - {x: -57.95097, y: -17.5192}
+        - {x: -50.95097, y: -16.5192}
+        - {x: -34.95097, y: -12.519199}
+        - {x: -1.9509697, y: -4.5191994}
+        - {x: 4.0490303, y: -2.5191994}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_attack_spark_1_anim_6
+      rect:
+        serializedVersion: 2
+        x: 472.05133
+        y: 149.05132
+        width: 113.935776
+        height: 32.872566
+      alignment: 9
+      pivot: {x: 0.26257485, y: 0.273197}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -51.019203, y: -16.487595}
+        - {x: -57.019203, y: -16.487595}
+        - {x: -57.019203, y: -9.487595}
+        - {x: 34.980797, y: 16.512405}
+        - {x: 55.980797, y: 16.512405}
+        - {x: 56.980797, y: 13.512405}
+        - {x: 55.980797, y: 11.512405}
+        - {x: -11.019205, y: -6.4875946}
+        - {x: -39.019203, y: -14.487595}
+      physicsShape:
+      - - {x: 56.980797, y: 13.512405}
+        - {x: 55.980797, y: 16.512405}
+        - {x: 51.980797, y: 16.512405}
+        - {x: 41.980797, y: 14.512405}
+        - {x: 1.9807949, y: 4.5124054}
+        - {x: -5.019205, y: 2.5124054}
+        - {x: -8.019205, y: 1.5124054}
+        - {x: -15.019205, y: -0.4875946}
+        - {x: -50.019203, y: -9.487595}
+        - {x: -57.019203, y: -12.487595}
+        - {x: -57.019203, y: -14.487595}
+        - {x: -56.019203, y: -16.487595}
+        - {x: -51.019203, y: -16.487595}
+        - {x: -39.019203, y: -14.487595}
+        - {x: -11.019205, y: -6.4875946}
+        - {x: 1.9807949, y: -2.4875946}
+        - {x: 55.980797, y: 11.512405}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_attack_spark_1_anim_7
+      rect:
+        serializedVersion: 2
+        x: 713.0335
+        y: 151.05132
+        width: 87.81715
+        height: 27.935776
+      alignment: 9
+      pivot: {x: 0.20422538, y: 0.24988338}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -42.9421, y: -14.019199}
+        - {x: -43.9421, y: -11.019199}
+        - {x: -40.9421, y: -7.0191994}
+        - {x: 26.0579, y: 13.980801}
+        - {x: 44.0579, y: 13.980801}
+        - {x: 44.0579, y: 8.980801}
+        - {x: 9.057899, y: -4.0191994}
+        - {x: -37.9421, y: -14.019199}
+      physicsShape:
+      - - {x: 44.0579, y: 12.980801}
+        - {x: 42.0579, y: 13.980801}
+        - {x: 38.0579, y: 13.980801}
+        - {x: 31.0579, y: 11.980801}
+        - {x: 18.0579, y: 8.980801}
+        - {x: 7.0578995, y: 5.9808006}
+        - {x: -27.9421, y: -4.0191994}
+        - {x: -39.9421, y: -8.019199}
+        - {x: -43.9421, y: -11.019199}
+        - {x: -42.9421, y: -14.019199}
+        - {x: -38.9421, y: -14.019199}
+        - {x: -4.9421005, y: -6.0191994}
+        - {x: 9.057899, y: -2.0191994}
+        - {x: 37.0579, y: 6.9808006}
+        - {x: 44.0579, y: 9.980801}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_attack_spark_1_anim_8
+      rect:
+        serializedVersion: 2
+        x: 33.0335
+        y: 42.051315
+        width: 70.95359
+        height: 21.872562
+      alignment: 9
+      pivot: {x: 0.15410775, y: 0.18199451}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26.5103, y: -10.9875965}
+        - {x: -35.5103, y: -10.9875965}
+        - {x: -35.5103, y: -3.9875965}
+        - {x: 3.4897003, y: 11.0124035}
+        - {x: 35.4897, y: 11.0124035}
+        - {x: 35.4897, y: 5.0124035}
+        - {x: 34.4897, y: 5.0124035}
+      physicsShape:
+      - - {x: 34.4897, y: 11.0124035}
+        - {x: 24.4897, y: 11.0124035}
+        - {x: -10.5103, y: 1.0124035}
+        - {x: -21.5103, y: -1.9875965}
+        - {x: -31.5103, y: -4.9875965}
+        - {x: -35.5103, y: -7.9875965}
+        - {x: -33.5103, y: -10.9875965}
+        - {x: -27.5103, y: -9.9875965}
+        - {x: -19.5103, y: -7.9875965}
+        - {x: 33.4897, y: 6.0124035}
+        - {x: 35.4897, y: 8.0124035}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_attack_spark_1_anim_9
+      rect:
+        serializedVersion: 2
+        x: 277.05133
+        y: 45.108887
+        width: 44.935776
+        height: 15.814991
+      alignment: 9
+      pivot: {x: -0.0908704, y: 0.058369607}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15.519207, y: -8.016382}
+        - {x: -22.519207, y: -8.016382}
+        - {x: -22.519207, y: -4.016382}
+        - {x: 10.480793, y: 7.983618}
+        - {x: 21.480793, y: 7.983618}
+        - {x: 22.480793, y: 6.983618}
+        - {x: 22.480793, y: 3.9836178}
+        - {x: 15.480793, y: -1.0163822}
+      physicsShape:
+      - - {x: 10.480793, y: 7.983618}
+        - {x: -22.519207, y: -4.016382}
+        - {x: -22.519207, y: -8.016382}
+        - {x: -15.519207, y: -8.016382}
+        - {x: 15.480793, y: -1.0163822}
+        - {x: 22.480793, y: 3.9836178}
+        - {x: 22.480793, y: 6.983618}
+        - {x: 21.480793, y: 7.983618}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_attack_spark_1_anim_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 256
+        width: 117
+        height: 42
+      alignment: 9
+      pivot: {x: 0.26674014, y: 0.30882478}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d140ef1ca383aa4283ee45dca8c255d
+      internalID: 1079588336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 54c4a7a8dbbc64c4bbbe9fcf7b6759e8
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      penitent_attack_spark_1_anim_1: 21300000
+      penitent_attack_spark_1_anim_7: 21300012
+      penitent_attack_spark_1_anim_8: 21300014
+      penitent_attack_spark_1_anim_4: 21300006
+      penitent_attack_spark_1_anim_9: 21300016
+      penitent_attack_spark_1_anim_0: 1079588336
+      penitent_attack_spark_1_anim_3: 21300004
+      penitent_attack_spark_1_anim_5: 21300008
+      penitent_attack_spark_1_anim_2: 21300002
+      penitent_attack_spark_1_anim_6: 21300010
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,627 @@
+fileFormatVersion: 2
+guid: 01b1ac7d4efbeb34fba710f82896de61
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: shieldMaiden_attack_1
+  - first:
+      213: 21300002
+    second: shieldMaiden_attack_2
+  - first:
+      213: 21300004
+    second: shieldMaiden_attack_3
+  - first:
+      213: 21300006
+    second: shieldMaiden_attack_4
+  - first:
+      213: 21300008
+    second: shieldMaiden_attack_5
+  - first:
+      213: 21300010
+    second: shieldMaiden_attack_6
+  - first:
+      213: 21300012
+    second: shieldMaiden_attack_7
+  - first:
+      213: 21300014
+    second: shieldMaiden_attack_8
+  - first:
+      213: 21300016
+    second: shieldMaiden_attack_9
+  - first:
+      213: 21300018
+    second: shieldMaiden_attack_10
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 4
+  maxTextureSize: 256
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: shieldMaiden_attack_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 139
+        width: 56
+        height: 63
+      alignment: 9
+      pivot: {x: 0.58035713, y: -0.0005555531}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 13, y: -30.499996}
+        - {x: 6, y: -31.499996}
+        - {x: -28, y: -31.499996}
+        - {x: -28, y: -8.499996}
+        - {x: -3, y: 31.500004}
+        - {x: 19, y: 31.500004}
+        - {x: 28, y: 2.5000038}
+        - {x: 28, y: -31.499996}
+        - {x: 17, y: -31.499996}
+        - {x: 12, y: -18.499996}
+        - {x: 15, y: -27.499996}
+        - {x: 15, y: -28.499996}
+      physicsShape:
+      - - {x: 15, y: -28.499996}
+        - {x: 15, y: -27.499996}
+        - {x: 12, y: -18.499996}
+        - {x: 0, y: -3.4999962}
+        - {x: 9, y: -12.499996}
+        - {x: 17, y: -31.499996}
+        - {x: 22, y: -31.499996}
+        - {x: 28, y: -29.499996}
+        - {x: 28, y: -11.499996}
+        - {x: 22, y: 8.500004}
+        - {x: 23, y: 17.500004}
+        - {x: 12, y: 31.500004}
+        - {x: -1, y: 31.500004}
+        - {x: -4, y: 18.500004}
+        - {x: -9, y: 15.500004}
+        - {x: -17, y: 9.500004}
+        - {x: -28, y: -9.499996}
+        - {x: -28, y: -31.499996}
+        - {x: -19, y: -31.499996}
+        - {x: -9, y: -23.499996}
+        - {x: 6, y: -30.499996}
+        - {x: 13, y: -30.499996}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shieldMaiden_attack_2
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 76
+        width: 77
+        height: 60
+      alignment: 9
+      pivot: {x: 0.7467533, y: -0.0005833308}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26.499996, y: -29.999996}
+        - {x: -38.499996, y: -14.999996}
+        - {x: -38.499996, y: 15.000004}
+        - {x: -11.499996, y: 30.000004}
+        - {x: 30.500004, y: 30.000004}
+        - {x: 35.500004, y: 24.000004}
+        - {x: 38.500004, y: 9.000004}
+        - {x: 38.500004, y: -29.999996}
+      physicsShape:
+      - - {x: 38.500004, y: -2.9999962}
+        - {x: 26.500004, y: 18.000004}
+        - {x: 16.500004, y: 30.000004}
+        - {x: 0.5000038, y: 30.000004}
+        - {x: -12.499996, y: -1.9999962}
+        - {x: -17.499996, y: 1.0000038}
+        - {x: -38.499996, y: -2.9999962}
+        - {x: -38.499996, y: -8.999996}
+        - {x: -31.499996, y: -12.999996}
+        - {x: -16.499996, y: -19.999996}
+        - {x: -14.499996, y: -29.999996}
+        - {x: -6.499996, y: -29.999996}
+        - {x: 2.5000038, y: -19.999996}
+        - {x: 17.500004, y: -29.999996}
+        - {x: 38.500004, y: -29.999996}
+      - - {x: 17.500004, y: -11.999996}
+        - {x: 17.500004, y: -10.999996}
+        - {x: 18.500004, y: -12.999996}
+        - {x: 20.500004, y: -14.999996}
+        - {x: 23.500004, y: -18.999996}
+        - {x: 24.500004, y: -17.999996}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shieldMaiden_attack_3
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 137
+        width: 74
+        height: 60
+      alignment: 9
+      pivot: {x: 0.8040541, y: -0.0005833308}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12.999996, y: -29.999996}
+        - {x: -36.999996, y: -7.999996}
+        - {x: -36.999996, y: 0.0000038146973}
+        - {x: -1.9999962, y: 30.000004}
+        - {x: 23.000004, y: 30.000004}
+        - {x: 26.000004, y: 29.000004}
+        - {x: 37.000004, y: -5.999996}
+        - {x: 37.000004, y: -25.999996}
+        - {x: 29.000004, y: -29.999996}
+      physicsShape:
+      - - {x: 37.000004, y: -5.999996}
+        - {x: 26.000004, y: 29.000004}
+        - {x: 22.000004, y: 30.000004}
+        - {x: 4.000004, y: 30.000004}
+        - {x: 3.0000038, y: 29.000004}
+        - {x: -4.999996, y: 6.000004}
+        - {x: -13.999996, y: -0.9999962}
+        - {x: -15.999996, y: -1.9999962}
+        - {x: -26.999996, y: -0.9999962}
+        - {x: -36.999996, y: 0.0000038146973}
+        - {x: -36.999996, y: -6.999996}
+        - {x: -16.999996, y: -20.999996}
+        - {x: -10.999996, y: -29.999996}
+        - {x: 25.000004, y: -29.999996}
+        - {x: 37.000004, y: -25.999996}
+      - - {x: 0.0000038146973, y: -4.999996}
+        - {x: -3.9999962, y: -8.999996}
+        - {x: -3.9999962, y: -10.999996}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shieldMaiden_attack_4
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 76
+        width: 75
+        height: 61
+      alignment: 9
+      pivot: {x: 0.88666666, y: -0.000573768}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 37.5, y: -30.499996}
+        - {x: -5.5, y: -30.499996}
+        - {x: -5.5, y: -27.499996}
+        - {x: 4.5, y: -9.499996}
+        - {x: -6.5, y: -16.499996}
+        - {x: -37.5, y: -15.499996}
+        - {x: -37.5, y: -6.499996}
+        - {x: -2.5, y: 30.500004}
+        - {x: 25.5, y: 30.500004}
+        - {x: 34.5, y: 25.500004}
+        - {x: 37.5, y: 13.500004}
+      physicsShape:
+      - - {x: 31.5, y: 24.500004}
+        - {x: 24.5, y: 30.500004}
+        - {x: 9.5, y: 30.500004}
+        - {x: 4.5, y: 24.500004}
+        - {x: 5.5, y: 11.500004}
+        - {x: -10.5, y: 1.5000038}
+        - {x: -37.5, y: -8.499996}
+        - {x: -37.5, y: -15.499996}
+        - {x: -6.5, y: -16.499996}
+        - {x: 4.5, y: -9.499996}
+        - {x: 4.5, y: -6.499996}
+        - {x: 4.5, y: -9.499996}
+        - {x: -5.5, y: -27.499996}
+        - {x: -5.5, y: -30.499996}
+        - {x: 34.5, y: -30.499996}
+        - {x: 37.5, y: -28.499996}
+        - {x: 37.5, y: -6.499996}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shieldMaiden_attack_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 78
+        height: 76
+      alignment: 9
+      pivot: {x: 0.8269231, y: -0.00046052432}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -37, y: -22}
+        - {x: -39, y: -22}
+        - {x: -39, y: 13}
+        - {x: -28, y: 34.000004}
+        - {x: -8, y: 38.000004}
+        - {x: 36, y: 38.000004}
+        - {x: 39, y: 17}
+        - {x: 39, y: -6}
+        - {x: 38, y: -37}
+        - {x: 21, y: -38}
+        - {x: -9, y: -38}
+        - {x: -29, y: -8}
+      physicsShape:
+      - - {x: 39, y: -2}
+        - {x: 39, y: 15}
+        - {x: 33, y: 30.000004}
+        - {x: 30, y: 38.000004}
+        - {x: -2, y: 38.000004}
+        - {x: -22, y: 26.000004}
+        - {x: -39, y: 12}
+        - {x: -39, y: -22}
+        - {x: -37, y: -22}
+        - {x: -29, y: -8}
+        - {x: -13, y: 7}
+        - {x: 0, y: 12}
+        - {x: 1, y: -4}
+        - {x: -6, y: -17}
+        - {x: -11, y: -32}
+        - {x: -9, y: -38}
+        - {x: 21, y: -38}
+        - {x: 38, y: -37}
+        - {x: 29, y: -8}
+        - {x: 38, y: -5}
+      - - {x: 25, y: 13}
+        - {x: 27, y: 13}
+        - {x: 27, y: 11}
+        - {x: 26, y: 9}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shieldMaiden_attack_6
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 0
+        width: 86
+        height: 75
+      alignment: 9
+      pivot: {x: 0.37790698, y: -0.00046666464}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 26, y: -37.5}
+        - {x: -43, y: -37.5}
+        - {x: -43, y: -25.5}
+        - {x: -33, y: 11.5}
+        - {x: -24, y: 25.5}
+        - {x: -1, y: 30.500004}
+        - {x: -9, y: 34.500004}
+        - {x: -11, y: 37.500004}
+        - {x: 16, y: 37.500004}
+        - {x: 24, y: 36.500004}
+        - {x: 43, y: 11.5}
+        - {x: 43, y: -36.5}
+      physicsShape:
+      - - {x: 4, y: -35.5}
+        - {x: 9, y: -37.5}
+        - {x: 18, y: -37.5}
+        - {x: 43, y: -34.5}
+        - {x: 43, y: -8.5}
+        - {x: 40, y: 8.5}
+        - {x: 30, y: 24.5}
+        - {x: 21, y: 31.500004}
+        - {x: 15, y: 34.500004}
+        - {x: 10, y: 36.500004}
+        - {x: 7, y: 37.500004}
+        - {x: -10, y: 37.500004}
+        - {x: -9, y: 34.500004}
+        - {x: -1, y: 30.500004}
+        - {x: 21, y: -0.5}
+        - {x: 21, y: -17.5}
+        - {x: 7, y: -15.5}
+        - {x: -2, y: -2.5}
+        - {x: -6, y: 19.5}
+        - {x: -24, y: 25.5}
+        - {x: -33, y: 11.5}
+        - {x: -34, y: -21.5}
+        - {x: -43, y: -31.5}
+        - {x: -43, y: -37.5}
+        - {x: -36, y: -37.5}
+        - {x: -26, y: -32.5}
+        - {x: -21, y: -37.5}
+        - {x: -6, y: -37.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shieldMaiden_attack_7
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 136
+        width: 86
+        height: 56
+      alignment: 9
+      pivot: {x: 0.37790698, y: -0.00062499725}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 32, y: -27.999996}
+        - {x: -43, y: -27.999996}
+        - {x: -43, y: -16.999996}
+        - {x: -30, y: 28.000004}
+        - {x: -3, y: 28.000004}
+        - {x: 43, y: -0.9999962}
+        - {x: 43, y: -24.999996}
+        - {x: 35, y: -26.999996}
+      physicsShape:
+      - - {x: 43, y: -17.999996}
+        - {x: -1, y: -5.999996}
+        - {x: 0, y: 21.000004}
+        - {x: -5, y: 28.000004}
+        - {x: -21, y: 28.000004}
+        - {x: -26, y: 22.000004}
+        - {x: -26, y: -6.999996}
+        - {x: -43, y: -20.999996}
+        - {x: -43, y: -27.999996}
+        - {x: 32, y: -27.999996}
+        - {x: 35, y: -26.999996}
+        - {x: 43, y: -24.999996}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shieldMaiden_attack_8
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 192
+        width: 83
+        height: 56
+      alignment: 9
+      pivot: {x: 0.39156628, y: -0.00062499725}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -34.5, y: -27.999996}
+        - {x: -41.5, y: -27.999996}
+        - {x: -41.5, y: -16.999996}
+        - {x: -21.5, y: 28.000004}
+        - {x: 2.5, y: 28.000004}
+        - {x: 41.5, y: -13.999996}
+        - {x: 41.5, y: -23.999996}
+        - {x: 9.5, y: -26.999996}
+        - {x: 0.5, y: -24.999996}
+        - {x: -1.5, y: -26.999996}
+        - {x: -12.5, y: -26.999996}
+        - {x: -25.5, y: -22.999996}
+      physicsShape:
+      - - {x: 0.5, y: -24.999996}
+        - {x: 9.5, y: -26.999996}
+        - {x: 41.5, y: -23.999996}
+        - {x: 41.5, y: -15.999996}
+        - {x: 13.5, y: -1.9999962}
+        - {x: 0.5, y: 28.000004}
+        - {x: -21.5, y: 28.000004}
+        - {x: -41.5, y: -16.999996}
+        - {x: -41.5, y: -27.999996}
+        - {x: -34.5, y: -27.999996}
+        - {x: -25.5, y: -22.999996}
+        - {x: -12.5, y: -26.999996}
+        - {x: -1.5, y: -26.999996}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shieldMaiden_attack_9
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 197
+        width: 72
+        height: 58
+      alignment: 9
+      pivot: {x: 0.4513889, y: -0.00060344563}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 36, y: -28.999996}
+        - {x: -36, y: -28.999996}
+        - {x: -36, y: -17.999996}
+        - {x: -12, y: 29.000004}
+        - {x: 26, y: 29.000004}
+        - {x: 36, y: 5.000004}
+      physicsShape:
+      - - {x: 11, y: -13.999996}
+        - {x: 10, y: 23.000004}
+        - {x: 6, y: 29.000004}
+        - {x: -7, y: 29.000004}
+        - {x: -10, y: 27.000004}
+        - {x: -22, y: 2.0000038}
+        - {x: -36, y: -22.999996}
+        - {x: -36, y: -28.999996}
+        - {x: 13, y: -28.999996}
+        - {x: 36, y: -26.999996}
+        - {x: 36, y: -17.999996}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shieldMaiden_attack_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 76
+        width: 59
+        height: 63
+      alignment: 9
+      pivot: {x: 0.5508475, y: -0.0005555531}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 29.5, y: -31.499996}
+        - {x: -29.5, y: -31.499996}
+        - {x: -29.5, y: 10.500004}
+        - {x: 4.5, y: 31.500004}
+        - {x: 27.5, y: 31.500004}
+        - {x: 29.5, y: 12.500004}
+      physicsShape:
+      - - {x: 29.5, y: -27.499996}
+        - {x: 29.5, y: -13.499996}
+        - {x: 24.5, y: 4.500004}
+        - {x: 26.5, y: 15.500004}
+        - {x: 21.5, y: 31.500004}
+        - {x: 3.5, y: 31.500004}
+        - {x: 2.5, y: 19.500004}
+        - {x: -18.5, y: 0.5000038}
+        - {x: -29.5, y: -22.499996}
+        - {x: -29.5, y: -31.499996}
+        - {x: 25.5, y: -31.499996}
+      - - {x: 1.5, y: -3.4999962}
+        - {x: 1.5, y: -4.499996}
+        - {x: 2.5, y: -3.4999962}
+        - {x: 7.5, y: -4.499996}
+        - {x: 8.5, y: -12.499996}
+        - {x: 9.5, y: -11.499996}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      shieldMaiden_attack_1: 21300000
+      shieldMaiden_attack_5: 21300008
+      shieldMaiden_attack_4: 21300006
+      shieldMaiden_attack_6: 21300010
+      shieldMaiden_attack_10: 21300018
+      shieldMaiden_attack_8: 21300014
+      shieldMaiden_attack_3: 21300004
+      shieldMaiden_attack_2: 21300002
+      shieldMaiden_attack_7: 21300012
+      shieldMaiden_attack_9: 21300016
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

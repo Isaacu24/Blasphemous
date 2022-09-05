@@ -1,0 +1,331 @@
+fileFormatVersion: 2
+guid: 326c90d25fa7f6e4ba87ee7f44b8754c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: shieldMaiden_parryReactionToIdle_0
+  - first:
+      213: 21300002
+    second: shieldMaiden_parryReactionToIdle_1
+  - first:
+      213: 21300004
+    second: shieldMaiden_parryReactionToIdle_2
+  - first:
+      213: 21300006
+    second: shieldMaiden_parryReactionToIdle_3
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 4
+  maxTextureSize: 256
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: shieldMaiden_parryReactionToIdle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 74
+        height: 60
+      alignment: 9
+      pivot: {x: 0.8040541, y: -0.0005833308}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: -30}
+        - {x: -37, y: -8}
+        - {x: -37, y: 0}
+        - {x: -2, y: 30}
+        - {x: 23, y: 30}
+        - {x: 26, y: 29}
+        - {x: 37, y: -6}
+        - {x: 37, y: -26}
+        - {x: 29, y: -30}
+      physicsShape:
+      - - {x: 37, y: -6}
+        - {x: 26, y: 29}
+        - {x: 22, y: 30}
+        - {x: 4, y: 30}
+        - {x: 3, y: 29}
+        - {x: -5, y: 6}
+        - {x: -14, y: -1}
+        - {x: -16, y: -2}
+        - {x: -27, y: -1}
+        - {x: -37, y: 0}
+        - {x: -37, y: -7}
+        - {x: -17, y: -21}
+        - {x: -11, y: -30}
+        - {x: 25, y: -30}
+        - {x: 37, y: -26}
+      - - {x: 0, y: -5}
+        - {x: -4, y: -9}
+        - {x: -4, y: -11}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shieldMaiden_parryReactionToIdle_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 60
+        width: 66
+        height: 60
+      alignment: 9
+      pivot: {x: 0.70454544, y: -0.0005833308}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27, y: -30}
+        - {x: -33, y: -23}
+        - {x: -33, y: 2}
+        - {x: -5, y: 30}
+        - {x: 13, y: 30}
+        - {x: 33, y: 1}
+        - {x: 33, y: -30}
+      physicsShape:
+      - - {x: 31, y: -27}
+        - {x: 33, y: -25}
+        - {x: 33, y: -9}
+        - {x: 21, y: 18}
+        - {x: 10, y: 30}
+        - {x: -4, y: 30}
+        - {x: -8, y: 17}
+        - {x: -20, y: 2}
+        - {x: -33, y: -1}
+        - {x: -33, y: -19}
+        - {x: -26, y: -30}
+        - {x: -11, y: -30}
+        - {x: -2, y: -22}
+        - {x: 15, y: -30}
+        - {x: 25, y: -30}
+      - - {x: 12, y: -12}
+        - {x: 12, y: -11}
+        - {x: 13, y: -13}
+        - {x: 15, y: -15}
+        - {x: 18, y: -19}
+        - {x: 19, y: -18}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shieldMaiden_parryReactionToIdle_2
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 120
+        width: 56
+        height: 63
+      alignment: 9
+      pivot: {x: 0.58035713, y: -0.0005555531}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: 31.500004}
+        - {x: 12, y: 31.500004}
+        - {x: 23, y: 17.500004}
+        - {x: 28, y: -9.499996}
+        - {x: 28, y: -28.499996}
+        - {x: 19, y: -31.499996}
+        - {x: 17, y: -31.499996}
+        - {x: 14, y: -24.499996}
+        - {x: 5, y: -9.499996}
+        - {x: 15, y: -27.499996}
+        - {x: 15, y: -28.499996}
+        - {x: 14, y: -31.499996}
+        - {x: -28, y: -31.499996}
+        - {x: -28, y: -17.499996}
+        - {x: -25, y: 2.5000038}
+      physicsShape:
+      - - {x: 10, y: -31.499996}
+        - {x: 14, y: -31.499996}
+        - {x: 15, y: -28.499996}
+        - {x: 15, y: -27.499996}
+        - {x: 5, y: -9.499996}
+        - {x: 14, y: -24.499996}
+        - {x: 17, y: -31.499996}
+        - {x: 19, y: -31.499996}
+        - {x: 28, y: -28.499996}
+        - {x: 28, y: -12.499996}
+        - {x: 21, y: 8.500004}
+        - {x: 23, y: 17.500004}
+        - {x: 12, y: 31.500004}
+        - {x: -1, y: 31.500004}
+        - {x: -4, y: 18.500004}
+        - {x: -9, y: 16.500004}
+        - {x: -21, y: 1.5000038}
+        - {x: -28, y: -21.499996}
+        - {x: -28, y: -31.499996}
+        - {x: -21, y: -31.499996}
+        - {x: -15, y: -23.499996}
+        - {x: 1, y: -21.499996}
+        - {x: 2, y: -30.499996}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shieldMaiden_parryReactionToIdle_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 120
+        width: 61
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5327869, y: -0.0005468726}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: 15.000004}
+        - {x: 3.5, y: 11.000004}
+        - {x: 3.5, y: 14.000004}
+        - {x: 1.5, y: 14.000004}
+        - {x: 0.5, y: 29.000004}
+        - {x: 4.5, y: 32.000004}
+        - {x: 20.5, y: 32.000004}
+        - {x: 25.5, y: 26.000004}
+        - {x: 30.5, y: 3.0000038}
+        - {x: 30.5, y: -31.999996}
+        - {x: -30.5, y: -31.999996}
+        - {x: -30.5, y: -20.999996}
+        - {x: -24.5, y: 4.000004}
+        - {x: -6.5, y: 16.000004}
+      physicsShape:
+      - - {x: 30.5, y: 3.0000038}
+        - {x: 25.5, y: 26.000004}
+        - {x: 20.5, y: 32.000004}
+        - {x: 4.5, y: 32.000004}
+        - {x: 0.5, y: 29.000004}
+        - {x: 1.5, y: 14.000004}
+        - {x: 3.5, y: 14.000004}
+        - {x: 3.5, y: 10.000004}
+        - {x: 3.5, y: 11.000004}
+        - {x: -0.5, y: 15.000004}
+        - {x: -6.5, y: 16.000004}
+        - {x: -24.5, y: 4.000004}
+        - {x: -30.5, y: -20.999996}
+        - {x: -30.5, y: -31.999996}
+        - {x: 30.5, y: -31.999996}
+      - - {x: 9.5, y: -23.999996}
+        - {x: 9.5, y: -25.999996}
+        - {x: 11.5, y: -26.999996}
+        - {x: 11.5, y: -24.999996}
+      - - {x: 8.5, y: -9.999996}
+        - {x: 4.5, y: -4.999996}
+        - {x: 7.5, y: -14.999996}
+        - {x: 8.5, y: -15.999996}
+        - {x: 9.5, y: -15.999996}
+      - - {x: -3.5, y: -13.999996}
+        - {x: -5.5, y: -13.999996}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      shieldMaiden_parryReactionToIdle_1: 21300002
+      shieldMaiden_parryReactionToIdle_3: 21300006
+      shieldMaiden_parryReactionToIdle_2: 21300004
+      shieldMaiden_parryReactionToIdle_0: 21300000
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

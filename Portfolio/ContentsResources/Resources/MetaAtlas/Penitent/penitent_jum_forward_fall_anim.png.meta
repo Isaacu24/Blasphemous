@@ -1,0 +1,283 @@
+fileFormatVersion: 2
+guid: c6d8b99768a52354c9eed28abf8e1846
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: penitent_jum_forward_fall_anim_0
+  - first:
+      213: 21300002
+    second: penitent_jum_forward_fall_anim_1
+  - first:
+      213: 21300004
+    second: penitent_jum_forward_fall_anim_2
+  - first:
+      213: 21300006
+    second: penitent_jum_forward_fall_anim_3
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 4
+  maxTextureSize: 512
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: penitent_jum_forward_fall_anim_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 142
+        width: 67
+        height: 73
+      alignment: 9
+      pivot: {x: 0.6103881, y: -0.08219178}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 17.5, y: -31.5}
+        - {x: 16.5, y: -24.5}
+        - {x: 16.5, y: -31.5}
+        - {x: 12.5, y: -35.5}
+        - {x: -33.5, y: -28.5}
+        - {x: -33.5, y: -13.5}
+        - {x: -32.5, y: -11.5}
+        - {x: 0.5, y: 30.5}
+        - {x: 18.5, y: 36.5}
+        - {x: 29.5, y: 36.5}
+        - {x: 33.5, y: 12.5}
+        - {x: 33.5, y: -13.5}
+        - {x: 27.5, y: -36.5}
+        - {x: 20.5, y: -36.5}
+      physicsShape:
+      - - {x: 28.5, y: 36.5}
+        - {x: 19.5, y: 36.5}
+        - {x: 16.5, y: 35.5}
+        - {x: 1.5, y: 28.5}
+        - {x: -14.5, y: 8.5}
+        - {x: -12.5, y: 0.5}
+        - {x: -32.5, y: -11.5}
+        - {x: -33.5, y: -15.5}
+        - {x: -33.5, y: -23.5}
+        - {x: -30.5, y: -23.5}
+        - {x: -3.5, y: -8.5}
+        - {x: 0.5, y: -14.5}
+        - {x: 12.5, y: -35.5}
+        - {x: 16.5, y: -31.5}
+        - {x: 16.5, y: -22.5}
+        - {x: 16.5, y: -24.5}
+        - {x: 17.5, y: -31.5}
+        - {x: 20.5, y: -36.5}
+        - {x: 26.5, y: -36.5}
+        - {x: 27.5, y: -7.5}
+        - {x: 33.5, y: -4.5}
+        - {x: 33.5, y: 9.5}
+      - - {x: 16.5, y: 19.5}
+        - {x: 15.5, y: 18.5}
+        - {x: 14.5, y: 16.5}
+        - {x: 15.5, y: 16.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_jum_forward_fall_anim_3
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 64
+        width: 67
+        height: 73
+      alignment: 9
+      pivot: {x: 0.6103881, y: -0.08219178}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 17.5, y: -31.5}
+        - {x: 16.5, y: -24.5}
+        - {x: 16.5, y: -31.5}
+        - {x: 12.5, y: -35.5}
+        - {x: -33.5, y: -28.5}
+        - {x: -33.5, y: -12.5}
+        - {x: -17.5, y: 12.5}
+        - {x: 16.5, y: 36.5}
+        - {x: 33.5, y: 36.5}
+        - {x: 33.5, y: -21.5}
+        - {x: 27.5, y: -36.5}
+        - {x: 20.5, y: -36.5}
+      physicsShape:
+      - - {x: 27.5, y: 36.5}
+        - {x: 19.5, y: 36.5}
+        - {x: 7.5, y: 26.5}
+        - {x: -13.5, y: 8.5}
+        - {x: -12.5, y: 0.5}
+        - {x: -33.5, y: -14.5}
+        - {x: -33.5, y: -22.5}
+        - {x: -30.5, y: -23.5}
+        - {x: -3.5, y: -8.5}
+        - {x: 0.5, y: -14.5}
+        - {x: 12.5, y: -35.5}
+        - {x: 16.5, y: -31.5}
+        - {x: 16.5, y: -22.5}
+        - {x: 16.5, y: -24.5}
+        - {x: 17.5, y: -31.5}
+        - {x: 20.5, y: -36.5}
+        - {x: 26.5, y: -36.5}
+        - {x: 27.5, y: -7.5}
+        - {x: 33.5, y: -4.5}
+        - {x: 33.5, y: 10.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43305410000000000800000000000000
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_jum_forward_fall_anim_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 69
+        width: 67
+        height: 73
+      alignment: 9
+      pivot: {x: 0.6103881, y: -0.08219178}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ca88ed90662eeb40a83cd8a53359e0c
+      internalID: -2099141027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_jum_forward_fall_anim_0
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 137
+        width: 67
+        height: 73
+      alignment: 9
+      pivot: {x: 0.6103881, y: -0.08219178}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36820fb5c67c7b149af33fa787ae9b96
+      internalID: 852885110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: ca736a4c121e0854ab90cd9096633427
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      penitent_jum_forward_anim_7: 21300014
+      penitent_jum_forward_anim_14: 21300024
+      penitent_jum_forward_anim_0: 21300000
+      penitent_jum_forward_anim_6: 21300012
+      penitent_jum_forward_fall_anim_1: -1301003180
+      penitent_jum_forward_anim_13: 21300022
+      penitent_jum_forward_anim_3: 21300006
+      penitent_jum_forward_anim_15: 21300026
+      penitent_jum_forward_fall_anim_2: -2099141027
+      penitent_jum_forward_fall_anim_0: 852885110
+      penitent_jum_forward_anim_5: 21300010
+      penitent_jum_forward_anim_2: 21300004
+      penitent_jum_forward_anim_4: 21300008
+      penitent_jum_forward_fall_anim_3: 21300016
+      penitent_jum_forward_anim_11: 21300018
+      penitent_jum_forward_anim_1: 21300002
+      penitent_jum_forward_anim_16: 21300028
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

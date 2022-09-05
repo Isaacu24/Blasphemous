@@ -1,0 +1,336 @@
+fileFormatVersion: 2
+guid: aecb9e4805629d642a7cf6367f7f0617
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: penitent_jumpoff_new_1
+  - first:
+      213: 21300002
+    second: penitent_jumpoff_new_2
+  - first:
+      213: 21300004
+    second: penitent_jumpoff_new_3
+  - first:
+      213: 21300006
+    second: penitent_jumpoff_new_4
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 4
+  maxTextureSize: 384
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: penitent_jumpoff_new_1
+      rect:
+        serializedVersion: 2
+        x: 138.01291
+        y: 134.07613
+        width: 80.910965
+        height: 67.91097
+      alignment: 9
+      pivot: {x: 0.7047338, y: 0.027386941}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1.4683914, y: -9.031616}
+        - {x: -2.4683914, y: -11.031616}
+        - {x: 4.5316086, y: -8.031616}
+        - {x: 1.5316086, y: -8.031616}
+      physicsShape:
+      - - {x: 37.53161, y: -32.031616}
+        - {x: 37.53161, y: -30.031616}
+        - {x: 36.53161, y: -16.031616}
+        - {x: 40.53161, y: -12.031616}
+        - {x: 40.53161, y: -4.031616}
+        - {x: 28.531609, y: 10.968384}
+        - {x: 28.531609, y: 31.968384}
+        - {x: 26.531609, y: 33.968384}
+        - {x: 22.531609, y: 32.968384}
+        - {x: 10.531609, y: 11.968384}
+        - {x: -14.468391, y: -4.031616}
+        - {x: -40.46839, y: -20.031616}
+        - {x: -40.46839, y: -23.031616}
+        - {x: -39.46839, y: -25.031616}
+        - {x: -34.46839, y: -25.031616}
+        - {x: -5.4683914, y: -19.031616}
+        - {x: -5.4683914, y: -30.031616}
+        - {x: -3.4683914, y: -34.031616}
+        - {x: 6.5316086, y: -34.031616}
+        - {x: 17.531609, y: -22.031616}
+        - {x: 28.531609, y: -34.031616}
+        - {x: 35.53161, y: -34.031616}
+      - - {x: -1.4683914, y: -9.031616}
+        - {x: 1.5316086, y: -8.031616}
+        - {x: 4.5316086, y: -8.031616}
+        - {x: -3.4683914, y: -11.031616}
+        - {x: -2.4683914, y: -11.031616}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_jumpoff_new_2
+      rect:
+        serializedVersion: 2
+        x: 265.0129
+        y: 134.07613
+        width: 85.910965
+        height: 60.910973
+      alignment: 9
+      pivot: {x: 0.6753584, y: 0.030534297}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15.968388, y: -30.531616}
+        - {x: -42.968388, y: -12.531616}
+        - {x: -42.968388, y: -4.531616}
+        - {x: 21.031612, y: 30.468384}
+        - {x: 29.031612, y: 30.468384}
+        - {x: 43.031612, y: 2.4683838}
+        - {x: 43.031612, y: -6.531616}
+        - {x: 37.031612, y: -30.531616}
+      physicsShape:
+      - - {x: 37.031612, y: -30.531616}
+        - {x: 37.031612, y: -26.531616}
+        - {x: 31.031612, y: -13.531616}
+        - {x: 36.031612, y: -6.531616}
+        - {x: 43.031612, y: -3.5316162}
+        - {x: 43.031612, y: -1.5316162}
+        - {x: 34.031612, y: 16.468384}
+        - {x: 28.031612, y: 30.468384}
+        - {x: 22.031612, y: 30.468384}
+        - {x: 11.031612, y: 11.468384}
+        - {x: -10.968388, y: 10.468384}
+        - {x: -19.968388, y: -0.5316162}
+        - {x: -36.968388, y: -3.5316162}
+        - {x: -42.968388, y: -8.531616}
+        - {x: -42.968388, y: -10.531616}
+        - {x: -41.968388, y: -13.531616}
+        - {x: -31.968388, y: -12.531616}
+        - {x: -3.9683876, y: -6.531616}
+        - {x: -1.9683876, y: -15.531616}
+        - {x: -6.9683876, y: -26.531616}
+        - {x: -4.9683876, y: -30.531616}
+        - {x: 3.0316124, y: -30.531616}
+        - {x: 11.031612, y: -16.531616}
+        - {x: 23.031612, y: -28.531616}
+        - {x: 27.031612, y: -30.531616}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_jumpoff_new_3
+      rect:
+        serializedVersion: 2
+        x: 18.012913
+        y: 16.07612
+        width: 81.935776
+        height: 54.910973
+      alignment: 9
+      pivot: {x: 0.59828186, y: -0.14824215}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 6.0191994, y: -27.531609}
+        - {x: -40.9808, y: -27.531609}
+        - {x: -40.9808, y: -18.531609}
+        - {x: -39.9808, y: -14.531609}
+        - {x: 1.0191994, y: 10.468391}
+        - {x: -1.9808006, y: 11.468391}
+        - {x: -0.9808006, y: 27.468391}
+        - {x: 41.0192, y: 27.468391}
+        - {x: 41.0192, y: -2.5316086}
+        - {x: 39.0192, y: -9.531609}
+      physicsShape:
+      - - {x: 38.0192, y: 15.468391}
+        - {x: 41.0192, y: 23.468391}
+        - {x: 41.0192, y: 27.468391}
+        - {x: 38.0192, y: 27.468391}
+        - {x: 2.0191994, y: 23.468391}
+        - {x: -1.9808006, y: 20.468391}
+        - {x: -1.9808006, y: 11.468391}
+        - {x: 1.0191994, y: 10.468391}
+        - {x: 5.0191994, y: 12.468391}
+        - {x: 2.0191994, y: 9.468391}
+        - {x: -19.9808, y: -2.5316086}
+        - {x: -37.9808, y: -16.531609}
+        - {x: -40.9808, y: -20.531609}
+        - {x: -39.9808, y: -23.531609}
+        - {x: -34.9808, y: -23.531609}
+        - {x: -13.980801, y: -24.531609}
+        - {x: -9.980801, y: -27.531609}
+        - {x: 0.019199371, y: -27.531609}
+        - {x: 21.0192, y: -19.531609}
+        - {x: 38.0192, y: -9.531609}
+        - {x: 31.0192, y: 7.4683914}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_jumpoff_new_4
+      rect:
+        serializedVersion: 2
+        x: 156.02876
+        y: 8.012913
+        width: 62.934948
+        height: 79.97418
+      alignment: 9
+      pivot: {x: 0.6197643, y: -0.00096172135}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 11.503763, y: -40.000004}
+        - {x: 2.5037632, y: -40.000004}
+        - {x: -9.496237, y: -26.000004}
+        - {x: -10.496237, y: -8.000004}
+        - {x: -23.496237, y: -29.000004}
+        - {x: -28.496237, y: -34.000004}
+        - {x: -31.496237, y: -34.000004}
+        - {x: -31.496237, y: -27.000004}
+        - {x: -22.496237, y: -1.0000038}
+        - {x: -7.496237, y: 29.999992}
+        - {x: 10.503763, y: 39.999992}
+        - {x: 20.503763, y: 39.999992}
+        - {x: 31.503763, y: 4.999996}
+        - {x: 31.503763, y: -8.000004}
+        - {x: 17.503763, y: -27.000004}
+      physicsShape:
+      - - {x: 31.503763, y: 4.999996}
+        - {x: 20.503763, y: 39.999992}
+        - {x: 14.503763, y: 39.999992}
+        - {x: 7.503763, y: 30.999992}
+        - {x: -4.496237, y: 30.999992}
+        - {x: -7.496237, y: 29.999992}
+        - {x: -5.496237, y: 12.999996}
+        - {x: -15.496237, y: 11.999996}
+        - {x: -19.496237, y: 4.999996}
+        - {x: -19.496237, y: -2.0000038}
+        - {x: -31.496237, y: -28.000004}
+        - {x: -31.496237, y: -33.000004}
+        - {x: -28.496237, y: -34.000004}
+        - {x: -23.496237, y: -29.000004}
+        - {x: -10.496237, y: -8.000004}
+        - {x: -5.496237, y: -1.0000038}
+        - {x: -2.4962368, y: -12.000004}
+        - {x: -5.496237, y: -25.000004}
+        - {x: 1.5037632, y: -38.000004}
+        - {x: 5.503763, y: -40.000004}
+        - {x: 10.503763, y: -40.000004}
+        - {x: 11.503763, y: -39.000004}
+        - {x: 15.503763, y: -26.000004}
+        - {x: 22.503763, y: -8.000004}
+        - {x: 31.503763, y: -5.000004}
+      - - {x: 6.503763, y: -21.000004}
+        - {x: 6.503763, y: -24.000004}
+        - {x: 7.503763, y: -24.000004}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      penitent_jumpoff_new_1: 21300000
+      penitent_jumpoff_new_2: 21300002
+      penitent_jumpoff_new_4: 21300006
+      penitent_jumpoff_new_3: 21300004
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

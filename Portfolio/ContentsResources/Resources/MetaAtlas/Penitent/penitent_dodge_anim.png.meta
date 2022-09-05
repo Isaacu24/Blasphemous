@@ -1,0 +1,807 @@
+fileFormatVersion: 2
+guid: d68606ae54177f143ab96960ddfe72dd
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: penitent_dodge_anim_8
+  - first:
+      213: 21300002
+    second: penitent_dodge_anim_9
+  - first:
+      213: 21300004
+    second: penitent_dodge_anim_10
+  - first:
+      213: 21300006
+    second: penitent_dodge_anim_11
+  - first:
+      213: 21300008
+    second: penitent_dodge_anim_12
+  - first:
+      213: 21300010
+    second: penitent_dodge_anim_13
+  - first:
+      213: 21300012
+    second: penitent_dodge_anim_14
+  - first:
+      213: 21300014
+    second: penitent_dodge_anim_15
+  - first:
+      213: 21300016
+    second: penitent_dodge_anim_16
+  - first:
+      213: 21300018
+    second: penitent_dodge_anim_17
+  - first:
+      213: 21300020
+    second: penitent_dodge_anim_18
+  - first:
+      213: 21300022
+    second: penitent_dodge_anim_19
+  - first:
+      213: 21300024
+    second: penitent_dodge_anim_20
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 4
+  maxTextureSize: 512
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: penitent_dodge_anim_8
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 174
+        width: 68
+        height: 55
+      alignment: 9
+      pivot: {x: 0.74847066, y: -0.019927267}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29.999992, y: -25.500008}
+        - {x: -33.999992, y: -25.500008}
+        - {x: -33.999992, y: -19.500008}
+        - {x: -2.9999924, y: 27.499992}
+        - {x: 14.000008, y: 27.499992}
+        - {x: 34.000008, y: 9.499992}
+        - {x: 34.000008, y: -27.500008}
+        - {x: -14.999992, y: -27.500008}
+      physicsShape:
+      - - {x: 33.000008, y: -0.5000076}
+        - {x: 17.000008, y: 10.499992}
+        - {x: 11.000008, y: 27.499992}
+        - {x: 5.0000076, y: 27.499992}
+        - {x: 2.0000076, y: 24.499992}
+        - {x: 3.0000076, y: 5.4999924}
+        - {x: -11.999992, y: 5.4999924}
+        - {x: -6.9999924, y: -5.5000076}
+        - {x: -30.999992, y: -17.500008}
+        - {x: -33.999992, y: -20.500008}
+        - {x: -33.999992, y: -25.500008}
+        - {x: -29.999992, y: -25.500008}
+        - {x: -16.999992, y: -20.500008}
+        - {x: 3.0000076, y: -19.500008}
+        - {x: 6.0000076, y: -27.500008}
+        - {x: 33.000008, y: -27.500008}
+        - {x: 34.000008, y: -24.500008}
+        - {x: 34.000008, y: -1.5000076}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_dodge_anim_9
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 49
+        width: 95
+        height: 50
+      alignment: 9
+      pivot: {x: 0.6094316, y: -0.0019199944}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -41.5, y: -22}
+        - {x: -47.5, y: -22}
+        - {x: -47.5, y: -15}
+        - {x: -8.5, y: 25}
+        - {x: 14.5, y: 25}
+        - {x: 47.5, y: -4}
+        - {x: 47.5, y: -25}
+        - {x: -27.5, y: -25}
+      physicsShape:
+      - - {x: 47.5, y: -18}
+        - {x: 28.5, y: -11}
+        - {x: 33.5, y: -4}
+        - {x: 32.5, y: -1}
+        - {x: 24.5, y: 4}
+        - {x: 7.5, y: 6}
+        - {x: -0.5, y: 25}
+        - {x: -6.5, y: 25}
+        - {x: -6.5, y: 4}
+        - {x: -11.5, y: 4}
+        - {x: -19.5, y: -1}
+        - {x: -27.5, y: -10}
+        - {x: -45.5, y: -14}
+        - {x: -47.5, y: -17}
+        - {x: -47.5, y: -22}
+        - {x: -41.5, y: -22}
+        - {x: -4.5, y: -18}
+        - {x: -5.5, y: -25}
+        - {x: 5.5, y: -25}
+        - {x: 15.5, y: -19}
+        - {x: 31.5, y: -25}
+        - {x: 47.5, y: -25}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_dodge_anim_10
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 0
+        width: 97
+        height: 49
+      alignment: 9
+      pivot: {x: 0.62779385, y: -0.001959178}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31.5, y: -24.5}
+        - {x: -48.5, y: -22.5}
+        - {x: -48.5, y: -16.5}
+        - {x: -35.5, y: 3.5}
+        - {x: -12.5, y: 24.5}
+        - {x: 17.5, y: 24.5}
+        - {x: 33.5, y: 0.5}
+        - {x: 33.5, y: -4.5}
+        - {x: 29.5, y: -7.5}
+        - {x: 25.5, y: -7.5}
+        - {x: 48.5, y: -18.5}
+        - {x: 48.5, y: -24.5}
+      physicsShape:
+      - - {x: 48.5, y: -18.5}
+        - {x: 25.5, y: -7.5}
+        - {x: 22.5, y: -7.5}
+        - {x: 21.5, y: -6.5}
+        - {x: 23.5, y: -7.5}
+        - {x: 29.5, y: -7.5}
+        - {x: 33.5, y: -4.5}
+        - {x: 33.5, y: 0.5}
+        - {x: 6.5, y: 11.5}
+        - {x: 1.5, y: 20.5}
+        - {x: -0.5, y: 24.5}
+        - {x: -6.5, y: 24.5}
+        - {x: -14.5, y: 2.5}
+        - {x: -18.5, y: -0.5}
+        - {x: -18.5, y: -1.5}
+        - {x: -46.5, y: -14.5}
+        - {x: -48.5, y: -17.5}
+        - {x: -48.5, y: -22.5}
+        - {x: -14.5, y: -24.5}
+        - {x: 12.5, y: -24.5}
+        - {x: 27.5, y: -19.5}
+        - {x: 35.5, y: -24.5}
+        - {x: 48.5, y: -24.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_dodge_anim_11
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 99
+        width: 92
+        height: 48
+      alignment: 9
+      pivot: {x: 0.6945218, y: -0.001999994}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27.999992, y: -24}
+        - {x: -45.999992, y: -21}
+        - {x: -45.999992, y: -12}
+        - {x: -9.999992, y: 24}
+        - {x: 19.000008, y: 24}
+        - {x: 46.000008, y: -3}
+        - {x: 46.000008, y: -24}
+      physicsShape:
+      - - {x: 46.000008, y: -20}
+        - {x: 36.000008, y: -10}
+        - {x: 32.000008, y: 3}
+        - {x: 14.000008, y: 2}
+        - {x: 7.0000076, y: 7}
+        - {x: 4.0000076, y: 21}
+        - {x: 1.0000076, y: 24}
+        - {x: -3.9999924, y: 24}
+        - {x: -3.9999924, y: 3}
+        - {x: -14.999992, y: 0}
+        - {x: -25.999992, y: -9}
+        - {x: -43.999992, y: -13}
+        - {x: -45.999992, y: -16}
+        - {x: -45.999992, y: -21}
+        - {x: -14.999992, y: -20}
+        - {x: -1.9999924, y: -24}
+        - {x: 46.000008, y: -24}
+      - - {x: 3.0000076, y: -11}
+        - {x: -0.9999924, y: -10}
+        - {x: -3.9999924, y: -12}
+        - {x: -5.9999924, y: -13}
+        - {x: -3.9999924, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_dodge_anim_12
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 50
+        width: 92
+        height: 49
+      alignment: 9
+      pivot: {x: 0.6945218, y: -0.001959178}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 46.000008, y: -24.5}
+        - {x: -45.999992, y: -24.5}
+        - {x: -45.999992, y: -11.5}
+        - {x: -5.9999924, y: 24.5}
+        - {x: 13.000008, y: 24.5}
+        - {x: 46.000008, y: -9.5}
+      physicsShape:
+      - - {x: 32.000008, y: -0.5}
+        - {x: 19.000008, y: 1.5}
+        - {x: 8.000008, y: 7.5}
+        - {x: 2.0000076, y: 24.5}
+        - {x: -3.9999924, y: 24.5}
+        - {x: -3.9999924, y: 3.5}
+        - {x: -13.999992, y: 0.5}
+        - {x: -25.999992, y: -8.5}
+        - {x: -43.999992, y: -12.5}
+        - {x: -45.999992, y: -15.5}
+        - {x: -45.999992, y: -20.5}
+        - {x: -14.999992, y: -19.5}
+        - {x: -3.9999924, y: -24.5}
+        - {x: 46.000008, y: -24.5}
+        - {x: 46.000008, y: -20.5}
+        - {x: 37.000008, y: -10.5}
+      - - {x: -4.9999924, y: -10.5}
+        - {x: -3.9999924, y: -11.5}
+        - {x: 1.0000076, y: -11.5}
+        - {x: -2.9999924, y: -10.5}
+        - {x: -3.9999924, y: -11.5}
+        - {x: -5.9999924, y: -12.5}
+        - {x: -4.9999924, y: -12.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_dodge_anim_13
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 0
+        width: 92
+        height: 50
+      alignment: 9
+      pivot: {x: 0.7162609, y: -0.0019199944}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -38.999992, y: -24}
+        - {x: -45.999992, y: -22}
+        - {x: -45.999992, y: -15}
+        - {x: -3.9999924, y: 25}
+        - {x: 4.0000076, y: 25}
+        - {x: 18.000008, y: 1}
+        - {x: 31.000008, y: -8}
+        - {x: 36.000008, y: -10}
+        - {x: 46.000008, y: -21}
+        - {x: 46.000008, y: -25}
+        - {x: 37.000008, y: -25}
+        - {x: 29.000008, y: -21}
+        - {x: 32.000008, y: -24}
+        - {x: 32.000008, y: -25}
+        - {x: -12.999992, y: -25}
+      physicsShape:
+      - - {x: 46.000008, y: -25}
+        - {x: 46.000008, y: -21}
+        - {x: 36.000008, y: -10}
+        - {x: 31.000008, y: -8}
+        - {x: 18.000008, y: 1}
+        - {x: 4.0000076, y: 25}
+        - {x: -1.9999924, y: 25}
+        - {x: -1.9999924, y: 4}
+        - {x: -14.999992, y: 5}
+        - {x: -45.999992, y: -16}
+        - {x: -45.999992, y: -22}
+        - {x: -39.999992, y: -22}
+        - {x: -10.999992, y: -19}
+        - {x: 4.0000076, y: -25}
+        - {x: 32.000008, y: -25}
+        - {x: 32.000008, y: -24}
+        - {x: 29.000008, y: -21}
+        - {x: 37.000008, y: -25}
+      - - {x: 3.0000076, y: -11}
+        - {x: -2.9999924, y: -10}
+        - {x: -4.9999924, y: -12}
+        - {x: -2.9999924, y: -12}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_dodge_anim_14
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 0
+        width: 81
+        height: 52
+      alignment: 9
+      pivot: {x: 0.7024198, y: 0.01738462}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11.499992, y: -26}
+        - {x: -40.499992, y: -22}
+        - {x: -40.499992, y: -11}
+        - {x: -8.499992, y: 26}
+        - {x: 1.5000076, y: 26}
+        - {x: 25.500008, y: -7}
+        - {x: 35.500008, y: -14}
+        - {x: 40.500008, y: -21}
+        - {x: 40.500008, y: -26}
+      physicsShape:
+      - - {x: 25.500008, y: -7}
+        - {x: 18.500008, y: -3}
+        - {x: 6.5000076, y: 10}
+        - {x: 0.5000076, y: 26}
+        - {x: -6.4999924, y: 26}
+        - {x: -6.4999924, y: 5}
+        - {x: -13.499992, y: 1}
+        - {x: -21.499992, y: -6}
+        - {x: -40.499992, y: -13}
+        - {x: -40.499992, y: -21}
+        - {x: -15.499992, y: -19}
+        - {x: -0.49999237, y: -26}
+        - {x: 40.500008, y: -26}
+        - {x: 40.500008, y: -21}
+        - {x: 35.500008, y: -14}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_dodge_anim_15
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 63
+        width: 78
+        height: 54
+      alignment: 9
+      pivot: {x: 0.75507694, y: 0.035259265}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1.9999962, y: -27}
+        - {x: -38.999996, y: -15}
+        - {x: -38.999996, y: -4}
+        - {x: -14.999996, y: 27}
+        - {x: 14.000004, y: 27}
+        - {x: 32.000004, y: 16}
+        - {x: 39.000004, y: -12}
+        - {x: 39.000004, y: -27}
+      physicsShape:
+      - - {x: 29.000004, y: 0}
+        - {x: 26.000004, y: 7}
+        - {x: 22.000004, y: 7}
+        - {x: 8.000004, y: 10}
+        - {x: 4.000004, y: 27}
+        - {x: -0.9999962, y: 27}
+        - {x: -3.9999962, y: 24}
+        - {x: -3.9999962, y: 18}
+        - {x: -1.9999962, y: 4}
+        - {x: -18.999996, y: -3}
+        - {x: -36.999996, y: -7}
+        - {x: -38.999996, y: -10}
+        - {x: -38.999996, y: -15}
+        - {x: -32.999996, y: -15}
+        - {x: -1.9999962, y: -11}
+        - {x: -12.999996, y: -17}
+        - {x: -13.999996, y: -22}
+        - {x: -1.9999962, y: -27}
+        - {x: 39.000004, y: -27}
+        - {x: 39.000004, y: -21}
+        - {x: 23.000004, y: -2}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_dodge_anim_16
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 117
+        width: 72
+        height: 55
+      alignment: 9
+      pivot: {x: 0.8041112, y: 0.034618188}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29.999992, y: -10.5}
+        - {x: -35.999992, y: -10.5}
+        - {x: -35.999992, y: -5.5}
+        - {x: -5.9999924, y: 27.5}
+        - {x: 5.0000076, y: 27.5}
+        - {x: 36.000008, y: 10.5}
+        - {x: 36.000008, y: -27.5}
+        - {x: -7.9999924, y: -27.5}
+      physicsShape:
+      - - {x: 31.000008, y: -7.5}
+        - {x: 29.000008, y: 5.5}
+        - {x: 27.000008, y: 8.5}
+        - {x: 9.000008, y: 8.5}
+        - {x: 4.0000076, y: 27.5}
+        - {x: -1.9999924, y: 27.5}
+        - {x: -4.9999924, y: 24.5}
+        - {x: -8.999992, y: 5.5}
+        - {x: -33.999992, y: -2.5}
+        - {x: -35.999992, y: -5.5}
+        - {x: -35.999992, y: -10.5}
+        - {x: -29.999992, y: -10.5}
+        - {x: -10.999992, y: -6.5}
+        - {x: 0.0000076293945, y: -11.5}
+        - {x: -10.999992, y: -17.5}
+        - {x: -11.999992, y: -22.5}
+        - {x: -2.9999924, y: -27.5}
+        - {x: 36.000008, y: -27.5}
+        - {x: 36.000008, y: -20.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_dodge_anim_17
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 117
+        width: 71
+        height: 57
+      alignment: 9
+      pivot: {x: 0.81543666, y: 0.033403512}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1.4999924, y: -28.5}
+        - {x: -35.499992, y: -12.5}
+        - {x: -35.499992, y: -3.5}
+        - {x: -2.4999924, y: 25.5}
+        - {x: -2.4999924, y: 28.5}
+        - {x: 6.5000076, y: 28.5}
+        - {x: 28.500008, y: 15.5}
+        - {x: 35.500008, y: -11.5}
+        - {x: 35.500008, y: -28.5}
+        - {x: 29.500008, y: -28.5}
+        - {x: 23.500008, y: -26.5}
+        - {x: 23.500008, y: -28.5}
+      physicsShape:
+      - - {x: 35.500008, y: -28.5}
+        - {x: 35.500008, y: -18.5}
+        - {x: 34.500008, y: -12.5}
+        - {x: 28.500008, y: -3.5}
+        - {x: 24.500008, y: 9.5}
+        - {x: 10.500008, y: 10.5}
+        - {x: 5.5000076, y: 28.5}
+        - {x: 0.5000076, y: 28.5}
+        - {x: -2.4999924, y: 25.5}
+        - {x: -1.4999924, y: 6.5}
+        - {x: -33.499992, y: -3.5}
+        - {x: -35.499992, y: -6.5}
+        - {x: -35.499992, y: -11.5}
+        - {x: -3.4999924, y: -11.5}
+        - {x: -16.499992, y: -21.5}
+        - {x: -9.499992, y: -24.5}
+        - {x: 1.5000076, y: -28.5}
+        - {x: 23.500008, y: -28.5}
+        - {x: 23.500008, y: -26.5}
+        - {x: 29.500008, y: -28.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_dodge_anim_18
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 147
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.79309595, y: -0.0016551676}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.499992, y: -29.000008}
+        - {x: -36.499992, y: -21.000008}
+        - {x: -36.499992, y: -6.0000076}
+        - {x: -8.499992, y: 28.999992}
+        - {x: 10.500008, y: 28.999992}
+        - {x: 20.500008, y: 23.999992}
+        - {x: 36.500008, y: -16.000008}
+        - {x: 36.500008, y: -29.000008}
+      physicsShape:
+      - - {x: 36.500008, y: -23.000008}
+        - {x: 28.500008, y: -4.0000076}
+        - {x: 9.500008, y: 14.999992}
+        - {x: 4.5000076, y: 28.999992}
+        - {x: -1.4999924, y: 28.999992}
+        - {x: -4.4999924, y: 25.999992}
+        - {x: -3.4999924, y: 6.9999924}
+        - {x: -11.499992, y: 1.9999924}
+        - {x: -36.499992, y: -8.000008}
+        - {x: -36.499992, y: -16.000008}
+        - {x: -13.499992, y: -14.000008}
+        - {x: 1.5000076, y: -10.000008}
+        - {x: -10.499992, y: -19.000008}
+        - {x: -12.499992, y: -24.000008}
+        - {x: -3.4999924, y: -29.000008}
+        - {x: 13.500008, y: -29.000008}
+        - {x: 22.500008, y: -22.000008}
+        - {x: 28.500008, y: -29.000008}
+        - {x: 36.500008, y: -29.000008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43305410000000000800000000000000
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_dodge_anim_19
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 99
+        width: 74
+        height: 63
+      alignment: 9
+      pivot: {x: 0.74183786, y: -0.0015238051}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10.999996, y: -31.5}
+        - {x: -36.999996, y: -26.5}
+        - {x: -36.999996, y: -9.5}
+        - {x: 8.000004, y: 27.5}
+        - {x: 10.000004, y: 31.5}
+        - {x: 15.000004, y: 31.5}
+        - {x: 37.000004, y: -0.5}
+        - {x: 37.000004, y: -31.5}
+      physicsShape:
+      - - {x: 37.000004, y: -31.5}
+        - {x: 37.000004, y: -26.5}
+        - {x: 30.000004, y: -16.5}
+        - {x: 35.000004, y: -8.5}
+        - {x: 30.000004, y: -1.5}
+        - {x: 15.000004, y: 10.5}
+        - {x: 15.000004, y: 31.5}
+        - {x: 10.000004, y: 31.5}
+        - {x: 8.000004, y: 27.5}
+        - {x: 0.0000038146973, y: 2.5}
+        - {x: -28.999996, y: -7.5}
+        - {x: -36.999996, y: -12.5}
+        - {x: -36.999996, y: -19.5}
+        - {x: -9.999996, y: -16.5}
+        - {x: -17.999996, y: -24.5}
+        - {x: -2.9999962, y: -31.5}
+        - {x: 8.000004, y: -31.5}
+        - {x: 9.000004, y: -30.5}
+        - {x: 18.000004, y: -24.5}
+        - {x: 28.000004, y: -31.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63305410000000000800000000000000
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_dodge_anim_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 72
+        width: 67
+        height: 72
+      alignment: 9
+      pivot: {x: 0.71486574, y: -0.0013333294}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31.5, y: -36}
+        - {x: -33.5, y: -35}
+        - {x: -33.5, y: -23}
+        - {x: 6.5, y: 36}
+        - {x: 20.5, y: 36}
+        - {x: 33.5, y: -7}
+        - {x: 33.5, y: -36}
+      physicsShape:
+      - - {x: 33.5, y: -26}
+        - {x: 32.5, y: -20}
+        - {x: 30.5, y: 2}
+        - {x: 21.5, y: 17}
+        - {x: 19.5, y: 32}
+        - {x: 18.5, y: 36}
+        - {x: 12.5, y: 36}
+        - {x: 9.5, y: 16}
+        - {x: -3.5, y: 5}
+        - {x: -5.5, y: -6}
+        - {x: -32.5, y: -22}
+        - {x: -33.5, y: -24}
+        - {x: -33.5, y: -30}
+        - {x: -16.5, y: -26}
+        - {x: -13.5, y: -30}
+        - {x: -7.5, y: -36}
+        - {x: 4.5, y: -36}
+        - {x: 14.5, y: -22}
+        - {x: 24.5, y: -36}
+        - {x: 33.5, y: -36}
+      - - {x: 4.5, y: -12}
+        - {x: 3.5, y: -12}
+        - {x: 1.5, y: -14}
+        - {x: 2.5, y: -15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83305410000000000800000000000000
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      penitent_dodge_anim_8: 21300000
+      penitent_dodge_anim_18: 21300020
+      penitent_dodge_anim_17: 21300018
+      penitent_dodge_anim_10: 21300004
+      penitent_dodge_anim_20: 21300024
+      penitent_dodge_anim_15: 21300014
+      penitent_dodge_anim_9: 21300002
+      penitent_dodge_anim_11: 21300006
+      penitent_dodge_anim_16: 21300016
+      penitent_dodge_anim_13: 21300010
+      penitent_dodge_anim_14: 21300012
+      penitent_dodge_anim_19: 21300022
+      penitent_dodge_anim_12: 21300008
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

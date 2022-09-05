@@ -1,0 +1,404 @@
+fileFormatVersion: 2
+guid: eab5c91cbdff6834eac8a7c01ca50a7c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: penitent_attack_combo_1_0
+  externalObjects: {}
+        213: 21300000
+    second: penitent_attack_combo_1_1
+  externalObjects: {}
+        213: 21300000
+    second: penitent_attack_combo_1_2
+  externalObjects: {}
+        213: 21300000
+    second: penitent_attack_combo_1_3
+  externalObjects: {}
+        213: 21300000
+    second: penitent_attack_combo_1_4
+  externalObjects: {}
+        213: 21300000
+    second: penitent_attack_combo_1_5
+  externalObjects: {}
+        213: 21300000
+    second: penitent_attack_combo_1_6
+  externalObjects: {}
+        213: 21300000
+    second: penitent_attack_combo_1_7
+  externalObjects: {}
+        213: 21300000
+    second: penitent_attack_combo_1_8
+  externalObjects: {}
+        213: 21300000
+    second: penitent_attack_combo_1_9
+  externalObjects: {}
+        213: 21300000
+    second: penitent_attack_combo_1_10
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 4
+  maxTextureSize: 512
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 9
+  spritePivot: {x: 0.7164179, y: 0}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: penitent_attack_combo_1_0
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 65
+        width: 67
+        height: 72
+      alignment: 9
+      pivot: {x: 0.7164179, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 33.5, y: -36}
+        - {x: -33.5, y: -36}
+        - {x: -33.5, y: -6}
+        - {x: -1.5, y: 36}
+        - {x: 19.5, y: 36}
+        - {x: 33.5, y: 13}
+      physicsShape:
+      - - {x: 33.5, y: -36}
+        - {x: 33.5, y: -21}
+        - {x: 31.5, y: 2}
+        - {x: 22.5, y: 17}
+        - {x: 20.5, y: 32}
+        - {x: 19.5, y: 36}
+        - {x: 11.5, y: 36}
+        - {x: 0.5, y: 7}
+        - {x: -5.5, y: 2}
+        - {x: -1.5, y: -4}
+        - {x: -33.5, y: -19}
+        - {x: -33.5, y: -26}
+        - {x: -29.5, y: -26}
+        - {x: -13.5, y: -22}
+        - {x: -14.5, y: -27}
+        - {x: -8.5, y: -29}
+        - {x: -6.5, y: -36}
+        - {x: 3.5, y: -36}
+        - {x: 15.5, y: -22}
+        - {x: 24.5, y: -35}
+        - {x: 25.5, y: -36}
+      - - {x: 5.5, y: -13}
+        - {x: 5.5, y: -12}
+        - {x: 0.5, y: -15}
+        - {x: 1.5, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_attack_combo_1_1
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 65
+        width: 67
+        height: 72
+      alignment: 9
+      pivot: {x: 0.7164179, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f1eeb16cba64f54e83619ef47644a7e
+      internalID: 1592812987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_attack_combo_1_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 65
+        width: 68
+        height: 73
+      alignment: 9
+      pivot: {x: 0.7264179, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ebaa1c12a35d2b47afaf3bbb4fe2c20
+      internalID: -374974322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_attack_combo_1_3
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 138
+        width: 66
+        height: 71
+      alignment: 9
+      pivot: {x: 0.7, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12e4282938bfeba4fa3eac26c5ef9690
+      internalID: -1041628679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_attack_combo_1_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 138
+        width: 67
+        height: 71
+      alignment: 9
+      pivot: {x: 0.7164179, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9284a1035f701743a331b9da96b8304
+      internalID: -467761584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_attack_combo_1_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 209
+        width: 63
+        height: 70
+      alignment: 9
+      pivot: {x: 0.6629673, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d625acb8c885714292a3a783b5a8998
+      internalID: 1570693371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_attack_combo_1_6
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 65
+        width: 42
+        height: 72
+      alignment: 9
+      pivot: {x: 0.34771436, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fe1851d00c0b6e4c9ab30c619ab2c46
+      internalID: 490914169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_attack_combo_1_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 107
+        height: 65
+      alignment: 9
+      pivot: {x: 0.40598714, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d51cde3ada1b70846ae9c2216f80ee69
+      internalID: 1760341836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_attack_combo_1_8
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 0
+        width: 94
+        height: 65
+      alignment: 9
+      pivot: {x: 0.4904212, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fc38fd5e95ece946a8b5d82360f9f07
+      internalID: 2024363662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_attack_combo_1_9
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 138
+        width: 76
+        height: 61
+      alignment: 9
+      pivot: {x: 0.63355434, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96cd2a3e78e1f0142afb527dd753659e
+      internalID: 183105429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_attack_combo_1_10
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 209
+        width: 60
+        height: 63
+      alignment: 9
+      pivot: {x: 0.78967565, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74bf60486de85774293fd6626fdcf314
+      internalID: 2011071561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 0bb38dd2d8a275b4689cf1d9de7ac8c8
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      penitent_attack_combo_1_4: -467761584
+      penitent_attack_combo_1_3: -1041628679
+      penitent_attack_combo_1_6: 240353514
+      penitent_attack_combo_1_10: 1760341836
+      penitent_attack_combo_1_1: 1592812987
+      penitent_attack_combo_1_2: -374974322
+      penitent_attack_combo_1_5: -928117490
+      penitent_attack_combo_1_9: 490914169
+      penitent_attack_combo_1_7: -385337390
+      penitent_attack_combo_1_8: 1570693371
+      penitent_attack_combo_1_0: 21300000
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

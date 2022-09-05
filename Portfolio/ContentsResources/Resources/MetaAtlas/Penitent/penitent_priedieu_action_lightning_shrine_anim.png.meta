@@ -1,0 +1,4414 @@
+fileFormatVersion: 2
+guid: f57115b5998fa4c4e87388e755f2416d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: penitent_priedieu_action_lightning_shrine_anim_0
+  - first:
+      213: 21300002
+    second: penitent_priedieu_action_lightning_shrine_anim_1
+  - first:
+      213: 21300004
+    second: penitent_priedieu_action_lightning_shrine_anim_2
+  - first:
+      213: 21300006
+    second: penitent_priedieu_action_lightning_shrine_anim_3
+  - first:
+      213: 21300008
+    second: penitent_priedieu_action_lightning_shrine_anim_4
+  - first:
+      213: 21300010
+    second: penitent_priedieu_action_lightning_shrine_anim_5
+  - first:
+      213: 21300012
+    second: penitent_priedieu_action_lightning_shrine_anim_6
+  - first:
+      213: 21300014
+    second: penitent_priedieu_action_lightning_shrine_anim_7
+  - first:
+      213: 21300016
+    second: penitent_priedieu_action_lightning_shrine_anim_8
+  - first:
+      213: 21300018
+    second: penitent_priedieu_action_lightning_shrine_anim_9
+  - first:
+      213: 21300020
+    second: penitent_priedieu_action_lightning_shrine_anim_10
+  - first:
+      213: 21300022
+    second: penitent_priedieu_action_lightning_shrine_anim_11
+  - first:
+      213: 21300024
+    second: penitent_priedieu_action_lightning_shrine_anim_12
+  - first:
+      213: 21300026
+    second: penitent_priedieu_action_lightning_shrine_anim_13
+  - first:
+      213: 21300028
+    second: penitent_priedieu_action_lightning_shrine_anim_14
+  - first:
+      213: 21300030
+    second: penitent_priedieu_action_lightning_shrine_anim_15
+  - first:
+      213: 21300032
+    second: penitent_priedieu_action_lightning_shrine_anim_16
+  - first:
+      213: 21300034
+    second: penitent_priedieu_action_lightning_shrine_anim_17
+  - first:
+      213: 21300036
+    second: penitent_priedieu_action_lightning_shrine_anim_18
+  - first:
+      213: 21300038
+    second: penitent_priedieu_action_lightning_shrine_anim_19
+  - first:
+      213: 21300040
+    second: penitent_priedieu_action_lightning_shrine_anim_20
+  - first:
+      213: 21300042
+    second: penitent_priedieu_action_lightning_shrine_anim_21
+  - first:
+      213: 21300044
+    second: penitent_priedieu_action_lightning_shrine_anim_22
+  - first:
+      213: 21300046
+    second: penitent_priedieu_action_lightning_shrine_anim_23
+  - first:
+      213: 21300048
+    second: penitent_priedieu_action_lightning_shrine_anim_24
+  - first:
+      213: 21300050
+    second: penitent_priedieu_action_lightning_shrine_anim_25
+  - first:
+      213: 21300052
+    second: penitent_priedieu_action_lightning_shrine_anim_26
+  - first:
+      213: 21300054
+    second: penitent_priedieu_action_lightning_shrine_anim_27
+  - first:
+      213: 21300056
+    second: penitent_priedieu_action_lightning_shrine_anim_28
+  - first:
+      213: 21300058
+    second: penitent_priedieu_action_lightning_shrine_anim_29
+  - first:
+      213: 21300060
+    second: penitent_priedieu_action_lightning_shrine_anim_30
+  - first:
+      213: 21300062
+    second: penitent_priedieu_action_lightning_shrine_anim_31
+  - first:
+      213: 21300064
+    second: penitent_priedieu_action_lightning_shrine_anim_32
+  - first:
+      213: 21300066
+    second: penitent_priedieu_action_lightning_shrine_anim_33
+  - first:
+      213: 21300068
+    second: penitent_priedieu_action_lightning_shrine_anim_34
+  - first:
+      213: 21300070
+    second: penitent_priedieu_action_lightning_shrine_anim_35
+  - first:
+      213: 21300072
+    second: penitent_priedieu_action_lightning_shrine_anim_36
+  - first:
+      213: 21300074
+    second: penitent_priedieu_action_lightning_shrine_anim_37
+  - first:
+      213: 21300076
+    second: penitent_priedieu_action_lightning_shrine_anim_38
+  - first:
+      213: 21300078
+    second: penitent_priedieu_action_lightning_shrine_anim_39
+  - first:
+      213: 21300080
+    second: penitent_priedieu_action_lightning_shrine_anim_40
+  - first:
+      213: 21300082
+    second: penitent_priedieu_action_lightning_shrine_anim_41
+  - first:
+      213: 21300084
+    second: penitent_priedieu_action_lightning_shrine_anim_42
+  - first:
+      213: 21300086
+    second: penitent_priedieu_action_lightning_shrine_anim_43
+  - first:
+      213: 21300088
+    second: penitent_priedieu_action_lightning_shrine_anim_44
+  - first:
+      213: 21300090
+    second: penitent_priedieu_action_lightning_shrine_anim_45
+  - first:
+      213: 21300092
+    second: penitent_priedieu_action_lightning_shrine_anim_46
+  - first:
+      213: 21300094
+    second: penitent_priedieu_action_lightning_shrine_anim_47
+  - first:
+      213: 21300096
+    second: penitent_priedieu_action_lightning_shrine_anim_48
+  - first:
+      213: 21300098
+    second: penitent_priedieu_action_lightning_shrine_anim_49
+  - first:
+      213: 21300100
+    second: penitent_priedieu_action_lightning_shrine_anim_50
+  - first:
+      213: 21300102
+    second: penitent_priedieu_action_lightning_shrine_anim_51
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 4
+  maxTextureSize: 1024
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_0
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 324
+        width: 67
+        height: 72
+      alignment: 9
+      pivot: {x: 0.7301492, y: 0.0013888942}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27.5, y: -36.000008}
+        - {x: -33.5, y: -32.000008}
+        - {x: -33.5, y: -23.000008}
+        - {x: 10.5, y: 35.999992}
+        - {x: 23.5, y: 35.999992}
+        - {x: 33.5, y: -9.000008}
+        - {x: 33.5, y: -36.000008}
+      physicsShape:
+      - - {x: 33.5, y: -26.000008}
+        - {x: 32.5, y: -20.000008}
+        - {x: 30.5, y: 1.9999924}
+        - {x: 21.5, y: 16.999992}
+        - {x: 19.5, y: 31.999992}
+        - {x: 18.5, y: 35.999992}
+        - {x: 12.5, y: 35.999992}
+        - {x: 9.5, y: 15.999992}
+        - {x: -3.5, y: 4.9999924}
+        - {x: -5.5, y: -6.0000076}
+        - {x: -32.5, y: -22.000008}
+        - {x: -33.5, y: -24.000008}
+        - {x: -33.5, y: -30.000008}
+        - {x: -16.5, y: -26.000008}
+        - {x: -13.5, y: -30.000008}
+        - {x: -6.5, y: -35.000008}
+        - {x: -6.5, y: -36.000008}
+        - {x: 4.5, y: -36.000008}
+        - {x: 14.5, y: -22.000008}
+        - {x: 24.5, y: -36.000008}
+        - {x: 33.5, y: -36.000008}
+      - - {x: 4.5, y: -12.000008}
+        - {x: 3.5, y: -12.000008}
+        - {x: 1.5, y: -14.000008}
+        - {x: 2.5, y: -15.000008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_1
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 174
+        width: 68
+        height: 71
+      alignment: 9
+      pivot: {x: 0.7341176, y: 0.0014084561}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27.999985, y: -35.500008}
+        - {x: -33.999985, y: -33.500008}
+        - {x: -33.999985, y: -21.500008}
+        - {x: 7.0000153, y: 35.499992}
+        - {x: 18.000015, y: 35.499992}
+        - {x: 30.000015, y: 1.4999924}
+        - {x: 34.000015, y: -15.500008}
+        - {x: 34.000015, y: -35.500008}
+      physicsShape:
+      - - {x: 34.000015, y: -30.500008}
+        - {x: 30.000015, y: -17.500008}
+        - {x: 30.000015, y: 1.4999924}
+        - {x: 20.000015, y: 15.499992}
+        - {x: 20.000015, y: 23.499992}
+        - {x: 18.000015, y: 35.499992}
+        - {x: 13.000015, y: 35.499992}
+        - {x: 10.000015, y: 26.499992}
+        - {x: 9.000015, y: 12.499992}
+        - {x: -3.9999847, y: 0.49999237}
+        - {x: -3.9999847, y: -0.5000076}
+        - {x: -1.9999847, y: -7.5000076}
+        - {x: -30.999985, y: -19.500008}
+        - {x: -33.999985, y: -22.500008}
+        - {x: -33.999985, y: -27.500008}
+        - {x: -29.999985, y: -27.500008}
+        - {x: -10.999985, y: -23.500008}
+        - {x: -7.9999847, y: -35.500008}
+        - {x: 4.0000153, y: -35.500008}
+        - {x: 13.000015, y: -26.500008}
+        - {x: 24.000015, y: -35.500008}
+        - {x: 34.000015, y: -35.500008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_2
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 253
+        width: 66
+        height: 68
+      alignment: 9
+      pivot: {x: 0.72606057, y: 0.0014705939}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20.999985, y: -20.000008}
+        - {x: -32.999985, y: -21.000008}
+        - {x: -32.999985, y: -16.000008}
+        - {x: 11.000015, y: 29.999992}
+        - {x: 13.000015, y: 33.999992}
+        - {x: 18.000015, y: 33.999992}
+        - {x: 27.000015, y: 2.9999924}
+        - {x: 33.000015, y: -26.000008}
+        - {x: 33.000015, y: -34.000008}
+        - {x: -10.999985, y: -34.000008}
+      physicsShape:
+      - - {x: 33.000015, y: -27.000008}
+        - {x: 25.000015, y: 2.9999924}
+        - {x: 18.000015, y: 33.999992}
+        - {x: 13.000015, y: 33.999992}
+        - {x: 11.000015, y: 29.999992}
+        - {x: -4.9999847, y: -3.0000076}
+        - {x: -26.999985, y: -13.000008}
+        - {x: -32.999985, y: -16.000008}
+        - {x: -32.999985, y: -21.000008}
+        - {x: -20.999985, y: -20.000008}
+        - {x: -7.9999847, y: -17.000008}
+        - {x: -9.999985, y: -34.000008}
+        - {x: 2.0000153, y: -34.000008}
+        - {x: 8.000015, y: -25.000008}
+        - {x: 23.000015, y: -34.000008}
+        - {x: 33.000015, y: -34.000008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_3
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 174
+        width: 71
+        height: 69
+      alignment: 9
+      pivot: {x: 0.7453521, y: 0.0014492809}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 35.500015, y: -34.500008}
+        - {x: -35.499985, y: -34.500008}
+        - {x: -35.499985, y: -20.500008}
+        - {x: -1.4999847, y: 34.499992}
+        - {x: 24.500015, y: 34.499992}
+        - {x: 35.500015, y: -10.500008}
+      physicsShape:
+      - - {x: 35.500015, y: -27.500008}
+        - {x: 33.500015, y: -19.500008}
+        - {x: 29.500015, y: 1.4999924}
+        - {x: 19.500015, y: 12.499992}
+        - {x: 19.500015, y: 34.499992}
+        - {x: 14.500015, y: 34.499992}
+        - {x: 11.500015, y: 31.499992}
+        - {x: 9.500015, y: 19.499992}
+        - {x: 9.500015, y: 13.499992}
+        - {x: -5.4999847, y: 1.4999924}
+        - {x: -4.4999847, y: -7.5000076}
+        - {x: -32.499985, y: -19.500008}
+        - {x: -35.499985, y: -22.500008}
+        - {x: -35.499985, y: -27.500008}
+        - {x: -31.499985, y: -28.500008}
+        - {x: -11.499985, y: -23.500008}
+        - {x: -9.499985, y: -34.500008}
+        - {x: 1.5000153, y: -34.500008}
+        - {x: 16.500015, y: -23.500008}
+        - {x: 27.500015, y: -34.500008}
+        - {x: 35.500015, y: -34.500008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_4
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 253
+        width: 66
+        height: 71
+      alignment: 9
+      pivot: {x: 0.8321212, y: 0.0014084561}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: -35.500008}
+        - {x: -33, y: -31.500008}
+        - {x: -33, y: -22.500008}
+        - {x: 16, y: 35.499992}
+        - {x: 27, y: 35.499992}
+        - {x: 33, y: -3.5000076}
+        - {x: 33, y: -35.500008}
+      physicsShape:
+      - - {x: 33, y: -35.500008}
+        - {x: 33, y: -19.500008}
+        - {x: 30, y: 4.4999924}
+        - {x: 23, y: 14.499992}
+        - {x: 23, y: 35.499992}
+        - {x: 17, y: 35.499992}
+        - {x: 12, y: 15.499992}
+        - {x: 2, y: 6.4999924}
+        - {x: -2, y: 2.4999924}
+        - {x: -30, y: -20.500008}
+        - {x: -33, y: -24.500008}
+        - {x: -33, y: -30.500008}
+        - {x: -16, y: -29.500008}
+        - {x: -5, y: -30.500008}
+        - {x: -5, y: -35.500008}
+        - {x: 6, y: -35.500008}
+        - {x: 10, y: -25.500008}
+        - {x: 19, y: -26.500008}
+        - {x: 24, y: -35.500008}
+      - - {x: 0, y: -14.500008}
+        - {x: 6, y: -8.500008}
+        - {x: 8, y: -5.5000076}
+        - {x: 6, y: -6.5000076}
+        - {x: -1, y: -13.500008}
+        - {x: -1, y: -14.500008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_5
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 396
+        width: 62
+        height: 73
+      alignment: 9
+      pivot: {x: 0.85354835, y: 0.0013698683}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 31, y: -36.500008}
+        - {x: -31, y: -36.500008}
+        - {x: -31, y: -26.500008}
+        - {x: 13, y: 36.499992}
+        - {x: 24, y: 36.499992}
+        - {x: 31, y: -11.500008}
+      physicsShape:
+      - - {x: 31, y: -36.500008}
+        - {x: 31, y: -27.500008}
+        - {x: 30, y: -21.500008}
+        - {x: 30, y: -2.5000076}
+        - {x: 22, y: 36.499992}
+        - {x: 14, y: 36.499992}
+        - {x: 8, y: 17.499992}
+        - {x: -2, y: 7.4999924}
+        - {x: -16, y: -8.500008}
+        - {x: -31, y: -26.500008}
+        - {x: -31, y: -32.500008}
+        - {x: -28, y: -33.500008}
+        - {x: -11, y: -26.500008}
+        - {x: 0, y: -21.500008}
+        - {x: -5, y: -35.500008}
+        - {x: -5, y: -36.500008}
+        - {x: 7, y: -36.500008}
+        - {x: 20, y: -28.500008}
+        - {x: 22, y: -36.500008}
+      - - {x: 5, y: -7.5000076}
+        - {x: 2, y: -10.500008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_6
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 0
+        width: 51
+        height: 75
+      alignment: 9
+      pivot: {x: 0.8807843, y: 0.0013333384}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 25.500015, y: -37.5}
+        - {x: -25.499985, y: -37.5}
+        - {x: -25.499985, y: -26.5}
+        - {x: -23.499985, y: -16.5}
+        - {x: 10.500015, y: 37.5}
+        - {x: 17.500015, y: 37.5}
+        - {x: 25.500015, y: 10.5}
+      physicsShape:
+      - - {x: 25.500015, y: -30.5}
+        - {x: 21.500015, y: -17.5}
+        - {x: 25.500015, y: -15.5}
+        - {x: 25.500015, y: -6.5}
+        - {x: 16.500015, y: 13.5}
+        - {x: 16.500015, y: 37.5}
+        - {x: 10.500015, y: 37.5}
+        - {x: 2.5000153, y: 15.5}
+        - {x: -23.499985, y: -16.5}
+        - {x: -25.499985, y: -26.5}
+        - {x: -25.499985, y: -37.5}
+        - {x: -23.499985, y: -37.5}
+        - {x: -15.499985, y: -29.5}
+        - {x: -10.499985, y: -20.5}
+        - {x: -3.4999847, y: -22.5}
+        - {x: -6.4999847, y: -34.5}
+        - {x: -7.4999847, y: -37.5}
+        - {x: 2.5000153, y: -37.5}
+        - {x: 9.500015, y: -22.5}
+        - {x: 14.500015, y: -37.5}
+        - {x: 25.500015, y: -37.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_7
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 474
+        width: 44
+        height: 79
+      alignment: 9
+      pivot: {x: 0.8845454, y: 0.039240513}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: -38.500004}
+        - {x: -11, y: -36.500004}
+        - {x: -10, y: -31.500004}
+        - {x: -14, y: -39.500004}
+        - {x: -22, y: -39.500004}
+        - {x: -22, y: 9.499996}
+        - {x: 5, y: 39.499996}
+        - {x: 20, y: 39.499996}
+        - {x: 22, y: 25.499996}
+        - {x: 22, y: -37.500004}
+        - {x: 19, y: -38.500004}
+        - {x: 13, y: -38.500004}
+        - {x: 0, y: -36.500004}
+        - {x: -2, y: -38.500004}
+      physicsShape:
+      - - {x: -8, y: -38.500004}
+        - {x: -2, y: -38.500004}
+        - {x: 0, y: -36.500004}
+        - {x: 3, y: -26.500004}
+        - {x: 9, y: -36.500004}
+        - {x: 13, y: -38.500004}
+        - {x: 19, y: -38.500004}
+        - {x: 20, y: -35.500004}
+        - {x: 15, y: -10.500004}
+        - {x: 22, y: -9.500004}
+        - {x: 22, y: 1.4999962}
+        - {x: 13, y: 14.499996}
+        - {x: 13, y: 39.499996}
+        - {x: 6, y: 39.499996}
+        - {x: -7, y: 10.499996}
+        - {x: -14, y: -10.500004}
+        - {x: -22, y: -14.500004}
+        - {x: -22, y: -29.500004}
+        - {x: -20, y: -35.500004}
+        - {x: -20, y: -39.500004}
+        - {x: -14, y: -39.500004}
+        - {x: -10, y: -31.500004}
+        - {x: -5, y: -14.500004}
+        - {x: -11, y: -36.500004}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 474
+        width: 44
+        height: 81
+      alignment: 9
+      pivot: {x: 0.9072727, y: 0.062962964}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: -40.500008}
+        - {x: -22, y: -32.500008}
+        - {x: -22, y: -3.5000076}
+        - {x: 3, y: 40.499992}
+        - {x: 22, y: 40.499992}
+        - {x: 22, y: -40.500008}
+      physicsShape:
+      - - {x: 12, y: -37.500008}
+        - {x: 18, y: -37.500008}
+        - {x: 19, y: -34.500008}
+        - {x: 22, y: -15.500008}
+        - {x: 22, y: 7.4999924}
+        - {x: 12, y: 40.499992}
+        - {x: 5, y: 40.499992}
+        - {x: -8, y: 11.499992}
+        - {x: -22, y: -12.500008}
+        - {x: -22, y: -25.500008}
+        - {x: -11, y: -40.500008}
+        - {x: 0, y: -40.500008}
+        - {x: 5, y: -26.500008}
+        - {x: 8, y: -34.500008}
+        - {x: 9, y: -36.500008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 555
+        width: 41
+        height: 82
+      alignment: 9
+      pivot: {x: 0.9980487, y: 0.07439025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9.5, y: -33.999977}
+        - {x: 9.5, y: -33.999977}
+        - {x: 8.5, y: -40.999977}
+        - {x: -7.5, y: -40.999977}
+        - {x: -20.5, y: -28.999977}
+        - {x: -20.5, y: -5.999977}
+        - {x: 2.5, y: 41.000023}
+        - {x: 11.5, y: 41.000023}
+        - {x: 20.5, y: 14.000023}
+        - {x: 20.5, y: -39.999977}
+        - {x: 10.5, y: -35.999977}
+      physicsShape:
+      - - {x: 10.5, y: -35.999977}
+        - {x: 20.5, y: -39.999977}
+        - {x: 20.5, y: 8.000023}
+        - {x: 12.5, y: 22.000023}
+        - {x: 11.5, y: 41.000023}
+        - {x: 4.5, y: 41.000023}
+        - {x: -10.5, y: 6.000023}
+        - {x: -20.5, y: -11.999977}
+        - {x: -20.5, y: -19.999977}
+        - {x: -18.5, y: -19.999977}
+        - {x: -9.5, y: -35.999977}
+        - {x: -0.5, y: -40.999977}
+        - {x: 8.5, y: -40.999977}
+        - {x: 9.5, y: -32.999977}
+        - {x: 8.5, y: -27.999977}
+        - {x: 9.5, y: -33.999977}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_10
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 396
+        width: 43
+        height: 78
+      alignment: 9
+      pivot: {x: 0.928372, y: 0.0012820562}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7.5, y: -39.000008}
+        - {x: -21.5, y: -26.000008}
+        - {x: -21.5, y: -0.0000076293945}
+        - {x: -0.5, y: 38.999992}
+        - {x: 21.5, y: 38.999992}
+        - {x: 21.5, y: -39.000008}
+      physicsShape:
+      - - {x: 19.5, y: -4.0000076}
+        - {x: 21.5, y: -3.0000076}
+        - {x: 21.5, y: 4.9999924}
+        - {x: 7.5, y: 14.999992}
+        - {x: 7.5, y: 38.999992}
+        - {x: 1.5, y: 38.999992}
+        - {x: -9.5, y: 12.999992}
+        - {x: -10.5, y: -5.0000076}
+        - {x: -5.5, y: -7.0000076}
+        - {x: -21.5, y: -15.000008}
+        - {x: -21.5, y: -24.000008}
+        - {x: -6.5, y: -24.000008}
+        - {x: -7.5, y: -36.000008}
+        - {x: -7.5, y: -39.000008}
+        - {x: 19.5, y: -39.000008}
+        - {x: 21.5, y: -38.000008}
+        - {x: 21.5, y: -19.000008}
+      - - {x: 14.5, y: -33.000008}
+        - {x: 13.5, y: -32.000008}
+        - {x: 14.5, y: -26.000008}
+        - {x: 13.5, y: -24.000008}
+        - {x: 12.5, y: -28.000008}
+        - {x: 13.5, y: -32.000008}
+        - {x: 15.5, y: -35.000008}
+        - {x: 16.5, y: -34.000008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43305410000000000800000000000000
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_11
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 0
+        width: 75
+        height: 78
+      alignment: 9
+      pivot: {x: 0.5456, y: 0.0012820562}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15.499985, y: 39}
+        - {x: -5.4999847, y: 39}
+        - {x: -3.4999847, y: 36}
+        - {x: -1.4999847, y: 35}
+        - {x: -1.4999847, y: 33}
+        - {x: 20.500015, y: -2}
+        - {x: 20.500015, y: -15}
+        - {x: 6.5000153, y: -39}
+        - {x: -30.499985, y: -39}
+        - {x: -37.499985, y: -31}
+        - {x: -37.499985, y: -1}
+        - {x: -33.499985, y: 16}
+      - - {x: 36.500015, y: 16}
+        - {x: 34.500015, y: 18}
+        - {x: 35.500015, y: 21}
+        - {x: 37.500015, y: 21}
+        - {x: 37.500015, y: 16}
+      - - {x: 35.500015, y: -3}
+        - {x: 33.500015, y: 0}
+        - {x: 35.500015, y: 2}
+        - {x: 37.500015, y: 1}
+        - {x: 37.500015, y: -2}
+      - - {x: 32.500015, y: -20}
+        - {x: 30.500015, y: -17}
+        - {x: 32.500015, y: -15}
+        - {x: 35.500015, y: -16}
+        - {x: 35.500015, y: -19}
+      - - {x: 13.500015, y: 31}
+        - {x: 11.500015, y: 34}
+        - {x: 13.500015, y: 36}
+        - {x: 16.500015, y: 35}
+        - {x: 16.500015, y: 32}
+      physicsShape:
+      - - {x: 2.5000153, y: 2}
+        - {x: 17.500015, y: -14}
+        - {x: 20.500015, y: -13}
+        - {x: 20.500015, y: -7}
+        - {x: 5.5000153, y: 13}
+        - {x: 3.5000153, y: 24}
+        - {x: -7.4999847, y: 39}
+        - {x: -15.499985, y: 39}
+        - {x: -18.499985, y: 30}
+        - {x: -25.499985, y: 13}
+        - {x: -25.499985, y: -4}
+        - {x: -37.499985, y: -15}
+        - {x: -37.499985, y: -22}
+        - {x: -35.499985, y: -22}
+        - {x: -21.499985, y: -21}
+        - {x: -22.499985, y: -36}
+        - {x: -22.499985, y: -39}
+        - {x: 0.50001526, y: -39}
+        - {x: 1.5000153, y: -37}
+        - {x: 1.5000153, y: -3}
+      - - {x: 32.500015, y: -20}
+        - {x: 35.500015, y: -19}
+        - {x: 35.500015, y: -16}
+        - {x: 32.500015, y: -15}
+        - {x: 30.500015, y: -17}
+      - - {x: -26.499985, y: -3}
+        - {x: -23.499985, y: -2}
+        - {x: -23.499985, y: 1}
+        - {x: -26.499985, y: 2}
+        - {x: -28.499985, y: 0}
+      - - {x: 33.500015, y: 0}
+        - {x: 35.500015, y: -3}
+        - {x: 37.500015, y: -2}
+        - {x: 37.500015, y: 1}
+        - {x: 35.500015, y: 2}
+      - - {x: -9.499985, y: 23}
+        - {x: -10.499985, y: 18}
+        - {x: -8.499985, y: 13}
+        - {x: -7.4999847, y: 14}
+      - - {x: -27.499985, y: 16}
+        - {x: -24.499985, y: 17}
+        - {x: -24.499985, y: 20}
+        - {x: -27.499985, y: 21}
+        - {x: -29.499985, y: 19}
+      - - {x: 34.500015, y: 18}
+        - {x: 36.500015, y: 16}
+        - {x: 37.500015, y: 16}
+        - {x: 37.500015, y: 21}
+        - {x: 35.500015, y: 21}
+      - - {x: -4.4999847, y: 31}
+        - {x: -1.4999847, y: 32}
+        - {x: -1.4999847, y: 35}
+        - {x: -4.4999847, y: 36}
+        - {x: -6.4999847, y: 34}
+      - - {x: 13.500015, y: 31}
+        - {x: 16.500015, y: 32}
+        - {x: 16.500015, y: 35}
+        - {x: 13.500015, y: 36}
+        - {x: 11.500015, y: 34}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63305410000000000800000000000000
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 74
+        height: 78
+      alignment: 9
+      pivot: {x: 0.552973, y: 0.0012820562}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5.9999847, y: 39}
+        - {x: -2.9999847, y: 35}
+        - {x: -2.9999847, y: 35}
+        - {x: 0.000015258789, y: 34}
+        - {x: 0.000015258789, y: 31}
+        - {x: -0.99998474, y: 31}
+        - {x: 21.000015, y: -5}
+        - {x: 21.000015, y: -14}
+        - {x: 6.0000153, y: -38}
+        - {x: 4.0000153, y: -39}
+        - {x: -31.999985, y: -39}
+        - {x: -36.999985, y: -32}
+        - {x: -36.999985, y: 10}
+        - {x: -25.999985, y: 39}
+      - - {x: 35.000015, y: 16}
+        - {x: 33.000015, y: 19}
+        - {x: 35.000015, y: 21}
+        - {x: 37.000015, y: 20}
+        - {x: 37.000015, y: 17}
+      - - {x: 35.000015, y: -2}
+        - {x: 33.000015, y: 1}
+        - {x: 35.000015, y: 3}
+        - {x: 37.000015, y: 2}
+        - {x: 37.000015, y: -1}
+      - - {x: 33.000015, y: -20}
+        - {x: 30.000015, y: -18}
+        - {x: 30.000015, y: -15}
+        - {x: 31.000015, y: -13}
+        - {x: 33.000015, y: -13}
+        - {x: 37.000015, y: -15}
+        - {x: 37.000015, y: -20}
+      - - {x: 15.000015, y: -39}
+        - {x: 13.000015, y: -36}
+        - {x: 15.000015, y: -34}
+        - {x: 18.000015, y: -35}
+        - {x: 18.000015, y: -38}
+      - - {x: 13.000015, y: 30}
+        - {x: 11.000015, y: 33}
+        - {x: 13.000015, y: 35}
+        - {x: 16.000015, y: 34}
+        - {x: 16.000015, y: 31}
+      physicsShape:
+      - - {x: 2.0000153, y: -37}
+        - {x: 1.0000153, y: -24}
+        - {x: 2.0000153, y: -3}
+        - {x: 0.000015258789, y: 8}
+        - {x: 7.0000153, y: -3}
+        - {x: 18.000015, y: -15}
+        - {x: 21.000015, y: -14}
+        - {x: 21.000015, y: -8}
+        - {x: 6.0000153, y: 12}
+        - {x: 3.0000153, y: 22}
+        - {x: -3.9999847, y: 28}
+        - {x: -8.999985, y: 39}
+        - {x: -15.999985, y: 39}
+        - {x: -25.999985, y: 13}
+        - {x: -27.999985, y: -1}
+        - {x: -22.999985, y: -5}
+        - {x: -36.999985, y: -15}
+        - {x: -36.999985, y: -23}
+        - {x: -23.999985, y: -21}
+        - {x: -22.999985, y: -39}
+        - {x: 1.0000153, y: -39}
+      - - {x: 15.000015, y: -39}
+        - {x: 18.000015, y: -38}
+        - {x: 18.000015, y: -35}
+        - {x: 15.000015, y: -34}
+        - {x: 13.000015, y: -36}
+      - - {x: 31.000015, y: -13}
+        - {x: 30.000015, y: -15}
+        - {x: 30.000015, y: -18}
+        - {x: 33.000015, y: -20}
+        - {x: 37.000015, y: -20}
+        - {x: 37.000015, y: -15}
+        - {x: 33.000015, y: -13}
+      - - {x: 33.000015, y: 1}
+        - {x: 35.000015, y: -2}
+        - {x: 37.000015, y: -1}
+        - {x: 37.000015, y: 2}
+        - {x: 35.000015, y: 3}
+      - - {x: -8.999985, y: 22}
+        - {x: -9.999985, y: 17}
+        - {x: -7.9999847, y: 14}
+        - {x: -6.9999847, y: 14}
+      - - {x: -24.999985, y: 16}
+        - {x: -21.999985, y: 17}
+        - {x: -21.999985, y: 20}
+        - {x: -24.999985, y: 21}
+        - {x: -26.999985, y: 19}
+      - - {x: 33.000015, y: 19}
+        - {x: 35.000015, y: 16}
+        - {x: 37.000015, y: 17}
+        - {x: 37.000015, y: 20}
+        - {x: 35.000015, y: 21}
+      - - {x: -2.9999847, y: 30}
+        - {x: 0.000015258789, y: 31}
+        - {x: 0.000015258789, y: 34}
+        - {x: -2.9999847, y: 35}
+        - {x: -4.9999847, y: 33}
+      - - {x: 13.000015, y: 30}
+        - {x: 16.000015, y: 31}
+        - {x: 16.000015, y: 34}
+        - {x: 13.000015, y: 35}
+        - {x: 11.000015, y: 33}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83305410000000000800000000000000
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_13
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 84
+        width: 72
+        height: 78
+      alignment: 9
+      pivot: {x: 0.5683333, y: 0.0012820562}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 13.000015, y: 28}
+        - {x: 11.000015, y: 31}
+        - {x: 13.000015, y: 33}
+        - {x: 16.000015, y: 32}
+        - {x: 16.000015, y: 29}
+      - - {x: -14.999985, y: 39}
+        - {x: -0.99998474, y: 39}
+        - {x: 22.000015, y: -3}
+        - {x: 22.000015, y: -13}
+        - {x: 3.0000153, y: -37}
+        - {x: 3.0000153, y: -39}
+        - {x: -34.999985, y: -39}
+        - {x: -35.999985, y: -37}
+        - {x: -35.999985, y: 19}
+        - {x: -32.999985, y: 26}
+      - - {x: 34.000015, y: 16}
+        - {x: 32.000015, y: 19}
+        - {x: 34.000015, y: 21}
+        - {x: 36.000015, y: 20}
+        - {x: 36.000015, y: 17}
+      - - {x: 34.000015, y: -1}
+        - {x: 32.000015, y: 2}
+        - {x: 34.000015, y: 4}
+        - {x: 36.000015, y: 3}
+        - {x: 36.000015, y: 0}
+      - - {x: 32.000015, y: -18}
+        - {x: 29.000015, y: -16}
+        - {x: 29.000015, y: -13}
+        - {x: 30.000015, y: -11}
+        - {x: 32.000015, y: -11}
+        - {x: 36.000015, y: -13}
+        - {x: 36.000015, y: -18}
+      - - {x: 15.000015, y: -36}
+        - {x: 13.000015, y: -33}
+        - {x: 15.000015, y: -31}
+        - {x: 18.000015, y: -32}
+        - {x: 18.000015, y: -35}
+      physicsShape:
+      - - {x: 4.0000153, y: 2}
+        - {x: 19.000015, y: -14}
+        - {x: 22.000015, y: -13}
+        - {x: 22.000015, y: -7}
+        - {x: 7.0000153, y: 13}
+        - {x: 5.0000153, y: 24}
+        - {x: -5.9999847, y: 39}
+        - {x: -13.999985, y: 39}
+        - {x: -16.999985, y: 30}
+        - {x: -24.999985, y: 22}
+        - {x: -26.999985, y: 0}
+        - {x: -21.999985, y: -5}
+        - {x: -35.999985, y: -15}
+        - {x: -35.999985, y: -23}
+        - {x: -22.999985, y: -21}
+        - {x: -17.999985, y: -16}
+        - {x: -20.999985, y: -36}
+        - {x: -20.999985, y: -39}
+        - {x: 2.0000153, y: -39}
+        - {x: 3.0000153, y: -37}
+        - {x: 3.0000153, y: -3}
+      - - {x: 15.000015, y: -36}
+        - {x: 18.000015, y: -35}
+        - {x: 18.000015, y: -32}
+        - {x: 15.000015, y: -31}
+        - {x: 13.000015, y: -33}
+      - - {x: 30.000015, y: -11}
+        - {x: 29.000015, y: -13}
+        - {x: 29.000015, y: -16}
+        - {x: 32.000015, y: -18}
+        - {x: 36.000015, y: -18}
+        - {x: 36.000015, y: -13}
+        - {x: 32.000015, y: -11}
+      - - {x: 32.000015, y: 2}
+        - {x: 34.000015, y: -1}
+        - {x: 36.000015, y: 0}
+        - {x: 36.000015, y: 3}
+        - {x: 34.000015, y: 4}
+      - - {x: -7.9999847, y: 23}
+        - {x: -8.999985, y: 18}
+        - {x: -6.9999847, y: 13}
+        - {x: -5.9999847, y: 14}
+      - - {x: 32.000015, y: 19}
+        - {x: 34.000015, y: 16}
+        - {x: 36.000015, y: 17}
+        - {x: 36.000015, y: 20}
+        - {x: 34.000015, y: 21}
+      - - {x: -0.99998474, y: 28}
+        - {x: 2.0000153, y: 29}
+        - {x: 2.0000153, y: 32}
+        - {x: -0.99998474, y: 33}
+        - {x: -2.9999847, y: 31}
+      - - {x: 13.000015, y: 28}
+        - {x: 16.000015, y: 29}
+        - {x: 16.000015, y: 32}
+        - {x: 13.000015, y: 33}
+        - {x: 11.000015, y: 31}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3305410000000000800000000000000
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_14
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 84
+        width: 70
+        height: 78
+      alignment: 9
+      pivot: {x: 0.5845714, y: 0.0012820562}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -2.9999847, y: 39}
+        - {x: 12.000015, y: 28}
+        - {x: 11.000015, y: 29}
+        - {x: 13.000015, y: 31}
+        - {x: 16.000015, y: 30}
+        - {x: 16.000015, y: 27}
+        - {x: 13.000015, y: 26}
+        - {x: 23.000015, y: -3}
+        - {x: 23.000015, y: -22}
+        - {x: 17.000015, y: -28}
+        - {x: 18.000015, y: -28}
+        - {x: 18.000015, y: -31}
+        - {x: 15.000015, y: -32}
+        - {x: 14.000015, y: -30}
+        - {x: 7.0000153, y: -37}
+        - {x: 4.0000153, y: -39}
+        - {x: -23.999985, y: -39}
+        - {x: -32.999985, y: -22}
+        - {x: -34.999985, y: -22}
+        - {x: -34.999985, y: 5}
+        - {x: -20.999985, y: 39}
+      - - {x: 33.000015, y: 16}
+        - {x: 31.000015, y: 19}
+        - {x: 33.000015, y: 21}
+        - {x: 35.000015, y: 20}
+        - {x: 35.000015, y: 17}
+      - - {x: 33.000015, y: 0}
+        - {x: 31.000015, y: 3}
+        - {x: 33.000015, y: 5}
+        - {x: 35.000015, y: 4}
+        - {x: 35.000015, y: 1}
+      - - {x: 29.000015, y: -14}
+        - {x: 27.000015, y: -11}
+        - {x: 29.000015, y: -9}
+        - {x: 32.000015, y: -10}
+        - {x: 32.000015, y: -13}
+      - - {x: 34.000015, y: -16}
+        - {x: 32.000015, y: -14}
+        - {x: 33.000015, y: -11}
+        - {x: 35.000015, y: -11}
+        - {x: 35.000015, y: -16}
+      physicsShape:
+      - - {x: 9.000015, y: -2}
+        - {x: 14.000015, y: -8}
+        - {x: 20.000015, y: -15}
+        - {x: 23.000015, y: -14}
+        - {x: 23.000015, y: -8}
+        - {x: 8.000015, y: 12}
+        - {x: 6.0000153, y: 23}
+        - {x: -4.9999847, y: 39}
+        - {x: -12.999985, y: 39}
+        - {x: -20.999985, y: 22}
+        - {x: -23.999985, y: 8}
+        - {x: -21.999985, y: -4}
+        - {x: -34.999985, y: -15}
+        - {x: -34.999985, y: -22}
+        - {x: -32.999985, y: -22}
+        - {x: -18.999985, y: -16}
+        - {x: -18.999985, y: -30}
+        - {x: -20.999985, y: -39}
+        - {x: 3.0000153, y: -39}
+        - {x: 4.0000153, y: -37}
+        - {x: 4.0000153, y: -8}
+      - - {x: 15.000015, y: -32}
+        - {x: 18.000015, y: -31}
+        - {x: 18.000015, y: -28}
+        - {x: 15.000015, y: -27}
+        - {x: 13.000015, y: -29}
+      - - {x: 32.000015, y: -14}
+        - {x: 34.000015, y: -16}
+        - {x: 35.000015, y: -16}
+        - {x: 35.000015, y: -11}
+        - {x: 33.000015, y: -11}
+      - - {x: 29.000015, y: -14}
+        - {x: 32.000015, y: -13}
+        - {x: 32.000015, y: -10}
+        - {x: 29.000015, y: -9}
+        - {x: 27.000015, y: -11}
+      - - {x: 31.000015, y: 3}
+        - {x: 33.000015, y: 0}
+        - {x: 35.000015, y: 1}
+        - {x: 35.000015, y: 4}
+        - {x: 33.000015, y: 5}
+      - - {x: -6.9999847, y: 22}
+        - {x: -7.9999847, y: 17}
+        - {x: -5.9999847, y: 14}
+        - {x: -4.9999847, y: 14}
+      - - {x: 31.000015, y: 19}
+        - {x: 33.000015, y: 16}
+        - {x: 35.000015, y: 17}
+        - {x: 35.000015, y: 20}
+        - {x: 33.000015, y: 21}
+      - - {x: 1.0000153, y: 26}
+        - {x: 4.0000153, y: 27}
+        - {x: 4.0000153, y: 30}
+        - {x: 1.0000153, y: 31}
+        - {x: -0.99998474, y: 29}
+      - - {x: 13.000015, y: 26}
+        - {x: 16.000015, y: 27}
+        - {x: 16.000015, y: 30}
+        - {x: 13.000015, y: 31}
+        - {x: 11.000015, y: 29}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3305410000000000800000000000000
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_15
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 75
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5456, y: 0.0012500047}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 1.5, y: 37}
+        - {x: -0.5, y: 40}
+        - {x: 4.5, y: 40}
+        - {x: 4.5, y: 38}
+      - - {x: 8.5, y: 37}
+        - {x: 6.5, y: 40}
+        - {x: 11.5, y: 40}
+        - {x: 11.5, y: 38}
+      - - {x: 19.5, y: 32}
+        - {x: 17.5, y: 35}
+        - {x: 19.5, y: 37}
+        - {x: 22.5, y: 36}
+        - {x: 22.5, y: 33}
+      - - {x: 9.5, y: 22}
+        - {x: 7.5, y: 25}
+        - {x: 9.5, y: 27}
+        - {x: 12.5, y: 26}
+        - {x: 12.5, y: 23}
+      - - {x: 26.5, y: 15}
+        - {x: 24.5, y: 18}
+        - {x: 26.5, y: 20}
+        - {x: 29.5, y: 19}
+        - {x: 29.5, y: 16}
+      - - {x: 26.5, y: 1}
+        - {x: 24.5, y: 4}
+        - {x: 26.5, y: 6}
+        - {x: 29.5, y: 5}
+        - {x: 29.5, y: 2}
+      - - {x: 36.5, y: -6}
+        - {x: 34.5, y: -4}
+        - {x: 35.5, y: -1}
+        - {x: 37.5, y: -1}
+        - {x: 37.5, y: -6}
+      - - {x: -37.5, y: -9}
+        - {x: -28.5, y: 15}
+        - {x: -15.5, y: 40}
+        - {x: -9.5, y: 40}
+        - {x: -4.5, y: 36}
+        - {x: 0.5, y: 27}
+        - {x: 3.5, y: 26}
+        - {x: 20.5, y: 10}
+        - {x: 20.5, y: -8}
+        - {x: 20.5, y: -40}
+        - {x: -32.5, y: -40}
+        - {x: -22.5, y: -18}
+        - {x: -18.5, y: -15}
+        - {x: -22.5, y: -17}
+        - {x: -37.5, y: -25}
+      - - {x: 22.5, y: -11}
+        - {x: 20.5, y: -8}
+        - {x: 22.5, y: -6}
+        - {x: 25.5, y: -7}
+        - {x: 25.5, y: -10}
+      - - {x: 28.5, y: -14}
+        - {x: 26.5, y: -11}
+        - {x: 28.5, y: -9}
+        - {x: 31.5, y: -10}
+        - {x: 31.5, y: -13}
+      - - {x: 33.5, y: 11}
+        - {x: 31.5, y: 14}
+        - {x: 33.5, y: 16}
+        - {x: 36.5, y: 15}
+        - {x: 36.5, y: 12}
+      - - {x: 30.5, y: -22}
+        - {x: 28.5, y: -19}
+        - {x: 30.5, y: -17}
+        - {x: 33.5, y: -18}
+        - {x: 33.5, y: -21}
+      physicsShape:
+      - - {x: 1.5, y: -4}
+        - {x: 2.5, y: 1}
+        - {x: 17.5, y: -15}
+        - {x: 20.5, y: -15}
+        - {x: 20.5, y: -7}
+        - {x: 19.5, y: -2}
+        - {x: 4.5, y: 12}
+        - {x: 3.5, y: 26}
+        - {x: 0.5, y: 27}
+        - {x: -4.5, y: 36}
+        - {x: -11.5, y: 40}
+        - {x: -13.5, y: 40}
+        - {x: -17.5, y: 35}
+        - {x: -25.5, y: 14}
+        - {x: -24.5, y: -5}
+        - {x: -37.5, y: -16}
+        - {x: -37.5, y: -23}
+        - {x: -35.5, y: -23}
+        - {x: -22.5, y: -17}
+        - {x: -18.5, y: -15}
+        - {x: -22.5, y: -18}
+        - {x: -23.5, y: -21}
+        - {x: -22.5, y: -37}
+        - {x: -22.5, y: -40}
+        - {x: 0.5, y: -40}
+        - {x: 1.5, y: -38}
+      - - {x: 2.5, y: -36}
+        - {x: 5.5, y: -35}
+        - {x: 5.5, y: -32}
+        - {x: 2.5, y: -31}
+        - {x: 0.5, y: -33}
+      - - {x: 7.5, y: -36}
+        - {x: 10.5, y: -35}
+        - {x: 10.5, y: -32}
+        - {x: 7.5, y: -31}
+        - {x: 5.5, y: -33}
+      - - {x: 11.5, y: -26}
+        - {x: 14.5, y: -25}
+        - {x: 14.5, y: -22}
+        - {x: 11.5, y: -21}
+        - {x: 9.5, y: -23}
+      - - {x: 30.5, y: -22}
+        - {x: 33.5, y: -21}
+        - {x: 33.5, y: -18}
+        - {x: 30.5, y: -17}
+        - {x: 28.5, y: -19}
+      - - {x: 28.5, y: -14}
+        - {x: 31.5, y: -13}
+        - {x: 31.5, y: -10}
+        - {x: 28.5, y: -9}
+        - {x: 26.5, y: -11}
+      - - {x: 22.5, y: -11}
+        - {x: 25.5, y: -10}
+        - {x: 25.5, y: -7}
+        - {x: 22.5, y: -6}
+        - {x: 20.5, y: -8}
+      - - {x: -26.5, y: -6}
+        - {x: -23.5, y: -5}
+        - {x: -23.5, y: -2}
+        - {x: -26.5, y: -1}
+        - {x: -28.5, y: -3}
+      - - {x: 34.5, y: -4}
+        - {x: 36.5, y: -6}
+        - {x: 37.5, y: -6}
+        - {x: 37.5, y: -1}
+        - {x: 35.5, y: -1}
+      - - {x: 26.5, y: 1}
+        - {x: 29.5, y: 2}
+        - {x: 29.5, y: 5}
+        - {x: 26.5, y: 6}
+        - {x: 24.5, y: 4}
+      - - {x: -9.5, y: 22}
+        - {x: -10.5, y: 17}
+        - {x: -8.5, y: 12}
+        - {x: -7.5, y: 13}
+      - - {x: 33.5, y: 11}
+        - {x: 36.5, y: 12}
+        - {x: 36.5, y: 15}
+        - {x: 33.5, y: 16}
+        - {x: 31.5, y: 14}
+      - - {x: 26.5, y: 15}
+        - {x: 29.5, y: 16}
+        - {x: 29.5, y: 19}
+        - {x: 26.5, y: 20}
+        - {x: 24.5, y: 18}
+      - - {x: 9.5, y: 22}
+        - {x: 12.5, y: 23}
+        - {x: 12.5, y: 26}
+        - {x: 9.5, y: 27}
+        - {x: 7.5, y: 25}
+      - - {x: 19.5, y: 32}
+        - {x: 22.5, y: 33}
+        - {x: 22.5, y: 36}
+        - {x: 19.5, y: 37}
+        - {x: 17.5, y: 35}
+      - - {x: 4.5, y: 38}
+        - {x: 4.5, y: 40}
+        - {x: -0.5, y: 40}
+        - {x: 1.5, y: 37}
+      - - {x: 11.5, y: 38}
+        - {x: 11.5, y: 40}
+        - {x: 6.5, y: 40}
+        - {x: 8.5, y: 37}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3305410000000000800000000000000
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_16
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 0
+        width: 74
+        height: 79
+      alignment: 9
+      pivot: {x: 0.552973, y: 0.0012658276}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2.0000153, y: 36.5}
+        - {x: 0.000015258789, y: 39.5}
+        - {x: 5.0000153, y: 39.5}
+        - {x: 5.0000153, y: 37.5}
+      - - {x: 23.000015, y: -6.5}
+        - {x: 21.000015, y: -7.5}
+        - {x: 21.000015, y: -34.5}
+        - {x: 15.000015, y: -39.5}
+        - {x: -22.999985, y: -39.5}
+        - {x: -36.999985, y: -26.5}
+        - {x: -36.999985, y: -8.5}
+        - {x: -16.999985, y: 35.5}
+        - {x: -12.999985, y: 39.5}
+        - {x: -6.9999847, y: 39.5}
+        - {x: 10.000015, y: 27.5}
+        - {x: 12.000015, y: 23.5}
+        - {x: 12.000015, y: 23.5}
+        - {x: 12.000015, y: 22.5}
+        - {x: 21.000015, y: 2.5}
+        - {x: 21.000015, y: -2.5}
+        - {x: 23.000015, y: -3.5}
+      - - {x: 24.000015, y: 2.5}
+        - {x: 22.000015, y: 5.5}
+        - {x: 24.000015, y: 7.5}
+        - {x: 27.000015, y: 6.5}
+        - {x: 27.000015, y: 3.5}
+      - - {x: 33.000015, y: 11.5}
+        - {x: 31.000015, y: 14.5}
+        - {x: 33.000015, y: 16.5}
+        - {x: 36.000015, y: 15.5}
+        - {x: 36.000015, y: 12.5}
+      - - {x: 20.000015, y: 31.5}
+        - {x: 18.000015, y: 34.5}
+        - {x: 20.000015, y: 36.5}
+        - {x: 23.000015, y: 35.5}
+        - {x: 23.000015, y: 32.5}
+      - - {x: 10.000015, y: 36.5}
+        - {x: 8.000015, y: 39.5}
+        - {x: 13.000015, y: 39.5}
+        - {x: 13.000015, y: 37.5}
+      - - {x: 25.000015, y: 14.5}
+        - {x: 23.000015, y: 17.5}
+        - {x: 25.000015, y: 19.5}
+        - {x: 28.000015, y: 18.5}
+        - {x: 28.000015, y: 15.5}
+      - - {x: 36.000015, y: -4.5}
+        - {x: 34.000015, y: -2.5}
+        - {x: 35.000015, y: 0.5}
+        - {x: 37.000015, y: 0.5}
+        - {x: 37.000015, y: -4.5}
+      - - {x: 28.000015, y: -11.5}
+        - {x: 26.000015, y: -8.5}
+        - {x: 28.000015, y: -6.5}
+        - {x: 31.000015, y: -7.5}
+        - {x: 31.000015, y: -10.5}
+      - - {x: 30.000015, y: -19.5}
+        - {x: 28.000015, y: -16.5}
+        - {x: 30.000015, y: -14.5}
+        - {x: 33.000015, y: -15.5}
+        - {x: 33.000015, y: -18.5}
+      physicsShape:
+      - - {x: 0.000015258789, y: 6.5}
+        - {x: 7.0000153, y: -2.5}
+        - {x: 12.000015, y: -8.5}
+        - {x: 18.000015, y: -15.5}
+        - {x: 21.000015, y: -14.5}
+        - {x: 21.000015, y: -8.5}
+        - {x: 8.000015, y: 8.5}
+        - {x: 6.0000153, y: 23.5}
+        - {x: 3.0000153, y: 24.5}
+        - {x: -4.9999847, y: 32.5}
+        - {x: -3.9999847, y: 35.5}
+        - {x: -7.9999847, y: 39.5}
+        - {x: -12.999985, y: 39.5}
+        - {x: -16.999985, y: 35.5}
+        - {x: -18.999985, y: 19.5}
+        - {x: -22.999985, y: 15.5}
+        - {x: -28.999985, y: -1.5}
+        - {x: -36.999985, y: -11.5}
+        - {x: -36.999985, y: -23.5}
+        - {x: -21.999985, y: -18.5}
+        - {x: -18.999985, y: -20.5}
+        - {x: -21.999985, y: -36.5}
+        - {x: -21.999985, y: -39.5}
+        - {x: 2.0000153, y: -39.5}
+        - {x: 4.0000153, y: -17.5}
+        - {x: 3.0000153, y: -8.5}
+      - - {x: 3.0000153, y: -32.5}
+        - {x: 6.0000153, y: -31.5}
+        - {x: 6.0000153, y: -28.5}
+        - {x: 3.0000153, y: -27.5}
+        - {x: 1.0000153, y: -29.5}
+      - - {x: 9.000015, y: -32.5}
+        - {x: 12.000015, y: -31.5}
+        - {x: 12.000015, y: -28.5}
+        - {x: 9.000015, y: -27.5}
+        - {x: 7.0000153, y: -29.5}
+      - - {x: 12.000015, y: -21.5}
+        - {x: 15.000015, y: -20.5}
+        - {x: 15.000015, y: -17.5}
+        - {x: 12.000015, y: -16.5}
+        - {x: 10.000015, y: -18.5}
+      - - {x: 30.000015, y: -19.5}
+        - {x: 33.000015, y: -18.5}
+        - {x: 33.000015, y: -15.5}
+        - {x: 30.000015, y: -14.5}
+        - {x: 28.000015, y: -16.5}
+      - - {x: 28.000015, y: -11.5}
+        - {x: 31.000015, y: -10.5}
+        - {x: 31.000015, y: -7.5}
+        - {x: 28.000015, y: -6.5}
+        - {x: 26.000015, y: -8.5}
+      - - {x: 20.000015, y: -7.5}
+        - {x: 23.000015, y: -6.5}
+        - {x: 23.000015, y: -3.5}
+        - {x: 20.000015, y: -2.5}
+        - {x: 18.000015, y: -4.5}
+      - - {x: 34.000015, y: -2.5}
+        - {x: 36.000015, y: -4.5}
+        - {x: 37.000015, y: -4.5}
+        - {x: 37.000015, y: 0.5}
+        - {x: 35.000015, y: 0.5}
+      - - {x: 24.000015, y: 2.5}
+        - {x: 27.000015, y: 3.5}
+        - {x: 27.000015, y: 6.5}
+        - {x: 24.000015, y: 7.5}
+        - {x: 22.000015, y: 5.5}
+      - - {x: -8.999985, y: 21.5}
+        - {x: -9.999985, y: 16.5}
+        - {x: -7.9999847, y: 13.5}
+        - {x: -6.9999847, y: 13.5}
+      - - {x: 33.000015, y: 11.5}
+        - {x: 36.000015, y: 12.5}
+        - {x: 36.000015, y: 15.5}
+        - {x: 33.000015, y: 16.5}
+        - {x: 31.000015, y: 14.5}
+      - - {x: 25.000015, y: 14.5}
+        - {x: 28.000015, y: 15.5}
+        - {x: 28.000015, y: 18.5}
+        - {x: 25.000015, y: 19.5}
+        - {x: 23.000015, y: 17.5}
+      - - {x: 9.000015, y: 19.5}
+        - {x: 12.000015, y: 20.5}
+        - {x: 12.000015, y: 23.5}
+        - {x: 9.000015, y: 24.5}
+        - {x: 7.0000153, y: 22.5}
+      - - {x: 20.000015, y: 31.5}
+        - {x: 23.000015, y: 32.5}
+        - {x: 23.000015, y: 35.5}
+        - {x: 20.000015, y: 36.5}
+        - {x: 18.000015, y: 34.5}
+      - - {x: 5.0000153, y: 37.5}
+        - {x: 5.0000153, y: 39.5}
+        - {x: 0.000015258789, y: 39.5}
+        - {x: 2.0000153, y: 36.5}
+      - - {x: 13.000015, y: 37.5}
+        - {x: 13.000015, y: 39.5}
+        - {x: 8.000015, y: 39.5}
+        - {x: 10.000015, y: 36.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04305410000000000800000000000000
+      internalID: 21300032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_17
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 84
+        width: 70
+        height: 78
+      alignment: 9
+      pivot: {x: 0.5845714, y: 0.0012820562}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10.000015, y: 34}
+        - {x: 8.000015, y: 37}
+        - {x: 10.000015, y: 39}
+        - {x: 13.000015, y: 38}
+        - {x: 13.000015, y: 35}
+      - - {x: 24.000015, y: 16}
+        - {x: 23.000015, y: 15}
+        - {x: 23.000015, y: 9}
+        - {x: 24.000015, y: 6}
+        - {x: 23.000015, y: 5}
+        - {x: 23.000015, y: -39}
+        - {x: -34.999985, y: -39}
+        - {x: -34.999985, y: -12}
+        - {x: -21.999985, y: 4}
+        - {x: -21.999985, y: 12}
+        - {x: -14.999985, y: 39}
+        - {x: -2.9999847, y: 39}
+        - {x: 2.0000153, y: 37}
+        - {x: 2.0000153, y: 37}
+        - {x: 4.0000153, y: 39}
+        - {x: 7.0000153, y: 38}
+        - {x: 7.0000153, y: 35}
+        - {x: 7.0000153, y: 35}
+        - {x: 23.000015, y: 28}
+        - {x: 23.000015, y: 18}
+        - {x: 24.000015, y: 18}
+      - - {x: 19.000015, y: 30}
+        - {x: 17.000015, y: 33}
+        - {x: 19.000015, y: 35}
+        - {x: 22.000015, y: 34}
+        - {x: 22.000015, y: 31}
+      - - {x: 30.000015, y: 12}
+        - {x: 28.000015, y: 15}
+        - {x: 30.000015, y: 17}
+        - {x: 33.000015, y: 16}
+        - {x: 33.000015, y: 13}
+      - - {x: 34.000015, y: -2}
+        - {x: 32.000015, y: 0}
+        - {x: 33.000015, y: 3}
+        - {x: 35.000015, y: 3}
+        - {x: 35.000015, y: -2}
+      - - {x: 26.000015, y: -8}
+        - {x: 24.000015, y: -5}
+        - {x: 26.000015, y: -3}
+        - {x: 29.000015, y: -4}
+        - {x: 29.000015, y: -7}
+      - - {x: 28.000015, y: -16}
+        - {x: 26.000015, y: -13}
+        - {x: 28.000015, y: -11}
+        - {x: 31.000015, y: -12}
+        - {x: 31.000015, y: -15}
+      physicsShape:
+      - - {x: 14.000015, y: -8}
+        - {x: 20.000015, y: -14}
+        - {x: 23.000015, y: -14}
+        - {x: 23.000015, y: 1}
+        - {x: 10.000015, y: 15}
+        - {x: 16.000015, y: 23}
+        - {x: -0.99998474, y: 30}
+        - {x: -6.9999847, y: 39}
+        - {x: -11.999985, y: 39}
+        - {x: -13.999985, y: 35}
+        - {x: -21.999985, y: 12}
+        - {x: -21.999985, y: 4}
+        - {x: -22.999985, y: -4}
+        - {x: -34.999985, y: -14}
+        - {x: -34.999985, y: -22}
+        - {x: -32.999985, y: -22}
+        - {x: -16.999985, y: -16}
+        - {x: -20.999985, y: -39}
+        - {x: 4.0000153, y: -39}
+        - {x: 4.0000153, y: -24}
+        - {x: 3.0000153, y: -3}
+        - {x: 6.0000153, y: 2}
+      - - {x: 4.0000153, y: -28}
+        - {x: 7.0000153, y: -27}
+        - {x: 7.0000153, y: -24}
+        - {x: 4.0000153, y: -23}
+        - {x: 2.0000153, y: -25}
+      - - {x: 10.000015, y: -28}
+        - {x: 13.000015, y: -27}
+        - {x: 13.000015, y: -24}
+        - {x: 10.000015, y: -23}
+        - {x: 8.000015, y: -25}
+      - - {x: 1.0000153, y: -14}
+        - {x: 3.0000153, y: -16}
+        - {x: 6.0000153, y: -15}
+        - {x: 6.0000153, y: -12}
+        - {x: 4.0000153, y: -10}
+        - {x: 1.0000153, y: -11}
+      - - {x: 9.000015, y: -14}
+        - {x: 11.000015, y: -16}
+        - {x: 14.000015, y: -15}
+        - {x: 14.000015, y: -12}
+        - {x: 12.000015, y: -10}
+        - {x: 9.000015, y: -11}
+      - - {x: 28.000015, y: -16}
+        - {x: 31.000015, y: -15}
+        - {x: 31.000015, y: -12}
+        - {x: 28.000015, y: -11}
+        - {x: 26.000015, y: -13}
+      - - {x: 26.000015, y: -8}
+        - {x: 29.000015, y: -7}
+        - {x: 29.000015, y: -4}
+        - {x: 26.000015, y: -3}
+        - {x: 24.000015, y: -5}
+      - - {x: 32.000015, y: 0}
+        - {x: 34.000015, y: -2}
+        - {x: 35.000015, y: -2}
+        - {x: 35.000015, y: 3}
+        - {x: 33.000015, y: 3}
+      - - {x: 18.000015, y: 7}
+        - {x: 19.000015, y: 4}
+        - {x: 22.000015, y: 4}
+        - {x: 24.000015, y: 6}
+        - {x: 23.000015, y: 9}
+        - {x: 20.000015, y: 9}
+      - - {x: 30.000015, y: 12}
+        - {x: 33.000015, y: 13}
+        - {x: 33.000015, y: 16}
+        - {x: 30.000015, y: 17}
+        - {x: 28.000015, y: 15}
+      - - {x: 18.000015, y: 16}
+        - {x: 18.000015, y: 15}
+        - {x: 20.000015, y: 13}
+        - {x: 21.000015, y: 13}
+        - {x: 24.000015, y: 16}
+        - {x: 24.000015, y: 18}
+        - {x: 21.000015, y: 19}
+      - - {x: -4.9999847, y: 30}
+        - {x: -1.9999847, y: 31}
+        - {x: -1.9999847, y: 34}
+        - {x: -4.9999847, y: 35}
+        - {x: -6.9999847, y: 33}
+      - - {x: 19.000015, y: 30}
+        - {x: 22.000015, y: 31}
+        - {x: 22.000015, y: 34}
+        - {x: 19.000015, y: 35}
+        - {x: 17.000015, y: 33}
+      - - {x: 4.0000153, y: 34}
+        - {x: 7.0000153, y: 35}
+        - {x: 7.0000153, y: 38}
+        - {x: 4.0000153, y: 39}
+        - {x: 2.0000153, y: 37}
+      - - {x: 10.000015, y: 34}
+        - {x: 13.000015, y: 35}
+        - {x: 13.000015, y: 38}
+        - {x: 10.000015, y: 39}
+        - {x: 8.000015, y: 37}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24305410000000000800000000000000
+      internalID: 21300034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_18
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 174
+        width: 67
+        height: 78
+      alignment: 9
+      pivot: {x: 0.61074626, y: 0.0012820562}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 28.5, y: 10.999992}
+        - {x: 26.5, y: 13.999992}
+        - {x: 28.5, y: 15.999992}
+        - {x: 31.5, y: 14.999992}
+        - {x: 31.5, y: 11.999992}
+      - - {x: 11.5, y: 29.999992}
+        - {x: 18.5, y: 25.999992}
+        - {x: 25.5, y: 6.9999924}
+        - {x: 25.5, y: -10.000008}
+        - {x: 26.5, y: -9.000008}
+        - {x: 29.5, y: -10.000008}
+        - {x: 29.5, y: -13.000008}
+        - {x: 26.5, y: -14.000008}
+        - {x: 25.5, y: -12.000008}
+        - {x: 25.5, y: -13.000008}
+        - {x: 21.5, y: -15.000008}
+        - {x: 13.5, y: -8.000008}
+        - {x: 10.5, y: -9.000008}
+        - {x: 6.5, y: -9.000008}
+        - {x: 4.5, y: -7.0000076}
+        - {x: 5.5, y: -3.0000076}
+        - {x: 7.5, y: -1.0000076}
+        - {x: 7.5, y: 0.9999924}
+        - {x: 5.5, y: -3.0000076}
+        - {x: 3.5, y: -10.000008}
+        - {x: 5.5, y: -20.000008}
+        - {x: 11.5, y: -20.000008}
+        - {x: 13.5, y: -21.000008}
+        - {x: 13.5, y: -24.000008}
+        - {x: 10.5, y: -25.000008}
+        - {x: 7.5, y: -25.000008}
+        - {x: 10.5, y: -39.000008}
+        - {x: -24.5, y: -39.000008}
+        - {x: -29.5, y: -37.000008}
+        - {x: -33.5, y: -24.000008}
+        - {x: -33.5, y: -6.0000076}
+        - {x: -14.5, y: 38.999992}
+        - {x: -4.5, y: 38.999992}
+        - {x: 4.5, y: 33.999992}
+        - {x: 5.5, y: 34.999992}
+        - {x: 11.5, y: 34.999992}
+        - {x: 13.5, y: 33.999992}
+        - {x: 13.5, y: 30.999992}
+      - - {x: 32.5, y: -1.0000076}
+        - {x: 30.5, y: 0.9999924}
+        - {x: 31.5, y: 3.9999924}
+        - {x: 33.5, y: 3.9999924}
+        - {x: 33.5, y: -1.0000076}
+      - - {x: 19.5, y: 26.999992}
+        - {x: 17.5, y: 29.999992}
+        - {x: 19.5, y: 31.999992}
+        - {x: 22.5, y: 30.999992}
+        - {x: 22.5, y: 27.999992}
+      physicsShape:
+      - - {x: 7.5, y: 0.9999924}
+        - {x: 6.5, y: 3.9999924}
+        - {x: 3.5, y: 3.9999924}
+        - {x: 4.5, y: 4.9999924}
+        - {x: 4.5, y: 6.9999924}
+        - {x: 7.5, y: 0.9999924}
+        - {x: 7.5, y: -1.0000076}
+        - {x: 5.5, y: -3.0000076}
+        - {x: 4.5, y: -7.0000076}
+        - {x: 6.5, y: -9.000008}
+        - {x: 10.5, y: -9.000008}
+        - {x: 13.5, y: -8.000008}
+        - {x: 21.5, y: -15.000008}
+        - {x: 25.5, y: -13.000008}
+        - {x: 25.5, y: 2.9999924}
+        - {x: 15.5, y: 23.999992}
+        - {x: -0.5, y: 33.999992}
+        - {x: -5.5, y: 38.999992}
+        - {x: -11.5, y: 38.999992}
+        - {x: -24.5, y: 12.999992}
+        - {x: -33.5, y: -7.0000076}
+        - {x: -33.5, y: -22.000008}
+        - {x: -31.5, y: -22.000008}
+        - {x: -15.5, y: -16.000008}
+        - {x: -19.5, y: -39.000008}
+        - {x: 4.5, y: -39.000008}
+        - {x: 5.5, y: -37.000008}
+        - {x: 3.5, y: -10.000008}
+        - {x: 5.5, y: -3.0000076}
+      - - {x: 5.5, y: -20.000008}
+        - {x: 4.5, y: -22.000008}
+        - {x: 5.5, y: -25.000008}
+        - {x: 10.5, y: -25.000008}
+        - {x: 13.5, y: -24.000008}
+        - {x: 13.5, y: -21.000008}
+        - {x: 11.5, y: -20.000008}
+      - - {x: 26.5, y: -14.000008}
+        - {x: 29.5, y: -13.000008}
+        - {x: 29.5, y: -10.000008}
+        - {x: 26.5, y: -9.000008}
+        - {x: 24.5, y: -11.000008}
+      - - {x: 30.5, y: 0.9999924}
+        - {x: 32.5, y: -1.0000076}
+        - {x: 33.5, y: -1.0000076}
+        - {x: 33.5, y: 3.9999924}
+        - {x: 31.5, y: 3.9999924}
+      - - {x: 13.5, y: 6.9999924}
+        - {x: 14.5, y: 3.9999924}
+        - {x: 19.5, y: 3.9999924}
+        - {x: 21.5, y: 5.9999924}
+        - {x: 20.5, y: 8.999992}
+        - {x: 15.5, y: 8.999992}
+      - - {x: 14.5, y: 13.999992}
+        - {x: 15.5, y: 10.999992}
+        - {x: 18.5, y: 10.999992}
+        - {x: 22.5, y: 13.999992}
+        - {x: 21.5, y: 16.999992}
+        - {x: 18.5, y: 16.999992}
+      - - {x: 28.5, y: 10.999992}
+        - {x: 31.5, y: 11.999992}
+        - {x: 31.5, y: 14.999992}
+        - {x: 28.5, y: 15.999992}
+        - {x: 26.5, y: 13.999992}
+      - - {x: -5.5, y: 21.999992}
+        - {x: -6.5, y: 17.999992}
+        - {x: -4.5, y: 12.999992}
+        - {x: -3.5, y: 13.999992}
+      - - {x: 19.5, y: 26.999992}
+        - {x: 22.5, y: 27.999992}
+        - {x: 22.5, y: 30.999992}
+        - {x: 19.5, y: 31.999992}
+        - {x: 17.5, y: 29.999992}
+      - - {x: 5.5, y: 34.999992}
+        - {x: 4.5, y: 32.999992}
+        - {x: 5.5, y: 29.999992}
+        - {x: 10.5, y: 29.999992}
+        - {x: 13.5, y: 30.999992}
+        - {x: 13.5, y: 33.999992}
+        - {x: 11.5, y: 34.999992}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44305410000000000800000000000000
+      internalID: 21300036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 396
+        width: 61
+        height: 78
+      alignment: 9
+      pivot: {x: 0.67081964, y: 0.0012820562}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 17.5, y: 24.999992}
+        - {x: 17.5, y: 24.999992}
+        - {x: 19.5, y: 26.999992}
+        - {x: 22.5, y: 25.999992}
+        - {x: 22.5, y: 22.999992}
+        - {x: 20.5, y: 21.999992}
+        - {x: 29.5, y: 15.999992}
+        - {x: 29.5, y: 12.999992}
+        - {x: 29.5, y: 9.999992}
+        - {x: 29.5, y: 4.9999924}
+        - {x: 30.5, y: 4.9999924}
+        - {x: 30.5, y: -0.0000076293945}
+        - {x: 29.5, y: -0.0000076293945}
+        - {x: 29.5, y: -18.000008}
+        - {x: 10.5, y: -39.000008}
+        - {x: -19.5, y: -39.000008}
+        - {x: -30.5, y: -32.000008}
+        - {x: -30.5, y: 5.9999924}
+        - {x: -28.5, y: 16.999992}
+        - {x: -8.5, y: 38.999992}
+        - {x: -1.5, y: 38.999992}
+        - {x: 9.5, y: 30.999992}
+        - {x: 14.5, y: 30.999992}
+        - {x: 16.5, y: 29.999992}
+        - {x: 16.5, y: 26.999992}
+        - {x: 15.5, y: 26.999992}
+      physicsShape:
+      - - {x: 15.5, y: -5.0000076}
+        - {x: 24.5, y: -14.000008}
+        - {x: 27.5, y: -13.000008}
+        - {x: 29.5, y: -9.000008}
+        - {x: 29.5, y: -5.0000076}
+        - {x: 23.5, y: 10.999992}
+        - {x: 18.5, y: 16.999992}
+        - {x: 9.5, y: 19.999992}
+        - {x: 6.5, y: 27.999992}
+        - {x: -2.5, y: 38.999992}
+        - {x: -8.5, y: 38.999992}
+        - {x: -11.5, y: 29.999992}
+        - {x: -18.5, y: 12.999992}
+        - {x: -18.5, y: -4.0000076}
+        - {x: -30.5, y: -15.000008}
+        - {x: -30.5, y: -22.000008}
+        - {x: -28.5, y: -22.000008}
+        - {x: -12.5, y: -16.000008}
+        - {x: -16.5, y: -39.000008}
+        - {x: 7.5, y: -39.000008}
+        - {x: 8.5, y: -37.000008}
+        - {x: 7.5, y: -24.000008}
+      - - {x: 8.5, y: -17.000008}
+        - {x: 9.5, y: -20.000008}
+        - {x: 13.5, y: -20.000008}
+        - {x: 15.5, y: -18.000008}
+        - {x: 14.5, y: -15.000008}
+        - {x: 10.5, y: -15.000008}
+      - - {x: 27.5, y: 1.9999924}
+        - {x: 29.5, y: -0.0000076293945}
+        - {x: 30.5, y: -0.0000076293945}
+        - {x: 30.5, y: 4.9999924}
+        - {x: 28.5, y: 4.9999924}
+      - - {x: 26.5, y: 8.999992}
+        - {x: 29.5, y: 9.999992}
+        - {x: 29.5, y: 12.999992}
+        - {x: 26.5, y: 13.999992}
+        - {x: 24.5, y: 11.999992}
+      - - {x: -2.5, y: 22.999992}
+        - {x: -3.5, y: 17.999992}
+        - {x: -1.5, y: 12.999992}
+        - {x: -0.5, y: 13.999992}
+      - - {x: 19.5, y: 21.999992}
+        - {x: 22.5, y: 22.999992}
+        - {x: 22.5, y: 25.999992}
+        - {x: 19.5, y: 26.999992}
+        - {x: 17.5, y: 24.999992}
+      - - {x: 8.5, y: 30.999992}
+        - {x: 7.5, y: 28.999992}
+        - {x: 8.5, y: 25.999992}
+        - {x: 13.5, y: 25.999992}
+        - {x: 16.5, y: 26.999992}
+        - {x: 16.5, y: 29.999992}
+        - {x: 14.5, y: 30.999992}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64305410000000000800000000000000
+      internalID: 21300038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_20
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 396
+        width: 56
+        height: 78
+      alignment: 9
+      pivot: {x: 0.73071426, y: 0.0012820562}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17, y: -39.000008}
+        - {x: -28, y: -32.000008}
+        - {x: -28, y: 5.9999924}
+        - {x: -26, y: 16.999992}
+        - {x: -6, y: 38.999992}
+        - {x: 0, y: 38.999992}
+        - {x: 11, y: 23.999992}
+        - {x: 13, y: 25.999992}
+        - {x: 16, y: 25.999992}
+        - {x: 18, y: 23.999992}
+        - {x: 17, y: 18.999992}
+        - {x: 17, y: 18.999992}
+        - {x: 18, y: 21.999992}
+        - {x: 21, y: 22.999992}
+        - {x: 23, y: 20.999992}
+        - {x: 22, y: 15.999992}
+        - {x: 21, y: 15.999992}
+        - {x: 23, y: 13.999992}
+        - {x: 27, y: 12.999992}
+        - {x: 28, y: 10.999992}
+        - {x: 28, y: 5.9999924}
+        - {x: 28, y: 0.9999924}
+        - {x: 28, y: -17.000008}
+        - {x: 13, y: -39.000008}
+      physicsShape:
+      - - {x: 11, y: -8.000008}
+        - {x: 27, y: -15.000008}
+        - {x: 28, y: -15.000008}
+        - {x: 28, y: 10.999992}
+        - {x: 27, y: 12.999992}
+        - {x: 23, y: 13.999992}
+        - {x: 11, y: 23.999992}
+        - {x: 1, y: 29.999992}
+        - {x: 0, y: 38.999992}
+        - {x: -6, y: 38.999992}
+        - {x: -9, y: 29.999992}
+        - {x: -16, y: 12.999992}
+        - {x: -16, y: -4.0000076}
+        - {x: -28, y: -15.000008}
+        - {x: -28, y: -22.000008}
+        - {x: -26, y: -22.000008}
+        - {x: -10, y: -16.000008}
+        - {x: -14, y: -39.000008}
+        - {x: 10, y: -39.000008}
+        - {x: 11, y: -37.000008}
+        - {x: 10, y: -24.000008}
+      - - {x: 11, y: -12.000008}
+        - {x: 12, y: -14.000008}
+        - {x: 16, y: -14.000008}
+        - {x: 18, y: -13.000008}
+        - {x: 18, y: -10.000008}
+        - {x: 15, y: -5.0000076}
+        - {x: 12, y: -6.0000076}
+      - - {x: 24, y: 3.9999924}
+        - {x: 25, y: 0.9999924}
+        - {x: 28, y: 0.9999924}
+        - {x: 28, y: 5.9999924}
+        - {x: 26, y: 5.9999924}
+      - - {x: 0, y: 21.999992}
+        - {x: -1, y: 16.999992}
+        - {x: 1, y: 13.999992}
+        - {x: 2, y: 13.999992}
+      - - {x: 17, y: 16.999992}
+        - {x: 19, y: 14.999992}
+        - {x: 22, y: 15.999992}
+        - {x: 23, y: 20.999992}
+        - {x: 21, y: 22.999992}
+        - {x: 18, y: 21.999992}
+      - - {x: 11, y: 23.999992}
+        - {x: 12, y: 19.999992}
+        - {x: 14, y: 17.999992}
+        - {x: 17, y: 18.999992}
+        - {x: 18, y: 23.999992}
+        - {x: 16, y: 25.999992}
+        - {x: 13, y: 25.999992}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84305410000000000800000000000000
+      internalID: 21300040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_21
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 84
+        width: 72
+        height: 78
+      alignment: 9
+      pivot: {x: 0.5683333, y: 0.0012820562}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: -39}
+        - {x: -24, y: -39}
+        - {x: -36, y: -31}
+        - {x: -36, y: -10}
+        - {x: -19, y: 39}
+        - {x: -7, y: 39}
+        - {x: -3, y: 36}
+        - {x: -3, y: 36}
+        - {x: -1, y: 38}
+        - {x: 2, y: 37}
+        - {x: 2, y: 34}
+        - {x: 0, y: 33}
+        - {x: 13, y: 23}
+        - {x: 22, y: -1}
+        - {x: 22, y: -12}
+      - - {x: 13, y: 33}
+        - {x: 11, y: 36}
+        - {x: 13, y: 38}
+        - {x: 16, y: 37}
+        - {x: 16, y: 34}
+      - - {x: 34, y: 21}
+        - {x: 32, y: 24}
+        - {x: 34, y: 26}
+        - {x: 36, y: 25}
+        - {x: 36, y: 22}
+      - - {x: 34, y: 4}
+        - {x: 32, y: 7}
+        - {x: 34, y: 9}
+        - {x: 36, y: 8}
+        - {x: 36, y: 5}
+      - - {x: 32, y: -13}
+        - {x: 29, y: -11}
+        - {x: 29, y: -8}
+        - {x: 30, y: -6}
+        - {x: 32, y: -6}
+        - {x: 36, y: -8}
+        - {x: 36, y: -13}
+      - - {x: 15, y: -31}
+        - {x: 13, y: -28}
+        - {x: 15, y: -26}
+        - {x: 18, y: -27}
+        - {x: 18, y: -30}
+      physicsShape:
+      - - {x: 6, y: -13}
+        - {x: 12, y: -10}
+        - {x: 19, y: -14}
+        - {x: 22, y: -13}
+        - {x: 22, y: -2}
+        - {x: 13, y: 23}
+        - {x: 10, y: 22}
+        - {x: -7, y: 31}
+        - {x: -8, y: 39}
+        - {x: -14, y: 39}
+        - {x: -23, y: 12}
+        - {x: -24, y: 6}
+        - {x: -22, y: -5}
+        - {x: -36, y: -15}
+        - {x: -36, y: -22}
+        - {x: -34, y: -22}
+        - {x: -17, y: -14}
+        - {x: -21, y: -36}
+        - {x: -21, y: -39}
+        - {x: 2, y: -39}
+        - {x: 3, y: -37}
+        - {x: 1, y: -18}
+      - - {x: 15, y: -31}
+        - {x: 18, y: -30}
+        - {x: 18, y: -27}
+        - {x: 15, y: -26}
+        - {x: 13, y: -28}
+      - - {x: 30, y: -6}
+        - {x: 29, y: -8}
+        - {x: 29, y: -11}
+        - {x: 32, y: -13}
+        - {x: 36, y: -13}
+        - {x: 36, y: -8}
+        - {x: 32, y: -6}
+      - - {x: 32, y: 7}
+        - {x: 34, y: 4}
+        - {x: 36, y: 5}
+        - {x: 36, y: 8}
+        - {x: 34, y: 9}
+      - - {x: -8, y: 23}
+        - {x: -9, y: 18}
+        - {x: -7, y: 13}
+        - {x: -6, y: 14}
+      - - {x: -22, y: 21}
+        - {x: -19, y: 22}
+        - {x: -19, y: 25}
+        - {x: -22, y: 26}
+        - {x: -24, y: 24}
+      - - {x: 32, y: 24}
+        - {x: 34, y: 21}
+        - {x: 36, y: 22}
+        - {x: 36, y: 25}
+        - {x: 34, y: 26}
+      - - {x: -1, y: 33}
+        - {x: 2, y: 34}
+        - {x: 2, y: 37}
+        - {x: -1, y: 38}
+        - {x: -3, y: 36}
+      - - {x: 13, y: 33}
+        - {x: 16, y: 34}
+        - {x: 16, y: 37}
+        - {x: 13, y: 38}
+        - {x: 11, y: 36}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4305410000000000800000000000000
+      internalID: 21300042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_22
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 84
+        width: 70
+        height: 78
+      alignment: 9
+      pivot: {x: 0.5845714, y: 0.0012820562}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5.9999847, y: 39}
+        - {x: 0.000015258789, y: 35}
+        - {x: 1.0000153, y: 36}
+        - {x: 4.0000153, y: 35}
+        - {x: 4.0000153, y: 32}
+        - {x: 20.000015, y: 22}
+        - {x: 23.000015, y: 3}
+        - {x: 23.000015, y: -22}
+        - {x: 15.000015, y: -39}
+        - {x: -27.999985, y: -39}
+        - {x: -34.999985, y: -37}
+        - {x: -34.999985, y: -3}
+        - {x: -16.999985, y: 39}
+      - - {x: 33.000015, y: 21}
+        - {x: 31.000015, y: 24}
+        - {x: 33.000015, y: 26}
+        - {x: 35.000015, y: 25}
+        - {x: 35.000015, y: 22}
+      - - {x: 33.000015, y: 5}
+        - {x: 31.000015, y: 8}
+        - {x: 33.000015, y: 10}
+        - {x: 35.000015, y: 9}
+        - {x: 35.000015, y: 6}
+      - - {x: 29.000015, y: -9}
+        - {x: 27.000015, y: -6}
+        - {x: 29.000015, y: -4}
+        - {x: 32.000015, y: -5}
+        - {x: 32.000015, y: -8}
+      - - {x: 34.000015, y: -11}
+        - {x: 32.000015, y: -9}
+        - {x: 33.000015, y: -6}
+        - {x: 35.000015, y: -6}
+        - {x: 35.000015, y: -11}
+      - - {x: 13.000015, y: 31}
+        - {x: 11.000015, y: 34}
+        - {x: 13.000015, y: 36}
+        - {x: 16.000015, y: 35}
+        - {x: 16.000015, y: 32}
+      physicsShape:
+      - - {x: 6.0000153, y: -7}
+        - {x: 20.000015, y: -15}
+        - {x: 23.000015, y: -14}
+        - {x: 23.000015, y: -10}
+        - {x: 18.000015, y: 3}
+        - {x: 16.000015, y: 19}
+        - {x: -1.9999847, y: 28}
+        - {x: -6.9999847, y: 39}
+        - {x: -12.999985, y: 39}
+        - {x: -23.999985, y: 13}
+        - {x: -22.999985, y: -9}
+        - {x: -34.999985, y: -15}
+        - {x: -34.999985, y: -22}
+        - {x: -32.999985, y: -22}
+        - {x: -15.999985, y: -14}
+        - {x: -19.999985, y: -36}
+        - {x: -19.999985, y: -39}
+        - {x: 3.0000153, y: -39}
+        - {x: 4.0000153, y: -37}
+        - {x: 2.0000153, y: -10}
+      - - {x: 15.000015, y: -27}
+        - {x: 18.000015, y: -26}
+        - {x: 18.000015, y: -23}
+        - {x: 15.000015, y: -22}
+        - {x: 13.000015, y: -24}
+      - - {x: 32.000015, y: -9}
+        - {x: 34.000015, y: -11}
+        - {x: 35.000015, y: -11}
+        - {x: 35.000015, y: -6}
+        - {x: 33.000015, y: -6}
+      - - {x: 29.000015, y: -9}
+        - {x: 32.000015, y: -8}
+        - {x: 32.000015, y: -5}
+        - {x: 29.000015, y: -4}
+        - {x: 27.000015, y: -6}
+      - - {x: 31.000015, y: 8}
+        - {x: 33.000015, y: 5}
+        - {x: 35.000015, y: 6}
+        - {x: 35.000015, y: 9}
+        - {x: 33.000015, y: 10}
+      - - {x: -6.9999847, y: 22}
+        - {x: -7.9999847, y: 17}
+        - {x: -5.9999847, y: 14}
+        - {x: -4.9999847, y: 14}
+      - - {x: -18.999985, y: 21}
+        - {x: -15.999985, y: 22}
+        - {x: -15.999985, y: 25}
+        - {x: -18.999985, y: 26}
+        - {x: -20.999985, y: 24}
+      - - {x: 31.000015, y: 24}
+        - {x: 33.000015, y: 21}
+        - {x: 35.000015, y: 22}
+        - {x: 35.000015, y: 25}
+        - {x: 33.000015, y: 26}
+      - - {x: 1.0000153, y: 31}
+        - {x: 4.0000153, y: 32}
+        - {x: 4.0000153, y: 35}
+        - {x: 1.0000153, y: 36}
+        - {x: -0.99998474, y: 34}
+      - - {x: 13.000015, y: 31}
+        - {x: 16.000015, y: 32}
+        - {x: 16.000015, y: 35}
+        - {x: 13.000015, y: 36}
+        - {x: 11.000015, y: 34}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4305410000000000800000000000000
+      internalID: 21300044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_23
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 0
+        width: 75
+        height: 83
+      alignment: 9
+      pivot: {x: 0.5456, y: 0.0012048238}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0.5, y: 38.5}
+        - {x: -1.5, y: 41.5}
+        - {x: 3.5, y: 41.5}
+        - {x: 3.5, y: 39.5}
+      - - {x: 8.5, y: 38.5}
+        - {x: 6.5, y: 41.5}
+        - {x: 11.5, y: 41.5}
+        - {x: 11.5, y: 39.5}
+      - - {x: 19.5, y: 33.5}
+        - {x: 17.5, y: 36.5}
+        - {x: 19.5, y: 38.5}
+        - {x: 22.5, y: 37.5}
+        - {x: 22.5, y: 34.5}
+      - - {x: 9.5, y: 23.5}
+        - {x: 7.5, y: 26.5}
+        - {x: 9.5, y: 28.5}
+        - {x: 12.5, y: 27.5}
+        - {x: 12.5, y: 24.5}
+      - - {x: -21.5, y: 38.5}
+        - {x: -5.5, y: 38.5}
+        - {x: 18.5, y: 10.5}
+        - {x: 20.5, y: -1.5}
+        - {x: 20.5, y: -6.5}
+        - {x: 20.5, y: -22.5}
+        - {x: 8.5, y: -41.5}
+        - {x: -35.5, y: -41.5}
+        - {x: -37.5, y: -38.5}
+        - {x: -37.5, y: 12.5}
+        - {x: -26.5, y: 37.5}
+      - - {x: 26.5, y: 16.5}
+        - {x: 24.5, y: 19.5}
+        - {x: 26.5, y: 21.5}
+        - {x: 29.5, y: 20.5}
+        - {x: 29.5, y: 17.5}
+      - - {x: 26.5, y: 2.5}
+        - {x: 24.5, y: 5.5}
+        - {x: 26.5, y: 7.5}
+        - {x: 29.5, y: 6.5}
+        - {x: 29.5, y: 3.5}
+      - - {x: 36.5, y: -4.5}
+        - {x: 34.5, y: -2.5}
+        - {x: 35.5, y: 0.5}
+        - {x: 37.5, y: 0.5}
+        - {x: 37.5, y: -4.5}
+      - - {x: 22.5, y: -9.5}
+        - {x: 20.5, y: -6.5}
+        - {x: 22.5, y: -4.5}
+        - {x: 25.5, y: -5.5}
+        - {x: 25.5, y: -8.5}
+      - - {x: 28.5, y: -12.5}
+        - {x: 26.5, y: -9.5}
+        - {x: 28.5, y: -7.5}
+        - {x: 31.5, y: -8.5}
+        - {x: 31.5, y: -11.5}
+      - - {x: 33.5, y: 12.5}
+        - {x: 31.5, y: 15.5}
+        - {x: 33.5, y: 17.5}
+        - {x: 36.5, y: 16.5}
+        - {x: 36.5, y: 13.5}
+      - - {x: 30.5, y: -20.5}
+        - {x: 28.5, y: -17.5}
+        - {x: 30.5, y: -15.5}
+        - {x: 33.5, y: -16.5}
+        - {x: 33.5, y: -19.5}
+      physicsShape:
+      - - {x: 1.5, y: -39.5}
+        - {x: -0.5, y: -33.5}
+        - {x: 3.5, y: -10.5}
+        - {x: 3.5, y: -7.5}
+        - {x: 17.5, y: -16.5}
+        - {x: 20.5, y: -15.5}
+        - {x: 20.5, y: -9.5}
+        - {x: 13.5, y: 7.5}
+        - {x: 9.5, y: 17.5}
+        - {x: -7.5, y: 28.5}
+        - {x: -6.5, y: 34.5}
+        - {x: -8.5, y: 38.5}
+        - {x: -13.5, y: 38.5}
+        - {x: -17.5, y: 33.5}
+        - {x: -20.5, y: 19.5}
+        - {x: -30.5, y: 14.5}
+        - {x: -23.5, y: -10.5}
+        - {x: -37.5, y: -17.5}
+        - {x: -37.5, y: -24.5}
+        - {x: -35.5, y: -24.5}
+        - {x: -20.5, y: -22.5}
+        - {x: -22.5, y: -41.5}
+        - {x: 0.5, y: -41.5}
+      - - {x: 1.5, y: -34.5}
+        - {x: 4.5, y: -33.5}
+        - {x: 4.5, y: -30.5}
+        - {x: 1.5, y: -29.5}
+        - {x: -0.5, y: -31.5}
+      - - {x: 7.5, y: -34.5}
+        - {x: 10.5, y: -33.5}
+        - {x: 10.5, y: -30.5}
+        - {x: 7.5, y: -29.5}
+        - {x: 5.5, y: -31.5}
+      - - {x: 11.5, y: -24.5}
+        - {x: 14.5, y: -23.5}
+        - {x: 14.5, y: -20.5}
+        - {x: 11.5, y: -19.5}
+        - {x: 9.5, y: -21.5}
+      - - {x: 30.5, y: -20.5}
+        - {x: 33.5, y: -19.5}
+        - {x: 33.5, y: -16.5}
+        - {x: 30.5, y: -15.5}
+        - {x: 28.5, y: -17.5}
+      - - {x: 28.5, y: -12.5}
+        - {x: 31.5, y: -11.5}
+        - {x: 31.5, y: -8.5}
+        - {x: 28.5, y: -7.5}
+        - {x: 26.5, y: -9.5}
+      - - {x: 22.5, y: -9.5}
+        - {x: 25.5, y: -8.5}
+        - {x: 25.5, y: -5.5}
+        - {x: 22.5, y: -4.5}
+        - {x: 20.5, y: -6.5}
+      - - {x: -27.5, y: -4.5}
+        - {x: -24.5, y: -3.5}
+        - {x: -24.5, y: -0.5}
+        - {x: -27.5, y: 0.5}
+        - {x: -29.5, y: -1.5}
+      - - {x: 34.5, y: -2.5}
+        - {x: 36.5, y: -4.5}
+        - {x: 37.5, y: -4.5}
+        - {x: 37.5, y: 0.5}
+        - {x: 35.5, y: 0.5}
+      - - {x: 26.5, y: 2.5}
+        - {x: 29.5, y: 3.5}
+        - {x: 29.5, y: 6.5}
+        - {x: 26.5, y: 7.5}
+        - {x: 24.5, y: 5.5}
+      - - {x: -9.5, y: 20.5}
+        - {x: -10.5, y: 15.5}
+        - {x: -8.5, y: 10.5}
+        - {x: -7.5, y: 11.5}
+      - - {x: 33.5, y: 12.5}
+        - {x: 36.5, y: 13.5}
+        - {x: 36.5, y: 16.5}
+        - {x: 33.5, y: 17.5}
+        - {x: 31.5, y: 15.5}
+      - - {x: 26.5, y: 16.5}
+        - {x: 29.5, y: 17.5}
+        - {x: 29.5, y: 20.5}
+        - {x: 26.5, y: 21.5}
+        - {x: 24.5, y: 19.5}
+      - - {x: -0.5, y: 23.5}
+        - {x: 2.5, y: 24.5}
+        - {x: 2.5, y: 27.5}
+        - {x: -0.5, y: 28.5}
+        - {x: -2.5, y: 26.5}
+      - - {x: 9.5, y: 23.5}
+        - {x: 12.5, y: 24.5}
+        - {x: 12.5, y: 27.5}
+        - {x: 9.5, y: 28.5}
+        - {x: 7.5, y: 26.5}
+      - - {x: 19.5, y: 33.5}
+        - {x: 22.5, y: 34.5}
+        - {x: 22.5, y: 37.5}
+        - {x: 19.5, y: 38.5}
+        - {x: 17.5, y: 36.5}
+      - - {x: 3.5, y: 39.5}
+        - {x: 3.5, y: 41.5}
+        - {x: -1.5, y: 41.5}
+        - {x: 0.5, y: 38.5}
+      - - {x: 11.5, y: 39.5}
+        - {x: 11.5, y: 41.5}
+        - {x: 6.5, y: 41.5}
+        - {x: 8.5, y: 38.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4305410000000000800000000000000
+      internalID: 21300046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_24
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 174
+        width: 64
+        height: 79
+      alignment: 9
+      pivot: {x: 0.62375, y: 0.0012658276}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21.999985, y: -39.500008}
+        - {x: -31.999985, y: -27.500008}
+        - {x: -31.999985, y: 7.4999924}
+        - {x: -16.999985, y: 39.499992}
+        - {x: -3.9999847, y: 39.499992}
+        - {x: 17.000015, y: 24.499992}
+        - {x: 32.000015, y: 2.4999924}
+        - {x: 32.000015, y: -14.500008}
+        - {x: 9.000015, y: -37.500008}
+        - {x: 6.0000153, y: -39.500008}
+      physicsShape:
+      - - {x: 6.0000153, y: -37.500008}
+        - {x: 7.0000153, y: -2.5000076}
+        - {x: 4.0000153, y: 5.4999924}
+        - {x: 26.000015, y: -4.5000076}
+        - {x: 32.000015, y: -4.5000076}
+        - {x: 32.000015, y: 1.4999924}
+        - {x: 27.000015, y: 6.4999924}
+        - {x: 15.000015, y: 22.499992}
+        - {x: -0.99998474, y: 32.499992}
+        - {x: -4.9999847, y: 39.499992}
+        - {x: -10.999985, y: 39.499992}
+        - {x: -21.999985, y: 13.499992}
+        - {x: -18.999985, y: -6.5000076}
+        - {x: -31.999985, y: -14.500008}
+        - {x: -31.999985, y: -21.500008}
+        - {x: -29.999985, y: -21.500008}
+        - {x: -13.999985, y: -16.500008}
+        - {x: -17.999985, y: -39.500008}
+        - {x: 5.0000153, y: -39.500008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05305410000000000800000000000000
+      internalID: 21300048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_25
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 174
+        width: 68
+        height: 79
+      alignment: 9
+      pivot: {x: 0.5870588, y: 0.0012658276}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30, y: -36.500008}
+        - {x: -34, y: -31.500008}
+        - {x: -34, y: 17.499992}
+        - {x: -26, y: 39.499992}
+        - {x: 0, y: 39.499992}
+        - {x: 34, y: 15.499992}
+        - {x: 34, y: -3.5000076}
+        - {x: 14, y: -39.500008}
+        - {x: -27, y: -39.500008}
+      physicsShape:
+      - - {x: 4, y: -37.500008}
+        - {x: 5, y: -2.5000076}
+        - {x: 3, y: 13.499992}
+        - {x: 28, y: 4.4999924}
+        - {x: 34, y: 3.4999924}
+        - {x: 34, y: 10.499992}
+        - {x: 4, y: 27.499992}
+        - {x: -9, y: 28.499992}
+        - {x: -9, y: 39.499992}
+        - {x: -14, y: 39.499992}
+        - {x: -17, y: 36.499992}
+        - {x: -23, y: 8.499992}
+        - {x: -18, y: -5.5000076}
+        - {x: -34, y: -14.500008}
+        - {x: -34, y: -21.500008}
+        - {x: -32, y: -21.500008}
+        - {x: -16, y: -16.500008}
+        - {x: -20, y: -39.500008}
+        - {x: 3, y: -39.500008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25305410000000000800000000000000
+      internalID: 21300050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 174
+        width: 68
+        height: 79
+      alignment: 9
+      pivot: {x: 0.5870588, y: 0.0012658276}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31, y: -37.500008}
+        - {x: -34, y: -30.500008}
+        - {x: -34, y: 8.499992}
+        - {x: -25, y: 39.499992}
+        - {x: -2, y: 39.499992}
+        - {x: 34, y: 23.499992}
+        - {x: 34, y: 4.4999924}
+        - {x: 11, y: -39.500008}
+        - {x: -28, y: -39.500008}
+      physicsShape:
+      - - {x: 4, y: -37.500008}
+        - {x: 3, y: -24.500008}
+        - {x: 6, y: -7.5000076}
+        - {x: 3, y: 17.499992}
+        - {x: 29, y: 12.499992}
+        - {x: 34, y: 12.499992}
+        - {x: 34, y: 18.499992}
+        - {x: 31, y: 20.499992}
+        - {x: 0, y: 28.499992}
+        - {x: -13, y: 39.499992}
+        - {x: -20, y: 39.499992}
+        - {x: -25, y: 27.499992}
+        - {x: -25, y: 9.499992}
+        - {x: -20, y: -1.5000076}
+        - {x: -34, y: -14.500008}
+        - {x: -34, y: -21.500008}
+        - {x: -32, y: -21.500008}
+        - {x: -16, y: -16.500008}
+        - {x: -20, y: -39.500008}
+        - {x: 3, y: -39.500008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45305410000000000800000000000000
+      internalID: 21300052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_27
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 396
+        width: 55
+        height: 55
+      alignment: 9
+      pivot: {x: 0.7985454, y: 0.09272728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 27.500015, y: -27.500006}
+        - {x: -27.499985, y: -27.500006}
+        - {x: -27.499985, y: 3.4999943}
+        - {x: -2.4999847, y: 27.499994}
+        - {x: 26.500015, y: 27.499994}
+        - {x: 27.500015, y: 26.499994}
+      physicsShape:
+      - - {x: 20.500015, y: -25.500006}
+        - {x: 22.500015, y: -27.500006}
+        - {x: 24.500015, y: -27.500006}
+        - {x: 26.500015, y: -25.500006}
+        - {x: 27.500015, y: -18.500006}
+        - {x: 27.500015, y: 17.499994}
+        - {x: 22.500015, y: 27.499994}
+        - {x: 4.5000153, y: 27.499994}
+        - {x: -2.4999847, y: 24.499994}
+        - {x: -1.4999847, y: 11.499994}
+        - {x: -8.499985, y: 6.4999943}
+        - {x: -13.499985, y: -4.5000057}
+        - {x: -27.499985, y: -7.5000057}
+        - {x: -27.499985, y: -17.500006}
+        - {x: -14.499985, y: -14.500006}
+        - {x: -20.499985, y: -25.500006}
+        - {x: -20.499985, y: -27.500006}
+        - {x: 4.5000153, y: -27.500006}
+        - {x: 15.500015, y: -24.500006}
+        - {x: 13.500015, y: -9.500006}
+        - {x: 20.500015, y: -6.5000057}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65305410000000000800000000000000
+      internalID: 21300054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_28
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 253
+        width: 76
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5778947, y: 0.108928576}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14.000015, y: 27.999994}
+        - {x: 29.000015, y: 4.9999943}
+        - {x: 29.000015, y: 1.9999943}
+        - {x: 30.000015, y: 1.9999943}
+        - {x: 30.000015, y: -1.0000057}
+        - {x: 30.000015, y: -1.0000057}
+        - {x: 31.000015, y: -10.000006}
+        - {x: 31.000015, y: -16.000006}
+        - {x: 32.000015, y: -15.000006}
+        - {x: 35.000015, y: -16.000006}
+        - {x: 35.000015, y: -19.000006}
+        - {x: 32.000015, y: -20.000006}
+        - {x: 31.000015, y: -18.000006}
+        - {x: 31.000015, y: -24.000006}
+        - {x: 29.000015, y: -28.000006}
+        - {x: -37.999985, y: -28.000006}
+        - {x: -37.999985, y: -2.0000057}
+        - {x: -14.999985, y: 25.999994}
+        - {x: -13.999985, y: 27.999994}
+      - - {x: 37.000015, y: -16.000006}
+        - {x: 35.000015, y: -14.000006}
+        - {x: 36.000015, y: -11.000006}
+        - {x: 38.000015, y: -11.000006}
+        - {x: 38.000015, y: -16.000006}
+      physicsShape:
+      - - {x: 31.000015, y: -22.000006}
+        - {x: 31.000015, y: -12.000006}
+        - {x: 30.000015, y: -4.0000057}
+        - {x: 28.000015, y: -2.0000057}
+        - {x: 25.000015, y: -3.0000057}
+        - {x: 16.000015, y: -18.000006}
+        - {x: 21.000015, y: -1.0000057}
+        - {x: 19.000015, y: 15.999994}
+        - {x: 13.000015, y: 18.999994}
+        - {x: 10.000015, y: 17.999994}
+        - {x: 10.000015, y: 27.999994}
+        - {x: 2.0000153, y: 27.999994}
+        - {x: -4.9999847, y: 25.999994}
+        - {x: -12.999985, y: 24.999994}
+        - {x: -11.999985, y: 11.999994}
+        - {x: -21.999985, y: 10.999994}
+        - {x: -23.999985, y: -4.0000057}
+        - {x: -37.999985, y: -7.0000057}
+        - {x: -37.999985, y: -17.000006}
+        - {x: -22.999985, y: -15.000006}
+        - {x: -31.999985, y: -24.000006}
+        - {x: -30.999985, y: -28.000006}
+        - {x: 22.000015, y: -28.000006}
+      - - {x: -0.99998474, y: -16.000006}
+        - {x: 1.0000153, y: -14.000006}
+        - {x: 2.0000153, y: -8.000006}
+        - {x: 9.000015, y: -21.000006}
+      - - {x: 32.000015, y: -20.000006}
+        - {x: 35.000015, y: -19.000006}
+        - {x: 35.000015, y: -16.000006}
+        - {x: 32.000015, y: -15.000006}
+        - {x: 30.000015, y: -17.000006}
+      - - {x: 35.000015, y: -14.000006}
+        - {x: 37.000015, y: -16.000006}
+        - {x: 38.000015, y: -16.000006}
+        - {x: 38.000015, y: -11.000006}
+        - {x: 36.000015, y: -11.000006}
+      - - {x: 27.000015, y: -2.0000057}
+        - {x: 30.000015, y: -1.0000057}
+        - {x: 30.000015, y: 1.9999943}
+        - {x: 27.000015, y: 2.9999943}
+        - {x: 25.000015, y: 0.9999943}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85305410000000000800000000000000
+      internalID: 21300056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_29
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 174
+        width: 79
+        height: 67
+      alignment: 9
+      pivot: {x: 0.56860757, y: 0.09104478}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -39.5, y: 1.4999943}
+        - {x: -29.5, y: 27.499994}
+        - {x: -5.5, y: 33.499992}
+        - {x: 11.5, y: 33.499992}
+        - {x: 11.5, y: 32.499992}
+        - {x: 20.5, y: 32.499992}
+        - {x: 37.5, y: 25.499994}
+        - {x: 39.5, y: 15.499994}
+        - {x: 39.5, y: -0.5000057}
+        - {x: 39.5, y: -3.5000057}
+        - {x: 39.5, y: -13.500006}
+        - {x: 38.5, y: -18.500006}
+        - {x: 29.5, y: -33.500008}
+        - {x: -39.5, y: -33.500008}
+      physicsShape:
+      - - {x: 39.5, y: -13.500006}
+        - {x: 39.5, y: -0.5000057}
+        - {x: 34.5, y: 0.49999428}
+        - {x: 16.5, y: -24.500006}
+        - {x: 19.5, y: 1.4999943}
+        - {x: 15.5, y: 21.499994}
+        - {x: 13.5, y: 23.499994}
+        - {x: 10.5, y: 22.499994}
+        - {x: 10.5, y: 14.499994}
+        - {x: 10.5, y: 29.499994}
+        - {x: 9.5, y: 33.499992}
+        - {x: 2.5, y: 33.499992}
+        - {x: -5.5, y: 30.499994}
+        - {x: -20.5, y: 17.499994}
+        - {x: -24.5, y: 5.4999943}
+        - {x: -20.5, y: 3.4999943}
+        - {x: -32.5, y: 1.4999943}
+        - {x: -39.5, y: -4.5000057}
+        - {x: -39.5, y: -24.500006}
+        - {x: -35.5, y: -33.500008}
+        - {x: 18.5, y: -33.500008}
+        - {x: 25.5, y: -30.500006}
+        - {x: 38.5, y: -18.500006}
+      - - {x: 2.5, y: -12.500006}
+        - {x: 1.5, y: -12.500006}
+        - {x: 2.5, y: -13.500006}
+        - {x: 2.5, y: -25.500006}
+      - - {x: 18.5, y: 32.499992}
+        - {x: 10.5, y: 32.499992}
+        - {x: 10.5, y: 30.499994}
+        - {x: 11.5, y: 27.499994}
+        - {x: 30.5, y: -2.5000057}
+        - {x: 32.5, y: -3.5000057}
+        - {x: 35.5, y: -3.5000057}
+        - {x: 39.5, y: -0.5000057}
+        - {x: 39.5, y: 13.499994}
+        - {x: 36.5, y: 24.499994}
+      - - {x: -29.5, y: -1.5000057}
+        - {x: -26.5, y: -0.5000057}
+        - {x: -26.5, y: 2.4999943}
+        - {x: -29.5, y: 3.4999943}
+        - {x: -31.5, y: 1.4999943}
+      - - {x: -16.5, y: 11.499994}
+        - {x: -13.5, y: 14.499994}
+        - {x: -12.5, y: 14.499994}
+        - {x: -11.5, y: 15.499994}
+        - {x: -12.5, y: 15.499994}
+        - {x: -15.5, y: 12.499994}
+        - {x: -15.5, y: 10.499994}
+        - {x: -15.5, y: 11.499994}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5305410000000000800000000000000
+      internalID: 21300058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_30
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 253
+        width: 81
+        height: 58
+      alignment: 9
+      pivot: {x: 0.5422222, y: 0.087931044}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 26.5, y: -29.000006}
+        - {x: -40.5, y: -29.000006}
+        - {x: -40.5, y: 15.999994}
+        - {x: -22.5, y: 27.999994}
+        - {x: -19.5, y: 28.999994}
+        - {x: 27.5, y: 28.999994}
+        - {x: 40.5, y: 17.999994}
+        - {x: 40.5, y: -17.000006}
+      physicsShape:
+      - - {x: 29.5, y: 26.999994}
+        - {x: 24.5, y: 28.999994}
+        - {x: -15.5, y: 28.999994}
+        - {x: -21.5, y: 26.999994}
+        - {x: -38.5, y: 5.9999943}
+        - {x: -40.5, y: -3.0000057}
+        - {x: -40.5, y: -20.000006}
+        - {x: -35.5, y: -29.000006}
+        - {x: 22.5, y: -29.000006}
+        - {x: 38.5, y: -19.000006}
+        - {x: 40.5, y: -13.000006}
+        - {x: 40.5, y: 13.999994}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5305410000000000800000000000000
+      internalID: 21300060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_31
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 84
+        width: 75
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5989333, y: 0.06777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 37.5, y: -45}
+        - {x: -37.5, y: -45}
+        - {x: -37.5, y: 29}
+        - {x: -10.5, y: 45}
+        - {x: 33.5, y: 45}
+        - {x: 37.5, y: 41}
+      physicsShape:
+      - - {x: 37.5, y: 21}
+        - {x: 31.5, y: 36}
+        - {x: 18.5, y: 45}
+        - {x: -8.5, y: 45}
+        - {x: -23.5, y: 24}
+        - {x: -26.5, y: 7}
+        - {x: -25.5, y: -13}
+        - {x: -37.5, y: -22}
+        - {x: -37.5, y: -36}
+        - {x: -30.5, y: -45}
+        - {x: 16.5, y: -45}
+        - {x: 21.5, y: -43}
+        - {x: 31.5, y: -31}
+        - {x: 37.5, y: -18}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5305410000000000800000000000000
+      internalID: 21300062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_32
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 84
+        width: 76
+        height: 74
+      alignment: 9
+      pivot: {x: 0.5778947, y: 0.06891892}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 30, y: -37}
+        - {x: -38, y: -37}
+        - {x: -38, y: 3.000002}
+        - {x: -21, y: 1.0000019}
+        - {x: -19, y: -0.9999981}
+        - {x: -19, y: 3.000002}
+        - {x: -27, y: 8.000002}
+        - {x: -31, y: 12.000002}
+        - {x: -19, y: 37}
+        - {x: 25, y: 37}
+        - {x: 38, y: 24.000002}
+        - {x: 38, y: 17.000002}
+        - {x: 35, y: 15.000002}
+        - {x: 21, y: 24.000002}
+        - {x: 12, y: 31.000002}
+        - {x: 11, y: 32}
+        - {x: 8, y: 32}
+        - {x: 1, y: 32}
+        - {x: 5, y: 31.000002}
+        - {x: 8, y: 32}
+        - {x: 10, y: 30.000002}
+        - {x: 10, y: 22.000002}
+        - {x: 13, y: 23.000002}
+        - {x: 15, y: 22.000002}
+        - {x: 35, y: -4.999998}
+        - {x: 38, y: -3.999998}
+        - {x: 38, y: -22.999998}
+      physicsShape:
+      - - {x: 35, y: -4.999998}
+        - {x: 16, y: -30.999998}
+        - {x: 20, y: -6.999998}
+        - {x: 15, y: 22.000002}
+        - {x: 13, y: 23.000002}
+        - {x: 10, y: 22.000002}
+        - {x: 10, y: 30.000002}
+        - {x: 8, y: 32}
+        - {x: 5, y: 31.000002}
+        - {x: 1, y: 32}
+        - {x: 11, y: 32}
+        - {x: 12, y: 31.000002}
+        - {x: 21, y: 24.000002}
+        - {x: 35, y: 15.000002}
+        - {x: 38, y: 19.000002}
+        - {x: 26, y: 36}
+        - {x: 24, y: 37}
+        - {x: -16, y: 37}
+        - {x: -28, y: 18.000002}
+        - {x: -28, y: 13.000002}
+        - {x: -27, y: 8.000002}
+        - {x: -10, y: 26.000002}
+        - {x: -17, y: 11.000002}
+        - {x: -19, y: 3.000002}
+        - {x: -19, y: -1.9999981}
+        - {x: -19, y: -0.9999981}
+        - {x: -21, y: 1.0000019}
+        - {x: -38, y: 3.000002}
+        - {x: -38, y: -37}
+        - {x: 24, y: -37}
+        - {x: 26, y: -36}
+        - {x: 38, y: -20.999998}
+        - {x: 38, y: -3.999998}
+      - - {x: 2, y: -30.999998}
+        - {x: 2, y: -28.999998}
+        - {x: 1, y: -31.999998}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06305410000000000800000000000000
+      internalID: 21300064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 85
+        height: 84
+      alignment: 9
+      pivot: {x: 0.5167059, y: 0.08452381}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.5, y: 38}
+        - {x: -9.5, y: 41}
+        - {x: -8.5, y: 42}
+        - {x: 13.5, y: 42}
+        - {x: 13.5, y: 38}
+      - - {x: 21.5, y: 33}
+        - {x: 16.5, y: 36}
+        - {x: 16.5, y: 39}
+        - {x: 17.5, y: 41}
+        - {x: 19.5, y: 41}
+        - {x: 25.5, y: 38}
+        - {x: 25.5, y: 34}
+        - {x: 23.5, y: 33}
+      - - {x: -35.5, y: 18}
+        - {x: -37.5, y: 20}
+        - {x: -37.5, y: 23}
+        - {x: -31.5, y: 30}
+        - {x: -27.5, y: 30}
+        - {x: -28.5, y: 32}
+        - {x: -25.5, y: 39}
+        - {x: -19.5, y: 41}
+        - {x: -12.5, y: 41}
+        - {x: -12.5, y: 38}
+        - {x: -14.5, y: 35}
+        - {x: -24.5, y: 29}
+        - {x: -27.5, y: 29}
+        - {x: -27.5, y: 26}
+        - {x: -31.5, y: 19}
+      - - {x: -23.5, y: -3}
+        - {x: -24.5, y: 1}
+        - {x: -21.5, y: 9}
+        - {x: -15.5, y: 15}
+        - {x: -15.5, y: 24}
+        - {x: -14.5, y: 27}
+        - {x: -10.5, y: 28}
+        - {x: -6.5, y: 23}
+        - {x: 0.5, y: 30}
+        - {x: 5.5, y: 30}
+        - {x: 10.5, y: 20}
+        - {x: 10.5, y: 19}
+        - {x: 10.5, y: 18}
+        - {x: 14.5, y: 9}
+        - {x: 14.5, y: -41}
+        - {x: 13.5, y: -42}
+        - {x: -6.5, y: -42}
+        - {x: -6.5, y: -41}
+        - {x: 4.5, y: -20}
+        - {x: -3.5, y: -31}
+        - {x: -3.5, y: -34}
+        - {x: -7.5, y: -40}
+        - {x: -9.5, y: -42}
+        - {x: -35.5, y: -42}
+        - {x: -42.5, y: -32}
+        - {x: -42.5, y: -20}
+        - {x: -36.5, y: -18}
+        - {x: -40.5, y: -14}
+        - {x: -40.5, y: 0}
+        - {x: -36.5, y: 0}
+        - {x: -32.5, y: -7}
+        - {x: -32.5, y: -16}
+        - {x: -26.5, y: -14}
+        - {x: -28.5, y: -12}
+        - {x: -28.5, y: -3}
+        - {x: -25.5, y: -1}
+      - - {x: 31.5, y: 25}
+        - {x: 26.5, y: 31}
+        - {x: 27.5, y: 34}
+        - {x: 29.5, y: 34}
+        - {x: 34.5, y: 28}
+        - {x: 34.5, y: 26}
+      - - {x: 34.5, y: 18}
+        - {x: 32.5, y: 21}
+        - {x: 34.5, y: 23}
+        - {x: 37.5, y: 22}
+        - {x: 37.5, y: 19}
+      - - {x: -37.5, y: 12}
+        - {x: -39.5, y: 15}
+        - {x: -37.5, y: 17}
+        - {x: -34.5, y: 16}
+        - {x: -34.5, y: 13}
+      - - {x: 36.5, y: -25}
+        - {x: 34.5, y: -24}
+        - {x: 34.5, y: -21}
+        - {x: 38.5, y: -11}
+        - {x: 39.5, y: -7}
+        - {x: 42.5, y: -6}
+        - {x: 42.5, y: -20}
+        - {x: 39.5, y: -25}
+      - - {x: 17.5, y: -40}
+        - {x: 16.5, y: -37}
+        - {x: 29.5, y: -27}
+        - {x: 32.5, y: -27}
+        - {x: 33.5, y: -29}
+        - {x: 33.5, y: -32}
+        - {x: 24.5, y: -40}
+      physicsShape:
+      - - {x: 8.5, y: 22}
+        - {x: 5.5, y: 30}
+        - {x: 0.5, y: 30}
+        - {x: -18.5, y: 11}
+        - {x: -21.5, y: 9}
+        - {x: -24.5, y: 1}
+        - {x: -23.5, y: -3}
+        - {x: -21.5, y: -5}
+        - {x: -20.5, y: -5}
+        - {x: -23.5, y: -6}
+        - {x: -23.5, y: -3}
+        - {x: -25.5, y: -1}
+        - {x: -28.5, y: -3}
+        - {x: -28.5, y: -12}
+        - {x: -26.5, y: -14}
+        - {x: -42.5, y: -20}
+        - {x: -42.5, y: -32}
+        - {x: -35.5, y: -42}
+        - {x: -9.5, y: -42}
+        - {x: -7.5, y: -40}
+        - {x: -3.5, y: -34}
+        - {x: -3.5, y: -31}
+        - {x: 4.5, y: -20}
+        - {x: -6.5, y: -41}
+        - {x: -6.5, y: -42}
+        - {x: 11.5, y: -42}
+        - {x: 12.5, y: -41}
+        - {x: 14.5, y: -25}
+        - {x: 14.5, y: 4}
+      - - {x: 29.5, y: -27}
+        - {x: 16.5, y: -37}
+        - {x: 17.5, y: -40}
+        - {x: 24.5, y: -40}
+        - {x: 33.5, y: -32}
+        - {x: 33.5, y: -29}
+        - {x: 32.5, y: -27}
+      - - {x: 38.5, y: -11}
+        - {x: 34.5, y: -21}
+        - {x: 34.5, y: -24}
+        - {x: 36.5, y: -25}
+        - {x: 39.5, y: -25}
+        - {x: 42.5, y: -20}
+        - {x: 42.5, y: -6}
+        - {x: 39.5, y: -7}
+      - - {x: -40.5, y: 0}
+        - {x: -40.5, y: -14}
+        - {x: -35.5, y: -18}
+        - {x: -32.5, y: -17}
+        - {x: -32.5, y: -7}
+        - {x: -36.5, y: 0}
+      - - {x: 5.5, y: 12}
+        - {x: 7.5, y: 10}
+        - {x: 10.5, y: 11}
+        - {x: 10.5, y: 19}
+        - {x: 8.5, y: 21}
+        - {x: 5.5, y: 20}
+      - - {x: -14.5, y: 27}
+        - {x: -15.5, y: 24}
+        - {x: -15.5, y: 13}
+        - {x: -14.5, y: 11}
+        - {x: -12.5, y: 11}
+        - {x: -10.5, y: 12}
+        - {x: -6.5, y: 16}
+        - {x: -6.5, y: 23}
+        - {x: -10.5, y: 28}
+      - - {x: -37.5, y: 12}
+        - {x: -34.5, y: 13}
+        - {x: -34.5, y: 16}
+        - {x: -37.5, y: 17}
+        - {x: -39.5, y: 15}
+      - - {x: -31.5, y: 30}
+        - {x: -37.5, y: 23}
+        - {x: -37.5, y: 20}
+        - {x: -35.5, y: 18}
+        - {x: -31.5, y: 19}
+        - {x: -27.5, y: 26}
+        - {x: -27.5, y: 30}
+      - - {x: 34.5, y: 18}
+        - {x: 37.5, y: 19}
+        - {x: 37.5, y: 22}
+        - {x: 34.5, y: 23}
+        - {x: 32.5, y: 21}
+      - - {x: 26.5, y: 31}
+        - {x: 31.5, y: 25}
+        - {x: 34.5, y: 26}
+        - {x: 34.5, y: 28}
+        - {x: 29.5, y: 34}
+        - {x: 27.5, y: 34}
+      - - {x: -12.5, y: 41}
+        - {x: -19.5, y: 41}
+        - {x: -25.5, y: 39}
+        - {x: -28.5, y: 32}
+        - {x: -27.5, y: 29}
+        - {x: -24.5, y: 29}
+        - {x: -14.5, y: 35}
+        - {x: -12.5, y: 38}
+      - - {x: 17.5, y: 41}
+        - {x: 16.5, y: 39}
+        - {x: 16.5, y: 36}
+        - {x: 21.5, y: 33}
+        - {x: 23.5, y: 33}
+        - {x: 25.5, y: 34}
+        - {x: 25.5, y: 38}
+        - {x: 19.5, y: 41}
+      - - {x: -8.5, y: 42}
+        - {x: -9.5, y: 41}
+        - {x: -8.5, y: 38}
+        - {x: 13.5, y: 38}
+        - {x: 13.5, y: 42}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26305410000000000800000000000000
+      internalID: 21300066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_34
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 253
+        width: 55
+        height: 71
+      alignment: 9
+      pivot: {x: 0.7985454, y: 0.07183099}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 17.500015, y: 30.499994}
+        - {x: 15.500015, y: 32.499992}
+        - {x: 15.500015, y: 35.499992}
+        - {x: 20.500015, y: 35.499992}
+        - {x: 20.500015, y: 31.499994}
+      - - {x: 3.5000153, y: 27.499994}
+        - {x: 1.5000153, y: 32.499992}
+        - {x: 2.5000153, y: 35.499992}
+        - {x: 4.5000153, y: 35.499992}
+        - {x: 8.500015, y: 30.499994}
+        - {x: 8.500015, y: 26.499994}
+        - {x: 5.5000153, y: 25.499994}
+      - - {x: 13.500015, y: 24.499994}
+        - {x: 11.500015, y: 26.499994}
+        - {x: 11.500015, y: 30.499994}
+        - {x: 14.500015, y: 31.499994}
+        - {x: 16.500015, y: 29.499994}
+        - {x: 16.500015, y: 25.499994}
+      - - {x: 22.500015, y: 23.499994}
+        - {x: 20.500015, y: 26.499994}
+        - {x: 22.500015, y: 28.499994}
+        - {x: 25.500015, y: 27.499994}
+        - {x: 25.500015, y: 24.499994}
+      - - {x: 1.5000153, y: 21.499994}
+        - {x: -0.49998474, y: 24.499994}
+        - {x: 1.5000153, y: 26.499994}
+        - {x: 4.5000153, y: 25.499994}
+        - {x: 4.5000153, y: 22.499994}
+      - - {x: 27.500015, y: -35.500008}
+        - {x: -22.499985, y: -35.500008}
+        - {x: -27.499985, y: -27.500006}
+        - {x: -27.499985, y: -10.500006}
+        - {x: -8.499985, y: 16.499994}
+        - {x: 9.500015, y: 21.499994}
+        - {x: 8.500015, y: 22.499994}
+        - {x: 10.500015, y: 24.499994}
+        - {x: 13.500015, y: 23.499994}
+        - {x: 13.500015, y: 21.499994}
+        - {x: 21.500015, y: 21.499994}
+        - {x: 24.500015, y: 12.499994}
+        - {x: 18.500015, y: 8.499994}
+        - {x: 20.500015, y: 4.4999943}
+        - {x: 17.500015, y: -1.5000057}
+        - {x: 20.500015, y: -0.5000057}
+        - {x: 20.500015, y: 4.4999943}
+        - {x: 20.500015, y: 9.499994}
+        - {x: 23.500015, y: 10.499994}
+        - {x: 27.500015, y: 8.499994}
+      - - {x: -23.499985, y: 0.49999428}
+        - {x: -25.499985, y: 2.4999943}
+        - {x: -25.499985, y: 6.4999943}
+        - {x: -22.499985, y: 7.4999943}
+        - {x: -20.499985, y: 5.4999943}
+        - {x: -20.499985, y: 1.4999943}
+      physicsShape:
+      - - {x: 20.500015, y: -33.500008}
+        - {x: 22.500015, y: -35.500008}
+        - {x: 24.500015, y: -35.500008}
+        - {x: 26.500015, y: -33.500008}
+        - {x: 27.500015, y: -26.500006}
+        - {x: 27.500015, y: 8.499994}
+        - {x: 23.500015, y: 10.499994}
+        - {x: 20.500015, y: 9.499994}
+        - {x: 20.500015, y: -0.5000057}
+        - {x: 17.500015, y: -1.5000057}
+        - {x: 20.500015, y: 4.4999943}
+        - {x: 18.500015, y: 8.499994}
+        - {x: 24.500015, y: 12.499994}
+        - {x: 21.500015, y: 21.499994}
+        - {x: 11.500015, y: 21.499994}
+        - {x: -8.499985, y: 16.499994}
+        - {x: -5.4999847, y: 3.4999943}
+        - {x: -27.499985, y: -11.500006}
+        - {x: -27.499985, y: -25.500006}
+        - {x: -20.499985, y: -33.500008}
+        - {x: -20.499985, y: -35.500008}
+        - {x: 3.5000153, y: -35.500008}
+        - {x: 13.500015, y: -31.500006}
+        - {x: 14.500015, y: -20.500006}
+      - - {x: -20.499985, y: -6.5000057}
+        - {x: -17.499985, y: -5.5000057}
+        - {x: -17.499985, y: -2.5000057}
+        - {x: -20.499985, y: -1.5000057}
+        - {x: -22.499985, y: -3.5000057}
+      - - {x: -25.499985, y: 2.4999943}
+        - {x: -23.499985, y: 0.49999428}
+        - {x: -20.499985, y: 1.4999943}
+        - {x: -20.499985, y: 5.4999943}
+        - {x: -22.499985, y: 7.4999943}
+        - {x: -25.499985, y: 6.4999943}
+      - - {x: -11.499985, y: 1.4999943}
+        - {x: -8.499985, y: 2.4999943}
+        - {x: -8.499985, y: 5.4999943}
+        - {x: -11.499985, y: 6.4999943}
+        - {x: -13.499985, y: 4.4999943}
+      - - {x: -6.4999847, y: 4.4999943}
+        - {x: -3.4999847, y: 5.4999943}
+        - {x: -3.4999847, y: 8.499994}
+        - {x: -6.4999847, y: 9.499994}
+        - {x: -8.499985, y: 7.4999943}
+      - - {x: 10.500015, y: 19.499994}
+        - {x: 13.500015, y: 20.499994}
+        - {x: 13.500015, y: 23.499994}
+        - {x: 10.500015, y: 24.499994}
+        - {x: 8.500015, y: 22.499994}
+      - - {x: 1.5000153, y: 21.499994}
+        - {x: 4.5000153, y: 22.499994}
+        - {x: 4.5000153, y: 25.499994}
+        - {x: 1.5000153, y: 26.499994}
+        - {x: -0.49998474, y: 24.499994}
+      - - {x: 22.500015, y: 23.499994}
+        - {x: 25.500015, y: 24.499994}
+        - {x: 25.500015, y: 27.499994}
+        - {x: 22.500015, y: 28.499994}
+        - {x: 20.500015, y: 26.499994}
+      - - {x: 11.500015, y: 26.499994}
+        - {x: 13.500015, y: 24.499994}
+        - {x: 16.500015, y: 25.499994}
+        - {x: 16.500015, y: 29.499994}
+        - {x: 14.500015, y: 31.499994}
+        - {x: 11.500015, y: 30.499994}
+      - - {x: 1.5000153, y: 32.499992}
+        - {x: 3.5000153, y: 27.499994}
+        - {x: 5.5000153, y: 25.499994}
+        - {x: 8.500015, y: 26.499994}
+        - {x: 8.500015, y: 30.499994}
+        - {x: 4.5000153, y: 35.499992}
+        - {x: 2.5000153, y: 35.499992}
+      - - {x: 17.500015, y: 30.499994}
+        - {x: 20.500015, y: 31.499994}
+        - {x: 20.500015, y: 35.499992}
+        - {x: 15.500015, y: 35.499992}
+        - {x: 15.500015, y: 32.499992}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46305410000000000800000000000000
+      internalID: 21300068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_35
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 324
+        width: 55
+        height: 55
+      alignment: 9
+      pivot: {x: 0.7985454, y: 0.09272728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26.499985, y: -27.500006}
+        - {x: -27.499985, y: -26.500006}
+        - {x: -27.499985, y: 0.49999428}
+        - {x: -2.4999847, y: 27.499994}
+        - {x: 25.500015, y: 27.499994}
+        - {x: 27.500015, y: 23.499994}
+        - {x: 27.500015, y: -25.500006}
+        - {x: 26.500015, y: -27.500006}
+      physicsShape:
+      - - {x: 20.500015, y: -25.500006}
+        - {x: 22.500015, y: -27.500006}
+        - {x: 24.500015, y: -27.500006}
+        - {x: 26.500015, y: -25.500006}
+        - {x: 27.500015, y: -18.500006}
+        - {x: 27.500015, y: 17.499994}
+        - {x: 23.500015, y: 23.499994}
+        - {x: 20.500015, y: 27.499994}
+        - {x: 10.500015, y: 27.499994}
+        - {x: 2.5000153, y: 23.499994}
+        - {x: 0.50001526, y: 20.499994}
+        - {x: -10.499985, y: 3.4999943}
+        - {x: -27.499985, y: -6.5000057}
+        - {x: -27.499985, y: -17.500006}
+        - {x: -14.499985, y: -14.500006}
+        - {x: -20.499985, y: -25.500006}
+        - {x: -20.499985, y: -27.500006}
+        - {x: 4.5000153, y: -27.500006}
+        - {x: 15.500015, y: -24.500006}
+        - {x: 13.500015, y: -9.500006}
+        - {x: 20.500015, y: -6.5000057}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66305410000000000800000000000000
+      internalID: 21300070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_36
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 396
+        width: 55
+        height: 55
+      alignment: 9
+      pivot: {x: 0.7985454, y: 0.09272728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22.499985, y: -27.500006}
+        - {x: -27.499985, y: -21.500006}
+        - {x: -27.499985, y: -6.5000057}
+        - {x: -8.499985, y: 24.499994}
+        - {x: 3.5000153, y: 27.499994}
+        - {x: 27.500015, y: 27.499994}
+        - {x: 27.500015, y: -27.500006}
+      physicsShape:
+      - - {x: 20.500015, y: -25.500006}
+        - {x: 22.500015, y: -27.500006}
+        - {x: 24.500015, y: -27.500006}
+        - {x: 26.500015, y: -25.500006}
+        - {x: 27.500015, y: -18.500006}
+        - {x: 27.500015, y: 17.499994}
+        - {x: 23.500015, y: 23.499994}
+        - {x: 20.500015, y: 27.499994}
+        - {x: 11.500015, y: 27.499994}
+        - {x: -2.4999847, y: 18.499994}
+        - {x: -14.499985, y: -4.5000057}
+        - {x: -27.499985, y: -7.5000057}
+        - {x: -27.499985, y: -17.500006}
+        - {x: -14.499985, y: -14.500006}
+        - {x: -20.499985, y: -25.500006}
+        - {x: -20.499985, y: -27.500006}
+        - {x: 4.5000153, y: -27.500006}
+        - {x: 15.500015, y: -24.500006}
+        - {x: 13.500015, y: -9.500006}
+        - {x: 20.500015, y: -6.5000057}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86305410000000000800000000000000
+      internalID: 21300072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_37
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 396
+        width: 55
+        height: 55
+      alignment: 9
+      pivot: {x: 0.7985454, y: 0.09272728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25.499985, y: -27.500006}
+        - {x: -27.499985, y: -26.500006}
+        - {x: -27.499985, y: -2.5000057}
+        - {x: 2.5000153, y: 27.499994}
+        - {x: 23.500015, y: 27.499994}
+        - {x: 27.500015, y: 22.499994}
+        - {x: 27.500015, y: -27.500006}
+      physicsShape:
+      - - {x: 20.500015, y: -25.500006}
+        - {x: 22.500015, y: -27.500006}
+        - {x: 24.500015, y: -27.500006}
+        - {x: 26.500015, y: -25.500006}
+        - {x: 27.500015, y: -18.500006}
+        - {x: 27.500015, y: 17.499994}
+        - {x: 22.500015, y: 26.499994}
+        - {x: 21.500015, y: 27.499994}
+        - {x: 8.500015, y: 27.499994}
+        - {x: -2.4999847, y: 16.499994}
+        - {x: -8.499985, y: 6.4999943}
+        - {x: -13.499985, y: -4.5000057}
+        - {x: -27.499985, y: -7.5000057}
+        - {x: -27.499985, y: -17.500006}
+        - {x: -14.499985, y: -14.500006}
+        - {x: -20.499985, y: -25.500006}
+        - {x: -20.499985, y: -27.500006}
+        - {x: 4.5000153, y: -27.500006}
+        - {x: 15.500015, y: -24.500006}
+        - {x: 13.500015, y: -9.500006}
+        - {x: 20.500015, y: -6.5000057}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6305410000000000800000000000000
+      internalID: 21300074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_38
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 396
+        width: 55
+        height: 55
+      alignment: 9
+      pivot: {x: 0.7985454, y: 0.09272728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23.499985, y: -27.500006}
+        - {x: -27.499985, y: -25.500006}
+        - {x: -27.499985, y: -2.5000057}
+        - {x: 6.5000153, y: 27.499994}
+        - {x: 21.500015, y: 27.499994}
+        - {x: 27.500015, y: 21.499994}
+        - {x: 27.500015, y: -27.500006}
+      physicsShape:
+      - - {x: 20.500015, y: -25.500006}
+        - {x: 22.500015, y: -27.500006}
+        - {x: 24.500015, y: -27.500006}
+        - {x: 26.500015, y: -25.500006}
+        - {x: 27.500015, y: -18.500006}
+        - {x: 27.500015, y: 17.499994}
+        - {x: 23.500015, y: 23.499994}
+        - {x: 20.500015, y: 27.499994}
+        - {x: 12.500015, y: 27.499994}
+        - {x: -8.499985, y: 6.4999943}
+        - {x: -13.499985, y: -4.5000057}
+        - {x: -27.499985, y: -7.5000057}
+        - {x: -27.499985, y: -17.500006}
+        - {x: -14.499985, y: -14.500006}
+        - {x: -20.499985, y: -25.500006}
+        - {x: -20.499985, y: -27.500006}
+        - {x: 4.5000153, y: -27.500006}
+        - {x: 15.500015, y: -24.500006}
+        - {x: 13.500015, y: -9.500006}
+        - {x: 20.500015, y: -6.5000057}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6305410000000000800000000000000
+      internalID: 21300076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_39
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 396
+        width: 55
+        height: 55
+      alignment: 9
+      pivot: {x: 0.7985454, y: 0.09272728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23.499985, y: -27.500006}
+        - {x: -27.499985, y: -25.500006}
+        - {x: -27.499985, y: -2.5000057}
+        - {x: 7.5000153, y: 27.499994}
+        - {x: 21.500015, y: 27.499994}
+        - {x: 27.500015, y: 20.499994}
+        - {x: 27.500015, y: -27.500006}
+      physicsShape:
+      - - {x: 20.500015, y: -25.500006}
+        - {x: 22.500015, y: -27.500006}
+        - {x: 24.500015, y: -27.500006}
+        - {x: 26.500015, y: -25.500006}
+        - {x: 27.500015, y: -18.500006}
+        - {x: 27.500015, y: 17.499994}
+        - {x: 23.500015, y: 23.499994}
+        - {x: 20.500015, y: 27.499994}
+        - {x: 13.500015, y: 27.499994}
+        - {x: -8.499985, y: 6.4999943}
+        - {x: -13.499985, y: -4.5000057}
+        - {x: -27.499985, y: -7.5000057}
+        - {x: -27.499985, y: -17.500006}
+        - {x: -14.499985, y: -14.500006}
+        - {x: -20.499985, y: -25.500006}
+        - {x: -20.499985, y: -27.500006}
+        - {x: 4.5000153, y: -27.500006}
+        - {x: 15.500015, y: -24.500006}
+        - {x: 13.500015, y: -9.500006}
+        - {x: 20.500015, y: -6.5000057}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6305410000000000800000000000000
+      internalID: 21300078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_40
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 474
+        width: 55
+        height: 55
+      alignment: 9
+      pivot: {x: 0.7985454, y: 0.09272728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23.5, y: -27.500006}
+        - {x: -27.5, y: -25.500006}
+        - {x: -27.5, y: -2.5000057}
+        - {x: 7.5, y: 27.499994}
+        - {x: 21.5, y: 27.499994}
+        - {x: 27.5, y: 20.499994}
+        - {x: 27.5, y: -27.500006}
+      physicsShape:
+      - - {x: 20.5, y: -25.500006}
+        - {x: 22.5, y: -27.500006}
+        - {x: 24.5, y: -27.500006}
+        - {x: 26.5, y: -25.500006}
+        - {x: 27.5, y: -18.500006}
+        - {x: 27.5, y: 17.499994}
+        - {x: 23.5, y: 23.499994}
+        - {x: 20.5, y: 27.499994}
+        - {x: 13.5, y: 27.499994}
+        - {x: -8.5, y: 6.4999943}
+        - {x: -13.5, y: -4.5000057}
+        - {x: -27.5, y: -7.5000057}
+        - {x: -27.5, y: -17.500006}
+        - {x: -14.5, y: -14.500006}
+        - {x: -20.5, y: -25.500006}
+        - {x: -20.5, y: -27.500006}
+        - {x: 4.5, y: -27.500006}
+        - {x: 15.5, y: -24.500006}
+        - {x: 13.5, y: -9.500006}
+        - {x: 20.5, y: -6.5000057}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07305410000000000800000000000000
+      internalID: 21300080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_41
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 474
+        width: 55
+        height: 55
+      alignment: 9
+      pivot: {x: 0.7985454, y: 0.09272728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23.5, y: -27.500006}
+        - {x: -27.5, y: -25.500006}
+        - {x: -27.5, y: -2.5000057}
+        - {x: 7.5, y: 27.499994}
+        - {x: 21.5, y: 27.499994}
+        - {x: 27.5, y: 20.499994}
+        - {x: 27.5, y: -27.500006}
+      physicsShape:
+      - - {x: 20.5, y: -25.500006}
+        - {x: 22.5, y: -27.500006}
+        - {x: 24.5, y: -27.500006}
+        - {x: 26.5, y: -25.500006}
+        - {x: 27.5, y: -18.500006}
+        - {x: 27.5, y: 17.499994}
+        - {x: 23.5, y: 23.499994}
+        - {x: 20.5, y: 27.499994}
+        - {x: 13.5, y: 27.499994}
+        - {x: -8.5, y: 6.4999943}
+        - {x: -13.5, y: -4.5000057}
+        - {x: -27.5, y: -7.5000057}
+        - {x: -27.5, y: -17.500006}
+        - {x: -14.5, y: -14.500006}
+        - {x: -20.5, y: -25.500006}
+        - {x: -20.5, y: -27.500006}
+        - {x: 4.5, y: -27.500006}
+        - {x: 15.5, y: -24.500006}
+        - {x: 13.5, y: -9.500006}
+        - {x: 20.5, y: -6.5000057}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27305410000000000800000000000000
+      internalID: 21300082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_42
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 474
+        width: 54
+        height: 56
+      alignment: 9
+      pivot: {x: 0.79481477, y: 0.091071434}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 25, y: 19.999994}
+        - {x: 27, y: 16.999994}
+        - {x: 27, y: -23.000006}
+        - {x: 25, y: -28.000006}
+        - {x: -20, y: -28.000006}
+        - {x: -20, y: -26.000006}
+        - {x: -14, y: -14.000006}
+        - {x: -27, y: -17.000006}
+        - {x: -27, y: -2.0000057}
+        - {x: 8, y: 27.999994}
+        - {x: 21, y: 27.999994}
+      physicsShape:
+      - - {x: 22, y: -28.000006}
+        - {x: 24, y: -28.000006}
+        - {x: 26, y: -26.000006}
+        - {x: 27, y: -19.000006}
+        - {x: 27, y: 16.999994}
+        - {x: 23, y: 22.999994}
+        - {x: 26, y: 17.999994}
+        - {x: 21, y: 27.999994}
+        - {x: 14, y: 27.999994}
+        - {x: -8, y: 6.9999943}
+        - {x: -13, y: -4.0000057}
+        - {x: -27, y: -7.0000057}
+        - {x: -27, y: -17.000006}
+        - {x: -14, y: -14.000006}
+        - {x: -20, y: -26.000006}
+        - {x: -20, y: -28.000006}
+        - {x: 4, y: -28.000006}
+        - {x: 16, y: -23.000006}
+        - {x: 19, y: -9.000006}
+        - {x: 20, y: -26.000006}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47305410000000000800000000000000
+      internalID: 21300084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_43
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 474
+        width: 53
+        height: 57
+      alignment: 9
+      pivot: {x: 0.7909434, y: 0.089473695}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 26.500015, y: -28.500006}
+        - {x: -26.499985, y: -28.500006}
+        - {x: -26.499985, y: 0.49999428}
+        - {x: 4.5000153, y: 28.499994}
+        - {x: 22.500015, y: 28.499994}
+        - {x: 26.500015, y: 22.499994}
+      physicsShape:
+      - - {x: 12.500015, y: -6.5000057}
+        - {x: 19.500015, y: -26.500006}
+        - {x: 21.500015, y: -28.500006}
+        - {x: 23.500015, y: -28.500006}
+        - {x: 25.500015, y: -26.500006}
+        - {x: 26.500015, y: -19.500006}
+        - {x: 26.500015, y: 17.499994}
+        - {x: 21.500015, y: 28.499994}
+        - {x: 14.500015, y: 28.499994}
+        - {x: -7.4999847, y: 7.4999943}
+        - {x: -12.499985, y: -3.5000057}
+        - {x: -26.499985, y: -6.5000057}
+        - {x: -26.499985, y: -16.500006}
+        - {x: -13.499985, y: -13.500006}
+        - {x: -19.499985, y: -28.500006}
+        - {x: 4.5000153, y: -28.500006}
+        - {x: 10.500015, y: -24.500006}
+        - {x: 12.500015, y: -22.500006}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67305410000000000800000000000000
+      internalID: 21300086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_44
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 324
+        width: 52
+        height: 59
+      alignment: 9
+      pivot: {x: 0.78692305, y: 0.08644068}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23.999985, y: -29.500006}
+        - {x: -25.999985, y: -27.500006}
+        - {x: -25.999985, y: -0.5000057}
+        - {x: 9.000015, y: 29.499994}
+        - {x: 22.000015, y: 29.499994}
+        - {x: 22.000015, y: 20.499994}
+        - {x: 19.000015, y: 16.499994}
+        - {x: 19.000015, y: 15.499994}
+        - {x: 22.000015, y: 16.499994}
+        - {x: 26.000015, y: 14.499994}
+        - {x: 26.000015, y: -29.500006}
+      physicsShape:
+      - - {x: 21.000015, y: -29.500006}
+        - {x: 23.000015, y: -29.500006}
+        - {x: 25.000015, y: -27.500006}
+        - {x: 26.000015, y: -20.500006}
+        - {x: 26.000015, y: 14.499994}
+        - {x: 22.000015, y: 16.499994}
+        - {x: 19.000015, y: 15.499994}
+        - {x: 19.000015, y: 5.4999943}
+        - {x: 19.000015, y: 16.499994}
+        - {x: 22.000015, y: 20.499994}
+        - {x: 22.000015, y: 29.499994}
+        - {x: 15.000015, y: 29.499994}
+        - {x: -6.9999847, y: 8.499994}
+        - {x: -25.999985, y: -4.5000057}
+        - {x: -25.999985, y: -14.500006}
+        - {x: -21.999985, y: -15.500006}
+        - {x: -15.999985, y: -29.500006}
+        - {x: -5.9999847, y: -29.500006}
+        - {x: 14.000015, y: -24.500006}
+        - {x: 11.000015, y: -8.500006}
+        - {x: 19.000015, y: -27.500006}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87305410000000000800000000000000
+      internalID: 21300088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_45
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 324
+        width: 51
+        height: 61
+      alignment: 9
+      pivot: {x: 0.78274506, y: 0.08360656}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21.499985, y: -14.500006}
+        - {x: -25.499985, y: -13.500006}
+        - {x: -25.499985, y: -3.5000057}
+        - {x: 5.5000153, y: 30.499994}
+        - {x: 25.500015, y: 30.499994}
+        - {x: 25.500015, y: -30.500006}
+        - {x: -13.499985, y: -30.500006}
+        - {x: -16.499985, y: -25.500006}
+      physicsShape:
+      - - {x: 18.500015, y: -30.500006}
+        - {x: 24.500015, y: -30.500006}
+        - {x: 25.500015, y: -27.500006}
+        - {x: 25.500015, y: 18.499994}
+        - {x: 22.500015, y: 30.499994}
+        - {x: 15.500015, y: 30.499994}
+        - {x: 9.500015, y: 22.499994}
+        - {x: -7.4999847, y: 5.4999943}
+        - {x: -25.499985, y: -3.5000057}
+        - {x: -25.499985, y: -13.500006}
+        - {x: -21.499985, y: -14.500006}
+        - {x: -13.499985, y: -10.500006}
+        - {x: -13.499985, y: -30.500006}
+        - {x: -3.4999847, y: -30.500006}
+        - {x: 13.500015, y: -25.500006}
+        - {x: 11.500015, y: -4.5000057}
+        - {x: 15.500015, y: -9.500006}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7305410000000000800000000000000
+      internalID: 21300090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_46
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 324
+        width: 50
+        height: 62
+      alignment: 9
+      pivot: {x: 0.77839994, y: 0.066129036}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20.999985, y: -31.000006}
+        - {x: -24.999985, y: -15.000006}
+        - {x: -24.999985, y: -4.0000057}
+        - {x: 12.000015, y: 30.999994}
+        - {x: 25.000015, y: 30.999994}
+        - {x: 25.000015, y: -31.000006}
+      physicsShape:
+      - - {x: 18.000015, y: -30.000006}
+        - {x: 19.000015, y: -31.000006}
+        - {x: 23.000015, y: -31.000006}
+        - {x: 24.000015, y: -30.000006}
+        - {x: 25.000015, y: -23.000006}
+        - {x: 25.000015, y: 17.999994}
+        - {x: 23.000015, y: 30.999994}
+        - {x: 16.000015, y: 30.999994}
+        - {x: 10.000015, y: 22.999994}
+        - {x: -4.9999847, y: 6.9999943}
+        - {x: -24.999985, y: -5.0000057}
+        - {x: -24.999985, y: -15.000006}
+        - {x: -5.9999847, y: -12.000006}
+        - {x: -10.999985, y: -23.000006}
+        - {x: -11.999985, y: -31.000006}
+        - {x: -0.99998474, y: -31.000006}
+        - {x: 13.000015, y: -27.000006}
+        - {x: 11.000015, y: -14.000006}
+        - {x: 18.000015, y: -7.0000057}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7305410000000000800000000000000
+      internalID: 21300092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_47
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 324
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.8108333, y: 0.048437506}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7.9999847, y: -32.000008}
+        - {x: -23.999985, y: -21.000006}
+        - {x: -23.999985, y: -3.0000057}
+        - {x: 15.000015, y: 31.999994}
+        - {x: 24.000015, y: 31.999994}
+        - {x: 24.000015, y: -32.000008}
+      physicsShape:
+      - - {x: 17.000015, y: 31.999994}
+        - {x: 11.000015, y: 24.999994}
+        - {x: -2.9999847, y: 6.9999943}
+        - {x: -15.999985, y: -3.0000057}
+        - {x: -23.999985, y: -4.0000057}
+        - {x: -23.999985, y: -13.000006}
+        - {x: -19.999985, y: -14.000006}
+        - {x: -5.9999847, y: -8.000006}
+        - {x: -6.9999847, y: -26.000006}
+        - {x: -6.9999847, y: -29.000006}
+        - {x: -3.9999847, y: -32.000008}
+        - {x: 4.0000153, y: -32.000008}
+        - {x: 13.000015, y: -29.000006}
+        - {x: 10.000015, y: -22.000006}
+        - {x: 13.000015, y: -12.000006}
+        - {x: 16.000015, y: -7.0000057}
+        - {x: 19.000015, y: -31.000006}
+        - {x: 20.000015, y: -32.000008}
+        - {x: 24.000015, y: -32.000008}
+        - {x: 24.000015, y: 31.999994}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7305410000000000800000000000000
+      internalID: 21300094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_48
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 253
+        width: 63
+        height: 67
+      alignment: 9
+      pivot: {x: 0.5701587, y: 0.016417917}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27.499985, y: -17.500008}
+        - {x: -31.499985, y: -17.500008}
+        - {x: -31.499985, y: -9.500008}
+        - {x: -20.499985, y: 18.499992}
+        - {x: 4.5000153, y: 33.499992}
+        - {x: 22.500015, y: 33.499992}
+        - {x: 31.500015, y: -7.5000076}
+        - {x: 31.500015, y: -16.500008}
+        - {x: 4.5000153, y: -29.500008}
+        - {x: 4.5000153, y: -33.500008}
+        - {x: -17.499985, y: -33.500008}
+        - {x: -21.499985, y: -16.500008}
+      physicsShape:
+      - - {x: 20.500015, y: -7.5000076}
+        - {x: 29.500015, y: -16.500008}
+        - {x: 31.500015, y: -16.500008}
+        - {x: 31.500015, y: -9.500008}
+        - {x: 22.500015, y: 4.4999924}
+        - {x: 16.500015, y: 21.499992}
+        - {x: 16.500015, y: 33.499992}
+        - {x: 8.500015, y: 33.499992}
+        - {x: 3.5000153, y: 31.499992}
+        - {x: -4.4999847, y: 17.499992}
+        - {x: -14.499985, y: 15.499992}
+        - {x: -16.499985, y: -2.5000076}
+        - {x: -31.499985, y: -11.500008}
+        - {x: -31.499985, y: -17.500008}
+        - {x: -27.499985, y: -17.500008}
+        - {x: -21.499985, y: -16.500008}
+        - {x: -10.499985, y: -18.500008}
+        - {x: -17.499985, y: -28.500008}
+        - {x: -17.499985, y: -33.500008}
+        - {x: 4.5000153, y: -33.500008}
+        - {x: 4.5000153, y: -20.500008}
+        - {x: 11.500015, y: 4.4999924}
+      - - {x: -5.4999847, y: -26.500008}
+        - {x: -7.4999847, y: -27.500008}
+        - {x: -6.4999847, y: -30.500008}
+        - {x: -7.4999847, y: -29.500008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08305410000000000800000000000000
+      internalID: 21300096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_49
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 324
+        width: 59
+        height: 72
+      alignment: 9
+      pivot: {x: 0.54101694, y: 0.0013888942}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 8.500002, y: -14.000008}
+        - {x: 9.500002, y: -17.000008}
+        - {x: 6.500002, y: -34.000008}
+        - {x: 6.500002, y: -36.000008}
+        - {x: -25.499998, y: -36.000008}
+        - {x: -29.499998, y: -30.000008}
+        - {x: -29.499998, y: 3.9999924}
+        - {x: -27.499998, y: 5.9999924}
+        - {x: 5.500002, y: 35.999992}
+        - {x: 10.500002, y: 35.999992}
+        - {x: 29.500002, y: 18.999992}
+        - {x: 29.500002, y: 9.999992}
+        - {x: 16.500002, y: 4.9999924}
+        - {x: 19.500002, y: 5.9999924}
+        - {x: 22.500002, y: -2.0000076}
+      physicsShape:
+      - - {x: 6.500002, y: -34.000008}
+        - {x: 9.500002, y: -17.000008}
+        - {x: 8.500002, y: -14.000008}
+        - {x: 22.500002, y: -2.0000076}
+        - {x: 19.500002, y: 5.9999924}
+        - {x: 16.500002, y: 4.9999924}
+        - {x: 13.500002, y: 9.999992}
+        - {x: 29.500002, y: 10.999992}
+        - {x: 29.500002, y: 17.999992}
+        - {x: 11.500002, y: 18.999992}
+        - {x: 10.500002, y: 35.999992}
+        - {x: 5.500002, y: 35.999992}
+        - {x: -5.499998, y: 21.999992}
+        - {x: -20.499998, y: 12.999992}
+        - {x: -22.499998, y: 5.9999924}
+        - {x: -18.499998, y: -6.0000076}
+        - {x: -29.499998, y: -14.000008}
+        - {x: -29.499998, y: -27.000008}
+        - {x: -19.499998, y: -36.000008}
+        - {x: 6.500002, y: -36.000008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28305410000000000800000000000000
+      internalID: 21300098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_50
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 324
+        width: 47
+        height: 71
+      alignment: 9
+      pivot: {x: 0.6578723, y: 0.0014084561}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23.5, y: -35.500008}
+        - {x: -23.5, y: -35.500008}
+        - {x: -23.5, y: 2.4999924}
+        - {x: -20.5, y: 9.499992}
+        - {x: -18.5, y: 14.499992}
+        - {x: 6.5, y: 35.499992}
+        - {x: 23.5, y: 35.499992}
+      physicsShape:
+      - - {x: 14.5, y: 6.4999924}
+        - {x: 18.5, y: 19.499992}
+        - {x: 23.5, y: 23.499992}
+        - {x: 23.5, y: 29.499992}
+        - {x: 14.5, y: 35.499992}
+        - {x: 8.5, y: 35.499992}
+        - {x: 6.5, y: 31.499992}
+        - {x: -7.5, y: 23.499992}
+        - {x: -18.5, y: 14.499992}
+        - {x: -20.5, y: 9.499992}
+        - {x: -10.5, y: -8.500008}
+        - {x: -23.5, y: -18.500008}
+        - {x: -23.5, y: -26.500008}
+        - {x: -12.5, y: -26.500008}
+        - {x: -13.5, y: -35.500008}
+        - {x: 20.5, y: -35.500008}
+        - {x: 15.5, y: -11.500008}
+        - {x: 23.5, y: -10.500008}
+        - {x: 23.5, y: -1.5000076}
+      - - {x: -0.5, y: 14.499992}
+        - {x: 1.5, y: 14.499992}
+        - {x: 2.5, y: 15.499992}
+        - {x: 1.5, y: 15.499992}
+        - {x: -2.5, y: 11.499992}
+        - {x: -4.5, y: 10.499992}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48305410000000000800000000000000
+      internalID: 21300100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_priedieu_action_lightning_shrine_anim_51
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 253
+        width: 68
+        height: 71
+      alignment: 9
+      pivot: {x: 0.7341176, y: 0.0014084561}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 34, y: -35.500008}
+        - {x: -34, y: -35.500008}
+        - {x: -34, y: 35.499992}
+        - {x: 33, y: 35.499992}
+        - {x: 34, y: 17.499992}
+      physicsShape:
+      - - {x: 34, y: -35.500008}
+        - {x: 34, y: -24.500008}
+        - {x: 33, y: -19.500008}
+        - {x: 33, y: -9.500008}
+        - {x: 25, y: 12.499992}
+        - {x: 21, y: 35.499992}
+        - {x: 15, y: 35.499992}
+        - {x: 9, y: 13.499992}
+        - {x: 1, y: 3.4999924}
+        - {x: -27, y: 11.499992}
+        - {x: -34, y: 10.499992}
+        - {x: -34, y: 4.4999924}
+        - {x: -26, y: -0.5000076}
+        - {x: -1, y: -11.500008}
+        - {x: -16, y: -21.500008}
+        - {x: -14, y: -29.500008}
+        - {x: -4, y: -27.500008}
+        - {x: -6, y: -35.500008}
+        - {x: 4, y: -35.500008}
+        - {x: 15, y: -22.500008}
+        - {x: 24, y: -34.500008}
+        - {x: 25, y: -35.500008}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68305410000000000800000000000000
+      internalID: 21300102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      penitent_priedieu_action_lightning_shrine_anim_31: 21300062
+      penitent_priedieu_action_lightning_shrine_anim_47: 21300094
+      penitent_priedieu_action_lightning_shrine_anim_24: 21300048
+      penitent_priedieu_action_lightning_shrine_anim_8: 21300016
+      penitent_priedieu_action_lightning_shrine_anim_14: 21300028
+      penitent_priedieu_action_lightning_shrine_anim_32: 21300064
+      penitent_priedieu_action_lightning_shrine_anim_35: 21300070
+      penitent_priedieu_action_lightning_shrine_anim_15: 21300030
+      penitent_priedieu_action_lightning_shrine_anim_30: 21300060
+      penitent_priedieu_action_lightning_shrine_anim_20: 21300040
+      penitent_priedieu_action_lightning_shrine_anim_38: 21300076
+      penitent_priedieu_action_lightning_shrine_anim_45: 21300090
+      penitent_priedieu_action_lightning_shrine_anim_3: 21300006
+      penitent_priedieu_action_lightning_shrine_anim_29: 21300058
+      penitent_priedieu_action_lightning_shrine_anim_43: 21300086
+      penitent_priedieu_action_lightning_shrine_anim_37: 21300074
+      penitent_priedieu_action_lightning_shrine_anim_0: 21300000
+      penitent_priedieu_action_lightning_shrine_anim_12: 21300024
+      penitent_priedieu_action_lightning_shrine_anim_48: 21300096
+      penitent_priedieu_action_lightning_shrine_anim_17: 21300034
+      penitent_priedieu_action_lightning_shrine_anim_6: 21300012
+      penitent_priedieu_action_lightning_shrine_anim_26: 21300052
+      penitent_priedieu_action_lightning_shrine_anim_10: 21300020
+      penitent_priedieu_action_lightning_shrine_anim_36: 21300072
+      penitent_priedieu_action_lightning_shrine_anim_11: 21300022
+      penitent_priedieu_action_lightning_shrine_anim_21: 21300042
+      penitent_priedieu_action_lightning_shrine_anim_42: 21300084
+      penitent_priedieu_action_lightning_shrine_anim_23: 21300046
+      penitent_priedieu_action_lightning_shrine_anim_44: 21300088
+      penitent_priedieu_action_lightning_shrine_anim_40: 21300080
+      penitent_priedieu_action_lightning_shrine_anim_49: 21300098
+      penitent_priedieu_action_lightning_shrine_anim_2: 21300004
+      penitent_priedieu_action_lightning_shrine_anim_13: 21300026
+      penitent_priedieu_action_lightning_shrine_anim_22: 21300044
+      penitent_priedieu_action_lightning_shrine_anim_33: 21300066
+      penitent_priedieu_action_lightning_shrine_anim_46: 21300092
+      penitent_priedieu_action_lightning_shrine_anim_19: 21300038
+      penitent_priedieu_action_lightning_shrine_anim_27: 21300054
+      penitent_priedieu_action_lightning_shrine_anim_51: 21300102
+      penitent_priedieu_action_lightning_shrine_anim_18: 21300036
+      penitent_priedieu_action_lightning_shrine_anim_25: 21300050
+      penitent_priedieu_action_lightning_shrine_anim_9: 21300018
+      penitent_priedieu_action_lightning_shrine_anim_1: 21300002
+      penitent_priedieu_action_lightning_shrine_anim_28: 21300056
+      penitent_priedieu_action_lightning_shrine_anim_34: 21300068
+      penitent_priedieu_action_lightning_shrine_anim_5: 21300010
+      penitent_priedieu_action_lightning_shrine_anim_7: 21300014
+      penitent_priedieu_action_lightning_shrine_anim_39: 21300078
+      penitent_priedieu_action_lightning_shrine_anim_41: 21300082
+      penitent_priedieu_action_lightning_shrine_anim_4: 21300008
+      penitent_priedieu_action_lightning_shrine_anim_50: 21300100
+      penitent_priedieu_action_lightning_shrine_anim_16: 21300032
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

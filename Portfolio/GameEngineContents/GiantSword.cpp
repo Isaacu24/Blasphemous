@@ -243,7 +243,7 @@ bool GiantSword::TrackToPlayer(GameEngineCollision* _This, GameEngineCollision* 
         GetTransform().SetWorldMove({NDir.x * Speed_ * GameEngineTime::GetDeltaTime(), 0});
     }
 
-    if (DistanceY <= 190)
+    if (DistanceY <= 200)
     {
         SetSpeed(200.f);
         GetTransform().SetWorldMove({0, NDir.y * Speed_ * GameEngineTime::GetDeltaTime()});
@@ -255,7 +255,7 @@ bool GiantSword::TrackToPlayer(GameEngineCollision* _This, GameEngineCollision* 
         GetTransform().SetWorldMove({-NDir.x * Speed_ * GameEngineTime::GetDeltaTime(), 0});
     }
 
-    if (DistanceY > 200)
+    if (DistanceY > 250)
     {
         SetSpeed(350.f);
         GetTransform().SetWorldMove({0, -NDir.y * Speed_ * GameEngineTime::GetDeltaTime()});
