@@ -1,7 +1,10 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include "ObjectBase.h"
 
-class Door : public GameEngineActor
+class Door
+    : public GameEngineActor
+    , public ObjectBase
 {
 public:
 	Door();

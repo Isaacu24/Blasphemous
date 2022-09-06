@@ -79,6 +79,7 @@ void MultipleMagicMissile::Update(float _DeltaTime)
     {
         MagicMissile* Clone = GetLevel()->CreateActor<MagicMissile>();
         Clone->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
+        Clone->SetStartPosition(Clone->GetTransform().GetWorldPosition());
         Clone->SetSpeed(0.f);
         Clone->SetWeight(500.f);
 

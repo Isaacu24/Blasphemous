@@ -171,12 +171,18 @@ void Penitent::Update(float _DeltaTime)
     {
         IsOnInventory_ = true;
         PlayerUI_->Inventory_->On();
+
+        GameEngineTime::GetInst()->SetTimeScale(MetaRenderer_->GetOrder(), 0.0f);
+        GameEngineTime::GetInst()->SetTimeScale(GetOrder(), 0.0f);
     }
 
     else if (true == IsOnInventory_ && true == GameEngineInput::GetInst()->IsDownKey("InventoryOn"))
     {
         IsOnInventory_ = false;
         PlayerUI_->Inventory_->Off();
+        
+        GameEngineTime::GetInst()->SetTimeScale(MetaRenderer_->GetOrder(), 1.0f);
+        GameEngineTime::GetInst()->SetTimeScale(GetOrder(), 1.0f);
     }
 
     GameEngineDebug::OutPutString("PlayerState: " + State_.GetCurStateStateName());
@@ -454,6 +460,9 @@ void Penitent::SetAnimation()
             "penitent_sheathedIdle",
             {"penitent_sheathedIdle.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
             Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_sheathedIdle",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
     {
@@ -898,21 +907,20 @@ void Penitent::SetAnimation()
             {"death_anim_blood.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
             Data);
 
-        MetaRenderer_->AnimationBindEnd(
-            "death_anim_blood",
-            [&](const FrameAnimation_DESC& _Info)
-            {
-                if ("" == LastSavePoint_)
-                {
-                    GEngine::ChangeLevel("Stage01");
-                }
+        MetaRenderer_->AnimationBindEnd("death_anim_blood",
+                                        [&](const FrameAnimation_DESC& _Info)
+                                        {
+                                            if ("" == LastSavePoint_)
+                                            {
+                                                GEngine::ChangeLevel("Stage01");
+                                            }
 
-                else
-                {
-                    GEngine::ChangeLevel(LastSavePoint_);
-                }
-                Off();
-            });
+                                            else
+                                            {
+                                                GEngine::ChangeLevel(LastSavePoint_);
+                                            }
+                                            Off();
+                                        });
     }
 
     //¸®½ºÆù

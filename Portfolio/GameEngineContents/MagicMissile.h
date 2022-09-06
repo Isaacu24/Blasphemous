@@ -18,11 +18,12 @@ public:
 
     inline void SetWeight(float _Speed) { Weight_ = _Speed; }
 
+    inline void SetStartPosition(float4 _Pos) { StartPos_ = _Pos; }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
     void End() override;
-
 
 private:
     GameEngineTextureRenderer* Renderer_;
@@ -30,6 +31,8 @@ private:
 
     float Speed_;
     float Weight_;
+
+    float4 StartPos_;
 
     bool IsExplosion_;
 

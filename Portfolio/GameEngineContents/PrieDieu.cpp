@@ -25,8 +25,8 @@ void PrieDieu::Start()
 
     UIRenderer_ = CreateComponent<GameEngineTextureRenderer>();
     UIRenderer_->SetTexture("CT_Y.png");
-    UIRenderer_->GetTransform().SetWorldScale({35, 35, 1});
-    UIRenderer_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Object)});
+    UIRenderer_->GetTransform().SetWorldScale({30, 30, 1});
+    UIRenderer_->GetTransform().SetLocalPosition({0, 0, static_cast<int>(ACTORORDER::Object)});
     UIRenderer_->GetTransform().SetWorldMove({-7, 150});
     UIRenderer_->Off();
 }

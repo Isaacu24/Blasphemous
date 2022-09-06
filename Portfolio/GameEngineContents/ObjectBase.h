@@ -15,6 +15,8 @@ protected:
     class GameEngineCollision* UICollider_;
     class GameEngineTextureRenderer* UIRenderer_;
 
+    bool Interaction_;
+
 private:
 };
 

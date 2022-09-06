@@ -59,6 +59,7 @@ void Blasphemous::Start()
 
     ChangeLevel("MetaLevel");
 
+    //디버깅
     GameEngineInput::GetInst()->CreateKey("GotoTitle", 'T');
     GameEngineInput::GetInst()->CreateKey("GotoMainMenu", 'M');
     GameEngineInput::GetInst()->CreateKey("GotoStage0", VK_NUMPAD0);
@@ -72,6 +73,9 @@ void Blasphemous::Start()
     GameEngineInput::GetInst()->CreateKey("GotoStage7", VK_NUMPAD7);
     GameEngineInput::GetInst()->CreateKey("GotoStage8", VK_NUMPAD8);
     GameEngineInput::GetInst()->CreateKey("GotoStage9", VK_NUMPAD9);
+
+    //인게임
+    GameEngineInput::GetInst()->CreateKey("Interaction", 'Y');
 
     GameEngineGUI::CreateGUIWindow<GameEngineStatusWindow>("EngineStatus", nullptr);
 }

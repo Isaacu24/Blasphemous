@@ -216,7 +216,9 @@ void Stage01::LevelEndEvent()
         else
         {
             //도약하지 않았을 때에는 죽은 위치에 길티를 생성
-            Guilt_->GetTransform().SetLocalPosition(Penitent_->GetTransform().GetWorldPosition() + float4{0, 0, -1.0f});
+            Guilt_->GetTransform().SetLocalPosition({Penitent_->GetTransform().GetWorldPosition().x,
+                                                     Penitent_->GetTransform().GetWorldPosition().y,
+                                                     static_cast<int>(ACTORORDER::Object)});
         }
     }
 }

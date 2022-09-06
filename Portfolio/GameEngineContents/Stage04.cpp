@@ -259,7 +259,7 @@ void Stage04::LevelEndEvent()
 
         else
         {
-            Guilt_->GetTransform().SetLocalPosition(float4{500, -1028, 9.0f});
+            Guilt_->GetTransform().SetLocalPosition(float4{500, -1028, static_cast<int>(ACTORORDER::Object)});
         }
     }
 }

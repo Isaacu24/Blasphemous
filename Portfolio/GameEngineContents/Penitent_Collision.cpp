@@ -194,10 +194,7 @@ bool Penitent::RightObstacleCheck()
 void Penitent::DeadZoneCheck()
 {
     IsFallDeath_ = BodyCollider_->IsCollision(
-        CollisionType::CT_OBB2D,
-        COLLISIONORDER::DeadZone,
-        CollisionType::CT_OBB2D,
-        nullptr);
+        CollisionType::CT_OBB2D, COLLISIONORDER::DeadZone, CollisionType::CT_OBB2D, nullptr);
 
     if (true == IsFallDeath_)
     {

@@ -63,7 +63,7 @@ public:
 		TimeScale_[_Key] = _TimeScale;	
 	}
 
-	float GetTimeScale(int _Key)
+	float GetTimeScale(int _Key)	
 	{
 		if (TimeScale_.end() == TimeScale_.find(_Key))
 		{

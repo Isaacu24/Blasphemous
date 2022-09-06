@@ -84,8 +84,6 @@ void Stage20::Update(float _DeltaTime)
 
             else
             {
-                Penitent_->ChangeState("Idle");
-
                 Pope_->On();
                 Pope_->GetTransform().PixLocalNegativeX();
                 Pope_->ChangeMonsterState("Appear");
@@ -111,7 +109,7 @@ void Stage20::Update(float _DeltaTime)
 
                 if (3.f <= ChangeTime_)
                 {
-                    CurrentFlow_ = STAGEFLOW::BOSSDEAD;
+                    CurrentFlow_     = STAGEFLOW::BOSSDEAD;
                     PlayerReturnPos_ = Penitent_->GetTransform().GetWorldPosition();
 
                     GEngine::ChangeLevel("Stage21");
@@ -184,7 +182,7 @@ void Stage20::LevelStartEvent()
     });
 }
 
-void Stage20::LevelEndEvent() 
+void Stage20::LevelEndEvent()
 {
     if (false == Penitent_->IsUpdate())
     {
@@ -205,7 +203,9 @@ void Stage20::LevelEndEvent()
 
         else
         {
-            Guilt_->GetTransform().SetLocalPosition(Penitent_->GetTransform().GetWorldPosition() + float4{0, 0, -1.0f});
+            Guilt_->GetTransform().SetLocalPosition({Penitent_->GetTransform().GetWorldPosition().x,
+                                                     Penitent_->GetTransform().GetWorldPosition().y,
+                                                     static_cast<int>(ACTORORDER::Object)});
         }
     }
 }
@@ -236,6 +236,12 @@ void Stage20::PlayerCameraMove(float _DeltaTime)
             float4{3600, GetMainCameraActor()->GetTransform().GetLocalPosition().y, CameraZPos_});
     }
 
+    if (-1550 < GetMainCameraActor()->GetTransform().GetLocalPosition().y)
+    {
+        GetMainCameraActor()->GetTransform().SetWorldPosition(
+            float4{GetMainCameraActor()->GetTransform().GetLocalPosition().x, -1550, CameraZPos_});
+    }
+
     if (350 > Penitent_->GetTransform().GetWorldPosition().x)
     {
         Penitent_->GetTransform().SetWorldPosition(
@@ -256,4 +262,3 @@ void Stage20::PlayerCameraMove(float _DeltaTime)
         LoadingActor_->Exit("Stage30");
     }
 }
-

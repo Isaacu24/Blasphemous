@@ -44,13 +44,21 @@ void MagicMissile::Update(float _DeltaTime)
                            CollisionType::CT_OBB2D,
                            [&](GameEngineCollision* _This, GameEngineCollision* _Other)
                            {
-                               Renderer_->ChangeFrameAnimation("Death"); 
+                               Renderer_->ChangeFrameAnimation("Death");
 
                                Collider_->Off();
 
                                IsExplosion_ = true;
                                return true;
                            });
+
+    float4 Distance = StartPos_ - GetTransform().GetWorldPosition();
+    float4 ABSDistance = float4::ABS3DReturn(Distance);
+
+    if (3000.f < ABSDistance.x || 3000.f < ABSDistance.y)
+    {
+        Death();
+    }
 }
 
 void MagicMissile::End() {}

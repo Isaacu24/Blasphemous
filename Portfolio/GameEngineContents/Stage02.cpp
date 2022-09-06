@@ -313,7 +313,9 @@ void Stage02::LevelEndEvent()
 
         else
         {
-            Guilt_->GetTransform().SetLocalPosition(Penitent_->GetTransform().GetWorldPosition() + float4{0, 0, -1.0f});
+            Guilt_->GetTransform().SetLocalPosition({Penitent_->GetTransform().GetWorldPosition().x,
+                                                     Penitent_->GetTransform().GetWorldPosition().y,
+                                                     static_cast<int>(ACTORORDER::Object)});
         }
     }
 }

@@ -47,6 +47,12 @@ void Stage05::SettingStage()
     DoorRendrer->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Door)});
     DoorRendrer->GetTransform().SetWorldScale(DoorRendrer->GetTransform().GetWorldScale() * 2.f);
 
+    GameEngineTextureRenderer* AfterRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
+    AfterRendrer->SetTexture("1_5_AfterLayer.png");
+    AfterRendrer->ScaleToTexture();
+    AfterRendrer->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::AfterLayer0)});
+    AfterRendrer->GetTransform().SetWorldScale(AfterRendrer->GetTransform().GetWorldScale() * 2.f);
+
     float OffsetX = StageRenderer->GetTransform().GetLocalScale().x / 2;
     float OffsetY = StageRenderer->GetTransform().GetLocalScale().y / 2;
 
@@ -185,7 +191,9 @@ void Stage05::LevelEndEvent()
 
         else
         {
-            Guilt_->GetTransform().SetLocalPosition(Penitent_->GetTransform().GetWorldPosition() + float4{0, 0, -1.0f});
+            Guilt_->GetTransform().SetLocalPosition({Penitent_->GetTransform().GetWorldPosition().x,
+                                                     Penitent_->GetTransform().GetWorldPosition().y,
+                                                     static_cast<int>(ACTORORDER::Object)});
         }
     }
 }

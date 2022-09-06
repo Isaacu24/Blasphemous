@@ -36,6 +36,7 @@ void MagicMissileSpawner::Update(float _DeltaTime)
                 {
                     MagicMissile* Missile = GetLevel()->CreateActor<MagicMissile>();
                     Missile->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{0, 50});
+                    Missile->SetStartPosition(Missile->GetTransform().GetWorldPosition());
                     Missile->SetDirection(Dir_);
 
                     DelayTime_ = 0.f;
@@ -46,6 +47,7 @@ void MagicMissileSpawner::Update(float _DeltaTime)
                 {
                     MagicMissile* Missile = GetLevel()->CreateActor<MagicMissile>();
                     Missile->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{0, -50});
+                    Missile->SetStartPosition(Missile->GetTransform().GetWorldPosition());
                     Missile->SetDirection(Dir_);
 
                     DelayTime_ = 0.f;
@@ -66,13 +68,13 @@ void MagicMissileSpawner::Update(float _DeltaTime)
 
                 IsCreate_ = true;
 
-                MultipleMagicMissile* Clone = GetLevel()->CreateActor<MultipleMagicMissile>();
-                Clone->GetTransform().SetWorldScale({2, 2, 1}); 
-                Clone->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{-350, 0});
+                MultipleMagicMissile* Missile = GetLevel()->CreateActor<MultipleMagicMissile>();
+                Missile->GetTransform().SetWorldScale({2, 2, 1}); 
+                Missile->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{-350, 0});
 
-                MultipleMagicMissile* Clone1 = GetLevel()->CreateActor<MultipleMagicMissile>();
-                Clone1->GetTransform().SetWorldScale({2, 2, 1}); 
-                Clone1->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{350, 0});
+                MultipleMagicMissile* Missile1 = GetLevel()->CreateActor<MultipleMagicMissile>();
+                Missile1->GetTransform().SetWorldScale({2, 2, 1}); 
+                Missile1->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{350, 0});
             }
 
 
