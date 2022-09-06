@@ -16,11 +16,35 @@ void PrieDieu::Start()
 	Renderer_->ChangeFrameAnimation("priedieu_stand_and_liton_anim");
 	Renderer_->GetTransform().SetWorldScale({ 150, 300 });
 	Renderer_->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::Object) });
+
+    UICollider_ = CreateComponent<GameEngineCollision>();
+    UICollider_->GetTransform().SetWorldScale({100.f, 200.f, 1.f});
+    UICollider_->ChangeOrder(COLLISIONORDER::Object);
+    UICollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.0f, 0.0f, 1.0f, 0.5f});
+    UICollider_->GetTransform().SetWorldMove({0, -50});
+
+    UIRenderer_ = CreateComponent<GameEngineTextureRenderer>();
+    UIRenderer_->SetTexture("CT_Y.png");
+    UIRenderer_->GetTransform().SetWorldScale({35, 35, 1});
+    UIRenderer_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Object)});
+    UIRenderer_->GetTransform().SetWorldMove({-7, 150});
+    UIRenderer_->Off();
 }
 
 void PrieDieu::Update(float _DeltaTime)
 {
+    if (true == UICollider_->IsCollision(CollisionType::CT_OBB2D,
+                               COLLISIONORDER::Player,
+                               CollisionType::CT_OBB2D,
+                               nullptr))
+    {
+        UIRenderer_->On();
+    }
 
+    else
+    {
+        UIRenderer_->Off();
+    }
 }
 
 void PrieDieu::End()

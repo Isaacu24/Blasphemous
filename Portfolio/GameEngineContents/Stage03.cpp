@@ -112,7 +112,7 @@ void Stage03::Update(float _DeltaTime)
         IsChangeCameraPos_ = true;
     }
 
-    float4 CamPos = GetMainCameraActor()->GetTransform().GetWorldPosition();
+    float4 CamPos    = GetMainCameraActor()->GetTransform().GetWorldPosition();
     float4 PlayerPos = Penitent_->GetTransform().GetWorldPosition() + float4{0, CameraOffset_};
     float4 CurPos    = float4::LerpLimit(CamPos, PlayerPos, _DeltaTime * 5);
 
@@ -162,27 +162,6 @@ void Stage03::Update(float _DeltaTime)
 
         LoadingActor_ = CreateActor<LoadingActor>();
         LoadingActor_->Exit("Stage04");
-    }
-
-    float4 Distance = GetMainCamera()->GetTransform().GetWorldPosition() - PrieDieu_->GetTransform().GetWorldPosition();
-
-    GameEngineDebug::OutPutString("Distance X" + std::to_string(Distance.x));
-    GameEngineDebug::OutPutString("Distance Y" + std::to_string(Distance.y));
-
-    if (50 > Distance.x && -50 < Distance.x && 50 > Distance.x && -50 < Distance.y)
-    {
-        if (false == ButtonRenderer_->IsUpdate())
-        {
-            ButtonRenderer_->On();
-        }
-    }
-
-    else
-    {
-        if (true == ButtonRenderer_->IsUpdate())
-        {
-            ButtonRenderer_->Off();
-        }
     }
 }
 
@@ -247,7 +226,7 @@ void Stage03::LevelStartEvent()
     });
 }
 
-void Stage03::LevelEndEvent() 
+void Stage03::LevelEndEvent()
 {
     if (false == Penitent_->IsUpdate())
     {

@@ -182,7 +182,7 @@ void PlayerUI::PlayerDeathUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     if (false == IsReverse_)
     {
-        Alpha_ += _DeltaTime * 0.2f;
+        Alpha_ += _DeltaTime * 0.4f;
 
         if (1 < Alpha_)
         {
@@ -199,7 +199,7 @@ void PlayerUI::PlayerDeathUpdate(float _DeltaTime, const StateInfo& _Info)
 
     else
     {
-        Alpha_ -= _DeltaTime * 0.2f;
+        Alpha_ -= _DeltaTime * 0.4f;
 
         if (0 > Alpha_)
         {
@@ -231,8 +231,8 @@ void PlayerUI::BossDeathUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     if (false == IsReverse_)
     {
-        Alpha_ += _DeltaTime * 0.2f;
-        BackAlpha_ += _DeltaTime * 0.1f;
+        Alpha_ += _DeltaTime * 0.4f;
+        BackAlpha_ += _DeltaTime * 0.2f;
 
         if (1 < Alpha_)
         {
@@ -254,8 +254,8 @@ void PlayerUI::BossDeathUpdate(float _DeltaTime, const StateInfo& _Info)
 
     else
     {
-        Alpha_ -= _DeltaTime * 0.2f;
-        BackAlpha_ -= _DeltaTime * 0.1f;
+        Alpha_ -= _DeltaTime * 0.4f;
+        BackAlpha_ -= _DeltaTime * 0.2f;
 
         if (0 > Alpha_)
         {
@@ -294,8 +294,8 @@ void PlayerUI::FinalBossDeathUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     if (false == IsReverse_)
     {
-        Alpha_ += _DeltaTime * 0.2f;
-        BackAlpha_ += _DeltaTime * 0.1f;
+        Alpha_ += _DeltaTime * 0.4f;
+        BackAlpha_ += _DeltaTime * 0.2f;
 
         if (1 < Alpha_)
         {
@@ -317,8 +317,8 @@ void PlayerUI::FinalBossDeathUpdate(float _DeltaTime, const StateInfo& _Info)
 
     else
     {
-        Alpha_ -= _DeltaTime * 0.2f;
-        BackAlpha_ -= _DeltaTime * 0.1f;
+        Alpha_ -= _DeltaTime * 0.4f;
+        BackAlpha_ -= _DeltaTime * 0.2f;
 
         if (0 > Alpha_)
         {

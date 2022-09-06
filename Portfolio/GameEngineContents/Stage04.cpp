@@ -28,28 +28,30 @@ void Stage04::SettingStage()
     BeforeParallaxRenderer1->GetTransform().SetWorldPosition(
         {-300, 500, static_cast<int>(ACTORORDER::BeforeParallax1)});
     BeforeParallaxRenderer1->GetTransform().SetWorldScale(BeforeParallaxRenderer1->GetTransform().GetWorldScale()
-                                                          * 3.25f);
+                                                          * 3.5f);
 
     GameEngineTextureRenderer* BeforeParallaxRenderer2 = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer2->SetTexture("1_4_BeforeParallax_2.png");
     BeforeParallaxRenderer2->ScaleToTexture();
-    BeforeParallaxRenderer2->GetTransform().SetWorldPosition({0, 30, static_cast<int>(ACTORORDER::BeforeParallax2)});
+    BeforeParallaxRenderer2->GetTransform().SetWorldPosition({200, 100, static_cast<int>(ACTORORDER::BeforeParallax2)});
     BeforeParallaxRenderer2->GetTransform().SetWorldScale(BeforeParallaxRenderer2->GetTransform().GetWorldScale()
-                                                          * 2.f);
+                                                          * 2.5f);
 
     GameEngineTextureRenderer* BeforeParallaxRenderer3 = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer3->SetTexture("1_4_BeforeParallax_3.png");
     BeforeParallaxRenderer3->ScaleToTexture();
-    BeforeParallaxRenderer3->GetTransform().SetWorldPosition({0, -220, static_cast<int>(ACTORORDER::BeforeParallax3)});
+    BeforeParallaxRenderer3->GetTransform().SetWorldPosition(
+        {100, -170, static_cast<int>(ACTORORDER::BeforeParallax3)});
     BeforeParallaxRenderer3->GetTransform().SetWorldScale(BeforeParallaxRenderer3->GetTransform().GetWorldScale()
-                                                          * 2.f);
+                                                          * 2.5f);
 
     GameEngineTextureRenderer* BeforeParallaxRenderer4 = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer4->SetTexture("1_4_BeforeParallax_4.png");
     BeforeParallaxRenderer4->ScaleToTexture();
-    BeforeParallaxRenderer4->GetTransform().SetWorldPosition({0, -400, static_cast<int>(ACTORORDER::BeforeParallax4)});
+    BeforeParallaxRenderer4->GetTransform().SetWorldPosition(
+        {100, -220, static_cast<int>(ACTORORDER::BeforeParallax4)});
     BeforeParallaxRenderer4->GetTransform().SetWorldScale(BeforeParallaxRenderer4->GetTransform().GetWorldScale()
-                                                          * 2.f);
+                                                          * 2.5f);
 
     GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     StageRenderer->SetTexture("1_4_Tile.png");
@@ -125,7 +127,7 @@ void Stage04::StageFlowUpdate(float _DeltaTime)
         case STAGEFLOW::NORMAL:
             PlayerCameraMove(_DeltaTime);
 
-            if (1300 < Penitent_->GetTransform().GetWorldPosition().x)
+            if (1350 < Penitent_->GetTransform().GetWorldPosition().x)
             {
                 Penitent_->ChangeState("Freeze");
                 ElderBrother_->EventOn();
@@ -134,7 +136,7 @@ void Stage04::StageFlowUpdate(float _DeltaTime)
             }
             break;
         case STAGEFLOW::BOSSAPPEAR:
-            GetMainCameraActor()->GetTransform().SetWorldRightMove(50.f, _DeltaTime);
+            GetMainCameraActor()->GetTransform().SetWorldRightMove(75.f, _DeltaTime);
 
             if (true == ElderBrother_->GetBossEvent())
             {
@@ -157,7 +159,6 @@ void Stage04::StageFlowUpdate(float _DeltaTime)
                 Penitent_->GetTransform().SetWorldPosition(
                     float4{2500, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player)});
             }
-
 
             if (1000 > GetMainCameraActor()->GetTransform().GetLocalPosition().x)
             {
@@ -237,7 +238,7 @@ void Stage04::LevelStartEvent()
     });
 }
 
-void Stage04::LevelEndEvent() 
+void Stage04::LevelEndEvent()
 {
     if (false == Penitent_->IsUpdate())
     {

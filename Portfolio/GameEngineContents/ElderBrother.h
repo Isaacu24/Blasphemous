@@ -10,6 +10,7 @@
 enum class APPEARFLOW
 {
     Attack,
+    AttackEnd,
     JumpStart,
     Jump,
     Fall,

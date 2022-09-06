@@ -248,6 +248,12 @@
     <ClInclude Include="DeadZone.h">
       <Filter>Actor\Object</Filter>
     </ClInclude>
+    <ClInclude Include="ObjectBase.h">
+      <Filter>Actor\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Fly.h">
+      <Filter>Actor\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -498,6 +504,12 @@
       <Filter>Actor\Player</Filter>
     </ClCompile>
     <ClCompile Include="DeadZone.cpp">
+      <Filter>Actor\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectBase.cpp">
+      <Filter>Actor\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Fly.cpp">
       <Filter>Actor\Object</Filter>
     </ClCompile>
   </ItemGroup>

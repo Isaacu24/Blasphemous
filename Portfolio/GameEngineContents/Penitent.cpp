@@ -345,7 +345,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_hardlanding_rocks_anim",
-            {"penitent_hardlanding_rocks_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
+            {"penitent_hardlanding_rocks_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
             Data);
 
         MetaRenderer_->AnimationBindEnd("penitent_hardlanding_rocks_anim",

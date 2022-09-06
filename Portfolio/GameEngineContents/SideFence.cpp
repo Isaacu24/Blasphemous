@@ -27,7 +27,7 @@ void SideFence::Start()
     Rendrerer_->AnimationBindFrame("reja_lateral_invertedBell_descending",
                                    [&](const FrameAnimation_DESC& _Info)
                                    {
-                                       if (15 == _Info.CurFrame)
+                                       if (13 == _Info.CurFrame)
                                        {
                                            IsClose_ = false;
                                        }

@@ -125,7 +125,7 @@ void ElderBrother::Start()
     Renderer_->AnimationBindEnd("elderBrother_attack", [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
 
     Renderer_->CreateFrameAnimationCutTexture("elderBrother_attack_event",
-                                              {"elderBrother_attack.png", 0, 8, 0.07f, false});
+                                              {"elderBrother_attack.png", 0, 23, 0.07f, false});
 
     Renderer_->AnimationBindEnd("elderBrother_attack_event",
                                 [&](const FrameAnimation_DESC& _Info)

@@ -1,8 +1,11 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include "ObjectBase.h"
 
 // 세이브 포인트
-class PrieDieu : public GameEngineActor
+class PrieDieu
+    : public GameEngineActor
+    , public ObjectBase
 {
 public:
 	PrieDieu();
@@ -18,8 +21,8 @@ protected:
 	void Update(float _DeltaTime) override;
 	void End() override;
 
-private:
 	class GameEngineTextureRenderer* Renderer_;
 
+private:
 };
 

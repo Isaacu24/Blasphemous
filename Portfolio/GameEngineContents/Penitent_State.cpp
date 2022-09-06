@@ -447,10 +447,10 @@ void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
-    if (false == IsGround_)
-    {
-        ChangeState("Fall");
-    }
+    //if (false == IsGround_)
+    //{
+    //    ChangeState("Fall");
+    //}
 
     float EffectZ = AO_PLAYEREFFECT;
 

@@ -1,8 +1,10 @@
 #include "PreCompile.h"
+#include "MetaTextureRenderer.h"
 #include "Stage02.h"
 #include "Penitent.h"
 #include "Fool_knife.h"
 #include "WingedFace.h"
+#include "Fly.h"
 
 Stage02::Stage02() {}
 
@@ -72,6 +74,33 @@ void Stage02::SettingStage()
     AfterParallaxRenderer->ScaleToTexture();
     AfterParallaxRenderer->GetTransform().SetWorldPosition({-50, -150, static_cast<int>(ACTORORDER::AfterParallax0)});
     AfterParallaxRenderer->GetTransform().SetWorldScale(AfterParallaxRenderer->GetTransform().GetWorldScale() * 2.f);
+
+    {
+        Fly* NewFly = CreateActor<Fly>();
+        NewFly->GetTransform().SetWorldPosition({1700, -1400, static_cast<int>(ACTORORDER::Player)});
+    }
+
+    {
+        Fly* NewFly = CreateActor<Fly>();
+        NewFly->GetTransform().SetWorldPosition({2000, -1500, static_cast<int>(ACTORORDER::Player)});
+    }
+
+    {
+        Fly* NewFly = CreateActor<Fly>();
+        NewFly->GetTransform().SetWorldPosition({2300, -1400, static_cast<int>(ACTORORDER::Player)});
+    }
+
+    {
+        Fly* NewFly = CreateActor<Fly>();
+        NewFly->GetTransform().SetWorldPosition({3600, -1500, static_cast<int>(ACTORORDER::Player)});
+        NewFly->GetMetaRenderer()->GetColorData().MulColor = float4{5.0f, 1.0f, 1.0f, 1.0f};
+    }
+
+    {
+        Fly* NewFly = CreateActor<Fly>();
+        NewFly->GetTransform().SetWorldPosition({3800, -1400, static_cast<int>(ACTORORDER::Player)});
+        NewFly->GetMetaRenderer()->GetColorData().MulColor = float4{5.0f, 1.0f, 1.0f, 1.0f};
+    }
 
     float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
     float OffsetY = ColMap_->GetTransform().GetLocalScale().y / 2;
@@ -263,7 +292,7 @@ void Stage02::LevelStartEvent()
     SettingMonster();
 }
 
-void Stage02::LevelEndEvent() 
+void Stage02::LevelEndEvent()
 {
     if (false == Penitent_->IsUpdate())
     {
