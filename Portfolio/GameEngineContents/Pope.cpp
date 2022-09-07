@@ -95,6 +95,8 @@ void Pope::Start()
     MetaFXSRenderer_->SetPivot(PIVOTMODE::METABOT);
     MetaFXSRenderer_->Off();
 
+    //MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 1.0f};
+
     Symbol_ = GetLevel()->CreateActor<SymbolEffect>();
     Symbol_->GetTransform().SetWorldScale({2.f, 2.f, 1.f});
     Symbol_->SetColor(COLORTYPE::PURPLE);
@@ -231,7 +233,7 @@ void Pope::VanishingEnd(const StateInfo& _Info)
     MetaRenderer_->Off();
     BodyCollider_->Off();
 
-    int AppearPos_ = Random_.RandomInt(0, 3);
+    AppearPos_ = Random_.RandomInt(0, 3);
 
     switch (AppearPos_)
     {
@@ -272,6 +274,7 @@ void Pope::SpellCastStart(const StateInfo& _Info)
 
     MetaFXSRenderer_->On();
     MetaRenderer_->ChangeMetaAnimation("pope_spellCast");
+
     MetaRenderer_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
 
     int Spell = Random_.RandomInt(0, 3);
@@ -328,7 +331,17 @@ void Pope::SpellCastStart(const StateInfo& _Info)
             Symbol_->SetColor(COLORTYPE::PURPLE);
 
             MagicMissileSpawner_->On();
-            MagicMissileSpawner_->SetDirection(float4::LEFT);
+
+            if (0 == AppearPos_
+                || 1 == AppearPos_)
+            {
+                MagicMissileSpawner_->SetDirection(float4::RIGHT);
+            }
+
+            else if (2 == AppearPos_ || 3 == AppearPos_)
+            {
+                MagicMissileSpawner_->SetDirection(float4::LEFT);
+            }
             MagicMissileSpawner_->GetTransform().SetWorldPosition(
                 {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y + 100.f});
             break;

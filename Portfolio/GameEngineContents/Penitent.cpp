@@ -73,7 +73,8 @@ void Penitent::Start()
         Flasks_[i] = true;
     }
 
-    Gravity_ = CreateComponent<GravityComponent>();
+    Gravity_  = CreateComponent<GravityComponent>();
+    Spectrum_ = CreateComponent<SpectrumComponent>();
 
     BodyCollider_ = CreateComponent<GameEngineCollision>();
     BodyCollider_->GetTransform().SetWorldScale({40.f, 80.f, 1.f});
@@ -180,7 +181,7 @@ void Penitent::Update(float _DeltaTime)
     {
         IsOnInventory_ = false;
         PlayerUI_->Inventory_->Off();
-        
+
         GameEngineTime::GetInst()->SetTimeScale(MetaRenderer_->GetOrder(), 1.0f);
         GameEngineTime::GetInst()->SetTimeScale(GetOrder(), 1.0f);
     }
@@ -365,6 +366,13 @@ void Penitent::SetAnimation()
             "penitent_dodge_anim",
             {"penitent_dodge_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
             Data);
+
+        Spectrum_->CreateMetaSpectrum(
+            "penitent_dodge_anim",
+            {"penitent_dodge_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
+            5);
+
+        Spectrum_->SetMetaSpectrum(0, 5);
 
         MetaRenderer_->AnimationBindEnd(
             "penitent_dodge_anim",
@@ -1015,6 +1023,11 @@ void Penitent::SetPlayerState()
                              std::bind(&Penitent::KnockBackUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&Penitent::KnockBackStart, this, std::placeholders::_1),
                              std::bind(&Penitent::KnockBackEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember("KnockUp",
+                             std::bind(&Penitent::KnockUpUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::KnockUpStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::KnockUpEnd, this, std::placeholders::_1));
 
     State_.CreateStateMember("JumpAttack",
                              std::bind(&Penitent::JumpAttackUpdate, this, std::placeholders::_1, std::placeholders::_2),

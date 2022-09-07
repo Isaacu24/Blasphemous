@@ -32,6 +32,8 @@ public:
 
     inline void SetWeight(float _Value) { Weight_ = _Value; }
 
+    inline void SetStartPosition(float4 _Pos) { StartPos_ = _Pos; }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
@@ -49,4 +51,6 @@ private:
     MetaTextureRenderer* MetaRenderer_;
 
     float Weight_;
+
+    float4 StartPos_;
 };

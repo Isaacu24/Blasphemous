@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngineCore/CoreMinimal.h>
 
+class SpectrumComponent;
 class MetaTextureRenderer;
 class Penitent : public GameEngineActor
 {
@@ -174,6 +175,7 @@ protected:
 
     //피격 함수
     bool KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other);
+    bool KnockUp(GameEngineCollision* _This, GameEngineCollision* _Other);
 
     bool Dangle(GameEngineCollision* _This, GameEngineCollision* _Other);  //난간 상호작용
 
@@ -189,6 +191,8 @@ private:
     GameEngineTextureRenderer*        ColMap_;
     float4                            ColScale_;
     class GameEngineFontRederer*      Font_;
+
+    SpectrumComponent* Spectrum_;
 
     MetaTextureRenderer* MetaRenderer_;
 

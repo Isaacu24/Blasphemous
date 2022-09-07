@@ -1,0 +1,47 @@
+#pragma once
+#include <GameEngineCore/GameEngineComponent.h>
+
+class SpectrumComponent : public GameEngineTransformComponent
+{
+public:
+    SpectrumComponent();
+    ~SpectrumComponent();
+
+    SpectrumComponent(const SpectrumComponent& _Other)                = delete;
+    SpectrumComponent(SpectrumComponent&& _Other) noexcept            = delete;
+    SpectrumComponent& operator=(const SpectrumComponent& _Other)     = delete;
+    SpectrumComponent& operator=(SpectrumComponent&& _Other) noexcept = delete;
+
+    void CreateSpectrum(const std::string& _Name, const FrameAnimation_DESC& _Info, size_t _SpectrumSize);
+
+    void CreateMetaSpectrum(const std::string& _Name, const FrameAnimation_DESC& _Info, size_t _SpectrumSize);
+
+    void DrawSpectrum(float _DeltaTime);
+    void DrawMetaSpectrum(float _DeltaTime);
+
+    void SetSpectrum(size_t Start, size_t End);
+    void SetMetaSpectrum(size_t Start, size_t End);
+
+    inline void SetIsDraw(bool _Draw) { IsDraw_ = _Draw; }
+
+    inline void SetIsMetaDraw(bool _Draw) { IsMetaDraw_ = _Draw; }
+
+protected:
+    void Start() override;
+    void Update(float _DeltaTime) override;
+    void End() override;
+
+private:
+    std::vector<class GameEngineTextureRenderer*> Spectrums_;
+    std::vector<class MetaTextureRenderer*>       MetaSpectrums_;
+
+    bool IsDraw_;
+    bool IsMetaDraw_;
+
+    float DrawTime_;
+    float DisAppearTime_;
+
+    int Index_;
+
+    bool IsDisAppear_;
+};

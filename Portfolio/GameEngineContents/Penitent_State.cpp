@@ -486,7 +486,7 @@ void Penitent::KnockUpUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
-    GetTransform().SetWorldMove(float4{RealXDir_, 0} * 150.f * _DeltaTime);
+    GetTransform().SetWorldMove(float4{-(RealXDir_), 0} * 150.f * _DeltaTime);
     Gravity_->SetActive(!IsGround_);
 }
 
@@ -595,6 +595,8 @@ void Penitent::SlideStart(const StateInfo& _Info)
 
     MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{RealXDir_ * 50.f, 0});
     MoveEffect_->Renderer_->ChangeMetaAnimation("penitent_start_dodge_dust_anim");
+
+    Spectrum_->SetIsMetaDraw(true);
 }
 
 void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)

@@ -38,7 +38,7 @@ public:
     void TrackEnd(const StateInfo& _Info);
 
     bool LookAtPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);
-    bool TrackToPlayer();
+    bool TrackToPlayer(float _StateTime);
 
 protected:
     void Start() override;
@@ -48,8 +48,14 @@ protected:
 private:
     Pontiff* Pontiff_;
 
+    float4 Dir_;
+
+    float RotSpeed_;
+    float AttSpeed_;
+
     GameEngineTextureRenderer* IrisRenderer_;  //µ¿°ø
     GameEngineTextureRenderer* EyeRenderer_;   //´«
 
     inline void SetPontiff(Pontiff* _Pontiff) { Pontiff_ = _Pontiff; }
+
 };

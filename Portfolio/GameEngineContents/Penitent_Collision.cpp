@@ -205,7 +205,7 @@ void Penitent::DeadZoneCheck()
 
 void Penitent::CollisionCheck()
 {
-    if ("KnockBack" == State_.GetCurStateStateName())
+    if ("KnockBack" == State_.GetCurStateStateName() || "KnockUp" == State_.GetCurStateStateName())
     {
         return;
     }
@@ -226,6 +226,16 @@ void Penitent::CollisionCheck()
                                    COLLISIONORDER::BossMonster,
                                    CollisionType::CT_OBB2D,
                                    std::bind(&Penitent::KnockBack, this, std::placeholders::_1, std::placeholders::_2));
+
+        BodyCollider_->IsCollision(CollisionType::CT_OBB2D,
+                                   COLLISIONORDER::BossMonsterAttack,
+                                   CollisionType::CT_OBB2D,
+                                   std::bind(&Penitent::KnockBack, this, std::placeholders::_1, std::placeholders::_2));
+
+        BodyCollider_->IsCollision(CollisionType::CT_OBB2D,
+                                   COLLISIONORDER::BossMonsterAttack1,
+                                   CollisionType::CT_OBB2D,
+                                   std::bind(&Penitent::KnockUp, this, std::placeholders::_1, std::placeholders::_2));
     }
 
     BodyCollider_->IsCollision(CollisionType::CT_OBB2D,
@@ -278,6 +288,19 @@ bool Penitent::KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other
     }
 
     State_.ChangeState("KnockBack");
+
+    return true;
+}
+
+bool Penitent::KnockUp(GameEngineCollision* _This, GameEngineCollision* _Other)
+{
+    if (false == IsGround_)
+    {
+        SetDamege(15.f);
+        return true;
+    }
+
+    State_.ChangeState("KnockUp");
 
     return true;
 }

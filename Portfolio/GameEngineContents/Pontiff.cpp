@@ -215,7 +215,7 @@ void Pontiff::SpellCastEndCheck(float _DeltaTime)
             {
                 RestTime_ += _DeltaTime;
 
-                if (5.f < RestTime_)
+                if (10.f < RestTime_)
                 {
                     RestTime_ = 0;
 
@@ -231,7 +231,7 @@ void Pontiff::SpellCastEndCheck(float _DeltaTime)
             {
                 RestTime_ += _DeltaTime;
 
-                if (5.f < RestTime_)
+                if (10.f < RestTime_)
                 {
                     RestTime_ = 0;
 
@@ -247,7 +247,7 @@ void Pontiff::SpellCastEndCheck(float _DeltaTime)
             {
                 RestTime_ += _DeltaTime;
 
-                if (5.f < RestTime_)
+                if (10.f < RestTime_)
                 {
                     RestTime_ = 0;
 
@@ -263,7 +263,7 @@ void Pontiff::SpellCastEndCheck(float _DeltaTime)
             {
                 RestTime_ += _DeltaTime;
 
-                if (5.f < RestTime_)
+                if (10.f < RestTime_)
                 {
                     RestTime_ = 0;
 
@@ -279,7 +279,7 @@ void Pontiff::SpellCastEndCheck(float _DeltaTime)
             {
                 RestTime_ += _DeltaTime;
 
-                if (5.f < RestTime_)
+                if (10.f < RestTime_)
                 {
                     RestTime_ = 0;
 
@@ -496,7 +496,7 @@ void Pontiff::AppearEnd(const StateInfo& _Info)
     //주문 시작
     IsSpellCast_ = false; 
     CurType_     = RandomSpell();
-}
+}   
 
 void Pontiff::OpeningStart(const StateInfo& _Info)
 {

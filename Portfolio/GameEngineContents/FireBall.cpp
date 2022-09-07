@@ -13,6 +13,9 @@ void FireBall::Start()
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
     Renderer_->CreateFrameAnimationCutTexture("pope_fireBall", {"pope_fireBall.png", 0, 9, 0.07f, true});
 
+    Renderer_->ChangeFrameAnimation("pope_fireBall");
+    Renderer_->GetTransform().SetWorldScale({300.f, 350.f, 1.f});
+
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
@@ -28,10 +31,6 @@ void FireBall::Start()
     }
 
     MetaRenderer_->Off();
-
-    Renderer_->ChangeFrameAnimation("pope_fireBall");
-    Renderer_->GetTransform().SetWorldScale({300.f, 350.f, 1.f});
-    Renderer_->SetPivot(PIVOTMODE::CENTER);
 
     Collider_ = CreateComponent<GameEngineCollision>();
     Collider_->ChangeOrder(COLLISIONORDER::Projectile);
@@ -66,6 +65,14 @@ void FireBall::Update(float _DeltaTime)
                                std::bind(&FireBall::Explosion, this, std::placeholders::_1, std::placeholders::_2));
     }
 
+    float4 Distance    = StartPos_ - GetTransform().GetWorldPosition();
+    float4 ABSDistance = float4::ABS3DReturn(Distance);
+
+    if (3000.f < ABSDistance.x || 3000.f < ABSDistance.y)
+    {
+        Death();
+    }
+
     State_.Update(_DeltaTime);
 }
 
@@ -81,6 +88,7 @@ void FireBall::ExplosionStart(const StateInfo& _Info)
     Collider_->Off();
 
     GetTransform().SetWorldScale({2.5f, 2.5f, 1});
+    GetTransform().SetWorldRotation({0.f, 0.f, 0});
     MetaRenderer_->On();
 
     MetaRenderer_->ChangeMetaAnimation("fireTrap_projectile_destroyed");

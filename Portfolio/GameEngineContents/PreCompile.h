@@ -58,6 +58,7 @@
 // Contents
 #include <GameEngineContents/StageActor.h>
 #include "GravityComponent.h"
+#include "SpectrumComponent.h"
 #include "CutScenePlayer.h"
 #include "GlobalValue.h"
 #include "LoadingActor.h"

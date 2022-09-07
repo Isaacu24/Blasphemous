@@ -78,5 +78,7 @@ private:
     float VanishingTime_;
 
     bool IsVanishing_;
+
+    int AppearPos_;
     
 };

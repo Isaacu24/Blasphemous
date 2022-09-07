@@ -12,12 +12,13 @@ void GiantSword::Start()
     EyeRenderer_ = CreateComponent<GameEngineTextureRenderer>();
     EyeRenderer_->SetTexture("pontiff_giantSword_eyeGlobeSprite.png");
     EyeRenderer_->GetTransform().SetLocalScale({125, 400});
+    EyeRenderer_->SetPivot(PIVOTMODE::TOP);
     EyeRenderer_->Off();
 
     IrisRenderer_ = CreateComponent<GameEngineTextureRenderer>();
     IrisRenderer_->SetTexture("pontiff_giantSword_irisSprite.png");
     IrisRenderer_->GetTransform().SetLocalScale({125, 400});
-    IrisRenderer_->SetPivot(PIVOTMODE::CUSTOM);
+    IrisRenderer_->SetPivot(PIVOTMODE::TOP);
     IrisRenderer_->Off();
 
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
@@ -46,6 +47,7 @@ void GiantSword::Start()
                                               {"pontiff_giantSword_swordSprite.png", 0, 0, 0.1f, false});
 
     Renderer_->GetTransform().SetLocalScale({125, 400});
+    Renderer_->SetPivot(PIVOTMODE::TOP);
 
     DetectCollider_ = CreateComponent<GameEngineCollision>();
     DetectCollider_->ChangeOrder(COLLISIONORDER::MonsterDetect);
@@ -56,7 +58,14 @@ void GiantSword::Start()
     BodyCollider_->ChangeOrder(COLLISIONORDER::BossMonster);
     BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{1.0f, 0.97f, 0.0f, 0.5f});
     BodyCollider_->GetTransform().SetWorldScale({50.f, 50.f, 1.0f});
-    BodyCollider_->GetTransform().SetWorldMove({0, 100});
+    BodyCollider_->GetTransform().SetWorldMove({0, -100});
+
+    AttackCollider_ = CreateComponent<GameEngineCollision>();
+    AttackCollider_->ChangeOrder(COLLISIONORDER::BossMonsterAttack1);
+    AttackCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{1.0f, 0.0f, 0.0f, 0.5f});
+    AttackCollider_->GetTransform().SetWorldScale({50.f, 200.f, 1.0f});
+    AttackCollider_->GetTransform().SetWorldMove({0, -250});
+    AttackCollider_->Off();
 
     BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
     BloodEffect_->GetRenderer()->Off();
@@ -83,7 +92,7 @@ void GiantSword::Start()
                              std::bind(&GiantSword::TrackStart, this, std::placeholders::_1),
                              std::bind(&GiantSword::TrackEnd, this, std::placeholders::_1));
 
-    State_.CreateStateMember("TrunAttack",
+    State_.CreateStateMember("Attack",
                              std::bind(&GiantSword::AttackUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&GiantSword::AttackStart, this, std::placeholders::_1),
                              std::bind(&GiantSword::AttackEnd, this, std::placeholders::_1));
@@ -176,19 +185,74 @@ void GiantSword::VisibleUpdate(float _DeltaTime, const StateInfo& _Info)
 void GiantSword::VisibleEnd(const StateInfo& _Info) { Renderer_->On(); }
 
 
-void GiantSword::AttackStart(const StateInfo& _Info) {}
-
-void GiantSword::AttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
-
-void GiantSword::AttackEnd(const StateInfo& _Info) {}
-
-
-void GiantSword::TrackStart(const StateInfo& _Info) 
+void GiantSword::AttackStart(const StateInfo& _Info)
 {
+    AttSpeed_ = 300.f;
+    Dir_.Normalize();
 
+    AttackCollider_->On();
 }
 
-void GiantSword::TrackUpdate(float _DeltaTime, const StateInfo& _Info) 
+void GiantSword::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    static bool IsTrun;
+
+    if (false == IsTrun)
+    {
+        RotSpeed_ += _DeltaTime * 5.f;
+        AttSpeed_ += 1000 * _DeltaTime;
+
+        if (500.f <= AttSpeed_)
+        {
+            AttSpeed_ = 500.f;
+        }
+
+        float4 MoveForce;
+
+        if (0 > -Dir_.x)
+        {
+            MoveForce = float4::LEFT * AttSpeed_ * _DeltaTime;
+        }
+
+        else
+        {
+            MoveForce = float4::RIGHT * AttSpeed_ * _DeltaTime;
+        }
+
+        GetTransform().SetWorldMove({MoveForce.x, 0});
+
+        if (0 > -Dir_.x)
+        {
+            GetTransform().SetLocalRotate({0, 0, -RotSpeed_});
+
+            if (-360.f >= GetTransform().GetLocalRotation().z)
+            {
+                State_.ChangeState("Track");
+            }
+        }
+
+        else if (0 <= -Dir_.x)
+        {
+            GetTransform().SetLocalRotate({0, 0, RotSpeed_});
+
+            if (360.f <= GetTransform().GetLocalRotation().z)
+            {
+                State_.ChangeState("Track");
+            }
+        }
+    }
+}
+
+void GiantSword::AttackEnd(const StateInfo& _Info) 
+{
+    AttackCollider_->Off();
+    RotSpeed_ = 0.f; 
+}
+
+
+void GiantSword::TrackStart(const StateInfo& _Info) {}
+
+void GiantSword::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     if (true
         == BodyCollider_->IsCollision(
@@ -203,7 +267,7 @@ void GiantSword::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
 
     MonsterBase::DamageCheck(50.f, "TeleportIN");
 
-    TrackToPlayer();
+    TrackToPlayer(_Info.StateTime);
 
     DetectCollider_->IsCollision(
         CollisionType::CT_OBB2D,
@@ -217,8 +281,8 @@ void GiantSword::TrackEnd(const StateInfo& _Info) {}
 
 bool GiantSword::LookAtPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-    float4 Dir = _Other->GetTransform().GetWorldPosition() - _This->GetTransform().GetWorldPosition();
-    Dir.Normalize();
+    float4 EyeDir = _Other->GetTransform().GetWorldPosition() - _This->GetTransform().GetWorldPosition();
+    EyeDir.Normalize();
 
     float A = IrisRenderer_->GetTransform().GetWorldPosition().x - EyeRenderer_->GetTransform().GetWorldPosition().x;
     float B = IrisRenderer_->GetTransform().GetWorldPosition().y - EyeRenderer_->GetTransform().GetWorldPosition().y;
@@ -228,31 +292,30 @@ bool GiantSword::LookAtPlayer(GameEngineCollision* _This, GameEngineCollision* _
     if (5 > C)
     {
         IrisRenderer_->GetTransform().SetWorldMove(
-            {Dir.x * 100.f * GameEngineTime::GetDeltaTime(), Dir.y * 100.f * GameEngineTime::GetDeltaTime()});
+            {EyeDir.x * 100.f * GameEngineTime::GetDeltaTime(), EyeDir.y * 100.f * GameEngineTime::GetDeltaTime()});
     }
 
     // else
     //{
     //     IrisRenderer_->GetTransform().SetWorldMove(
-    //         {-Dir.x * 100.f * GameEngineTime::GetDeltaTime(), -Dir.y * 100.f * GameEngineTime::GetDeltaTime()});
-    //     GameEngineDebug::OutPutString(std::to_string(C));
+    //        {-EyeDir.x * 100.f * GameEngineTime::GetDeltaTime(), -EyeDir.y * 100.f * GameEngineTime::GetDeltaTime()});
     // }
 
     return true;
 }
 
-bool GiantSword::TrackToPlayer()
+bool GiantSword::TrackToPlayer(float _StateTime)
 {
-    float4 Dir = GetTransform().GetWorldPosition() - Penitent::GetMainPlayer()->GetTransform().GetWorldPosition();
+    Dir_ = GetTransform().GetWorldPosition() - Penitent::GetMainPlayer()->GetTransform().GetWorldPosition();
 
-    float DistanceX = abs(Dir.x);
-    float DistanceY = abs(Dir.y);
+    float DistanceX = abs(Dir_.x);
+    float DistanceY = abs(Dir_.y);
 
-    float4 NDir = Dir.NormalizeReturn();
+    float4 NDir = Dir_.NormalizeReturn();
 
     NDir.x <= 1.0f ? GetTransform().PixLocalPositiveX() : GetTransform().PixLocalNegativeX();
 
-    float Angle = Dir.x / 10;
+    float Angle = Dir_.x / 10;
 
     GetTransform().SetWorldRotation({0, 0, Angle});
 
@@ -260,12 +323,22 @@ bool GiantSword::TrackToPlayer()
     {
         SetSpeed(200.f);
         GetTransform().SetWorldMove({NDir.x * Speed_ * GameEngineTime::GetDeltaTime(), 0});
+
+        if (DistanceX <= 100 && 3.f <= _StateTime)
+        {
+            State_.ChangeState("Attack");
+        }
     }
 
     if (DistanceY <= 200)
     {
         SetSpeed(200.f);
         GetTransform().SetWorldMove({0, NDir.y * Speed_ * GameEngineTime::GetDeltaTime()});
+
+        if (DistanceY <= 100 && 3.f <= _StateTime)
+        {
+            State_.ChangeState("Attack");
+        }
     }
 
     if (DistanceX > 300)
@@ -274,7 +347,7 @@ bool GiantSword::TrackToPlayer()
         GetTransform().SetWorldMove({-NDir.x * Speed_ * GameEngineTime::GetDeltaTime(), 0});
     }
 
-    if (DistanceY > 210)
+    if (DistanceY > 300)
     {
         SetSpeed(350.f);
         GetTransform().SetWorldMove({0, -NDir.y * Speed_ * GameEngineTime::GetDeltaTime()});
