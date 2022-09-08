@@ -209,6 +209,8 @@ void Penitent::JumpStart(const StateInfo& _Info)
     MoveEffect_->Renderer_->On();
     MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
     MoveEffect_->Renderer_->ChangeMetaAnimation("penitent-jumping-dust-anim");
+
+    LastJumpPos_ = GetTransform().GetWorldPosition();
 }
 
 void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -254,11 +256,6 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
     {
         ChangeState("JumpAttack");
         return;
-    }
-
-    if (GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
-    {
-        JumpForce_.y -= _DeltaTime * 100.f;
     }
 
     GetTransform().SetWorldMove(Dir_ * JumpForce_ * _DeltaTime);
@@ -534,6 +531,11 @@ void Penitent::LandingStart(const StateInfo& _Info)
         {
             ChangeState("Attack");
         }
+
+        else if (GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
+        {
+            ChangeState("Crouch");
+        }
     }
 }
 
@@ -566,6 +568,8 @@ void Penitent::CrouchUpdate(float _DeltaTime, const StateInfo& _Info)
     {
         GetTransform().PixLocalNegativeX();
     }
+
+     Gravity_->SetActive(!IsGround_);
 }
 
 void Penitent::CrouchEnd(const StateInfo& _Info)

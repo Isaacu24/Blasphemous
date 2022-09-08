@@ -12,7 +12,20 @@ public:
     MagicMissile& operator=(const MagicMissile& _Other)     = delete;
     MagicMissile& operator=(MagicMissile&& _Other) noexcept = delete;
 
-    void SetDirection(float4 _Dir) { Dir_ = _Dir; }
+    void SetDirection(float4 _Dir) 
+    { 
+        if (0 > _Dir.x)
+        {
+            GetTransform().PixLocalNegativeX();
+        }
+
+        else
+        {
+            GetTransform().PixLocalPositiveX();
+        }
+
+        Dir_ = _Dir; 
+    }
 
     inline void SetSpeed(float _Speed) { Speed_ = _Speed; }
 

@@ -65,6 +65,8 @@ public:
 
     inline bool GetIsFallDeath() { return IsFallDeath_; }
 
+    inline float4 GetLastJumpPosition() { return LastJumpPos_; }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
@@ -241,6 +243,8 @@ private:
     float SlideTime_;
 
     std::vector<bool> Flasks_;
+
+    float4 LastJumpPos_;
 
     bool IsFallDeath_;
 };

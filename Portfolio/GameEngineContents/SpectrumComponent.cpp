@@ -4,7 +4,11 @@
 #include "MetaTextureRenderer.h"
 
 
-SpectrumComponent::SpectrumComponent() {}
+SpectrumComponent::SpectrumComponent() 
+{ 
+    ObjectZ_ = AO_OBJECT; 
+    PlayerBehindEffect_ = AO_PLAYERBEHINDEFFECT;
+}
 
 SpectrumComponent::~SpectrumComponent()
 {
@@ -92,7 +96,7 @@ void SpectrumComponent::DrawSpectrum(float _DeltaTime)
             SpectrumActors_[Index_]->GetTransform().PixLocalNegativeX();
             SpectrumActors_[Index_]->GetTransform().SetWorldPosition({GetActor()->GetTransform().GetWorldPosition().x,
                                                                       GetActor()->GetTransform().GetWorldPosition().y,
-                                                                      static_cast<int>(ACTORORDER::Object)});
+                                                                      ObjectZ_});
 
             SpectrumActors_[Index_]->GetTransform().SetWorldRotation({
                 GetActor()->GetTransform().GetWorldRotation().x,
@@ -106,7 +110,7 @@ void SpectrumComponent::DrawSpectrum(float _DeltaTime)
             SpectrumActors_[Index_]->GetTransform().PixLocalPositiveX();
             SpectrumActors_[Index_]->GetTransform().SetWorldPosition({GetActor()->GetTransform().GetWorldPosition().x,
                                                                       GetActor()->GetTransform().GetWorldPosition().y,
-                                                                      static_cast<int>(ACTORORDER::Object)});
+                                                                      ObjectZ_});
 
             SpectrumActors_[Index_]->GetTransform().SetWorldRotation({
                 GetActor()->GetTransform().GetWorldRotation().x,
@@ -145,7 +149,7 @@ void SpectrumComponent::DrawMetaSpectrum(float _DeltaTime)
             SpectrumActors_[Index_]->GetTransform().PixLocalNegativeX();
             SpectrumActors_[Index_]->GetTransform().SetWorldPosition({GetActor()->GetTransform().GetWorldPosition().x,
                                                                       GetActor()->GetTransform().GetWorldPosition().y,
-                                                                      static_cast<int>(ACTORORDER::BehindEffect)});
+                                                                      PlayerBehindEffect_});
         }
 
         else
@@ -153,7 +157,7 @@ void SpectrumComponent::DrawMetaSpectrum(float _DeltaTime)
             SpectrumActors_[Index_]->GetTransform().PixLocalPositiveX();
             SpectrumActors_[Index_]->GetTransform().SetWorldPosition({GetActor()->GetTransform().GetWorldPosition().x,
                                                                       GetActor()->GetTransform().GetWorldPosition().y,
-                                                                      static_cast<int>(ACTORORDER::BehindEffect)});
+                                                                      PlayerBehindEffect_});
         }
 
         ++Index_;

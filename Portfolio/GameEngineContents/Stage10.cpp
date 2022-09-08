@@ -20,60 +20,51 @@ void Stage10::SettingStage()
     ColMap_->SetTexture("2_1_Colmap.png");
     ColMap_->ScaleToTexture();
 
-    float ColmapZ = AO_COLMAP;
     ColMap_->GetTransform().SetWorldPosition({0, 0, ColmapZ});
 
     GameEngineTextureRenderer* BeforeParallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer->SetTexture("2_1_BeforeParallax_0.png");
     BeforeParallaxRenderer->ScaleToTexture();
-    float BeforeParallaxZ = AO_BEFOREPARALLAX0;
     BeforeParallaxRenderer->GetTransform().SetWorldPosition({0, 0, BeforeParallaxZ});
-    BeforeParallaxRenderer->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BeforeParallax2)});
     BeforeParallaxRenderer->GetTransform().SetWorldScale(BeforeParallaxRenderer->GetTransform().GetWorldScale() * 2.0f);
 
     GameEngineTextureRenderer* BeforeParallaxRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer1->SetTexture("2_1_BeforeParallax_1.png");
     BeforeParallaxRenderer1->ScaleToTexture();
-    float BeforeParalla1Z = AO_BEFOREPARALLAX1;
-    BeforeParallaxRenderer1->GetTransform().SetWorldPosition({0, 0, BeforeParalla1Z});
+    BeforeParallaxRenderer1->GetTransform().SetWorldPosition({0, 0, BeforeParallax1Z});
     BeforeParallaxRenderer1->GetTransform().SetWorldScale(BeforeParallaxRenderer1->GetTransform().GetWorldScale()
                                                           * 2.f);
 
     GameEngineTextureRenderer* BeforeParallaxRenderer2 = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer2->SetTexture("2_1_BeforeParallax_2.png");
     BeforeParallaxRenderer2->ScaleToTexture();
-    float BeforeParalla2Z = AO_BEFOREPARALLAX2;
-    BeforeParallaxRenderer2->GetTransform().SetWorldPosition({0, 0, BeforeParalla2Z});
+    BeforeParallaxRenderer2->GetTransform().SetWorldPosition({0, 0, BeforeParallax2Z});
     BeforeParallaxRenderer2->GetTransform().SetWorldScale(BeforeParallaxRenderer2->GetTransform().GetWorldScale()
                                                           * 2.f);
 
     GameEngineTextureRenderer* BeforeParallaxRenderer3 = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer3->SetTexture("2_1_BeforeParallax_3.png");
     BeforeParallaxRenderer3->ScaleToTexture();
-    float BeforeParalla3Z = AO_BEFOREPARALLAX3;
-    BeforeParallaxRenderer3->GetTransform().SetWorldPosition({0, 0, BeforeParalla3Z});
+    BeforeParallaxRenderer3->GetTransform().SetWorldPosition({0, 0, BeforeParallax3Z});
     BeforeParallaxRenderer3->GetTransform().SetWorldScale(BeforeParallaxRenderer3->GetTransform().GetWorldScale()
                                                           * 2.f);
 
     GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     StageRenderer->SetTexture("2_1_Tile.png");
     StageRenderer->ScaleToTexture();
-    float TileZ = AO_TILE;
     StageRenderer->GetTransform().SetWorldPosition({0, 0, TileZ});
     StageRenderer->GetTransform().SetWorldScale(StageRenderer->GetTransform().GetWorldScale() * 2.f);
 
     GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     DoorRenderer->SetTexture("2_1_Door.png");
     DoorRenderer->ScaleToTexture();
-    float DOORZ = AO_DOOR;
-    DoorRenderer->GetTransform().SetWorldPosition({0, 0, DOORZ});
+    DoorRenderer->GetTransform().SetWorldPosition({0, 0, DoorZ});
     DoorRenderer->GetTransform().SetWorldScale(DoorRenderer->GetTransform().GetWorldScale() * 2.f);
 
     GameEngineTextureRenderer* CrowRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     CrowRenderer->CreateFrameAnimationCutTexture("crow_idle_anim", {"crow_idle_anim.png", 0, 101, 0.1f, true});
     CrowRenderer->ChangeFrameAnimation("crow_idle_anim");
     CrowRenderer->ScaleToCutTexture(1);
-    float ObjectZ = AO_OBJECT;
     CrowRenderer->GetTransform().SetWorldPosition({-1580, 555, ObjectZ});
     CrowRenderer->GetTransform().SetWorldScale(CrowRenderer->GetTransform().GetWorldScale() * 2.f);
 
@@ -83,8 +74,6 @@ void Stage10::SettingStage()
     float4 Offset = {OffsetX, -OffsetY};
 
     Stage_->GetTransform().SetLocalMove(Offset);
-
-    float PlayerZ = AO_PLAYER;
 
     PlayerRightPos_ = float4{3950, -682, PlayerZ};
     PlayerLeftPos_  = float4{300, -682, PlayerZ};
@@ -97,8 +86,6 @@ void Stage10::SettingStage()
 
 void Stage10::SettingMonster()
 {
-    float MonsterZ = AO_MONSTER;
-
     Crosscrawler* CrosscrawlerClone = CreateActor<Crosscrawler>();
     CrosscrawlerClone->GetTransform().SetWorldPosition({2200, -1080, MonsterZ});
     CrosscrawlerClone->SetGround(ColMap_);
@@ -130,7 +117,7 @@ void Stage10::SettingLedge()
     {
         GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
         Collider->ChangeOrder(COLLISIONORDER::RightLedge);
-        Collider->GetTransform().SetWorldPosition({980, -830});
+        Collider->GetTransform().SetWorldPosition({975, -825});
         Collider->GetTransform().SetWorldScale({5.0f, 5.0f, 1.0f});
         Collider->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.2f, 0.5f});
         DangleColiders_.push_back(Collider);
@@ -139,7 +126,7 @@ void Stage10::SettingLedge()
     {
         GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
         Collider->ChangeOrder(COLLISIONORDER::LeftLedge);
-        Collider->GetTransform().SetWorldPosition({1210, -830});
+        Collider->GetTransform().SetWorldPosition({1210, -825});
         Collider->GetTransform().SetWorldScale({5.0f, 5.0f, 1.0f});
         Collider->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.2f, 0.5f});
         DangleColiders_.push_back(Collider);
@@ -148,7 +135,7 @@ void Stage10::SettingLedge()
     {
         GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
         Collider->ChangeOrder(COLLISIONORDER::RightLedge);
-        Collider->GetTransform().SetWorldPosition({2290, -830});
+        Collider->GetTransform().SetWorldPosition({2290, -825});
         Collider->GetTransform().SetWorldScale({5.0f, 5.0f, 1.0f});
         Collider->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 1.0f, 1.0f, 0.5f});
         DangleColiders_.push_back(Collider);
@@ -157,7 +144,7 @@ void Stage10::SettingLedge()
     {
         GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
         Collider->ChangeOrder(COLLISIONORDER::LeftLedge);
-        Collider->GetTransform().SetWorldPosition({2510, -830});
+        Collider->GetTransform().SetWorldPosition({2515, -825});
         Collider->GetTransform().SetWorldScale({5.0f, 5.0f, 1.0f});
         Collider->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.2f, 0.5f});
         DangleColiders_.push_back(Collider);
@@ -166,7 +153,7 @@ void Stage10::SettingLedge()
     {
         GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
         Collider->ChangeOrder(COLLISIONORDER::RightLedge);
-        Collider->GetTransform().SetWorldPosition({980, -960});
+        Collider->GetTransform().SetWorldPosition({975, -960});
         Collider->GetTransform().SetWorldScale({5.0f, 5.0f, 1.0f});
         Collider->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 1.0f, 1.0f, 0.5f});
         DangleColiders_.push_back(Collider);
@@ -176,7 +163,7 @@ void Stage10::SettingLedge()
     {
         GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
         Collider->ChangeOrder(COLLISIONORDER::LeftLedge);
-        Collider->GetTransform().SetWorldPosition({1010, -1235});
+        Collider->GetTransform().SetWorldPosition({1015, -1225});
         Collider->GetTransform().SetWorldScale({5.0f, 5.0f, 1.0f});
         Collider->SetDebugSetting(CollisionType::CT_AABB, float4{0.5f, 0.21f, 0.6f, 0.5f});
         DangleColiders_.push_back(Collider);
@@ -185,7 +172,7 @@ void Stage10::SettingLedge()
     {
         GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
         Collider->ChangeOrder(COLLISIONORDER::RightLedge);
-        Collider->GetTransform().SetWorldPosition({1200, -1235});
+        Collider->GetTransform().SetWorldPosition({1195, -1225});
         Collider->GetTransform().SetWorldScale({5.0f, 5.0f, 1.0f});
         Collider->SetDebugSetting(CollisionType::CT_AABB, float4{0.5f, 0.21f, 0.6f, 0.5f});
         DangleColiders_.push_back(Collider);
@@ -221,7 +208,7 @@ void Stage10::SettingLedge()
     {
         GameEngineCollision* Collider = Stage_->CreateComponent<GameEngineCollision>();
         Collider->ChangeOrder(COLLISIONORDER::RightLedge);
-        Collider->GetTransform().SetWorldPosition({2810, -1220});
+        Collider->GetTransform().SetWorldPosition({2820, -1220});
         Collider->GetTransform().SetWorldScale({5.0f, 5.0f, 1.0f});
         Collider->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 1.0f, 1.0f, 0.5f});
         DangleColiders_.push_back(Collider);
@@ -378,7 +365,7 @@ void Stage10::LevelStartEvent()
     SettingMonster();
 }
 
-void Stage10::LevelEndEvent() 
+void Stage10::LevelEndEvent()
 {
     if (false == Penitent_->IsUpdate())
     {
@@ -394,14 +381,15 @@ void Stage10::LevelEndEvent()
 
         if (true == Penitent_->GetIsFallDeath())
         {
-            Guilt_->GetTransform().SetWorldPosition(float4{});
+            Guilt_->GetTransform().SetWorldPosition(
+                {Penitent_->GetLastJumpPosition().x, Penitent_->GetLastJumpPosition().y, ObjectZ});
         }
 
         else
         {
             Guilt_->GetTransform().SetLocalPosition({Penitent_->GetTransform().GetWorldPosition().x,
                                                      Penitent_->GetTransform().GetWorldPosition().y,
-                                                     static_cast<int>(ACTORORDER::Object)});
+                                                     ObjectZ});
         }
     }
 }

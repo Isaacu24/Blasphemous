@@ -198,7 +198,7 @@ void Stage20::LevelEndEvent()
 
         if (true == Penitent_->GetIsFallDeath())
         {
-            Guilt_->GetTransform().SetWorldPosition(float4{});
+            Guilt_->GetTransform().SetWorldPosition(Penitent_->GetLastJumpPosition());
         }
 
         else

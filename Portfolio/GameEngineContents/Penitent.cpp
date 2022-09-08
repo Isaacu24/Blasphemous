@@ -161,6 +161,11 @@ void Penitent::Update(float _DeltaTime)
 {
     State_.Update(_DeltaTime);
 
+    if ("Death" == State_.GetCurStateStateName())
+    {
+        return;
+    }
+
     DebugColliders_[0]->GetTransform().SetWorldPosition(
         {GetTransform().GetWorldPosition().x,
          (GetTransform().GetWorldPosition().y + CilmbY_)});  //사다리 타기 시 땅 감지
@@ -348,7 +353,7 @@ void Penitent::SetAnimation()
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
-    {
+    {           
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_hardlanding_rocks_anim");
 
         MetaRenderer_->CreateMetaAnimation(
@@ -924,6 +929,8 @@ void Penitent::SetAnimation()
         MetaRenderer_->AnimationBindEnd("death_anim_blood",
                                         [&](const FrameAnimation_DESC& _Info)
                                         {
+                                            IsFallDeath_;
+
                                             if ("" == LastSavePoint_)
                                             {
                                                 GEngine::ChangeLevel("Stage01");
@@ -933,6 +940,7 @@ void Penitent::SetAnimation()
                                             {
                                                 GEngine::ChangeLevel(LastSavePoint_);
                                             }
+
                                             Off();
                                         });
     }

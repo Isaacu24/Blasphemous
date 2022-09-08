@@ -17,90 +17,86 @@ void Stage02::SettingStage()
     ColMap_ = Stage_->CreateComponent<GameEngineTextureRenderer>();
     ColMap_->SetTexture("1_2_Colmap.png");
     ColMap_->ScaleToTexture();
-    ColMap_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::ColMap)});
+    ColMap_->GetTransform().SetWorldPosition({0, 0, ColmapZ});
 
     GameEngineTextureRenderer* BeforeParallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer->SetTexture("1_2_BeforeParallax_0.png");
     BeforeParallaxRenderer->ScaleToTexture();
-    BeforeParallaxRenderer->GetTransform().SetWorldPosition({-100, 0, static_cast<int>(ACTORORDER::BeforeParallax0)});
+    BeforeParallaxRenderer->GetTransform().SetWorldPosition({-100, 0, BeforeParallaxZ});
     BeforeParallaxRenderer->GetTransform().SetWorldScale(BeforeParallaxRenderer->GetTransform().GetWorldScale() * 2.f);
 
     GameEngineTextureRenderer* BeforeParallaxRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer1->SetTexture("1_2_BeforeParallax_1.png");
     BeforeParallaxRenderer1->ScaleToTexture();
-    BeforeParallaxRenderer1->GetTransform().SetWorldPosition(
-        {-100, 170, static_cast<int>(ACTORORDER::BeforeParallax1)});
+    BeforeParallaxRenderer1->GetTransform().SetWorldPosition({-100, 170, BeforeParallax1Z});
     BeforeParallaxRenderer1->GetTransform().SetWorldScale(BeforeParallaxRenderer1->GetTransform().GetWorldScale()
                                                           * 3.f);
 
     GameEngineTextureRenderer* BeforeParallaxRenderer2 = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer2->SetTexture("1_2_BeforeParallax_2.png");
     BeforeParallaxRenderer2->ScaleToTexture();
-    BeforeParallaxRenderer2->GetTransform().SetWorldPosition(
-        {-150, -290, static_cast<int>(ACTORORDER::BeforeParallax2)});
+    BeforeParallaxRenderer2->GetTransform().SetWorldPosition({-150, -290, BeforeParallax2Z});
     BeforeParallaxRenderer2->GetTransform().SetWorldScale(BeforeParallaxRenderer2->GetTransform().GetWorldScale()
                                                           * 2.f);
 
     GameEngineTextureRenderer* BeforeParallaxRenderer3 = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer3->SetTexture("1_2_BeforeParallax_3.png");
     BeforeParallaxRenderer3->ScaleToTexture();
-    BeforeParallaxRenderer3->GetTransform().SetWorldPosition(
-        {-100, -50, static_cast<int>(ACTORORDER::BeforeParallax3)});
+    BeforeParallaxRenderer3->GetTransform().SetWorldPosition({-100, -50, BeforeParallax3Z});
     BeforeParallaxRenderer3->GetTransform().SetWorldScale(BeforeParallaxRenderer3->GetTransform().GetWorldScale()
                                                           * 2.f);
 
     GameEngineTextureRenderer* BeforeParallaxRenderer4 = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer4->SetTexture("1_2_BeforeParallax_4.png");
     BeforeParallaxRenderer4->ScaleToTexture();
-    BeforeParallaxRenderer4->GetTransform().SetWorldPosition(
-        {-150, -500, static_cast<int>(ACTORORDER::BeforeParallax4)});
+    BeforeParallaxRenderer4->GetTransform().SetWorldPosition({-150, -500, BeforeParallax4Z});
     BeforeParallaxRenderer4->GetTransform().SetWorldScale(BeforeParallaxRenderer4->GetTransform().GetWorldScale()
                                                           * 2.f);
 
     GameEngineTextureRenderer* StageRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     StageRendrer->SetTexture("1_2_Tile.png");
     StageRendrer->ScaleToTexture();
-    StageRendrer->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Tile)});
+    StageRendrer->GetTransform().SetWorldPosition({0, 0, TileZ});
     StageRendrer->GetTransform().SetWorldScale(StageRendrer->GetTransform().GetWorldScale() * 2.f);
 
     GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     DoorRenderer->SetTexture("1_2_Door.png");
     DoorRenderer->ScaleToTexture();
-    DoorRenderer->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Door)});
+    DoorRenderer->GetTransform().SetWorldPosition({0, 0, DoorZ});
     DoorRenderer->GetTransform().SetWorldScale(DoorRenderer->GetTransform().GetWorldScale() * 2.f);
 
     GameEngineTextureRenderer* AfterParallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     AfterParallaxRenderer->SetTexture("1_2_AfterParallax_0.png");
     AfterParallaxRenderer->ScaleToTexture();
-    AfterParallaxRenderer->GetTransform().SetWorldPosition({-50, -150, static_cast<int>(ACTORORDER::AfterParallax0)});
+    AfterParallaxRenderer->GetTransform().SetWorldPosition({-50, -150, AfterParallaxZ});
     AfterParallaxRenderer->GetTransform().SetWorldScale(AfterParallaxRenderer->GetTransform().GetWorldScale() * 2.f);
 
     {
         Fly* NewFly = CreateActor<Fly>();
-        NewFly->GetTransform().SetWorldPosition({1700, -1400, static_cast<int>(ACTORORDER::Player)});
+        NewFly->GetTransform().SetWorldPosition({1700, -1400, TileZ});
         NewFly->GetMetaRenderer()->CurAnimationSetStartPivotFrame(3);
     }
 
     {
         Fly* NewFly = CreateActor<Fly>();
-        NewFly->GetTransform().SetWorldPosition({2000, -1500, static_cast<int>(ACTORORDER::Player)});
+        NewFly->GetTransform().SetWorldPosition({2000, -1500, TileZ});
     }
 
     {
         Fly* NewFly = CreateActor<Fly>();
-        NewFly->GetTransform().SetWorldPosition({2300, -1400, static_cast<int>(ACTORORDER::Player)});
+        NewFly->GetTransform().SetWorldPosition({2300, -1400, TileZ});
         NewFly->GetMetaRenderer()->CurAnimationSetStartPivotFrame(5);
     }
 
     {
         Fly* NewFly = CreateActor<Fly>();
-        NewFly->GetTransform().SetWorldPosition({3600, -1500, static_cast<int>(ACTORORDER::Player)});
+        NewFly->GetTransform().SetWorldPosition({3600, -1500, TileZ});
         NewFly->GetMetaRenderer()->GetColorData().MulColor = float4{5.0f, 1.0f, 1.0f, 1.0f};
     }
 
     {
         Fly* NewFly = CreateActor<Fly>();
-        NewFly->GetTransform().SetWorldPosition({3800, -1400, static_cast<int>(ACTORORDER::Player)});
+        NewFly->GetTransform().SetWorldPosition({3800, -1400, TileZ});
         NewFly->GetMetaRenderer()->GetColorData().MulColor = float4{5.0f, 1.0f, 1.0f, 1.0f};
         NewFly->GetMetaRenderer()->CurAnimationSetStartPivotFrame(2);
     }
@@ -112,8 +108,8 @@ void Stage02::SettingStage()
 
     Stage_->GetTransform().SetLocalMove(Offset);
 
-    PlayerRightPos_ = float4{4050, -1561, static_cast<int>(ACTORORDER::Player)};
-    PlayerLeftPos_  = float4{210, -1425, static_cast<int>(ACTORORDER::Player)};
+    PlayerRightPos_ = float4{4050, -1561, PlayerZ};
+    PlayerLeftPos_  = float4{210, -1425, PlayerZ};
 
     IsLeftExit_ = true;
 }
@@ -121,12 +117,12 @@ void Stage02::SettingStage()
 void Stage02::SettingMonster()
 {
     Fool_knife* FoolKnife = CreateActor<Fool_knife>();
-    FoolKnife->GetTransform().SetWorldPosition({1300, -1289, static_cast<int>(ACTORORDER::Monster)});
+    FoolKnife->GetTransform().SetWorldPosition({1300, -1289, MonsterZ});
     FoolKnife->SetGround(ColMap_);
     MonsterList_.push_back(FoolKnife);
 
     WingedFace* FlyingEnemy = CreateActor<WingedFace>();
-    FlyingEnemy->GetTransform().SetWorldPosition({2150, -1250, static_cast<int>(ACTORORDER::Monster)});
+    FlyingEnemy->GetTransform().SetWorldPosition({2150, -1250, MonsterZ});
     FlyingEnemy->SetGround(ColMap_);
     FlyingEnemy->SetStartPos(-1150);
     FlyingEnemy->SetEndPos(-1550);
@@ -311,14 +307,15 @@ void Stage02::LevelEndEvent()
 
         if (true == Penitent_->GetIsFallDeath())
         {
-            Guilt_->GetTransform().SetWorldPosition(float4{});
+            Guilt_->GetTransform().SetWorldPosition(
+                {Penitent_->GetLastJumpPosition().x, Penitent_->GetLastJumpPosition().y, ObjectZ});
         }
 
         else
         {
             Guilt_->GetTransform().SetLocalPosition({Penitent_->GetTransform().GetWorldPosition().x,
                                                      Penitent_->GetTransform().GetWorldPosition().y,
-                                                     static_cast<int>(ACTORORDER::Object)});
+                                                     ObjectZ});
         }
     }
 }

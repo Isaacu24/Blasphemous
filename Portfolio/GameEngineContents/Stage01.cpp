@@ -15,45 +15,45 @@ void Stage01::SettingStage()
     ColMap_ = Stage_->CreateComponent<GameEngineTextureRenderer>();
     ColMap_->SetTexture("1_1_Colmap.png");
     ColMap_->ScaleToTexture();
-    ColMap_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::ColMap)});
+
+    ColMap_->GetTransform().SetWorldPosition({0, 0, ColmapZ});
 
     GameEngineTextureRenderer* BeforeParallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer->SetTexture("1_1_BeforeParallax_0.png");
     BeforeParallaxRenderer->ScaleToTexture();
-    BeforeParallaxRenderer->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BeforeParallax0)});
+    BeforeParallaxRenderer->GetTransform().SetWorldPosition({0, 0, BeforeParallaxZ});
     BeforeParallaxRenderer->GetTransform().SetWorldScale(BeforeParallaxRenderer->GetTransform().GetWorldScale() * 2.5f);
 
     GameEngineTextureRenderer* BeforeParallaxRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer1->SetTexture("1_1_BeforeParallax_1.png");
     BeforeParallaxRenderer1->ScaleToTexture();
-    BeforeParallaxRenderer1->GetTransform().SetWorldPosition(
-        {-100, 1000, static_cast<int>(ACTORORDER::BeforeParallax1)});
+    BeforeParallaxRenderer1->GetTransform().SetWorldPosition({-100, 1000, BeforeParallax1Z});
     BeforeParallaxRenderer1->GetTransform().SetWorldScale(BeforeParallaxRenderer1->GetTransform().GetWorldScale()
                                                           * 3.0f);
 
     GameEngineTextureRenderer* BeforeParallaxRenderer2 = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer2->SetTexture("1_1_BeforeParallax_2.png");
     BeforeParallaxRenderer2->ScaleToTexture();
-    BeforeParallaxRenderer2->GetTransform().SetWorldPosition({100, 100, static_cast<int>(ACTORORDER::BeforeParallax2)});
+    BeforeParallaxRenderer2->GetTransform().SetWorldPosition({100, 100, BeforeParallax2Z});
     BeforeParallaxRenderer2->GetTransform().SetWorldScale(BeforeParallaxRenderer2->GetTransform().GetWorldScale()
                                                           * 2.5f);
 
     GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     StageRenderer->SetTexture("1_1_Tile.png");
     StageRenderer->ScaleToTexture();
-    StageRenderer->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Tile)});
+    StageRenderer->GetTransform().SetWorldPosition({0, 0, TileZ});
     StageRenderer->GetTransform().SetWorldScale(StageRenderer->GetTransform().GetWorldScale() * 2.f);
 
     GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     DoorRenderer->SetTexture("1_1_Door.png");
     DoorRenderer->ScaleToTexture();
-    DoorRenderer->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Door)});
+    DoorRenderer->GetTransform().SetWorldPosition({0, 0, DoorZ});
     DoorRenderer->GetTransform().SetWorldScale(DoorRenderer->GetTransform().GetWorldScale() * 2.f);
 
     GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     AfterLayerRenderer->SetTexture("1_1_AfterLayer.png");
     AfterLayerRenderer->ScaleToTexture();
-    AfterLayerRenderer->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::AfterLayer0)});
+    AfterLayerRenderer->GetTransform().SetWorldPosition({0, 0, AfterParallaxZ});
     AfterLayerRenderer->GetTransform().SetWorldScale(AfterLayerRenderer->GetTransform().GetWorldScale() * 2.f);
 
     float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
@@ -63,7 +63,7 @@ void Stage01::SettingStage()
 
     Stage_->GetTransform().SetLocalMove(Offset);
 
-    PlayerRightPos_ = float4{3600, -1730, static_cast<int>(ACTORORDER::Player)};
+    PlayerRightPos_ = float4{3600, -1730, PlayerZ};
 }
 
 void Stage01::Start()
@@ -75,23 +75,6 @@ void Stage01::Start()
 
 void Stage01::Update(float _DeltaTime)
 {
-    {
-        // if (true == GameEngineInput::GetInst()->IsDownKey("TransUI"))
-        //{
-        //    float4x4 World = Penitent_->GetTransform().GetWorldWorld();
-
-        //    World = World * GetMainCamera()->GetView();
-        //    World = World * GetMainCamera()->GetProjectionMatrix();
-
-        //    float4x4 ViewPort;
-        //    ViewPort.ViewPort(1280, 720, 0, 0, 0, 1);
-
-        //    World = World * ViewPort;
-
-        //    int a = 0;
-        //}
-    }
-
     if (false == IsChangeCameraPos_)
     {
         GetMainCameraActor()->GetTransform().SetWorldMove({0, 0, CameraZPos_});
@@ -120,7 +103,7 @@ void Stage01::Update(float _DeltaTime)
     {
         GetMainCameraActor()->GetTransform().SetWorldPosition(
             float4{3150, GetMainCameraActor()->GetTransform().GetLocalPosition().y, CameraZPos_});
-    }   
+    }
 
     if (3650 < Penitent_->GetTransform().GetWorldPosition().x && false == IsRightExit_)
     {
@@ -144,7 +127,7 @@ void Stage01::LevelStartEvent()
     if (nullptr == Penitent::GetMainPlayer())
     {
         Penitent_ = CreateActor<Penitent>();
-        Penitent_->GetTransform().SetWorldPosition({1230, -940, static_cast<int>(ACTORORDER::Player)});
+        Penitent_->GetTransform().SetWorldPosition({1230, -940, PlayerZ});
         Penitent_->SetGround(ColMap_);
 
         Penitent_->SetLevelOverOn();
@@ -162,7 +145,7 @@ void Stage01::LevelStartEvent()
 
         else
         {
-            Penitent_->GetTransform().SetWorldPosition({1230, -940, static_cast<int>(ACTORORDER::Player)});
+            Penitent_->GetTransform().SetWorldPosition({1230, -940, PlayerZ});
         }
 
         Penitent_->SetLevelOverOn();
@@ -193,7 +176,7 @@ void Stage01::LevelStartEvent()
     });
 }
 
-void Stage01::LevelEndEvent() 
+void Stage01::LevelEndEvent()
 {
     if (false == Penitent_->IsUpdate())
     {
@@ -210,7 +193,8 @@ void Stage01::LevelEndEvent()
         if (true == Penitent_->GetIsFallDeath())
         {
             //마지막 도약 포지션을 기억한 후 해당 포지션에 길티 생성
-            Guilt_->GetTransform().SetWorldPosition(float4{});
+            Guilt_->GetTransform().SetWorldPosition(
+                {Penitent_->GetLastJumpPosition().x, Penitent_->GetLastJumpPosition().y, ObjectZ});
         }
 
         else
@@ -218,7 +202,7 @@ void Stage01::LevelEndEvent()
             //도약하지 않았을 때에는 죽은 위치에 길티를 생성
             Guilt_->GetTransform().SetLocalPosition({Penitent_->GetTransform().GetWorldPosition().x,
                                                      Penitent_->GetTransform().GetWorldPosition().y,
-                                                     static_cast<int>(ACTORORDER::Object)});
+                                                     ObjectZ});
         }
     }
 }

@@ -95,7 +95,7 @@ void Pope::Start()
     MetaFXSRenderer_->SetPivot(PIVOTMODE::METABOT);
     MetaFXSRenderer_->Off();
 
-    //MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 1.0f};
+    // MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 1.0f};
 
     Symbol_ = GetLevel()->CreateActor<SymbolEffect>();
     Symbol_->GetTransform().SetWorldScale({2.f, 2.f, 1.f});
@@ -155,6 +155,8 @@ void Pope::Start()
     BossUI_->SetBossMonster(this);
     BossUI_->SetBossUI();
     BossUI_->AllOff();
+
+    AppearPos_ = 2;
 }
 
 void Pope::CreateSpawner()
@@ -289,6 +291,8 @@ void Pope::SpellCastStart(const StateInfo& _Info)
         }
     }
 
+    Spell = 3;
+
     switch (Spell)
     {
         case 0:  //파이어볼
@@ -332,8 +336,7 @@ void Pope::SpellCastStart(const StateInfo& _Info)
 
             MagicMissileSpawner_->On();
 
-            if (0 == AppearPos_
-                || 1 == AppearPos_)
+            if (0 == AppearPos_ || 1 == AppearPos_)
             {
                 MagicMissileSpawner_->SetDirection(float4::RIGHT);
             }
@@ -342,6 +345,7 @@ void Pope::SpellCastStart(const StateInfo& _Info)
             {
                 MagicMissileSpawner_->SetDirection(float4::LEFT);
             }
+
             MagicMissileSpawner_->GetTransform().SetWorldPosition(
                 {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y + 100.f});
             break;
