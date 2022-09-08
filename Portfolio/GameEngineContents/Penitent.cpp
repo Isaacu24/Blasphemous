@@ -369,10 +369,9 @@ void Penitent::SetAnimation()
 
         Spectrum_->CreateMetaSpectrum(
             "penitent_dodge_anim",
-            {"penitent_dodge_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
-            5);
+            {"penitent_dodge_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false});
 
-        Spectrum_->SetMetaSpectrum(0, 5);
+        Spectrum_->SetMetaSpectrumFrame(0, 6);
 
         MetaRenderer_->AnimationBindEnd(
             "penitent_dodge_anim",

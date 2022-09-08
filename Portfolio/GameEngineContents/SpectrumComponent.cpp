@@ -6,7 +6,12 @@
 
 SpectrumComponent::SpectrumComponent() {}
 
-SpectrumComponent::~SpectrumComponent() {}
+SpectrumComponent::~SpectrumComponent() 
+{ 
+    SpectrumActors_.clear();
+    MetaSpectrums_.clear();
+    SpectrumActors_.clear();
+}
 
 
 void SpectrumComponent::Start() {}
@@ -23,9 +28,9 @@ void SpectrumComponent::Update(float _DeltaTime)
         DrawMetaSpectrum(_DeltaTime);
     }
 
-     if (true == IsDisAppear_)
+    if (true == IsDisAppear_)
     {
-         DisAppearTime_ += _DeltaTime;
+        DisAppearTime_ += _DeltaTime;
 
         if (0.05f < DisAppearTime_)
         {
@@ -33,7 +38,7 @@ void SpectrumComponent::Update(float _DeltaTime)
 
             if (MetaSpectrums_.size() <= Index_)
             {
-                Index_  = 0.f;
+                Index_       = 0.f;
                 IsDisAppear_ = false;
                 return;
             }
@@ -76,24 +81,34 @@ void SpectrumComponent::DrawMetaSpectrum(float _DeltaTime)
     {
         DrawTime_ = 0.f;
 
-        if (MetaSpectrums_.size() <= Index_)
+        if (SpectrumSize_ <= Index_)
         {
-            Index_      = 0.f;
-            IsMetaDraw_ = false;
+            Index_       = 0.f;
+            IsMetaDraw_  = false;
             IsDisAppear_ = true;
             return;
         }
 
-        GameEngineActor* Actor = GetActor()->GetLevel()->CreateActor<GameEngineActor>();
-        Actor->GetTransform().SetWorldScale({2, 2, 1});
-
-        MetaSpectrums_[Index_]->SetParent(Actor);
-        MetaSpectrums_[Index_]->GetColorData().MulColor = float4{0.65, 0.f, 1.0f, 0.5f};
+        SpectrumActors_[Index_]->On();
         MetaSpectrums_[Index_]->On();
 
-        Actor->GetTransform().SetWorldPosition({GetActor()->GetTransform().GetWorldPosition().x,
-                                                GetActor()->GetTransform().GetWorldPosition().y,
-                                                static_cast<int>(ACTORORDER::BehindEffect)});
+        MetaSpectrums_[Index_]->GetColorData().MulColor = float4{0.65, 0.f, 1.0f, 0.5f};
+
+        if (0.0f > GetActor()->GetTransform().GetLocalScale().x)
+        {
+            SpectrumActors_[Index_]->GetTransform().PixLocalNegativeX();
+            SpectrumActors_[Index_]->GetTransform().SetWorldPosition({GetActor()->GetTransform().GetWorldPosition().x,
+                                                                      GetActor()->GetTransform().GetWorldPosition().y,
+                                                                      static_cast<int>(ACTORORDER::BehindEffect)});
+        }
+
+        else
+        {
+            SpectrumActors_[Index_]->GetTransform().PixLocalPositiveX();
+            SpectrumActors_[Index_]->GetTransform().SetWorldPosition({GetActor()->GetTransform().GetWorldPosition().x,
+                                                                      GetActor()->GetTransform().GetWorldPosition().y,
+                                                                      static_cast<int>(ACTORORDER::BehindEffect)});
+        }
 
         ++Index_;
     }
@@ -117,14 +132,22 @@ void SpectrumComponent::CreateSpectrum(const std::string& _Name, const FrameAnim
 }
 
 void SpectrumComponent::CreateMetaSpectrum(const std::string&         _Name,
-                                           const FrameAnimation_DESC& _Info,
-                                           size_t                     _SpectrumSize)
+                                           const FrameAnimation_DESC& _Info)
 {
-    MetaSpectrums_.reserve(_SpectrumSize);
+    MetaSpectrums_.reserve(_Info.Frames.size() - 1);
 
-    for (size_t i = 0; i < _SpectrumSize; i++)
+    for (size_t i = 0; i < _Info.Frames.size() - 1; i++)
     {
-        MetaTextureRenderer*  Spectrum = GetActor()->CreateComponent<MetaTextureRenderer>();
+        GameEngineActor* Actor = GetActor()->GetLevel()->CreateActor<GameEngineActor>();
+        Actor->GetTransform().SetWorldScale({2, 2, 1});
+        Actor->SetLevelOverOn();
+        Actor->Off();
+        SpectrumActors_.push_back(Actor);
+    }
+
+    for (size_t i = 0; i < _Info.Frames.size() - 1; i++)
+    {
+        MetaTextureRenderer*  Spectrum = SpectrumActors_[i]->CreateComponent<MetaTextureRenderer>();
         std::vector<MetaData> Data     = MetaSpriteManager::Inst_->Find(_Name);
         Spectrum->CreateMetaAnimation(_Name + "_Spectrum", _Info, Data);
         Spectrum->ChangeMetaAnimation(_Name + "_Spectrum");
@@ -133,29 +156,31 @@ void SpectrumComponent::CreateMetaSpectrum(const std::string&         _Name,
     }
 }
 
-void SpectrumComponent::SetSpectrum(size_t Start, size_t End)
+void SpectrumComponent::SetSpectrumFrame(size_t Start, size_t End)
 {
-    size_t Length = Start - End;
+    size_t Length = End - Start;
 
-    Length = abs(static_cast<long long>(Length));
+    //Length = abs(static_cast<long long>(Length));
 
-    for (size_t i = 0; i < Length; i++)
+    for (size_t i = 0; i < Length - 1; i++)
     {
-        ++Start;
-        Spectrums_[i]->SetFrame(Start);
+        Spectrums_[i]->CurAnimationSetStartPivotFrame(Start);
         Spectrums_[i]->CurAnimationPauseOn();
+        ++Start;
     }
 }
 
-void SpectrumComponent::SetMetaSpectrum(size_t Start, size_t End)
+void SpectrumComponent::SetMetaSpectrumFrame(size_t Start, size_t End)
 {
-    size_t Length = Start - End;
-    Length        = abs(static_cast<long long>(Length));
+    size_t Length = End - Start;
+    SpectrumSize_ = Length - 1;
 
-    for (size_t i = 0; i < Length; i++)
+    //Length = abs(static_cast<long long>(Length));     
+
+    for (size_t i = 0; i < Length - 1; i++)
     {
-        ++Start;
-        MetaSpectrums_[i]->SetFrame(Start);
+        MetaSpectrums_[i]->CurAnimationSetStartPivotFrame(Start);
         MetaSpectrums_[i]->CurAnimationPauseOn();
+        ++Start;
     }
 }

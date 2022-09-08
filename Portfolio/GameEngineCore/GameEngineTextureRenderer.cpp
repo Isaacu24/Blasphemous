@@ -406,7 +406,7 @@ void GameEngineTextureRenderer::CurAnimationSetStartPivotFrame(int SetFrame)
 }
 
 void GameEngineTextureRenderer::CurAnimationPauseOn()
-{
+{			
 	CurAni->Pause = true;
 }
 

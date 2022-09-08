@@ -268,7 +268,7 @@ void Stage04::PlayerCameraMove(float _DeltaTime)
 {
     float4 CamPos    = GetMainCameraActor()->GetTransform().GetWorldPosition();
     float4 PlayerPos = Penitent_->GetTransform().GetWorldPosition() + float4{0, CameraOffset_};
-    float4 CurPos    = float4::LerpLimit(CamPos, PlayerPos, _DeltaTime * 5);
+    float4 CurPos    = float4::LerpLimit(CamPos, PlayerPos, _DeltaTime * 3);
 
     GetMainCameraActor()->GetTransform().SetWorldPosition({CurPos.x, CurPos.y, CameraZPos_});
 

@@ -13,7 +13,7 @@ Fly::~Fly()
 
 void Fly::Start() 
 {
-    GetTransform().SetWorldScale({2, 2, 1});
+    GetTransform().SetWorldScale({2.5, 2.5, 1});
 
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 

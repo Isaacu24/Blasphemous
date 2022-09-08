@@ -14,13 +14,13 @@ public:
 
     void CreateSpectrum(const std::string& _Name, const FrameAnimation_DESC& _Info, size_t _SpectrumSize);
 
-    void CreateMetaSpectrum(const std::string& _Name, const FrameAnimation_DESC& _Info, size_t _SpectrumSize);
+    void CreateMetaSpectrum(const std::string& _Name, const FrameAnimation_DESC& _Info);
 
     void DrawSpectrum(float _DeltaTime);
     void DrawMetaSpectrum(float _DeltaTime);
 
-    void SetSpectrum(size_t Start, size_t End);
-    void SetMetaSpectrum(size_t Start, size_t End);
+    void SetSpectrumFrame(size_t Start, size_t End);
+    void SetMetaSpectrumFrame(size_t Start, size_t End);
 
     inline void SetIsDraw(bool _Draw) { IsDraw_ = _Draw; }
 
@@ -35,12 +35,15 @@ private:
     std::vector<class GameEngineTextureRenderer*> Spectrums_;
     std::vector<class MetaTextureRenderer*>       MetaSpectrums_;
 
+    std::vector<GameEngineActor*> SpectrumActors_;
+
     bool IsDraw_;
     bool IsMetaDraw_;
 
     float DrawTime_;
     float DisAppearTime_;
 
+    int SpectrumSize_; //만들어지길 원하는 잔상의 수
     int Index_;
 
     bool IsDisAppear_;

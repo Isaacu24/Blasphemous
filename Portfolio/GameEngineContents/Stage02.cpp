@@ -78,6 +78,7 @@ void Stage02::SettingStage()
     {
         Fly* NewFly = CreateActor<Fly>();
         NewFly->GetTransform().SetWorldPosition({1700, -1400, static_cast<int>(ACTORORDER::Player)});
+        NewFly->GetMetaRenderer()->CurAnimationSetStartPivotFrame(3);
     }
 
     {
@@ -88,6 +89,7 @@ void Stage02::SettingStage()
     {
         Fly* NewFly = CreateActor<Fly>();
         NewFly->GetTransform().SetWorldPosition({2300, -1400, static_cast<int>(ACTORORDER::Player)});
+        NewFly->GetMetaRenderer()->CurAnimationSetStartPivotFrame(5);
     }
 
     {
@@ -100,6 +102,7 @@ void Stage02::SettingStage()
         Fly* NewFly = CreateActor<Fly>();
         NewFly->GetTransform().SetWorldPosition({3800, -1400, static_cast<int>(ACTORORDER::Player)});
         NewFly->GetMetaRenderer()->GetColorData().MulColor = float4{5.0f, 1.0f, 1.0f, 1.0f};
+        NewFly->GetMetaRenderer()->CurAnimationSetStartPivotFrame(2);
     }
 
     float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
@@ -185,7 +188,7 @@ void Stage02::Update(float _DeltaTime)
 
     float4 CamPos    = GetMainCameraActor()->GetTransform().GetWorldPosition();
     float4 PlayerPos = Penitent_->GetTransform().GetWorldPosition() + float4{0, CameraOffset_};
-    float4 CurPos    = float4::LerpLimit(CamPos, PlayerPos, _DeltaTime * 5);
+    float4 CurPos    = float4::LerpLimit(CamPos, PlayerPos, _DeltaTime * 3);
 
     GetMainCameraActor()->GetTransform().SetWorldPosition({CurPos.x, CurPos.y, CameraZPos_});
 

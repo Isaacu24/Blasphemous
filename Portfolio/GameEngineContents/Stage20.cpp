@@ -32,7 +32,7 @@ void Stage20::SettingStage()
     GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     AfterLayerRenderer->SetTexture("12_2_AfterLayer.png");
     AfterLayerRenderer->ScaleToTexture();
-    AfterLayerRenderer->GetTransform().SetWorldPosition({0, -550, static_cast<int>(ACTORORDER::AfterLayer5)});
+    AfterLayerRenderer->GetTransform().SetWorldPosition({0, -775, static_cast<int>(ACTORORDER::AfterLayer5)});
     AfterLayerRenderer->GetTransform().SetWorldScale(AfterLayerRenderer->GetTransform().GetWorldScale() * 2.f);
 
     float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
@@ -220,7 +220,7 @@ void Stage20::PlayerCameraMove(float _DeltaTime)
 
     float4 CamPos    = GetMainCameraActor()->GetTransform().GetWorldPosition();
     float4 PlayerPos = Penitent_->GetTransform().GetWorldPosition() + float4{0, CameraOffset_};
-    float4 CurPos    = float4::LerpLimit(CamPos, PlayerPos, _DeltaTime * 5);
+    float4 CurPos    = float4::LerpLimit(CamPos, PlayerPos, _DeltaTime * 3);
 
     GetMainCameraActor()->GetTransform().SetWorldPosition({CurPos.x, CurPos.y, CameraZPos_});
 
