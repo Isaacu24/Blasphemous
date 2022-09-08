@@ -53,6 +53,8 @@ private:
     float RotSpeed_;
     float AttSpeed_;
 
+    SpectrumComponent* AttackSpectrum_;
+
     GameEngineTextureRenderer* IrisRenderer_;  //µ¿°ø
     GameEngineTextureRenderer* EyeRenderer_;   //´«
 

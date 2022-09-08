@@ -94,11 +94,6 @@ void Stage03::SettingStage()
     PlayerRightPos_ = float4{3200, -1067, static_cast<int>(ACTORORDER::Player)};
     PlayerLeftPos_  = float4{150, -1067, static_cast<int>(ACTORORDER::Player)};
 
-    ButtonRenderer_ = CreateActor<GameEngineActor>()->CreateComponent<GameEngineUIRenderer>();
-    ButtonRenderer_->GetTransform().SetWorldScale({50, 50, 1});
-    ButtonRenderer_->SetTexture("KB_SPACE.png");
-    ButtonRenderer_->Off();
-
     IsLeftExit_ = true;
 }
 

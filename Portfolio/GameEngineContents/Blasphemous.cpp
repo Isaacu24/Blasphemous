@@ -17,6 +17,9 @@
 #include "Stage21.h"
 
 #include "Stage30.h"
+
+#include "Shop.h"
+
 #include "MetaLevel.h"
 
 #include "MetaSpriteManager.h"
@@ -54,10 +57,13 @@ void Blasphemous::Start()
     //꿈의 저편
     CreateLevel<Stage30>("Stage30");
 
+    //상점
+    CreateLevel<Shop>("Shop");
+
     //메타 파일 테스트 레벨
     CreateLevel<MetaLevel>("MetaLevel");
 
-    ChangeLevel("MetaLevel");
+    ChangeLevel("Title");
 
     //디버깅
     GameEngineInput::GetInst()->CreateKey("GotoTitle", 'T');
@@ -145,7 +151,7 @@ void Blasphemous::Update(float _DeltaTime)
 
     if (true == GameEngineInput::GetInst()->IsDownKey("GotoStage9"))
     {
-        ChangeLevel("MetaLevel");
+        ChangeLevel("Shop");
     }
 }
 
@@ -165,6 +171,9 @@ void Blasphemous::LoadResources()
     LoadMap("DeambulatoryOfHisHoliness", 12, 3);
 
     LoadMap("OtherSideoftheDream", 13, 1);
+
+    LoadMap("Shop", 15, 1);
+
 
     // UI 이미지
     {

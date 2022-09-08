@@ -132,6 +132,11 @@ public:
 		CalculateWorldRotation(Local);
 	}
 
+	inline float4 GetWorldRotation() const
+	{
+		return Data.WorldRotation;
+	}
+
 	inline void SetWorldPosition(const float4& _World)
 	{
 		float4 Local = _World;

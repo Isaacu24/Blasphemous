@@ -44,7 +44,7 @@ void FireBallSpawner::Update(float _DeltaTime)
             break;
 
         case SPAWNERTYPE::SP_HIGHLEVLE:
-            if (5 == BallCount_)
+            if (3 == BallCount_)
             {
                 SpawnerEnd_ = true;
                 BallCount_  = 0;

@@ -122,6 +122,7 @@ enum class COLLISIONORDER
     BossMonsterAttack,
     BossMonsterAttack1,
     Projectile,
+    Gas,
     Object,
     LeftLedge,  //³­°£
     RightLedge,
@@ -146,7 +147,7 @@ enum class UIORDER
     PlayerUI,
 };
 
-
+    
 enum class COLORTYPE
 {
     RED,

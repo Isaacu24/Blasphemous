@@ -502,8 +502,9 @@ void Penitent::LandingStart(const StateInfo& _Info)
         float4 PlayerPos = GetTransform().GetWorldPosition();
         float  EffectZ   = AO_PLAYEREFFECT;
 
-        AttackEffect_->Renderer_->On();
         AttackEffect_->GetTransform().SetWorldPosition({PlayerPos.x, PlayerPos.y, EffectZ});
+
+        AttackEffect_->Renderer_->On();
         AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_verticalattack_landing_effects_anim");
         AttackEffect_->Renderer_->CurAnimationReset();
         return;
@@ -596,14 +597,14 @@ void Penitent::SlideStart(const StateInfo& _Info)
     MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{RealXDir_ * 50.f, 0});
     MoveEffect_->Renderer_->ChangeMetaAnimation("penitent_start_dodge_dust_anim");
 
-    Spectrum_->SetIsMetaDraw(true);
+    SlideSpectrum_->SetIsMetaDraw(true);
 }
 
 void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     if (GameEngineInput::GetInst()->IsPressKey("PenitentAttack"))
     {
-        State_.ChangeState("DodgeAttack");
+        State_.ChangeState("SlideAttack");
         return;
     }
 
@@ -784,15 +785,17 @@ void Penitent::AttackEnd(const StateInfo& _Info)
 }
 
 
-void Penitent::DodgeAttackStart(const StateInfo& _Info)
+void Penitent::SlideAttackStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_dodge_attack_LVL3");
     AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
     AttackCollider_->ChangeOrder(COLLISIONORDER::PlayerSkill);
     BodyCollider_->Off();
+
+    SlideAttackSpectrum_->SetIsMetaDraw(true);
 }
 
-void Penitent::DodgeAttackUpdate(float _DeltaTime, const StateInfo& _Info)
+void Penitent::SlideAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     if (true == RightObstacleCheck() || true == LeftObstacleCheck())
     {
@@ -803,7 +806,7 @@ void Penitent::DodgeAttackUpdate(float _DeltaTime, const StateInfo& _Info)
     Gravity_->SetActive(!IsGround_);
 }
 
-void Penitent::DodgeAttackEnd(const StateInfo& _Info)
+void Penitent::SlideAttackEnd(const StateInfo& _Info)
 {
     AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
     AttackCollider_->Off();

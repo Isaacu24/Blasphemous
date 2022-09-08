@@ -28,6 +28,7 @@ void ToxicCloud::Start()
                                       ExplsionV1_->Off();
                                       Death();
                                   });
+
     ExplsionV1_->GetTransform().SetWorldScale({200.f, 200.f, 1.f});
     ExplsionV1_->SetPivot(PIVOTMODE::CENTER);
     ExplsionV1_->Off();
@@ -102,6 +103,8 @@ void ToxicCloud::ShootUpdate(float _DeltaTime, const StateInfo& _Info) { Shoot(_
 void ToxicCloud::ExplosionStart(const StateInfo& _Info)
 {
     ExplsionV1_->On();
+    Collider_->ChangeOrder(COLLISIONORDER::Gas);
+    Collider_->GetTransform().SetWorldScale({100.0f, 100.0f, 1.0f});
 
     Renderer_->ChangeFrameAnimation("pope_toxicOrb_broken");
     ExplsionV1_->ChangeFrameAnimation("Pope_toxicCloud");

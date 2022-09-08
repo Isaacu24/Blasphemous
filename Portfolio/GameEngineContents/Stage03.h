@@ -25,6 +25,4 @@ protected:
 
 private:
 	class PrieDieu* PrieDieu_;
-
-    class GameEngineUIRenderer* ButtonRenderer_;
 };

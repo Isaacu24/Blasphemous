@@ -257,6 +257,9 @@
     <ClInclude Include="SpectrumComponent.h">
       <Filter>Component</Filter>
     </ClInclude>
+    <ClInclude Include="Shop.h">
+      <Filter>Level\Shop</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -518,6 +521,9 @@
     <ClCompile Include="SpectrumComponent.cpp">
       <Filter>Component</Filter>
     </ClCompile>
+    <ClCompile Include="Shop.cpp">
+      <Filter>Level\Shop</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -627,6 +633,9 @@
     </Filter>
     <Filter Include="Actor\BossMonster\Pontiff\GiantSword">
       <UniqueIdentifier>{be997806-2233-4e3a-944d-1d6f671bc9bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Shop">
+      <UniqueIdentifier>{3baf1de3-f30a-40dc-a4e9-66baa05a534c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

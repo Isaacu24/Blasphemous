@@ -74,7 +74,8 @@ void Penitent::Start()
     }
 
     Gravity_  = CreateComponent<GravityComponent>();
-    Spectrum_ = CreateComponent<SpectrumComponent>();
+    SlideSpectrum_ = CreateComponent<SpectrumComponent>();
+    SlideAttackSpectrum_ = CreateComponent<SpectrumComponent>();
 
     BodyCollider_ = CreateComponent<GameEngineCollision>();
     BodyCollider_->GetTransform().SetWorldScale({40.f, 80.f, 1.f});
@@ -367,11 +368,11 @@ void Penitent::SetAnimation()
             {"penitent_dodge_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
             Data);
 
-        Spectrum_->CreateMetaSpectrum(
+        SlideSpectrum_->CreateMetaSpectrum(
             "penitent_dodge_anim",
             {"penitent_dodge_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false});
 
-        Spectrum_->SetMetaSpectrumFrame(0, 6);
+        SlideSpectrum_->SetMetaSpectrumFrame(0, 5);
 
         MetaRenderer_->AnimationBindEnd(
             "penitent_dodge_anim",
@@ -573,6 +574,12 @@ void Penitent::SetAnimation()
             "penitent_dodge_attack_LVL3",
             {"penitent_dodge_attack_LVL3.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
             Data);
+
+         SlideAttackSpectrum_->CreateMetaSpectrum(
+            "penitent_dodge_attack_LVL3",
+            {"penitent_dodge_attack_LVL3.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false});
+
+        SlideAttackSpectrum_->SetMetaSpectrumFrame(1, 5);
 
         MetaRenderer_->AnimationBindFrame("penitent_dodge_attack_LVL3",
                                           [&](const FrameAnimation_DESC& _Info)
@@ -1034,10 +1041,10 @@ void Penitent::SetPlayerState()
                              std::bind(&Penitent::JumpAttackEnd, this, std::placeholders::_1));
 
     State_.CreateStateMember(
-        "DodgeAttack",
-        std::bind(&Penitent::DodgeAttackUpdate, this, std::placeholders::_1, std::placeholders::_2),
-        std::bind(&Penitent::DodgeAttackStart, this, std::placeholders::_1),
-        std::bind(&Penitent::DodgeAttackEnd, this, std::placeholders::_1));
+        "SlideAttack",
+        std::bind(&Penitent::SlideAttackUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&Penitent::SlideAttackStart, this, std::placeholders::_1),
+        std::bind(&Penitent::SlideAttackEnd, this, std::placeholders::_1));
 
     State_.CreateStateMember(
         "VerticalAttack",

@@ -137,9 +137,9 @@ protected:
     void JumpAttackUpdate(float _DeltaTime, const StateInfo& _Info);
     void JumpAttackEnd(const StateInfo& _Info);
 
-    void DodgeAttackStart(const StateInfo& _Info);
-    void DodgeAttackUpdate(float _DeltaTime, const StateInfo& _Info);
-    void DodgeAttackEnd(const StateInfo& _Info);
+    void SlideAttackStart(const StateInfo& _Info);
+    void SlideAttackUpdate(float _DeltaTime, const StateInfo& _Info);
+    void SlideAttackEnd(const StateInfo& _Info);
 
     void VerticalAttackStart(const StateInfo& _Info);
     void VerticalAttackUpdate(float _DeltaTime, const StateInfo& _Info);
@@ -192,7 +192,8 @@ private:
     float4                            ColScale_;
     class GameEngineFontRederer*      Font_;
 
-    SpectrumComponent* Spectrum_;
+    SpectrumComponent* SlideSpectrum_;
+    SpectrumComponent* SlideAttackSpectrum_;
 
     MetaTextureRenderer* MetaRenderer_;
 

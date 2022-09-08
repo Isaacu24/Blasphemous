@@ -21,6 +21,8 @@ void GiantSword::Start()
     IrisRenderer_->SetPivot(PIVOTMODE::TOP);
     IrisRenderer_->Off();
 
+    AttackSpectrum_ = CreateComponent<SpectrumComponent>();
+
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 
     Renderer_->CreateFrameAnimationCutTexture("pontiff_giantSword_teleportOUT",
@@ -46,6 +48,11 @@ void GiantSword::Start()
     Renderer_->CreateFrameAnimationCutTexture("pontiff_giantSword_swordSprite",
                                               {"pontiff_giantSword_swordSprite.png", 0, 0, 0.1f, false});
 
+    AttackSpectrum_->CreateOnceSpectrum("pontiff_giantSword_swordSprite",
+                                    {"pontiff_giantSword_swordSprite.png", 0, 0, 0.1f, false}, 16);
+
+    AttackSpectrum_->SetOnceSpectrumFrame(15);
+
     Renderer_->GetTransform().SetLocalScale({125, 400});
     Renderer_->SetPivot(PIVOTMODE::TOP);
 
@@ -69,6 +76,7 @@ void GiantSword::Start()
 
     BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
     BloodEffect_->GetRenderer()->Off();
+
 
     State_.CreateStateMember(
         "TeleportIN",
@@ -191,6 +199,8 @@ void GiantSword::AttackStart(const StateInfo& _Info)
     Dir_.Normalize();
 
     AttackCollider_->On();
+
+    AttackSpectrum_->SetIsDraw(true);
 }
 
 void GiantSword::AttackUpdate(float _DeltaTime, const StateInfo& _Info)

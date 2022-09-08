@@ -5,7 +5,7 @@ enum class CutSceneType
 {
 	Intro,
 	FallPenitent,
-	DeadBrotherhood,
+	DeadBrotherhood
 };
 
 class CutScenePlayer : public GameEngineActor
