@@ -1,9 +1,8 @@
 #pragma once
-#include <GameEngineCore/GameEngineLevel.h>
 #include "StageBase.h"
 
 //플레이어가 게임을 시작하는 스테이지
-class Stage01 : public GameEngineLevel, public StageBase
+class Stage01 : public StageBase
 {
 public:
 	Stage01();

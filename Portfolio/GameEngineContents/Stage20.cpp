@@ -20,7 +20,7 @@ void Stage20::SettingStage()
     GameEngineTextureRenderer* BeforePrallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforePrallaxRenderer->SetTexture("12_2_BeforeParallax_0.png");
     BeforePrallaxRenderer->ScaleToTexture();
-    BeforePrallaxRenderer->GetTransform().SetWorldPosition({0, 390, BeforeParallax5Z});
+    BeforePrallaxRenderer->GetTransform().SetWorldPosition({0, 350, BeforeParallax5Z});
     BeforePrallaxRenderer->GetTransform().SetWorldScale(BeforePrallaxRenderer->GetTransform().GetWorldScale() * 2.3f);
 
     GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();

@@ -36,8 +36,7 @@ void MagicMissileSpawner::Update(float _DeltaTime)
                 {
                     MagicMissile* Missile = GetLevel()->CreateActor<MagicMissile>();
                     Missile->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
-                                                              GetTransform().GetWorldPosition().y + 50.f,
-                                                              BossMonsterEffectZ});
+                                                              GetTransform().GetWorldPosition().y + 50.f, BossMonsterEffectZ});
                     Missile->SetStartPosition(Missile->GetTransform().GetWorldPosition());
                     Missile->SetDirection(Dir_);
 
@@ -75,14 +74,12 @@ void MagicMissileSpawner::Update(float _DeltaTime)
                 MultipleMagicMissile* Missile = GetLevel()->CreateActor<MultipleMagicMissile>();
                 Missile->GetTransform().SetWorldScale({2, 2, 1});
                 Missile->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x - 350.f,
-                                                          GetTransform().GetWorldPosition().y,
-                                                          BossMonsterEffectZ});
+                                                          GetTransform().GetWorldPosition().y, FrontEffet});
 
                 MultipleMagicMissile* Missile1 = GetLevel()->CreateActor<MultipleMagicMissile>();
                 Missile1->GetTransform().SetWorldScale({2, 2, 1});
                 Missile1->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x + 350.f,
-                                                          GetTransform().GetWorldPosition().y,
-                                                          BossMonsterEffectZ});
+                                                          GetTransform().GetWorldPosition().y, FrontEffet});
             }
 
 

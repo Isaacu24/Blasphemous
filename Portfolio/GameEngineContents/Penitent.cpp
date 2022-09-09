@@ -135,21 +135,19 @@ void Penitent::Start()
     PlayerUI_->SetLevelOverOn();
     PlayerUI_->SetTear(Tear_);
 
-    float EffectZ = AO_PLAYEREFFECT;
-
     MoveEffect_ = GetLevel()->CreateActor<MoveEffect>();
     MoveEffect_->GetTransform().SetWorldScale({2, 2, 1});
-    MoveEffect_->GetTransform().SetLocalPosition({0, 0, EffectZ});
+    MoveEffect_->GetTransform().SetLocalPosition({0, 0, PlayerEffectZ});
     MoveEffect_->SetLevelOverOn();
 
     AttackEffect_ = GetLevel()->CreateActor<AttackEffect>();
     AttackEffect_->GetTransform().SetWorldScale({2, 2, 1});
-    AttackEffect_->GetTransform().SetLocalPosition({0, 0, EffectZ});
+    AttackEffect_->GetTransform().SetLocalPosition({0, 0, PlayerEffectZ});
     AttackEffect_->SetLevelOverOn();
 
     HitEffect_ = GetLevel()->CreateActor<HitEffect>();
     HitEffect_->GetTransform().SetWorldScale({2, 2, 1});
-    HitEffect_->GetTransform().SetLocalPosition({0, 0, EffectZ});
+    HitEffect_->GetTransform().SetLocalPosition({0, 0, PlayerEffectZ});
     HitEffect_->SetLevelOverOn();
 
     GetTransform().SetLocalScale({2, 2, 1});
@@ -196,11 +194,6 @@ void Penitent::Update(float _DeltaTime)
     GameEngineDebug::OutPutString("PlayerState: " + State_.GetCurStateStateName());
 
     GameEngineDebug::OutPutString("Player HP: " + std::to_string(GetHP()));
-
-    // GameEngineDebug::OutPutString("MousePosX: "
-    //                               + std::to_string(GetLevel()->GetMainCamera()->GetMouseWorldPositionToActor().x));
-    // GameEngineDebug::OutPutString("MousePosY: "
-    //                               + std::to_string(GetLevel()->GetMainCamera()->GetMouseWorldPositionToActor().y));
 }
 
 void Penitent::End() {}
@@ -691,11 +684,9 @@ void Penitent::SetAnimation()
                             AttackCollider_->On();
                             HitStack_ = 0;
 
-                            float EffectZ = AO_PLAYEREFFECT;
-
                             AttackEffect_->Renderer_->On();
                             AttackEffect_->GetTransform().SetWorldPosition(
-                                {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, EffectZ});
+                                {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, PlayerEffectZ});
                             AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_upward_attack_slash_lvl1");
                         }
 
@@ -969,7 +960,7 @@ void Penitent::SetAnimation()
             Data);
 
         MetaRenderer_->AnimationBindEnd("RegresoAPuerto-Prayer",
-                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+                                        [&](const FrameAnimation_DESC& _Info) { GEngine::ChangeLevel("Stage21"); });
     }
 
     //기도 공격

@@ -18,6 +18,17 @@ void MagicMissile::Start()
     Renderer_->CreateFrameAnimationCutTexture("Shoot", {"pope_magicMissile.png", 7, 19, 0.1f, true});
 
     Renderer_->CreateFrameAnimationCutTexture("Death", {"pope_magicMissile.png", 19, 28, 0.1f, true});
+
+    Renderer_->AnimationBindFrame("Death",
+                                  [&](const FrameAnimation_DESC& _Info)
+                                  {
+                                      if (1 == _Info.CurFrame)
+                                      {
+                                          Collider_->Off();
+                                      }
+                                  });
+
+
     Renderer_->AnimationBindEnd("Death", [&](const FrameAnimation_DESC& _Info) { Death(); });
 
     Renderer_->ChangeFrameAnimation("Create");
@@ -25,7 +36,7 @@ void MagicMissile::Start()
     Renderer_->SetPivot(PIVOTMODE::CENTER);
 
     Collider_ = CreateComponent<GameEngineCollision>();
-    Collider_->ChangeOrder(COLLISIONORDER::Projectile);
+    Collider_->ChangeOrder(COLLISIONORDER::BossMonsterAttack);
     Collider_->GetTransform().SetWorldScale({10.0f, 10.0f, 1.0f});
 }
 
@@ -46,13 +57,11 @@ void MagicMissile::Update(float _DeltaTime)
                            {
                                Renderer_->ChangeFrameAnimation("Death");
 
-                               Collider_->Off();
-
                                IsExplosion_ = true;
                                return true;
                            });
 
-    float4 Distance = StartPos_ - GetTransform().GetWorldPosition();
+    float4 Distance    = StartPos_ - GetTransform().GetWorldPosition();
     float4 ABSDistance = float4::ABS3DReturn(Distance);
 
     if (3000.f < ABSDistance.x || 3000.f < ABSDistance.y)

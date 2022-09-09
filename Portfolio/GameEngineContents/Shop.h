@@ -1,10 +1,7 @@
 #pragma once
-#include <GameEngineCore/GameEngineLevel.h>
 #include "StageBase.h"
 
-class Shop
-    : public GameEngineLevel
-    , public StageBase
+class Shop : public StageBase
 {
 public:
     Shop();

@@ -1,5 +1,6 @@
 #pragma once
 #include "PenitentGuilt.h"
+#include <GameEngineCore/GameEngineLevel.h>
 
 enum class STAGEFLOW
 {
@@ -11,7 +12,7 @@ enum class STAGEFLOW
 };
 
 class GameEngineCollision;
-class StageBase
+class StageBase : public GameEngineLevel
 {
 public:
     StageBase();
@@ -26,13 +27,21 @@ public:
 
     inline STAGEFLOW GetFlow() { return CurrentFlow_; }
 
+    void CameraShaking(float _DeltaTime);
+    
 protected:
+    void Start() override;
+    void Update(float _DeltaTime) override;
+    void End() override;
+
     STAGEFLOW CurrentFlow_;
 
     GameEngineActor* Stage_;
 
     float4 CurPos_;
     float4 PrevPos_;
+
+    int ShakeCount_ = 30;
 
     GameEngineTextureRenderer* ColMap_;
 
@@ -67,6 +76,7 @@ protected:
 
     class PenitentGuilt* Guilt_;
 
+    float ShakeTime_;
+
 private:
 };
-

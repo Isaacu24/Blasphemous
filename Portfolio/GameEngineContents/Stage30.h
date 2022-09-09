@@ -1,8 +1,7 @@
 #pragma once
-#include <GameEngineCore/GameEngineLevel.h>
 #include "StageBase.h"
 
-class Stage30 : public GameEngineLevel, public StageBase
+class Stage30 : public StageBase
 {
 public:
 	Stage30();

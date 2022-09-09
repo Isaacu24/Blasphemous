@@ -51,13 +51,13 @@ void LightiningBoltSpawner::Update(float _DeltaTime)
                             {
                                 LightiningBolt* Bolt = GetLevel()->CreateActor<LightiningBolt>();
                                 Bolt->GetTransform().SetWorldPosition(
-                                    {TargetPos.x - 50.f, GetTransform().GetWorldPosition().y});
+                                    {TargetPos.x - 50.f, GetTransform().GetWorldPosition().y, FrontEffet});
                             }
 
                             {
                                 LightiningBolt* Bolt = GetLevel()->CreateActor<LightiningBolt>();
                                 Bolt->GetTransform().SetWorldPosition(
-                                    {TargetPos.x + 50.f, GetTransform().GetWorldPosition().y});
+                                    {TargetPos.x + 50.f, GetTransform().GetWorldPosition().y, FrontEffet});
                             }
 
                             DelayTime_ -= 2.0f;
@@ -71,7 +71,8 @@ void LightiningBoltSpawner::Update(float _DeltaTime)
                             float4 TargetPos = Target_->GetTransform().GetWorldPosition();
 
                             LightiningBolt* Bolt = GetLevel()->CreateActor<LightiningBolt>();
-                            Bolt->GetTransform().SetWorldPosition({TargetPos.x, GetTransform().GetWorldPosition().y});
+                            Bolt->GetTransform().SetWorldPosition(
+                                {TargetPos.x, GetTransform().GetWorldPosition().y, FrontEffet});
 
                             DelayTime_ -= 2.0f;
                             CurType_ = BOLTTYPE::Pair;
@@ -103,7 +104,8 @@ void LightiningBoltSpawner::Update(float _DeltaTime)
                 {
                     Bolt_ = GetLevel()->CreateActor<LightiningBolt>();
                     Bolt_->GetTransform().SetWorldScale({1.15f, 1.3f, 1});
-                    Bolt_->GetTransform().SetWorldPosition({TargetPos.x, GetTransform().GetWorldPosition().y, BossMonsterEffectZ});
+                    Bolt_->GetTransform().SetWorldPosition(
+                        {TargetPos.x, GetTransform().GetWorldPosition().y, FrontEffet});
                 }
 
                 DelayTime_ -= 2.0f;
