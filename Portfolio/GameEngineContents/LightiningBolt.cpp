@@ -29,7 +29,7 @@ void LightiningBolt::Start()
     // FXSRenderer_->SetPivot(PIVOTMODE::CENTER);
 
     Collider_ = CreateComponent<GameEngineCollision>();
-    Collider_->ChangeOrder(COLLISIONORDER::Projectile);
+    Collider_->ChangeOrder(COLLISIONORDER::BossMonsterAttack1);
     Collider_->GetTransform().SetWorldScale({10.0f, 700.0f, 1.0f});
     Collider_->Off();
 }

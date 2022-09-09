@@ -15,7 +15,6 @@ void PrieDieu::Start()
 	Renderer_->CreateFrameAnimationCutTexture("priedieu_stand_and_liton_anim", { "priedieu_stand_and_liton_anim.png", 1, 6, 0.1f, true });
 	Renderer_->ChangeFrameAnimation("priedieu_stand_and_liton_anim");
 	Renderer_->GetTransform().SetWorldScale({ 150, 300 });
-	Renderer_->GetTransform().SetWorldPosition({ 0, 0, static_cast<int>(ACTORORDER::Object) });
 
     UICollider_ = CreateComponent<GameEngineCollision>();
     UICollider_->GetTransform().SetWorldScale({100.f, 200.f, 1.f});
@@ -26,7 +25,6 @@ void PrieDieu::Start()
     UIRenderer_ = CreateComponent<GameEngineTextureRenderer>();
     UIRenderer_->SetTexture("CT_Y.png");
     UIRenderer_->GetTransform().SetWorldScale({30, 30, 1});
-    UIRenderer_->GetTransform().SetLocalPosition({0, 0, static_cast<int>(ACTORORDER::Object)});
     UIRenderer_->GetTransform().SetWorldMove({-7, 150});
     UIRenderer_->Off();
 }

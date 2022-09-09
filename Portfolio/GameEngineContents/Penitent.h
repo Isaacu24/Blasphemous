@@ -147,6 +147,10 @@ protected:
     void VerticalAttackUpdate(float _DeltaTime, const StateInfo& _Info);
     void VerticalAttackEnd(const StateInfo& _Info);
 
+    void PrayAttackStart(const StateInfo& _Info);
+    void PrayAttackUpdate(float _DeltaTime, const StateInfo& _Info);
+    void PrayAttackEnd(const StateInfo& _Info);
+
     void KnockBackStart(const StateInfo& _Info);
     void KnockBackUpdate(float _DeltaTime, const StateInfo& _Info);
     void KnockBackEnd(const StateInfo& _Info);

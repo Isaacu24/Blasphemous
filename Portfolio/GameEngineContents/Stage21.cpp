@@ -15,24 +15,24 @@ void Stage21::SettingStage()
     ColMap_ = Stage_->CreateComponent<GameEngineTextureRenderer>();
     ColMap_->SetTexture("12_3_Colmap.png");
     ColMap_->ScaleToTexture();
-    ColMap_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::ColMap)});
+    ColMap_->GetTransform().SetWorldPosition({0, 0, ColmapZ});
 
     GameEngineTextureRenderer* BeforeLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeLayerRenderer->SetTexture("12_3_BeforeLayer_0.png");
     BeforeLayerRenderer->ScaleToTexture();
-    BeforeLayerRenderer->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BeforeLayer0)});
+    BeforeLayerRenderer->GetTransform().SetWorldPosition({0, 0, BeforeLayerZ});
     BeforeLayerRenderer->GetTransform().SetWorldScale(BeforeLayerRenderer->GetTransform().GetWorldScale() * 2.f);
 
     GameEngineTextureRenderer* BeforeLayerRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeLayerRenderer1->SetTexture("12_3_BeforeLayer_1.png");
     BeforeLayerRenderer1->ScaleToTexture();
-    BeforeLayerRenderer1->GetTransform().SetWorldPosition({0, -5, static_cast<int>(ACTORORDER::BeforeLayer2)});
+    BeforeLayerRenderer1->GetTransform().SetWorldPosition({0, -5, BeforeLayer2Z});
     BeforeLayerRenderer1->GetTransform().SetWorldScale(BeforeLayerRenderer1->GetTransform().GetWorldScale() * 2.f);
 
     GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     StageRenderer->SetTexture("12_3_Tile.png");
     StageRenderer->ScaleToTexture();
-    StageRenderer->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::AfterLayer0)});
+    StageRenderer->GetTransform().SetWorldPosition({0, 0, AfterLayerZ});
     StageRenderer->GetTransform().SetWorldScale(StageRenderer->GetTransform().GetWorldScale() * 2.f);
 
     float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
@@ -48,7 +48,7 @@ void Stage21::SettingStage()
 void Stage21::SettingMonster()
 {
     Pontiff_ = CreateActor<Pontiff>();
-    Pontiff_->GetTransform().SetWorldPosition({1260, -520, static_cast<int>(ACTORORDER::BeforeLayer1)});
+    Pontiff_->GetTransform().SetWorldPosition({1260, -520, BeforeLayer1Z});
     Pontiff_->SetGround(ColMap_);
     Pontiff_->CreateSpawner();
     BossMonster_ = Pontiff_;
@@ -98,7 +98,7 @@ void Stage21::PlayerCameraMove(float _DeltaTime)
     }
 
     float4 CamPos    = GetMainCameraActor()->GetTransform().GetWorldPosition();
-    float4 PlayerPos = Penitent_->GetTransform().GetWorldPosition() + float4{0, 300};
+    float4 PlayerPos = Penitent_->GetTransform().GetWorldPosition() + float4{0, 275};
     float4 CurPos    = float4::LerpLimit(CamPos, PlayerPos, _DeltaTime * 3);
 
     GetMainCameraActor()->GetTransform().SetWorldPosition({1250, CurPos.y, CameraZPos_});
@@ -112,13 +112,13 @@ void Stage21::PlayerCameraMove(float _DeltaTime)
     if (680 > Penitent_->GetTransform().GetWorldPosition().x)
     {
         Penitent_->GetTransform().SetWorldPosition(
-            float4{680, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player)});
+            float4{680, Penitent_->GetTransform().GetWorldPosition().y, PlayerZ});
     }
 
     else if (1810 < Penitent_->GetTransform().GetWorldPosition().x)
     {
         Penitent_->GetTransform().SetWorldPosition(
-            float4{1810, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player)});
+            float4{1810, Penitent_->GetTransform().GetWorldPosition().y, PlayerZ});
     }
 
     GameEngineDebug::OutPutString("x : " + std::to_string(Penitent_->GetTransform().GetLocalPosition().x));
@@ -133,7 +133,7 @@ void Stage21::LevelStartEvent()
     if (nullptr == Penitent::GetMainPlayer())
     {
         Penitent_ = CreateActor<Penitent>(ACTORORDER::Player);
-        Penitent_->GetTransform().SetWorldPosition({1250, -860, static_cast<int>(ACTORORDER::Player)});
+        Penitent_->GetTransform().SetWorldPosition({1250, -860, PlayerZ});
         Penitent_->SetGround(ColMap_);
 
         Penitent_->SetLevelOverOn();
@@ -142,7 +142,7 @@ void Stage21::LevelStartEvent()
     else if (nullptr != Penitent::GetMainPlayer())
     {
         Penitent_ = Penitent::GetMainPlayer();
-        Penitent_->GetTransform().SetWorldPosition({1250, -860, static_cast<int>(ACTORORDER::Player)});
+        Penitent_->GetTransform().SetWorldPosition({1250, -860, PlayerZ});
         Penitent_->SetGround(ColMap_);
 
         Penitent_->SetLevelOverOn();
@@ -151,13 +151,13 @@ void Stage21::LevelStartEvent()
     if (350 > Penitent_->GetTransform().GetWorldPosition().x)
     {
         Penitent_->GetTransform().SetWorldPosition(
-            float4{350, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player)});
+            float4{350, Penitent_->GetTransform().GetWorldPosition().y, PlayerZ});
     }
 
     if (2000 < Penitent_->GetTransform().GetWorldPosition().x)
     {
         Penitent_->GetTransform().SetWorldPosition(
-            float4{2000, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player)});
+            float4{2000, Penitent_->GetTransform().GetWorldPosition().y, PlayerZ});
     }
 
     IsRightExit_ = false;
@@ -187,7 +187,7 @@ void Stage21::LevelEndEvent()
         {
             Guilt_->GetTransform().SetLocalPosition({Penitent_->GetTransform().GetWorldPosition().x,
                                                      Penitent_->GetTransform().GetWorldPosition().y,
-                                                     static_cast<int>(ACTORORDER::Object)});
+                                                     ObjectZ});
         }
     }
 }

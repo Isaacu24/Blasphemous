@@ -67,50 +67,6 @@ protected:
 
     class PenitentGuilt* Guilt_;
 
-    float AfterParallaxZ;
-    float AfterParallax1Z;
-    float AfterParallax2Z;
-    float AfterParallax3Z;
-    float AfterParallax4Z;
-    float AfterParallax5Z;
-
-    float AfterLayerZ;
-    float AfterLayer1Z;
-    float AfterLayer2Z;
-    float AfterLayer3Z;
-    float AfterLayer4Z;
-    float AfterLayer5Z;
-
-    float DoorZ;
-
-    float PlayerEffectZ;
-    float PlayerZ;
-    float PlayerBehindEffectZ;
-    float NPCZ;
-    float PlatformZ;
-    float BossMonsterEffectZ;
-    float BossMonsterZ;
-    float MonsterZ;
-    float ObjectZ;
-    float TileZ;
-
-    float BeforeLayerZ;
-    float BeforeLayer1Z;
-    float BeforeLayer2Z;
-    float BeforeLayer3Z;
-    float BeforeLayer4Z;
-    float BeforeLayer5Z;
-
-    float BeforeParallaxZ;
-    float BeforeParallax1Z;
-    float BeforeParallax2Z;
-    float BeforeParallax3Z;
-    float BeforeParallax4Z;
-    float BeforeParallax5Z;
-
-    float ColmapZ;
-
-
 private:
 };
 

@@ -60,6 +60,7 @@ void Penitent::Start()
         GameEngineInput::GetInst()->CreateKey("PenitentAttack", 'K');
         GameEngineInput::GetInst()->CreateKey("PenitentParry", 'J');
         GameEngineInput::GetInst()->CreateKey("PenitentTelport", 'B');
+        GameEngineInput::GetInst()->CreateKey("PenitentPary", 'P');
         GameEngineInput::GetInst()->CreateKey("FreeCamera", 'O');
 
         GameEngineInput::GetInst()->CreateKey("PenitentAnimation", '1');
@@ -73,8 +74,8 @@ void Penitent::Start()
         Flasks_[i] = true;
     }
 
-    Gravity_  = CreateComponent<GravityComponent>();
-    SlideSpectrum_ = CreateComponent<SpectrumComponent>();
+    Gravity_             = CreateComponent<GravityComponent>();
+    SlideSpectrum_       = CreateComponent<SpectrumComponent>();
     SlideAttackSpectrum_ = CreateComponent<SpectrumComponent>();
 
     BodyCollider_ = CreateComponent<GameEngineCollision>();
@@ -353,7 +354,7 @@ void Penitent::SetAnimation()
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
-    {           
+    {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_hardlanding_rocks_anim");
 
         MetaRenderer_->CreateMetaAnimation(
@@ -580,7 +581,7 @@ void Penitent::SetAnimation()
             {"penitent_dodge_attack_LVL3.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
             Data);
 
-         SlideAttackSpectrum_->CreateMetaSpectrum(
+        SlideAttackSpectrum_->CreateMetaSpectrum(
             "penitent_dodge_attack_LVL3",
             {"penitent_dodge_attack_LVL3.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false});
 
@@ -971,6 +972,39 @@ void Penitent::SetAnimation()
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
+    //기도 공격
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_aura_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_aura_anim",
+            {"penitent_aura_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindFrame(
+            "penitent_aura_anim",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                if (14 == _Info.CurFrame)
+                {
+                    MetaRenderer_->GetColorData().MulColor = float4{0.26f, 0.6f, 0.76f, 1.0f} * 2.f;
+
+                    AttackEffect_->Renderer_->On();
+                    AttackEffect_->Renderer_->ChangeMetaAnimation("threeAnguishBigBeamBlue");
+                    AttackEffect_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x + (RealXDir_ * 30.f),
+                                                                    GetTransform().GetWorldPosition().y - 15.f,
+                                                                    PlayerBehindEffectZ});
+                }
+            });
+
+        MetaRenderer_->AnimationBindEnd("penitent_aura_anim",
+                                        [&](const FrameAnimation_DESC& _Info) 
+            { 
+                MetaRenderer_->GetColorData().MulColor = float4{1.0f, 1.0f, 1.0f, 1.0f};
+                ChangeState("Idle"); 
+            });
+    }
+
     MetaRenderer_->SetPivot(PIVOTMODE::METABOT);
 }
 
@@ -1059,6 +1093,11 @@ void Penitent::SetPlayerState()
         std::bind(&Penitent::VerticalAttackUpdate, this, std::placeholders::_1, std::placeholders::_2),
         std::bind(&Penitent::VerticalAttackStart, this, std::placeholders::_1),
         std::bind(&Penitent::VerticalAttackEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember("PrayAttack",
+                             std::bind(&Penitent::PrayAttackUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::PrayAttackStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::PrayAttackEnd, this, std::placeholders::_1));
 
     State_.CreateStateMember("Parrying",
                              std::bind(&Penitent::ParryingUpdate, this, std::placeholders::_1, std::placeholders::_2),

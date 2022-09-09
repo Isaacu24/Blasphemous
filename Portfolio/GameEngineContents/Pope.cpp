@@ -144,10 +144,10 @@ void Pope::Start()
     BodyCollider_->GetTransform().SetWorldScale({50.0f, 100.0f, 1.0f});
     BodyCollider_->GetTransform().SetWorldMove({0, 100});
 
-    TeleportPos_[0] = float4{1800, -1760, static_cast<int>(ACTORORDER::Monster)};
-    TeleportPos_[1] = float4{2100, -1760, static_cast<int>(ACTORORDER::Monster)};
-    TeleportPos_[2] = float4{2500, -1760, static_cast<int>(ACTORORDER::Monster)};
-    TeleportPos_[3] = float4{2800, -1760, static_cast<int>(ACTORORDER::Monster)};
+    TeleportPos_[0] = float4{1800, -1760, BossMonsterZ};
+    TeleportPos_[1] = float4{2100, -1760, BossMonsterZ};
+    TeleportPos_[2] = float4{2500, -1760, BossMonsterZ};
+    TeleportPos_[3] = float4{2800, -1760, BossMonsterZ};
 
     CreateSpawner();
 
@@ -162,21 +162,21 @@ void Pope::Start()
 void Pope::CreateSpawner()
 {
     FireBallSpawner_ = GetLevel()->CreateActor<FireBallSpawner>();
-    FireBallSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Monster)});
+    FireBallSpawner_->GetTransform().SetWorldPosition({0, 0, BossMonsterEffectZ});
     FireBallSpawner_->SetGround(ColMap_);
     FireBallSpawner_->Off();
 
     ToxicCloudSpawner_ = GetLevel()->CreateActor<ToxicCloudSpawner>();
-    ToxicCloudSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Monster)});
+    ToxicCloudSpawner_->GetTransform().SetWorldPosition({0, 0, BossMonsterEffectZ});
     ToxicCloudSpawner_->SetGround(ColMap_);
     ToxicCloudSpawner_->Off();
 
     LightiningBoltSpawner_ = GetLevel()->CreateActor<LightiningBoltSpawner>();
-    LightiningBoltSpawner_->GetTransform().SetWorldPosition({0, -1460, static_cast<int>(ACTORORDER::Monster)});
+    LightiningBoltSpawner_->GetTransform().SetWorldPosition({0, -1460, BossMonsterEffectZ});
     LightiningBoltSpawner_->Off();
 
     MagicMissileSpawner_ = GetLevel()->CreateActor<MagicMissileSpawner>();
-    MagicMissileSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Monster)});
+    MagicMissileSpawner_->GetTransform().SetWorldPosition({0, 0, BossMonsterEffectZ});
     MagicMissileSpawner_->Off();
 
     BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
@@ -290,8 +290,6 @@ void Pope::SpellCastStart(const StateInfo& _Info)
             Spell = 0;
         }
     }
-
-    Spell = 3;
 
     switch (Spell)
     {

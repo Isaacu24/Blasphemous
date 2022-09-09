@@ -160,7 +160,7 @@ void GiantSword::TeleportOutUpdate(float _DeltaTime, const StateInfo& _Info)
     {
         BloodEffect_->GetTransform().SetWorldPosition({BodyCollider_->GetTransform().GetWorldPosition().x,
                                                        BodyCollider_->GetTransform().GetWorldPosition().y,
-                                                       static_cast<int>(ACTORORDER::PlayerEffect)});
+                                                       PlayerEffectZ});
         BloodEffect_->GetRenderer()->On();
         BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
     }
@@ -270,7 +270,7 @@ void GiantSword::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
     {
         BloodEffect_->GetTransform().SetWorldPosition({BodyCollider_->GetTransform().GetWorldPosition().x,
                                                        BodyCollider_->GetTransform().GetWorldPosition().y,
-                                                       static_cast<int>(ACTORORDER::PlayerEffect)});
+                                                       PlayerEffectZ});
         BloodEffect_->GetRenderer()->On();
         BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
     }
@@ -333,23 +333,14 @@ bool GiantSword::TrackToPlayer(float _StateTime)
     {
         SetSpeed(200.f);
         GetTransform().SetWorldMove({NDir.x * Speed_ * GameEngineTime::GetDeltaTime(), 0});
-
-        if (DistanceX <= 100 && 3.f <= _StateTime)
-        {
-            State_.ChangeState("Attack");
-        }
     }
 
     if (DistanceY <= 200)
     {
         SetSpeed(200.f);
         GetTransform().SetWorldMove({0, NDir.y * Speed_ * GameEngineTime::GetDeltaTime()});
-
-        if (DistanceY <= 100 && 3.f <= _StateTime)
-        {
-            State_.ChangeState("Attack");
-        }
     }
+
 
     if (DistanceX > 300)
     {
@@ -357,10 +348,21 @@ bool GiantSword::TrackToPlayer(float _StateTime)
         GetTransform().SetWorldMove({-NDir.x * Speed_ * GameEngineTime::GetDeltaTime(), 0});
     }
 
+    //최대 사정거리보다 짧고 최소 사정거리보다 길어야 함
+    else if (DistanceX > 200 && DistanceX <= 300 && 5.f <= _StateTime)
+    {
+        State_.ChangeState("Attack");
+    }
+
     if (DistanceY > 300)
     {
         SetSpeed(350.f);
         GetTransform().SetWorldMove({0, -NDir.y * Speed_ * GameEngineTime::GetDeltaTime()});
+    }
+
+    else if (DistanceY > 200 && DistanceY <= 300 && 5.f <= _StateTime)
+    {
+        State_.ChangeState("Attack");
     }
 
     return false;

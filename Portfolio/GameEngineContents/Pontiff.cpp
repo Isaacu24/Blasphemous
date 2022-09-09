@@ -66,8 +66,7 @@ void Pontiff::Start()
             {
                 MainBody_->On();
                 MainBody_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
-                                                            GetTransform().GetWorldPosition().y - 200,
-                                                            static_cast<int>(ACTORORDER::BeforeLayer5)});
+                                                            GetTransform().GetWorldPosition().y - 200, BeforeLayer5Z});
 
                 IsAscension_ = true;
             }
@@ -112,7 +111,7 @@ void Pontiff::Start()
     State_.ChangeState("Appear");
 
     GiantSword_ = GetLevel()->CreateActor<GiantSword>();
-    GiantSword_->GetTransform().SetWorldPosition({1250, -600, static_cast<int>(ACTORORDER::Monster)});
+    GiantSword_->GetTransform().SetWorldPosition({1250, -600, FrontBoss});
     GiantSword_->SetPontiff(this);
 
     BossUI_ = GetLevel()->CreateActor<BossUI>();
@@ -132,12 +131,12 @@ void Pontiff::Start()
 
     Symbol_[0] = GetLevel()->CreateActor<SymbolEffect>();
     Symbol_[0]->GetTransform().SetWorldScale({2, 2, 1});
-    Symbol_[0]->GetTransform().SetWorldPosition({860, -600, static_cast<int>(ACTORORDER::BossMonsterEffect)});
+    Symbol_[0]->GetTransform().SetWorldPosition({860, -600, BossMonsterEffectZ});
     Symbol_[0]->Renderer_->Off();
 
     Symbol_[1] = GetLevel()->CreateActor<SymbolEffect>();
     Symbol_[1]->GetTransform().SetWorldScale({2, 2, 1});
-    Symbol_[1]->GetTransform().SetWorldPosition({1660, -600, static_cast<int>(ACTORORDER::BossMonsterEffect)});
+    Symbol_[1]->GetTransform().SetWorldPosition({1660, -600, BossMonsterEffectZ});
     Symbol_[1]->Renderer_->Off();
 }
 
@@ -437,30 +436,30 @@ void Pontiff::CreateSpawner()
     for (size_t i = 0; i < 6; i++)
     {
         FireBallSpawner_[i] = GetLevel()->CreateActor<FireBallSpawner>();
-        FireBallSpawner_[i]->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BossMonster)});
+        FireBallSpawner_[i]->GetTransform().SetWorldPosition({0, 0, FrontEffet});
         FireBallSpawner_[i]->SetGround(ColMap_);
         FireBallSpawner_[i]->SetSpawnerType(SPAWNERTYPE::SP_HIGHLEVLE);
         FireBallSpawner_[i]->Off();
     }
 
     ToxicCloudSpawner_ = GetLevel()->CreateActor<ToxicCloudSpawner>();
-    ToxicCloudSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BossMonster)});
+    ToxicCloudSpawner_->GetTransform().SetWorldPosition({0, 0, FrontEffet});
     ToxicCloudSpawner_->SetGround(ColMap_);
     ToxicCloudSpawner_->SetSpawnerType(SPAWNERTYPE::SP_HIGHLEVLE);
     ToxicCloudSpawner_->Off();
 
     LightiningBoltSpawner_ = GetLevel()->CreateActor<LightiningBoltSpawner>();
-    LightiningBoltSpawner_->GetTransform().SetWorldPosition({0, -590, static_cast<int>(ACTORORDER::BossMonster)});
+    LightiningBoltSpawner_->GetTransform().SetWorldPosition({0, -590, FrontEffet});
     LightiningBoltSpawner_->SetSpawnerType(SPAWNERTYPE::SP_HIGHLEVLE);
     LightiningBoltSpawner_->Off();
 
     MagicMissileSpawner_ = GetLevel()->CreateActor<MagicMissileSpawner>();
-    MagicMissileSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BossMonster)});
+    MagicMissileSpawner_->GetTransform().SetWorldPosition({0, 0, FrontEffet});
     MagicMissileSpawner_->SetSpawnerType(SPAWNERTYPE::SP_HIGHLEVLE);
     MagicMissileSpawner_->Off();
 
     AnguishBeamSpawner_ = GetLevel()->CreateActor<AnguishBeamSpawner>();
-    AnguishBeamSpawner_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::BossMonster)});
+    AnguishBeamSpawner_->GetTransform().SetWorldPosition({0, 0, FrontEffet});
     AnguishBeamSpawner_->SetSpawnerType(SPAWNERTYPE::SP_HIGHLEVLE);
     AnguishBeamSpawner_->Off();
 }

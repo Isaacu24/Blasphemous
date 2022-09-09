@@ -13,18 +13,18 @@ void Shop::Start()
     ColMap_ = Stage_->CreateComponent<GameEngineTextureRenderer>();
     ColMap_->SetTexture("Shop_Colmap.png");
     ColMap_->ScaleToTexture();
-    ColMap_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::ColMap)});
+    ColMap_->GetTransform().SetWorldPosition({0, 0, ColmapZ});
 
     GameEngineTextureRenderer* TileRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     TileRenderer->SetTexture("Shop_Tile.png");
     TileRenderer->ScaleToTexture();
-    TileRenderer->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Tile)});
+    TileRenderer->GetTransform().SetWorldPosition({0, 0, TileZ});
     TileRenderer->GetTransform().SetWorldScale(TileRenderer->GetTransform().GetWorldScale());
 
     GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     AfterLayerRenderer->SetTexture("Shop_AfterLayer.png");
     AfterLayerRenderer->ScaleToTexture();
-    AfterLayerRenderer->GetTransform().SetWorldPosition({100, 75, static_cast<int>(ACTORORDER::AfterLayer0)});
+    AfterLayerRenderer->GetTransform().SetWorldPosition({100, 75, AfterLayerZ});
     AfterLayerRenderer->GetTransform().SetWorldScale(AfterLayerRenderer->GetTransform().GetWorldScale());
 
     float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
@@ -56,7 +56,7 @@ void Shop::LevelStartEvent()
     if (nullptr == Penitent::GetMainPlayer())
     {
         Penitent_ = CreateActor<Penitent>(ACTORORDER::Player);
-        Penitent_->GetTransform().SetWorldPosition({1250, -860, static_cast<int>(ACTORORDER::Player)});
+        Penitent_->GetTransform().SetWorldPosition({1250, -860, PlayerZ});
         Penitent_->SetGround(ColMap_);
 
         Penitent_->SetLevelOverOn();
@@ -65,7 +65,7 @@ void Shop::LevelStartEvent()
     else if (nullptr != Penitent::GetMainPlayer())
     {
         Penitent_ = Penitent::GetMainPlayer();
-        Penitent_->GetTransform().SetWorldPosition({1250, -860, static_cast<int>(ACTORORDER::Player)});
+        Penitent_->GetTransform().SetWorldPosition({1250, -860, PlayerZ});
         Penitent_->SetGround(ColMap_);
 
         Penitent_->SetLevelOverOn();
@@ -74,13 +74,13 @@ void Shop::LevelStartEvent()
     if (350 > Penitent_->GetTransform().GetWorldPosition().x)
     {
         Penitent_->GetTransform().SetWorldPosition(
-            float4{350, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player)});
+            float4{350, Penitent_->GetTransform().GetWorldPosition().y, PlayerZ});
     }
 
     if (2000 < Penitent_->GetTransform().GetWorldPosition().x)
     {
         Penitent_->GetTransform().SetWorldPosition(
-            float4{2000, Penitent_->GetTransform().GetWorldPosition().y, static_cast<int>(ACTORORDER::Player)});
+            float4{2000, Penitent_->GetTransform().GetWorldPosition().y, PlayerZ});
     }
 
     IsRightExit_ = false;

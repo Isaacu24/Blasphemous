@@ -24,12 +24,12 @@ void PlatformSpawner::CreateFristPattern()
         Platforms_[i]->SetDeathTime(7.f);
     }
 
-    Platforms_[0]->GetTransform().SetWorldPosition({650, -650, static_cast<int>(ACTORORDER::Platform)});
-    Platforms_[1]->GetTransform().SetWorldPosition({800, -800, static_cast<int>(ACTORORDER::Platform)});
-    Platforms_[2]->GetTransform().SetWorldPosition({1000, -650, static_cast<int>(ACTORORDER::Platform)});
-    Platforms_[3]->GetTransform().SetWorldPosition({1500, -650, static_cast<int>(ACTORORDER::Platform)});
-    Platforms_[4]->GetTransform().SetWorldPosition({1700, -800, static_cast<int>(ACTORORDER::Platform)});
-    Platforms_[5]->GetTransform().SetWorldPosition({1850, -650, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[0]->GetTransform().SetWorldPosition({650, -650, PlatformZ});
+    Platforms_[1]->GetTransform().SetWorldPosition({800, -800, PlatformZ});
+    Platforms_[2]->GetTransform().SetWorldPosition({1000, -650, PlatformZ});
+    Platforms_[3]->GetTransform().SetWorldPosition({1500, -650, PlatformZ});
+    Platforms_[4]->GetTransform().SetWorldPosition({1700, -800, PlatformZ});
+    Platforms_[5]->GetTransform().SetWorldPosition({1850, -650, PlatformZ});
 
     IsCreate_ = true;
 
@@ -49,12 +49,12 @@ void PlatformSpawner::CreateSecondPattern()
         Platforms_[i]->SetDeathTime(7.f);
     }
 
-    Platforms_[0]->GetTransform().SetWorldPosition({700, -800, static_cast<int>(ACTORORDER::Platform)});
-    Platforms_[1]->GetTransform().SetWorldPosition({800, -550, static_cast<int>(ACTORORDER::Platform)});
-    Platforms_[2]->GetTransform().SetWorldPosition({1100, -650, static_cast<int>(ACTORORDER::Platform)});
-    Platforms_[3]->GetTransform().SetWorldPosition({1400, -650, static_cast<int>(ACTORORDER::Platform)});
-    Platforms_[4]->GetTransform().SetWorldPosition({1700, -550, static_cast<int>(ACTORORDER::Platform)});
-    Platforms_[5]->GetTransform().SetWorldPosition({1800, -800, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[0]->GetTransform().SetWorldPosition({700, -800, PlatformZ});
+    Platforms_[1]->GetTransform().SetWorldPosition({800, -550, PlatformZ});
+    Platforms_[2]->GetTransform().SetWorldPosition({1100, -650, PlatformZ});
+    Platforms_[3]->GetTransform().SetWorldPosition({1400, -650, PlatformZ});
+    Platforms_[4]->GetTransform().SetWorldPosition({1700, -550, PlatformZ});
+    Platforms_[5]->GetTransform().SetWorldPosition({1800, -800, PlatformZ});
 
     CurrentOrder_ = SpawnerOrder::ThirdPattern;
 }
@@ -72,12 +72,12 @@ void PlatformSpawner::CreateThirdPattern()
         Platforms_[i]->SetDeathTime(7.f);
     }
 
-    Platforms_[0]->GetTransform().SetWorldPosition({800, -650, static_cast<int>(ACTORORDER::Platform)});
-    Platforms_[1]->GetTransform().SetWorldPosition({900, -550, static_cast<int>(ACTORORDER::Platform)});
-    Platforms_[2]->GetTransform().SetWorldPosition({1100, -600, static_cast<int>(ACTORORDER::Platform)});
-    Platforms_[3]->GetTransform().SetWorldPosition({1400, -600, static_cast<int>(ACTORORDER::Platform)});
-    Platforms_[4]->GetTransform().SetWorldPosition({1600, -550, static_cast<int>(ACTORORDER::Platform)});
-    Platforms_[5]->GetTransform().SetWorldPosition({1700, -650, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[0]->GetTransform().SetWorldPosition({800, -650, PlatformZ});
+    Platforms_[1]->GetTransform().SetWorldPosition({900, -550, PlatformZ});
+    Platforms_[2]->GetTransform().SetWorldPosition({1100, -600, PlatformZ});
+    Platforms_[3]->GetTransform().SetWorldPosition({1400, -600, PlatformZ});
+    Platforms_[4]->GetTransform().SetWorldPosition({1600, -550, PlatformZ});
+    Platforms_[5]->GetTransform().SetWorldPosition({1700, -650, PlatformZ});
 
     CurrentOrder_ = SpawnerOrder::FourthPattern;
 }
@@ -95,12 +95,12 @@ void PlatformSpawner::CreateFourthPattern()
         Platforms_[i]->SetDeathTime(7.f);
     }
 
-    Platforms_[0]->GetTransform().SetWorldPosition({900, -800, static_cast<int>(ACTORORDER::Platform)});
-    Platforms_[1]->GetTransform().SetWorldPosition({1100, -500, static_cast<int>(ACTORORDER::Platform)});
-    Platforms_[2]->GetTransform().SetWorldPosition({1150, -750, static_cast<int>(ACTORORDER::Platform)});
-    Platforms_[3]->GetTransform().SetWorldPosition({1450, -750, static_cast<int>(ACTORORDER::Platform)});
-    Platforms_[4]->GetTransform().SetWorldPosition({1500, -500, static_cast<int>(ACTORORDER::Platform)});
-    Platforms_[5]->GetTransform().SetWorldPosition({1600, -800, static_cast<int>(ACTORORDER::Platform)});
+    Platforms_[0]->GetTransform().SetWorldPosition({900, -800, PlatformZ});
+    Platforms_[1]->GetTransform().SetWorldPosition({1100, -500, PlatformZ});
+    Platforms_[2]->GetTransform().SetWorldPosition({1150, -750, PlatformZ});
+    Platforms_[3]->GetTransform().SetWorldPosition({1450, -750, PlatformZ});
+    Platforms_[4]->GetTransform().SetWorldPosition({1500, -500, PlatformZ});
+    Platforms_[5]->GetTransform().SetWorldPosition({1600, -800, PlatformZ});
 
     CurrentOrder_ = SpawnerOrder::FristPattern;
 }

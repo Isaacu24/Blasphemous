@@ -18,12 +18,12 @@ void Stage05::SettingStage()
     ColMap_ = Stage_->CreateComponent<GameEngineTextureRenderer>();
     ColMap_->SetTexture("1_5_Colmap.png");
     ColMap_->ScaleToTexture();
-    ColMap_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::ColMap)});
+    ColMap_->GetTransform().SetWorldPosition({0, 0, ColmapZ});
 
     GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     StageRenderer->SetTexture("1_5_Tile.png");
     StageRenderer->ScaleToTexture();
-    StageRenderer->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Tile)});
+    StageRenderer->GetTransform().SetWorldPosition({0, 0, TileZ});
     StageRenderer->GetTransform().SetWorldScale(StageRenderer->GetTransform().GetWorldScale() * 2.f);
 
     // Deogracias* NewDeogracias = CreateActor<Deogracias>();
@@ -32,25 +32,25 @@ void Stage05::SettingStage()
     // NewDeogracias->GetTransform().PixLocalNegativeX();
 
     Door* IronDoor = CreateActor<Door>();
-    IronDoor->GetTransform().SetWorldPosition({1107, -520, static_cast<int>(ACTORORDER::Object)});
+    IronDoor->GetTransform().SetWorldPosition({1107, -520, ObjectZ});
 
     Fence_ = CreateActor<SideFence>();
-    Fence_->GetTransform().SetWorldPosition({1390, -530, static_cast<int>(ACTORORDER::Object)});
+    Fence_->GetTransform().SetWorldPosition({1390, -530, ObjectZ});
 
     GlassSwitch* Glass = CreateActor<GlassSwitch>();
     Glass->SetSideFence(Fence_);
-    Glass->GetTransform().SetWorldPosition({1350, -490, static_cast<int>(ACTORORDER::Object)});
+    Glass->GetTransform().SetWorldPosition({1350, -490, ObjectZ});
 
     GameEngineTextureRenderer* DoorRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     DoorRendrer->SetTexture("1_5_Door.png");
     DoorRendrer->ScaleToTexture();
-    DoorRendrer->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Door)});
+    DoorRendrer->GetTransform().SetWorldPosition({0, 0, DoorZ});
     DoorRendrer->GetTransform().SetWorldScale(DoorRendrer->GetTransform().GetWorldScale() * 2.f);
 
     GameEngineTextureRenderer* AfterRendrer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     AfterRendrer->SetTexture("1_5_AfterLayer.png");
     AfterRendrer->ScaleToTexture();
-    AfterRendrer->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::AfterLayer0)});
+    AfterRendrer->GetTransform().SetWorldPosition({0, 0, AfterLayerZ});
     AfterRendrer->GetTransform().SetWorldScale(AfterRendrer->GetTransform().GetWorldScale() * 2.f);
 
     float OffsetX = StageRenderer->GetTransform().GetLocalScale().x / 2;
@@ -62,8 +62,8 @@ void Stage05::SettingStage()
 
     GetMainCameraActor()->GetTransform().SetWorldPosition(float4{950, -500});
 
-    PlayerRightPos_ = float4{1600, -674, static_cast<int>(ACTORORDER::Player)};
-    PlayerLeftPos_  = float4{480, -674, static_cast<int>(ACTORORDER::Player)};
+    PlayerRightPos_ = float4{1600, -674, ObjectZ};
+    PlayerLeftPos_  = float4{480, -674, ObjectZ};
 
     IsLeftExit_ = true;
 }
@@ -193,7 +193,7 @@ void Stage05::LevelEndEvent()
         {
             Guilt_->GetTransform().SetLocalPosition({Penitent_->GetTransform().GetWorldPosition().x,
                                                      Penitent_->GetTransform().GetWorldPosition().y,
-                                                     static_cast<int>(ACTORORDER::Object)});
+                                                     ObjectZ});
         }
     }
 }

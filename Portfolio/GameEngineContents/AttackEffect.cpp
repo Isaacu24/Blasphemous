@@ -154,8 +154,24 @@ void AttackEffect::Start()
                                     });
     }
 
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("threeAnguishBigBeamBlue");
+
+        Renderer_->CreateMetaAnimation(
+            "threeAnguishBigBeamBlue",
+            {"threeAnguishBigBeamBlue.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
+            Data);
+
+        Renderer_->AnimationBindEnd("threeAnguishBigBeamBlue",
+                                    [&](const FrameAnimation_DESC& _Info)
+                                    {
+                                        Renderer_->CurAnimationReset();
+                                        Renderer_->Off();
+                                    });
+    }
+
     Renderer_->SetPivot(PIVOTMODE::METABOT);
-}
+}   
 
 void AttackEffect::Update(float _DeltaTime) {}
 

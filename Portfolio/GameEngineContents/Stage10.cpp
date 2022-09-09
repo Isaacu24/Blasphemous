@@ -25,7 +25,7 @@ void Stage10::SettingStage()
     GameEngineTextureRenderer* BeforeParallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforeParallaxRenderer->SetTexture("2_1_BeforeParallax_0.png");
     BeforeParallaxRenderer->ScaleToTexture();
-    BeforeParallaxRenderer->GetTransform().SetWorldPosition({0, 0, BeforeParallaxZ});
+    BeforeParallaxRenderer->GetTransform().SetWorldPosition({0, 100, BeforeParallaxZ});
     BeforeParallaxRenderer->GetTransform().SetWorldScale(BeforeParallaxRenderer->GetTransform().GetWorldScale() * 2.0f);
 
     GameEngineTextureRenderer* BeforeParallaxRenderer1 = Stage_->CreateComponent<GameEngineTextureRenderer>();
@@ -260,10 +260,10 @@ void Stage10::Update(float _DeltaTime)
             float4{GetMainCameraActor()->GetTransform().GetLocalPosition().x, -500, CameraZPos_});
     }
 
-    if (-1680 > GetMainCameraActor()->GetTransform().GetLocalPosition().y)
+    if (-1650 > GetMainCameraActor()->GetTransform().GetLocalPosition().y)
     {
         GetMainCameraActor()->GetTransform().SetWorldPosition(
-            float4{GetMainCameraActor()->GetTransform().GetLocalPosition().x, -1680, CameraZPos_});
+            float4{GetMainCameraActor()->GetTransform().GetLocalPosition().x, -1650, CameraZPos_});
     }
 
     if (780 > GetMainCameraActor()->GetTransform().GetLocalPosition().x)

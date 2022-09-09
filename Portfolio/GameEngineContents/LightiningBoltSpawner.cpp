@@ -103,7 +103,7 @@ void LightiningBoltSpawner::Update(float _DeltaTime)
                 {
                     Bolt_ = GetLevel()->CreateActor<LightiningBolt>();
                     Bolt_->GetTransform().SetWorldScale({1.15f, 1.3f, 1});
-                    Bolt_->GetTransform().SetWorldPosition({TargetPos.x, GetTransform().GetWorldPosition().y});
+                    Bolt_->GetTransform().SetWorldPosition({TargetPos.x, GetTransform().GetWorldPosition().y, BossMonsterEffectZ});
                 }
 
                 DelayTime_ -= 2.0f;

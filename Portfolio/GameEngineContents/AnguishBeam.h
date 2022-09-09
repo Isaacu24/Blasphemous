@@ -21,6 +21,6 @@ protected:
 
 private:
     class MetaTextureRenderer* MetaRenderer_;
-
+    class GameEngineCollision* Collider_;
 };
 

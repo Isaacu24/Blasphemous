@@ -71,6 +71,11 @@ void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
         // State_.ChangeState("ReturnToPort");
     }
 
+    else if (true == GameEngineInput::GetInst()->IsDownKey("PenitentPary") && true == IsGround_)
+    {
+        State_.ChangeState("PrayAttack");
+    }
+
     //내리막길
     if (false == IsGround_)
     {
@@ -334,11 +339,9 @@ void Penitent::JumpAttackStart(const StateInfo& _Info)
     //일단 인정하지도 증가하지도 않음.
     FallTime_ = 0.f;
 
-    float EffectZ = AO_PLAYEREFFECT;
-
     AttackEffect_->Renderer_->On();
     AttackEffect_->GetTransform().SetWorldPosition(
-        {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, EffectZ});
+        {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, PlayerEffectZ});
 
     AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_jumping_attack_slasheslvl2");
 
@@ -366,10 +369,8 @@ void Penitent::JumpAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     JumpForce_.y -= _DeltaTime * 80.f;
 
-    float EffectZ = AO_PLAYEREFFECT;
-
     AttackEffect_->GetTransform().SetWorldPosition(
-        {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, EffectZ});
+        {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, PlayerEffectZ});
 
     Dir_ = GetTransform().GetUpVector() * 10.f;
 
@@ -444,15 +445,13 @@ void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
-    //if (false == IsGround_)
+    // if (false == IsGround_)
     //{
-    //    ChangeState("Fall");
-    //}
-
-    float EffectZ = AO_PLAYEREFFECT;
+    //     ChangeState("Fall");
+    // }
 
     HitEffect_->GetTransform().SetWorldPosition(
-        {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y + 75.f, EffectZ});
+        {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y + 75.f, PlayerEffectZ});
 
     GetTransform().SetWorldMove(float4{-(RealXDir_), 0} * 150.f * _DeltaTime);
     Gravity_->SetActive(!IsGround_);
@@ -497,9 +496,8 @@ void Penitent::LandingStart(const StateInfo& _Info)
         MetaRenderer_->ChangeMetaAnimation("penitent_verticalattack_landing");
 
         float4 PlayerPos = GetTransform().GetWorldPosition();
-        float  EffectZ   = AO_PLAYEREFFECT;
 
-        AttackEffect_->GetTransform().SetWorldPosition({PlayerPos.x, PlayerPos.y, EffectZ});
+        AttackEffect_->GetTransform().SetWorldPosition({PlayerPos.x, PlayerPos.y, PlayerEffectZ});
 
         AttackEffect_->Renderer_->On();
         AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_verticalattack_landing_effects_anim");
@@ -569,7 +567,7 @@ void Penitent::CrouchUpdate(float _DeltaTime, const StateInfo& _Info)
         GetTransform().PixLocalNegativeX();
     }
 
-     Gravity_->SetActive(!IsGround_);
+    Gravity_->SetActive(!IsGround_);
 }
 
 void Penitent::CrouchEnd(const StateInfo& _Info)
@@ -856,6 +854,16 @@ void Penitent::VerticalAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 void Penitent::VerticalAttackEnd(const StateInfo& _Info) { AttackCollider_->Off(); }
 
 
+void Penitent::PrayAttackStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("penitent_aura_anim");
+}
+
+void Penitent::PrayAttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Penitent::PrayAttackEnd(const StateInfo& _Info) {}
+
+
 void Penitent::ParryingStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penitent_parry_failed"); }
 
 void Penitent::ParryingUpdate(float _DeltaTime, const StateInfo& _Info) {}
@@ -889,7 +897,8 @@ void Penitent::RecoveryStart(const StateInfo& _Info)
             }
 
             AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_healthpotion_consuming_aura_anim");
-            AttackEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
+            AttackEffect_->GetTransform().SetWorldPosition(
+                {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, PlayerEffectZ});
             return;
         }
     }
@@ -916,10 +925,7 @@ void Penitent::ReturnToPortUpdate(float _DeltaTime, const StateInfo& _Info) {}
 void Penitent::ReturnToPortEnd(const StateInfo& _Info) {}
 
 
-void Penitent::DeathStart(const StateInfo& _Info)
-{
-    MetaRenderer_->ChangeMetaAnimation("death_anim_blood");
-}
+void Penitent::DeathStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("death_anim_blood"); }
 
 void Penitent::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
@@ -936,9 +942,8 @@ void Penitent::RespawnStart(const StateInfo& _Info)
 
 void Penitent::RespawnUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    float EffectZ = AO_PLAYEREFFECT;
     AttackEffect_->GetTransform().SetWorldPosition(
-        {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, EffectZ});
+        {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, PlayerEffectZ});
 
     Gravity_->SetActive(!IsGround_);
 }
