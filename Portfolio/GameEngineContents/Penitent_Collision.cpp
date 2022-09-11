@@ -5,6 +5,7 @@
 #include "MoveEffect.h"
 #include "HitEffect.h"
 #include "AttackEffect.h"
+#include "StageBase.h"
 
 void Penitent::GroundCheck()
 {
@@ -392,6 +393,9 @@ bool Penitent::HitEffectCheck(GameEngineCollision* _This, GameEngineCollision* _
             HitStack_ = 0;
             break;
     }
+
+    CurStage_ = dynamic_cast<StageBase*>(GetLevel());
+    CurStage_->SetShake(true);
 
     return true;
 }

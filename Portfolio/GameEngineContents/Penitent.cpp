@@ -7,6 +7,7 @@
 #include "MoveEffect.h"
 #include "HitEffect.h"
 #include "AttackEffect.h"
+#include "StageBase.h"
 
 Penitent* Penitent::MainPlayer_ = nullptr;
 
@@ -154,11 +155,18 @@ void Penitent::Start()
 
     SetAnimation();
     SetPlayerState();
+
+    CurStage_ = dynamic_cast<StageBase*>(GetLevel());
 }
 
 void Penitent::Update(float _DeltaTime)
 {
     State_.Update(_DeltaTime);
+
+    if (nullptr != CurStage_)
+    {
+        CurStage_->CameraShaking(_DeltaTime);
+    }
 
     if ("Death" == State_.GetCurStateStateName())
     {

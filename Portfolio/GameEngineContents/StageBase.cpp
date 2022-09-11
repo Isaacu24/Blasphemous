@@ -10,6 +10,7 @@ StageBase::StageBase()
     , MonsterList_{}
     , IsLeftExit_(false)
     , IsRightExit_(false)
+    , ShakeCount_(2)
     , CameraZPos_(-1400.f)
     , IsChangeCameraPos_(false)
     , CameraOffset_(200.f)
@@ -20,28 +21,32 @@ StageBase::~StageBase() {}
 
 void StageBase::CameraShaking(float _DeltaTime)
 {
-    ShakeTime_ += _DeltaTime;
-
-    if (0.05f <= ShakeTime_)
+    if (true == IsShaking_)
     {
-        ShakeTime_ = 0.f;
+        ShakeTime_ += _DeltaTime;
 
-        if (0 == ShakeCount_ % 2)
+        if (0.05f <= ShakeTime_)
         {
-            GetMainCameraActor()->GetTransform().SetWorldMove({10, 0});
-            --ShakeCount_;
+            ShakeTime_ = 0.f;
+
+            if (0 == ShakeCount_ % 2)
+            {
+                GetMainCameraActor()->GetTransform().SetWorldMove({7, 0});
+                --ShakeCount_;
+            }
+
+            else
+            {
+                GetMainCameraActor()->GetTransform().SetWorldMove({-7, 0});
+                --ShakeCount_;
+            }
         }
 
-        else
+        if (0 >= ShakeCount_)
         {
-            GetMainCameraActor()->GetTransform().SetWorldMove({-10, 0});
-            --ShakeCount_;
+            ShakeCount_ = 2;
+            IsShaking_  = false;
         }
-    }
-
-    if (0 >= ShakeCount_)
-    {
-        ShakeCount_ = 30;
     }
 }
 

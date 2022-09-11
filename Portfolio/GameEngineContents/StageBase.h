@@ -28,7 +28,9 @@ public:
     inline STAGEFLOW GetFlow() { return CurrentFlow_; }
 
     void CameraShaking(float _DeltaTime);
-    
+
+    inline void SetShake(bool _Value) { IsShaking_ = _Value; }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
@@ -41,7 +43,7 @@ protected:
     float4 CurPos_;
     float4 PrevPos_;
 
-    int ShakeCount_ = 30;
+    int ShakeCount_;
 
     GameEngineTextureRenderer* ColMap_;
 
@@ -77,6 +79,8 @@ protected:
     class PenitentGuilt* Guilt_;
 
     float ShakeTime_;
+
+    bool IsShaking_;
 
 private:
 };

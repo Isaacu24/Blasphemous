@@ -118,8 +118,6 @@ void Stage01::Update(float _DeltaTime)
         LoadingActor_ = CreateActor<LoadingActor>();
         LoadingActor_->Exit("Stage02");
     }
-
-    CameraShaking(_DeltaTime);
 }
 
 void Stage01::End() {}

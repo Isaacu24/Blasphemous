@@ -251,4 +251,8 @@ private:
     float4 LastJumpPos_;
 
     bool IsFallDeath_;
+
+    class StageBase* CurStage_;
+
+    bool IsShake_;
 };
