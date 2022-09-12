@@ -75,6 +75,8 @@ void Stage30::SettingStage()
     float4 Offset = {OffsetX, -OffsetY};
 
     Stage_->GetTransform().SetLocalMove(Offset);
+
+
 }
 
 void Stage30::Start() { SettingStage(); }
@@ -122,6 +124,9 @@ void Stage30::End() {}
 
 void Stage30::LevelStartEvent()
 {
+    LoadingActor_ = CreateActor<LoadingActor>();
+    LoadingActor_->IsEntrance(true);
+
     if (nullptr == Penitent::GetMainPlayer())
     {
         Penitent_ = CreateActor<Penitent>();
@@ -140,21 +145,6 @@ void Stage30::LevelStartEvent()
         Penitent_->SetLevelOverOn();
     }
 
-    if (nullptr == LoadingActor_)
-    {
-        LoadingActor_ = CreateActor<LoadingActor>();
-        LoadingActor_->IsEntrance(true);
-    }
-
-    else if (nullptr != LoadingActor_)
-    {
-        LoadingActor_->Death();
-        LoadingActor_ = nullptr;
-
-        LoadingActor_ = CreateActor<LoadingActor>();
-        LoadingActor_->IsEntrance(true);
-    }
-
     IsRightExit_ = false;
     IsLeftExit_  = false;
 
@@ -165,6 +155,12 @@ void Stage30::LevelStartEvent()
 
 void Stage30::LevelEndEvent() 
 {
+    if (nullptr != LoadingActor_)
+    {
+        LoadingActor_->Death();
+        LoadingActor_ = nullptr;
+    }
+
     if (false == Penitent_->IsUpdate())
     {
         if (nullptr == Guilt_)

@@ -126,6 +126,9 @@ void Stage20::End() {}
 
 void Stage20::LevelStartEvent()
 {
+    LoadingActor_ = CreateActor<LoadingActor>();
+    LoadingActor_->IsEntrance(true);
+
     if (nullptr == Penitent::GetMainPlayer())
     {
         Penitent_ = CreateActor<Penitent>(ACTORORDER::Player);
@@ -159,21 +162,6 @@ void Stage20::LevelStartEvent()
         Penitent_->SetLevelOverOn();
     }
 
-    if (nullptr == LoadingActor_)
-    {
-        LoadingActor_ = CreateActor<LoadingActor>();
-        LoadingActor_->IsEntrance(true);
-    }
-
-    else if (nullptr != LoadingActor_)
-    {
-        LoadingActor_->Death();
-        LoadingActor_ = nullptr;
-
-        LoadingActor_ = CreateActor<LoadingActor>();
-        LoadingActor_->IsEntrance(true);
-    }
-
     IsRightExit_ = false;
     IsLeftExit_  = false;
 
@@ -184,6 +172,12 @@ void Stage20::LevelStartEvent()
 
 void Stage20::LevelEndEvent()
 {
+    if (nullptr != LoadingActor_)
+    {
+        LoadingActor_->Death();
+        LoadingActor_ = nullptr;
+    }
+
     if (false == Penitent_->IsUpdate())
     {
         if (nullptr == Guilt_)
@@ -252,13 +246,8 @@ void Stage20::PlayerCameraMove(float _DeltaTime)
     {
         IsRightExit_ = true;
 
-        if (nullptr != LoadingActor_)
-        {
-            LoadingActor_->Death();
-            LoadingActor_ = nullptr;
-        }
-
-        LoadingActor_ = CreateActor<LoadingActor>();
+        LoadingActor_->On();
+        LoadingActor_->IsEntrance(false);
         LoadingActor_->Exit("Stage30");
     }
 }

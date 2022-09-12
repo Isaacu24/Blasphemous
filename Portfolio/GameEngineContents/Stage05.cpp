@@ -60,10 +60,10 @@ void Stage05::SettingStage()
 
     Stage_->GetTransform().SetLocalMove(Offset);
 
-    GetMainCameraActor()->GetTransform().SetWorldPosition(float4{950, -500});
+    GetMainCameraActor()->GetTransform().SetWorldPosition(float4{950, -550});
 
-    PlayerRightPos_ = float4{1600, -674, ObjectZ};
-    PlayerLeftPos_  = float4{480, -674, ObjectZ};
+    PlayerRightPos_ = float4{1600, -674, PlayerZ};
+    PlayerLeftPos_  = float4{480, -674, PlayerZ};
 
     IsLeftExit_ = true;
 }
@@ -82,13 +82,8 @@ void Stage05::Update(float _DeltaTime)
     {
         IsLeftExit_ = true;
 
-        if (nullptr != LoadingActor_)
-        {
-            LoadingActor_->Death();
-            LoadingActor_ = nullptr;
-        }
-
-        LoadingActor_ = CreateActor<LoadingActor>();
+        LoadingActor_->On();
+        LoadingActor_->IsEntrance(false);
         LoadingActor_->Exit("Stage04");
     }
 
@@ -107,13 +102,8 @@ void Stage05::Update(float _DeltaTime)
     {
         IsRightExit_ = true;
 
-        if (nullptr != LoadingActor_)
-        {
-            LoadingActor_->Death();
-            LoadingActor_ = nullptr;
-        }
-
-        LoadingActor_ = CreateActor<LoadingActor>();
+        LoadingActor_->On();
+        LoadingActor_->IsEntrance(false);
         LoadingActor_->Exit("Stage10");
     }
 
@@ -124,6 +114,9 @@ void Stage05::End() {}
 
 void Stage05::LevelStartEvent()
 {
+    LoadingActor_ = CreateActor<LoadingActor>();
+    LoadingActor_->IsEntrance(true);
+
     if (nullptr == Penitent::GetMainPlayer())
     {
         Penitent_ = CreateActor<Penitent>(ACTORORDER::Player);
@@ -151,27 +144,18 @@ void Stage05::LevelStartEvent()
         Penitent_->SetLevelOverOn();
     }
 
-    if (nullptr == LoadingActor_)
-    {
-        LoadingActor_ = CreateActor<LoadingActor>();
-        LoadingActor_->IsEntrance(true);
-    }
-
-    else if (nullptr != LoadingActor_)
-    {
-        LoadingActor_->Death();
-        LoadingActor_ = nullptr;
-
-        LoadingActor_ = CreateActor<LoadingActor>();
-        LoadingActor_->IsEntrance(true);
-    }
-
     IsRightExit_ = false;
     IsLeftExit_  = false;
 }
 
 void Stage05::LevelEndEvent() 
 {
+    if (nullptr != LoadingActor_)
+    {
+        LoadingActor_->Death();
+        LoadingActor_ = nullptr;
+    }
+
     if (false == Penitent_->IsUpdate())
     {
         if (nullptr == Guilt_)

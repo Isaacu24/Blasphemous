@@ -50,12 +50,8 @@ void LoadingActor::Update(float _DeltaTime)
 
 	else if (true == IsExit_)
 	{
-		ChangeTime_ += _DeltaTime;
-
-		if (1.f <= ChangeTime_)
-		{
-			GEngine::ChangeLevel(NextLevel_);
-		}
+        GEngine::ChangeLevel(NextLevel_);
+        Off();
 	}
 }
 

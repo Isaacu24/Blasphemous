@@ -33,7 +33,6 @@ private:
 
 	float RendererTime_;
 	float DeathTime_;
-	float ChangeTime_;
 
 	float Alpha_;
 

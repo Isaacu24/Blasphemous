@@ -52,7 +52,4 @@ private:
 
     bool IsMetaDisAppear_;
     bool IsDisAppear_;
-
-    float ObjectZ_;
-    float PlayerBehindEffect_;
 };

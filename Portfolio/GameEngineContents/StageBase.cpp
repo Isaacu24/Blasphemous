@@ -31,13 +31,13 @@ void StageBase::CameraShaking(float _DeltaTime)
 
             if (0 == ShakeCount_ % 2)
             {
-                GetMainCameraActor()->GetTransform().SetWorldMove({7, 0});
+                GetMainCameraActor()->GetTransform().SetWorldMove({5, 0});
                 --ShakeCount_;
             }
 
             else
             {
-                GetMainCameraActor()->GetTransform().SetWorldMove({-7, 0});
+                GetMainCameraActor()->GetTransform().SetWorldMove({-5, 0});
                 --ShakeCount_;
             }
         }
@@ -49,6 +49,7 @@ void StageBase::CameraShaking(float _DeltaTime)
         }
     }
 }
+
 
 void StageBase::Start() {}
 

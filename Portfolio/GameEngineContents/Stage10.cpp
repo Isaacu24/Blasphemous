@@ -282,13 +282,8 @@ void Stage10::Update(float _DeltaTime)
     {
         IsLeftExit_ = true;
 
-        if (nullptr != LoadingActor_)
-        {
-            LoadingActor_->Death();
-            LoadingActor_ = nullptr;
-        }
-
-        LoadingActor_ = CreateActor<LoadingActor>();
+        LoadingActor_->On();
+        LoadingActor_->IsEntrance(false);
         LoadingActor_->Exit("Stage05");
     }
 
@@ -296,13 +291,8 @@ void Stage10::Update(float _DeltaTime)
     {
         IsRightExit_ = true;
 
-        if (nullptr != LoadingActor_)
-        {
-            LoadingActor_->Death();
-            LoadingActor_ = nullptr;
-        }
-
-        LoadingActor_ = CreateActor<LoadingActor>();
+        LoadingActor_->On();
+        LoadingActor_->IsEntrance(false);
         LoadingActor_->Exit("Stage20");
     }
 }
@@ -311,6 +301,9 @@ void Stage10::End() {}
 
 void Stage10::LevelStartEvent()
 {
+    LoadingActor_ = CreateActor<LoadingActor>();
+    LoadingActor_->IsEntrance(true);
+
     if (nullptr == Penitent::GetMainPlayer())
     {
         Penitent_ = CreateActor<Penitent>(ACTORORDER::Player);
@@ -340,21 +333,6 @@ void Stage10::LevelStartEvent()
         Penitent_->SetLastSavePoint("Stage03");
     }
 
-    if (nullptr == LoadingActor_)
-    {
-        LoadingActor_ = CreateActor<LoadingActor>();
-        LoadingActor_->IsEntrance(true);
-    }
-
-    else if (nullptr != LoadingActor_)
-    {
-        LoadingActor_->Death();
-        LoadingActor_ = nullptr;
-
-        LoadingActor_ = CreateActor<LoadingActor>();
-        LoadingActor_->IsEntrance(true);
-    }
-
     IsRightExit_ = false;
     IsLeftExit_  = false;
 
@@ -367,6 +345,12 @@ void Stage10::LevelStartEvent()
 
 void Stage10::LevelEndEvent()
 {
+    if (nullptr != LoadingActor_)
+    {
+        LoadingActor_->Death();
+        LoadingActor_ = nullptr;
+    }
+
     if (false == Penitent_->IsUpdate())
     {
         if (nullptr == Guilt_)

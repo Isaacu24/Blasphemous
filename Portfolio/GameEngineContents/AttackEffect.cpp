@@ -159,7 +159,7 @@ void AttackEffect::Start()
 
         Renderer_->CreateMetaAnimation(
             "threeAnguishBigBeamBlue",
-            {"threeAnguishBigBeamBlue.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
+            {"threeAnguishBigBeamBlue.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
             Data);
 
         Renderer_->AnimationBindEnd("threeAnguishBigBeamBlue",

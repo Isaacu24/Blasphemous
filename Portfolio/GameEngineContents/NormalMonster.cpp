@@ -8,10 +8,7 @@ NormalMonster::NormalMonster()
 
 NormalMonster::~NormalMonster() {}
 
-void NormalMonster::Start()
-{
-
-}
+void NormalMonster::Start() {}
 
 void NormalMonster::Update(float _DeltaTime) {}
 
@@ -149,7 +146,7 @@ void NormalMonster::DamageCheck(float _Damage, float _Offset)
         BloodEffect_->GetTransform().SetWorldPosition(
             {BodyCollider_->GetTransform().GetWorldPosition().x + (-(Dir_.x) * _Offset),
              BodyCollider_->GetTransform().GetWorldPosition().y,
-             static_cast<int>(ACTORORDER::PlayerEffect)});
+             BossMonsterEffectZ});
         BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
     }
 

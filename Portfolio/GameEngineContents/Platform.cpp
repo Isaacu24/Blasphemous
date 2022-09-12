@@ -74,8 +74,8 @@ void Platform::Start()
     Collider_ = CreateComponent<GameEngineCollision>();
     Collider_->ChangeOrder(COLLISIONORDER::Platform);
     Collider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.5f, 0.1f, 0.5f, 0.1f});
-    Collider_->GetTransform().SetWorldScale({60.f, 20.f, 1.0f});
-    Collider_->GetTransform().SetWorldMove({0, -35});
+    Collider_->GetTransform().SetWorldScale({60.f, 10.f, 1.0f});
+    Collider_->GetTransform().SetWorldMove({0, -30});
 }
 
 void Platform::Update(float _DeltaTime)

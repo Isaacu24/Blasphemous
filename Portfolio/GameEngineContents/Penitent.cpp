@@ -86,7 +86,7 @@ void Penitent::Start()
     BodyCollider_->GetTransform().SetWorldMove({0, 30});
 
     AttackCollider_ = CreateComponent<GameEngineCollision>();
-    AttackCollider_->GetTransform().SetWorldScale({50.f, 50.f, 1.f});
+    AttackCollider_->GetTransform().SetWorldScale({75.f, 50.f, 1.f});
     AttackCollider_->ChangeOrder(COLLISIONORDER::PlayerAttack);
     AttackCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 0.0f, 1.0f, 0.5f});
     AttackCollider_->Off();
@@ -198,8 +198,6 @@ void Penitent::Update(float _DeltaTime)
         GameEngineTime::GetInst()->SetTimeScale(MetaRenderer_->GetOrder(), 1.0f);
         GameEngineTime::GetInst()->SetTimeScale(GetOrder(), 1.0f);
     }
-
-    GameEngineDebug::OutPutString("PlayerState: " + State_.GetCurStateStateName());
 
     GameEngineDebug::OutPutString("Player HP: " + std::to_string(GetHP()));
 }
@@ -319,12 +317,12 @@ void Penitent::SetAnimation()
             {
                 switch (_Info.CurFrame)
                 {
-                    case 4:
+                    case 1:
                         AttackCollider_->On();
                         HitStack_ = 0;
                         break;
 
-                    case 5:
+                    case 2:
                         if (true == IsHit_ || true == IsBossHit_)
                         {
                             HitEffect_->Renderer_->On();
@@ -332,7 +330,7 @@ void Penitent::SetAnimation()
                         }
                         break;
 
-                    case 6:
+                    case 3:
                         AttackCollider_->Off();
                         AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_upward_attack_slash_lvl1");
                         break;
@@ -693,8 +691,9 @@ void Penitent::SetAnimation()
                             HitStack_ = 0;
 
                             AttackEffect_->Renderer_->On();
-                            AttackEffect_->GetTransform().SetWorldPosition(
-                                {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, PlayerEffectZ});
+                            AttackEffect_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
+                                                                            GetTransform().GetWorldPosition().y,
+                                                                            PlayerEffectZ});
                             AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_upward_attack_slash_lvl1");
                         }
 
@@ -977,31 +976,32 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_aura_anim",
-            {"penitent_aura_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
+            {"penitent_aura_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
             Data);
 
         MetaRenderer_->AnimationBindFrame(
             "penitent_aura_anim",
             [&](const FrameAnimation_DESC& _Info)
             {
-                if (14 == _Info.CurFrame)
+                if (19 == _Info.CurFrame)
                 {
                     MetaRenderer_->GetColorData().MulColor = float4{0.26f, 0.6f, 0.76f, 1.0f} * 2.f;
 
                     AttackEffect_->Renderer_->On();
                     AttackEffect_->Renderer_->ChangeMetaAnimation("threeAnguishBigBeamBlue");
-                    AttackEffect_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x + (RealXDir_ * 30.f),
-                                                                    GetTransform().GetWorldPosition().y - 15.f,
-                                                                    PlayerBehindEffectZ});
+                    AttackEffect_->GetTransform().SetWorldPosition(
+                        {GetTransform().GetWorldPosition().x + (RealXDir_ * 30.f),
+                         GetTransform().GetWorldPosition().y - 15.f,
+                         PlayerBehindEffectZ});
                 }
             });
 
         MetaRenderer_->AnimationBindEnd("penitent_aura_anim",
-                                        [&](const FrameAnimation_DESC& _Info) 
-            { 
-                MetaRenderer_->GetColorData().MulColor = float4{1.0f, 1.0f, 1.0f, 1.0f};
-                ChangeState("Idle"); 
-            });
+                                        [&](const FrameAnimation_DESC& _Info)
+                                        {
+                                            MetaRenderer_->GetColorData().MulColor = float4{1.0f, 1.0f, 1.0f, 1.0f};
+                                            ChangeState("Idle");
+                                        });
     }
 
     MetaRenderer_->SetPivot(PIVOTMODE::METABOT);
@@ -1125,4 +1125,15 @@ void Penitent::SetPlayerState()
                              std::bind(&Penitent::RespawnEnd, this, std::placeholders::_1));
 
     State_.ChangeState("Idle");
+}
+
+
+void Penitent::LevelStartEvent() 
+{ 
+     CurStage_ = dynamic_cast<StageBase*>(GetLevel());
+}
+
+void Penitent::LevelEndEvent() 
+{
+
 }

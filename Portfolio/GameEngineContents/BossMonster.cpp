@@ -29,7 +29,7 @@ void BossMonster::DamageCheck(float _Damage)
 
         BloodEffect_->GetTransform().SetWorldPosition({BodyCollider_->GetTransform().GetWorldPosition().x,
                                                        BodyCollider_->GetTransform().GetWorldPosition().y,
-                                                       static_cast<int>(ACTORORDER::PlayerEffect)});
+                                                       PlayerEffectZ});
         BloodEffect_->GetRenderer()->On();
         BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
 

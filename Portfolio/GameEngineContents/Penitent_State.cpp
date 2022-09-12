@@ -436,6 +436,20 @@ void Penitent::KnockBackStart(const StateInfo& _Info)
 
     HitEffect_->Renderer_->On();
     HitEffect_->Renderer_->ChangeMetaAnimation("pushback_sparks_anim");
+
+    if (0 > KnockBackXDir_)
+    {
+        HitEffect_->GetTransform().PixLocalPositiveX();
+        MoveEffect_->GetTransform().PixLocalPositiveX();
+        GetTransform().PixLocalPositiveX();
+    }
+
+    else
+    {
+        HitEffect_->GetTransform().PixLocalNegativeX();
+        MoveEffect_->GetTransform().PixLocalNegativeX();
+        GetTransform().PixLocalNegativeX();
+    }
 }
 
 void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -453,7 +467,7 @@ void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
     HitEffect_->GetTransform().SetWorldPosition(
         {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y + 75.f, PlayerEffectZ});
 
-    GetTransform().SetWorldMove(float4{-(RealXDir_), 0} * 150.f * _DeltaTime);
+    GetTransform().SetWorldMove(float4{KnockBackXDir_, 0} * 150.f * _DeltaTime);
     Gravity_->SetActive(!IsGround_);
 }
 
@@ -473,6 +487,16 @@ void Penitent::KnockUpStart(const StateInfo& _Info)
     MetaRenderer_->ChangeMetaAnimation("penitent_throwback_anim");
 
     BodyCollider_->Off();
+
+    if (0 > KnockBackXDir_)
+    {
+        GetTransform().PixLocalPositiveX();
+    }
+
+    else
+    {
+        GetTransform().PixLocalNegativeX();
+    }
 }
 
 void Penitent::KnockUpUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -482,7 +506,7 @@ void Penitent::KnockUpUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
-    GetTransform().SetWorldMove(float4{-(RealXDir_), 0} * 150.f * _DeltaTime);
+    GetTransform().SetWorldMove(float4{KnockBackXDir_, 0} * 150.f * _DeltaTime);
     Gravity_->SetActive(!IsGround_);
 }
 
@@ -856,12 +880,13 @@ void Penitent::VerticalAttackEnd(const StateInfo& _Info) { AttackCollider_->Off(
 
 void Penitent::PrayAttackStart(const StateInfo& _Info)
 {
+    BodyCollider_->Off();
     MetaRenderer_->ChangeMetaAnimation("penitent_aura_anim");
 }
 
 void Penitent::PrayAttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Penitent::PrayAttackEnd(const StateInfo& _Info) {}
+void Penitent::PrayAttackEnd(const StateInfo& _Info) { BodyCollider_->On(); }
 
 
 void Penitent::ParryingStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penitent_parry_failed"); }
@@ -925,7 +950,12 @@ void Penitent::ReturnToPortUpdate(float _DeltaTime, const StateInfo& _Info) {}
 void Penitent::ReturnToPortEnd(const StateInfo& _Info) {}
 
 
-void Penitent::DeathStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("death_anim_blood"); }
+void Penitent::DeathStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("death_anim_blood");
+
+    PlayerUI_->ScreenState_.ChangeState("PlayerDeath");
+}
 
 void Penitent::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
 

@@ -185,6 +185,9 @@ protected:
 
     bool Dangle(GameEngineCollision* _This, GameEngineCollision* _Other);  //난간 상호작용
 
+    void LevelStartEvent() override;
+    void LevelEndEvent() override;
+
 private:
     GameEngineStateManager            State_;
     class PlayerUI*                   PlayerUI_;
@@ -215,6 +218,7 @@ private:
     float SlideForce_;
 
     float RealXDir_;
+    float KnockBackXDir_;
 
     float RunTime_;  //달리기 시간 체크
 

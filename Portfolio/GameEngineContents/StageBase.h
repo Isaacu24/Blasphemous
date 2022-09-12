@@ -81,6 +81,10 @@ protected:
     float ShakeTime_;
 
     bool IsShaking_;
+    bool IsLeftShaking_;
+    bool IsRightShaking_;
+
+
 
 private:
 };

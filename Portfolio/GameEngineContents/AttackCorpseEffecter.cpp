@@ -29,15 +29,13 @@ void AttackCorpseEffecter::Update(float _DeltaTime)
             DelayTime_ -= DEFAULT_DELAY_TIME;
 
             CorpseGroundEffect* Effect = GetLevel()->CreateActor<CorpseGroundEffect>();
-            Effect->GetTransform().SetWorldPosition({CreatePos_.x + ((DirX_ * 30.f) * Index_),
-                                                     CreatePos_.y,
-                                                     static_cast<int>(ACTORORDER::MonsterEffect)});
+            Effect->GetTransform().SetWorldPosition(
+                {CreatePos_.x + ((DirX_ * 30.f) * Index_), CreatePos_.y, BossMonsterEffectZ});
 
             Corpse* NewCorpse = GetLevel()->CreateActor<Corpse>();
             NewCorpse->SetCreatePos(CreatePos_);
-            NewCorpse->GetTransform().SetWorldPosition({CreatePos_.x + ((DirX_ * 30.f) * Index_),
-                                                        CreatePos_.y,
-                                                        static_cast<int>(ACTORORDER::MonsterEffect)});
+            NewCorpse->GetTransform().SetWorldPosition(
+                {CreatePos_.x + ((DirX_ * 30.f) * Index_), CreatePos_.y, BossMonsterEffectZ});
 
             if (5 == Index_)
             {

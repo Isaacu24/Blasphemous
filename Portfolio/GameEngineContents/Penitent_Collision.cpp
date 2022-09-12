@@ -278,10 +278,14 @@ void Penitent::CollisionCheck()
     DeadZoneCheck();
 }
 
-
 //피격 함수
 bool Penitent::KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
+    float4 Dir = _This->GetTransform().GetWorldPosition() - _Other->GetTransform().GetWorldPosition();
+    Dir.Normalize();
+
+    KnockBackXDir_ = Dir.x;
+
     if (false == IsGround_)
     {
         SetDamege(10.f);
@@ -295,6 +299,11 @@ bool Penitent::KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other
 
 bool Penitent::KnockUp(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
+    float4 Dir = _This->GetTransform().GetWorldPosition() - _Other->GetTransform().GetWorldPosition();
+    Dir.Normalize();
+
+    KnockBackXDir_ = Dir.x;
+
     if (false == IsGround_)
     {
         SetDamege(15.f);
@@ -344,6 +353,7 @@ bool Penitent::Dangle(GameEngineCollision* _This, GameEngineCollision* _Other)
     return true;
 }
 
+
 bool Penitent::FallCollisionCheck()
 {
     float4 Color = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x,
@@ -361,17 +371,22 @@ bool Penitent::FallCollisionCheck()
 bool Penitent::HitEffectCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
     float4 MonsterPos = _Other->GetTransform().GetWorldPosition();
+
     HitEffect_->GetTransform().SetWorldPosition(
         {MonsterPos.x, MonsterPos.y, HitEffect_->GetTransform().GetWorldPosition().z});
 
     if (0 < RealXDir_)  //오른쪽
     {
         HitEffect_->GetTransform().PixLocalNegativeX();
+
+        CurStage_->SetShake(true);
     }
 
     else if (0 > RealXDir_)  //왼쪽
     {
         HitEffect_->GetTransform().PixLocalPositiveX();
+
+        CurStage_->SetShake(true);
     }
 
     switch (HitStack_)
@@ -393,9 +408,6 @@ bool Penitent::HitEffectCheck(GameEngineCollision* _This, GameEngineCollision* _
             HitStack_ = 0;
             break;
     }
-
-    CurStage_ = dynamic_cast<StageBase*>(GetLevel());
-    CurStage_->SetShake(true);
 
     return true;
 }

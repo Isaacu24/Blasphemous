@@ -6,7 +6,6 @@ PlayerUI::PlayerUI() { Flasks_.resize(3); }
 
 PlayerUI::~PlayerUI() {}
 
-
 void PlayerUI::Start()
 {
     HPBar_ = GetLevel()->CreateActor<LeftTopUI>();
@@ -94,14 +93,19 @@ void PlayerUI::Start()
         std::bind(&PlayerUI::BehindScreenStart, this, std::placeholders::_1),
         std::bind(&PlayerUI::BehindScreenEnd, this, std::placeholders::_1));
 
-    ScreenState_.ChangeState("FinalBossDeath");
-
-    IsDeath_ = true;
+    ScreenState_.ChangeState("BehindScreen");
 }
 
 void PlayerUI::Update(float _DeltaTime) { ScreenState_.Update(_DeltaTime); }
 
 void PlayerUI::End() {}
+
+void PlayerUI::LevelStartEvent() {}
+
+void PlayerUI::LevelEndEvent() 
+{ 
+    ScreenState_.ChangeState("BehindScreen"); 
+}
 
 
 void PlayerUI::SetTear(int _Value)
@@ -170,7 +174,7 @@ void PlayerUI::PlayerDeathStart(const StateInfo& _Info)
 {
     ScreenRenderer_->SetTexture("Death_Screen.png");
     ScreenRenderer_->ScaleToTexture();
-    ScreenRenderer_->GetTransform().SetWorldScale(ScreenRenderer_->GetTransform().GetWorldScale() * 2);
+    ScreenRenderer_->GetTransform().SetWorldScale(ScreenRenderer_->GetTransform().GetWorldScale());
 
     Alpha_      = 0.f;
     ScreenTime_ = 0.f;
@@ -199,13 +203,7 @@ void PlayerUI::PlayerDeathUpdate(float _DeltaTime, const StateInfo& _Info)
 
     else
     {
-        Alpha_ -= _DeltaTime * 0.4f;
-
-        if (0 > Alpha_)
-        {
-            Alpha_ = 0.0f;
-            ScreenState_.ChangeState("BehindScreen");
-        }
+        ScreenState_.ChangeState("BehindScreen");
     }
 
     ScreenRenderer_->GetColorData().MulColor = float4{1.f, 1.f, 1.f, Alpha_};
@@ -340,7 +338,7 @@ void PlayerUI::FinalBossDeathUpdate(float _DeltaTime, const StateInfo& _Info)
 void PlayerUI::FinalBossDeathEnd(const StateInfo& _Info) {}
 
 
-void PlayerUI::BehindScreenStart(const StateInfo& _Info) 
+void PlayerUI::BehindScreenStart(const StateInfo& _Info)
 {
     ScreenRenderer_->GetColorData().MulColor = float4{1.f, 1.f, 1.f, 0};
     BackRenderer_->GetColorData().MulColor   = float4{1.f, 1.f, 1.f, 0};

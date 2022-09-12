@@ -50,7 +50,7 @@ void ElderBrother::Start()
                                 {
                                     Flow_ = APPEARFLOW::Jump;
                                     Renderer_->CurAnimationReset();
-                                    
+
                                     IsJump_ = true;
                                     Renderer_->ChangeFrameAnimation("elderBrother_jump");
                                 });
@@ -72,7 +72,8 @@ void ElderBrother::Start()
         });
 
     Renderer_->AnimationBindEnd("elderBrother_land", [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
-    Renderer_->AnimationBindEnd("elderBrother_land_event", [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+    Renderer_->AnimationBindEnd("elderBrother_land_event",
+                                [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
 
     Renderer_->CreateFrameAnimationCutTexture("elderBrother_attack", {"elderBrother_attack.png", 0, 23, 0.08f, false});
 
@@ -275,7 +276,7 @@ void ElderBrother::DamageCheck()
         BloodEffect_->GetTransform().SetWorldPosition(
             {BodyCollider_->GetTransform().GetWorldPosition().x + (-(Dir_.x) * 75.f),
              BodyCollider_->GetTransform().GetWorldPosition().y,
-             static_cast<int>(ACTORORDER::PlayerEffect)});
+             PlayerEffectZ});
         BloodEffect_->GetRenderer()->On();
         BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
 
@@ -323,9 +324,8 @@ void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
             {
                 Renderer_->GetColorData().MulColor = float4::ONE;
 
-                GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
-                                                 GetTransform().GetWorldPosition().y,
-                                                 static_cast<int>(ACTORORDER::Monster)});
+                GetTransform().SetWorldPosition(
+                    {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, BossMonsterZ});
 
                 Flow_ = APPEARFLOW::Fall;
             }
@@ -437,7 +437,7 @@ void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 
     float4 LerpPos = float4::LerpLimit(GetTransform().GetWorldPosition(), Target_, Alpha_);
-    GetTransform().SetWorldPosition({LerpPos.x, LerpPos.y, static_cast<int>(ACTORORDER::Monster)});
+    GetTransform().SetWorldPosition({LerpPos.x, LerpPos.y, BossMonsterZ});
 
     Gravity_->SetActive(!IsGround_);
     GetTransform().SetWorldMove(Dir_ * JumpForce_ * _DeltaTime);
@@ -474,7 +474,7 @@ void ElderBrother::FallUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 
     float4 LerpPos = float4::LerpLimit(GetTransform().GetWorldPosition(), Target_, Alpha_);
-    GetTransform().SetWorldPosition({LerpPos.x, LerpPos.y, static_cast<int>(ACTORORDER::Monster)});
+    GetTransform().SetWorldPosition({LerpPos.x, LerpPos.y, BossMonsterZ});
 
     float4 Distance = Target_ - GetTransform().GetWorldPosition();
 
