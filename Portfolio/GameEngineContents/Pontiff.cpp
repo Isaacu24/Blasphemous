@@ -24,7 +24,8 @@ void Pontiff::Start()
     Face_   = CreateComponent<GameEngineTextureRenderer>();
 
     MainBody_ = GetLevel()->CreateActor<PontiffMainBody>();
-    // MainBody_->Off();
+    MainBody_->GetTransform().SetWorldPosition({1260, -720, BeforeLayer5Z});
+    MainBody_->Off();
 
     Helmet_->CreateFrameAnimationCutTexture("pontiff_idle_helmet", {"pontiff_idle_helmet.png", 0, 30, 0.2f, true});
 
@@ -64,11 +65,6 @@ void Pontiff::Start()
                                   if (35 == _Info.CurFrame)
                                   {
                                       MainBody_->On();
-                                      // MainBody_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
-                                      //                                             GetTransform().GetWorldPosition().y
-                                      //                                             - 200, BeforeLayer5Z});
-
-                                      IsAscension_ = true;
                                   }
                               });
 
@@ -139,7 +135,6 @@ void Pontiff::Start()
     Symbol_[1]->GetTransform().SetWorldPosition({1660, -600, BossMonsterEffectZ});
     Symbol_[1]->Renderer_->Off();
 
-    MainBody_->GetTransform().SetWorldPosition({1260, -720, BeforeLayer5Z});
 }
 
 void Pontiff::Update(float _DeltaTime)
@@ -580,11 +575,7 @@ void Pontiff::DeathStart(const StateInfo& _Info)
 
 void Pontiff::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    if (true == IsAscension_)
-    {
-        AscensionSpeed_ += 300.f * _DeltaTime;
-        MainBody_->GetTransform().SetWorldMove(float4::UP * AscensionSpeed_ * _DeltaTime);
-    }
+
 }
 
 void Pontiff::DeathEnd(const StateInfo& _Info) {}

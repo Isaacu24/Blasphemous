@@ -1,16 +1,16 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
- 
+
 class PontiffMainBody : public GameEngineActor
 {
 public:
-	PontiffMainBody();
-	~PontiffMainBody();
+    PontiffMainBody();
+    ~PontiffMainBody();
 
-	PontiffMainBody(const PontiffMainBody& _Other) = delete;
-	PontiffMainBody(PontiffMainBody&& _Other) noexcept = delete;
-	PontiffMainBody& operator=(const PontiffMainBody& _Other) = delete;
-	PontiffMainBody& operator=(PontiffMainBody&& _Other) noexcept = delete;
+    PontiffMainBody(const PontiffMainBody& _Other)                = delete;
+    PontiffMainBody(PontiffMainBody&& _Other) noexcept            = delete;
+    PontiffMainBody& operator=(const PontiffMainBody& _Other)     = delete;
+    PontiffMainBody& operator=(PontiffMainBody&& _Other) noexcept = delete;
 
 protected:
     void Start() override;
@@ -20,8 +20,9 @@ protected:
 private:
     class GameEngineTextureRenderer* Renderer_;
 
-	bool IsAppear_;
+    bool IsAppear_;
 
-	float Speed_;
+    float Alpha_;
+
+    float Speed_;
 };
-

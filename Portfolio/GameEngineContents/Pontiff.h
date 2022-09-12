@@ -101,7 +101,6 @@ private:
     GameEngineActor* Target_;
 
     bool IsLose_;
-    bool IsAscension_;
     bool IsSpellCast_;
     bool IsOnceCasting_;
 
@@ -112,6 +111,5 @@ private:
     float RestTime_;
 
     int SpellCount_;
-    
 };
 
