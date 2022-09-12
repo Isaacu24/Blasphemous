@@ -42,7 +42,6 @@ public:
 	float4 PivotPos;
 };
 
-
 class FrameAnimation_DESC
 {
 public:
@@ -160,6 +159,7 @@ public:
 
 	void SetSamplingModePoint();
 	void SetSamplingModeLiner();
+	void SetSamplingModePointMirror();
 
 	void SetScaleModeImage()
 	{
@@ -233,6 +233,11 @@ public:
 	void SetUVData(float4 _Data)
 	{
 		UVData.x = _Data.x;
+	}
+
+	void PlusTimeData(float _Data)
+	{
+		DeltaTimeData.x += _Data;
 	}
 
 	void CurAnimationPauseOn();
@@ -318,6 +323,7 @@ private:
 	float4 FrameData;
 
 	float4 UVData;
+	float4 DeltaTimeData;
 
 	ColorData ColorData;
 	AtlasData AtlasDataInst;

@@ -260,6 +260,9 @@
     <ClInclude Include="Shop.h">
       <Filter>Level\Pilgrimage\Shop</Filter>
     </ClInclude>
+    <ClInclude Include="TwisterBackground.h">
+      <Filter>Actor\BossMonster\Pontiff</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -523,6 +526,9 @@
     </ClCompile>
     <ClCompile Include="Shop.cpp">
       <Filter>Level\Pilgrimage\Shop</Filter>
+    </ClCompile>
+    <ClCompile Include="TwisterBackground.cpp">
+      <Filter>Actor\BossMonster\Pontiff</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

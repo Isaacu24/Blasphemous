@@ -47,37 +47,21 @@ void EngineSubSetting()
 	{
 		D3D11_BLEND_DESC Desc = { 0 };
 
-		// ³·
 		Desc.AlphaToCoverageEnable = FALSE;
 		Desc.IndependentBlendEnable = FALSE;
 		Desc.RenderTarget[0].BlendEnable = true;
 		Desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
-
-		//         ¹è°æ»ö
-
-		//           src                                         dest
-		// »ö±ò°ø½Ä  float4(1.0f, 0.0f, 0.0f, 0.5f) * ¼Ò½ºÆÑÅÍ + float4(0.0f, 0.0f, 1.0f, 0.5f) * ¿øº»ÆÑÅÍ
-
-		//        = float4(1.0f, 0.0f, 1.0f, 1.0f);
 		Desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
-
-		// »ö±ò°ø½Ä  float4(0.0f, 0.0f, 0.0f, 0.0f) * float4(0.0f, 0.0f, 0.0f) + float4(0.0f, 0.0f, 1.0f, 1.0f) * ¿øº»ÆÑÅÍ
 		Desc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
-		// float4(0.0f, 0.0f, 1.0f, 1.0f)* (0.5f, 0.5f, 0.5f)
 		Desc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
-
-		// ¾ËÆÄÂÊ¸¸ µû·Î Ã³¸®ÇÏ´Â ¿É¼Ç
 		Desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
 		Desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
 		Desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
-
 
 		GameEngineBlend::Create("AlphaBlend", Desc);
 	}
 
 	{
-		// 1, 1, 1, 1 * ¹º°¡ + 0, 0¤¿, * ¹º°¡
-
 		D3D11_BLEND_DESC Desc = { 0 };
 
 		Desc.AlphaToCoverageEnable = FALSE;
@@ -87,18 +71,9 @@ void EngineSubSetting()
 		Desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP::D3D11_BLEND_OP_MAX;
 		Desc.RenderTarget[0].SrcBlend = D3D11_BLEND::D3D11_BLEND_ONE;
 		Desc.RenderTarget[0].DestBlend = D3D11_BLEND::D3D11_BLEND_ONE;
-		// Desc.RenderTarget[0].DestBlend = D3D11_BLEND::D3D11_BLEND_DEST_COLOR;
 		Desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP::D3D11_BLEND_OP_ADD;
 		Desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND::D3D11_BLEND_ZERO;
 		Desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND::D3D11_BLEND_ONE;
-		//blendStateDescription.RenderTarget[0].SrcBlend = D3D11_BLEND_ONE;
-		//blendStateDescription.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
-		//blendStateDescription.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
-		//blendStateDescription.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
-		//blendStateDescription.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
-		//blendStateDescription.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
-		//blendStateDescription.RenderTarget[0].RenderTargetWriteMask = 0x0f;
-
 
 		GameEngineBlend::Create("TransparentBlend", Desc);
 	}
@@ -107,8 +82,6 @@ void EngineSubSetting()
 		D3D11_RASTERIZER_DESC Desc = {};
 
 		Desc.FillMode = D3D11_FILL_MODE::D3D11_FILL_SOLID;
-
-		// 
 		Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
 
 		GameEngineRasterizer::Create("EngineRasterizer", Desc);
@@ -120,6 +93,7 @@ void EngineSubSetting()
 		Desc.DepthFunc = D3D11_COMPARISON_FUNC::D3D11_COMPARISON_LESS_EQUAL;
 		Desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK::D3D11_DEPTH_WRITE_MASK_ALL;
 		Desc.StencilEnable = false;
+
 		GameEngineDepthStencil::Create("EngineBaseDepth", Desc);
 	}
 
@@ -163,6 +137,20 @@ void EngineTextureLoad()
 		Desc.MaxLOD = FLT_MAX;
 
 		GameEngineSampler::Create("EngineSamplerLinear", Desc);
+	}
+
+	{
+		D3D11_SAMPLER_DESC Desc = { D3D11_FILTER::D3D11_FILTER_MIN_MAG_MIP_POINT };
+		Desc.AddressU = D3D11_TEXTURE_ADDRESS_MIRROR;
+		Desc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
+		Desc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
+		Desc.MipLODBias = 0.0f;
+		Desc.MaxAnisotropy = 1;
+		Desc.ComparisonFunc = D3D11_COMPARISON_ALWAYS;
+		Desc.MinLOD = -FLT_MAX;
+		Desc.MaxLOD = FLT_MAX;
+
+		GameEngineSampler::Create("EngineSamplerPointMirror", Desc);
 	}
 
 	GameEngineDirectory Dir;

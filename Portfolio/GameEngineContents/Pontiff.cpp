@@ -134,7 +134,6 @@ void Pontiff::Start()
     Symbol_[1]->GetTransform().SetWorldScale({2, 2, 1});
     Symbol_[1]->GetTransform().SetWorldPosition({1660, -600, BossMonsterEffectZ});
     Symbol_[1]->Renderer_->Off();
-
 }
 
 void Pontiff::Update(float _DeltaTime)
@@ -465,6 +464,9 @@ void Pontiff::AppearStart(const StateInfo& _Info)
     Helmet_->ChangeFrameAnimation("pontiff_opening_helmet");
     Body_->ChangeFrameAnimation("pontiff_idle_torso");
     Face_->Off();
+
+    Helmet_->GetColorData().MulColor = float4{0.15f, 0.15f, 0.15f, 1.0f};
+    Body_->GetColorData().MulColor   = float4{0.15f, 0.15f, 0.15f, 1.0f};
 }
 
 void Pontiff::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -475,6 +477,17 @@ void Pontiff::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
     {
         Time_ = 0.f;
         State_.ChangeState("CloseIdle");
+    }
+    
+    float Alpha = _DeltaTime / 2;
+
+    Helmet_->GetColorData().MulColor += float4{Alpha, Alpha, Alpha, 0.0f};
+    Body_->GetColorData().MulColor += float4{Alpha, Alpha, Alpha, 0.0f};
+
+    if (1 <= Helmet_->GetColorData().MulColor.r)
+    {
+        Helmet_->GetColorData().MulColor = float4::ONE;
+        Body_->GetColorData().MulColor   = float4::ONE;
     }
 }
 
@@ -573,9 +586,6 @@ void Pontiff::DeathStart(const StateInfo& _Info)
     Symbol_[1]->Death();
 }
 
-void Pontiff::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
-{
-
-}
+void Pontiff::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Pontiff::DeathEnd(const StateInfo& _Info) {}

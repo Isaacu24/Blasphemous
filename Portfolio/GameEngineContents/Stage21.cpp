@@ -3,6 +3,7 @@
 #include "Penitent.h"
 #include "Pontiff.h"
 #include "Platform.h"
+#include "TwisterBackground.h"
 
 Stage21::Stage21() {}
 
@@ -52,6 +53,24 @@ void Stage21::SettingMonster()
     Pontiff_->SetGround(ColMap_);
     Pontiff_->CreateSpawner();
     BossMonster_ = Pontiff_;
+
+    {
+        TwisterBackground* Twister = CreateActor<TwisterBackground>();
+        Twister->GetTransform().SetWorldPosition({860, -600, BeforeLayerZ});
+
+        TwisterBackground* Twister1 = CreateActor<TwisterBackground>();
+        Twister1->GetTransform().SetWorldPosition({1640, -600, BeforeLayerZ});
+    }
+
+    {
+        TwisterBackground* Twister = CreateActor<TwisterBackground>();
+        Twister->GetRenderer()->SetTexture("pontif-twister-foreground.png");
+        Twister->GetTransform().SetWorldPosition({860, -600, AfterLayerZ});
+
+        TwisterBackground* Twister1 = CreateActor<TwisterBackground>();
+        Twister1->GetRenderer()->SetTexture("pontif-twister-foreground.png");
+        Twister1->GetTransform().SetWorldPosition({1640, -600, AfterLayerZ});
+    }
 }
 
 void Stage21::Start()
@@ -164,7 +183,7 @@ void Stage21::LevelStartEvent()
     IsLeftExit_  = false;
 }
 
-void Stage21::LevelEndEvent() 
+void Stage21::LevelEndEvent()
 {
     if (false == Penitent_->IsUpdate())
     {
