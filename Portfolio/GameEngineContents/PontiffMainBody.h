@@ -19,5 +19,9 @@ protected:
 
 private:
     class GameEngineTextureRenderer* Renderer_;
+
+	bool IsAppear_;
+
+	float Speed_;
 };
 

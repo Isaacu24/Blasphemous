@@ -24,7 +24,7 @@ void Pontiff::Start()
     Face_   = CreateComponent<GameEngineTextureRenderer>();
 
     MainBody_ = GetLevel()->CreateActor<PontiffMainBody>();
-    MainBody_->Off();
+    // MainBody_->Off();
 
     Helmet_->CreateFrameAnimationCutTexture("pontiff_idle_helmet", {"pontiff_idle_helmet.png", 0, 30, 0.2f, true});
 
@@ -58,19 +58,19 @@ void Pontiff::Start()
     Face_->CreateFrameAnimationCutTexture("pontiff_openedIdle_face_DEATH",
                                           {"pontiff_openedIdle_face_DEATH.png", 0, 64, 0.1f, false});
 
-    Face_->AnimationBindFrame(
-        "pontiff_openedIdle_face_DEATH",
-        [&](const FrameAnimation_DESC& _Info)
-        {
-            if (35 == _Info.CurFrame)
-            {
-                MainBody_->On();
-                MainBody_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
-                                                            GetTransform().GetWorldPosition().y - 200, BeforeLayer5Z});
+    Face_->AnimationBindFrame("pontiff_openedIdle_face_DEATH",
+                              [&](const FrameAnimation_DESC& _Info)
+                              {
+                                  if (35 == _Info.CurFrame)
+                                  {
+                                      MainBody_->On();
+                                      // MainBody_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
+                                      //                                             GetTransform().GetWorldPosition().y
+                                      //                                             - 200, BeforeLayer5Z});
 
-                IsAscension_ = true;
-            }
-        });
+                                      IsAscension_ = true;
+                                  }
+                              });
 
     Face_->AnimationBindEnd("pontiff_openedIdle_face_DEATH", [&](const FrameAnimation_DESC& _Info) { IsLose_ = true; });
 
@@ -138,6 +138,8 @@ void Pontiff::Start()
     Symbol_[1]->GetTransform().SetWorldScale({2, 2, 1});
     Symbol_[1]->GetTransform().SetWorldPosition({1660, -600, BossMonsterEffectZ});
     Symbol_[1]->Renderer_->Off();
+
+    MainBody_->GetTransform().SetWorldPosition({1260, -720, BeforeLayer5Z});
 }
 
 void Pontiff::Update(float _DeltaTime)
@@ -149,7 +151,7 @@ void Pontiff::Update(float _DeltaTime)
         BossMonster::DamageCheck(10.f);
     }
 
-    //GameEngineDebug::OutPutString("Pontiff : " + State_.GetCurStateStateName());
+    // GameEngineDebug::OutPutString("Pontiff : " + State_.GetCurStateStateName());
 
     if (false == IsSpellCast_)
     {
@@ -166,8 +168,7 @@ void Pontiff::End() {}
 
 void Pontiff::SpellCast(float _DeltaTime)
 {
-    if (true == Symbol_[0]->Renderer_->IsUpdate()
-        || true == Symbol_[0]->Renderer_->IsUpdate())
+    if (true == Symbol_[0]->Renderer_->IsUpdate() || true == Symbol_[0]->Renderer_->IsUpdate())
     {
         return;
     }
@@ -369,8 +370,8 @@ void Pontiff::AnguishBeam()
 
 SPELLTYPE Pontiff::RandomSpell()
 {
-    int Random = Random_.RandomInt(0, static_cast<int>(SPELLTYPE::ANGUISHBEAM));
-    SPELLTYPE Spell = static_cast<SPELLTYPE>(Random);
+    int       Random = Random_.RandomInt(0, static_cast<int>(SPELLTYPE::ANGUISHBEAM));
+    SPELLTYPE Spell  = static_cast<SPELLTYPE>(Random);
 
     IsOnceCasting_ = false;
 
@@ -493,9 +494,9 @@ void Pontiff::AppearEnd(const StateInfo& _Info)
     PlatformSpawner_->CreateFristPattern();
 
     //주문 시작
-    IsSpellCast_ = false; 
+    IsSpellCast_ = false;
     CurType_     = RandomSpell();
-}   
+}
 
 void Pontiff::OpeningStart(const StateInfo& _Info)
 {
