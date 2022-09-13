@@ -145,7 +145,7 @@ void Pontiff::Update(float _DeltaTime)
         return;
     }
 
-    BossMonster::DamageCheck(10.f);
+    DamageCheck();
 
     if (false == IsSpellCast_)
     {
@@ -159,6 +159,47 @@ void Pontiff::Update(float _DeltaTime)
 }
 
 void Pontiff::End() {}
+
+void Pontiff::DamageCheck()
+{
+    if (false
+        == BodyCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+    {
+        IsHit_ = false;
+
+        if (true == Face_->IsUpdate())
+        {
+            Face_->GetColorData().MulColor = float4{1.f, 1.f, 1.f, 1.0f};
+        }
+    }
+
+    if (true == IsHit_)
+    {
+        return;
+    }
+
+    if (true
+        == BodyCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+    {
+        IsHit_ = true;
+
+        BloodEffect_->GetTransform().SetWorldPosition({BodyCollider_->GetTransform().GetWorldPosition().x,
+                                                       BodyCollider_->GetTransform().GetWorldPosition().y,
+                                                       PlayerEffectZ});
+        BloodEffect_->GetRenderer()->On();
+        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
+
+        MinusHP(10.f);
+        Face_->GetColorData().MulColor = float4{1.5f, 1.5f, 1.5f, 1.0f};
+    }
+
+    if (0 >= GetHP())
+    {
+        State_.ChangeState("Death");
+    }
+}
 
 void Pontiff::SpellCast(float _DeltaTime)
 {

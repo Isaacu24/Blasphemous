@@ -52,6 +52,10 @@ public:
 
     inline void ChangeIdleState(const FrameAnimation_DESC& _Info) { State_.ChangeState("Idle"); }
 
+    inline MetaTextureRenderer* GetMetaRenderer() { return MetaRenderer_; }
+
+    inline GameEngineTextureRenderer* GetRenderer() { return Renderer_; }
+
 protected:
     GameEngineStateManager State_;
 
@@ -87,6 +91,8 @@ protected:
     virtual void DamageCheck(float _Damage, const std::string& _State);
 
     virtual void DamageCheck(float _Damage, float _Offset){};
+
+    virtual void DamageCheck(float _Damage, std::function<void>()){};
 
 private:
 };

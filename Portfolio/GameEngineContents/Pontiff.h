@@ -74,6 +74,8 @@ protected:
     void Update(float _DeltaTime) override;
     void End() override;
 
+    void DamageCheck() override;
+
 private:
     SPELLTYPE CurType_;
     SPELLTYPE PervType_;

@@ -76,6 +76,7 @@ enum class COLLISIONORDER
     MonsterAttack1,
     MonsterShield,
     BossMonster,
+    BossMonsterBody,
     BossMonsterAttack,
     BossMonsterAttack1,
     Projectile,

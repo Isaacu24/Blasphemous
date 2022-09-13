@@ -183,11 +183,57 @@ void Pope::CreateSpawner()
     BloodEffect_->GetRenderer()->Off();
 }
 
+
 void Pope::Update(float _DeltaTime)
 {
     State_.Update(_DeltaTime);
 
-    BossMonster::DamageCheck(10.f);
+    if ("Death" != State_.GetCurStateStateName())
+    {
+        DamageCheck();
+    }
+}
+
+void Pope::DamageCheck()
+{
+    if (false
+        == BodyCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+    {
+        if (true == IsHit_)
+        {
+            MetaRenderer_->GetColorData().MulColor = float4{1.f, 1.f, 1.f, 1.0f};
+        }
+
+        IsHit_ = false;
+    }
+
+    if (true == IsHit_)
+    {
+        return;
+    }
+
+    if (true
+        == BodyCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+    {
+        IsHit_ = true;
+
+        BloodEffect_->GetTransform().SetWorldPosition({BodyCollider_->GetTransform().GetWorldPosition().x,
+                                                       BodyCollider_->GetTransform().GetWorldPosition().y,
+                                                       PlayerEffectZ});
+        BloodEffect_->GetRenderer()->On();
+        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
+
+        MetaRenderer_->GetColorData().MulColor = float4{5.f, 5.f, 5.f, 1.0f};
+
+        MinusHP(10.f);
+    }
+
+    if (0 >= GetHP())
+    {
+        State_.ChangeState("Death");
+    }
 }
 
 void Pope::End() {}
@@ -419,6 +465,7 @@ void Pope::DeathStart(const StateInfo& _Info)
 
     BossUI_->AllOff();
 
+    MetaRenderer_->GetColorData().MulColor = float4{1.f, 1.f, 1.f, 1.0f};
     MetaRenderer_->ChangeMetaAnimation("pope_death");
 }
 

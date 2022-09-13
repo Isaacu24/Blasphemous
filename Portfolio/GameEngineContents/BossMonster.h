@@ -24,5 +24,6 @@ protected:
 
     void DamageCheck(float _Damage) override;
 
+    void DamageCheck(float _Damage, std::function<void>()) override;
 private:
 };

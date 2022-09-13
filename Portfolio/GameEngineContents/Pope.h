@@ -57,6 +57,7 @@ protected:
     void End() override;
 
     void CreateSpawner();
+    void DamageCheck() override; 
 
 private:
     float4 TeleportPos_[4];

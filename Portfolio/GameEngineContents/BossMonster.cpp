@@ -33,12 +33,16 @@ void BossMonster::DamageCheck(float _Damage)
         BloodEffect_->GetRenderer()->On();
         BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
 
-        MinusHP(10.f);
-
+        MinusHP(_Damage);
     }
 
     if (0 >= GetHP())
     {
         State_.ChangeState("Death");
     }
+}
+
+void BossMonster::DamageCheck(float _Damage, std::function<void>()) 
+{
+
 }
