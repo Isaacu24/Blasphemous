@@ -48,8 +48,8 @@ void GiantSword::Start()
     Renderer_->CreateFrameAnimationCutTexture("pontiff_giantSword_swordSprite",
                                               {"pontiff_giantSword_swordSprite.png", 0, 0, 0.1f, false});
 
-    AttackSpectrum_->CreateOnceSpectrum("pontiff_giantSword_swordSprite",
-                                    {"pontiff_giantSword_swordSprite.png", 0, 0, 0.1f, false}, 16);
+    AttackSpectrum_->CreateOnceSpectrum(
+        "pontiff_giantSword_swordSprite", {"pontiff_giantSword_swordSprite.png", 0, 0, 0.1f, false}, 16);
 
     AttackSpectrum_->SetOnceSpectrumFrame(15);
 
@@ -62,7 +62,7 @@ void GiantSword::Start()
     DetectCollider_->GetTransform().SetWorldScale({1500.f, 1000.f, 1.0f});
 
     BodyCollider_ = CreateComponent<GameEngineCollision>();
-    BodyCollider_->ChangeOrder(COLLISIONORDER::BossMonster);
+    BodyCollider_->ChangeOrder(COLLISIONORDER::BossMonsterBody);
     BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{1.0f, 0.97f, 0.0f, 0.5f});
     BodyCollider_->GetTransform().SetWorldScale({50.f, 50.f, 1.0f});
     BodyCollider_->GetTransform().SetWorldMove({0, -100});
@@ -158,11 +158,19 @@ void GiantSword::TeleportOutUpdate(float _DeltaTime, const StateInfo& _Info)
         == BodyCollider_->IsCollision(
             CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
     {
+        BloodEffect_->GetRenderer()->On();
+        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV4");
+    }
+
+    if (true == BloodEffect_->IsUpdate())
+    {
         BloodEffect_->GetTransform().SetWorldPosition({BodyCollider_->GetTransform().GetWorldPosition().x,
                                                        BodyCollider_->GetTransform().GetWorldPosition().y,
                                                        PlayerEffectZ});
-        BloodEffect_->GetRenderer()->On();
-        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
+
+        BloodEffect_->GetTransform().SetWorldRotation({BodyCollider_->GetTransform().GetWorldRotation().x,
+                                                       BodyCollider_->GetTransform().GetWorldRotation().y,
+                                                       PlayerEffectZ});
     }
 
     MonsterBase::DamageCheck(50.f, "TeleportIN");
@@ -253,10 +261,10 @@ void GiantSword::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 }
 
-void GiantSword::AttackEnd(const StateInfo& _Info) 
+void GiantSword::AttackEnd(const StateInfo& _Info)
 {
     AttackCollider_->Off();
-    RotSpeed_ = 0.f; 
+    RotSpeed_ = 0.f;
 }
 
 
@@ -268,11 +276,21 @@ void GiantSword::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
         == BodyCollider_->IsCollision(
             CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
     {
+        BloodEffect_->GetRenderer()->On();
         BloodEffect_->GetTransform().SetWorldPosition({BodyCollider_->GetTransform().GetWorldPosition().x,
                                                        BodyCollider_->GetTransform().GetWorldPosition().y,
                                                        PlayerEffectZ});
-        BloodEffect_->GetRenderer()->On();
-        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
+    }
+
+    if (true == BloodEffect_->IsUpdate())
+    {
+        BloodEffect_->GetTransform().SetWorldPosition({BodyCollider_->GetTransform().GetWorldPosition().x,
+                                                       BodyCollider_->GetTransform().GetWorldPosition().y,
+                                                       PlayerEffectZ});
+
+        BloodEffect_->GetTransform().SetWorldRotation({BodyCollider_->GetTransform().GetWorldRotation().x,
+                                                       BodyCollider_->GetTransform().GetWorldRotation().y,
+                                                       PlayerEffectZ});
     }
 
     MonsterBase::DamageCheck(50.f, "TeleportIN");

@@ -74,12 +74,12 @@ void MagicMissileSpawner::Update(float _DeltaTime)
                 MultipleMagicMissile* Missile = GetLevel()->CreateActor<MultipleMagicMissile>();
                 Missile->GetTransform().SetWorldScale({2, 2, 1});
                 Missile->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x - 350.f,
-                                                          GetTransform().GetWorldPosition().y, FrontEffet});
+                                                          GetTransform().GetWorldPosition().y, FrontEffetZ});
 
                 MultipleMagicMissile* Missile1 = GetLevel()->CreateActor<MultipleMagicMissile>();
                 Missile1->GetTransform().SetWorldScale({2, 2, 1});
                 Missile1->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x + 350.f,
-                                                          GetTransform().GetWorldPosition().y, FrontEffet});
+                                                          GetTransform().GetWorldPosition().y, FrontEffetZ});
             }
 
 

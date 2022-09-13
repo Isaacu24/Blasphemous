@@ -18,6 +18,7 @@ public:
 
     inline bool GetBossEvent() { return BossEvent_; }
 
+    inline bool GetLose() { return IsLose_; }
 protected:
     BossUI* BossUI_;
     bool BossEvent_;
@@ -25,5 +26,7 @@ protected:
     void DamageCheck(float _Damage) override;
 
     void DamageCheck(float _Damage, std::function<void>()) override;
+
+    bool IsLose_;
 private:
 };

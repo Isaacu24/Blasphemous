@@ -182,7 +182,8 @@ void ShieldMaiden::DamageCheck()
         == BodyCollider_->IsCollision(
             CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
     {
-        IsHit_ = false;
+        IsHit_                                  = false;
+        MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
     }
 
     if (true == IsHit_)
@@ -241,6 +242,8 @@ void ShieldMaiden::DamageCheck()
              BodyCollider_->GetTransform().GetWorldPosition().y,
              static_cast<int>(ACTORORDER::PlayerEffect)});
         BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
+
+        MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
     }
 
     if (0 >= GetHP())
@@ -422,7 +425,11 @@ void ShieldMaiden::ParryReactionUpdate(float _DeltaTime, const StateInfo& _Info)
 void ShieldMaiden::ParryReactionEnd(const StateInfo& _Info) {}
 
 
-void ShieldMaiden::DeathStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("shieldandsword_death"); }
+void ShieldMaiden::DeathStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("shieldandsword_death");
+    MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
+}
 
 void ShieldMaiden::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
 

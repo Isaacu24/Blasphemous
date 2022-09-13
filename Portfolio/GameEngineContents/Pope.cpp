@@ -202,7 +202,7 @@ void Pope::DamageCheck()
     {
         if (true == IsHit_)
         {
-            MetaRenderer_->GetColorData().MulColor = float4{1.f, 1.f, 1.f, 1.0f};
+            MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
         }
 
         IsHit_ = false;
@@ -225,7 +225,7 @@ void Pope::DamageCheck()
         BloodEffect_->GetRenderer()->On();
         BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
 
-        MetaRenderer_->GetColorData().MulColor = float4{5.f, 5.f, 5.f, 1.0f};
+        MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
 
         MinusHP(10.f);
     }
@@ -272,7 +272,10 @@ void Pope::AppearEnd(const StateInfo& _Info)
     BossUI_->SetFontPosition({470, 590, -100.f});
 }
 
-void Pope::VanishingStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("pope_vanishing"); }
+void Pope::VanishingStart(const StateInfo& _Info) 
+{ 
+    MetaRenderer_->ChangeMetaAnimation("pope_vanishing"); 
+}
 
 void Pope::VanishingUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
@@ -465,8 +468,11 @@ void Pope::DeathStart(const StateInfo& _Info)
 
     BossUI_->AllOff();
 
-    MetaRenderer_->GetColorData().MulColor = float4{1.f, 1.f, 1.f, 1.0f};
+    MetaRenderer_->On();
+    MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
     MetaRenderer_->ChangeMetaAnimation("pope_death");
+
+    IsLose_ = true;
 }
 
 void Pope::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}

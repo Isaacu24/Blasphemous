@@ -33,7 +33,7 @@ void ToxicCloudSpawner::Update(float _DeltaTime)
                 DelayTime_ -= 0.5f;
 
                 ToxicCloud* Clone = GetLevel()->CreateActor<ToxicCloud>();
-                Clone->GetTransform().SetWorldPosition({XPos, -1300, FrontEffet});
+                Clone->GetTransform().SetWorldPosition({XPos, -1300, FrontEffetZ});
                 Clone->SetGround(ColMap_);
 
                 float4 Dir = Target_->GetTransform().GetWorldPosition() - GetTransform().GetWorldPosition();
@@ -60,7 +60,7 @@ void ToxicCloudSpawner::Update(float _DeltaTime)
                 DelayTime_ -= 0.5f;
 
                 ToxicCloud* Clone  = GetLevel()->CreateActor<ToxicCloud>();
-                Clone->GetTransform().SetWorldPosition({XPos, -350, FrontEffet});
+                Clone->GetTransform().SetWorldPosition({XPos, -350, FrontEffetZ});
                 Clone->SetGround(ColMap_);
 
                 float4 Dir = Target_->GetTransform().GetWorldPosition() - GetTransform().GetWorldPosition();
@@ -70,7 +70,7 @@ void ToxicCloudSpawner::Update(float _DeltaTime)
 
                 ++CloudCount_;
 
-                if (5 == CloudCount_)
+                if (6 == CloudCount_)
                 {
                     CloudCount_ = 0;
                     SpawnerEnd_ = true;

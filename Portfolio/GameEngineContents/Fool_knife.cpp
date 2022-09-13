@@ -277,7 +277,9 @@ void Fool_knife::DeathStart(const StateInfo& _Info)
 {
     BodyCollider_->Off();
     DetectCollider_->Off();
+
     Renderer_->ChangeFrameAnimation("Fool_death_knife");
+    Renderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
 }
 
 void Fool_knife::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}

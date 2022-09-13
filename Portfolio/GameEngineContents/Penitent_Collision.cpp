@@ -268,9 +268,18 @@ void Penitent::CollisionCheck()
         CollisionType::CT_OBB2D,
         std::bind(&Penitent::HitEffectCheck, this, std::placeholders::_1, std::placeholders::_2));
 
+    IsBossHit_ = AttackCollider_->IsCollision(
+        CollisionType::CT_OBB2D,
+        COLLISIONORDER::BossMonsterBody,
+        CollisionType::CT_OBB2D,
+        std::bind(&Penitent::HitEffectCheck, this, std::placeholders::_1, std::placeholders::_2));
+
     if (false
-        == AttackCollider_->IsCollision(
-            CollisionType::CT_OBB2D, COLLISIONORDER::BossMonster, CollisionType::CT_OBB2D, nullptr))
+            == AttackCollider_->IsCollision(
+                CollisionType::CT_OBB2D, COLLISIONORDER::BossMonster, CollisionType::CT_OBB2D, nullptr)
+        && false
+               == AttackCollider_->IsCollision(
+                   CollisionType::CT_OBB2D, COLLISIONORDER::BossMonsterBody, CollisionType::CT_OBB2D, nullptr))
     {
         IsBossHit_ = false;
     }
@@ -288,11 +297,15 @@ bool Penitent::KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other
 
     if (false == IsGround_)
     {
-        SetDamege(10.f);
         return true;
     }
 
-    State_.ChangeState("KnockBack");
+    SetDamege(7.f);
+
+    if (0 < GetHP())
+    {
+        State_.ChangeState("KnockUp");
+    }
 
     return true;
 }
@@ -306,11 +319,15 @@ bool Penitent::KnockUp(GameEngineCollision* _This, GameEngineCollision* _Other)
 
     if (false == IsGround_)
     {
-        SetDamege(15.f);
         return true;
     }
 
-    State_.ChangeState("KnockUp");
+    SetDamege(10.f);
+
+    if (0 < GetHP())
+    {
+        State_.ChangeState("KnockUp");
+    }
 
     return true;
 }

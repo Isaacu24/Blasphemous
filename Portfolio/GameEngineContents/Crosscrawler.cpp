@@ -301,14 +301,6 @@ void Crosscrawler::StunUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Crosscrawler::StunEnd(const StateInfo& _Info) {}
 
-
-void Crosscrawler::DeathStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("crosscrawler_death"); }
-
-void Crosscrawler::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
-
-void Crosscrawler::DeathEnd(const StateInfo& _Info) {}
-
-
 void Crosscrawler::ExecutionStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("crosscrawler_execution");
@@ -317,3 +309,14 @@ void Crosscrawler::ExecutionStart(const StateInfo& _Info)
 void Crosscrawler::ExecutionUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Crosscrawler::ExecutionEnd(const StateInfo& _Info) {}
+
+
+void Crosscrawler::DeathStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("crosscrawler_death");
+    MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
+}
+
+void Crosscrawler::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Crosscrawler::DeathEnd(const StateInfo& _Info) {}

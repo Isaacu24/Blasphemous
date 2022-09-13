@@ -24,7 +24,7 @@ void ElderBrother::Start()
 
     Renderer_->CreateFrameAnimationCutTexture("elderBrother_jumpStart", {"elderBrother_jump.png", 0, 8, 0.07f, false});
     Renderer_->CreateFrameAnimationCutTexture("elderBrother_jumpStart_event",
-                                              {"elderBrother_jump.png", 0, 8, 0.07f, false});
+                                              {"elderBrother_jump.png", 0, 8, 0.08f, false});
 
     Renderer_->AnimationBindFrame(
         "elderBrother_jumpStart",
@@ -58,7 +58,8 @@ void ElderBrother::Start()
     Renderer_->CreateFrameAnimationCutTexture("elderBrother_jump", {"elderBrother_jump.png", 9, 14, 0.07f, true});
 
     Renderer_->CreateFrameAnimationCutTexture("elderBrother_land", {"elderBrother_jump.png", 15, 24, 0.07f, false});
-    Renderer_->CreateFrameAnimationCutTexture("elderBrother_land_event", {"elderBrother_jump.png", 0, 8, 0.07f, false});
+    Renderer_->CreateFrameAnimationCutTexture("elderBrother_land_event",
+                                              {"elderBrother_jump.png", 15, 24, 0.08f, false});
 
     Renderer_->AnimationBindFrame(
         "elderBrother_land",
@@ -126,7 +127,7 @@ void ElderBrother::Start()
     Renderer_->AnimationBindEnd("elderBrother_attack", [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
 
     Renderer_->CreateFrameAnimationCutTexture("elderBrother_attack_event",
-                                              {"elderBrother_attack.png", 0, 23, 0.07f, false});
+                                              {"elderBrother_attack.png", 0, 23, 0.08f, false});
 
     Renderer_->AnimationBindEnd("elderBrother_attack_event",
                                 [&](const FrameAnimation_DESC& _Info)
@@ -248,6 +249,11 @@ void ElderBrother::Update(float _DeltaTime)
         }
     }
 
+    if ("Death" == State_.GetCurStateStateName() || "Appear" == State_.GetCurStateStateName())
+    {
+        return;
+    }
+
     DamageCheck();
 }
 
@@ -259,7 +265,8 @@ void ElderBrother::DamageCheck()
         == BodyCollider_->IsCollision(
             CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
     {
-        IsHit_ = false;
+        IsHit_                             = false;
+        Renderer_->GetColorData().MulColor = float4{1.f, 1.f, 1.f, 1.0f};
     }
 
     if (true == IsHit_)
@@ -271,13 +278,14 @@ void ElderBrother::DamageCheck()
         == BodyCollider_->IsCollision(
             CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
     {
-        IsHit_ = true;
+        IsHit_                             = true;
+        Renderer_->GetColorData().MulColor = float4{1.5f, 1.5f, 1.5f, 1.0f};
 
+        BloodEffect_->GetRenderer()->On();
         BloodEffect_->GetTransform().SetWorldPosition(
             {BodyCollider_->GetTransform().GetWorldPosition().x + (-(Dir_.x) * 75.f),
              BodyCollider_->GetTransform().GetWorldPosition().y,
              PlayerEffectZ});
-        BloodEffect_->GetRenderer()->On();
         BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
 
         MinusHP(10.f);
@@ -518,12 +526,19 @@ void ElderBrother::AttackEnd(const StateInfo& _Info) {}
 void ElderBrother::DeathStart(const StateInfo& _Info)
 {
     BossUI_->AllOff();
+
     Renderer_->ChangeFrameAnimation("elderBrother_death");
+
+    Renderer_->GetColorData().MulColor = float4{1.f, 1.f, 1.f, 1.0f};
 }
 
 void ElderBrother::DeathUpdate(float _DeltaTime, const StateInfo& _Info) { Gravity_->SetActive(!IsGround_); }
 
-void ElderBrother::DeathEnd(const StateInfo& _Info) {}
+void ElderBrother::DeathEnd(const StateInfo& _Info)
+{
+    AttackEffecter_->Death();
+    JumpEffecter_->Death();
+}
 
 
 //Ãæµ¹

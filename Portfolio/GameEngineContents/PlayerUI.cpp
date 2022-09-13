@@ -23,7 +23,7 @@ void PlayerUI::Start()
     MPBar_->Renderer_->ScaleToTexture();
     MPBar_->SetLevelOverOn();
 
-    Penitent::GetMainPlayer()->SetMP(20);
+    Penitent::GetMainPlayer()->SetMP(100);
     float MP = Penitent::GetMainPlayer()->GetMP() / 100.f;
 
     MPBar_->Renderer_->SetUVData(MP);
@@ -100,7 +100,7 @@ void PlayerUI::Update(float _DeltaTime)
 { 
     ScreenState_.Update(_DeltaTime); 
 
-    //Damage();
+    Damage();
 }
 
 void PlayerUI::End() {}

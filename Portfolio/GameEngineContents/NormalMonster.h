@@ -47,8 +47,8 @@ protected:
     virtual void PatrolMoveX(float _DeltaTime){};
     virtual void PatrolMoveY(float _DeltaTime){};
 
-    bool LeftObstacleCheck(int _X, int _Y);
-    bool RightObstacleCheck(int _X, int _Y);
+    bool LeftObstacleCheck(float _X, float _Y);
+    bool RightObstacleCheck(float _X, float _Y);
 
     virtual bool LookAtPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);
     virtual bool TrackPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);

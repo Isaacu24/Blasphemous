@@ -158,8 +158,8 @@ namespace
     float PlayerZ             = AO_PLAYER;
     float PlayerBehindEffectZ = AO_PLAYERBEHINDEFFECT;
     float NPCZ                = AO_NPC;
-    float FrontEffet          = AO_FRONTEFFECT;
-    float FrontBoss           = AO_FRONTBOSS;
+    float FrontEffetZ          = AO_FRONTEFFECT;
+    float FrontBossZ           = AO_FRONTBOSS;
     float PlatformZ           = AO_PLATFORM;
     float BossMonsterEffectZ  = AO_BOSSMONSTEREFFECT;
     float BossMonsterZ        = AO_BOSSMONSTER;

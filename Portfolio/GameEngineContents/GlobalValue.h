@@ -58,7 +58,7 @@ enum class ACTORORDER
     BeforeParallax2 = 400,
     BeforeParallax1 = 500,
     BeforeParallax0 = 600,
-
+    
     ColMap
 };
 

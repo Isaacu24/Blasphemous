@@ -107,7 +107,7 @@ void Pontiff::Start()
     State_.ChangeState("Appear");
 
     GiantSword_ = GetLevel()->CreateActor<GiantSword>();
-    GiantSword_->GetTransform().SetWorldPosition({1250, -600, FrontBoss});
+    GiantSword_->GetTransform().SetWorldPosition({1250, -600, FrontBossZ});
     GiantSword_->SetPontiff(this);
 
     BossUI_ = GetLevel()->CreateActor<BossUI>();
@@ -116,7 +116,7 @@ void Pontiff::Start()
     BossUI_->AllOff();
 
     BodyCollider_ = CreateComponent<GameEngineCollision>();
-    BodyCollider_->ChangeOrder(COLLISIONORDER::BossMonster);
+    BodyCollider_->ChangeOrder(COLLISIONORDER::BossMonsterBody);
     BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{1.0f, 0.0f, 1.0f, 0.5f});
     BodyCollider_->GetTransform().SetWorldScale({150.f, 150.f, 1.0f});
     BodyCollider_->GetTransform().SetWorldMove({-30, 70});
@@ -185,13 +185,13 @@ void Pontiff::DamageCheck()
     {
         IsHit_ = true;
 
+        BloodEffect_->GetRenderer()->On();
         BloodEffect_->GetTransform().SetWorldPosition({BodyCollider_->GetTransform().GetWorldPosition().x,
                                                        BodyCollider_->GetTransform().GetWorldPosition().y,
                                                        PlayerEffectZ});
-        BloodEffect_->GetRenderer()->On();
         BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
 
-        MinusHP(10.f);
+        MinusHP(5.f);
         Face_->GetColorData().MulColor = float4{1.5f, 1.5f, 1.5f, 1.0f};
     }
 
@@ -472,30 +472,30 @@ void Pontiff::CreateSpawner()
     for (size_t i = 0; i < 6; i++)
     {
         FireBallSpawner_[i] = GetLevel()->CreateActor<FireBallSpawner>();
-        FireBallSpawner_[i]->GetTransform().SetWorldPosition({0, 0, FrontEffet});
+        FireBallSpawner_[i]->GetTransform().SetWorldPosition({0, 0, FrontEffetZ});
         FireBallSpawner_[i]->SetGround(ColMap_);
         FireBallSpawner_[i]->SetSpawnerType(SPAWNERTYPE::SP_HIGHLEVLE);
         FireBallSpawner_[i]->Off();
     }
 
     ToxicCloudSpawner_ = GetLevel()->CreateActor<ToxicCloudSpawner>();
-    ToxicCloudSpawner_->GetTransform().SetWorldPosition({0, 0, FrontEffet});
+    ToxicCloudSpawner_->GetTransform().SetWorldPosition({0, 0, FrontEffetZ});
     ToxicCloudSpawner_->SetGround(ColMap_);
     ToxicCloudSpawner_->SetSpawnerType(SPAWNERTYPE::SP_HIGHLEVLE);
     ToxicCloudSpawner_->Off();
 
     LightiningBoltSpawner_ = GetLevel()->CreateActor<LightiningBoltSpawner>();
-    LightiningBoltSpawner_->GetTransform().SetWorldPosition({0, -590, FrontEffet});
+    LightiningBoltSpawner_->GetTransform().SetWorldPosition({0, -590, FrontEffetZ});
     LightiningBoltSpawner_->SetSpawnerType(SPAWNERTYPE::SP_HIGHLEVLE);
     LightiningBoltSpawner_->Off();
 
     MagicMissileSpawner_ = GetLevel()->CreateActor<MagicMissileSpawner>();
-    MagicMissileSpawner_->GetTransform().SetWorldPosition({0, 0, FrontEffet});
+    MagicMissileSpawner_->GetTransform().SetWorldPosition({0, 0, FrontEffetZ});
     MagicMissileSpawner_->SetSpawnerType(SPAWNERTYPE::SP_HIGHLEVLE);
     MagicMissileSpawner_->Off();
 
     AnguishBeamSpawner_ = GetLevel()->CreateActor<AnguishBeamSpawner>();
-    AnguishBeamSpawner_->GetTransform().SetWorldPosition({0, 0, FrontEffet});
+    AnguishBeamSpawner_->GetTransform().SetWorldPosition({0, 0, FrontEffetZ});
     AnguishBeamSpawner_->SetSpawnerType(SPAWNERTYPE::SP_HIGHLEVLE);
     AnguishBeamSpawner_->Off();
 }
@@ -574,8 +574,6 @@ void Pontiff::OpenIdleEnd(const StateInfo& _Info) {}
 
 void Pontiff::ClosingStart(const StateInfo& _Info)
 {
-    BodyCollider_->Off();
-
     Helmet_->ChangeFrameAnimation("pontiff_closing_helmet");
     Body_->ChangeFrameAnimation("pontiff_closing_torso");
     Face_->ChangeFrameAnimation("pontiff_closing_face");
@@ -583,7 +581,7 @@ void Pontiff::ClosingStart(const StateInfo& _Info)
 
 void Pontiff::ClosingUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Pontiff::ClosingEnd(const StateInfo& _Info) {}
+void Pontiff::ClosingEnd(const StateInfo& _Info) { BodyCollider_->Off(); }
 
 
 void Pontiff::CloseIdleStart(const StateInfo& _Info)
@@ -610,6 +608,8 @@ void Pontiff::DeathStart(const StateInfo& _Info)
     BossUI_->AllOff();
     BodyCollider_->Off();
     GiantSword_->Off();
+
+    Face_->GetColorData().MulColor = float4{1.f, 1.f, 1.f, 1.0f};
 
     PlatformSpawner_->SetSpawnerOrder(SpawnerOrder::Death);
 

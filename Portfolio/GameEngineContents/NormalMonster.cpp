@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "NormalMonster.h"
 #include "BloodSplatters.h"
+#include "MetaTextureRenderer.h"
 
 NormalMonster::NormalMonster()
     : TrackDistance_(0.f)
@@ -14,7 +15,7 @@ void NormalMonster::Update(float _DeltaTime) {}
 
 void NormalMonster::End() {}
 
-bool NormalMonster::LeftObstacleCheck(int _X, int _Y)
+bool NormalMonster::LeftObstacleCheck(float _X, float _Y)
 {
     float4 LeftColor = ColMap_->GetCurTexture()->GetPixelToFloat4(_X, _Y);
 
@@ -31,7 +32,7 @@ bool NormalMonster::LeftObstacleCheck(int _X, int _Y)
     return false;
 }
 
-bool NormalMonster::RightObstacleCheck(int _X, int _Y)
+bool NormalMonster::RightObstacleCheck(float _X, float _Y)
 {
     float4 RightColor = ColMap_->GetCurTexture()->GetPixelToFloat4(_X, _Y);
 
@@ -128,6 +129,16 @@ void NormalMonster::DamageCheck(float _Damage, float _Offset)
             CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
     {
         IsHit_ = false;
+
+        if (nullptr != Renderer_)
+        {
+            Renderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
+        }
+
+        if (nullptr != MetaRenderer_)
+        {
+            MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
+        }
     }
 
     if (true == IsHit_)
@@ -148,6 +159,16 @@ void NormalMonster::DamageCheck(float _Damage, float _Offset)
              BodyCollider_->GetTransform().GetWorldPosition().y,
              BossMonsterEffectZ});
         BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
+
+        if (nullptr != Renderer_)
+        {
+            Renderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
+        }
+
+        if (nullptr != MetaRenderer_)
+        {
+            MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
+        }
     }
 
     if (0 >= GetHP())

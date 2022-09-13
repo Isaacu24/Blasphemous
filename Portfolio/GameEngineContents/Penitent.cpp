@@ -163,14 +163,14 @@ void Penitent::Update(float _DeltaTime)
 {
     State_.Update(_DeltaTime);
 
-    if (nullptr != CurStage_)
-    {
-        CurStage_->CameraShaking(_DeltaTime);
-    }
-
     if ("Death" == State_.GetCurStateStateName())
     {
         return;
+    }
+
+    if (nullptr != CurStage_)
+    {
+        CurStage_->CameraShaking(_DeltaTime);
     }
 
     DebugColliders_[0]->GetTransform().SetWorldPosition(
@@ -378,6 +378,7 @@ void Penitent::SetAnimation()
             {"penitent_dodge_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false});
 
         SlideSpectrum_->SetMetaSpectrumFrame(0, 5);
+        SlideSpectrum_->SpectrumLevelOn();
 
         MetaRenderer_->AnimationBindEnd(
             "penitent_dodge_anim",
@@ -585,6 +586,7 @@ void Penitent::SetAnimation()
             {"penitent_dodge_attack_LVL3.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false});
 
         SlideAttackSpectrum_->SetMetaSpectrumFrame(1, 5);
+        SlideAttackSpectrum_->SpectrumLevelOn();
 
         MetaRenderer_->AnimationBindFrame("penitent_dodge_attack_LVL3",
                                           [&](const FrameAnimation_DESC& _Info)
@@ -928,8 +930,6 @@ void Penitent::SetAnimation()
         MetaRenderer_->AnimationBindEnd("death_anim_blood",
                                         [&](const FrameAnimation_DESC& _Info)
                                         {
-                                            IsFallDeath_;
-
                                             if ("" == LastSavePoint_)
                                             {
                                                 GEngine::ChangeLevel("Stage01");
@@ -1128,12 +1128,6 @@ void Penitent::SetPlayerState()
 }
 
 
-void Penitent::LevelStartEvent() 
-{ 
-     CurStage_ = dynamic_cast<StageBase*>(GetLevel());
-}
+void Penitent::LevelStartEvent() { CurStage_ = dynamic_cast<StageBase*>(GetLevel()); }
 
-void Penitent::LevelEndEvent() 
-{
-
-}
+void Penitent::LevelEndEvent() {}

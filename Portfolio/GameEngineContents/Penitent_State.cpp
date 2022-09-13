@@ -6,6 +6,7 @@
 #include "MoveEffect.h"
 #include "HitEffect.h"
 #include "AttackEffect.h"
+#include "StageBase.h"
 
 void Penitent::FreezeStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penitent_sheathedIdle"); }
 
@@ -65,10 +66,9 @@ void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
         State_.ChangeState("Recovery");
     }
 
-    else if (true == GameEngineInput::GetInst()->IsDownKey("PenitentTelport"))
+    else if (true == GameEngineInput::GetInst()->IsDownKey("PenitentTelport") && true == IsReturnToPort_)
     {
-        State_.ChangeState("Death");
-        // State_.ChangeState("ReturnToPort");
+        State_.ChangeState("ReturnToPort");
     }
 
     else if (true == GameEngineInput::GetInst()->IsDownKey("PenitentPary") && true == IsGround_)
@@ -432,6 +432,7 @@ void Penitent::KnockBackStart(const StateInfo& _Info)
 
     FallTime_ = 0.f;
     MetaRenderer_->ChangeMetaAnimation("Penitent_pushback_grounded");
+    MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
     BodyCollider_->Off();
 
     HitEffect_->Renderer_->On();
@@ -450,6 +451,9 @@ void Penitent::KnockBackStart(const StateInfo& _Info)
         MoveEffect_->GetTransform().PixLocalNegativeX();
         GetTransform().PixLocalNegativeX();
     }
+
+    CurStage_->SetForceY(5.f);
+    CurStage_->SetShake(true);
 }
 
 void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -463,6 +467,11 @@ void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
     //{
     //     ChangeState("Fall");
     // }
+
+    if (0.2f <= _Info.StateTime && 1 <= MetaRenderer_->GetColorData().PlusColor.r)
+    {
+        MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
+    }
 
     HitEffect_->GetTransform().SetWorldPosition(
         {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y + 75.f, PlayerEffectZ});
@@ -485,6 +494,7 @@ void Penitent::KnockUpStart(const StateInfo& _Info)
     FallTime_ = 0.f;
 
     MetaRenderer_->ChangeMetaAnimation("penitent_throwback_anim");
+    MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
 
     BodyCollider_->Off();
 
@@ -497,6 +507,8 @@ void Penitent::KnockUpStart(const StateInfo& _Info)
     {
         GetTransform().PixLocalNegativeX();
     }
+
+    CurStage_->SetShake(true);
 }
 
 void Penitent::KnockUpUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -504,6 +516,11 @@ void Penitent::KnockUpUpdate(float _DeltaTime, const StateInfo& _Info)
     if (true == RightObstacleCheck() || true == LeftObstacleCheck())
     {
         return;
+    }
+
+    if (0.2f <= _Info.StateTime && 1 <= MetaRenderer_->GetColorData().PlusColor.r)
+    {
+        MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
     }
 
     GetTransform().SetWorldMove(float4{KnockBackXDir_, 0} * 150.f * _DeltaTime);
@@ -950,24 +967,15 @@ void Penitent::ReturnToPortUpdate(float _DeltaTime, const StateInfo& _Info) {}
 void Penitent::ReturnToPortEnd(const StateInfo& _Info) {}
 
 
-void Penitent::DeathStart(const StateInfo& _Info)
-{
-    MetaRenderer_->ChangeMetaAnimation("death_anim_blood");
-
-    PlayerUI_->ScreenState_.ChangeState("PlayerDeath");
-}
-
-void Penitent::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
-
-void Penitent::DeathEnd(const StateInfo& _Info) {}
-
-
 void Penitent::RespawnStart(const StateInfo& _Info)
 {
-    MetaRenderer_->ChangeMetaAnimation("penitent_respawning_anim");
+    if ("" != LastSavePoint_)
+    {
+        MetaRenderer_->ChangeMetaAnimation("penitent_respawning_anim");
 
-    AttackEffect_->Renderer_->On();
-    AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_respawning_anim_querubs");
+        AttackEffect_->Renderer_->On();
+        AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_respawning_anim_querubs");
+    }
 }
 
 void Penitent::RespawnUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -979,3 +987,16 @@ void Penitent::RespawnUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 
 void Penitent::RespawnEnd(const StateInfo& _Info) {}
+
+
+void Penitent::DeathStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("death_anim_blood");
+    PlayerUI_->ScreenState_.ChangeState("PlayerDeath");
+
+    MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
+}
+
+void Penitent::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Penitent::DeathEnd(const StateInfo& _Info) { SetHP(100.f); }

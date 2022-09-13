@@ -52,9 +52,9 @@ public:
 
     inline void ChangeIdleState(const FrameAnimation_DESC& _Info) { State_.ChangeState("Idle"); }
 
-    inline MetaTextureRenderer* GetMetaRenderer() { return MetaRenderer_; }
+    //inline MetaTextureRenderer* GetMetaRenderer() { return MetaRenderer_; }
 
-    inline GameEngineTextureRenderer* GetRenderer() { return Renderer_; }
+    //inline GameEngineTextureRenderer* GetRenderer() { return Renderer_; }
 
 protected:
     GameEngineStateManager State_;

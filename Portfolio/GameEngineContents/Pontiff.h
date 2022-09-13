@@ -28,8 +28,6 @@ public:
     Pontiff& operator=(const Pontiff& _Other)     = delete;
     Pontiff& operator=(Pontiff&& _Other) noexcept = delete;
 
-    inline bool GetLose() { return IsLose_; }
-
     void AppearStart(const StateInfo& _Info);
     void AppearUpdate(float _DeltaTime, const StateInfo& _Info);
     void AppearEnd(const StateInfo& _Info);
@@ -102,7 +100,6 @@ private:
 
     GameEngineActor* Target_;
 
-    bool IsLose_;
     bool IsSpellCast_;
     bool IsOnceCasting_;
 

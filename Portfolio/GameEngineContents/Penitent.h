@@ -58,6 +58,7 @@ public:
         if (0 > HP_)
         {
             HP_ = 0;
+            ChangeState("Death");
         }
     }
 
@@ -66,6 +67,10 @@ public:
     inline bool GetIsFallDeath() { return IsFallDeath_; }
 
     inline float4 GetLastJumpPosition() { return LastJumpPos_; }
+
+    inline std::string GetPenitentState() { return State_.GetCurStateStateName(); }
+
+    inline void SetReturnToPort(bool _Value) { IsReturnToPort_ = _Value; }
 
 protected:
     void Start() override;
@@ -259,4 +264,5 @@ private:
     class StageBase* CurStage_;
 
     bool IsShake_;
+    bool IsReturnToPort_;
 };

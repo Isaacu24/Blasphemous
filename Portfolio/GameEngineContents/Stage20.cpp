@@ -20,7 +20,7 @@ void Stage20::SettingStage()
     GameEngineTextureRenderer* BeforePrallaxRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     BeforePrallaxRenderer->SetTexture("12_2_BeforeParallax_0.png");
     BeforePrallaxRenderer->ScaleToTexture();
-    BeforePrallaxRenderer->GetTransform().SetWorldPosition({0, 350, BeforeParallax5Z});
+    BeforePrallaxRenderer->GetTransform().SetWorldPosition({0, 385, BeforeParallax5Z});
     BeforePrallaxRenderer->GetTransform().SetWorldScale(BeforePrallaxRenderer->GetTransform().GetWorldScale() * 2.3f);
 
     GameEngineTextureRenderer* StageRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
@@ -46,6 +46,13 @@ void Stage20::SettingStage()
     PlayerLeftPos_  = float4{400, -1663, PlayerZ};
 
     IsLeftExit_ = true;
+
+    UIActor_ = CreateActor<GameEngineActor>();
+
+    ReturnKey_ = UIActor_->CreateComponent<GameEngineTextureRenderer>();
+    ReturnKey_->SetTexture("CT_B.png");
+    ReturnKey_->GetTransform().SetWorldScale({30, 30, 1});
+    UIActor_->Off();
 }
 
 void Stage20::SettingMonster()
@@ -76,6 +83,7 @@ void Stage20::Update(float _DeltaTime)
                 CurrentFlow_ = STAGEFLOW::BOSSAPPEAR;
             }
             break;
+
         case STAGEFLOW::BOSSAPPEAR:
             if (2275.f > GetMainCameraActor()->GetTransform().GetWorldPosition().x)
             {
@@ -105,15 +113,18 @@ void Stage20::Update(float _DeltaTime)
 
             if (true == Pope_->IsDeath())
             {
-                ChangeTime_ += _DeltaTime;
+                Penitent_->SetReturnToPort(true);
 
-                if (3.f <= ChangeTime_)
+                if ("ReturnToPort" == Penitent_->GetPenitentState())
                 {
-                    CurrentFlow_     = STAGEFLOW::BOSSDEAD;
-                    PlayerReturnPos_ = Penitent_->GetTransform().GetWorldPosition();
-
-                    GEngine::ChangeLevel("Stage21");
+                    UIActor_->Off();
+                    return;
                 }
+
+                PlayerReturnPos_ = Penitent_->GetTransform().GetWorldPosition();
+
+                UIActor_->On();
+                UIActor_->GetTransform().SetWorldPosition({PlayerReturnPos_.x, PlayerReturnPos_.y + 200.f, PlayerZ});
             }
             break;
         case STAGEFLOW::BOSSDEAD:
@@ -168,6 +179,12 @@ void Stage20::LevelStartEvent()
     GetMainCameraActor()->GetTransform().SetWorldPosition(float4{
         Penitent_->GetTransform().GetLocalPosition() + float4{0, CameraOffset_}
     });
+
+    if (STAGEFLOW::BOSSCOMBAT == CurrentFlow_)
+    {
+        ReturnKey_->Off();
+        CurrentFlow_ = STAGEFLOW::BOSSDEAD;
+    }
 }
 
 void Stage20::LevelEndEvent()

@@ -29,7 +29,19 @@ public:
 
     void CameraShaking(float _DeltaTime);
 
+    void CameraShakingOneWay(float _DeltaTime);
+
     inline void SetShake(bool _Value) { IsShaking_ = _Value; }
+
+    inline void SetOneWayShake(bool _Value) { IsOneWayShaking_ = _Value; }
+
+    inline void SetForceX(float _Value) { ForceX_ = _Value; }
+    
+    inline void SetForceY(float _Value) { ForceY_ = _Value; }
+
+    inline void SetShakeCount(int _Value) { ShakeCount_ = _Value; }
+
+    inline void SetMaxShakeCount(int _Value) { MaxShakeCount_ = _Value; }
 
 protected:
     void Start() override;
@@ -44,6 +56,7 @@ protected:
     float4 PrevPos_;
 
     int ShakeCount_;
+    int MaxShakeCount_;
 
     GameEngineTextureRenderer* ColMap_;
 
@@ -76,14 +89,15 @@ protected:
 
     float CameraOffset_;
 
+    float ForceX_;
+    float ForceY_;
+
     class PenitentGuilt* Guilt_;
 
     float ShakeTime_;
 
     bool IsShaking_;
-    bool IsLeftShaking_;
-    bool IsRightShaking_;
-
+    bool IsOneWayShaking_;
 
 
 private:

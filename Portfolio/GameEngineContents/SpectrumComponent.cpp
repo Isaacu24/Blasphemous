@@ -173,7 +173,6 @@ void SpectrumComponent::CreateSpectrum(const std::string& _Name, const FrameAnim
     {
         GameEngineActor* Actor = GetActor()->GetLevel()->CreateActor<GameEngineActor>();
         Actor->GetTransform().SetWorldScale({2, 2, 1});
-        Actor->SetLevelOverOn();
         Actor->Off();
         SpectrumActors_.push_back(Actor);
     }
@@ -196,7 +195,6 @@ void SpectrumComponent::CreateMetaSpectrum(const std::string& _Name, const Frame
     {
         GameEngineActor* Actor = GetActor()->GetLevel()->CreateActor<GameEngineActor>();
         Actor->GetTransform().SetWorldScale({2, 2, 1});
-        Actor->SetLevelOverOn();
         Actor->Off();
         SpectrumActors_.push_back(Actor);
     }
@@ -220,7 +218,6 @@ void SpectrumComponent::CreateOnceSpectrum(const std::string& _Name, const Frame
     {
         GameEngineActor* Actor = GetActor()->GetLevel()->CreateActor<GameEngineActor>();
         Actor->GetTransform().SetWorldScale({1, 1, 1});
-        Actor->SetLevelOverOn();
         Actor->Off();
         SpectrumActors_.push_back(Actor);
     }

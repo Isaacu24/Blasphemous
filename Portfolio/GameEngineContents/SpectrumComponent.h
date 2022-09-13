@@ -30,6 +30,14 @@ public:
 
     inline void SetIsMetaDraw(bool _Draw) { IsMetaDraw_ = _Draw; }
 
+    void SpectrumLevelOn() 
+    {
+        for (size_t i = 0; i < SpectrumActors_.size(); i++)
+        {
+            SpectrumActors_[i]->SetLevelOverOn();
+        }
+    }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;

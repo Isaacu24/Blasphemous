@@ -32,13 +32,13 @@ public:
     void ParryReactionUpdate(float _DeltaTime, const StateInfo& _Info);
     void ParryReactionEnd(const StateInfo& _Info);
 
-    void StunStart(const StateInfo& _Info);
-    void StunUpdate(float _DeltaTime, const StateInfo& _Info);
-    void StunEnd(const StateInfo& _Info);
+    //void StunStart(const StateInfo& _Info);
+    //void StunUpdate(float _DeltaTime, const StateInfo& _Info);
+    //void StunEnd(const StateInfo& _Info);
 
-    void ExecutionStart(const StateInfo& _Info);
-    void ExecutionUpdate(float _DeltaTime, const StateInfo& _Info);
-    void ExecutionEnd(const StateInfo& _Info);
+    //void ExecutionStart(const StateInfo& _Info);
+    //void ExecutionUpdate(float _DeltaTime, const StateInfo& _Info);
+    //void ExecutionEnd(const StateInfo& _Info);
     
     void DeathStart(const StateInfo& _Info);
     void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
