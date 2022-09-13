@@ -96,7 +96,12 @@ void PlayerUI::Start()
     ScreenState_.ChangeState("BehindScreen");
 }
 
-void PlayerUI::Update(float _DeltaTime) { ScreenState_.Update(_DeltaTime); }
+void PlayerUI::Update(float _DeltaTime)
+{ 
+    ScreenState_.Update(_DeltaTime); 
+
+    //Damage();
+}
 
 void PlayerUI::End() {}
 

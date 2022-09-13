@@ -36,6 +36,10 @@ void BossUI::SetBossUI()
     Font_->SetSize(30);
 }
 
-void BossUI::Update(float _DeltaTime) {}
+void BossUI::Update(float _DeltaTime) 
+{
+    float HP = Boss_->GetHP() / 100.f;
+    HPBar_->Renderer_->SetUVData(HP);
+}
 
 void BossUI::End() {}

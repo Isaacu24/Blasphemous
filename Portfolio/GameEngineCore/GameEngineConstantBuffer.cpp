@@ -1,10 +1,13 @@
-	#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineConstantBuffer.h"
 
-std::map<std::string, std::map<int, GameEngineConstantBuffer*>> GameEngineConstantBuffer::NamedRes;
+std::map<std::string, std::map<int, GameEngineConstantBuffer*>> GameEngineConstantBuffer::ConstantBufferRes;
 
 
 GameEngineConstantBuffer::GameEngineConstantBuffer()
+	: Buffer(nullptr)
+	, BufferDesc()
+	, ShaderDesc()
 {
 }
 
@@ -19,7 +22,7 @@ GameEngineConstantBuffer::~GameEngineConstantBuffer()
 
 
 
-void GameEngineConstantBuffer::Create(const D3D11_SHADER_BUFFER_DESC& _Desc, ID3D11ShaderReflectionConstantBuffer* _CBufferPtr)
+void GameEngineConstantBuffer::Create(const D3D11_SHADER_BUFFER_DESC& _Desc)
 {
 	ShaderDesc = _Desc;
 
@@ -53,8 +56,6 @@ void GameEngineConstantBuffer::ChangeData(const void* _Data, size_t _Size) const
 	static D3D11_MAPPED_SUBRESOURCE SettingResources = {};
 	memset(&SettingResources, 0, sizeof(SettingResources));
 
-	// 어떤 그래픽 리소스를 이제부터 아무도 건들지 못하게 해.
-	// 그래픽카드를 느리게 만듭니다.
 	GameEngineDevice::GetContext()->Map(Buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &SettingResources);
 
 	if (nullptr == SettingResources.pData)
@@ -64,8 +65,6 @@ void GameEngineConstantBuffer::ChangeData(const void* _Data, size_t _Size) const
 
 	memcpy_s(SettingResources.pData, BufferDesc.ByteWidth, _Data, BufferDesc.ByteWidth);
 
-
-	// 무조건 다시 닫아줘야 합니다.
 	GameEngineDevice::GetContext()->Unmap(Buffer, 0);
 }
 

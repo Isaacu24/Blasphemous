@@ -34,6 +34,7 @@ void BossMonster::DamageCheck(float _Damage)
         BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
 
         MinusHP(10.f);
+
     }
 
     if (0 >= GetHP())

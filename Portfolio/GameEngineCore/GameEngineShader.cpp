@@ -3,6 +3,7 @@
 #include "GameEngineVertexShader.h"
 #include "GameEnginePixelShader.h"
 #include "GameEngineConstantBuffer.h"
+#include "GameEngineStructuredBuffer.h"
 #include "GameEngineTexture.h"
 #include "GameEngineSampler.h"
 
@@ -151,7 +152,7 @@ void GameEngineShader::ShaderResCheck()
 			NewSetter.ParentShader = this;
 			NewSetter.SetName(Name);
 			NewSetter.ShaderType = ShaderSettingType;
-			NewSetter.Res = GameEngineConstantBuffer::CreateAndFind(Name, BufferDesc, CBufferPtr);
+			NewSetter.Res = GameEngineConstantBuffer::CreateAndFind(Name, BufferDesc);
 			NewSetter.BindPoint = ResInfo.BindPoint;
 			ConstantBufferMap.insert(std::make_pair(Name, NewSetter));
 
@@ -177,6 +178,25 @@ void GameEngineShader::ShaderResCheck()
 			NewSetter.Res = GameEngineSampler::Find("EngineSamplerPoint");
 			NewSetter.BindPoint = ResInfo.BindPoint;
 			SamplerMap.insert(std::make_pair(Name, NewSetter));
+			break;
+		}
+		case D3D_SIT_STRUCTURED:
+		{
+			// 스트럭처드 버퍼를 만든다.
+			ID3D11ShaderReflectionConstantBuffer* CBufferPtr = CompileInfo->GetConstantBufferByName(ResInfo.Name);
+			D3D11_SHADER_BUFFER_DESC BufferDesc;
+			CBufferPtr->GetDesc(&BufferDesc);
+
+			GameEngineStructuredBufferSetter NewSetter;
+			NewSetter.ParentShader = this;
+			NewSetter.SetName(Name);
+			NewSetter.ShaderType = ShaderSettingType;
+			// NewSetter.Res = GameEngineStructuredBuffer::Create(Name, BufferDesc, CBufferPtr);
+			NewSetter.BindPoint = ResInfo.BindPoint;
+
+			StructuredBufferMap.insert(std::make_pair(Name, NewSetter));
+			// StructuredBufferMap = 
+
 			break;
 		}
 		default:

@@ -9,10 +9,17 @@ enum class CAMERAPROJECTIONMODE
 	Orthographic,
 };
 
+class RenderingInstancing
+{
+
+};
+
+
 // Ό³Έν :
 class GameEngineLevel;
 class GameEngineCamera;
 class GameEngineRenderTarget;
+class GameEngineRenderingPipeLine;
 class GameEngineCamera : public GameEngineTransformComponent
 {
 	friend GameEngineLevel;

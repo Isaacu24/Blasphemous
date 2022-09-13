@@ -36,4 +36,9 @@
       <UniqueIdentifier>{d9d839f7-812b-4438-8030-38d11d55a4b5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="TextureAtlas_Inst.hlsl">
+      <Filter>Object</Filter>
+    </FxCompile>
+  </ItemGroup>
 </Project>

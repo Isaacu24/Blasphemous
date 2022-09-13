@@ -57,9 +57,11 @@ void Stage21::SettingMonster()
     {
         TwisterBackground* Twister = CreateActor<TwisterBackground>();
         Twister->GetTransform().SetWorldPosition({860, -600, BeforeLayerZ});
+        Twister->GetRenderer()->GetColorData().MulColor = float4{0.5f, 0.5f, 0.5f, 0.75f};
 
         TwisterBackground* Twister1 = CreateActor<TwisterBackground>();
         Twister1->GetTransform().SetWorldPosition({1640, -600, BeforeLayerZ});
+        Twister1->GetRenderer()->GetColorData().MulColor = float4{0.5f, 0.5f, 0.5f, 0.75f};
     }
 
     {
@@ -100,7 +102,14 @@ void Stage21::Update(float _DeltaTime)
             }
             break;
         case STAGEFLOW::BOSSDEAD:
-            GEngine::ChangeLevel("Stage20");
+            ChangeTime_ += _DeltaTime;
+
+            if (1.5f <= ChangeTime_)
+            {
+                ChangeTime_ = 0.f;
+                GEngine::ChangeLevel("Stage20");
+                CurrentFlow_ = STAGEFLOW::NORMAL;
+            }
             break;
     }
 

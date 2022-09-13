@@ -62,7 +62,7 @@ void Pontiff::Start()
     Face_->AnimationBindFrame("pontiff_openedIdle_face_DEATH",
                               [&](const FrameAnimation_DESC& _Info)
                               {
-                                  if (35 == _Info.CurFrame)
+                                  if (50 == _Info.CurFrame)
                                   {
                                       MainBody_->On();
                                   }
@@ -140,12 +140,12 @@ void Pontiff::Update(float _DeltaTime)
 {
     State_.Update(_DeltaTime);
 
-    if ("Death" != State_.GetCurStateStateName())
+    if ("Death" == State_.GetCurStateStateName())
     {
-        BossMonster::DamageCheck(10.f);
+        return;
     }
 
-    // GameEngineDebug::OutPutString("Pontiff : " + State_.GetCurStateStateName());
+    BossMonster::DamageCheck(10.f);
 
     if (false == IsSpellCast_)
     {
@@ -478,7 +478,7 @@ void Pontiff::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
         Time_ = 0.f;
         State_.ChangeState("CloseIdle");
     }
-    
+
     float Alpha = _DeltaTime / 2;
 
     Helmet_->GetColorData().MulColor += float4{Alpha, Alpha, Alpha, 0.0f};
