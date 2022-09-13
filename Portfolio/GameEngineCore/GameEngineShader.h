@@ -20,6 +20,7 @@ public:
 	ShaderType ShaderType;
 	int BindPoint;
 	std::function<void()> SettingFunction;
+	std::function<void()> ResetFunction;
 
 public:
 	ShaderResSetter()
@@ -38,12 +39,9 @@ class GameEngineConstantBufferSetter : public ShaderResSetter
 
 public:
 	GameEngineConstantBuffer* Res;
-	// 각자가 가진 정보에 대한 주소
 	const void* SetData;
 	UINT Size;
 
-
-	// 자기메모리로 할당할 것이다.
 	std::vector<char> OriginalData;
 
 	void Setting() const;
@@ -65,6 +63,7 @@ class GameEngineTextureSetter : public ShaderResSetter
 
 public:
 	void Setting() const;
+	void Reset() const;
 
 public:
 	GameEngineTexture* Res;
@@ -80,7 +79,6 @@ public:
 	GameEngineSampler* Res;
 };
 
-
 class GameEngineStructuredBuffer;
 class GameEngineStructuredBufferSetter : public ShaderResSetter
 {
@@ -92,7 +90,7 @@ public:
 };
 
 
-// 설명 :
+
 class GameEngineShaderResourcesHelper;
 class GameEngineShader
 {
@@ -102,11 +100,9 @@ public:
 	static void AutoCompile(const std::string& _Path);
 
 public:
-	// constrcuter destructer
 	GameEngineShader();
 	virtual ~GameEngineShader();
 
-	// delete Function
 	GameEngineShader(const GameEngineShader& _Other) = delete;
 	GameEngineShader(GameEngineShader&& _Other) noexcept = delete;
 	GameEngineShader& operator=(const GameEngineShader& _Other) = delete;

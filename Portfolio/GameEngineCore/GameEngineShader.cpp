@@ -18,6 +18,11 @@ void GameEngineTextureSetter::Setting() const
 	SettingFunction();
 }
 
+void GameEngineTextureSetter::Reset() const
+{
+	ResetFunction();
+}
+
 void GameEngineSamplerSetter::Setting() const
 {
 	SettingFunction();
@@ -124,31 +129,18 @@ void GameEngineShader::ShaderResCheck()
 	for (UINT i = 0; i < Info.BoundResources; i++)
 	{
 		CompileInfo->GetResourceBindingDesc(i, &ResInfo);
-		// 리소스가 존재한다.
 		std::string Name = GameEngineString::ToUpperReturn(ResInfo.Name);
-
-		// ResInfo
-
 		D3D_SHADER_INPUT_TYPE Type = ResInfo.Type;
 
 		switch (Type)
 		{
 		case D3D_SIT_CBUFFER:
 		{
-
-			// 리소스가 상수버퍼라면
 			ID3D11ShaderReflectionConstantBuffer* CBufferPtr = CompileInfo->GetConstantBufferByName(ResInfo.Name);
-
 			D3D11_SHADER_BUFFER_DESC BufferDesc;
 			CBufferPtr->GetDesc(&BufferDesc);
 
-			// 5번에 세팅되는 
-			// ResInfo.BindPoint;
-
 			GameEngineConstantBufferSetter NewSetter;
-
-			// 중복으로 만드는일이 생기면 안되니까.
-			// 만든걸 또 만들라고 하는게 
 			NewSetter.ParentShader = this;
 			NewSetter.SetName(Name);
 			NewSetter.ShaderType = ShaderSettingType;
@@ -175,14 +167,13 @@ void GameEngineShader::ShaderResCheck()
 			NewSetter.ParentShader = this;
 			NewSetter.SetName(Name);
 			NewSetter.ShaderType = ShaderSettingType;
-			NewSetter.Res = GameEngineSampler::Find("EngineSamplerPoint");
+			NewSetter.Res = GameEngineSampler::Find("EngineSamplerLinear");
 			NewSetter.BindPoint = ResInfo.BindPoint;
 			SamplerMap.insert(std::make_pair(Name, NewSetter));
 			break;
 		}
 		case D3D_SIT_STRUCTURED:
 		{
-			// 스트럭처드 버퍼를 만든다.
 			ID3D11ShaderReflectionConstantBuffer* CBufferPtr = CompileInfo->GetConstantBufferByName(ResInfo.Name);
 			D3D11_SHADER_BUFFER_DESC BufferDesc;
 			CBufferPtr->GetDesc(&BufferDesc);
@@ -191,11 +182,11 @@ void GameEngineShader::ShaderResCheck()
 			NewSetter.ParentShader = this;
 			NewSetter.SetName(Name);
 			NewSetter.ShaderType = ShaderSettingType;
-			// NewSetter.Res = GameEngineStructuredBuffer::Create(Name, BufferDesc, CBufferPtr);
+			// 아직은 데이터의 사이즈는 알수있어도 이걸로 몇개짜리 버퍼를 만들지는 알수가 없다.
+			NewSetter.Res = GameEngineStructuredBuffer::CreateAndFind(Name, BufferDesc, 0);
 			NewSetter.BindPoint = ResInfo.BindPoint;
 
 			StructuredBufferMap.insert(std::make_pair(Name, NewSetter));
-			// StructuredBufferMap = 
 
 			break;
 		}
@@ -204,6 +195,9 @@ void GameEngineShader::ShaderResCheck()
 			break;
 		}
 	}
+
+	ConstantBufferMap;
+	TextureMap;
 }
 
 GameEngineConstantBufferSetter& GameEngineShader::GetConstantBufferSetter(std::string _Name)

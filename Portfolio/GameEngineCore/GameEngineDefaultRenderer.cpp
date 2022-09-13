@@ -50,6 +50,7 @@ void GameEngineDefaultRenderer::Render(float _DeltaTime)
 	// 준비된 모든 리소스들을 다 세팅해준다.
 	ShaderResources.AllResourcesSetting();
 	PipeLine->Rendering();
+	ShaderResources.AllResourcesReset();
 }
 
 
