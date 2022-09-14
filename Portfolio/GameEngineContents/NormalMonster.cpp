@@ -67,8 +67,6 @@ bool NormalMonster::LookAtPlayer(GameEngineCollision* _This, GameEngineCollision
 
 bool NormalMonster::TrackPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-    LookAtPlayer(_This, _Other);
-
     float Distance = abs(_This->GetTransform().GetWorldPosition().x - _Other->GetTransform().GetWorldPosition().x);
 
     //추격 사정거리 이탈

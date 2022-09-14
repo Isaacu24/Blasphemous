@@ -51,5 +51,7 @@ protected:
 
     void PatrolMoveX(float _DeltaTime) override;
 
+    //bool LookAtPlayer(GameEngineCollision* _This, GameEngineCollision* _Other) override;
+
 private:
 };

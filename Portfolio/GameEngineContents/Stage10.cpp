@@ -76,7 +76,8 @@ void Stage10::SettingStage()
     Stage_->GetTransform().SetLocalMove(Offset);
 
     PlayerRightPos_ = float4{3950, -682, PlayerZ};
-    PlayerLeftPos_  = float4{300, -682, PlayerZ};
+    //PlayerLeftPos_  = float4{300, -682, PlayerZ};
+    PlayerLeftPos_  = float4{1900, -750, PlayerZ};
 
     IsLeftExit_ = true;
 

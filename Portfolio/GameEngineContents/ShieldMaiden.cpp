@@ -49,15 +49,15 @@ void ShieldMaiden::Start()
             Data);
 
 
-        MetaRenderer_->AnimationBindEnd("shieldMaiden_attack",
+        MetaRenderer_->AnimationBindFrame("shieldMaiden_attack",
                                         [&](const FrameAnimation_DESC& _Info)
                                         {
-                                            if (7 == _Info.CurFrame)
+                                            if (5 == _Info.CurFrame)
                                             {
                                                 AttackCollider_->On();
                                             }
 
-                                            else if (8 == _Info.CurFrame)
+                                            else if (6 == _Info.CurFrame)
                                             {
                                                 AttackCollider_->Off();
                                             }
@@ -201,7 +201,7 @@ void ShieldMaiden::DamageCheck()
             {
                 float4 EffectPos = GetTransform().GetWorldPosition();
                 Effect_->GetTransform().SetWorldPosition(
-                    {EffectPos.x + (Dir_.x * 60.f), EffectPos.y - 100.f, static_cast<int>(ACTORORDER::MonsterEffect)});
+                    {EffectPos.x + (Dir_.x * 60.f), EffectPos.y - 100.f, MonsterZ});
 
                 Effect_->Renderer_->On();
             }
@@ -220,7 +220,7 @@ void ShieldMaiden::DamageCheck()
             {
                 float4 EffectPos = GetTransform().GetWorldPosition();
                 Effect_->GetTransform().SetWorldPosition(
-                    {EffectPos.x + (Dir_.x * 10.f), EffectPos.y - 100.f, static_cast<int>(ACTORORDER::MonsterEffect)});
+                    {EffectPos.x + (Dir_.x * 10.f), EffectPos.y - 100.f, MonsterZ});
 
                 Effect_->Renderer_->On();
             }
@@ -240,7 +240,7 @@ void ShieldMaiden::DamageCheck()
         BloodEffect_->GetTransform().SetWorldPosition(
             {BodyCollider_->GetTransform().GetWorldPosition().x + (-(Dir_.x) * 30.f),
              BodyCollider_->GetTransform().GetWorldPosition().y,
-             static_cast<int>(ACTORORDER::PlayerEffect)});
+             PlayerEffectZ});
         BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
 
         MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
@@ -396,6 +396,7 @@ void ShieldMaiden::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void ShieldMaiden::TrackEnd(const StateInfo& _Info) {}
 
+
 void ShieldMaiden::AttackStart(const StateInfo& _Info)
 {
     if (true == IsPlayerRight_)
@@ -411,12 +412,12 @@ void ShieldMaiden::AttackStart(const StateInfo& _Info)
     }
 
     MetaRenderer_->ChangeMetaAnimation("shieldMaiden_attack");
-    AttackCollider_->On();
 }
 
 void ShieldMaiden::AttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void ShieldMaiden::AttackEnd(const StateInfo& _Info) { AttackCollider_->Off(); }
+void ShieldMaiden::AttackEnd(const StateInfo& _Info) { }
+
 
 void ShieldMaiden::ParryReactionStart(const StateInfo& _Info) {}
 

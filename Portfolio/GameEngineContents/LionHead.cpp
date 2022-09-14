@@ -31,6 +31,20 @@ void LionHead::Start()
             {"Lionhead_attack_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true},
             Data);
 
+        MetaRenderer_->AnimationBindFrame("Lionhead_attack_anim",
+                                          [&](const FrameAnimation_DESC& _Info)
+                                          {
+                                              if (5 == _Info.CurFrame)
+                                              {
+                                                  AttackCollider_->On();
+                                              }
+
+                                              else if (6 == _Info.CurFrame)
+                                              {
+                                                  AttackCollider_->Off();
+                                              }
+                                          });
+
         MetaRenderer_->AnimationBindEnd("Lionhead_attack_anim",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeMonsterState("Track"); });
     }
@@ -298,9 +312,9 @@ void LionHead::AttackEnd(const StateInfo& _Info)
 }
 
 
-void LionHead::DeathStart(const StateInfo& _Info) 
+void LionHead::DeathStart(const StateInfo& _Info)
 {
-    MetaRenderer_->ChangeMetaAnimation("Lionhead_death_anim"); 
+    MetaRenderer_->ChangeMetaAnimation("Lionhead_death_anim");
     MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
 }
 

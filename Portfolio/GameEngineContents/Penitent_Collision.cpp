@@ -224,6 +224,11 @@ void Penitent::CollisionCheck()
                                    std::bind(&Penitent::KnockBack, this, std::placeholders::_1, std::placeholders::_2));
 
         BodyCollider_->IsCollision(CollisionType::CT_OBB2D,
+                                   COLLISIONORDER::MonsterAttack,
+                                   CollisionType::CT_OBB2D,
+                                   std::bind(&Penitent::KnockBack, this, std::placeholders::_1, std::placeholders::_2));
+
+        BodyCollider_->IsCollision(CollisionType::CT_OBB2D,
                                    COLLISIONORDER::BossMonster,
                                    CollisionType::CT_OBB2D,
                                    std::bind(&Penitent::KnockBack, this, std::placeholders::_1, std::placeholders::_2));
@@ -304,7 +309,7 @@ bool Penitent::KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other
 
     if (0 < GetHP())
     {
-        State_.ChangeState("KnockUp");
+        State_.ChangeState("KnockBack");
     }
 
     return true;
