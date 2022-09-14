@@ -21,7 +21,7 @@ public:
         PatrolStart_ = _Start;
         PatrolEnd_   = _End;
     }
-    
+
     // Penitent* GetPlayer();
 
 protected:
@@ -41,8 +41,8 @@ protected:
 
     float TrackDistance_;  // X축 사정거리
     float Crossroad_;
-    
-   GameEngineCollision* PlayerCollision_;
+
+    GameEngineCollision* PlayerCollision_;
 
     virtual void PatrolMoveX(float _DeltaTime){};
     virtual void PatrolMoveY(float _DeltaTime){};

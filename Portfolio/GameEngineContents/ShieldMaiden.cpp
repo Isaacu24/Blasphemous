@@ -50,18 +50,18 @@ void ShieldMaiden::Start()
 
 
         MetaRenderer_->AnimationBindFrame("shieldMaiden_attack",
-                                        [&](const FrameAnimation_DESC& _Info)
-                                        {
-                                            if (5 == _Info.CurFrame)
-                                            {
-                                                AttackCollider_->On();
-                                            }
+                                          [&](const FrameAnimation_DESC& _Info)
+                                          {
+                                              if (5 == _Info.CurFrame)
+                                              {
+                                                  AttackCollider_->On();
+                                              }
 
-                                            else if (6 == _Info.CurFrame)
-                                            {
-                                                AttackCollider_->Off();
-                                            }
-                                        });
+                                              else if (6 == _Info.CurFrame)
+                                              {
+                                                  AttackCollider_->Off();
+                                              }
+                                          });
 
         MetaRenderer_->AnimationBindEnd("shieldMaiden_attack",
                                         [&](const FrameAnimation_DESC& _Info)
@@ -69,6 +69,27 @@ void ShieldMaiden::Start()
                                             State_.ChangeState("Idle");
                                             NextState_ = "Track";
                                         });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("shieldMaiden_parryReaction");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "shieldMaiden_parryReaction",
+            {"shieldMaiden_parryReaction.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.12f, true},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("shieldMaiden_parryReaction",
+                                        [&](const FrameAnimation_DESC& _Info) { State_.ChangeState("Idle"); });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("shieldMaiden_stun");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "shieldMaiden_stun",
+            {"shieldMaiden_stun.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            Data);
     }
 
     {
@@ -146,6 +167,23 @@ void ShieldMaiden::Start()
                              std::bind(&ShieldMaiden::AttackStart, this, std::placeholders::_1),
                              std::bind(&ShieldMaiden::AttackEnd, this, std::placeholders::_1));
 
+    State_.CreateStateMember("Stun",
+                             std::bind(&ShieldMaiden::StunUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&ShieldMaiden::StunStart, this, std::placeholders::_1),
+                             std::bind(&ShieldMaiden::StunEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember(
+        "ParryReaction",
+        std::bind(&ShieldMaiden::ParryReactionUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&ShieldMaiden::ParryReactionStart, this, std::placeholders::_1),
+        std::bind(&ShieldMaiden::ParryReactionEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember(
+        "Execution",
+        std::bind(&ShieldMaiden::ExecutionUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&ShieldMaiden::ExecutionStart, this, std::placeholders::_1),
+        std::bind(&ShieldMaiden::ExecutionEnd, this, std::placeholders::_1));
+
     State_.CreateStateMember("Death",
                              std::bind(&ShieldMaiden::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&ShieldMaiden::DeathStart, this, std::placeholders::_1),
@@ -169,8 +207,16 @@ void ShieldMaiden::Update(float _DeltaTime)
     IsGround_ = GroundCheck(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y));
     Gravity_->SetActive(!IsGround_);
 
-    //쉴드 메이든만의 데미지 체크
-    DamageCheck();
+    if ("Death" != State_.GetCurStateStateName() && "Stun" != State_.GetCurStateStateName()
+        && "Execution" != State_.GetCurStateStateName())
+    {
+        DamageCheck();
+
+        if (90 > GetHP())
+        {
+            State_.ChangeState("Stun");
+        }
+    }
 }
 
 void ShieldMaiden::End() {}
@@ -344,6 +390,7 @@ void ShieldMaiden::PatrolUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void ShieldMaiden::PatrolEnd(const StateInfo& _Info) {}
 
+
 void ShieldMaiden::TrackStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("shieldMaiden_walking_anim");
@@ -414,22 +461,82 @@ void ShieldMaiden::AttackStart(const StateInfo& _Info)
     MetaRenderer_->ChangeMetaAnimation("shieldMaiden_attack");
 }
 
-void ShieldMaiden::AttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
+void ShieldMaiden::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    if (true
+        == AttackCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerParry, CollisionType::CT_OBB2D, nullptr))
+    {
+        State_.ChangeState("ParryReaction");
+        Penitent::GetMainPlayer()->ParrySuccess();
+    }
+}
 
-void ShieldMaiden::AttackEnd(const StateInfo& _Info) { }
+void ShieldMaiden::AttackEnd(const StateInfo& _Info) { AttackCollider_->Off(); }
 
 
-void ShieldMaiden::ParryReactionStart(const StateInfo& _Info) {}
+void ShieldMaiden::ParryReactionStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("shieldMaiden_parryReaction");
+}
 
 void ShieldMaiden::ParryReactionUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void ShieldMaiden::ParryReactionEnd(const StateInfo& _Info) {}
 
 
+void ShieldMaiden::StunStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("shieldMaiden_stun");
+    MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
+
+    DetectCollider_->Off();
+    BodyCollider_->Off();
+    AttackCollider_->Off();
+}
+
+void ShieldMaiden::StunUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    if (true == GameEngineInput::GetInst()->IsDownKey("FreeCamera"))
+    {
+        State_.ChangeState("Execution");
+        return;
+    }
+
+    if (5.f < _Info.StateTime)
+    {
+        DetectCollider_->On();
+        BodyCollider_->On();
+        State_.ChangeState("Idle");
+    }
+}
+
+void ShieldMaiden::StunEnd(const StateInfo& _Info) {}
+
+
+void ShieldMaiden::ExecutionStart(const StateInfo& _Info)
+{
+    Penitent::GetMainPlayer()->SetExecutionType(EXECUTIONTYPE::ShieldMaiden);
+    Penitent::GetMainPlayer()->ChangeState("Execution");
+
+    DetectCollider_->Death();
+    BodyCollider_->Death();
+    AttackCollider_->Death();
+
+    Death();
+}
+
+void ShieldMaiden::ExecutionUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void ShieldMaiden::ExecutionEnd(const StateInfo& _Info) {}
+
+
 void ShieldMaiden::DeathStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("shieldandsword_death");
     MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
+
+    Penitent::GetMainPlayer()->SerTear(GetTear());
 }
 
 void ShieldMaiden::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}

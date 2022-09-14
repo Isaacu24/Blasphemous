@@ -1,6 +1,13 @@
 #pragma once
 #include <GameEngineCore/CoreMinimal.h>
 
+enum class EXECUTIONTYPE
+{
+    None,
+    Crosscrawler,
+    ShieldMaiden
+};
+
 class SpectrumComponent;
 class MetaTextureRenderer;
 class Penitent : public GameEngineActor
@@ -47,6 +54,8 @@ public:
 
     inline void SerTear(int _Value) { Tear_ = _Value; }
 
+    inline void PlusTear(int _Value) { Tear_ += _Value; }
+
     inline void SetGround(GameEngineTextureRenderer* _Ground) { ColMap_ = _Ground; }
 
     inline void ChangeState(const std::string& _State) { State_.ChangeState(_State); }
@@ -71,6 +80,10 @@ public:
     inline std::string GetPenitentState() { return State_.GetCurStateStateName(); }
 
     inline void SetReturnToPort(bool _Value) { IsReturnToPort_ = _Value; }
+
+    inline void SetExecutionType(EXECUTIONTYPE _Type) { ExecutionType_ = _Type; }
+
+    inline void ParrySuccess() { IsParrySuccess_ = true; }
 
 protected:
     void Start() override;
@@ -156,6 +169,10 @@ protected:
     void PrayAttackUpdate(float _DeltaTime, const StateInfo& _Info);
     void PrayAttackEnd(const StateInfo& _Info);
 
+    void ExecutionStart(const StateInfo& _Info);
+    void ExecutionUpdate(float _DeltaTime, const StateInfo& _Info);
+    void ExecutionEnd(const StateInfo& _Info);
+
     void KnockBackStart(const StateInfo& _Info);
     void KnockBackUpdate(float _DeltaTime, const StateInfo& _Info);
     void KnockBackEnd(const StateInfo& _Info);
@@ -167,6 +184,10 @@ protected:
     void ParryingStart(const StateInfo& _Info);
     void ParryingUpdate(float _DeltaTime, const StateInfo& _Info);
     void ParryingEnd(const StateInfo& _Info);
+
+    void ParryingAttackStart(const StateInfo& _Info);
+    void ParryingAttackUpdate(float _DeltaTime, const StateInfo& _Info);
+    void ParryingAttackEnd(const StateInfo& _Info);
 
     void RecoveryStart(const StateInfo& _Info);
     void RecoveryUpdate(float _DeltaTime, const StateInfo& _Info);
@@ -214,6 +235,8 @@ private:
     class MoveEffect*   MoveEffect_;
     class AttackEffect* AttackEffect_;
     class HitEffect*    HitEffect_;
+
+    EXECUTIONTYPE ExecutionType_;
 
     std::string LastSavePoint_;
 
@@ -265,4 +288,5 @@ private:
 
     bool IsShake_;
     bool IsReturnToPort_;
+    bool IsParrySuccess_;
 };

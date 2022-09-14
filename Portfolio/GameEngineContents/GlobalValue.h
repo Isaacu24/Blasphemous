@@ -87,7 +87,8 @@ enum class COLLISIONORDER
     Debug,
     GlassSwitch,
     Platform,
-    DeadZone
+    DeadZone,
+    PlayerParry
 };
 
 

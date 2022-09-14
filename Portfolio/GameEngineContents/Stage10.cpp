@@ -77,7 +77,7 @@ void Stage10::SettingStage()
 
     PlayerRightPos_ = float4{3950, -682, PlayerZ};
     //PlayerLeftPos_  = float4{300, -682, PlayerZ};
-    PlayerLeftPos_  = float4{1900, -750, PlayerZ};
+    PlayerLeftPos_  = float4{1900, -850, PlayerZ};
 
     IsLeftExit_ = true;
 

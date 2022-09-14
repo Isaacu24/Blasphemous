@@ -206,7 +206,8 @@ void Penitent::DeadZoneCheck()
 
 void Penitent::CollisionCheck()
 {
-    if ("KnockBack" == State_.GetCurStateStateName() || "KnockUp" == State_.GetCurStateStateName())
+    if ("KnockBack" == State_.GetCurStateStateName() || "KnockUp" == State_.GetCurStateStateName()
+        || "Parrying" == State_.GetCurStateStateName())
     {
         return;
     }

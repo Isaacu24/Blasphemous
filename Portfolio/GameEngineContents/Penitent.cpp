@@ -27,6 +27,7 @@ Penitent::Penitent()
     , IsGround_(false)
     , Flasks_{}
     , JumpTime_(0.0f)
+    , LastSavePoint_{}
 {
     MainPlayer_ = this;
 }
@@ -905,6 +906,32 @@ void Penitent::SetAnimation()
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
+    //패링 성공
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_parry_success_animv3");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_parry_success_animv3",
+            {"penitent_parry_success_animv3.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_parry_success_animv3",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("ParryingAttack"); });
+    }
+
+    //패링 공격
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_parry_counter_v2_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_parry_counter_v2_anim",
+            {"penitent_parry_counter_v2_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_parry_counter_v2_anim",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+    }
+
     //회복
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_healthpotion_consuming_anim");
@@ -930,7 +957,7 @@ void Penitent::SetAnimation()
         MetaRenderer_->AnimationBindEnd("death_anim_blood",
                                         [&](const FrameAnimation_DESC& _Info)
                                         {
-                                            if ("" == LastSavePoint_)
+                                            if (true == LastSavePoint_.empty())
                                             {
                                                 GEngine::ChangeLevel("Stage01");
                                             }
@@ -1003,6 +1030,35 @@ void Penitent::SetAnimation()
                                             ChangeState("Idle");
                                         });
     }
+
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("crosscrawler_execution");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "crosscrawler_execution",
+            {"crosscrawler_execution.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, true},
+            Data);
+
+
+        MetaRenderer_->AnimationBindEnd("crosscrawler_execution",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+    }
+
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("shieldMaiden_execution");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "shieldMaiden_execution",
+            {"shieldMaiden_execution.png", 0, static_cast<unsigned int>(Data.size() - 3), 0.08f, true},
+            Data);
+
+
+        MetaRenderer_->AnimationBindEnd("shieldMaiden_execution",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+    }
+
 
     MetaRenderer_->SetPivot(PIVOTMODE::METABOT);
 }
@@ -1098,10 +1154,20 @@ void Penitent::SetPlayerState()
                              std::bind(&Penitent::PrayAttackStart, this, std::placeholders::_1),
                              std::bind(&Penitent::PrayAttackEnd, this, std::placeholders::_1));
 
+    State_.CreateStateMember("Execution",
+                             std::bind(&Penitent::ExecutionUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::ExecutionStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::ExecutionEnd, this, std::placeholders::_1));
+
     State_.CreateStateMember("Parrying",
                              std::bind(&Penitent::ParryingUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&Penitent::ParryingStart, this, std::placeholders::_1),
                              std::bind(&Penitent::ParryingEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember("ParryingAttack",
+                             std::bind(&Penitent::ParryingAttackUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::ParryingAttackStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::ParryingAttackEnd, this, std::placeholders::_1));
 
     State_.CreateStateMember("Recovery",
                              std::bind(&Penitent::RecoveryUpdate, this, std::placeholders::_1, std::placeholders::_2),
@@ -1128,6 +1194,10 @@ void Penitent::SetPlayerState()
 }
 
 
-void Penitent::LevelStartEvent() { CurStage_ = dynamic_cast<StageBase*>(GetLevel()); }
+void Penitent::LevelStartEvent()
+{
+    ChangeState("Idle");
+    CurStage_ = dynamic_cast<StageBase*>(GetLevel());
+}
 
 void Penitent::LevelEndEvent() {}

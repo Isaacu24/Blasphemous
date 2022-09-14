@@ -10,7 +10,7 @@
 
 void Penitent::FreezeStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penitent_sheathedIdle"); }
 
-void Penitent::FreezeUpdate(float _DeltaTime, const StateInfo& _Info) {}
+void Penitent::FreezeUpdate(float _DeltaTime, const StateInfo& _Info) { Gravity_->SetActive(!IsGround_); }
 
 void Penitent::FreezeEnd(const StateInfo& _Info) {}
 
@@ -66,7 +66,7 @@ void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
         State_.ChangeState("Recovery");
     }
 
-    else if (true == GameEngineInput::GetInst()->IsDownKey("PenitentTelport") && true == IsReturnToPort_)
+    else if (true == GameEngineInput::GetInst()->IsDownKey("PenitentTelport")  && true == IsReturnToPort_)
     {
         State_.ChangeState("ReturnToPort");
     }
@@ -433,6 +433,7 @@ void Penitent::KnockBackStart(const StateInfo& _Info)
     FallTime_ = 0.f;
     MetaRenderer_->ChangeMetaAnimation("Penitent_pushback_grounded");
     MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
+
     BodyCollider_->Off();
 
     HitEffect_->Renderer_->On();
@@ -824,6 +825,8 @@ void Penitent::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 void Penitent::AttackEnd(const StateInfo& _Info)
 {
     AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
+    AttackCollider_->Off();
+
     AttackStack_ = 0;
 }
 
@@ -897,20 +900,112 @@ void Penitent::VerticalAttackEnd(const StateInfo& _Info) { AttackCollider_->Off(
 
 void Penitent::PrayAttackStart(const StateInfo& _Info)
 {
+    AttackCollider_->On();
+    //크기 조정 필요
+
     BodyCollider_->Off();
     MetaRenderer_->ChangeMetaAnimation("penitent_aura_anim");
 }
 
 void Penitent::PrayAttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Penitent::PrayAttackEnd(const StateInfo& _Info) { BodyCollider_->On(); }
+void Penitent::PrayAttackEnd(const StateInfo& _Info) 
+{ 
+    BodyCollider_->On(); 
+    AttackCollider_->Off();
+}
 
 
-void Penitent::ParryingStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penitent_parry_failed"); }
+void Penitent::ExecutionStart(const StateInfo& _Info)
+{
+    BodyCollider_->Off();
 
-void Penitent::ParryingUpdate(float _DeltaTime, const StateInfo& _Info) {}
+    switch (ExecutionType_)
+    {
+        case EXECUTIONTYPE::None:
+            break;
+        case EXECUTIONTYPE::Crosscrawler:
+            MetaRenderer_->ChangeMetaAnimation("crosscrawler_execution");
+            break;
+        case EXECUTIONTYPE::ShieldMaiden:
+            MetaRenderer_->ChangeMetaAnimation("shieldMaiden_execution");
+            break;
+        default:
+            break;
+    }
+}
 
-void Penitent::ParryingEnd(const StateInfo& _Info) {}
+void Penitent::ExecutionUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Penitent::ExecutionEnd(const StateInfo& _Info)
+{
+    switch (ExecutionType_)
+    {
+        case EXECUTIONTYPE::None:
+            break;
+        case EXECUTIONTYPE::Crosscrawler:
+            if (0 > RealXDir_)
+            {
+                GetTransform().SetWorldMove({30.f, 0});
+            }
+
+            else
+            {
+                GetTransform().SetWorldMove({-30.f, 0});
+            }
+            break;
+        case EXECUTIONTYPE::ShieldMaiden:
+            if (0 > RealXDir_)
+            {
+                GetTransform().SetWorldMove({70.f, 0});
+            }
+
+            else
+            {
+                GetTransform().SetWorldMove({-70.f, 0});
+            }
+            break;
+        default:
+            break;
+    }
+
+    BodyCollider_->On();
+}
+
+
+void Penitent::ParryingStart(const StateInfo& _Info) 
+{
+    MetaRenderer_->ChangeMetaAnimation("penitent_parry_failed"); 
+    BodyCollider_->ChangeOrder(COLLISIONORDER::PlayerParry);
+
+    BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.0f, 1.0f, 0.0f, 0.5f});
+}
+
+void Penitent::ParryingUpdate(float _DeltaTime, const StateInfo& _Info) 
+{
+    if (true == IsParrySuccess_)
+    {
+        MetaRenderer_->ChangeMetaAnimation("penitent_parry_success_animv3");
+    }
+}
+
+void Penitent::ParryingEnd(const StateInfo& _Info) 
+{ 
+    IsParrySuccess_ = false;
+
+    BodyCollider_->ChangeOrder(COLLISIONORDER::Player); 
+    BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.0f, 0.0f, 1.0f, 0.5f});
+}
+
+
+void Penitent::ParryingAttackStart(const StateInfo& _Info) 
+{
+    MetaRenderer_->ChangeMetaAnimation("penitent_parry_counter_v2_anim");
+}
+
+void Penitent::ParryingAttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Penitent::ParryingAttackEnd(const StateInfo& _Info) {}
 
 
 void Penitent::RecoveryStart(const StateInfo& _Info)
