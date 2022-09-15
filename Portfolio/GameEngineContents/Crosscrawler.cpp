@@ -502,6 +502,7 @@ void Crosscrawler::ExecutionStart(const StateInfo& _Info)
     DetectCollider_->Death();
     BodyCollider_->Death();
     AttackCollider_->Death();
+    BloodEffect_->Death();
     Death();
 }
 
@@ -516,6 +517,10 @@ void Crosscrawler::DeathStart(const StateInfo& _Info)
     MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
 
     Penitent::GetMainPlayer()->SerTear(GetTear());
+    
+    DetectCollider_->Death();
+    BodyCollider_->Death();
+    AttackCollider_->Death();
 }
 
 void Crosscrawler::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}

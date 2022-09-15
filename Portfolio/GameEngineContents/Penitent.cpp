@@ -811,7 +811,6 @@ void Penitent::SetAnimation()
                         }
 
                         ChangeState("Idle");
-
                         break;
 
                     case 18:

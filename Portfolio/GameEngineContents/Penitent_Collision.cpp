@@ -255,17 +255,22 @@ void Penitent::CollisionCheck()
                                CollisionType::CT_OBB2D,
                                std::bind(&Penitent::Dangle, this, std::placeholders::_1, std::placeholders::_2));
 
-    IsHit_ = AttackCollider_->IsCollision(
+    bool IsMonsterHit = AttackCollider_->IsCollision(
         CollisionType::CT_OBB2D,
         COLLISIONORDER::Monster,
         CollisionType::CT_OBB2D,
         std::bind(&Penitent::HitEffectCheck, this, std::placeholders::_1, std::placeholders::_2));
 
-    //IsHit_ = AttackCollider_->IsCollision(
-    //    CollisionType::CT_OBB2D,
-    //    COLLISIONORDER::MonsterBody,
-    //    CollisionType::CT_OBB2D,
-    //    std::bind(&Penitent::HitEffectCheck, this, std::placeholders::_1, std::placeholders::_2));
+    bool IsMonsterBodyHit = AttackCollider_->IsCollision(
+        CollisionType::CT_OBB2D,
+        COLLISIONORDER::MonsterBody,
+        CollisionType::CT_OBB2D,
+        std::bind(&Penitent::HitEffectCheck, this, std::placeholders::_1, std::placeholders::_2));
+
+    if (true == IsMonsterHit || true == IsMonsterBodyHit)
+    {
+        IsHit_ = true;
+    }
 
     if (false
             == AttackCollider_->IsCollision(
@@ -277,17 +282,22 @@ void Penitent::CollisionCheck()
         IsHit_ = false;
     }
 
-    IsBossHit_ = AttackCollider_->IsCollision(
+    bool IsBossMonsterHit = AttackCollider_->IsCollision(
         CollisionType::CT_OBB2D,
         COLLISIONORDER::BossMonster,
         CollisionType::CT_OBB2D,
         std::bind(&Penitent::HitEffectCheck, this, std::placeholders::_1, std::placeholders::_2));
 
-    IsBossHit_ = AttackCollider_->IsCollision(
+    bool IsBossMonsterBodyHit = AttackCollider_->IsCollision(
         CollisionType::CT_OBB2D,
         COLLISIONORDER::BossMonsterBody,
         CollisionType::CT_OBB2D,
         std::bind(&Penitent::HitEffectCheck, this, std::placeholders::_1, std::placeholders::_2));
+
+    if (true == IsBossMonsterHit || true == IsBossMonsterBodyHit)
+    {
+        IsBossHit_ = true;
+    }
 
     if (false
             == AttackCollider_->IsCollision(

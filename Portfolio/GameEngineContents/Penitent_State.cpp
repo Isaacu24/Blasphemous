@@ -699,12 +699,14 @@ void Penitent::DangleStart(const StateInfo& _Info)
 
 void Penitent::DangleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    if (GameEngineInput::GetInst()->IsPressKey("PenitentUp"))
+    if (GameEngineInput::GetInst()->IsDownKey("PenitentUp"))
     {
         IsDangle_     = true;
         IsClimbLedge_ = true;
 
         MetaRenderer_->ChangeMetaAnimation("penitent_climbledge_reviewed");
+
+        GetTransform().SetWorldMove({RealXDir_ * 20.f, 100.f});
     }
 
     else if (GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
@@ -717,9 +719,9 @@ void Penitent::DangleUpdate(float _DeltaTime, const StateInfo& _Info)
     if (true == IsClimbLedge_)
     {
         float4 StartPos = GetTransform().GetWorldPosition();
-        float4 EndPos   = GetTransform().GetWorldPosition() + float4{RealXDir_ * 100.f, 270.f};
+        float4 EndPos   = GetTransform().GetWorldPosition() + float4{RealXDir_ * 50.f, 50.f};
 
-        GetTransform().SetWorldPosition(float4::Lerp(StartPos, EndPos, _DeltaTime));
+        GetTransform().SetWorldPosition(float4::LerpLimit(StartPos, EndPos, _DeltaTime * 1.5f));
     }
 }
 
