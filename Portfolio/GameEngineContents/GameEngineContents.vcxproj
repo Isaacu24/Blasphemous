@@ -183,6 +183,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Merchant.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MessageUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MetaSpriteManager.h" />
     <ClInclude Include="MetaSpriteWindow.h">
       <SubType>
@@ -531,6 +539,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MainMenuActor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Merchant.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MessageUI.cpp">
       <SubType>
       </SubType>
     </ClCompile>

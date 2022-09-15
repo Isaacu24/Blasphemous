@@ -1,0 +1,1432 @@
+fileFormatVersion: 2
+guid: 597d4375cb9baf1479d1c7b5cb05f4e8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: ladrona_death_anim_1
+  - first:
+      213: 21300002
+    second: ladrona_death_anim_2
+  - first:
+      213: 21300004
+    second: ladrona_death_anim_3
+  - first:
+      213: 21300006
+    second: ladrona_death_anim_4
+  - first:
+      213: 21300008
+    second: ladrona_death_anim_5
+  - first:
+      213: 21300010
+    second: ladrona_death_anim_6
+  - first:
+      213: 21300012
+    second: ladrona_death_anim_7
+  - first:
+      213: 21300014
+    second: ladrona_death_anim_8
+  - first:
+      213: 21300016
+    second: ladrona_death_anim_9
+  - first:
+      213: 21300018
+    second: ladrona_death_anim_10
+  - first:
+      213: 21300020
+    second: ladrona_death_anim_11
+  - first:
+      213: 21300022
+    second: ladrona_death_anim_12
+  - first:
+      213: 21300024
+    second: ladrona_death_anim_13
+  - first:
+      213: 21300026
+    second: ladrona_death_anim_14
+  - first:
+      213: 21300028
+    second: ladrona_death_anim_15
+  - first:
+      213: 21300030
+    second: ladrona_death_anim_16
+  - first:
+      213: 21300032
+    second: ladrona_death_anim_17
+  - first:
+      213: 21300034
+    second: ladrona_death_anim_18
+  - first:
+      213: 21300036
+    second: ladrona_death_anim_19
+  - first:
+      213: 21300038
+    second: ladrona_death_anim_20
+  - first:
+      213: 21300040
+    second: ladrona_death_anim_21
+  - first:
+      213: 21300042
+    second: ladrona_death_anim_22
+  - first:
+      213: 21300044
+    second: ladrona_death_anim_23
+  - first:
+      213: 21300046
+    second: ladrona_death_anim_24
+  - first:
+      213: 21300048
+    second: ladrona_death_anim_25
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 4
+  maxTextureSize: 512
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ladrona_death_anim_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 264
+        width: 56
+        height: 92
+      alignment: 9
+      pivot: {x: 0.64285713, y: 0.08695652}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -4, y: -46}
+        - {x: -28, y: -5}
+        - {x: -28, y: 46}
+        - {x: 4, y: 46}
+        - {x: 28, y: 7}
+        - {x: 28, y: -46}
+      physicsShape:
+      - - {x: 28, y: -20}
+        - {x: 28, y: -6}
+        - {x: 27, y: -6}
+        - {x: 23, y: -9}
+        - {x: 24, y: 1}
+        - {x: 18, y: 13}
+        - {x: 7, y: 31}
+        - {x: 4, y: 43}
+        - {x: 3, y: 46}
+        - {x: -14, y: 46}
+        - {x: -28, y: 44}
+        - {x: -28, y: 31}
+        - {x: -25, y: 23}
+        - {x: -27, y: 2}
+        - {x: -23, y: -13}
+        - {x: -6, y: -23}
+        - {x: -5, y: -38}
+        - {x: -2, y: -45}
+        - {x: -1, y: -46}
+        - {x: 18, y: -46}
+        - {x: 25, y: -44}
+        - {x: 27, y: -37}
+        - {x: 23, y: -22}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_2
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 245
+        width: 54
+        height: 89
+      alignment: 9
+      pivot: {x: 0.6666667, y: 0.08988764}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17, y: -44.5}
+        - {x: -27, y: -18.5}
+        - {x: -27, y: 42.5}
+        - {x: -17, y: 44.5}
+        - {x: 8, y: 44.5}
+        - {x: 27, y: 15.5}
+        - {x: 27, y: -37.5}
+        - {x: 25, y: -44.5}
+      physicsShape:
+      - - {x: 15, y: -12.5}
+        - {x: 27, y: -7.5}
+        - {x: 27, y: -0.5}
+        - {x: 16, y: 5.5}
+        - {x: 21, y: 10.5}
+        - {x: 10, y: 19.5}
+        - {x: 6, y: 26.5}
+        - {x: 2, y: 32.5}
+        - {x: 5, y: 41.5}
+        - {x: 4, y: 44.5}
+        - {x: -13, y: 44.5}
+        - {x: -27, y: 42.5}
+        - {x: -27, y: 29.5}
+        - {x: -23, y: 21.5}
+        - {x: -27, y: 15.5}
+        - {x: -27, y: -6.5}
+        - {x: -26, y: -14.5}
+        - {x: -11, y: -23.5}
+        - {x: -5, y: -32.5}
+        - {x: -1, y: -44.5}
+        - {x: 13, y: -44.5}
+        - {x: 19, y: -43.5}
+        - {x: 25, y: -41.5}
+        - {x: 22, y: -22.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_3
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 66
+        width: 56
+        height: 89
+      alignment: 9
+      pivot: {x: 0.66071427, y: 0.08988764}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: -44.5}
+        - {x: -28, y: -16.5}
+        - {x: -28, y: 42.5}
+        - {x: -14, y: 44.5}
+        - {x: 4, y: 44.5}
+        - {x: 28, y: 6.5}
+        - {x: 28, y: -25.5}
+        - {x: 27, y: -42.5}
+        - {x: 15, y: -44.5}
+      physicsShape:
+      - - {x: 23, y: -8.5}
+        - {x: 28, y: -3.5}
+        - {x: 28, y: 1.5}
+        - {x: 18, y: 0.5}
+        - {x: 12, y: 5.5}
+        - {x: 18, y: 10.5}
+        - {x: 16, y: 13.5}
+        - {x: 1, y: 32.5}
+        - {x: 4, y: 41.5}
+        - {x: 3, y: 44.5}
+        - {x: -14, y: 44.5}
+        - {x: -28, y: 42.5}
+        - {x: -28, y: 29.5}
+        - {x: -24, y: 21.5}
+        - {x: -28, y: 12.5}
+        - {x: -28, y: -6.5}
+        - {x: -25, y: -13.5}
+        - {x: -11, y: -23.5}
+        - {x: -1, y: -44.5}
+        - {x: 14, y: -44.5}
+        - {x: 26, y: -41.5}
+        - {x: 22, y: -22.5}
+        - {x: 14, y: -10.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_4
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 334
+        width: 54
+        height: 89
+      alignment: 9
+      pivot: {x: 0.6666667, y: 0.08988764}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17, y: -44.5}
+        - {x: -27, y: -18.5}
+        - {x: -27, y: 42.5}
+        - {x: -17, y: 44.5}
+        - {x: 8, y: 44.5}
+        - {x: 27, y: 15.5}
+        - {x: 27, y: -37.5}
+        - {x: 25, y: -44.5}
+      physicsShape:
+      - - {x: 15, y: -12.5}
+        - {x: 27, y: -7.5}
+        - {x: 27, y: -0.5}
+        - {x: 16, y: 5.5}
+        - {x: 21, y: 10.5}
+        - {x: 10, y: 19.5}
+        - {x: 6, y: 26.5}
+        - {x: 2, y: 32.5}
+        - {x: 5, y: 41.5}
+        - {x: 4, y: 44.5}
+        - {x: -13, y: 44.5}
+        - {x: -27, y: 42.5}
+        - {x: -27, y: 29.5}
+        - {x: -23, y: 21.5}
+        - {x: -27, y: 15.5}
+        - {x: -27, y: -6.5}
+        - {x: -26, y: -14.5}
+        - {x: -11, y: -23.5}
+        - {x: -5, y: -32.5}
+        - {x: -1, y: -44.5}
+        - {x: 13, y: -44.5}
+        - {x: 19, y: -43.5}
+        - {x: 25, y: -41.5}
+        - {x: 22, y: -22.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_5
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 155
+        width: 54
+        height: 90
+      alignment: 9
+      pivot: {x: 0.6666667, y: 0.08888889}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: -45}
+        - {x: -27, y: -13}
+        - {x: -27, y: 45}
+        - {x: 9, y: 45}
+        - {x: 27, y: 13}
+        - {x: 27, y: -37}
+        - {x: 26, y: -45}
+      physicsShape:
+      - - {x: 27, y: -12}
+        - {x: 27, y: 3}
+        - {x: 24, y: 12}
+        - {x: 10, y: 19}
+        - {x: 8, y: 27}
+        - {x: 1, y: 31}
+        - {x: 5, y: 42}
+        - {x: 4, y: 45}
+        - {x: -20, y: 45}
+        - {x: -27, y: 42}
+        - {x: -27, y: 30}
+        - {x: -23, y: 22}
+        - {x: -26, y: 12}
+        - {x: -26, y: -6}
+        - {x: -23, y: -13}
+        - {x: -14, y: -19}
+        - {x: -8, y: -25}
+        - {x: -4, y: -40}
+        - {x: -1, y: -45}
+        - {x: 18, y: -45}
+        - {x: 23, y: -44}
+        - {x: 25, y: -38}
+        - {x: 24, y: -28}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 356
+        width: 55
+        height: 91
+      alignment: 9
+      pivot: {x: 0.6727273, y: 0.08791209}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 3.5, y: 45.5}
+        - {x: 21.5, y: 10.5}
+        - {x: 19.5, y: -6.5}
+        - {x: 26.5, y: -2.5}
+        - {x: 27.5, y: -2.5}
+        - {x: 27.5, y: -45.5}
+        - {x: -8.5, y: -45.5}
+        - {x: -26.5, y: -15.5}
+        - {x: -27.5, y: -9.5}
+        - {x: -27.5, y: 43.5}
+        - {x: -25.5, y: 45.5}
+      physicsShape:
+      - - {x: 27.5, y: -28.5}
+        - {x: 27.5, y: -2.5}
+        - {x: 26.5, y: -2.5}
+        - {x: 19.5, y: -6.5}
+        - {x: 21.5, y: 10.5}
+        - {x: 10.5, y: 19.5}
+        - {x: 2.5, y: 39.5}
+        - {x: 4.5, y: 42.5}
+        - {x: 3.5, y: 45.5}
+        - {x: -20.5, y: 45.5}
+        - {x: -27.5, y: 42.5}
+        - {x: -27.5, y: 29.5}
+        - {x: -24.5, y: 22.5}
+        - {x: -26.5, y: -5.5}
+        - {x: -22.5, y: -12.5}
+        - {x: -13.5, y: -18.5}
+        - {x: -5.5, y: -27.5}
+        - {x: -1.5, y: -45.5}
+        - {x: 12.5, y: -45.5}
+        - {x: 15.5, y: -43.5}
+        - {x: 23.5, y: -45.5}
+        - {x: 24.5, y: -45.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_7
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 66
+        width: 53
+        height: 90
+      alignment: 9
+      pivot: {x: 0.6792453, y: 0.08888889}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3.5, y: -45}
+        - {x: -26.5, y: -22}
+        - {x: -26.5, y: 45}
+        - {x: 6.5, y: 45}
+        - {x: 25.5, y: 15}
+        - {x: 26.5, y: 9}
+        - {x: 26.5, y: -45}
+      physicsShape:
+      - - {x: 22.5, y: -8}
+        - {x: 23.5, y: 3}
+        - {x: 19.5, y: 12}
+        - {x: 8.5, y: 30}
+        - {x: 1.5, y: 40}
+        - {x: 5.5, y: 42}
+        - {x: 4.5, y: 45}
+        - {x: -12.5, y: 45}
+        - {x: -26.5, y: 43}
+        - {x: -26.5, y: 30}
+        - {x: -22.5, y: 22}
+        - {x: -24.5, y: 13}
+        - {x: -24.5, y: -6}
+        - {x: -20.5, y: -13}
+        - {x: -4.5, y: -28}
+        - {x: -1.5, y: -45}
+        - {x: 24.5, y: -45}
+        - {x: 26.5, y: -41}
+        - {x: 26.5, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_8
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 423
+        width: 52
+        height: 86
+      alignment: 9
+      pivot: {x: 0.6923077, y: 0.093023255}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: -43}
+        - {x: -26, y: -18}
+        - {x: -26, y: 43}
+        - {x: 5, y: 43}
+        - {x: 26, y: 6}
+        - {x: 26, y: -42}
+        - {x: 22, y: -43}
+      physicsShape:
+      - - {x: 9, y: 28}
+        - {x: 2, y: 38}
+        - {x: 6, y: 40}
+        - {x: 5, y: 43}
+        - {x: -11, y: 43}
+        - {x: -18, y: 42}
+        - {x: -26, y: 40}
+        - {x: -26, y: 30}
+        - {x: -23, y: 26}
+        - {x: -24, y: -8}
+        - {x: -19, y: -18}
+        - {x: -4, y: -22}
+        - {x: -3, y: -36}
+        - {x: 0, y: -43}
+        - {x: 17, y: -43}
+        - {x: 26, y: -41}
+        - {x: 26, y: 6}
+        - {x: 15, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_9
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 66
+        width: 51
+        height: 80
+      alignment: 9
+      pivot: {x: 0.7058824, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7.5, y: -40}
+        - {x: -25.5, y: -18}
+        - {x: -25.5, y: 40}
+        - {x: 9.5, y: 40}
+        - {x: 25.5, y: 14}
+        - {x: 25.5, y: -40}
+      physicsShape:
+      - - {x: 14.5, y: 18}
+        - {x: 9.5, y: 26}
+        - {x: 4.5, y: 27}
+        - {x: 6.5, y: 37}
+        - {x: 5.5, y: 40}
+        - {x: -11.5, y: 40}
+        - {x: -25.5, y: 38}
+        - {x: -25.5, y: 28}
+        - {x: -22.5, y: 24}
+        - {x: -25.5, y: 9}
+        - {x: -22.5, y: 0}
+        - {x: -23.5, y: -12}
+        - {x: -17.5, y: -20}
+        - {x: -2.5, y: -29}
+        - {x: -0.5, y: -40}
+        - {x: 13.5, y: -40}
+        - {x: 16.5, y: -39}
+        - {x: 25.5, y: -38}
+        - {x: 25.5, y: 7}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_10
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 66
+        width: 52
+        height: 71
+      alignment: 9
+      pivot: {x: 0.6923077, y: 0.112676054}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23, y: -35.5}
+        - {x: -26, y: -22.5}
+        - {x: -26, y: 35.5}
+        - {x: 11, y: 35.5}
+        - {x: 26, y: 15.5}
+        - {x: 26, y: -35.5}
+      physicsShape:
+      - - {x: 25, y: -8.5}
+        - {x: 26, y: -5.5}
+        - {x: 26, y: 9.5}
+        - {x: 17, y: 23.5}
+        - {x: 3, y: 20.5}
+        - {x: 6, y: 32.5}
+        - {x: 5, y: 35.5}
+        - {x: -12, y: 35.5}
+        - {x: -18, y: 34.5}
+        - {x: -26, y: 31.5}
+        - {x: -26, y: 21.5}
+        - {x: -24, y: -15.5}
+        - {x: -20, y: -22.5}
+        - {x: -11, y: -28.5}
+        - {x: -2, y: -35.5}
+        - {x: 24, y: -35.5}
+        - {x: 26, y: -32.5}
+        - {x: 26, y: -11.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_11
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 156
+        width: 52
+        height: 63
+      alignment: 9
+      pivot: {x: 0.6923077, y: 0.12698413}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: -31.5}
+        - {x: -26, y: -20.5}
+        - {x: -26, y: 29.5}
+        - {x: -18, y: 31.5}
+        - {x: 13, y: 31.5}
+        - {x: 26, y: 21.5}
+        - {x: 26, y: -29.5}
+        - {x: 24, y: -31.5}
+      physicsShape:
+      - - {x: 15, y: 23.5}
+        - {x: 9, y: 15.5}
+        - {x: 6, y: 31.5}
+        - {x: -19, y: 31.5}
+        - {x: -26, y: 27.5}
+        - {x: -26, y: 17.5}
+        - {x: -24, y: -4.5}
+        - {x: -24, y: -20.5}
+        - {x: -18, y: -28.5}
+        - {x: -11, y: -31.5}
+        - {x: 25, y: -31.5}
+        - {x: 26, y: -28.5}
+        - {x: 26, y: 20.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43305410000000000800000000000000
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_12
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 156
+        width: 52
+        height: 66
+      alignment: 9
+      pivot: {x: 0.6923077, y: 0.13636364}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21, y: -33}
+        - {x: -26, y: -26}
+        - {x: -26, y: 31}
+        - {x: -17, y: 33}
+        - {x: 10, y: 33}
+        - {x: 24, y: 21}
+        - {x: 26, y: 19}
+        - {x: 26, y: -33}
+      physicsShape:
+      - - {x: 26, y: 17}
+        - {x: 24, y: 21}
+        - {x: 6, y: 22}
+        - {x: 6, y: 30}
+        - {x: 5, y: 33}
+        - {x: -12, y: 33}
+        - {x: -26, y: 31}
+        - {x: -26, y: -12}
+        - {x: -25, y: -24}
+        - {x: -12, y: -31}
+        - {x: -1, y: -33}
+        - {x: 22, y: -33}
+        - {x: 24, y: -31}
+        - {x: 26, y: -27}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63305410000000000800000000000000
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 447
+        width: 53
+        height: 65
+      alignment: 9
+      pivot: {x: 0.6792453, y: 0.15384616}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23.5, y: -32.5}
+        - {x: -26.5, y: -27.5}
+        - {x: -26.5, y: 30.5}
+        - {x: -20.5, y: 32.5}
+        - {x: 17.5, y: 32.5}
+        - {x: 26.5, y: 24.5}
+        - {x: 26.5, y: -28.5}
+        - {x: 23.5, y: -32.5}
+      physicsShape:
+      - - {x: 4.5, y: 20.5}
+        - {x: 5.5, y: 29.5}
+        - {x: 4.5, y: 32.5}
+        - {x: -12.5, y: 32.5}
+        - {x: -26.5, y: 30.5}
+        - {x: -26.5, y: 20.5}
+        - {x: -25.5, y: 18.5}
+        - {x: -23.5, y: 16.5}
+        - {x: -25.5, y: 9.5}
+        - {x: -25.5, y: -3.5}
+        - {x: -26.5, y: -7.5}
+        - {x: -26.5, y: -24.5}
+        - {x: -18.5, y: -29.5}
+        - {x: -6.5, y: -32.5}
+        - {x: 20.5, y: -32.5}
+        - {x: 26.5, y: -26.5}
+        - {x: 26.5, y: 16.5}
+        - {x: 24.5, y: 20.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83305410000000000800000000000000
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_14
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 66
+        width: 57
+        height: 66
+      alignment: 9
+      pivot: {x: 0.68421054, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5.5, y: -33}
+        - {x: -28.5, y: -28}
+        - {x: -28.5, y: 33}
+        - {x: 14.5, y: 33}
+        - {x: 28.5, y: 13}
+        - {x: 28.5, y: -29}
+        - {x: 24.5, y: -33}
+      physicsShape:
+      - - {x: 24.5, y: 15}
+        - {x: 20.5, y: 15}
+        - {x: 15.5, y: 11}
+        - {x: 7.5, y: 22}
+        - {x: 7.5, y: 33}
+        - {x: -18.5, y: 33}
+        - {x: -28.5, y: 26}
+        - {x: -21.5, y: 10}
+        - {x: -24.5, y: 8}
+        - {x: -23.5, y: -3}
+        - {x: -28.5, y: -6}
+        - {x: -28.5, y: -26}
+        - {x: -19.5, y: -29}
+        - {x: 2.5, y: -33}
+        - {x: 21.5, y: -33}
+        - {x: 28.5, y: -29}
+        - {x: 28.5, y: 12}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3305410000000000800000000000000
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_15
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 66
+        width: 60
+        height: 66
+      alignment: 9
+      pivot: {x: 0.6666667, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: -33}
+        - {x: -30, y: -32}
+        - {x: -30, y: 33}
+        - {x: 18, y: 33}
+        - {x: 30, y: 28}
+        - {x: 30, y: -28}
+        - {x: 22, y: -33}
+      physicsShape:
+      - - {x: 15, y: 9}
+        - {x: 12, y: 15}
+        - {x: 4, y: 19}
+        - {x: 7, y: 33}
+        - {x: -16, y: 33}
+        - {x: -19, y: 32}
+        - {x: -25, y: 29}
+        - {x: -29, y: 26}
+        - {x: -24, y: 10}
+        - {x: -26, y: -1}
+        - {x: -29, y: -8}
+        - {x: -29, y: -10}
+        - {x: -30, y: -12}
+        - {x: -30, y: -27}
+        - {x: -29, y: -29}
+        - {x: -22, y: -30}
+        - {x: -2, y: -33}
+        - {x: 20, y: -33}
+        - {x: 30, y: -24}
+        - {x: 30, y: 7}
+        - {x: 27, y: 11}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3305410000000000800000000000000
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_16
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 66
+        width: 66
+        height: 66
+      alignment: 9
+      pivot: {x: 0.6666667, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 29, y: -33}
+        - {x: -31, y: -33}
+        - {x: -33, y: -30}
+        - {x: -33, y: -1}
+        - {x: -28, y: 26}
+        - {x: -18, y: 33}
+        - {x: 17, y: 33}
+        - {x: 33, y: 8}
+        - {x: 33, y: -29}
+      physicsShape:
+      - - {x: 33, y: 5}
+        - {x: 22, y: 4}
+        - {x: 15, y: 2}
+        - {x: 13, y: 15}
+        - {x: 5, y: 19}
+        - {x: 6, y: 32}
+        - {x: 6, y: 33}
+        - {x: -18, y: 33}
+        - {x: -28, y: 26}
+        - {x: -21, y: 10}
+        - {x: -24, y: 3}
+        - {x: -25, y: -3}
+        - {x: -24, y: -15}
+        - {x: -33, y: -21}
+        - {x: -33, y: -30}
+        - {x: -31, y: -33}
+        - {x: -23, y: -33}
+        - {x: -19, y: -32}
+        - {x: 5, y: -33}
+        - {x: 24, y: -33}
+        - {x: 32, y: -25}
+        - {x: 33, y: -23}
+      - - {x: -28, y: -9}
+        - {x: -29, y: -11}
+        - {x: -29, y: -15}
+        - {x: -26, y: -16}
+        - {x: -23, y: -16}
+        - {x: -22, y: -14}
+        - {x: -22, y: -10}
+        - {x: -25, y: -9}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3305410000000000800000000000000
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 198
+        width: 79
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5949367, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 39.5, y: -33}
+        - {x: -39.5, y: -33}
+        - {x: -39.5, y: 33}
+        - {x: 30.5, y: 33}
+        - {x: 39.5, y: 6}
+      physicsShape:
+      - - {x: 22.5, y: -10}
+        - {x: 14.5, y: -8}
+        - {x: 13.5, y: 0}
+        - {x: 9.5, y: 15}
+        - {x: 1.5, y: 19}
+        - {x: 4.5, y: 33}
+        - {x: -18.5, y: 33}
+        - {x: -21.5, y: 32}
+        - {x: -27.5, y: 29}
+        - {x: -31.5, y: 26}
+        - {x: -24.5, y: 10}
+        - {x: -27.5, y: 0}
+        - {x: -26.5, y: -17}
+        - {x: -33.5, y: -11}
+        - {x: -39.5, y: -19}
+        - {x: -39.5, y: -30}
+        - {x: -38.5, y: -30}
+        - {x: -5.5, y: -33}
+        - {x: 31.5, y: -33}
+        - {x: 39.5, y: -32}
+        - {x: 39.5, y: -13}
+        - {x: 34.5, y: -10}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04305410000000000800000000000000
+      internalID: 21300032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 132
+        width: 81
+        height: 66
+      alignment: 9
+      pivot: {x: 0.60493827, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 36.5, y: -33}
+        - {x: -40.5, y: -33}
+        - {x: -40.5, y: 5}
+        - {x: -35.5, y: 33}
+        - {x: 15.5, y: 33}
+        - {x: 40.5, y: 18}
+        - {x: 40.5, y: -32}
+      physicsShape:
+      - - {x: 36.5, y: -9}
+        - {x: 16.5, y: -7}
+        - {x: 10.5, y: 15}
+        - {x: 2.5, y: 19}
+        - {x: 5.5, y: 33}
+        - {x: -17.5, y: 33}
+        - {x: -20.5, y: 32}
+        - {x: -26.5, y: 29}
+        - {x: -30.5, y: 26}
+        - {x: -23.5, y: 10}
+        - {x: -28.5, y: -2}
+        - {x: -26.5, y: -15}
+        - {x: -32.5, y: -9}
+        - {x: -40.5, y: -20}
+        - {x: -40.5, y: -32}
+        - {x: -32.5, y: -31}
+        - {x: -25.5, y: -30}
+        - {x: -4.5, y: -31}
+        - {x: -2.5, y: -33}
+        - {x: 22.5, y: -33}
+        - {x: 24.5, y: -32}
+        - {x: 40.5, y: -32}
+        - {x: 40.5, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24305410000000000800000000000000
+      internalID: 21300034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 66
+        width: 82
+        height: 66
+      alignment: 9
+      pivot: {x: 0.6097561, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 41, y: -33}
+        - {x: -41, y: -33}
+        - {x: -41, y: 7}
+        - {x: -31, y: 33}
+        - {x: 12, y: 33}
+        - {x: 41, y: -4}
+      physicsShape:
+      - - {x: 18, y: -11}
+        - {x: 15, y: 1}
+        - {x: 11, y: 15}
+        - {x: 3, y: 19}
+        - {x: 6, y: 33}
+        - {x: -17, y: 33}
+        - {x: -20, y: 32}
+        - {x: -26, y: 29}
+        - {x: -30, y: 26}
+        - {x: -23, y: 10}
+        - {x: -27, y: -7}
+        - {x: -36, y: -14}
+        - {x: -41, y: -22}
+        - {x: -41, y: -31}
+        - {x: -33, y: -33}
+        - {x: -3, y: -31}
+        - {x: -2, y: -33}
+        - {x: 35, y: -33}
+        - {x: 41, y: -32}
+        - {x: 41, y: -13}
+        - {x: 37, y: -9}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44305410000000000800000000000000
+      internalID: 21300036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_20
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 0
+        width: 83
+        height: 66
+      alignment: 9
+      pivot: {x: 0.61445785, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 41.5, y: -33}
+        - {x: -41.5, y: -33}
+        - {x: -41.5, y: 33}
+        - {x: 15.5, y: 33}
+        - {x: 41.5, y: 16}
+      physicsShape:
+      - - {x: 17.5, y: -7}
+        - {x: 11.5, y: 15}
+        - {x: 3.5, y: 19}
+        - {x: 6.5, y: 33}
+        - {x: -16.5, y: 33}
+        - {x: -19.5, y: 32}
+        - {x: -25.5, y: 29}
+        - {x: -29.5, y: 26}
+        - {x: -23.5, y: 10}
+        - {x: -23.5, y: -18}
+        - {x: -33.5, y: -16}
+        - {x: -41.5, y: -23}
+        - {x: -41.5, y: -30}
+        - {x: -38.5, y: -33}
+        - {x: -34.5, y: -33}
+        - {x: -24.5, y: -32}
+        - {x: -2.5, y: -31}
+        - {x: 0.5, y: -33}
+        - {x: 29.5, y: -33}
+        - {x: 41.5, y: -32}
+        - {x: 41.5, y: -13}
+        - {x: 37.5, y: -9}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64305410000000000800000000000000
+      internalID: 21300038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_21
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 0
+        width: 83
+        height: 66
+      alignment: 9
+      pivot: {x: 0.61445785, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -39.5, y: -33}
+        - {x: -41.5, y: -31}
+        - {x: -41.5, y: 4}
+        - {x: -30.5, y: 33}
+        - {x: 12.5, y: 33}
+        - {x: 37.5, y: -9}
+        - {x: 41.5, y: -13}
+        - {x: 41.5, y: -32}
+        - {x: 35.5, y: -33}
+      physicsShape:
+      - - {x: 17.5, y: -7}
+        - {x: 11.5, y: 15}
+        - {x: 3.5, y: 19}
+        - {x: 6.5, y: 33}
+        - {x: -16.5, y: 33}
+        - {x: -19.5, y: 32}
+        - {x: -25.5, y: 29}
+        - {x: -29.5, y: 26}
+        - {x: -23.5, y: 10}
+        - {x: -23.5, y: -18}
+        - {x: -33.5, y: -16}
+        - {x: -41.5, y: -23}
+        - {x: -41.5, y: -30}
+        - {x: -38.5, y: -33}
+        - {x: -34.5, y: -33}
+        - {x: -24.5, y: -32}
+        - {x: -2.5, y: -31}
+        - {x: 0.5, y: -33}
+        - {x: 35.5, y: -33}
+        - {x: 41.5, y: -32}
+        - {x: 41.5, y: -13}
+        - {x: 37.5, y: -9}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84305410000000000800000000000000
+      internalID: 21300040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_22
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 0
+        width: 84
+        height: 66
+      alignment: 9
+      pivot: {x: 0.60714287, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 42, y: -33}
+        - {x: -42, y: -33}
+        - {x: -42, y: 5}
+        - {x: -31, y: 33}
+        - {x: 20, y: 33}
+        - {x: 42, y: 0}
+      physicsShape:
+      - - {x: 17, y: -7}
+        - {x: 15, y: 0}
+        - {x: 11, y: 15}
+        - {x: 3, y: 19}
+        - {x: 6, y: 33}
+        - {x: -17, y: 33}
+        - {x: -20, y: 32}
+        - {x: -26, y: 29}
+        - {x: -30, y: 26}
+        - {x: -24, y: 10}
+        - {x: -24, y: -18}
+        - {x: -34, y: -16}
+        - {x: -42, y: -23}
+        - {x: -42, y: -30}
+        - {x: -39, y: -33}
+        - {x: -35, y: -33}
+        - {x: -25, y: -32}
+        - {x: -3, y: -31}
+        - {x: 0, y: -33}
+        - {x: 42, y: -33}
+        - {x: 42, y: -15}
+        - {x: 37, y: -9}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4305410000000000800000000000000
+      internalID: 21300042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_23
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 0
+        width: 85
+        height: 66
+      alignment: 9
+      pivot: {x: 0.6, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 42.500004, y: -33}
+        - {x: -42.499996, y: -33}
+        - {x: -42.499996, y: 4}
+        - {x: -31.499996, y: 33}
+        - {x: 29.500004, y: 33}
+        - {x: 42.500004, y: 5}
+      physicsShape:
+      - - {x: 16.500004, y: -7}
+        - {x: 14.500004, y: 0}
+        - {x: 10.500004, y: 15}
+        - {x: 2.5000038, y: 19}
+        - {x: 5.500004, y: 33}
+        - {x: -17.499996, y: 33}
+        - {x: -20.499996, y: 32}
+        - {x: -26.499996, y: 29}
+        - {x: -30.499996, y: 26}
+        - {x: -24.499996, y: 10}
+        - {x: -24.499996, y: -18}
+        - {x: -34.499996, y: -16}
+        - {x: -42.499996, y: -23}
+        - {x: -42.499996, y: -30}
+        - {x: -39.499996, y: -33}
+        - {x: -35.499996, y: -33}
+        - {x: -25.499996, y: -32}
+        - {x: -1.4999962, y: -33}
+        - {x: 24.500004, y: -33}
+        - {x: 41.500004, y: -31}
+        - {x: 42.500004, y: -31}
+        - {x: 42.500004, y: -18}
+        - {x: 36.500004, y: -9}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4305410000000000800000000000000
+      internalID: 21300044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_24
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 0
+        width: 86
+        height: 66
+      alignment: 9
+      pivot: {x: 0.59302324, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: -33}
+        - {x: -43, y: -33}
+        - {x: -43, y: 6}
+        - {x: -32, y: 33}
+        - {x: 27, y: 33}
+        - {x: 43, y: 1}
+      physicsShape:
+      - - {x: 23, y: -10}
+        - {x: 15, y: -8}
+        - {x: 14, y: 0}
+        - {x: 10, y: 15}
+        - {x: 2, y: 19}
+        - {x: 5, y: 33}
+        - {x: -18, y: 33}
+        - {x: -21, y: 32}
+        - {x: -27, y: 29}
+        - {x: -31, y: 26}
+        - {x: -25, y: 10}
+        - {x: -25, y: -18}
+        - {x: -35, y: -16}
+        - {x: -43, y: -23}
+        - {x: -43, y: -30}
+        - {x: -40, y: -33}
+        - {x: -36, y: -33}
+        - {x: -26, y: -32}
+        - {x: -2, y: -33}
+        - {x: 38, y: -33}
+        - {x: 43, y: -31}
+        - {x: 43, y: -21}
+        - {x: 36, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4305410000000000800000000000000
+      internalID: 21300046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_death_anim_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 87
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5862069, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -41.5, y: -33}
+        - {x: -43.5, y: -31}
+        - {x: -43.5, y: 5}
+        - {x: -32.5, y: 33}
+        - {x: 18.5, y: 33}
+        - {x: 43.5, y: -6}
+        - {x: 43.5, y: -31}
+        - {x: 39.5, y: -32}
+        - {x: 29.5, y: -33}
+      physicsShape:
+      - - {x: 35.5, y: -9}
+        - {x: 15.5, y: -7}
+        - {x: 9.5, y: 15}
+        - {x: 1.5, y: 19}
+        - {x: 4.5, y: 33}
+        - {x: -18.5, y: 33}
+        - {x: -21.5, y: 32}
+        - {x: -27.5, y: 29}
+        - {x: -31.5, y: 26}
+        - {x: -25.5, y: 10}
+        - {x: -25.5, y: -18}
+        - {x: -35.5, y: -16}
+        - {x: -43.5, y: -23}
+        - {x: -43.5, y: -30}
+        - {x: -40.5, y: -33}
+        - {x: -36.5, y: -33}
+        - {x: -26.5, y: -32}
+        - {x: -4.5, y: -31}
+        - {x: -0.5, y: -33}
+        - {x: 29.5, y: -33}
+        - {x: 39.5, y: -32}
+        - {x: 43.5, y: -31}
+        - {x: 43.5, y: -22}
+        - {x: 42.5, y: -19}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05305410000000000800000000000000
+      internalID: 21300048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      ladrona_death_anim_2: 21300002
+      ladrona_death_anim_23: 21300044
+      ladrona_death_anim_18: 21300034
+      ladrona_death_anim_21: 21300040
+      ladrona_death_anim_7: 21300012
+      ladrona_death_anim_12: 21300022
+      ladrona_death_anim_9: 21300016
+      ladrona_death_anim_1: 21300000
+      ladrona_death_anim_13: 21300024
+      ladrona_death_anim_5: 21300008
+      ladrona_death_anim_20: 21300038
+      ladrona_death_anim_16: 21300030
+      ladrona_death_anim_22: 21300042
+      ladrona_death_anim_8: 21300014
+      ladrona_death_anim_17: 21300032
+      ladrona_death_anim_24: 21300046
+      ladrona_death_anim_10: 21300018
+      ladrona_death_anim_25: 21300048
+      ladrona_death_anim_19: 21300036
+      ladrona_death_anim_6: 21300010
+      ladrona_death_anim_11: 21300020
+      ladrona_death_anim_3: 21300004
+      ladrona_death_anim_14: 21300026
+      ladrona_death_anim_15: 21300028
+      ladrona_death_anim_4: 21300006
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

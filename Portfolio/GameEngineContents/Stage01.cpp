@@ -2,6 +2,7 @@
 #include "Stage01.h"
 #include <GameEngineCore/GameEngineTexture.h>
 #include "Penitent.h"
+#include "MessageUI.h"
 
 Stage01::Stage01() {}
 
@@ -121,6 +122,8 @@ void Stage01::LevelStartEvent()
 {
     LoadingActor_ = CreateActor<LoadingActor>();
     LoadingActor_->IsEntrance(true);
+
+    CreateActor<MessageUI>();
 
     if (nullptr == Penitent::GetMainPlayer())
     {

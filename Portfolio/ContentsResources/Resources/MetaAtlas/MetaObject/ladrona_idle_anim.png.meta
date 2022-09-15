@@ -1,0 +1,1898 @@
+fileFormatVersion: 2
+guid: f79d4474a0624c14c8d93c8f6f8dc2ca
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: ladrona_idle_anim_0
+  - first:
+      213: 21300002
+    second: ladrona_idle_anim_1
+  - first:
+      213: 21300004
+    second: ladrona_idle_anim_2
+  - first:
+      213: 21300006
+    second: ladrona_idle_anim_3
+  - first:
+      213: 21300008
+    second: ladrona_idle_anim_4
+  - first:
+      213: 21300010
+    second: ladrona_idle_anim_5
+  - first:
+      213: 21300012
+    second: ladrona_idle_anim_6
+  - first:
+      213: 21300014
+    second: ladrona_idle_anim_7
+  - first:
+      213: 21300016
+    second: ladrona_idle_anim_8
+  - first:
+      213: 21300018
+    second: ladrona_idle_anim_9
+  - first:
+      213: 21300020
+    second: ladrona_idle_anim_10
+  - first:
+      213: 21300022
+    second: ladrona_idle_anim_11
+  - first:
+      213: 21300024
+    second: ladrona_idle_anim_12
+  - first:
+      213: 21300026
+    second: ladrona_idle_anim_13
+  - first:
+      213: 21300028
+    second: ladrona_idle_anim_14
+  - first:
+      213: 21300030
+    second: ladrona_idle_anim_15
+  - first:
+      213: 21300032
+    second: ladrona_idle_anim_16
+  - first:
+      213: 21300034
+    second: ladrona_idle_anim_17
+  - first:
+      213: 21300036
+    second: ladrona_idle_anim_18
+  - first:
+      213: 21300038
+    second: ladrona_idle_anim_19
+  - first:
+      213: 21300040
+    second: ladrona_idle_anim_20
+  - first:
+      213: 21300042
+    second: ladrona_idle_anim_21
+  - first:
+      213: 21300044
+    second: ladrona_idle_anim_22
+  - first:
+      213: 21300046
+    second: ladrona_idle_anim_23
+  - first:
+      213: 21300048
+    second: ladrona_idle_anim_24
+  - first:
+      213: 21300050
+    second: ladrona_idle_anim_25
+  - first:
+      213: 21300052
+    second: ladrona_idle_anim_26
+  - first:
+      213: 21300054
+    second: ladrona_idle_anim_27
+  - first:
+      213: 21300056
+    second: ladrona_idle_anim_28
+  - first:
+      213: 21300058
+    second: ladrona_idle_anim_29
+  - first:
+      213: 21300060
+    second: ladrona_idle_anim_30
+  - first:
+      213: 21300062
+    second: ladrona_idle_anim_31
+  - first:
+      213: 21300064
+    second: ladrona_idle_anim_32
+  - first:
+      213: 21300066
+    second: ladrona_idle_anim_33
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 4
+  maxTextureSize: 512
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ladrona_idle_anim_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 47
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5319149, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19.5, y: -48.5}
+        - {x: -23.5, y: -26.5}
+        - {x: -23.5, y: 46.5}
+        - {x: -16.5, y: 48.5}
+        - {x: 14.5, y: 48.5}
+        - {x: 23.5, y: 43.5}
+        - {x: 23.5, y: -48.5}
+      physicsShape:
+      - - {x: 23.5, y: 7.5}
+        - {x: 18.5, y: 33.5}
+        - {x: 4.5, y: 33.5}
+        - {x: 6.5, y: 45.5}
+        - {x: 5.5, y: 48.5}
+        - {x: -12.5, y: 48.5}
+        - {x: -23.5, y: 42.5}
+        - {x: -23.5, y: 29.5}
+        - {x: -18.5, y: 19.5}
+        - {x: -21.5, y: 14.5}
+        - {x: -23.5, y: 8.5}
+        - {x: -23.5, y: -1.5}
+        - {x: -16.5, y: -13.5}
+        - {x: -10.5, y: -16.5}
+        - {x: -11.5, y: -39.5}
+        - {x: -7.5, y: -48.5}
+        - {x: 10.5, y: -48.5}
+        - {x: 15.5, y: -46.5}
+        - {x: 19.5, y: -42.5}
+        - {x: 23.5, y: -19.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 97
+        width: 47
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5319149, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18.5, y: -48.5}
+        - {x: -23.5, y: -23.5}
+        - {x: -23.5, y: 47.5}
+        - {x: -19.5, y: 48.5}
+        - {x: 12.5, y: 48.5}
+        - {x: 23.5, y: 17.5}
+        - {x: 23.5, y: -46.5}
+        - {x: 17.5, y: -48.5}
+      physicsShape:
+      - - {x: 23.5, y: -17.5}
+        - {x: 23.5, y: 7.5}
+        - {x: 15.5, y: 30.5}
+        - {x: 7.5, y: 33.5}
+        - {x: 6.5, y: 45.5}
+        - {x: 5.5, y: 48.5}
+        - {x: -9.5, y: 48.5}
+        - {x: -17.5, y: 47.5}
+        - {x: -23.5, y: 41.5}
+        - {x: -23.5, y: 31.5}
+        - {x: -19.5, y: 22.5}
+        - {x: -23.5, y: 9.5}
+        - {x: -23.5, y: 1.5}
+        - {x: -21.5, y: -10.5}
+        - {x: -10.5, y: -16.5}
+        - {x: -10.5, y: -38.5}
+        - {x: -7.5, y: -48.5}
+        - {x: 10.5, y: -48.5}
+        - {x: 15.5, y: -46.5}
+        - {x: 19.5, y: -42.5}
+        - {x: 20.5, y: -23.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 194
+        width: 47
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5319149, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14.5, y: -48.5}
+        - {x: -23.5, y: -12.5}
+        - {x: -23.5, y: 48.5}
+        - {x: 16.5, y: 48.5}
+        - {x: 23.5, y: 21.5}
+        - {x: 23.5, y: -38.5}
+        - {x: 19.5, y: -48.5}
+      physicsShape:
+      - - {x: 23.5, y: -16.5}
+        - {x: 23.5, y: 7.5}
+        - {x: 11.5, y: 33.5}
+        - {x: 4.5, y: 32.5}
+        - {x: 6.5, y: 45.5}
+        - {x: 5.5, y: 48.5}
+        - {x: -9.5, y: 48.5}
+        - {x: -17.5, y: 47.5}
+        - {x: -23.5, y: 41.5}
+        - {x: -23.5, y: 30.5}
+        - {x: -19.5, y: 22.5}
+        - {x: -23.5, y: 9.5}
+        - {x: -23.5, y: -2.5}
+        - {x: -17.5, y: -14.5}
+        - {x: -10.5, y: -16.5}
+        - {x: -11.5, y: -39.5}
+        - {x: -7.5, y: -48.5}
+        - {x: 10.5, y: -48.5}
+        - {x: 15.5, y: -46.5}
+        - {x: 19.5, y: -42.5}
+        - {x: 18.5, y: -27.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 291
+        width: 47
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5319149, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11.5, y: -48.5}
+        - {x: -23.5, y: -11.5}
+        - {x: -23.5, y: 46.5}
+        - {x: -18.5, y: 48.5}
+        - {x: 11.5, y: 48.5}
+        - {x: 23.5, y: 18.5}
+        - {x: 23.5, y: -27.5}
+        - {x: 18.5, y: -48.5}
+      physicsShape:
+      - - {x: 23.5, y: -19.5}
+        - {x: 23.5, y: 6.5}
+        - {x: 15.5, y: 30.5}
+        - {x: 3.5, y: 36.5}
+        - {x: 6.5, y: 45.5}
+        - {x: 5.5, y: 48.5}
+        - {x: -6.5, y: 48.5}
+        - {x: -16.5, y: 45.5}
+        - {x: -23.5, y: 40.5}
+        - {x: -23.5, y: 30.5}
+        - {x: -18.5, y: 23.5}
+        - {x: -23.5, y: 10.5}
+        - {x: -23.5, y: 1.5}
+        - {x: -20.5, y: -9.5}
+        - {x: -10.5, y: -20.5}
+        - {x: -10.5, y: -38.5}
+        - {x: -7.5, y: -48.5}
+        - {x: 10.5, y: -48.5}
+        - {x: 15.5, y: -46.5}
+        - {x: 19.5, y: -42.5}
+        - {x: 18.5, y: -27.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 388
+        width: 47
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5319149, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21.5, y: -48.5}
+        - {x: -10.5, y: -48.5}
+        - {x: -23.5, y: -13.5}
+        - {x: -23.5, y: 45.5}
+        - {x: -17.5, y: 48.5}
+        - {x: 7.5, y: 48.5}
+        - {x: 11.5, y: 46.5}
+        - {x: 5.5, y: 32.5}
+        - {x: 4.5, y: 29.5}
+        - {x: 7.5, y: 31.5}
+        - {x: 16.5, y: 48.5}
+        - {x: 23.5, y: 18.5}
+        - {x: 23.5, y: -46.5}
+      physicsShape:
+      - - {x: 23.5, y: 5.5}
+        - {x: 19.5, y: 18.5}
+        - {x: 11.5, y: 32.5}
+        - {x: 7.5, y: 31.5}
+        - {x: 4.5, y: 29.5}
+        - {x: 4.5, y: 27.5}
+        - {x: 5.5, y: 32.5}
+        - {x: 6.5, y: 45.5}
+        - {x: 5.5, y: 48.5}
+        - {x: -10.5, y: 48.5}
+        - {x: -23.5, y: 43.5}
+        - {x: -23.5, y: -7.5}
+        - {x: -13.5, y: -21.5}
+        - {x: -8.5, y: -48.5}
+        - {x: 17.5, y: -48.5}
+        - {x: 21.5, y: -33.5}
+        - {x: 23.5, y: -23.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_5
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 291
+        width: 46
+        height: 97
+      alignment: 9
+      pivot: {x: 0.54347825, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: -48.5}
+        - {x: -23, y: -25.5}
+        - {x: -23, y: 48.5}
+        - {x: 6, y: 48.5}
+        - {x: 23, y: 14.5}
+        - {x: 23, y: -43.5}
+        - {x: 13, y: -48.5}
+      physicsShape:
+      - - {x: 23, y: 11.5}
+        - {x: 15, y: 29.5}
+        - {x: 12, y: 32.5}
+        - {x: 5, y: 35.5}
+        - {x: 6, y: 44.5}
+        - {x: 5, y: 48.5}
+        - {x: -18, y: 48.5}
+        - {x: -23, y: 43.5}
+        - {x: -23, y: 28.5}
+        - {x: -19, y: 20.5}
+        - {x: -23, y: 8.5}
+        - {x: -23, y: 0.5}
+        - {x: -22, y: -6.5}
+        - {x: -16, y: -12.5}
+        - {x: -10, y: -20.5}
+        - {x: -10, y: -38.5}
+        - {x: -7, y: -48.5}
+        - {x: 13, y: -48.5}
+        - {x: 22, y: -43.5}
+        - {x: 19, y: -26.5}
+        - {x: 23, y: -20.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_6
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 388
+        width: 46
+        height: 97
+      alignment: 9
+      pivot: {x: 0.54347825, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: -48.5}
+        - {x: -23, y: -25.5}
+        - {x: -23, y: 48.5}
+        - {x: 6, y: 48.5}
+        - {x: 23, y: 14.5}
+        - {x: 23, y: -43.5}
+        - {x: 13, y: -48.5}
+      physicsShape:
+      - - {x: 23, y: 11.5}
+        - {x: 15, y: 29.5}
+        - {x: 12, y: 32.5}
+        - {x: 5, y: 35.5}
+        - {x: 6, y: 44.5}
+        - {x: 5, y: 48.5}
+        - {x: -18, y: 48.5}
+        - {x: -23, y: 43.5}
+        - {x: -23, y: 28.5}
+        - {x: -19, y: 20.5}
+        - {x: -23, y: 8.5}
+        - {x: -23, y: 0.5}
+        - {x: -22, y: -6.5}
+        - {x: -16, y: -12.5}
+        - {x: -10, y: -20.5}
+        - {x: -10, y: -38.5}
+        - {x: -7, y: -48.5}
+        - {x: 13, y: -48.5}
+        - {x: 22, y: -43.5}
+        - {x: 19, y: -26.5}
+        - {x: 23, y: -20.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_7
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 97
+        width: 45
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5555556, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11.499998, y: -48.5}
+        - {x: -22.499998, y: -4.5}
+        - {x: -22.499998, y: 48.5}
+        - {x: 8.500002, y: 48.5}
+        - {x: 22.500002, y: 33.5}
+        - {x: 22.500002, y: -48.5}
+      physicsShape:
+      - - {x: 22.500002, y: 8.5}
+        - {x: 19.500002, y: 17.5}
+        - {x: 12.500002, y: 33.5}
+        - {x: 6.500002, y: 45.5}
+        - {x: 5.500002, y: 48.5}
+        - {x: -9.499998, y: 48.5}
+        - {x: -17.499998, y: 46.5}
+        - {x: -22.499998, y: 40.5}
+        - {x: -22.499998, y: 29.5}
+        - {x: -16.499998, y: 21.5}
+        - {x: -22.499998, y: 9.5}
+        - {x: -22.499998, y: -2.5}
+        - {x: -21.499998, y: -9.5}
+        - {x: -10.499998, y: -20.5}
+        - {x: -9.499998, y: -38.5}
+        - {x: -6.499998, y: -48.5}
+        - {x: 11.500002, y: -48.5}
+        - {x: 16.500002, y: -46.5}
+        - {x: 20.500002, y: -42.5}
+        - {x: 22.500002, y: -28.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_8
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 97
+        width: 45
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5555556, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11.499998, y: -48.5}
+        - {x: -22.499998, y: -4.5}
+        - {x: -22.499998, y: 48.5}
+        - {x: 8.500002, y: 48.5}
+        - {x: 22.500002, y: 33.5}
+        - {x: 22.500002, y: -48.5}
+      physicsShape:
+      - - {x: 22.500002, y: 8.5}
+        - {x: 19.500002, y: 17.5}
+        - {x: 12.500002, y: 33.5}
+        - {x: 6.500002, y: 45.5}
+        - {x: 5.500002, y: 48.5}
+        - {x: -9.499998, y: 48.5}
+        - {x: -17.499998, y: 46.5}
+        - {x: -22.499998, y: 40.5}
+        - {x: -22.499998, y: 29.5}
+        - {x: -16.499998, y: 21.5}
+        - {x: -22.499998, y: 9.5}
+        - {x: -22.499998, y: -2.5}
+        - {x: -21.499998, y: -9.5}
+        - {x: -10.499998, y: -20.5}
+        - {x: -9.499998, y: -38.5}
+        - {x: -6.499998, y: -48.5}
+        - {x: 11.500002, y: -48.5}
+        - {x: 16.500002, y: -46.5}
+        - {x: 20.500002, y: -42.5}
+        - {x: 22.500002, y: -28.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_9
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 97
+        width: 45
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5555556, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10.499998, y: -48.5}
+        - {x: -22.499998, y: -29.5}
+        - {x: -22.499998, y: 48.5}
+        - {x: 22.500002, y: 48.5}
+        - {x: 22.500002, y: -48.5}
+      physicsShape:
+      - - {x: 22.500002, y: 9.5}
+        - {x: 19.500002, y: 18.5}
+        - {x: 15.500002, y: 29.5}
+        - {x: 7.500002, y: 36.5}
+        - {x: 6.500002, y: 48.5}
+        - {x: -10.499998, y: 48.5}
+        - {x: -17.499998, y: 46.5}
+        - {x: -22.499998, y: 40.5}
+        - {x: -22.499998, y: 29.5}
+        - {x: -17.499998, y: 24.5}
+        - {x: -22.499998, y: 8.5}
+        - {x: -22.499998, y: 0.5}
+        - {x: -21.499998, y: -9.5}
+        - {x: -10.499998, y: -20.5}
+        - {x: -9.499998, y: -38.5}
+        - {x: -6.499998, y: -48.5}
+        - {x: 11.500002, y: -48.5}
+        - {x: 16.500002, y: -46.5}
+        - {x: 20.500002, y: -42.5}
+        - {x: 22.500002, y: -28.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_10
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 97
+        width: 45
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5555556, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14.499998, y: -48.5}
+        - {x: -22.499998, y: -14.5}
+        - {x: -22.499998, y: 45.5}
+        - {x: -20.499998, y: 48.5}
+        - {x: 8.500002, y: 48.5}
+        - {x: 22.500002, y: 34.5}
+        - {x: 22.500002, y: -46.5}
+        - {x: 19.500002, y: -48.5}
+      physicsShape:
+      - - {x: 22.500002, y: -18.5}
+        - {x: 22.500002, y: 11.5}
+        - {x: 18.500002, y: 31.5}
+        - {x: 9.500002, y: 45.5}
+        - {x: 6.500002, y: 48.5}
+        - {x: -9.499998, y: 48.5}
+        - {x: -17.499998, y: 46.5}
+        - {x: -22.499998, y: 40.5}
+        - {x: -22.499998, y: 29.5}
+        - {x: -17.499998, y: 24.5}
+        - {x: -22.499998, y: 8.5}
+        - {x: -22.499998, y: 0.5}
+        - {x: -21.499998, y: -9.5}
+        - {x: -12.499998, y: -21.5}
+        - {x: -7.499998, y: -48.5}
+        - {x: 13.500002, y: -48.5}
+        - {x: 16.500002, y: -47.5}
+        - {x: 22.500002, y: -41.5}
+        - {x: 18.500002, y: -28.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43305410000000000800000000000000
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_11
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 97
+        width: 46
+        height: 97
+      alignment: 9
+      pivot: {x: 0.54347825, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: -48.5}
+        - {x: -23, y: -29.5}
+        - {x: -23, y: 44.5}
+        - {x: -17, y: 48.5}
+        - {x: 23, y: 48.5}
+        - {x: 23, y: -48.5}
+      physicsShape:
+      - - {x: 23, y: -18.5}
+        - {x: 23, y: 9.5}
+        - {x: 15, y: 29.5}
+        - {x: 6, y: 33.5}
+        - {x: 6, y: 44.5}
+        - {x: 5, y: 48.5}
+        - {x: -10, y: 48.5}
+        - {x: -18, y: 46.5}
+        - {x: -23, y: 42.5}
+        - {x: -23, y: 30.5}
+        - {x: -21, y: 26.5}
+        - {x: -22, y: 16.5}
+        - {x: -23, y: 10.5}
+        - {x: -23, y: -6.5}
+        - {x: -22, y: -9.5}
+        - {x: -11, y: -20.5}
+        - {x: -10, y: -38.5}
+        - {x: -7, y: -48.5}
+        - {x: 11, y: -48.5}
+        - {x: 16, y: -46.5}
+        - {x: 20, y: -42.5}
+        - {x: 18, y: -28.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63305410000000000800000000000000
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_12
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 0
+        width: 47
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5319149, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: -48.5}
+        - {x: -23.5, y: -20.5}
+        - {x: -23.5, y: 48.5}
+        - {x: 10.5, y: 48.5}
+        - {x: 23.5, y: 24.5}
+        - {x: 23.5, y: -34.5}
+        - {x: 21.5, y: -42.5}
+        - {x: 12.5, y: -48.5}
+      physicsShape:
+      - - {x: 23.5, y: 10.5}
+        - {x: 14.5, y: 29.5}
+        - {x: 10.5, y: 31.5}
+        - {x: 6.5, y: 31.5}
+        - {x: 5.5, y: 44.5}
+        - {x: 4.5, y: 48.5}
+        - {x: -13.5, y: 48.5}
+        - {x: -18.5, y: 47.5}
+        - {x: -23.5, y: 40.5}
+        - {x: -23.5, y: 25.5}
+        - {x: -20.5, y: 13.5}
+        - {x: -23.5, y: 8.5}
+        - {x: -23.5, y: 0.5}
+        - {x: -22.5, y: -6.5}
+        - {x: -12.5, y: -21.5}
+        - {x: -9.5, y: -48.5}
+        - {x: 12.5, y: -48.5}
+        - {x: 21.5, y: -42.5}
+        - {x: 18.5, y: -20.5}
+        - {x: 23.5, y: -17.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83305410000000000800000000000000
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_13
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 0
+        width: 47
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5319149, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: -41.5}
+        - {x: -23.5, y: -27.5}
+        - {x: -23.5, y: 48.5}
+        - {x: 13.5, y: 48.5}
+        - {x: 23.5, y: 22.5}
+        - {x: 23.5, y: -27.5}
+        - {x: 21.5, y: -42.5}
+        - {x: 15.5, y: -48.5}
+        - {x: -7.5, y: -48.5}
+      physicsShape:
+      - - {x: 23.5, y: 1.5}
+        - {x: 22.5, y: 9.5}
+        - {x: 12.5, y: 34.5}
+        - {x: 5.5, y: 34.5}
+        - {x: 6.5, y: 48.5}
+        - {x: -7.5, y: 48.5}
+        - {x: -17.5, y: 45.5}
+        - {x: -23.5, y: 41.5}
+        - {x: -23.5, y: 26.5}
+        - {x: -21.5, y: 16.5}
+        - {x: -23.5, y: 8.5}
+        - {x: -23.5, y: -5.5}
+        - {x: -17.5, y: -14.5}
+        - {x: -10.5, y: -38.5}
+        - {x: -7.5, y: -48.5}
+        - {x: 12.5, y: -48.5}
+        - {x: 21.5, y: -42.5}
+        - {x: 18.5, y: -20.5}
+        - {x: 23.5, y: -15.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3305410000000000800000000000000
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_14
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 0
+        width: 47
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5319149, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11.5, y: -48.5}
+        - {x: -23.5, y: -11.5}
+        - {x: -23.5, y: 46.5}
+        - {x: -15.5, y: 48.5}
+        - {x: 7.5, y: 48.5}
+        - {x: 23.5, y: 11.5}
+        - {x: 23.5, y: -25.5}
+        - {x: 20.5, y: -42.5}
+        - {x: 18.5, y: -48.5}
+      physicsShape:
+      - - {x: 23.5, y: 6.5}
+        - {x: 12.5, y: 35.5}
+        - {x: 3.5, y: 30.5}
+        - {x: 6.5, y: 45.5}
+        - {x: 5.5, y: 48.5}
+        - {x: -8.5, y: 48.5}
+        - {x: -23.5, y: 43.5}
+        - {x: -23.5, y: 27.5}
+        - {x: -18.5, y: 23.5}
+        - {x: -23.5, y: 10.5}
+        - {x: -23.5, y: 1.5}
+        - {x: -20.5, y: -9.5}
+        - {x: -10.5, y: -20.5}
+        - {x: -10.5, y: -38.5}
+        - {x: -7.5, y: -48.5}
+        - {x: 10.5, y: -48.5}
+        - {x: 15.5, y: -46.5}
+        - {x: 19.5, y: -42.5}
+        - {x: 23.5, y: -19.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3305410000000000800000000000000
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_15
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 0
+        width: 47
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5319149, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.5, y: -48.5}
+        - {x: -23.5, y: -22.5}
+        - {x: -23.5, y: 48.5}
+        - {x: 16.5, y: 48.5}
+        - {x: 23.5, y: 31.5}
+        - {x: 23.5, y: -38.5}
+        - {x: 21.5, y: -42.5}
+        - {x: 12.5, y: -48.5}
+      physicsShape:
+      - - {x: 23.5, y: 3.5}
+        - {x: 22.5, y: 8.5}
+        - {x: 14.5, y: 29.5}
+        - {x: 7.5, y: 33.5}
+        - {x: 2.5, y: 28.5}
+        - {x: 6.5, y: 45.5}
+        - {x: 5.5, y: 48.5}
+        - {x: -9.5, y: 48.5}
+        - {x: -17.5, y: 47.5}
+        - {x: -23.5, y: 41.5}
+        - {x: -23.5, y: 30.5}
+        - {x: -19.5, y: 22.5}
+        - {x: -23.5, y: 9.5}
+        - {x: -23.5, y: -2.5}
+        - {x: -17.5, y: -14.5}
+        - {x: -10.5, y: -16.5}
+        - {x: -11.5, y: -39.5}
+        - {x: -7.5, y: -48.5}
+        - {x: 10.5, y: -48.5}
+        - {x: 15.5, y: -46.5}
+        - {x: 18.5, y: -42.5}
+        - {x: 23.5, y: -20.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3305410000000000800000000000000
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_16
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 0
+        width: 47
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5319149, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: -48.5}
+        - {x: -23.5, y: -21.5}
+        - {x: -23.5, y: 43.5}
+        - {x: -15.5, y: 48.5}
+        - {x: 16.5, y: 48.5}
+        - {x: 23.5, y: 30.5}
+        - {x: 23.5, y: -38.5}
+        - {x: 19.5, y: -48.5}
+      physicsShape:
+      - - {x: 23.5, y: -18.5}
+        - {x: 23.5, y: 2.5}
+        - {x: 18.5, y: 17.5}
+        - {x: 18.5, y: 32.5}
+        - {x: 4.5, y: 33.5}
+        - {x: 6.5, y: 45.5}
+        - {x: 5.5, y: 48.5}
+        - {x: -9.5, y: 48.5}
+        - {x: -17.5, y: 47.5}
+        - {x: -23.5, y: 41.5}
+        - {x: -23.5, y: 31.5}
+        - {x: -19.5, y: 22.5}
+        - {x: -23.5, y: 9.5}
+        - {x: -23.5, y: 1.5}
+        - {x: -21.5, y: -10.5}
+        - {x: -10.5, y: -16.5}
+        - {x: -10.5, y: -38.5}
+        - {x: -7.5, y: -48.5}
+        - {x: 10.5, y: -48.5}
+        - {x: 15.5, y: -46.5}
+        - {x: 19.5, y: -42.5}
+        - {x: 22.5, y: -20.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04305410000000000800000000000000
+      internalID: 21300032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_17
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 0
+        width: 47
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5319149, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19.5, y: -48.5}
+        - {x: -23.5, y: -26.5}
+        - {x: -23.5, y: 46.5}
+        - {x: -16.5, y: 48.5}
+        - {x: 14.5, y: 48.5}
+        - {x: 23.5, y: 43.5}
+        - {x: 23.5, y: -48.5}
+      physicsShape:
+      - - {x: 23.5, y: 7.5}
+        - {x: 18.5, y: 33.5}
+        - {x: 4.5, y: 33.5}
+        - {x: 6.5, y: 45.5}
+        - {x: 5.5, y: 48.5}
+        - {x: -12.5, y: 48.5}
+        - {x: -23.5, y: 42.5}
+        - {x: -23.5, y: 29.5}
+        - {x: -18.5, y: 19.5}
+        - {x: -21.5, y: 14.5}
+        - {x: -23.5, y: 8.5}
+        - {x: -23.5, y: -1.5}
+        - {x: -16.5, y: -13.5}
+        - {x: -10.5, y: -16.5}
+        - {x: -11.5, y: -39.5}
+        - {x: -7.5, y: -48.5}
+        - {x: 10.5, y: -48.5}
+        - {x: 15.5, y: -46.5}
+        - {x: 19.5, y: -42.5}
+        - {x: 23.5, y: -19.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24305410000000000800000000000000
+      internalID: 21300034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_18
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 97
+        width: 47
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5319149, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18.5, y: -48.5}
+        - {x: -23.5, y: -23.5}
+        - {x: -23.5, y: 47.5}
+        - {x: -19.5, y: 48.5}
+        - {x: 12.5, y: 48.5}
+        - {x: 23.5, y: 17.5}
+        - {x: 23.5, y: -46.5}
+        - {x: 17.5, y: -48.5}
+      physicsShape:
+      - - {x: 23.5, y: -17.5}
+        - {x: 23.5, y: 7.5}
+        - {x: 15.5, y: 30.5}
+        - {x: 7.5, y: 33.5}
+        - {x: 6.5, y: 45.5}
+        - {x: 5.5, y: 48.5}
+        - {x: -9.5, y: 48.5}
+        - {x: -17.5, y: 47.5}
+        - {x: -23.5, y: 41.5}
+        - {x: -23.5, y: 31.5}
+        - {x: -19.5, y: 22.5}
+        - {x: -23.5, y: 9.5}
+        - {x: -23.5, y: 1.5}
+        - {x: -21.5, y: -10.5}
+        - {x: -10.5, y: -16.5}
+        - {x: -10.5, y: -38.5}
+        - {x: -7.5, y: -48.5}
+        - {x: 10.5, y: -48.5}
+        - {x: 15.5, y: -46.5}
+        - {x: 19.5, y: -42.5}
+        - {x: 20.5, y: -23.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44305410000000000800000000000000
+      internalID: 21300036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_19
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 194
+        width: 47
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5319149, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14.5, y: -48.5}
+        - {x: -23.5, y: -12.5}
+        - {x: -23.5, y: 48.5}
+        - {x: 16.5, y: 48.5}
+        - {x: 23.5, y: 21.5}
+        - {x: 23.5, y: -38.5}
+        - {x: 19.5, y: -48.5}
+      physicsShape:
+      - - {x: 23.5, y: -16.5}
+        - {x: 23.5, y: 7.5}
+        - {x: 11.5, y: 33.5}
+        - {x: 4.5, y: 32.5}
+        - {x: 6.5, y: 45.5}
+        - {x: 5.5, y: 48.5}
+        - {x: -9.5, y: 48.5}
+        - {x: -17.5, y: 47.5}
+        - {x: -23.5, y: 41.5}
+        - {x: -23.5, y: 30.5}
+        - {x: -19.5, y: 22.5}
+        - {x: -23.5, y: 9.5}
+        - {x: -23.5, y: -2.5}
+        - {x: -17.5, y: -14.5}
+        - {x: -10.5, y: -16.5}
+        - {x: -11.5, y: -39.5}
+        - {x: -7.5, y: -48.5}
+        - {x: 10.5, y: -48.5}
+        - {x: 15.5, y: -46.5}
+        - {x: 19.5, y: -42.5}
+        - {x: 18.5, y: -27.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64305410000000000800000000000000
+      internalID: 21300038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_20
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 0
+        width: 47
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5319149, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11.5, y: -48.5}
+        - {x: -23.5, y: -11.5}
+        - {x: -23.5, y: 46.5}
+        - {x: -18.5, y: 48.5}
+        - {x: 11.5, y: 48.5}
+        - {x: 23.5, y: 18.5}
+        - {x: 23.5, y: -27.5}
+        - {x: 18.5, y: -48.5}
+      physicsShape:
+      - - {x: 23.5, y: -19.5}
+        - {x: 23.5, y: 6.5}
+        - {x: 15.5, y: 30.5}
+        - {x: 3.5, y: 36.5}
+        - {x: 6.5, y: 45.5}
+        - {x: 5.5, y: 48.5}
+        - {x: -6.5, y: 48.5}
+        - {x: -16.5, y: 45.5}
+        - {x: -23.5, y: 40.5}
+        - {x: -23.5, y: 30.5}
+        - {x: -18.5, y: 23.5}
+        - {x: -23.5, y: 10.5}
+        - {x: -23.5, y: 1.5}
+        - {x: -20.5, y: -9.5}
+        - {x: -10.5, y: -20.5}
+        - {x: -10.5, y: -38.5}
+        - {x: -7.5, y: -48.5}
+        - {x: 10.5, y: -48.5}
+        - {x: 15.5, y: -46.5}
+        - {x: 19.5, y: -42.5}
+        - {x: 18.5, y: -27.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84305410000000000800000000000000
+      internalID: 21300040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_21
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 97
+        width: 47
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5319149, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21.5, y: -48.5}
+        - {x: -10.5, y: -48.5}
+        - {x: -23.5, y: -13.5}
+        - {x: -23.5, y: 45.5}
+        - {x: -17.5, y: 48.5}
+        - {x: 7.5, y: 48.5}
+        - {x: 11.5, y: 46.5}
+        - {x: 5.5, y: 32.5}
+        - {x: 4.5, y: 29.5}
+        - {x: 7.5, y: 31.5}
+        - {x: 16.5, y: 48.5}
+        - {x: 23.5, y: 18.5}
+        - {x: 23.5, y: -46.5}
+      physicsShape:
+      - - {x: 23.5, y: 5.5}
+        - {x: 19.5, y: 18.5}
+        - {x: 11.5, y: 32.5}
+        - {x: 7.5, y: 31.5}
+        - {x: 4.5, y: 29.5}
+        - {x: 4.5, y: 27.5}
+        - {x: 5.5, y: 32.5}
+        - {x: 6.5, y: 45.5}
+        - {x: 5.5, y: 48.5}
+        - {x: -10.5, y: 48.5}
+        - {x: -23.5, y: 43.5}
+        - {x: -23.5, y: -7.5}
+        - {x: -13.5, y: -21.5}
+        - {x: -8.5, y: -48.5}
+        - {x: 17.5, y: -48.5}
+        - {x: 21.5, y: -33.5}
+        - {x: 23.5, y: -23.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4305410000000000800000000000000
+      internalID: 21300042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_22
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 291
+        width: 46
+        height: 97
+      alignment: 9
+      pivot: {x: 0.54347825, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: -48.5}
+        - {x: -23, y: -25.5}
+        - {x: -23, y: 48.5}
+        - {x: 6, y: 48.5}
+        - {x: 23, y: 14.5}
+        - {x: 23, y: -43.5}
+        - {x: 13, y: -48.5}
+      physicsShape:
+      - - {x: 23, y: 11.5}
+        - {x: 15, y: 29.5}
+        - {x: 12, y: 32.5}
+        - {x: 5, y: 35.5}
+        - {x: 6, y: 44.5}
+        - {x: 5, y: 48.5}
+        - {x: -18, y: 48.5}
+        - {x: -23, y: 43.5}
+        - {x: -23, y: 28.5}
+        - {x: -19, y: 20.5}
+        - {x: -23, y: 8.5}
+        - {x: -23, y: 0.5}
+        - {x: -22, y: -6.5}
+        - {x: -16, y: -12.5}
+        - {x: -10, y: -20.5}
+        - {x: -10, y: -38.5}
+        - {x: -7, y: -48.5}
+        - {x: 13, y: -48.5}
+        - {x: 22, y: -43.5}
+        - {x: 19, y: -26.5}
+        - {x: 23, y: -20.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4305410000000000800000000000000
+      internalID: 21300044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_23
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 388
+        width: 46
+        height: 97
+      alignment: 9
+      pivot: {x: 0.54347825, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: -48.5}
+        - {x: -23, y: -25.5}
+        - {x: -23, y: 48.5}
+        - {x: 6, y: 48.5}
+        - {x: 23, y: 14.5}
+        - {x: 23, y: -43.5}
+        - {x: 13, y: -48.5}
+      physicsShape:
+      - - {x: 23, y: 11.5}
+        - {x: 15, y: 29.5}
+        - {x: 12, y: 32.5}
+        - {x: 5, y: 35.5}
+        - {x: 6, y: 44.5}
+        - {x: 5, y: 48.5}
+        - {x: -18, y: 48.5}
+        - {x: -23, y: 43.5}
+        - {x: -23, y: 28.5}
+        - {x: -19, y: 20.5}
+        - {x: -23, y: 8.5}
+        - {x: -23, y: 0.5}
+        - {x: -22, y: -6.5}
+        - {x: -16, y: -12.5}
+        - {x: -10, y: -20.5}
+        - {x: -10, y: -38.5}
+        - {x: -7, y: -48.5}
+        - {x: 13, y: -48.5}
+        - {x: 22, y: -43.5}
+        - {x: 19, y: -26.5}
+        - {x: 23, y: -20.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4305410000000000800000000000000
+      internalID: 21300046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_24
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 97
+        width: 45
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5555556, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11.499998, y: -48.5}
+        - {x: -22.499998, y: -4.5}
+        - {x: -22.499998, y: 48.5}
+        - {x: 8.500002, y: 48.5}
+        - {x: 22.500002, y: 33.5}
+        - {x: 22.500002, y: -48.5}
+      physicsShape:
+      - - {x: 22.500002, y: 8.5}
+        - {x: 19.500002, y: 17.5}
+        - {x: 12.500002, y: 33.5}
+        - {x: 6.500002, y: 45.5}
+        - {x: 5.500002, y: 48.5}
+        - {x: -9.499998, y: 48.5}
+        - {x: -17.499998, y: 46.5}
+        - {x: -22.499998, y: 40.5}
+        - {x: -22.499998, y: 29.5}
+        - {x: -16.499998, y: 21.5}
+        - {x: -22.499998, y: 9.5}
+        - {x: -22.499998, y: -2.5}
+        - {x: -21.499998, y: -9.5}
+        - {x: -10.499998, y: -20.5}
+        - {x: -9.499998, y: -38.5}
+        - {x: -6.499998, y: -48.5}
+        - {x: 11.500002, y: -48.5}
+        - {x: 16.500002, y: -46.5}
+        - {x: 20.500002, y: -42.5}
+        - {x: 22.500002, y: -28.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05305410000000000800000000000000
+      internalID: 21300048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_25
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 97
+        width: 45
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5555556, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11.499998, y: -48.5}
+        - {x: -22.499998, y: -4.5}
+        - {x: -22.499998, y: 48.5}
+        - {x: 8.500002, y: 48.5}
+        - {x: 22.500002, y: 33.5}
+        - {x: 22.500002, y: -48.5}
+      physicsShape:
+      - - {x: 22.500002, y: 8.5}
+        - {x: 19.500002, y: 17.5}
+        - {x: 12.500002, y: 33.5}
+        - {x: 6.500002, y: 45.5}
+        - {x: 5.500002, y: 48.5}
+        - {x: -9.499998, y: 48.5}
+        - {x: -17.499998, y: 46.5}
+        - {x: -22.499998, y: 40.5}
+        - {x: -22.499998, y: 29.5}
+        - {x: -16.499998, y: 21.5}
+        - {x: -22.499998, y: 9.5}
+        - {x: -22.499998, y: -2.5}
+        - {x: -21.499998, y: -9.5}
+        - {x: -10.499998, y: -20.5}
+        - {x: -9.499998, y: -38.5}
+        - {x: -6.499998, y: -48.5}
+        - {x: 11.500002, y: -48.5}
+        - {x: 16.500002, y: -46.5}
+        - {x: 20.500002, y: -42.5}
+        - {x: 22.500002, y: -28.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25305410000000000800000000000000
+      internalID: 21300050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_26
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 194
+        width: 45
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5555556, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10.499998, y: -48.5}
+        - {x: -22.499998, y: -29.5}
+        - {x: -22.499998, y: 48.5}
+        - {x: 22.500002, y: 48.5}
+        - {x: 22.500002, y: -48.5}
+      physicsShape:
+      - - {x: 22.500002, y: 9.5}
+        - {x: 19.500002, y: 18.5}
+        - {x: 15.500002, y: 29.5}
+        - {x: 7.500002, y: 36.5}
+        - {x: 6.500002, y: 48.5}
+        - {x: -10.499998, y: 48.5}
+        - {x: -17.499998, y: 46.5}
+        - {x: -22.499998, y: 40.5}
+        - {x: -22.499998, y: 29.5}
+        - {x: -17.499998, y: 24.5}
+        - {x: -22.499998, y: 8.5}
+        - {x: -22.499998, y: 0.5}
+        - {x: -21.499998, y: -9.5}
+        - {x: -10.499998, y: -20.5}
+        - {x: -9.499998, y: -38.5}
+        - {x: -6.499998, y: -48.5}
+        - {x: 11.500002, y: -48.5}
+        - {x: 16.500002, y: -46.5}
+        - {x: 20.500002, y: -42.5}
+        - {x: 22.500002, y: -28.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45305410000000000800000000000000
+      internalID: 21300052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_27
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 97
+        width: 45
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5555556, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14.499998, y: -48.5}
+        - {x: -22.499998, y: -14.5}
+        - {x: -22.499998, y: 45.5}
+        - {x: -20.499998, y: 48.5}
+        - {x: 8.500002, y: 48.5}
+        - {x: 22.500002, y: 34.5}
+        - {x: 22.500002, y: -46.5}
+        - {x: 19.500002, y: -48.5}
+      physicsShape:
+      - - {x: 22.500002, y: -18.5}
+        - {x: 22.500002, y: 11.5}
+        - {x: 18.500002, y: 31.5}
+        - {x: 9.500002, y: 45.5}
+        - {x: 6.500002, y: 48.5}
+        - {x: -9.499998, y: 48.5}
+        - {x: -17.499998, y: 46.5}
+        - {x: -22.499998, y: 40.5}
+        - {x: -22.499998, y: 29.5}
+        - {x: -17.499998, y: 24.5}
+        - {x: -22.499998, y: 8.5}
+        - {x: -22.499998, y: 0.5}
+        - {x: -21.499998, y: -9.5}
+        - {x: -12.499998, y: -21.5}
+        - {x: -7.499998, y: -48.5}
+        - {x: 13.500002, y: -48.5}
+        - {x: 16.500002, y: -47.5}
+        - {x: 22.500002, y: -41.5}
+        - {x: 18.500002, y: -28.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65305410000000000800000000000000
+      internalID: 21300054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_28
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 194
+        width: 46
+        height: 97
+      alignment: 9
+      pivot: {x: 0.54347825, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: -48.5}
+        - {x: -23, y: -29.5}
+        - {x: -23, y: 44.5}
+        - {x: -17, y: 48.5}
+        - {x: 23, y: 48.5}
+        - {x: 23, y: -48.5}
+      physicsShape:
+      - - {x: 23, y: -18.5}
+        - {x: 23, y: 9.5}
+        - {x: 15, y: 29.5}
+        - {x: 6, y: 33.5}
+        - {x: 6, y: 44.5}
+        - {x: 5, y: 48.5}
+        - {x: -10, y: 48.5}
+        - {x: -18, y: 46.5}
+        - {x: -23, y: 42.5}
+        - {x: -23, y: 30.5}
+        - {x: -21, y: 26.5}
+        - {x: -22, y: 16.5}
+        - {x: -23, y: 10.5}
+        - {x: -23, y: -6.5}
+        - {x: -22, y: -9.5}
+        - {x: -11, y: -20.5}
+        - {x: -10, y: -38.5}
+        - {x: -7, y: -48.5}
+        - {x: 11, y: -48.5}
+        - {x: 16, y: -46.5}
+        - {x: 20, y: -42.5}
+        - {x: 18, y: -28.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85305410000000000800000000000000
+      internalID: 21300056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_29
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 194
+        width: 47
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5319149, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: -48.5}
+        - {x: -23.5, y: -20.5}
+        - {x: -23.5, y: 48.5}
+        - {x: 10.5, y: 48.5}
+        - {x: 23.5, y: 24.5}
+        - {x: 23.5, y: -34.5}
+        - {x: 21.5, y: -42.5}
+        - {x: 12.5, y: -48.5}
+      physicsShape:
+      - - {x: 23.5, y: 10.5}
+        - {x: 14.5, y: 29.5}
+        - {x: 10.5, y: 31.5}
+        - {x: 6.5, y: 31.5}
+        - {x: 5.5, y: 44.5}
+        - {x: 4.5, y: 48.5}
+        - {x: -13.5, y: 48.5}
+        - {x: -18.5, y: 47.5}
+        - {x: -23.5, y: 40.5}
+        - {x: -23.5, y: 25.5}
+        - {x: -20.5, y: 13.5}
+        - {x: -23.5, y: 8.5}
+        - {x: -23.5, y: 0.5}
+        - {x: -22.5, y: -6.5}
+        - {x: -12.5, y: -21.5}
+        - {x: -9.5, y: -48.5}
+        - {x: 12.5, y: -48.5}
+        - {x: 21.5, y: -42.5}
+        - {x: 18.5, y: -20.5}
+        - {x: 23.5, y: -17.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5305410000000000800000000000000
+      internalID: 21300058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_30
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 291
+        width: 47
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5319149, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: -41.5}
+        - {x: -23.5, y: -27.5}
+        - {x: -23.5, y: 48.5}
+        - {x: 13.5, y: 48.5}
+        - {x: 23.5, y: 22.5}
+        - {x: 23.5, y: -27.5}
+        - {x: 21.5, y: -42.5}
+        - {x: 15.5, y: -48.5}
+        - {x: -7.5, y: -48.5}
+      physicsShape:
+      - - {x: 23.5, y: 1.5}
+        - {x: 22.5, y: 9.5}
+        - {x: 12.5, y: 34.5}
+        - {x: 5.5, y: 34.5}
+        - {x: 6.5, y: 48.5}
+        - {x: -7.5, y: 48.5}
+        - {x: -17.5, y: 45.5}
+        - {x: -23.5, y: 41.5}
+        - {x: -23.5, y: 26.5}
+        - {x: -21.5, y: 16.5}
+        - {x: -23.5, y: 8.5}
+        - {x: -23.5, y: -5.5}
+        - {x: -17.5, y: -14.5}
+        - {x: -10.5, y: -38.5}
+        - {x: -7.5, y: -48.5}
+        - {x: 12.5, y: -48.5}
+        - {x: 21.5, y: -42.5}
+        - {x: 18.5, y: -20.5}
+        - {x: 23.5, y: -15.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5305410000000000800000000000000
+      internalID: 21300060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_31
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 388
+        width: 47
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5319149, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11.5, y: -48.5}
+        - {x: -23.5, y: -11.5}
+        - {x: -23.5, y: 46.5}
+        - {x: -15.5, y: 48.5}
+        - {x: 7.5, y: 48.5}
+        - {x: 23.5, y: 11.5}
+        - {x: 23.5, y: -25.5}
+        - {x: 20.5, y: -42.5}
+        - {x: 18.5, y: -48.5}
+      physicsShape:
+      - - {x: 23.5, y: 6.5}
+        - {x: 12.5, y: 35.5}
+        - {x: 3.5, y: 30.5}
+        - {x: 6.5, y: 45.5}
+        - {x: 5.5, y: 48.5}
+        - {x: -8.5, y: 48.5}
+        - {x: -23.5, y: 43.5}
+        - {x: -23.5, y: 27.5}
+        - {x: -18.5, y: 23.5}
+        - {x: -23.5, y: 10.5}
+        - {x: -23.5, y: 1.5}
+        - {x: -20.5, y: -9.5}
+        - {x: -10.5, y: -20.5}
+        - {x: -10.5, y: -38.5}
+        - {x: -7.5, y: -48.5}
+        - {x: 10.5, y: -48.5}
+        - {x: 15.5, y: -46.5}
+        - {x: 19.5, y: -42.5}
+        - {x: 23.5, y: -19.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5305410000000000800000000000000
+      internalID: 21300062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_32
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 0
+        width: 47
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5319149, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.5, y: -48.5}
+        - {x: -23.5, y: -22.5}
+        - {x: -23.5, y: 48.5}
+        - {x: 16.5, y: 48.5}
+        - {x: 23.5, y: 31.5}
+        - {x: 23.5, y: -38.5}
+        - {x: 21.5, y: -42.5}
+        - {x: 12.5, y: -48.5}
+      physicsShape:
+      - - {x: 23.5, y: 3.5}
+        - {x: 22.5, y: 8.5}
+        - {x: 14.5, y: 29.5}
+        - {x: 7.5, y: 33.5}
+        - {x: 2.5, y: 28.5}
+        - {x: 6.5, y: 45.5}
+        - {x: 5.5, y: 48.5}
+        - {x: -9.5, y: 48.5}
+        - {x: -17.5, y: 47.5}
+        - {x: -23.5, y: 41.5}
+        - {x: -23.5, y: 30.5}
+        - {x: -19.5, y: 22.5}
+        - {x: -23.5, y: 9.5}
+        - {x: -23.5, y: -2.5}
+        - {x: -17.5, y: -14.5}
+        - {x: -10.5, y: -16.5}
+        - {x: -11.5, y: -39.5}
+        - {x: -7.5, y: -48.5}
+        - {x: 10.5, y: -48.5}
+        - {x: 15.5, y: -46.5}
+        - {x: 18.5, y: -42.5}
+        - {x: 23.5, y: -20.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06305410000000000800000000000000
+      internalID: 21300064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ladrona_idle_anim_33
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 0
+        width: 47
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5319149, y: 0.082474224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: -48.5}
+        - {x: -23.5, y: -21.5}
+        - {x: -23.5, y: 43.5}
+        - {x: -15.5, y: 48.5}
+        - {x: 16.5, y: 48.5}
+        - {x: 23.5, y: 30.5}
+        - {x: 23.5, y: -38.5}
+        - {x: 19.5, y: -48.5}
+      physicsShape:
+      - - {x: 23.5, y: -18.5}
+        - {x: 23.5, y: 2.5}
+        - {x: 18.5, y: 17.5}
+        - {x: 18.5, y: 32.5}
+        - {x: 4.5, y: 33.5}
+        - {x: 6.5, y: 45.5}
+        - {x: 5.5, y: 48.5}
+        - {x: -9.5, y: 48.5}
+        - {x: -17.5, y: 47.5}
+        - {x: -23.5, y: 41.5}
+        - {x: -23.5, y: 31.5}
+        - {x: -19.5, y: 22.5}
+        - {x: -23.5, y: 9.5}
+        - {x: -23.5, y: 1.5}
+        - {x: -21.5, y: -10.5}
+        - {x: -10.5, y: -16.5}
+        - {x: -10.5, y: -38.5}
+        - {x: -7.5, y: -48.5}
+        - {x: 10.5, y: -48.5}
+        - {x: 15.5, y: -46.5}
+        - {x: 19.5, y: -42.5}
+        - {x: 22.5, y: -20.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26305410000000000800000000000000
+      internalID: 21300066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      ladrona_idle_anim_18: 21300036
+      ladrona_idle_anim_15: 21300030
+      ladrona_idle_anim_19: 21300038
+      ladrona_idle_anim_29: 21300058
+      ladrona_idle_anim_3: 21300006
+      ladrona_idle_anim_31: 21300062
+      ladrona_idle_anim_4: 21300008
+      ladrona_idle_anim_11: 21300022
+      ladrona_idle_anim_9: 21300018
+      ladrona_idle_anim_22: 21300044
+      ladrona_idle_anim_14: 21300028
+      ladrona_idle_anim_20: 21300040
+      ladrona_idle_anim_21: 21300042
+      ladrona_idle_anim_33: 21300066
+      ladrona_idle_anim_2: 21300004
+      ladrona_idle_anim_5: 21300010
+      ladrona_idle_anim_23: 21300046
+      ladrona_idle_anim_0: 21300000
+      ladrona_idle_anim_24: 21300048
+      ladrona_idle_anim_25: 21300050
+      ladrona_idle_anim_13: 21300026
+      ladrona_idle_anim_8: 21300016
+      ladrona_idle_anim_7: 21300014
+      ladrona_idle_anim_32: 21300064
+      ladrona_idle_anim_6: 21300012
+      ladrona_idle_anim_27: 21300054
+      ladrona_idle_anim_28: 21300056
+      ladrona_idle_anim_26: 21300052
+      ladrona_idle_anim_16: 21300032
+      ladrona_idle_anim_1: 21300002
+      ladrona_idle_anim_30: 21300060
+      ladrona_idle_anim_17: 21300034
+      ladrona_idle_anim_12: 21300024
+      ladrona_idle_anim_10: 21300020
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -266,6 +266,12 @@
     <ClInclude Include="BloodProjectile.h">
       <Filter>Actor\Effect\Player</Filter>
     </ClInclude>
+    <ClInclude Include="MessageUI.h">
+      <Filter>Actor\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Merchant.h">
+      <Filter>Actor\NPC</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -535,6 +541,12 @@
     </ClCompile>
     <ClCompile Include="BloodProjectile.cpp">
       <Filter>Actor\Effect\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageUI.cpp">
+      <Filter>Actor\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Merchant.cpp">
+      <Filter>Actor\NPC</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

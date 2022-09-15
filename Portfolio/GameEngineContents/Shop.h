@@ -23,4 +23,5 @@ protected:
     void LevelEndEvent() override;
 
 private:
+    class Merchant* Merchant_;
 };

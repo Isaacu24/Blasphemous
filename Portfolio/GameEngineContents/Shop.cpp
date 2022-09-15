@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "Shop.h"
+#include "Merchant.h"
 
 Shop::Shop() {}
 
@@ -13,12 +14,12 @@ void Shop::Start()
     ColMap_ = Stage_->CreateComponent<GameEngineTextureRenderer>();
     ColMap_->SetTexture("Shop_Colmap.png");
     ColMap_->ScaleToTexture();
-    ColMap_->GetTransform().SetWorldPosition({0, 0, ColmapZ});
+    ColMap_->GetTransform().SetWorldPosition({0, 0.f, ColmapZ});
 
     GameEngineTextureRenderer* TileRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     TileRenderer->SetTexture("Shop_Tile.png");
     TileRenderer->ScaleToTexture();
-    TileRenderer->GetTransform().SetWorldPosition({0, 0, TileZ});
+    TileRenderer->GetTransform().SetWorldPosition({0, 0.f, TileZ});
     TileRenderer->GetTransform().SetWorldScale(TileRenderer->GetTransform().GetWorldScale());
 
     GameEngineTextureRenderer* AfterLayerRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
@@ -26,6 +27,10 @@ void Shop::Start()
     AfterLayerRenderer->ScaleToTexture();
     AfterLayerRenderer->GetTransform().SetWorldPosition({100, 75, AfterLayerZ});
     AfterLayerRenderer->GetTransform().SetWorldScale(AfterLayerRenderer->GetTransform().GetWorldScale());
+
+    Merchant_ = CreateActor<Merchant>();
+    Merchant_->GetTransform().SetWorldPosition({1300, -670, NPCZ});
+    Merchant_->GetTransform().PixLocalNegativeX();
 
     float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
     float OffsetY = ColMap_->GetTransform().GetLocalScale().y / 2;
