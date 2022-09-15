@@ -72,6 +72,7 @@ enum class COLLISIONORDER
     PlayerSkill2,
     MonsterDetect,  //몬스터 감지 영역
     Monster,
+    MonsterBody,
     MonsterAttack,
     MonsterAttack1,
     MonsterShield,
@@ -88,7 +89,7 @@ enum class COLLISIONORDER
     GlassSwitch,
     Platform,
     DeadZone,
-    PlayerParry
+    //PlayerParry
 };
 
 

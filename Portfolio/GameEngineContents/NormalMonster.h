@@ -39,7 +39,7 @@ protected:
     bool IsPlayerLeft_;
     bool IsPlayerRight_;
 
-    float TrackDistance_;  // X축 사정거리
+    float TrackLimit_;  // X축 사정거리
     float Crossroad_;
 
     GameEngineCollision* PlayerCollision_;
@@ -57,7 +57,7 @@ protected:
 
     virtual bool CrossroadCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
 
-    inline void SetTrackDistance(float _Distance) { TrackDistance_ = _Distance; }
+    inline void SetTrackDistance(float _Distance) { TrackLimit_ = _Distance; }
 
     inline void SetCrossroad(float _Distance) { Crossroad_ = _Distance; }
 

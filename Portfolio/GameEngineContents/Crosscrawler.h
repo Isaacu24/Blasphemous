@@ -20,29 +20,33 @@ public:
     void PatrolUpdate(float _DeltaTime, const StateInfo& _Info);
     void PatrolEnd(const StateInfo& _Info);
 
-    void TurnStart(const StateInfo& _Info);
-    void TurnUpdate(float _DeltaTime, const StateInfo& _Info);
-    void TurnEnd(const StateInfo& _Info);
+    void PatrolTurnStart(const StateInfo& _Info);
+    void PatrolTurnUpdate(float _DeltaTime, const StateInfo& _Info);
+    void PatrolTurnEnd(const StateInfo& _Info);
+
+    void TrackTurnStart(const StateInfo& _Info);
+    void TrackTurnUpdate(float _DeltaTime, const StateInfo& _Info);
+    void TrackTurnEnd(const StateInfo& _Info);
 
     void TrackStart(const StateInfo& _Info);
     void TrackUpdate(float _DeltaTime, const StateInfo& _Info);
     void TrackEnd(const StateInfo& _Info);
 
-     void AttackStart(const StateInfo& _Info);
-     void AttackUpdate(float _DeltaTime, const StateInfo& _Info);
-     void AttackEnd(const StateInfo& _Info);
+    void AttackStart(const StateInfo& _Info);
+    void AttackUpdate(float _DeltaTime, const StateInfo& _Info);
+    void AttackEnd(const StateInfo& _Info);
 
-     void StunStart(const StateInfo& _Info);
-     void StunUpdate(float _DeltaTime, const StateInfo& _Info);
-     void StunEnd(const StateInfo& _Info);
+    void StunStart(const StateInfo& _Info);
+    void StunUpdate(float _DeltaTime, const StateInfo& _Info);
+    void StunEnd(const StateInfo& _Info);
 
-     void ExecutionStart(const StateInfo& _Info);
-     void ExecutionUpdate(float _DeltaTime, const StateInfo& _Info);
-     void ExecutionEnd(const StateInfo& _Info);
+    void ExecutionStart(const StateInfo& _Info);
+    void ExecutionUpdate(float _DeltaTime, const StateInfo& _Info);
+    void ExecutionEnd(const StateInfo& _Info);
 
-     void DeathStart(const StateInfo& _Info);
-     void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
-     void DeathEnd(const StateInfo& _Info);
+    void DeathStart(const StateInfo& _Info);
+    void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
+    void DeathEnd(const StateInfo& _Info);
 
 protected:
     void Start() override;

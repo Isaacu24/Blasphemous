@@ -167,7 +167,6 @@ void Stage20::LevelStartEvent()
         if (STAGEFLOW::BOSSDEAD == CurrentFlow_)
         {
             Penitent_->GetTransform().SetWorldPosition(PlayerReturnPos_);
-            Penitent_->ChangeState("Idle");
         }
 
         Penitent_->SetLevelOverOn();
@@ -207,7 +206,7 @@ void Stage20::LevelEndEvent()
             return;
         }
 
-        if (true == Penitent_->GetIsFallDeath())
+        if (true == Penitent_->GetIsPlayerDeath())
         {
             Guilt_->GetTransform().SetWorldPosition(Penitent_->GetLastJumpPosition());
         }

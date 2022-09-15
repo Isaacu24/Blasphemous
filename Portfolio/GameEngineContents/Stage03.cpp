@@ -165,9 +165,7 @@ void Stage03::LevelStartEvent()
         Penitent_->SetGround(ColMap_);
 
         Penitent_->SetLevelOverOn();
-        Penitent_->ChangeState("Respawn");
         Penitent_->GetTransform().SetWorldPosition({1800, -1067, PlayerZ});
-        Penitent_->On();
     }
 
     else if (nullptr != Penitent::GetMainPlayer())
@@ -186,9 +184,14 @@ void Stage03::LevelStartEvent()
         }
 
         Penitent_->SetLevelOverOn();
-        Penitent_->ChangeState("Respawn");
+
+        if (false == Penitent_->IsUpdate())
+        {
+            Penitent_->On();
+            Penitent_->ChangeState("Respawn");
+        }
+
         Penitent_->GetTransform().SetWorldPosition({1800, -1067, PlayerZ});
-        Penitent_->On();
     }
 
     IsRightExit_ = false;
@@ -219,7 +222,7 @@ void Stage03::LevelEndEvent()
             return;
         }
 
-        if (true == Penitent_->GetIsFallDeath())
+        if (true == Penitent_->GetIsPlayerDeath())
         {
             Guilt_->GetTransform().SetWorldPosition(Penitent_->GetLastJumpPosition());
         }

@@ -9,13 +9,27 @@ void Fool_knife::Start()
 {
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
     Renderer_->CreateFrameAnimationCutTexture("fool_idle_knife", {"fool_idle_knife.png", 0, 11, 0.1f, true});
-    Renderer_->AnimationBindEnd("fool_idle_knife",
-                                [&](const FrameAnimation_DESC& _Info) { ChangeMonsterState("Patrol"); });
-    Renderer_->CreateFrameAnimationCutTexture("Fool_turn_knife", {"Fool_turn_knife.png", 0, 6, 0.1f, false});
+
+    Renderer_->CreateFrameAnimationCutTexture("Fool_turn_knife", {"Fool_turn_knife.png", 0, 6, 0.07f, false});
+
     Renderer_->AnimationBindEnd("Fool_turn_knife",
-                                [&](const FrameAnimation_DESC& _Info) { ChangeMonsterState("Patrol"); });
+                                [&](const FrameAnimation_DESC& _Info)
+                                {
+                                    if (false == IsPlayerLeft_ && false == IsPlayerRight_)
+                                    {
+                                        ChangeMonsterState("Patrol");
+                                    }
+
+                                    else
+                                    {
+                                        ChangeMonsterState("Track");
+                                    }
+                                });
+
     Renderer_->CreateFrameAnimationCutTexture("Fool_walk_knife", {"Fool_walk_knife.png", 0, 8, 0.1f, true});
+
     Renderer_->CreateFrameAnimationCutTexture("Fool_hurt_knife", {"Fool_hurt_knife.png", 0, 8, 0.07f, false});
+
     Renderer_->AnimationBindEnd("Fool_hurt_knife",
                                 [&](const FrameAnimation_DESC& _Info)
                                 {
@@ -27,9 +41,12 @@ void Fool_knife::Start()
 
                                     State_.ChangeState("Idle");
                                 });
+
     Renderer_->CreateFrameAnimationCutTexture("Fool_death_knife", {"Fool_death_knife.png", 0, 13, 0.07f, false});
     Renderer_->AnimationBindEnd("Fool_death_knife", [&](const FrameAnimation_DESC& _Info) { Death(); });
+
     Renderer_->ChangeFrameAnimation("fool_idle_knife");
+
     Renderer_->GetTransform().SetWorldScale({400, 300});
     Renderer_->SetPivot(PIVOTMODE::BOT);
 
@@ -46,6 +63,12 @@ void Fool_knife::Start()
     BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 0.0f, 1.0f, 0.5f});
     BodyCollider_->GetTransform().SetWorldScale({50, 130.0f, 1.0f});
     BodyCollider_->GetTransform().SetWorldMove({0, 100});
+
+    AttackCollider_ = CreateComponent<GameEngineCollision>();
+    AttackCollider_->ChangeOrder(COLLISIONORDER::MonsterAttack);
+    AttackCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{1.0f, 0.0f, 0.0f, 0.5f});
+    AttackCollider_->GetTransform().SetWorldScale({30.f, 20.0f, 1.0f});
+    AttackCollider_->GetTransform().SetWorldMove({40, 130});
 
     BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
     BloodEffect_->GetRenderer()->Off();
@@ -66,10 +89,16 @@ void Fool_knife::Start()
                              std::bind(&Fool_knife::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&Fool_knife::DeathStart, this, std::placeholders::_1),
                              std::bind(&Fool_knife::DeathEnd, this, std::placeholders::_1));
-    State_.CreateStateMember("Turn",
-                             std::bind(&Fool_knife::TurnUpdate, this, std::placeholders::_1, std::placeholders::_2),
-                             std::bind(&Fool_knife::TurnStart, this, std::placeholders::_1),
-                             std::bind(&Fool_knife::TurnEnd, this, std::placeholders::_1));
+    State_.CreateStateMember(
+        "PatrolTurn",
+        std::bind(&Fool_knife::PatrolTurnUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&Fool_knife::PatrolTurnStart, this, std::placeholders::_1),
+        std::bind(&Fool_knife::PatrolTurnEnd, this, std::placeholders::_1));
+    State_.CreateStateMember(
+        "TrackTurn",
+        std::bind(&Fool_knife::TrackTurnUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&Fool_knife::TrackTurnStart, this, std::placeholders::_1),
+        std::bind(&Fool_knife::TrackTurnEnd, this, std::placeholders::_1));
     State_.CreateStateMember("Hurt",
                              std::bind(&Fool_knife::HurtUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&Fool_knife::HurtStart, this, std::placeholders::_1),
@@ -77,7 +106,6 @@ void Fool_knife::Start()
     State_.ChangeState("Patrol");
 
     SetSpeed(70.f);
-    SetTrackDistance(70.f);
 
     PatrolStart_ = true;
 }
@@ -91,7 +119,7 @@ void Fool_knife::Update(float _DeltaTime)
     IsGround_ = GroundCheck(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y + 35));
     Gravity_->SetActive(!IsGround_);
 
-    // GameEngineDebug::OutPutString("Fool: " + State_.GetCurStateStateName());
+    GameEngineDebug::OutPutString("Fool: " + State_.GetCurStateStateName());
 }
 
 void Fool_knife::End() {}
@@ -105,10 +133,13 @@ void Fool_knife::DamageCheck()
                 CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
         {
             IsHit_ = false;
+
+            Renderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
         }
 
         if (true == IsHit_)
         {
+            Renderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
             return;
         }
 
@@ -124,7 +155,7 @@ void Fool_knife::DamageCheck()
             BloodEffect_->GetTransform().SetWorldPosition(
                 {BodyCollider_->GetTransform().GetWorldPosition().x + (-(Dir_.x) * 10.f),
                  BodyCollider_->GetTransform().GetWorldPosition().y,
-                 static_cast<int>(ACTORORDER::PlayerEffect)});
+                 PlayerEffectZ});
             BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
         }
 
@@ -149,7 +180,7 @@ void Fool_knife::PatrolMoveX(float _DeltaTime)
 
         else
         {
-            State_.ChangeState("Turn");
+            State_.ChangeState("PatrolTurn");
 
             PatrolEnd_   = true;
             PatrolStart_ = false;
@@ -166,7 +197,7 @@ void Fool_knife::PatrolMoveX(float _DeltaTime)
 
         else
         {
-            State_.ChangeState("Turn");
+            State_.ChangeState("PatrolTurn");
 
             PatrolStart_ = true;
             PatrolEnd_   = false;
@@ -174,14 +205,49 @@ void Fool_knife::PatrolMoveX(float _DeltaTime)
     }
 }
 
+
 void Fool_knife::IdleStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("fool_idle_knife"); }
 
-void Fool_knife::IdleUpdate(float _DeltaTime, const StateInfo& _Info) {}
+void Fool_knife::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    if (1.f > _Info.StateTime)
+    {
+        return;
+    }
+
+    if (false
+        == DetectCollider_->IsCollision(
+            CollisionType::CT_OBB2D,
+            COLLISIONORDER::Player,
+            CollisionType::CT_OBB2D,
+            std::bind(&Fool_knife::DetectPlayer, this, std::placeholders::_1, std::placeholders::_2)))
+    {
+        State_.ChangeState("Patrol");
+        return;
+    }
+
+    else
+    {
+        State_.ChangeState("Track");
+    }
+}
 
 void Fool_knife::IdleEnd(const StateInfo& _Info) {}
 
 
-void Fool_knife::PatrolStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("Fool_walk_knife"); }
+void Fool_knife::PatrolStart(const StateInfo& _Info)
+{
+    Renderer_->ChangeFrameAnimation("Fool_walk_knife");
+
+    if (0 > GetTransform().GetLocalScale().x && true == PatrolStart_ && false == PatrolEnd_
+        || 0 < GetTransform().GetLocalScale().x && false == PatrolStart_ && true == PatrolEnd_)
+    {
+        IsPlayerRight_ = false;
+        IsPlayerLeft_  = false;
+
+        State_.ChangeState("PatrolTurn");
+    }
+}
 
 void Fool_knife::PatrolUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -200,46 +266,53 @@ void Fool_knife::PatrolUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Fool_knife::PatrolEnd(const StateInfo& _Info) {}
 
-void Fool_knife::TrackStart(const StateInfo& _Info)
-{
-    if ("Track" == _Info.PrevState)
-    {
-        return;
-    }
 
-    Renderer_->ChangeFrameAnimation("Fool_walk_knife");
-}
+void Fool_knife::TrackStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("Fool_walk_knife"); }
 
 void Fool_knife::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    if (true == IsPlayerLeft_)
-    {
-        if (false
-            == RightObstacleCheck(GetTransform().GetWorldPosition().x + 50,
-                                  -(GetTransform().GetWorldPosition().y + 35)))
-        {
-            State_.ChangeState("Idle");
-            return;
-        }
-
-        GetTransform().SetWorldMove(float4::RIGHT * Speed_ * _DeltaTime);
-    }
-
-    else if (true == IsPlayerRight_)
-    {
-        if (false
-            == LeftObstacleCheck(GetTransform().GetWorldPosition().x - 50, -(GetTransform().GetWorldPosition().y + 35)))
-        {
-            State_.ChangeState("Idle");
-            return;
-        }
-
-        GetTransform().SetWorldMove(float4::LEFT * Speed_ * _DeltaTime);
-    }
-
-    if (false
+    if (true
         == DetectCollider_->IsCollision(
-            CollisionType::CT_OBB2D, COLLISIONORDER::Player, CollisionType::CT_OBB2D, nullptr))
+            CollisionType::CT_OBB2D,
+            COLLISIONORDER::Player,
+            CollisionType::CT_OBB2D,
+            std::bind(&Fool_knife::TrackPlayer, this, std::placeholders::_1, std::placeholders::_2)))
+    {
+        if (0 > GetTransform().GetLocalScale().x && true == IsPlayerRight_
+            || 0 < GetTransform().GetLocalScale().x && true == IsPlayerLeft_)
+        {
+            State_.ChangeState("TrackTurn");
+            return;
+        }
+
+        if (true == IsPlayerLeft_)
+        {
+            if (false
+                == LeftObstacleCheck(GetTransform().GetWorldPosition().x - 50,
+                                     -(GetTransform().GetWorldPosition().y + 35)))
+            {
+                State_.ChangeState("Idle");
+                return;
+            }
+
+            GetTransform().SetWorldMove(float4::LEFT * Speed_ * _DeltaTime);
+        }
+
+        else if (true == IsPlayerRight_)
+        {
+            if (false
+                == RightObstacleCheck(GetTransform().GetWorldPosition().x + 50,
+                                      -(GetTransform().GetWorldPosition().y + 35)))
+            {
+                State_.ChangeState("Idle");
+                return;
+            }
+
+            GetTransform().SetWorldMove(float4::RIGHT * Speed_ * _DeltaTime);
+        }
+    }
+
+    else
     {
         State_.ChangeState("Idle");
     }
@@ -252,14 +325,14 @@ void Fool_knife::HurtStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnima
 
 void Fool_knife::HurtUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Fool_knife::HurtEnd(const StateInfo& _Info) { int a = 0; }
+void Fool_knife::HurtEnd(const StateInfo& _Info) {}
 
 
-void Fool_knife::TurnStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("Fool_turn_knife"); }
+void Fool_knife::PatrolTurnStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("Fool_turn_knife"); }
 
-void Fool_knife::TurnUpdate(float _DeltaTime, const StateInfo& _Info) {}
+void Fool_knife::PatrolTurnUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Fool_knife::TurnEnd(const StateInfo& _Info)
+void Fool_knife::PatrolTurnEnd(const StateInfo& _Info)
 {
     if (true == PatrolStart_ && false == PatrolEnd_)
     {
@@ -273,10 +346,28 @@ void Fool_knife::TurnEnd(const StateInfo& _Info)
 }
 
 
+void Fool_knife::TrackTurnStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("Fool_turn_knife"); }
+
+void Fool_knife::TrackTurnUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Fool_knife::TrackTurnEnd(const StateInfo& _Info)
+{
+    if (true == IsPlayerRight_)
+    {
+        GetTransform().PixLocalPositiveX();
+    }
+
+    else if (true == IsPlayerLeft_)
+    {
+        GetTransform().PixLocalNegativeX();
+    }
+}
+
 void Fool_knife::DeathStart(const StateInfo& _Info)
 {
     BodyCollider_->Off();
     DetectCollider_->Off();
+    AttackCollider_->Off();
 
     Renderer_->ChangeFrameAnimation("Fool_death_knife");
     Renderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};

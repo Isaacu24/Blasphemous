@@ -121,12 +121,12 @@ void Stage02::SettingMonster()
     FoolKnife->SetGround(ColMap_);
     MonsterList_.push_back(FoolKnife);
 
-    WingedFace* FlyingEnemy = CreateActor<WingedFace>();
-    FlyingEnemy->GetTransform().SetWorldPosition({2150, -1250, MonsterZ});
-    FlyingEnemy->SetGround(ColMap_);
-    FlyingEnemy->SetStartPos(-1150);
-    FlyingEnemy->SetEndPos(-1550);
-    MonsterList_.push_back(FlyingEnemy);
+    //WingedFace* FlyingEnemy = CreateActor<WingedFace>();
+    //FlyingEnemy->GetTransform().SetWorldPosition({2150, -1250, MonsterZ});
+    //FlyingEnemy->SetGround(ColMap_);
+    //FlyingEnemy->SetStartPos(-1150);
+    //FlyingEnemy->SetEndPos(-1550);
+    //MonsterList_.push_back(FlyingEnemy);
 }
 
 void Stage02::SettingLedge()
@@ -289,7 +289,7 @@ void Stage02::LevelEndEvent()
             return;
         }
 
-        if (true == Penitent_->GetIsFallDeath())
+        if (true == Penitent_->GetIsPlayerDeath())
         {
             Guilt_->GetTransform().SetWorldPosition(
                 {Penitent_->GetLastJumpPosition().x, Penitent_->GetLastJumpPosition().y, ObjectZ});

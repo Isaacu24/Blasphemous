@@ -28,9 +28,13 @@ public:
     void HurtUpdate(float _DeltaTime, const StateInfo& _Info);
     void HurtEnd(const StateInfo& _Info);
 
-    void TurnStart(const StateInfo& _Info);
-    void TurnUpdate(float _DeltaTime, const StateInfo& _Info);
-    void TurnEnd(const StateInfo& _Info);
+    void PatrolTurnStart(const StateInfo& _Info);
+    void PatrolTurnUpdate(float _DeltaTime, const StateInfo& _Info);
+    void PatrolTurnEnd(const StateInfo& _Info);
+
+    void TrackTurnStart(const StateInfo& _Info);
+    void TrackTurnUpdate(float _DeltaTime, const StateInfo& _Info);
+    void TrackTurnEnd(const StateInfo& _Info);
 
     void DeathStart(const StateInfo& _Info);
     void DeathUpdate(float _DeltaTime, const StateInfo& _Info);

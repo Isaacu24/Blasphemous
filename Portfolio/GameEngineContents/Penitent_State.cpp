@@ -66,7 +66,7 @@ void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
         State_.ChangeState("Recovery");
     }
 
-    else if (true == GameEngineInput::GetInst()->IsDownKey("PenitentTelport")  && true == IsReturnToPort_)
+    else if (true == GameEngineInput::GetInst()->IsDownKey("PenitentTelport") && true == IsReturnToPort_)
     {
         State_.ChangeState("ReturnToPort");
     }
@@ -74,6 +74,11 @@ void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
     else if (true == GameEngineInput::GetInst()->IsDownKey("PenitentPary") && true == IsGround_)
     {
         State_.ChangeState("PrayAttack");
+    }
+
+    else if (GameEngineInput::GetInst()->IsPressKey("PenitentL"))
+    {
+        State_.ChangeState("RangeAttack");
     }
 
     //내리막길
@@ -263,6 +268,12 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentL"))
+    {
+        ChangeState("JumpRangeAttack");
+        return;
+    }
+
     GetTransform().SetWorldMove(Dir_ * JumpForce_ * _DeltaTime);
     Gravity_->SetActive(!IsGround_);
 }
@@ -434,8 +445,6 @@ void Penitent::KnockBackStart(const StateInfo& _Info)
     MetaRenderer_->ChangeMetaAnimation("Penitent_pushback_grounded");
     MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
 
-    BodyCollider_->Off();
-
     HitEffect_->Renderer_->On();
     HitEffect_->Renderer_->ChangeMetaAnimation("pushback_sparks_anim");
 
@@ -481,7 +490,7 @@ void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
     Gravity_->SetActive(!IsGround_);
 }
 
-void Penitent::KnockBackEnd(const StateInfo& _Info) { BodyCollider_->On(); }
+void Penitent::KnockBackEnd(const StateInfo& _Info) {}
 
 
 void Penitent::KnockUpStart(const StateInfo& _Info)
@@ -496,8 +505,6 @@ void Penitent::KnockUpStart(const StateInfo& _Info)
 
     MetaRenderer_->ChangeMetaAnimation("penitent_throwback_anim");
     MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
-
-    BodyCollider_->Off();
 
     if (0 > KnockBackXDir_)
     {
@@ -528,7 +535,7 @@ void Penitent::KnockUpUpdate(float _DeltaTime, const StateInfo& _Info)
     Gravity_->SetActive(!IsGround_);
 }
 
-void Penitent::KnockUpEnd(const StateInfo& _Info) { BodyCollider_->On(); }
+void Penitent::KnockUpEnd(const StateInfo& _Info) {}
 
 
 void Penitent::LandingStart(const StateInfo& _Info)
@@ -909,11 +916,32 @@ void Penitent::PrayAttackStart(const StateInfo& _Info)
 
 void Penitent::PrayAttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Penitent::PrayAttackEnd(const StateInfo& _Info) 
-{ 
-    BodyCollider_->On(); 
+void Penitent::PrayAttackEnd(const StateInfo& _Info)
+{
+    BodyCollider_->On();
     AttackCollider_->Off();
 }
+
+
+void Penitent::RangeAttackStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("penitent_rangeAttack_shoot_anim");
+}
+
+void Penitent::RangeAttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Penitent::RangeAttackEnd(const StateInfo& _Info) {}
+
+void Penitent::JumpRangeAttackStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("penitent_rangeAttack_symbol_midair_anim");
+
+    Gravity_->SetActive(false);
+}
+
+void Penitent::JumpRangeAttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Penitent::JumpRangeAttackEnd(const StateInfo& _Info) {}
 
 
 void Penitent::ExecutionStart(const StateInfo& _Info)
@@ -954,6 +982,7 @@ void Penitent::ExecutionEnd(const StateInfo& _Info)
                 GetTransform().SetWorldMove({-30.f, 0});
             }
             break;
+
         case EXECUTIONTYPE::ShieldMaiden:
             if (0 > RealXDir_)
             {
@@ -973,32 +1002,21 @@ void Penitent::ExecutionEnd(const StateInfo& _Info)
 }
 
 
-void Penitent::ParryingStart(const StateInfo& _Info) 
-{
-    MetaRenderer_->ChangeMetaAnimation("penitent_parry_failed"); 
-    BodyCollider_->ChangeOrder(COLLISIONORDER::PlayerParry);
+void Penitent::ParryingStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penitent_parry_failed"); }
 
-    BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.0f, 1.0f, 0.0f, 0.5f});
-}
-
-void Penitent::ParryingUpdate(float _DeltaTime, const StateInfo& _Info) 
+void Penitent::ParryingUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     if (true == IsParrySuccess_)
     {
         MetaRenderer_->ChangeMetaAnimation("penitent_parry_success_animv3");
+        ParryOn_ = false;
     }
 }
 
-void Penitent::ParryingEnd(const StateInfo& _Info) 
-{ 
-    IsParrySuccess_ = false;
-
-    BodyCollider_->ChangeOrder(COLLISIONORDER::Player); 
-    BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.0f, 0.0f, 1.0f, 0.5f});
-}
+void Penitent::ParryingEnd(const StateInfo& _Info) { IsParrySuccess_ = false; }
 
 
-void Penitent::ParryingAttackStart(const StateInfo& _Info) 
+void Penitent::ParryingAttackStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_parry_counter_v2_anim");
 }
@@ -1064,6 +1082,9 @@ void Penitent::ReturnToPortEnd(const StateInfo& _Info) {}
 
 void Penitent::RespawnStart(const StateInfo& _Info)
 {
+    //일단 무조건 오른쪽을 본다.
+    GetTransform().PixLocalPositiveX();
+
     if ("" != LastSavePoint_)
     {
         MetaRenderer_->ChangeMetaAnimation("penitent_respawning_anim");
@@ -1086,8 +1107,19 @@ void Penitent::RespawnEnd(const StateInfo& _Info) {}
 
 void Penitent::DeathStart(const StateInfo& _Info)
 {
+    IsPlayerDeath_ = true;
+
     MetaRenderer_->ChangeMetaAnimation("death_anim_blood");
-    PlayerUI_->ScreenState_.ChangeState("PlayerDeath");
+
+    if (true == LastSavePoint_.empty())
+    {
+        PlayerUI_->SetRespawnLevelName("Stage01");
+    }
+
+    else
+    {
+        PlayerUI_->SetRespawnLevelName(LastSavePoint_);
+    }
 
     MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
 }

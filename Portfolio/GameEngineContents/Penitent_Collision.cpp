@@ -194,20 +194,20 @@ bool Penitent::RightObstacleCheck()
 
 void Penitent::DeadZoneCheck()
 {
-    IsFallDeath_ = BodyCollider_->IsCollision(
-        CollisionType::CT_OBB2D, COLLISIONORDER::DeadZone, CollisionType::CT_OBB2D, nullptr);
-
-    if (true == IsFallDeath_)
+    if (true
+        == BodyCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::DeadZone, CollisionType::CT_OBB2D, nullptr))
     {
         State_.ChangeState("Death");
-    }
+    };
 }
 
 
 void Penitent::CollisionCheck()
 {
     if ("KnockBack" == State_.GetCurStateStateName() || "KnockUp" == State_.GetCurStateStateName()
-        || "Parrying" == State_.GetCurStateStateName())
+        || "Death" == State_.GetCurStateStateName() || true == IsParrySuccess_
+        || "ParryingAttack" == State_.GetCurStateStateName())
     {
         return;
     }
@@ -261,9 +261,18 @@ void Penitent::CollisionCheck()
         CollisionType::CT_OBB2D,
         std::bind(&Penitent::HitEffectCheck, this, std::placeholders::_1, std::placeholders::_2));
 
+    //IsHit_ = AttackCollider_->IsCollision(
+    //    CollisionType::CT_OBB2D,
+    //    COLLISIONORDER::MonsterBody,
+    //    CollisionType::CT_OBB2D,
+    //    std::bind(&Penitent::HitEffectCheck, this, std::placeholders::_1, std::placeholders::_2));
+
     if (false
-        == AttackCollider_->IsCollision(
-            CollisionType::CT_OBB2D, COLLISIONORDER::Monster, CollisionType::CT_OBB2D, nullptr))
+            == AttackCollider_->IsCollision(
+                CollisionType::CT_OBB2D, COLLISIONORDER::Monster, CollisionType::CT_OBB2D, nullptr)
+        && false
+               == AttackCollider_->IsCollision(
+                   CollisionType::CT_OBB2D, COLLISIONORDER::MonsterBody, CollisionType::CT_OBB2D, nullptr))
     {
         IsHit_ = false;
     }

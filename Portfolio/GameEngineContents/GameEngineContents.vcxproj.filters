@@ -263,6 +263,9 @@
     <ClInclude Include="TwisterBackground.h">
       <Filter>Actor\BossMonster\Pontiff</Filter>
     </ClInclude>
+    <ClInclude Include="BloodProjectile.h">
+      <Filter>Actor\Effect\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -529,6 +532,9 @@
     </ClCompile>
     <ClCompile Include="TwisterBackground.cpp">
       <Filter>Actor\BossMonster\Pontiff</Filter>
+    </ClCompile>
+    <ClCompile Include="BloodProjectile.cpp">
+      <Filter>Actor\Effect\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

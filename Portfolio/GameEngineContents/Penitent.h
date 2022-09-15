@@ -73,7 +73,7 @@ public:
 
     inline void SetLastSavePoint(const std::string& _LevelName) { LastSavePoint_ = _LevelName; }
 
-    inline bool GetIsFallDeath() { return IsFallDeath_; }
+    inline bool GetIsPlayerDeath() { return IsPlayerDeath_; }
 
     inline float4 GetLastJumpPosition() { return LastJumpPos_; }
 
@@ -84,6 +84,11 @@ public:
     inline void SetExecutionType(EXECUTIONTYPE _Type) { ExecutionType_ = _Type; }
 
     inline void ParrySuccess() { IsParrySuccess_ = true; }
+
+    inline bool GetParryOn() 
+    { 
+        return ParryOn_; 
+    }
 
 protected:
     void Start() override;
@@ -168,6 +173,14 @@ protected:
     void PrayAttackStart(const StateInfo& _Info);
     void PrayAttackUpdate(float _DeltaTime, const StateInfo& _Info);
     void PrayAttackEnd(const StateInfo& _Info);
+
+    void RangeAttackStart(const StateInfo& _Info);
+    void RangeAttackUpdate(float _DeltaTime, const StateInfo& _Info);
+    void RangeAttackEnd(const StateInfo& _Info);
+
+    void JumpRangeAttackStart(const StateInfo& _Info);
+    void JumpRangeAttackUpdate(float _DeltaTime, const StateInfo& _Info);
+    void JumpRangeAttackEnd(const StateInfo& _Info);
 
     void ExecutionStart(const StateInfo& _Info);
     void ExecutionUpdate(float _DeltaTime, const StateInfo& _Info);
@@ -282,11 +295,14 @@ private:
 
     float4 LastJumpPos_;
 
-    bool IsFallDeath_;
+    bool IsPlayerDeath_;
 
     class StageBase* CurStage_;
 
     bool IsShake_;
     bool IsReturnToPort_;
     bool IsParrySuccess_;
+
+    bool ParryOn_;
 };
+

@@ -90,7 +90,6 @@ bool GameEngineCollision::IsCollision(CollisionType _ThisType, int _GroupOrder
 		{
 			if (nullptr != _Function)
 			{
-				// 넣어줘야 한다를 명시하는 겁니다.
 				if (true == _Function(this, Collision))
 				{
 					return true;
@@ -99,7 +98,6 @@ bool GameEngineCollision::IsCollision(CollisionType _ThisType, int _GroupOrder
 			else {
 				return true;
 			}
-			// return true; 이부분 잘못됐어요.
 		}
 	}
 

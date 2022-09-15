@@ -8,6 +8,7 @@
 #include "HitEffect.h"
 #include "AttackEffect.h"
 #include "StageBase.h"
+#include "BloodProjectile.h"
 
 Penitent* Penitent::MainPlayer_ = nullptr;
 
@@ -20,6 +21,7 @@ Penitent::Penitent()
     , JumpForce_(float4::ZERO)
     , MetaRenderer_(nullptr)
     , ColMap_(nullptr)
+    , RealXDir_(1)
     , HP_(100)
     , MP_(100)
     , Speed_(250.0f)
@@ -63,6 +65,7 @@ void Penitent::Start()
         GameEngineInput::GetInst()->CreateKey("PenitentParry", 'J');
         GameEngineInput::GetInst()->CreateKey("PenitentTelport", 'B');
         GameEngineInput::GetInst()->CreateKey("PenitentPary", 'P');
+        GameEngineInput::GetInst()->CreateKey("PenitentL", 'L');
         GameEngineInput::GetInst()->CreateKey("FreeCamera", 'O');
 
         GameEngineInput::GetInst()->CreateKey("PenitentAnimation", '1');
@@ -899,8 +902,22 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_parry_failed",
-            {"penitent_parry_failed.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
+            {"penitent_parry_failed.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
             Data);
+
+        MetaRenderer_->AnimationBindFrame("penitent_parry_failed",
+                                          [&](const FrameAnimation_DESC& _Info)
+                                          {
+                                              if (3 == _Info.CurFrame)
+                                              {
+                                                  ParryOn_ = true;
+                                              }
+
+                                              if (6 == _Info.CurFrame)
+                                              {
+                                                  ParryOn_ = false;
+                                              }
+                                          });
 
         MetaRenderer_->AnimationBindEnd("penitent_parry_failed",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
@@ -912,7 +929,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_parry_success_animv3",
-            {"penitent_parry_success_animv3.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
+            {"penitent_parry_success_animv3.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
             Data);
 
         MetaRenderer_->AnimationBindEnd("penitent_parry_success_animv3",
@@ -925,7 +942,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_parry_counter_v2_anim",
-            {"penitent_parry_counter_v2_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
+            {"penitent_parry_counter_v2_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
             Data);
 
         MetaRenderer_->AnimationBindEnd("penitent_parry_counter_v2_anim",
@@ -956,19 +973,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->AnimationBindEnd("death_anim_blood",
                                         [&](const FrameAnimation_DESC& _Info)
-                                        {
-                                            if (true == LastSavePoint_.empty())
-                                            {
-                                                GEngine::ChangeLevel("Stage01");
-                                            }
-
-                                            else
-                                            {
-                                                GEngine::ChangeLevel(LastSavePoint_);
-                                            }
-
-                                            Off();
-                                        });
+                                        { PlayerUI_->ScreenState_.ChangeState("PlayerDeath"); });
     }
 
     //리스폰
@@ -1031,7 +1036,62 @@ void Penitent::SetAnimation()
                                         });
     }
 
+    //원거리 공격
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_rangeAttack_shoot_anim");
 
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_rangeAttack_shoot_anim",
+            {"penitent_rangeAttack_shoot_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, true},
+            Data);
+
+        MetaRenderer_->AnimationBindFrame(
+            "penitent_rangeAttack_shoot_anim",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                if (20 == _Info.CurFrame)
+                {
+                    BloodProjectile* Projectile = GetLevel()->CreateActor<BloodProjectile>();
+                    Projectile->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()
+                                                                + float4{RealXDir_ * 100.f, 75.f});
+                    Projectile->SetDirection(RealXDir_);
+                    Projectile->SetGround(ColMap_);
+                }
+            });
+
+        MetaRenderer_->AnimationBindEnd("penitent_rangeAttack_shoot_anim",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+    }
+
+    //점프 원거리 공격
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_rangeAttack_symbol_midair_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_rangeAttack_symbol_midair_anim",
+            {"penitent_rangeAttack_symbol_midair_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, true},
+            Data);
+
+        MetaRenderer_->AnimationBindFrame(
+            "penitent_rangeAttack_symbol_midair_anim",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                if (20 == _Info.CurFrame)
+                {
+                    BloodProjectile* Projectile = GetLevel()->CreateActor<BloodProjectile>();
+                    Projectile->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()
+                                                                + float4{RealXDir_ * 100.f, 75.f});
+
+                    Projectile->SetDirection(RealXDir_);
+                    Projectile->SetGround(ColMap_);
+                }
+            });
+
+        MetaRenderer_->AnimationBindEnd("penitent_rangeAttack_symbol_midair_anim",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Fall"); });
+    }
+
+    //처형
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("crosscrawler_execution");
 
@@ -1051,7 +1111,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "shieldMaiden_execution",
-            {"shieldMaiden_execution.png", 0, static_cast<unsigned int>(Data.size() - 3), 0.08f, true},
+            {"shieldMaiden_execution.png", 0, static_cast<unsigned int>(Data.size() - 5), 0.08f, true},
             Data);
 
 
@@ -1154,6 +1214,18 @@ void Penitent::SetPlayerState()
                              std::bind(&Penitent::PrayAttackStart, this, std::placeholders::_1),
                              std::bind(&Penitent::PrayAttackEnd, this, std::placeholders::_1));
 
+    State_.CreateStateMember(
+        "RangeAttack",
+        std::bind(&Penitent::RangeAttackUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&Penitent::RangeAttackStart, this, std::placeholders::_1),
+        std::bind(&Penitent::RangeAttackEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember(
+        "JumpRangeAttack",
+        std::bind(&Penitent::JumpRangeAttackUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&Penitent::JumpRangeAttackStart, this, std::placeholders::_1),
+        std::bind(&Penitent::JumpRangeAttackEnd, this, std::placeholders::_1));
+
     State_.CreateStateMember("Execution",
                              std::bind(&Penitent::ExecutionUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&Penitent::ExecutionStart, this, std::placeholders::_1),
@@ -1164,10 +1236,11 @@ void Penitent::SetPlayerState()
                              std::bind(&Penitent::ParryingStart, this, std::placeholders::_1),
                              std::bind(&Penitent::ParryingEnd, this, std::placeholders::_1));
 
-    State_.CreateStateMember("ParryingAttack",
-                             std::bind(&Penitent::ParryingAttackUpdate, this, std::placeholders::_1, std::placeholders::_2),
-                             std::bind(&Penitent::ParryingAttackStart, this, std::placeholders::_1),
-                             std::bind(&Penitent::ParryingAttackEnd, this, std::placeholders::_1));
+    State_.CreateStateMember(
+        "ParryingAttack",
+        std::bind(&Penitent::ParryingAttackUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&Penitent::ParryingAttackStart, this, std::placeholders::_1),
+        std::bind(&Penitent::ParryingAttackEnd, this, std::placeholders::_1));
 
     State_.CreateStateMember("Recovery",
                              std::bind(&Penitent::RecoveryUpdate, this, std::placeholders::_1, std::placeholders::_2),
@@ -1196,7 +1269,11 @@ void Penitent::SetPlayerState()
 
 void Penitent::LevelStartEvent()
 {
-    ChangeState("Idle");
+    if (false == IsPlayerDeath_)
+    {
+        ChangeState("Idle");
+    }
+
     CurStage_ = dynamic_cast<StageBase*>(GetLevel());
 }
 

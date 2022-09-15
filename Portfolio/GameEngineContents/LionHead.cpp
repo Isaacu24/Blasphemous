@@ -34,19 +34,19 @@ void LionHead::Start()
         MetaRenderer_->AnimationBindFrame("Lionhead_attack_anim",
                                           [&](const FrameAnimation_DESC& _Info)
                                           {
-                                              if (5 == _Info.CurFrame)
+                                              if (12 == _Info.CurFrame)
                                               {
                                                   AttackCollider_->On();
                                               }
 
-                                              else if (6 == _Info.CurFrame)
+                                              else if (13 == _Info.CurFrame)
                                               {
                                                   AttackCollider_->Off();
                                               }
                                           });
 
         MetaRenderer_->AnimationBindEnd("Lionhead_attack_anim",
-                                        [&](const FrameAnimation_DESC& _Info) { ChangeMonsterState("Track"); });
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeMonsterState("Idle"); });
     }
 
     {
@@ -104,13 +104,14 @@ void LionHead::Start()
     BodyCollider_->ChangeOrder(COLLISIONORDER::Monster);
     BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.99f, 0.7f, 0.6f, 0.5f});
     BodyCollider_->GetTransform().SetWorldScale({30.0f, 250.0f, 1.0f});
-    BodyCollider_->GetTransform().SetWorldMove({0, 100.f});
+    BodyCollider_->GetTransform().SetWorldMove({0, 120.f});
 
     AttackCollider_ = CreateComponent<GameEngineCollision>();
     AttackCollider_->ChangeOrder(COLLISIONORDER::Monster);
-    AttackCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{1.0f, 1.0f, 1.0f, 0.25f});
-    AttackCollider_->GetTransform().SetWorldScale({200.0f, 100.0f, 1.0f});
-    AttackCollider_->GetTransform().SetWorldMove({0, -100.f});
+    AttackCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{1.0f, 0.0f, 0.0f, 0.25f});
+    AttackCollider_->GetTransform().SetWorldScale({250.0f, 100.0f, 1.0f});
+    AttackCollider_->GetTransform().SetWorldMove({150.f, 0.f});
+    AttackCollider_->Off();
 
     BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
     BloodEffect_->GetRenderer()->Off();
@@ -139,7 +140,6 @@ void LionHead::Start()
 
     SetSpeed(50.f);
     SetTear(300);
-
     SetCrossroad(300.f);
 
     PatrolStart_ = true;
@@ -163,29 +163,11 @@ void LionHead::Update(float _DeltaTime)
 
 void LionHead::End() {}
 
-void LionHead::IdleStart(const StateInfo& _Info)
-{
-    MetaRenderer_->ChangeMetaAnimation("Lionhead_idle_anim");
-    RestTime_ = 0.f;
-}
+void LionHead::IdleStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("Lionhead_idle_anim"); }
 
 void LionHead::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    if ("Track" == _Info.PrevState)
-    {
-        RestTime_ += _DeltaTime;
-
-        if (1.5f <= RestTime_)
-        {
-            IsRest_ = true;
-            State_.ChangeState("Track");
-        }
-
-        return;
-    }
-
-    if (false
-        == LeftObstacleCheck(GetTransform().GetWorldPosition().x - 50, -(GetTransform().GetWorldPosition().y - 10)))
+    if (1.f >= _Info.StateTime)
     {
         return;
     }
@@ -196,28 +178,39 @@ void LionHead::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
     {
         State_.ChangeState("Track");
     }
+
+    else if (StartPos_.x > GetTransform().GetWorldPosition().x)
+    {
+        State_.ChangeState("Return");
+    }
 }
 
 void LionHead::IdleEnd(const StateInfo& _Info) {}
 
+
 void LionHead::ReturnStart(const StateInfo& _Info)
 {
-    MetaRenderer_->ChangeMetaAnimation("Lionhead_walk_backward_anim");
+    MetaRenderer_->ChangeMetaAnimation("Lionhead_idle_anim");
+    DetectCollider_->GetTransform().SetWorldScale({500.0f, 250.0f, 1.0f});
 }
 
 void LionHead::ReturnUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    GetTransform().SetWorldMove(float4::RIGHT * Speed_ * _DeltaTime);
-
-    if (StartPos_.x < GetTransform().GetWorldPosition().x)
-    {
-        State_.ChangeState("Idle");
-    }
-
-    if (false
-        == LeftObstacleCheck(GetTransform().GetWorldPosition().x - 300, -(GetTransform().GetWorldPosition().y - 10)))
+    if (1.5f >= _Info.StateTime)
     {
         return;
+    }
+
+    else
+    {
+        MetaRenderer_->ChangeMetaAnimation("Lionhead_walk_backward_anim");
+    }
+
+    GetTransform().SetWorldMove(float4::RIGHT * Speed_ * _DeltaTime);
+
+    if (StartPos_.x <= GetTransform().GetWorldPosition().x)
+    {
+        State_.ChangeState("Idle");
     }
 
     if (true
@@ -231,12 +224,16 @@ void LionHead::ReturnUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 }
 
-void LionHead::ReturnEnd(const StateInfo& _Info) {}
+void LionHead::ReturnEnd(const StateInfo& _Info)
+{
+    DetectCollider_->GetTransform().SetWorldScale({1000.0f, 250.0f, 1.0f});
+}
+
 
 void LionHead::TrackStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("Lionhead_walk_anim");
-    DetectCollider_->GetTransform().SetWorldScale({2000.0f, 300.0f, 1.0f});
+    DetectCollider_->GetTransform().SetWorldScale({2000.0f, 250.0f, 1.0f});
 }
 
 void LionHead::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -249,14 +246,7 @@ void LionHead::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
 
     else
     {
-        if (true == IsRest_)
-        {
-            State_.ChangeState("Return");
-        }
-        else
-        {
-            State_.ChangeState("Idle");
-        }
+        State_.ChangeState("Return");
         return;
     }
 
@@ -267,14 +257,7 @@ void LionHead::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
             CollisionType::CT_OBB2D,
             std::bind(&LionHead::LookAtPlayer, this, std::placeholders::_1, std::placeholders::_2)))
     {
-        if (true == IsRest_)
-        {
-            State_.ChangeState("Return");
-        }
-        else
-        {
-            State_.ChangeState("Idle");
-        }
+        State_.ChangeState("Return");
         return;
     }
 
@@ -292,9 +275,8 @@ void LionHead::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
 void LionHead::TrackEnd(const StateInfo& _Info)
 {
     DetectCollider_->GetTransform().SetWorldScale({1000.0f, 250.0f, 1.0f});
-
-    IsRest_ = false;
 }
+
 
 void LionHead::AttackStart(const StateInfo& _Info)
 {

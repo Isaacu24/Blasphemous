@@ -2,7 +2,8 @@
 #include "PlayerUI.h"
 #include "LeftTopUI.h"
 
-PlayerUI::PlayerUI() { Flasks_.resize(3); }
+PlayerUI::PlayerUI() 
+{ }
 
 PlayerUI::~PlayerUI() {}
 
@@ -45,6 +46,8 @@ void PlayerUI::Start()
     MPBar_->GetTransform().SetWorldPosition({-442, 284, static_cast<int>(UIORDER::PlayerUI)});
     BarFrame_->GetTransform().SetWorldPosition({-600, 330, static_cast<int>(UIORDER::PlayerUIFrame)});
     TearFrame_->GetTransform().SetWorldPosition({500, 270, static_cast<int>(UIORDER::PlayerUIFrame)});
+
+    Flasks_.resize(3);
 
     for (size_t i = 0; i < 3; i++)
     {
@@ -94,6 +97,7 @@ void PlayerUI::Start()
         std::bind(&PlayerUI::BehindScreenEnd, this, std::placeholders::_1));
 
     ScreenState_.ChangeState("BehindScreen");
+
 }
 
 void PlayerUI::Update(float _DeltaTime)
@@ -208,6 +212,9 @@ void PlayerUI::PlayerDeathUpdate(float _DeltaTime, const StateInfo& _Info)
 
     else
     {
+        Penitent::GetMainPlayer()->Off();
+        GEngine::ChangeLevel(RespawnLevelName_);
+
         ScreenState_.ChangeState("BehindScreen");
     }
 

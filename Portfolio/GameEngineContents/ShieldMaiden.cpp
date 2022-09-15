@@ -55,6 +55,12 @@ void ShieldMaiden::Start()
                                               if (5 == _Info.CurFrame)
                                               {
                                                   AttackCollider_->On();
+
+                                                  if (true == Penitent::GetMainPlayer()->GetParryOn())
+                                                  {
+                                                      State_.ChangeState("ParryReaction");
+                                                      Penitent::GetMainPlayer()->ParrySuccess();
+                                                  }
                                               }
 
                                               else if (6 == _Info.CurFrame)
@@ -80,8 +86,22 @@ void ShieldMaiden::Start()
             Data);
 
         MetaRenderer_->AnimationBindEnd("shieldMaiden_parryReaction",
+                                        [&](const FrameAnimation_DESC& _Info)
+                                        { MetaRenderer_->ChangeMetaAnimation("shieldMaiden_parryReactionToIdle"); });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("shieldMaiden_parryReactionToIdle");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "shieldMaiden_parryReactionToIdle",
+            {"shieldMaiden_parryReactionToIdle.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.12f, true},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("shieldMaiden_parryReactionToIdle",
                                         [&](const FrameAnimation_DESC& _Info) { State_.ChangeState("Idle"); });
     }
+
 
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("shieldMaiden_stun");
@@ -207,15 +227,15 @@ void ShieldMaiden::Update(float _DeltaTime)
     IsGround_ = GroundCheck(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y));
     Gravity_->SetActive(!IsGround_);
 
-    if ("Death" != State_.GetCurStateStateName() && "Stun" != State_.GetCurStateStateName()
-        && "Execution" != State_.GetCurStateStateName())
+    if ("Death" != State_.GetCurStateStateName() && "Execution" != State_.GetCurStateStateName())
     {
-        DamageCheck();
-
         if (90 > GetHP())
         {
             State_.ChangeState("Stun");
+            return;
         }
+
+        DamageCheck();
     }
 }
 
@@ -228,7 +248,8 @@ void ShieldMaiden::DamageCheck()
         == BodyCollider_->IsCollision(
             CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
     {
-        IsHit_                                  = false;
+        IsHit_ = false;
+
         MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
     }
 
@@ -461,16 +482,7 @@ void ShieldMaiden::AttackStart(const StateInfo& _Info)
     MetaRenderer_->ChangeMetaAnimation("shieldMaiden_attack");
 }
 
-void ShieldMaiden::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
-{
-    if (true
-        == AttackCollider_->IsCollision(
-            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerParry, CollisionType::CT_OBB2D, nullptr))
-    {
-        State_.ChangeState("ParryReaction");
-        Penitent::GetMainPlayer()->ParrySuccess();
-    }
-}
+void ShieldMaiden::AttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void ShieldMaiden::AttackEnd(const StateInfo& _Info) { AttackCollider_->Off(); }
 
@@ -490,8 +502,9 @@ void ShieldMaiden::StunStart(const StateInfo& _Info)
     MetaRenderer_->ChangeMetaAnimation("shieldMaiden_stun");
     MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
 
+    BodyCollider_->ChangeOrder(COLLISIONORDER::MonsterBody);
+
     DetectCollider_->Off();
-    BodyCollider_->Off();
     AttackCollider_->Off();
 }
 
@@ -506,12 +519,11 @@ void ShieldMaiden::StunUpdate(float _DeltaTime, const StateInfo& _Info)
     if (5.f < _Info.StateTime)
     {
         DetectCollider_->On();
-        BodyCollider_->On();
         State_.ChangeState("Idle");
     }
 }
 
-void ShieldMaiden::StunEnd(const StateInfo& _Info) {}
+void ShieldMaiden::StunEnd(const StateInfo& _Info) { BodyCollider_->ChangeOrder(COLLISIONORDER::Monster); }
 
 
 void ShieldMaiden::ExecutionStart(const StateInfo& _Info)

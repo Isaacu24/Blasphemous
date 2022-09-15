@@ -179,7 +179,7 @@ void Stage01::LevelEndEvent()
             return;
         }
 
-        if (true == Penitent_->GetIsFallDeath())
+        if (true == Penitent_->GetIsPlayerDeath())
         {
             //마지막 도약 포지션을 기억한 후 해당 포지션에 길티 생성
             Guilt_->GetTransform().SetWorldPosition(

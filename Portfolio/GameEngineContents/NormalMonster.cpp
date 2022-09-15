@@ -4,7 +4,9 @@
 #include "MetaTextureRenderer.h"
 
 NormalMonster::NormalMonster()
-    : TrackDistance_(0.f)
+    : TrackLimit_(0.f)
+    , IsPlayerLeft_(false)
+    , IsPlayerRight_(false)
 {}
 
 NormalMonster::~NormalMonster() {}
@@ -69,8 +71,8 @@ bool NormalMonster::TrackPlayer(GameEngineCollision* _This, GameEngineCollision*
 {
     float Distance = abs(_This->GetTransform().GetWorldPosition().x - _Other->GetTransform().GetWorldPosition().x);
 
-    //추격 사정거리 이탈
-    if (TrackDistance_ > Distance)
+    //추격 최소 사정거리보다 작음 -> 추적하지 않음
+    if (TrackLimit_ > Distance)
     {
         IsPlayerLeft_  = false;
         IsPlayerRight_ = false;

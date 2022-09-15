@@ -77,7 +77,8 @@ void Stage10::SettingStage()
 
     PlayerRightPos_ = float4{3950, -682, PlayerZ};
     //PlayerLeftPos_  = float4{300, -682, PlayerZ};
-    PlayerLeftPos_  = float4{1900, -850, PlayerZ};
+    PlayerLeftPos_  = float4{2500, -682, PlayerZ};
+    //PlayerLeftPos_  = float4{1700, -850, PlayerZ};
 
     IsLeftExit_ = true;
 
@@ -93,7 +94,7 @@ void Stage10::SettingMonster()
     MonsterList_.push_back(CrosscrawlerClone);
 
     ShieldMaiden* Maiden = CreateActor<ShieldMaiden>();
-    Maiden->GetTransform().SetWorldPosition({1400, -682, MonsterZ});
+    Maiden->GetTransform().SetWorldPosition({1300, -682, MonsterZ});
     Maiden->SetGround(ColMap_);
     Maiden->SetSpeed(60.f);
     MonsterList_.push_back(Maiden);
@@ -364,7 +365,7 @@ void Stage10::LevelEndEvent()
             return;
         }
 
-        if (true == Penitent_->GetIsFallDeath())
+        if (true == Penitent_->GetIsPlayerDeath())
         {
             Guilt_->GetTransform().SetWorldPosition(
                 {Penitent_->GetLastJumpPosition().x, Penitent_->GetLastJumpPosition().y, ObjectZ});
