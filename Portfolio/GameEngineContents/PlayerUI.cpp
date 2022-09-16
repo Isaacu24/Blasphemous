@@ -2,10 +2,61 @@
 #include "PlayerUI.h"
 #include "LeftTopUI.h"
 
-PlayerUI::PlayerUI() 
-{ }
+PlayerUI::PlayerUI() {}
 
 PlayerUI::~PlayerUI() {}
+
+void PlayerUI::UIAllOn()
+{
+    HPBar_->On();
+    MPBar_->On();
+    BarFrame_->On();
+    TearFrame_->On();
+    ScreenRenderer_->On();
+    BackRenderer_->On();
+
+    for (size_t i = 0; i < TearRenderers_.size(); i++)
+    {
+        if (nullptr != TearRenderers_[i])
+        {
+            TearRenderers_[i]->On();
+        }
+    }
+
+    for (size_t i = 0; i < Flasks_.size(); i++)
+    {
+        if (nullptr != Flasks_[i])
+        {
+            Flasks_[i]->On();
+        }
+    }
+}
+void PlayerUI::UIAllOff()
+{
+    HPBar_->Off();
+    MPBar_->Off();
+    BarFrame_->Off();
+    Inventory_->Off();
+    TearFrame_->Off();
+    ScreenRenderer_->Off();
+    BackRenderer_->Off();
+
+    for (size_t i = 0; i < TearRenderers_.size(); i++)
+    {
+        if (nullptr != TearRenderers_[i])
+        {
+            TearRenderers_[i]->Off();
+        }
+    }
+
+    for (size_t i = 0; i < Flasks_.size(); i++)
+    {
+        if (nullptr != Flasks_[i])
+        {
+            Flasks_[i]->Off();
+        }
+    }
+}
 
 void PlayerUI::Start()
 {
@@ -97,12 +148,11 @@ void PlayerUI::Start()
         std::bind(&PlayerUI::BehindScreenEnd, this, std::placeholders::_1));
 
     ScreenState_.ChangeState("BehindScreen");
-
 }
 
 void PlayerUI::Update(float _DeltaTime)
-{ 
-    ScreenState_.Update(_DeltaTime); 
+{
+    ScreenState_.Update(_DeltaTime);
 
     Damage();
 }
@@ -111,10 +161,7 @@ void PlayerUI::End() {}
 
 void PlayerUI::LevelStartEvent() {}
 
-void PlayerUI::LevelEndEvent() 
-{ 
-    ScreenState_.ChangeState("BehindScreen"); 
-}
+void PlayerUI::LevelEndEvent() { ScreenState_.ChangeState("BehindScreen"); }
 
 
 void PlayerUI::SetTear(int _Value)

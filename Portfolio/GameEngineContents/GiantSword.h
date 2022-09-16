@@ -1,10 +1,7 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
 #include "BossMonster.h"
 
-class GiantSword
-    : public GameEngineActor
-    , public BossMonster
+class GiantSword : public BossMonster
 {
     friend class Pontiff;
 
@@ -59,5 +56,4 @@ private:
     GameEngineTextureRenderer* EyeRenderer_;   //´«
 
     inline void SetPontiff(Pontiff* _Pontiff) { Pontiff_ = _Pontiff; }
-
 };

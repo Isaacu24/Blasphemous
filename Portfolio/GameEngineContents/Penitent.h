@@ -85,10 +85,11 @@ public:
 
     inline void ParrySuccess() { IsParrySuccess_ = true; }
 
-    inline bool GetParryOn() 
-    { 
-        return ParryOn_; 
-    }
+    inline bool GetParryOn() { return ParryOn_; }
+
+    void BossKillEventOn();
+
+    void BossKillEventOff();
 
 protected:
     void Start() override;
@@ -305,4 +306,3 @@ private:
 
     bool ParryOn_;
 };
-

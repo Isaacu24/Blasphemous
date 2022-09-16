@@ -1,5 +1,4 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
 #include <GameEngineBase/GameEngineRandom.h>
 #include "BossMonster.h"
 
@@ -12,9 +11,7 @@ enum class SPELLTYPE
 };
 
 //첫 번째 교황
-class Pope
-    : public GameEngineActor
-    , public BossMonster
+class Pope : public BossMonster
 {
 public:
     Pope();
@@ -57,13 +54,13 @@ protected:
     void End() override;
 
     void CreateSpawner();
-    void DamageCheck() override; 
+    void DamageCheck() override;
 
 private:
     float4 TeleportPos_[4];
 
     SPELLTYPE SpellType_;
-        
+
     class MetaTextureRenderer* MetaFXSRenderer_;
     class SymbolEffect*        Symbol_;
 
@@ -81,5 +78,4 @@ private:
     bool IsVanishing_;
 
     int AppearPos_;
-    
 };

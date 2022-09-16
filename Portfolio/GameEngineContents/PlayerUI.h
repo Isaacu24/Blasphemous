@@ -40,6 +40,10 @@ public:
 
     inline void SetRespawnLevelName(const std::string& _Name) { RespawnLevelName_ = _Name; }
 
+    void UIAllOn();
+
+    void UIAllOff();
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;

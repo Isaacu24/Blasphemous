@@ -1106,7 +1106,6 @@ void Penitent::RespawnUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Penitent::RespawnEnd(const StateInfo& _Info) {}
 
-
 void Penitent::DeathStart(const StateInfo& _Info)
 {
     IsPlayerDeath_ = true;

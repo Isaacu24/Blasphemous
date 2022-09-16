@@ -191,7 +191,7 @@ void Pontiff::DamageCheck()
                                                        PlayerEffectZ});
         BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
 
-        MinusHP(5.f);
+        MinusHP(50.f);
         Face_->GetColorData().MulColor = float4{1.5f, 1.5f, 1.5f, 1.0f};
     }
 
@@ -466,7 +466,6 @@ SPELLTYPE Pontiff::RandomSpell()
     return Spell;
 }
 
-
 void Pontiff::CreateSpawner()
 {
     for (size_t i = 0; i < 6; i++)
@@ -598,6 +597,8 @@ void Pontiff::CloseIdleEnd(const StateInfo& _Info) { Face_->On(); }
 
 void Pontiff::DeathStart(const StateInfo& _Info)
 {
+    BossDeathEvent();
+
     AscensionSpeed_ = 100;
 
     Face_->ChangeFrameAnimation("pontiff_openedIdle_face_DEATH");
@@ -608,8 +609,6 @@ void Pontiff::DeathStart(const StateInfo& _Info)
     BossUI_->AllOff();
     BodyCollider_->Off();
     GiantSword_->Off();
-
-    Face_->GetColorData().MulColor = float4{1.f, 1.f, 1.f, 1.0f};
 
     PlatformSpawner_->SetSpawnerOrder(SpawnerOrder::Death);
 
@@ -627,6 +626,67 @@ void Pontiff::DeathStart(const StateInfo& _Info)
     Symbol_[1]->Death();
 }
 
-void Pontiff::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
+void Pontiff::DeathUpdate(float _DeltaTime, const StateInfo& _Info) 
+{
+    if (true == BossDeathEvent_)
+    {
+        float4 CamPos = GetLevel()->GetMainCamera()->GetTransform().GetWorldPosition();
+        Backgorund_->GetTransform().SetWorldPosition({CamPos.x, CamPos.y, -99});
+
+        float4 FacePos = Face_->GetTransform().GetWorldPosition();
+        Face_->GetTransform().SetWorldPosition({FacePos.x, FacePos.y, -150});
+
+        EventTime_ += _DeltaTime;
+
+        if (0.75f <= EventTime_ && false == DeathSlow_)
+        {
+            GameEngineTime::GetInst()->SetTimeScale(Face_->GetOrder(), 1);
+            DeathSlow_ = true;
+        }
+
+        if (2.f <= EventTime_)
+        {
+            EventTime_ = 0.f;
+            Backgorund_->Death();
+            Backgorund_ = nullptr;
+
+            Face_->GetTransform().SetWorldPosition({FacePos.x, FacePos.y, BeforeLayer1Z - 1});
+            Penitent::GetMainPlayer()->BossKillEventOff();
+
+            if (nullptr != Face_)
+            {
+                Face_->GetColorData().MulColor  = float4::ONE;
+                Face_->GetColorData().PlusColor = float4::ZERO;
+            }
+
+            BossDeathEvent_ = false;
+        }
+    }
+}
 
 void Pontiff::DeathEnd(const StateInfo& _Info) {}
+
+
+void Pontiff::BossDeathEvent()
+{
+    Backgorund_ = CreateComponent<GameEngineTextureRenderer>();
+    Backgorund_->SetTexture("BlackBackground.png");
+    Backgorund_->ScaleToTexture();
+
+    float4 CamPos = GetLevel()->GetMainCamera()->GetTransform().GetWorldPosition();
+    Backgorund_->GetTransform().SetWorldPosition({CamPos.x, CamPos.y, -99});
+
+    float4 FacePos = Face_->GetTransform().GetWorldPosition();
+    Face_->GetTransform().SetWorldPosition({FacePos.x, FacePos.y, -150});
+
+    Penitent::GetMainPlayer()->BossKillEventOn();
+
+    if (nullptr != Face_)
+    {
+        Face_->GetColorData().MulColor  = float4::ZERO;
+        Face_->GetColorData().PlusColor = float4{0.57f, 0.14f, 0.21f, 1.0f};
+        GameEngineTime::GetInst()->SetTimeScale(Face_->GetOrder(), 0.5f);
+    }
+
+    BossDeathEvent_ = true;
+}

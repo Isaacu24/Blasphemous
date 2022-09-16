@@ -36,6 +36,48 @@ Penitent::Penitent()
 
 Penitent::~Penitent() {}
 
+void Penitent::BossKillEventOn()
+{
+    float4 PlayerPos = GetTransform().GetWorldPosition();
+    GetTransform().SetWorldPosition({PlayerPos.x, PlayerPos.y, -150});
+
+    MetaRenderer_->GetColorData().MulColor  = float4::ZERO;
+    MetaRenderer_->GetColorData().PlusColor = float4{0.57f, 0.14f, 0.21f, 1.0f};
+
+    AttackEffect_->Renderer_->GetColorData().MulColor  = float4::ZERO;
+    AttackEffect_->Renderer_->GetColorData().PlusColor = float4{0.57f, 0.14f, 0.21f, 1.0f};
+
+    MoveEffect_->Renderer_->GetColorData().MulColor  = float4::ZERO;
+    MoveEffect_->Renderer_->GetColorData().PlusColor = float4{0.57f, 0.14f, 0.21f, 1.0f};
+
+    GameEngineTime::GetInst()->SetTimeScale(GetOrder(), 0.5f);
+    GameEngineTime::GetInst()->SetTimeScale(MetaRenderer_->GetOrder(), 0.5f);
+
+    PlayerUI_->UIAllOff();
+}
+
+void Penitent::BossKillEventOff()
+{
+    float4 PlayerPos = GetTransform().GetWorldPosition();
+    GetTransform().SetWorldPosition({PlayerPos.x, PlayerPos.y, PlayerZ});
+
+    MetaRenderer_->GetColorData().MulColor  = float4::ONE;
+    MetaRenderer_->GetColorData().PlusColor = float4::ZERO;
+
+    AttackEffect_->Renderer_->GetColorData().MulColor  = float4::ONE;
+    AttackEffect_->Renderer_->GetColorData().PlusColor = float4::ZERO;
+
+    MoveEffect_->Renderer_->GetColorData().MulColor  = float4::ONE;
+    MoveEffect_->Renderer_->GetColorData().PlusColor = float4::ZERO;
+
+    GameEngineTime::GetInst()->SetTimeScale(GetOrder(), 1.0f);
+    GameEngineTime::GetInst()->SetTimeScale(MetaRenderer_->GetOrder(), 1.0f);
+
+    PlayerUI_->UIAllOn();
+
+    PlayerUI_->ScreenState_.ChangeState("BossDeath");
+}
+
 void Penitent::Start()
 {
     if (false == GameEngineInput::GetInst()->IsButton("PenitentA"))

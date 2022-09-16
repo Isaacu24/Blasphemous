@@ -239,6 +239,8 @@ void ElderBrother::Start()
 
 void ElderBrother::Update(float _DeltaTime)
 {
+    BossMonster::Update(_DeltaTime);
+
     State_.Update(_DeltaTime);
 
     if (true == GroundCheck(GetTransform().GetWorldPosition().x, -(GetTransform().GetWorldPosition().y + 59.f)))
@@ -265,7 +267,8 @@ void ElderBrother::DamageCheck()
         == BodyCollider_->IsCollision(
             CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
     {
-        IsHit_                             = false;
+        IsHit_ = false;
+
         Renderer_->GetColorData().MulColor = float4{1.f, 1.f, 1.f, 1.0f};
     }
 
@@ -278,7 +281,8 @@ void ElderBrother::DamageCheck()
         == BodyCollider_->IsCollision(
             CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
     {
-        IsHit_                             = true;
+        IsHit_ = true;
+
         Renderer_->GetColorData().MulColor = float4{1.5f, 1.5f, 1.5f, 1.0f};
 
         BloodEffect_->GetRenderer()->On();
@@ -529,7 +533,8 @@ void ElderBrother::DeathStart(const StateInfo& _Info)
 
     Renderer_->ChangeFrameAnimation("elderBrother_death");
 
-    Renderer_->GetColorData().MulColor = float4{1.f, 1.f, 1.f, 1.0f};
+    BossDeathEvent();
+
 }
 
 void ElderBrother::DeathUpdate(float _DeltaTime, const StateInfo& _Info) { Gravity_->SetActive(!IsGround_); }

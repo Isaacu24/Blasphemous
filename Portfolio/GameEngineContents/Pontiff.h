@@ -13,9 +13,7 @@ enum class SPELLTYPE
 };
 
 //두번째 교황
-class Pontiff
-    : public GameEngineActor
-    , public BossMonster
+class Pontiff : public BossMonster
 {
     friend class GiantSword;
 
@@ -66,7 +64,9 @@ public:
     void CreateSpawner();
 
     SPELLTYPE RandomSpell();
-    
+
+    void BossDeathEvent() override;
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
@@ -111,4 +111,3 @@ private:
 
     int SpellCount_;
 };
-

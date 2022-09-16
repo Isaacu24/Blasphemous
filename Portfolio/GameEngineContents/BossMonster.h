@@ -1,9 +1,13 @@
 #pragma once
+#include <GameEngineCore/GameEngineActor.h>
 #include "MonsterBase.h"
 #include "BossUI.h"
 
 class BossUI;
-class BossMonster : public MonsterBase
+
+class BossMonster
+    : public GameEngineActor
+    , public MonsterBase
 {
 public:
     BossMonster();
@@ -19,14 +23,30 @@ public:
     inline bool GetBossEvent() { return BossEvent_; }
 
     inline bool GetLose() { return IsLose_; }
+
 protected:
+    void Start() = 0;
+    void Update(float _DeltaTime) override;
+    void End() override;
+
     BossUI* BossUI_;
-    bool BossEvent_;
+    bool    BossEvent_;
+
+    GameEngineTextureRenderer* Backgorund_;
 
     void DamageCheck(float _Damage) override;
 
-    void DamageCheck(float _Damage, std::function<void>()) override;
+    // void DamageCheck(float _Damage, std::function<void>()) override;
+
+    virtual void BossDeathEvent();
 
     bool IsLose_;
+
+    bool BossDeathEvent_;
+
+    float EventTime_;
+
+    bool DeathSlow_;
+
 private:
 };

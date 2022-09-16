@@ -1,5 +1,4 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
 #include "BossMonster.h"
 #include "AttackCorpseEffecter.h"
 #include "JumpCorpseEffecter.h"
@@ -20,9 +19,7 @@ enum class APPEARFLOW
 class GravityActor;
 class JumpCorpseEffecter;
 class AttackCorpseEffecter;
-class ElderBrother
-    : public GameEngineActor
-    , public BossMonster
+class ElderBrother : public BossMonster
 {
 public:
     ElderBrother();
