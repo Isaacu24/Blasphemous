@@ -158,7 +158,11 @@ void ElderBrother::Start()
                                       }
                                   });
 
-    Renderer_->AnimationBindEnd("elderBrother_death", [&](const FrameAnimation_DESC& _Info) { DeathEventOn_ = true; });
+    Renderer_->AnimationBindEnd("elderBrother_death", [&](const FrameAnimation_DESC& _Info) 
+        {
+            Penitent::GetMainPlayer()->BossDeathUIOn(1);
+            DeathEventOn_ = true; 
+        });
 
     Renderer_->GetTransform().SetWorldScale({1100, 600});
     Renderer_->SetPivot(PIVOTMODE::BOT);

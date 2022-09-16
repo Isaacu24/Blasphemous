@@ -68,7 +68,10 @@ void Pontiff::Start()
                                   }
                               });
 
-    Face_->AnimationBindEnd("pontiff_openedIdle_face_DEATH", [&](const FrameAnimation_DESC& _Info) { IsLose_ = true; });
+    Face_->AnimationBindEnd("pontiff_openedIdle_face_DEATH", [&](const FrameAnimation_DESC& _Info) 
+        {
+            IsLose_ = true; 
+        });
 
     Face_->GetTransform().SetLocalScale({950, 1300});
     Face_->GetTransform().SetLocalMove({0, 50, -1});
@@ -664,7 +667,8 @@ void Pontiff::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 }
 
-void Pontiff::DeathEnd(const StateInfo& _Info) {}
+void Pontiff::DeathEnd(const StateInfo& _Info) 
+{  }
 
 
 void Pontiff::BossDeathEvent()

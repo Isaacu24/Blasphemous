@@ -4,26 +4,26 @@
 #include "MetaTextureRenderer.h"
 
 NormalMonster::NormalMonster()
-    : TrackLimit_(0.f)
+    : TrackMinLimit_(0.f)
     , IsPlayerLeft_(false)
     , IsPlayerRight_(false)
 {}
 
 NormalMonster::~NormalMonster() {}
 
-void NormalMonster::Start() 
-{ 
+void NormalMonster::Start()
+{
     ExecutionCollider_ = CreateComponent<GameEngineCollision>();
-    ExecutionCollider_->GetTransform().SetWorldScale({40.f, 80.f, 1.f});
-    ExecutionCollider_->ChangeOrder(COLLISIONORDER::Player);
-    ExecutionCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.0f, 0.0f, 1.0f, 0.5f});
-    ExecutionCollider_->GetTransform().SetWorldMove({0, 30});
+    ExecutionCollider_->GetTransform().SetWorldScale({10.f, 50.f, 1.f});
+    ExecutionCollider_->ChangeOrder(COLLISIONORDER::MonsterExecution);
+    ExecutionCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.0f, 0.0f, 0.0f, 0.5f});
+    ExecutionCollider_->GetTransform().SetWorldMove({-15.f, 25.f});
+    ExecutionCollider_->Off();
 }
 
 void NormalMonster::Update(float _DeltaTime) {}
 
 void NormalMonster::End() {}
-
 
 
 bool NormalMonster::LeftObstacleCheck(float _X, float _Y)
@@ -81,7 +81,7 @@ bool NormalMonster::TrackPlayer(GameEngineCollision* _This, GameEngineCollision*
     float Distance = abs(_This->GetTransform().GetWorldPosition().x - _Other->GetTransform().GetWorldPosition().x);
 
     //추격 최소 사정거리보다 작음 -> 추적하지 않음
-    if (TrackLimit_ > Distance)
+    if (TrackMinLimit_ > Distance)
     {
         IsPlayerLeft_  = false;
         IsPlayerRight_ = false;
@@ -97,8 +97,6 @@ bool NormalMonster::TrackPlayer(GameEngineCollision* _This, GameEngineCollision*
 
 bool NormalMonster::DetectPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-    float Distance = abs(_This->GetTransform().GetWorldPosition().x - _Other->GetTransform().GetWorldPosition().x);
-
     if (_This->GetTransform().GetWorldPosition().x < _Other->GetTransform().GetWorldPosition().x)
     {
         IsPlayerRight_ = true;
@@ -130,8 +128,22 @@ bool NormalMonster::CrossroadCheck(GameEngineCollision* _This, GameEngineCollisi
 }
 
 
-bool NormalMonster::ExecutionCheck(GameEngineCollision* _This, GameEngineCollision* _Other) 
+bool NormalMonster::ExecutionCheck()
 {
+    bool IsCollide = ExecutionCollider_->IsCollision(
+        CollisionType::CT_OBB2D,
+        COLLISIONORDER::Player,
+        CollisionType::CT_OBB2D,
+        std::bind(&NormalMonster::DetectPlayer, this, std::placeholders::_1, std::placeholders::_2));
+
+    if (true == IsCollide)
+    {
+        if (0 < Dir_.x && IsPlayerRight_ || 0 > Dir_.x && IsPlayerLeft_)
+        {
+            return true;
+        }
+    }
+
     return false;
 }
 
@@ -191,4 +203,3 @@ void NormalMonster::DamageCheck(float _Damage, float _Offset)
         State_.ChangeState("Death");
     }
 }
-

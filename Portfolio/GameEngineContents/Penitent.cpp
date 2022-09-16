@@ -74,8 +74,20 @@ void Penitent::BossKillEventOff()
     GameEngineTime::GetInst()->SetTimeScale(MetaRenderer_->GetOrder(), 1.0f);
 
     PlayerUI_->UIAllOn();
+}
 
-    PlayerUI_->ScreenState_.ChangeState("BossDeath");
+void Penitent::BossDeathUIOn(unsigned int _Key) 
+{
+    //마지막 보스 몬스터
+    if (0 == _Key)
+    {
+        PlayerUI_->ScreenState_.ChangeState("FinalBossDeath");
+    }
+
+    else
+    {
+        PlayerUI_->ScreenState_.ChangeState("BossDeath");
+    }
 }
 
 void Penitent::Start()
@@ -1152,7 +1164,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "shieldMaiden_execution",
-            {"shieldMaiden_execution.png", 0, static_cast<unsigned int>(Data.size() - 5), 0.08f, true},
+            {"shieldMaiden_execution.png", 0, static_cast<unsigned int>(Data.size() - 15), 0.08f, true},
             Data);
 
 

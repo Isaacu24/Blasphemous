@@ -18,6 +18,8 @@ ShieldMaiden::~ShieldMaiden() {}
 
 void ShieldMaiden::Start()
 {
+    NormalMonster::Start();
+
     GetTransform().SetWorldScale({2, 2, 1});
 
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
@@ -144,7 +146,7 @@ void ShieldMaiden::Start()
     DetectCollider_ = CreateComponent<GameEngineCollision>();
     DetectCollider_->ChangeOrder(COLLISIONORDER::MonsterDetect);
     DetectCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.98f, 0.52f, 0.48f, 0.25f});
-    DetectCollider_->GetTransform().SetWorldScale({400.0f, 200.0f, 1.0f});
+    DetectCollider_->GetTransform().SetWorldScale({300.0f, 200.0f, 1.0f});
     DetectCollider_->GetTransform().SetWorldMove({0, 100.f});
 
     BodyCollider_ = CreateComponent<GameEngineCollision>();
@@ -504,13 +506,15 @@ void ShieldMaiden::StunStart(const StateInfo& _Info)
 
     BodyCollider_->ChangeOrder(COLLISIONORDER::MonsterBody);
 
+    ExecutionCollider_->On();
+
     DetectCollider_->Off();
     AttackCollider_->Off();
 }
 
 void ShieldMaiden::StunUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    if (true == GameEngineInput::GetInst()->IsDownKey("FreeCamera"))
+    if (true == GameEngineInput::GetInst()->IsDownKey("FreeCamera") && true == ExecutionCheck())
     {
         State_.ChangeState("Execution");
         return;
@@ -519,6 +523,8 @@ void ShieldMaiden::StunUpdate(float _DeltaTime, const StateInfo& _Info)
     if (5.f < _Info.StateTime)
     {
         DetectCollider_->On();
+        ExecutionCollider_->Off();
+
         State_.ChangeState("Idle");
     }
 }

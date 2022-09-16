@@ -75,7 +75,12 @@ void Pope::Start()
         MetaRenderer_->CreateMetaAnimation(
             "pope_death", {"pope_death.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false}, Data);
 
-        MetaRenderer_->AnimationBindEnd("pope_death", [&](const FrameAnimation_DESC& _Info) { Death(); });
+        MetaRenderer_->AnimationBindEnd("pope_death",
+                                        [&](const FrameAnimation_DESC& _Info)
+                                        {
+                                            Penitent::GetMainPlayer()->BossDeathUIOn(0);
+                                            Death();
+                                        });
     }
 
     MetaRenderer_->SetPivot(PIVOTMODE::METABOT);
@@ -272,10 +277,7 @@ void Pope::AppearEnd(const StateInfo& _Info)
     BossUI_->SetFontPosition({470, 590, -100.f});
 }
 
-void Pope::VanishingStart(const StateInfo& _Info) 
-{ 
-    MetaRenderer_->ChangeMetaAnimation("pope_vanishing"); 
-}
+void Pope::VanishingStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("pope_vanishing"); }
 
 void Pope::VanishingUpdate(float _DeltaTime, const StateInfo& _Info) {}
 

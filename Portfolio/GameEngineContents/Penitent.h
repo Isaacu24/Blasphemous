@@ -91,6 +91,8 @@ public:
 
     void BossKillEventOff();
 
+    void BossDeathUIOn(unsigned int _Key);
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
@@ -218,6 +220,7 @@ protected:
     void RespawnStart(const StateInfo& _Info);
     void RespawnUpdate(float _DeltaTime, const StateInfo& _Info);
     void RespawnEnd(const StateInfo& _Info);
+
 
     //피격 함수
     bool KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other);

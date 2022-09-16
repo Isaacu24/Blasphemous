@@ -9,6 +9,7 @@ Crosscrawler::~Crosscrawler() {}
 
 void Crosscrawler::Start()
 {
+    NormalMonster::Start();
     GetTransform().SetWorldScale({2, 2, 1});
 
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
@@ -146,7 +147,7 @@ void Crosscrawler::Start()
     DetectCollider_ = CreateComponent<GameEngineCollision>();
     DetectCollider_->ChangeOrder(COLLISIONORDER::MonsterDetect);
     DetectCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 0.0f, 1.0f, 0.5f});
-    DetectCollider_->GetTransform().SetWorldScale({500.0f, 200.0f, 1.0f});
+    DetectCollider_->GetTransform().SetWorldScale({600.0f, 200.0f, 1.0f});
     DetectCollider_->GetTransform().SetWorldMove({0, 100.f});
 
     BodyCollider_ = CreateComponent<GameEngineCollision>();
@@ -232,11 +233,11 @@ void Crosscrawler::Update(float _DeltaTime)
 
     if ("Death" != State_.GetCurStateStateName() && "Execution" != State_.GetCurStateStateName())
     {
-        //if (90 > GetHP())
-        //{
-        //    State_.ChangeState("Stun");
-        //    return;
-        //}
+        if (90 > GetHP())
+        {
+            State_.ChangeState("Stun");
+            return;
+        }
 
         NormalMonster::DamageCheck(10.f, 30.f);
     }
@@ -355,11 +356,13 @@ void Crosscrawler::PatrolTurnEnd(const StateInfo& _Info)
 {
     if (true == PatrolStart_ && false == PatrolEnd_)
     {
+        Dir_ = float4::RIGHT;
         GetTransform().PixLocalPositiveX();
     }
 
     else if (false == PatrolStart_ && true == PatrolEnd_)
     {
+        Dir_ = float4::LEFT;
         GetTransform().PixLocalNegativeX();
     }
 }
@@ -376,11 +379,13 @@ void Crosscrawler::TrackTurnEnd(const StateInfo& _Info)
 {
     if (true == IsPlayerRight_)
     {
+        Dir_ = float4::RIGHT;
         GetTransform().PixLocalPositiveX();
     }
 
     else if (true == IsPlayerLeft_)
     {
+        Dir_ = float4::LEFT;
         GetTransform().PixLocalNegativeX();
     }
 }
@@ -472,13 +477,15 @@ void Crosscrawler::StunStart(const StateInfo& _Info)
 
     BodyCollider_->ChangeOrder(COLLISIONORDER::MonsterBody);
 
+    ExecutionCollider_->On();
+
     DetectCollider_->Off();
     AttackCollider_->Off();
 }
 
 void Crosscrawler::StunUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    if (true == GameEngineInput::GetInst()->IsDownKey("FreeCamera"))
+    if (true == GameEngineInput::GetInst()->IsDownKey("FreeCamera") && true == ExecutionCheck())
     {
         State_.ChangeState("Execution");
         return;
@@ -487,6 +494,8 @@ void Crosscrawler::StunUpdate(float _DeltaTime, const StateInfo& _Info)
     if (5.f < _Info.StateTime)
     {
         DetectCollider_->On();
+        ExecutionCollider_->Off();
+
         State_.ChangeState("Idle");
     }
 }
