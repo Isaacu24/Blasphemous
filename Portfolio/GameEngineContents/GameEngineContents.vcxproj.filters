@@ -272,6 +272,9 @@
     <ClInclude Include="Merchant.h">
       <Filter>Actor\NPC</Filter>
     </ClInclude>
+    <ClInclude Include="Milestone.h">
+      <Filter>Actor\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -547,6 +550,9 @@
     </ClCompile>
     <ClCompile Include="Merchant.cpp">
       <Filter>Actor\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="Milestone.cpp">
+      <Filter>Actor\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

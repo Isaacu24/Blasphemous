@@ -70,9 +70,12 @@ enum class COLLISIONORDER
     PlayerSkill,
     PlayerSkill1,
     PlayerSkill2,
+    NPC,
+    NPCExecution,
     MonsterDetect,  //몬스터 감지 영역
     Monster,
     MonsterBody,
+    MonsterExecution,
     MonsterAttack,
     MonsterAttack1,
     MonsterShield,

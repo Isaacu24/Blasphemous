@@ -36,12 +36,18 @@ public:
     inline void SetOneWayShake(bool _Value) { IsOneWayShaking_ = _Value; }
 
     inline void SetForceX(float _Value) { ForceX_ = _Value; }
-    
+
     inline void SetForceY(float _Value) { ForceY_ = _Value; }
 
     inline void SetShakeCount(int _Value) { ShakeCount_ = _Value; }
 
     inline void SetMaxShakeCount(int _Value) { MaxShakeCount_ = _Value; }
+
+    inline void DestroyGuilt() { Guilt_ = nullptr; }
+
+    inline void SetLoadingEnd(bool _Value) { IsLoadingEnd_ = _Value; }
+
+    inline bool GetLoadingEnd() { return IsLoadingEnd_; }
 
 protected:
     void Start() override;
@@ -99,6 +105,7 @@ protected:
     bool IsShaking_;
     bool IsOneWayShaking_;
 
+    bool IsLoadingEnd_;
 
 private:
 };

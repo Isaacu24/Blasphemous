@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "PenitentGuilt.h"
+#include "MessageUI.h"
 
 PenitentGuilt::PenitentGuilt() {}
 
@@ -16,7 +17,11 @@ void PenitentGuilt::Start()
     Renderer_->CreateFrameAnimationCutTexture("guiltDropVanish", {"guiltDropVanish.png", 0, 7, 0.07f, true});
 
     Renderer_->AnimationBindEnd("guiltDropVanish",
-                                [&](const FrameAnimation_DESC&) { Death();
+                                [&](const FrameAnimation_DESC&)
+                                {
+                                    StageBase* CurStage = dynamic_cast<StageBase*>(GetLevel());
+                                    CurStage->DestroyGuilt();
+                                    Death();
                                 });
 
     Renderer_->ChangeFrameAnimation("guiltSystem_blinkFxs");
@@ -32,12 +37,12 @@ void PenitentGuilt::Start()
     UIRenderer_ = CreateComponent<GameEngineTextureRenderer>();
     UIRenderer_->SetTexture("CT_Y.png");
     UIRenderer_->GetTransform().SetWorldScale({30, 30, 1});
-    UIRenderer_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(ACTORORDER::Object)});
+    UIRenderer_->GetTransform().SetWorldPosition({0, 0, ObjectZ});
     UIRenderer_->GetTransform().SetWorldMove({0, 220});
     UIRenderer_->Off();
 }
 
-void PenitentGuilt::Update(float _DeltaTime) 
+void PenitentGuilt::Update(float _DeltaTime)
 {
     if (true == Interaction_)
     {
@@ -55,6 +60,14 @@ void PenitentGuilt::Update(float _DeltaTime)
             UIRenderer_->Off();
             Renderer_->ChangeFrameAnimation("guiltDropVanish");
 
+            MessageUI* UI = GetLevel()->CreateActor<MessageUI>();
+            UI->GetTransform().SetWorldMove({0, 500});
+            UI->GetUIRenderer()->GetColorData().MulColor.a = 1.0f;
+            UI->SetFontSize(35);
+            UI->SetFontPosition({640, 180});
+            UI->CreateLine("Guilt has been restored.");
+            UI->SpeechStart();
+
             Interaction_ = true;
         }
     }
@@ -66,4 +79,3 @@ void PenitentGuilt::Update(float _DeltaTime)
 }
 
 void PenitentGuilt::End() {}
-

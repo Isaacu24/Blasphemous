@@ -62,8 +62,12 @@
 #include "CutScenePlayer.h"
 #include "GlobalValue.h"
 #include "LoadingActor.h"
+#include "StageBase.h"
 
 #include "Penitent.h"
+
+#include "MessageUI.h"
+#include "Milestone.h"
 
 
 namespace

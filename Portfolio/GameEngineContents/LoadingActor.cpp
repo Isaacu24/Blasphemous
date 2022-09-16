@@ -68,6 +68,10 @@ void LoadingActor::Entrance(float _DeltaTime)
 		if (0.f >= Alpha_)
 		{
 			IsEntrance_ = false;
+
+			StageBase* CurStage = dynamic_cast<StageBase*>(GetLevel());
+            CurStage->SetLoadingEnd(true);
+
 			Off();
 		}
 	}
@@ -75,6 +79,9 @@ void LoadingActor::Entrance(float _DeltaTime)
 
 void LoadingActor::Exit(const std::string& _Level)
 {
+    StageBase* CurStage = dynamic_cast<StageBase*>(GetLevel());
+    CurStage->SetLoadingEnd(false);
+
 	IsExit_ = true;
 	NextLevel_ = _Level;
 }

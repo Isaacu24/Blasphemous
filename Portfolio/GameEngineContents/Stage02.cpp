@@ -286,6 +286,7 @@ void Stage02::LevelEndEvent()
 
         else
         {
+            Guilt_->GetTransform().SetWorldPosition(Penitent_->GetLastJumpPosition());
             return;
         }
 

@@ -2,7 +2,6 @@
 #include "Stage01.h"
 #include <GameEngineCore/GameEngineTexture.h>
 #include "Penitent.h"
-#include "MessageUI.h"
 
 Stage01::Stage01() {}
 
@@ -123,7 +122,11 @@ void Stage01::LevelStartEvent()
     LoadingActor_ = CreateActor<LoadingActor>();
     LoadingActor_->IsEntrance(true);
 
-    CreateActor<MessageUI>();
+    MessageUI* UI = CreateActor<MessageUI>();
+    UI->CreateLine("abscdefghdfdfdfd\nappleappleappleapple");
+    UI->CreateLine("appleappleappleapple\nappleappleappleapple");
+    UI->CreateLine("BlasphemousBlasphemous\nappleappleappleapple");
+    UI->SpeechStart();
 
     if (nullptr == Penitent::GetMainPlayer())
     {
@@ -179,6 +182,7 @@ void Stage01::LevelEndEvent()
 
         else
         {
+            Guilt_->GetTransform().SetWorldPosition(Penitent_->GetLastJumpPosition());
             return;
         }
 

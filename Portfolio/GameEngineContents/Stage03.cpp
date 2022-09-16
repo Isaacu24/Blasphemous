@@ -148,6 +148,20 @@ void Stage03::Update(float _DeltaTime)
         LoadingActor_->IsEntrance(false);
         LoadingActor_->Exit("Stage04");
     }
+
+    if (true == GetLoadingEnd())
+    {
+        SetLoadingEnd(false);
+
+        if (nullptr != GEngine::GetPrevLevel())
+        {
+            if (false == Penitent_->IsUpdate())
+            {
+                Penitent_->On();
+                Penitent_->ChangeState("Respawn");
+            }
+        }
+    }
 }
 
 
@@ -184,13 +198,6 @@ void Stage03::LevelStartEvent()
         }
 
         Penitent_->SetLevelOverOn();
-
-        if (false == Penitent_->IsUpdate())
-        {
-            Penitent_->On();
-            Penitent_->ChangeState("Respawn");
-        }
-
         Penitent_->GetTransform().SetWorldPosition({1800, -1067, PlayerZ});
     }
 
@@ -219,6 +226,7 @@ void Stage03::LevelEndEvent()
 
         else
         {
+            Guilt_->GetTransform().SetWorldPosition(Penitent_->GetLastJumpPosition());
             return;
         }
 

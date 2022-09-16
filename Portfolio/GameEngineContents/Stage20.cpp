@@ -184,6 +184,7 @@ void Stage20::LevelStartEvent()
         ReturnKey_->Off();
         CurrentFlow_ = STAGEFLOW::BOSSDEAD;
     }
+
 }
 
 void Stage20::LevelEndEvent()
@@ -203,6 +204,7 @@ void Stage20::LevelEndEvent()
 
         else
         {
+            Guilt_->GetTransform().SetWorldPosition(Penitent_->GetLastJumpPosition());
             return;
         }
 

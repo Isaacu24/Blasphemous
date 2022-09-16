@@ -15,6 +15,7 @@ public:
 
 	static GameEngineLevel* GetCurrentLevel();
 
+	static GameEngineLevel* GetPrevLevel();
 
 protected:
 

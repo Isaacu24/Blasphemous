@@ -11,11 +11,20 @@ NormalMonster::NormalMonster()
 
 NormalMonster::~NormalMonster() {}
 
-void NormalMonster::Start() {}
+void NormalMonster::Start() 
+{ 
+    ExecutionCollider_ = CreateComponent<GameEngineCollision>();
+    ExecutionCollider_->GetTransform().SetWorldScale({40.f, 80.f, 1.f});
+    ExecutionCollider_->ChangeOrder(COLLISIONORDER::Player);
+    ExecutionCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.0f, 0.0f, 1.0f, 0.5f});
+    ExecutionCollider_->GetTransform().SetWorldMove({0, 30});
+}
 
 void NormalMonster::Update(float _DeltaTime) {}
 
 void NormalMonster::End() {}
+
+
 
 bool NormalMonster::LeftObstacleCheck(float _X, float _Y)
 {
@@ -121,6 +130,12 @@ bool NormalMonster::CrossroadCheck(GameEngineCollision* _This, GameEngineCollisi
 }
 
 
+bool NormalMonster::ExecutionCheck(GameEngineCollision* _This, GameEngineCollision* _Other) 
+{
+    return false;
+}
+
+
 void NormalMonster::DamageCheck(float _Damage, float _Offset)
 {
     //스킬 임시 제외
@@ -176,3 +191,4 @@ void NormalMonster::DamageCheck(float _Damage, float _Offset)
         State_.ChangeState("Death");
     }
 }
+

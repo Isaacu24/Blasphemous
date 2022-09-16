@@ -15,6 +15,7 @@
 
 GameEngineLevel* GameEngineCore::CurrentLevel = nullptr;
 GameEngineLevel* GameEngineCore::NextLevel = nullptr;
+GameEngineLevel* GameEngineCore::PrevLevel = nullptr;
 
 std::map<std::string, class GameEngineLevel*> GameEngineCore::AllLevels;
 
@@ -30,12 +31,13 @@ GameEngineCore::~GameEngineCore()
 class GameEngineLevel* GameEngineCore::FindLevel(const std::string& _Name)
 {
 	std::string UpperName = GameEngineString::ToUpperReturn(_Name);
-
 	std::map<std::string, GameEngineLevel*>::iterator FindIter = AllLevels.find(UpperName);
+
 	if (FindIter == AllLevels.end())
 	{
 		return nullptr;
 	}
+
 	return FindIter->second;
 }
 
@@ -81,7 +83,8 @@ void GameEngineCore::CoreUpdate(GameEngineCore* _UserCore)
 
 			CurrentLevel->OverChildMove(NextLevel);
 		}
-
+		
+		PrevLevel = CurrentLevel;
 		CurrentLevel = NextLevel;
 		NextLevel = nullptr;
 		CurrentLevel->LevelStartEvent();

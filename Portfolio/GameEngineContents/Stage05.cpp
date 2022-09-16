@@ -107,6 +107,20 @@ void Stage05::Update(float _DeltaTime)
         LoadingActor_->Exit("Stage10");
     }
 
+    if (true == GetLoadingEnd())
+    {
+        SetLoadingEnd(false);
+
+        if (nullptr != GEngine::GetPrevLevel())
+        {
+            if ("STAGE10" == GEngine::GetPrevLevel()->GetNameConstRef())
+            {
+                Milestone* MilestoneUI = CreateActor<Milestone>();
+                MilestoneUI->SetTownName("Brotherhood");
+            }
+        }
+    }
+
     // GameEngineDebug::OutPutString("x : " + std::to_string(Penitent_->GetTransform().GetLocalPosition().x));
 }
 
@@ -148,7 +162,7 @@ void Stage05::LevelStartEvent()
     IsLeftExit_  = false;
 }
 
-void Stage05::LevelEndEvent() 
+void Stage05::LevelEndEvent()
 {
     if (nullptr != LoadingActor_)
     {
@@ -165,6 +179,7 @@ void Stage05::LevelEndEvent()
 
         else
         {
+            Guilt_->GetTransform().SetWorldPosition(Penitent_->GetLastJumpPosition());
             return;
         }
 

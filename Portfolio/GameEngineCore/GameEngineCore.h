@@ -29,6 +29,11 @@ public:
 	}
 
 
+	static GameEngineLevel* GetPrevLevel()
+	{
+		return PrevLevel;
+	}
+
 protected:
 	virtual std::string GetWindowTitle() { return "MainWindow"; }
 	virtual float4 StartWindowSize() { return { 1280.0f, 720.0f }; };
@@ -58,6 +63,7 @@ private:
 	static std::map<std::string, class GameEngineLevel*> AllLevels;
 	static GameEngineLevel* CurrentLevel;
 	static GameEngineLevel* NextLevel;
+	static GameEngineLevel* PrevLevel;
 
 	static void EngineResourcesInitialize();
 	static void EngineResourcesDestroy();

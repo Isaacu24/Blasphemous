@@ -22,10 +22,8 @@ public:
         PatrolEnd_   = _End;
     }
 
-    // Penitent* GetPlayer();
-
 protected:
-    void Start() override;
+    void Start() = 0;
     void Update(float _DeltaTime) override;
     void End() override;
 
@@ -42,7 +40,7 @@ protected:
     float TrackLimit_;  // X축 사정거리
     float Crossroad_;
 
-    GameEngineCollision* PlayerCollision_;
+    GameEngineCollision* ExecutionCollider_;
 
     virtual void PatrolMoveX(float _DeltaTime){};
     virtual void PatrolMoveY(float _DeltaTime){};
@@ -56,6 +54,8 @@ protected:
     virtual bool DetectPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);
 
     virtual bool CrossroadCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
+
+    virtual bool ExecutionCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
 
     inline void SetTrackDistance(float _Distance) { TrackLimit_ = _Distance; }
 

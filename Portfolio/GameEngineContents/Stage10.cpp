@@ -76,9 +76,9 @@ void Stage10::SettingStage()
     Stage_->GetTransform().SetLocalMove(Offset);
 
     PlayerRightPos_ = float4{3950, -682, PlayerZ};
-    //PlayerLeftPos_  = float4{300, -682, PlayerZ};
-    PlayerLeftPos_  = float4{2500, -682, PlayerZ};
-    //PlayerLeftPos_  = float4{1700, -850, PlayerZ};
+    PlayerLeftPos_  = float4{300, -682, PlayerZ};
+    // PlayerLeftPos_  = float4{2500, -682, PlayerZ};
+    // PlayerLeftPos_  = float4{1700, -850, PlayerZ};
 
     IsLeftExit_ = true;
 
@@ -297,6 +297,19 @@ void Stage10::Update(float _DeltaTime)
         LoadingActor_->IsEntrance(false);
         LoadingActor_->Exit("Stage20");
     }
+
+    if (true == GetLoadingEnd())
+    {
+        SetLoadingEnd(false);
+        if (nullptr != GEngine::GetPrevLevel())
+        {
+            if ("STAGE05" == GEngine::GetPrevLevel()->GetNameConstRef())
+            {
+                Milestone* MilestoneUI = CreateActor<Milestone>();
+                MilestoneUI->SetTownName("Buried Churches");
+            }
+        }
+    }
 }
 
 void Stage10::End() {}
@@ -362,6 +375,7 @@ void Stage10::LevelEndEvent()
 
         else
         {
+            Guilt_->GetTransform().SetWorldPosition(Penitent_->GetLastJumpPosition());
             return;
         }
 
