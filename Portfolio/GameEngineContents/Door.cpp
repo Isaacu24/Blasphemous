@@ -9,6 +9,8 @@ void Door::Open() {}
 
 void Door::Start()
 {
+    SetObjectType(ObjectType::Door);
+
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
     Renderer_->CreateFrameAnimationCutTexture("brotherhood_door_anim_Close",
                                               {"brotherhood_door_anim 1.png", 0, 1, 0.1f, false});
@@ -24,7 +26,17 @@ void Door::Start()
     UICollider_->GetTransform().SetWorldMove({0, -100});
 
     UIRenderer_ = CreateComponent<GameEngineTextureRenderer>();
-    UIRenderer_->SetTexture("CT_Y.png");
+
+    if (0 < GameEngineInput::GetInst()->GetInputState().dwPacketNumber)
+    {
+        UIRenderer_->SetTexture("CT_Y.png");
+    }
+
+    else
+    {
+        UIRenderer_->SetTexture("KB_E.png");
+    }
+
     UIRenderer_->GetTransform().SetWorldScale({30, 30, 1});
     UIRenderer_->GetTransform().SetWorldMove({0, 70});
     UIRenderer_->Off();
@@ -37,7 +49,17 @@ void Door::Update(float _DeltaTime)
     {
         UIRenderer_->On();
 
-        if (true == GameEngineInput::GetInst()->IsDownKey("Interaction"))
+        if (0 < GameEngineInput::GetInst()->GetInputState().dwPacketNumber)
+        {
+            UIRenderer_->SetTexture("CT_Y.png");
+        }
+
+        else
+        {
+            UIRenderer_->SetTexture("KB_E.png");
+        }
+
+        if (true == GameEngineInput::GetInst()->IsDownKey("Interaction") && (ObjectType::Door == GetObjectType()))
         {
             Renderer_->ChangeFrameAnimation("brotherhood_door_anim_Open");
         }
@@ -46,6 +68,14 @@ void Door::Update(float _DeltaTime)
     else
     {
         UIRenderer_->Off();
+    }
+
+    if (ObjectType::Door == GetObjectType())
+    {
+        if (true == GameEngineInput::GetInst()->IsUpKey("Interaction"))
+        {
+            SetObjectType(ObjectType::OpenDoor);
+        }
     }
 }
 

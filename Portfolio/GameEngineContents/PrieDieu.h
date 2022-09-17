@@ -1,11 +1,8 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
 #include "ObjectBase.h"
 
 // 세이브 포인트
-class PrieDieu
-    : public GameEngineActor
-    , public ObjectBase
+class PrieDieu : public ObjectBase
 {
 public:
 	PrieDieu();

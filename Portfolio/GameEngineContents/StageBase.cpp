@@ -97,3 +97,49 @@ void StageBase::Start() {}
 void StageBase::Update(float _DeltaTime) {}
 
 void StageBase::End() {}
+
+
+void StageBase::LevelStartEvent() {}
+
+void StageBase::LevelEndEvent() 
+{
+    if (nullptr != LoadingActor_)
+    {
+        LoadingActor_->Death();
+        LoadingActor_ = nullptr;
+    }
+
+    if (false == Penitent_->IsUpdate())
+    {
+        if (nullptr == Guilt_)
+        {
+            Guilt_ = CreateActor<PenitentGuilt>();
+        }
+
+        else
+        {
+            Guilt_->GetTransform().SetWorldPosition(Penitent_->GetLastJumpPosition());
+            return;
+        }
+
+        if (true == Penitent_->GetIsPlayerDeath())
+        {
+            //마지막 도약 포지션을 기억한 후 해당 포지션에 길티 생성
+            Guilt_->GetTransform().SetWorldPosition(
+                {Penitent_->GetLastJumpPosition().x, Penitent_->GetLastJumpPosition().y, ObjectZ});
+        }
+
+        else
+        {
+            //도약하지 않았을 때에는 죽은 위치에 길티를 생성
+            Guilt_->GetTransform().SetLocalPosition({Penitent_->GetTransform().GetWorldPosition().x,
+                                                     Penitent_->GetTransform().GetWorldPosition().y,
+                                                     ObjectZ});
+        }
+    }
+
+    if (false == IsRightExit_ && false == IsLeftExit_)
+    {
+        IsLeftExit_ = true;
+    }
+}

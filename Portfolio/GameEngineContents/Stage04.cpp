@@ -254,6 +254,11 @@ void Stage04::LevelEndEvent()
             Guilt_->GetTransform().SetLocalPosition(float4{500, -1028, ObjectZ});
         }
     }
+
+    if (false == IsRightExit_ && false == IsLeftExit_)
+    {
+        IsLeftExit_ = true;
+    }
 }
 
 void Stage04::PlayerCameraMove(float _DeltaTime)

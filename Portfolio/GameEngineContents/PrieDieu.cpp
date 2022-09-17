@@ -7,6 +7,8 @@ PrieDieu::~PrieDieu() {}
 
 void PrieDieu::Start()
 {
+    SetObjectType(ObjectType::PrieDieu);
+
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
     Renderer_->CreateFrameAnimationCutTexture("priedieu_stand_and_liton_anim",
                                               {"priedieu_stand_and_liton_anim.png", 1, 6, 0.1f, true});

@@ -33,6 +33,8 @@ protected:
     void Update(float _DeltaTime) override;
     void End() override;
 
+    void LevelEndEvent() override;
+
 private:
     class GameEngineUIRenderer*   Renderer_;
     class GameEngineFontRenderer* Font_;

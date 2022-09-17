@@ -94,4 +94,8 @@ void MessageUI::Update(float _DeltaTime)
 void MessageUI::End() {}
 
 
+void MessageUI::LevelEndEvent() 
+{ Death(); }
+
+
 void MessageUI::CreateLine(const std::string& _Line) { Script_.push_back(_Line); }

@@ -9,3 +9,11 @@ ObjectBase::~ObjectBase()
 {
 }
 
+
+void ObjectBase::Update(float _DeltaTime) {
+
+}
+
+void ObjectBase::End() {
+
+}

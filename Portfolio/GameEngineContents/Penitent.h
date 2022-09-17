@@ -71,7 +71,7 @@ public:
         }
     }
 
-    inline void SetLastSavePoint(const std::string& _LevelName) { LastSavePoint_ = _LevelName; }
+    inline void SetLastSavePoint(const std::string& _LevelName) { LastSaveLevel_ = _LevelName; }
 
     inline bool GetIsPlayerDeath() { return IsPlayerDeath_; }
 
@@ -231,6 +231,10 @@ protected:
     void RestPrayUpdate(float _DeltaTime, const StateInfo& _Info);
     void RestPrayEnd(const StateInfo& _Info);
 
+    void DoorEntranceStart(const StateInfo& _Info);
+    void DoorEntranceUpdate(float _DeltaTime, const StateInfo& _Info);
+    void DoorEntranceEnd(const StateInfo& _Info);
+   
     //피격 함수
     bool KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other);
     bool KnockUp(GameEngineCollision* _This, GameEngineCollision* _Other);
@@ -264,7 +268,8 @@ private:
 
     EXECUTIONTYPE ExecutionType_;
 
-    std::string LastSavePoint_;
+    std::string LastSaveLevel_;
+    std::string OutDoorLevel_;
 
     int   HP_;
     int   MP_;

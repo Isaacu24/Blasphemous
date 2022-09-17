@@ -213,9 +213,13 @@ void PlayerUI::UseFlask(int _Index)
 {
     Flasks_[_Index]->SetTexture("Empty_Flask.png");
 
-    Penitent::GetMainPlayer()->PlusHP(30);
     float HP = Penitent::GetMainPlayer()->GetHP() / 100.f;
     HPBar_->Renderer_->SetUVData(HP);
+}
+
+void PlayerUI::FillFlask(int _Index) 
+{
+    Flasks_[_Index]->SetTexture("Full_Flask.png");
 }
 
 void PlayerUI::Damage()

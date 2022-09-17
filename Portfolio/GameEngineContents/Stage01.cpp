@@ -64,6 +64,7 @@ void Stage01::SettingStage()
     Stage_->GetTransform().SetLocalMove(Offset);
 
     PlayerRightPos_ = float4{3600, -1730, PlayerZ};
+    PlayerLeftPos_  = float4{1230, -940, PlayerZ};
 }
 
 void Stage01::Start()
@@ -147,9 +148,9 @@ void Stage01::LevelStartEvent()
             Penitent_->GetTransform().SetWorldPosition(PlayerRightPos_);
         }
 
-        else
+        else if (true == IsLeftExit_)
         {
-            Penitent_->GetTransform().SetWorldPosition({1230, -940, PlayerZ});
+            Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
         }
 
         Penitent_->SetLevelOverOn();
@@ -167,38 +168,5 @@ void Stage01::LevelStartEvent()
 
 void Stage01::LevelEndEvent()
 {
-    if (nullptr != LoadingActor_)
-    {
-        LoadingActor_->Death();
-        LoadingActor_ = nullptr;
-    }
-
-    if (false == Penitent_->IsUpdate())
-    {
-        if (nullptr == Guilt_)
-        {
-            Guilt_ = CreateActor<PenitentGuilt>();
-        }
-
-        else
-        {
-            Guilt_->GetTransform().SetWorldPosition(Penitent_->GetLastJumpPosition());
-            return;
-        }
-
-        if (true == Penitent_->GetIsPlayerDeath())
-        {
-            //마지막 도약 포지션을 기억한 후 해당 포지션에 길티 생성
-            Guilt_->GetTransform().SetWorldPosition(
-                {Penitent_->GetLastJumpPosition().x, Penitent_->GetLastJumpPosition().y, ObjectZ});
-        }
-
-        else
-        {
-            //도약하지 않았을 때에는 죽은 위치에 길티를 생성
-            Guilt_->GetTransform().SetLocalPosition({Penitent_->GetTransform().GetWorldPosition().x,
-                                                     Penitent_->GetTransform().GetWorldPosition().y,
-                                                     ObjectZ});
-        }
-    }
+    StageBase::LevelEndEvent();
 }

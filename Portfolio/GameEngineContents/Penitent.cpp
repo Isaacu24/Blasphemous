@@ -29,7 +29,7 @@ Penitent::Penitent()
     , IsGround_(false)
     , Flasks_{}
     , JumpTime_(0.0f)
-    , LastSavePoint_{}
+    , LastSaveLevel_{}
 {
     MainPlayer_ = this;
 }
@@ -1220,7 +1220,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "crosscrawler_execution",
-            {"crosscrawler_execution.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, true},
+            {"crosscrawler_execution.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true},
             Data);
 
 
@@ -1234,7 +1234,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "shieldMaiden_execution",
-            {"shieldMaiden_execution.png", 0, static_cast<unsigned int>(Data.size() - 15), 0.08f, true},
+            {"shieldMaiden_execution.png", 0, static_cast<unsigned int>(Data.size() - 15), 0.07f, true},
             Data);
 
 
@@ -1248,7 +1248,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_priedieu_kneeling_anim",
-            {"penitent_priedieu_kneeling_anim.png", 0, static_cast<unsigned int>(Data.size() - 15), 0.08f, true},
+            {"penitent_priedieu_kneeling_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, true},
             Data);
 
 
@@ -1261,13 +1261,10 @@ void Penitent::SetAnimation()
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_priedieu_bended_knee_with_aura");
 
-        MetaRenderer_->CreateMetaAnimation("penitent_priedieu_bended_knee_with_aura",
-                                           {"penitent_priedieu_bended_knee_with_aura.png",
-                                            0,
-                                            static_cast<unsigned int>(Data.size() - 15),
-                                            0.08f,
-                                            true},
-                                           Data);
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_priedieu_bended_knee_with_aura",
+            {"penitent_priedieu_bended_knee_with_aura.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, true},
+            Data);
 
         MetaRenderer_->AnimationBindEnd(
             "penitent_priedieu_bended_knee_with_aura",
@@ -1275,35 +1272,52 @@ void Penitent::SetAnimation()
             { MetaRenderer_->ChangeMetaAnimation("penitent_priedieu_bended_knee_aura_turnoff"); });
     }
 
-    //{
-    //    std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_priedieu_bended_knee_aura_turnoff");
 
-    //    MetaRenderer_->CreateMetaAnimation("penitent_priedieu_bended_knee_aura_turnoff",
-    //                                       {"penitent_priedieu_bended_knee_aura_turnoff.png",
-    //                                        0,
-    //                                        static_cast<unsigned int>(Data.size() - 15),
-    //                                        0.08f,
-    //                                        true},
-    //                                       Data);
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_priedieu_bended_knee_aura_turnoff");
 
-
-    //    MetaRenderer_->AnimationBindEnd("penitent_priedieu_bended_knee_aura_turnoff",
-    //                                    [&](const FrameAnimation_DESC& _Info)
-    //                                    { MetaRenderer_->ChangeMetaAnimation("penitent_priedieu_stand_up_anim"); });
-    //}
-
-    //{
-    //    std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_priedieu_stand_up_anim");
-
-    //    MetaRenderer_->CreateMetaAnimation(
-    //        "penitent_priedieu_stand_up_anim",
-    //        {"penitent_priedieu_stand_up_anim.png", 0, static_cast<unsigned int>(Data.size() - 15), 0.08f, true},
-    //        Data);
+        MetaRenderer_->CreateMetaAnimation("penitent_priedieu_bended_knee_aura_turnoff",
+                                           {"penitent_priedieu_bended_knee_aura_turnoff.png",
+                                            0,
+                                            static_cast<unsigned int>(Data.size() - 1),
+                                            0.06f,
+                                            true},
+                                           Data);
 
 
-    //    MetaRenderer_->AnimationBindEnd("penitent_priedieu_stand_up_anim",
-    //                                    [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
-    //}
+        MetaRenderer_->AnimationBindEnd("penitent_priedieu_bended_knee_aura_turnoff",
+                                        [&](const FrameAnimation_DESC& _Info)
+                                        { MetaRenderer_->ChangeMetaAnimation("penitent_priedieu_stand_up_anim"); });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_priedieu_stand_up_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_priedieu_stand_up_anim",
+            {"penitent_priedieu_stand_up_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, true},
+            Data);
+
+
+        MetaRenderer_->AnimationBindEnd("penitent_priedieu_stand_up_anim",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_crossing_opendoor_out_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_crossing_opendoor_out_anim",
+            {"penitent_crossing_opendoor_out_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, true},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_crossing_opendoor_out_anim",
+                                        [&](const FrameAnimation_DESC& _Info) 
+            { 
+                 ChangeState("Idle");
+            });
+    }
+
 
     MetaRenderer_->SetPivot(PIVOTMODE::METABOT);
 }
@@ -1437,6 +1451,16 @@ void Penitent::SetPlayerState()
         std::bind(&Penitent::ReturnToPortUpdate, this, std::placeholders::_1, std::placeholders::_2),
         std::bind(&Penitent::ReturnToPortStart, this, std::placeholders::_1),
         std::bind(&Penitent::ReturnToPortEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember("RestPray",
+                             std::bind(&Penitent::RestPrayUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::RestPrayStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::RestPrayEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember("DoorEntrance",
+                             std::bind(&Penitent::DoorEntranceUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::DoorEntranceStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::DoorEntranceEnd, this, std::placeholders::_1));
 
     State_.CreateStateMember("Death",
                              std::bind(&Penitent::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2),

@@ -192,31 +192,4 @@ void Stage21::LevelStartEvent()
     IsLeftExit_  = false;
 }
 
-void Stage21::LevelEndEvent()
-{
-    if (false == Penitent_->IsUpdate())
-    {
-        if (nullptr == Guilt_)
-        {
-            Guilt_ = CreateActor<PenitentGuilt>();
-        }
-
-        else
-        {
-            Guilt_->GetTransform().SetWorldPosition(Penitent_->GetLastJumpPosition());
-            return;
-        }
-
-        if (true == Penitent_->GetIsPlayerDeath())
-        {
-            Guilt_->GetTransform().SetWorldPosition(Penitent_->GetLastJumpPosition());
-        }
-
-        else
-        {
-            Guilt_->GetTransform().SetLocalPosition({Penitent_->GetTransform().GetWorldPosition().x,
-                                                     Penitent_->GetTransform().GetWorldPosition().y,
-                                                     ObjectZ});
-        }
-    }
-}
+void Stage21::LevelEndEvent() { StageBase::LevelEndEvent(); }

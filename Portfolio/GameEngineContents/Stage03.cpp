@@ -186,6 +186,7 @@ void Stage03::LevelStartEvent()
     {
         Penitent_ = Penitent::GetMainPlayer();
         Penitent_->SetGround(ColMap_);
+        Penitent_->SetLevelOverOn();
 
         if (true == IsRightExit_)
         {
@@ -197,8 +198,10 @@ void Stage03::LevelStartEvent()
             Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
         }
 
-        Penitent_->SetLevelOverOn();
-        Penitent_->GetTransform().SetWorldPosition({1800, -1067, PlayerZ});
+        if (false == Penitent_->IsUpdate())
+        {
+            Penitent_->GetTransform().SetWorldPosition({1800, -1067, PlayerZ});
+        }
     }
 
     IsRightExit_ = false;
@@ -209,37 +212,4 @@ void Stage03::LevelStartEvent()
     });
 }
 
-void Stage03::LevelEndEvent()
-{
-    if (nullptr != LoadingActor_)
-    {
-        LoadingActor_->Death();
-        LoadingActor_ = nullptr;
-    }
-
-    if (false == Penitent_->IsUpdate())
-    {
-        if (nullptr == Guilt_)
-        {
-            Guilt_ = CreateActor<PenitentGuilt>();
-        }
-
-        else
-        {
-            Guilt_->GetTransform().SetWorldPosition(Penitent_->GetLastJumpPosition());
-            return;
-        }
-
-        if (true == Penitent_->GetIsPlayerDeath())
-        {
-            Guilt_->GetTransform().SetWorldPosition(Penitent_->GetLastJumpPosition());
-        }
-
-        else
-        {
-            Guilt_->GetTransform().SetLocalPosition({Penitent_->GetTransform().GetWorldPosition().x,
-                                                     Penitent_->GetTransform().GetWorldPosition().y,
-                                                     ObjectZ});
-        }
-    }
-}
+void Stage03::LevelEndEvent() { StageBase::LevelEndEvent(); }

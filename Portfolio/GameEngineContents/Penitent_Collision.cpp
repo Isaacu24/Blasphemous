@@ -6,6 +6,7 @@
 #include "HitEffect.h"
 #include "AttackEffect.h"
 #include "StageBase.h"
+#include "Door.h"
 
 void Penitent::GroundCheck()
 {
@@ -206,19 +207,53 @@ bool Penitent::ObjectCheck(GameEngineCollision* _This, GameEngineCollision* _Oth
 {
     if (true == GameEngineInput::GetInst()->IsDownKey("Interaction") && "Idle" == State_.GetCurStateStateName())
     {
-        PenitentGuilt* Guilt = dynamic_cast<PenitentGuilt*>(_Other->GetActor());
+        ObjectBase* Obj = dynamic_cast<ObjectBase*>(_Other->GetActor());
 
-        if (nullptr == Guilt)
+        if (nullptr == Obj)
         {
             return false;
         }
 
-        Guilt->DestroyGuilt();
+        switch (Obj->GetObjectType())
+        {
+            case ObjectType::NPC:
+                break;
 
-        AttackEffect_->Renderer_->On();
-        AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_pickUpGuiltFx");
-        AttackEffect_->GetTransform().SetWorldPosition(
-            {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, PlayerEffectZ});
+            case ObjectType::Door:
+                break;
+
+            case ObjectType::OpenDoor:
+                {
+                    GetTransform().SetWorldPosition({Obj->GetTransform().GetWorldPosition().x,
+                                                     GetTransform().GetWorldPosition().y,
+                                                     GetTransform().GetWorldPosition().z});
+
+                    Door* DoorObj = dynamic_cast<Door*>(_Other->GetActor());
+                    OutDoorLevel_ = DoorObj->GetLinkLevel();
+
+                    ChangeState("DoorEntrance");
+                }
+                break;
+
+            case ObjectType::PrieDieu:
+                ChangeState("RestPray");
+                break;
+
+            case ObjectType::Guilt:
+                {
+                    PenitentGuilt* Guilt = dynamic_cast<PenitentGuilt*>(_Other->GetActor());
+                    Guilt->DestroyGuilt();
+
+                    AttackEffect_->Renderer_->On();
+                    AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_pickUpGuiltFx");
+                    AttackEffect_->GetTransform().SetWorldPosition(
+                        {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, PlayerEffectZ});
+                }
+                break;
+
+            default:
+                break;
+        }
 
         return true;
     }
@@ -334,7 +369,7 @@ void Penitent::CollisionCheck()
     }
 
     BodyCollider_->IsCollision(CollisionType::CT_OBB2D,
-                               COLLISIONORDER::Guilt,
+                               COLLISIONORDER::Object,
                                CollisionType::CT_OBB2D,
                                std::bind(&Penitent::ObjectCheck, this, std::placeholders::_1, std::placeholders::_2));
 

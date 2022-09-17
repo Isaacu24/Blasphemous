@@ -1,10 +1,7 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
 #include "ObjectBase.h"
 
-class PenitentGuilt
-    : public GameEngineActor
-    , public ObjectBase
+class PenitentGuilt : public ObjectBase
 {
     friend class Penitent;
 

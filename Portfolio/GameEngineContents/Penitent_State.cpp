@@ -1041,6 +1041,8 @@ void Penitent::RecoveryStart(const StateInfo& _Info)
     {
         if (true == Flasks_[i])
         {
+            PlusHP(30);
+
             Flasks_[i] = false;
             PlayerUI_->UseFlask(i);
 
@@ -1092,7 +1094,7 @@ void Penitent::RespawnStart(const StateInfo& _Info)
     //일단 무조건 오른쪽을 본다.
     GetTransform().PixLocalPositiveX();
 
-    if ("" != LastSavePoint_)
+    if ("" != LastSaveLevel_)
     {
         MetaRenderer_->ChangeMetaAnimation("penitent_respawning_anim");
 
@@ -1112,24 +1114,49 @@ void Penitent::RespawnUpdate(float _DeltaTime, const StateInfo& _Info)
 void Penitent::RespawnEnd(const StateInfo& _Info) {}
 
 
-void Penitent::PrayStart(const StateInfo& _Info) 
-{
-
-}
+void Penitent::PrayStart(const StateInfo& _Info) {}
 
 void Penitent::PrayUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Penitent::PrayEnd(const StateInfo& _Info) {}
 
 
-void Penitent::RestPrayStart(const StateInfo& _Info) 
+void Penitent::RestPrayStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_priedieu_kneeling_anim");
 }
 
 void Penitent::RestPrayUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Penitent::RestPrayEnd(const StateInfo& _Info) {}
+void Penitent::RestPrayEnd(const StateInfo& _Info)
+{
+    SetHP(100);
+    SetMP(100);
+
+    int Size = static_cast<int>(Flasks_.size() - 1);
+
+    for (int i = Size; i >= 0; --i)
+    {
+        Flasks_[i] = true;
+        PlayerUI_->FillFlask(i);
+    }
+}
+
+
+void Penitent::DoorEntranceStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("penitent_crossing_opendoor_out_anim");
+}
+
+void Penitent::DoorEntranceUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Penitent::DoorEntranceEnd(const StateInfo& _Info) 
+{ 
+    GetTransform().SetWorldPosition(
+        {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, BeforeParallax5Z});
+
+    GEngine::ChangeLevel(OutDoorLevel_); 
+}
 
 
 void Penitent::DeathStart(const StateInfo& _Info)
@@ -1138,14 +1165,14 @@ void Penitent::DeathStart(const StateInfo& _Info)
 
     MetaRenderer_->ChangeMetaAnimation("death_anim_blood");
 
-    if (true == LastSavePoint_.empty())
+    if (true == LastSaveLevel_.empty())
     {
         PlayerUI_->SetRespawnLevelName("Stage01");
     }
 
     else
     {
-        PlayerUI_->SetRespawnLevelName(LastSavePoint_);
+        PlayerUI_->SetRespawnLevelName(LastSaveLevel_);
     }
 
     MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};

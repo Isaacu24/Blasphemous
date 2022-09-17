@@ -92,7 +92,6 @@ enum class COLLISIONORDER
     GlassSwitch,
     Platform,
     DeadZone,
-    Guilt
     //PlayerParry
 };
 

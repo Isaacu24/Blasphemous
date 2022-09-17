@@ -75,8 +75,6 @@ void Stage30::SettingStage()
     float4 Offset = {OffsetX, -OffsetY};
 
     Stage_->GetTransform().SetLocalMove(Offset);
-
-
 }
 
 void Stage30::Start() { SettingStage(); }
@@ -153,37 +151,4 @@ void Stage30::LevelStartEvent()
     });
 }
 
-void Stage30::LevelEndEvent() 
-{
-    if (nullptr != LoadingActor_)
-    {
-        LoadingActor_->Death();
-        LoadingActor_ = nullptr;
-    }
-
-    if (false == Penitent_->IsUpdate())
-    {
-        if (nullptr == Guilt_)
-        {
-            Guilt_ = CreateActor<PenitentGuilt>();
-        }
-
-        else
-        {
-            Guilt_->GetTransform().SetWorldPosition(Penitent_->GetLastJumpPosition());
-            return;
-        }
-
-        if (true == Penitent_->GetIsPlayerDeath())
-        {
-            Guilt_->GetTransform().SetWorldPosition(Penitent_->GetLastJumpPosition());
-        }
-
-        else
-        {
-            Guilt_->GetTransform().SetLocalPosition({Penitent_->GetTransform().GetWorldPosition().x,
-                                                     Penitent_->GetTransform().GetWorldPosition().y,
-                                                     ObjectZ});
-        }
-    }
-}
+void Stage30::LevelEndEvent() { StageBase::LevelEndEvent(); }

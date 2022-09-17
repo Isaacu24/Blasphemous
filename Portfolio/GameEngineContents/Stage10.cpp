@@ -358,38 +358,4 @@ void Stage10::LevelStartEvent()
     SettingMonster();
 }
 
-void Stage10::LevelEndEvent()
-{
-    if (nullptr != LoadingActor_)
-    {
-        LoadingActor_->Death();
-        LoadingActor_ = nullptr;
-    }
-
-    if (false == Penitent_->IsUpdate())
-    {
-        if (nullptr == Guilt_)
-        {
-            Guilt_ = CreateActor<PenitentGuilt>();
-        }
-
-        else
-        {
-            Guilt_->GetTransform().SetWorldPosition(Penitent_->GetLastJumpPosition());
-            return;
-        }
-
-        if (true == Penitent_->GetIsPlayerDeath())
-        {
-            Guilt_->GetTransform().SetWorldPosition(
-                {Penitent_->GetLastJumpPosition().x, Penitent_->GetLastJumpPosition().y, ObjectZ});
-        }
-
-        else
-        {
-            Guilt_->GetTransform().SetLocalPosition({Penitent_->GetTransform().GetWorldPosition().x,
-                                                     Penitent_->GetTransform().GetWorldPosition().y,
-                                                     ObjectZ});
-        }
-    }
-}
+void Stage10::LevelEndEvent() { StageBase::LevelEndEvent(); }

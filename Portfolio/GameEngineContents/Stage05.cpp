@@ -33,6 +33,7 @@ void Stage05::SettingStage()
 
     Door* IronDoor = CreateActor<Door>();
     IronDoor->GetTransform().SetWorldPosition({1107, -520, ObjectZ});
+    IronDoor->SetLinkLevel("Stage10");
 
     Fence_ = CreateActor<SideFence>();
     Fence_->GetTransform().SetWorldPosition({1390, -530, ObjectZ});
@@ -162,37 +163,4 @@ void Stage05::LevelStartEvent()
     IsLeftExit_  = false;
 }
 
-void Stage05::LevelEndEvent()
-{
-    if (nullptr != LoadingActor_)
-    {
-        LoadingActor_->Death();
-        LoadingActor_ = nullptr;
-    }
-
-    if (false == Penitent_->IsUpdate())
-    {
-        if (nullptr == Guilt_)
-        {
-            Guilt_ = CreateActor<PenitentGuilt>();
-        }
-
-        else
-        {
-            Guilt_->GetTransform().SetWorldPosition(Penitent_->GetLastJumpPosition());
-            return;
-        }
-
-        if (true == Penitent_->GetIsPlayerDeath())
-        {
-            Guilt_->GetTransform().SetWorldPosition(Penitent_->GetLastJumpPosition());
-        }
-
-        else
-        {
-            Guilt_->GetTransform().SetLocalPosition({Penitent_->GetTransform().GetWorldPosition().x,
-                                                     Penitent_->GetTransform().GetWorldPosition().y,
-                                                     ObjectZ});
-        }
-    }
-}
+void Stage05::LevelEndEvent() { StageBase::LevelEndEvent(); }

@@ -18,7 +18,10 @@ public:
     PlayerUI& operator=(PlayerUI&& _Other) noexcept = delete;
 
     void SetTear(int Value);
+
     void UseFlask(int _Index);
+
+    void FillFlask(int _Index);
 
     void Damage();
 

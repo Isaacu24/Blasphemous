@@ -11,6 +11,8 @@ PenitentGuilt::~PenitentGuilt() {}
 
 void PenitentGuilt::Start()
 {
+    SetObjectType(ObjectType::Guilt);
+
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 
     Renderer_->CreateFrameAnimationCutTexture("guiltSystem_blinkFxs", {"guiltSystem_blinkFxs.png", 0, 32, 0.07f, true});
@@ -30,7 +32,7 @@ void PenitentGuilt::Start()
 
     UICollider_ = CreateComponent<GameEngineCollision>();
     UICollider_->GetTransform().SetWorldScale({100.f, 200.f, 1.f});
-    UICollider_->ChangeOrder(COLLISIONORDER::Guilt);
+    UICollider_->ChangeOrder(COLLISIONORDER::Object);
     UICollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.0f, 0.0f, 1.0f, 0.5f});
     UICollider_->GetTransform().SetWorldMove({0, 100});
 

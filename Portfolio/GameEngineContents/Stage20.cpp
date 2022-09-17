@@ -184,43 +184,9 @@ void Stage20::LevelStartEvent()
         ReturnKey_->Off();
         CurrentFlow_ = STAGEFLOW::BOSSDEAD;
     }
-
 }
 
-void Stage20::LevelEndEvent()
-{
-    if (nullptr != LoadingActor_)
-    {
-        LoadingActor_->Death();
-        LoadingActor_ = nullptr;
-    }
-
-    if (false == Penitent_->IsUpdate())
-    {
-        if (nullptr == Guilt_)
-        {
-            Guilt_ = CreateActor<PenitentGuilt>();
-        }
-
-        else
-        {
-            Guilt_->GetTransform().SetWorldPosition(Penitent_->GetLastJumpPosition());
-            return;
-        }
-
-        if (true == Penitent_->GetIsPlayerDeath())
-        {
-            Guilt_->GetTransform().SetWorldPosition(Penitent_->GetLastJumpPosition());
-        }
-
-        else
-        {
-            Guilt_->GetTransform().SetLocalPosition({Penitent_->GetTransform().GetWorldPosition().x,
-                                                     Penitent_->GetTransform().GetWorldPosition().y,
-                                                     ObjectZ});
-        }
-    }
-}
+void Stage20::LevelEndEvent() { StageBase::LevelEndEvent(); }
 
 void Stage20::PlayerCameraMove(float _DeltaTime)
 {
