@@ -62,6 +62,7 @@ void Door::Update(float _DeltaTime)
         if (true == GameEngineInput::GetInst()->IsDownKey("Interaction") && (ObjectType::Door == GetObjectType()))
         {
             Renderer_->ChangeFrameAnimation("brotherhood_door_anim_Open");
+            return;
         }
     }
 

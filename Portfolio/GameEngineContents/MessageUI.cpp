@@ -78,7 +78,7 @@ void MessageUI::Update(float _DeltaTime)
 
         if (0.f < Alpha_)
         {
-            Font_->SetColor(Alpha_);
+            Font_->SetColor({0.65f, 0.65f, 0.45f, Alpha_});
         }
 
         if (0.f > Renderer_->GetColorData().MulColor.a)

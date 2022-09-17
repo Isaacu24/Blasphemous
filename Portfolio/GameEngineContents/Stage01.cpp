@@ -166,7 +166,4 @@ void Stage01::LevelStartEvent()
     });
 }
 
-void Stage01::LevelEndEvent()
-{
-    StageBase::LevelEndEvent();
-}
+void Stage01::LevelEndEvent() { StageBase::LevelEndEvent(); }

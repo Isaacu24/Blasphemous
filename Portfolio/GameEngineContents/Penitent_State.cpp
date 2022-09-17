@@ -1101,6 +1101,8 @@ void Penitent::RespawnStart(const StateInfo& _Info)
         AttackEffect_->Renderer_->On();
         AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_respawning_anim_querubs");
     }
+
+    BodyCollider_->Off();
 }
 
 void Penitent::RespawnUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -1111,7 +1113,8 @@ void Penitent::RespawnUpdate(float _DeltaTime, const StateInfo& _Info)
     Gravity_->SetActive(!IsGround_);
 }
 
-void Penitent::RespawnEnd(const StateInfo& _Info) {}
+void Penitent::RespawnEnd(const StateInfo& _Info) 
+{ BodyCollider_->On(); }
 
 
 void Penitent::PrayStart(const StateInfo& _Info) {}

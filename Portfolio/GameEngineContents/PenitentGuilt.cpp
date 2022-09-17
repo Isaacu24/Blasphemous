@@ -96,7 +96,7 @@ void PenitentGuilt::DestroyGuilt()
     UI->GetTransform().SetWorldMove({0, 500});
     UI->GetUIRenderer()->GetColorData().MulColor.a = 1.0f;
     UI->SetFontSize(35);
-    UI->SetFontPosition({640, 180});
+    UI->SetFontPosition({640, 160});
     UI->CreateLine("Guilt has been restored.");
     UI->SpeechStart();
 
