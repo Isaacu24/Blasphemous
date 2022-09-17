@@ -8,6 +8,11 @@ void FrameAnimation::PauseSwtich()
 	Pause = !Pause;
 }
 
+void FrameAnimation::SetPause(bool _Value)
+{
+	Pause = _Value;
+}
+
 void FrameAnimation::Reset()
 {
 	Info.FrameTime = 0.0f;
@@ -144,6 +149,11 @@ void GameEngineTextureRenderer::SetTextureRendererSetting()
 void GameEngineTextureRenderer::CurAnimationPauseSwitch()
 {
 	CurAni->PauseSwtich();
+}
+
+void GameEngineTextureRenderer::SetCurAnimationPause(bool _Value)
+{
+	CurAni->SetPause(_Value);
 }
 
 void GameEngineTextureRenderer::Start()

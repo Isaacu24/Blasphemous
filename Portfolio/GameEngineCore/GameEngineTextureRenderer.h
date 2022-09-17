@@ -127,6 +127,8 @@ class FrameAnimation : public GameEngineNameObject
 
 	void PauseSwtich();
 
+	void SetPause(bool _Value);
+
 	void Reset();
 
 	void Update(float _DeltaTime);
@@ -215,6 +217,8 @@ public:
 	void ScaleToCutTexture(int _Index);
 
 	void CurAnimationPauseSwitch();
+
+	void SetCurAnimationPause(bool _Value);
 
 	void CurAnimationReset();
 

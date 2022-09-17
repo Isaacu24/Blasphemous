@@ -617,7 +617,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_ladder_down_from_ground_anim",
-            {"penitent_ladder_down_from_ground_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
+            {"penitent_ladder_down_from_ground_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false},
             Data);
 
         MetaRenderer_->AnimationBindEnd("penitent_ladder_down_from_ground_anim",
@@ -630,7 +630,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_charged_attack_v2_anim",
-            {"penitent_charged_attack_v2_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false},
+            {"penitent_charged_attack_v2_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
             Data);
     }
 

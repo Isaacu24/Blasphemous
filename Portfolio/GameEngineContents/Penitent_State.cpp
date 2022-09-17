@@ -102,11 +102,12 @@ void Penitent::MoveStart(const StateInfo& _Info)
     MetaRenderer_->ChangeMetaAnimation("penintent_start_run_anim");
 }
 
+
 void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     SHORT ThumbLX = GameEngineInput::GetInst()->GetThumbLX();
 
-    if (true == GameEngineInput::GetInst()->IsPressKey("PenitentRight") || 20000 < ThumbLX)
+    if (true == GameEngineInput::GetInst()->IsPressKey("PenitentRight") || 30000 < ThumbLX)
     {
         GetTransform().PixLocalPositiveX();
         Dir_ = GetTransform().GetRightVector();
@@ -121,7 +122,7 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
         }
     }
 
-    else if (true == GameEngineInput::GetInst()->IsUpKey("PenitentRight") || 0 > ThumbLX)
+    else if (true == GameEngineInput::GetInst()->IsUpKey("PenitentRight") || -1000 >= ThumbLX)
     {
         if (1.f <= RunTime_)
         {
@@ -142,7 +143,7 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
-    if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft") || 0 > ThumbLX)
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft") || -30000 > ThumbLX)
     {
         GetTransform().PixLocalNegativeX();
         Dir_ = -(GetTransform().GetLeftVector());
@@ -156,7 +157,7 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
         }
     }
 
-    else if (GameEngineInput::GetInst()->IsUpKey("PenitentLeft")|| 20000 < ThumbLX)
+    else if (GameEngineInput::GetInst()->IsUpKey("PenitentLeft") || 1000 <= ThumbLX)
     {
         if (1.f <= RunTime_)
         {
@@ -732,8 +733,8 @@ void Penitent::LadderClimbStart(const StateInfo& _Info)
 {
     //한 프레임 false 상태로 만들고 다음 상태일 때 체크
     IsGround_ = false;
+    Gravity_->SetActive(false);
 
-    //위아래 분기 나누어야 함@
     MetaRenderer_->ChangeMetaAnimation("penintent_ladder_climb_loop_anim");
 }
 
@@ -758,12 +759,10 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
         {
             CilmbY_ = -50;
 
-
             if (true == MetaRenderer_->IsCurAnimationPause())
             {
                 MetaRenderer_->CurAnimationPauseSwitch();
             }
-
 
             MetaRenderer_->ChangeMetaAnimation("penintent_ladder_climb_loop_anim");
             GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed_ * _DeltaTime);
@@ -797,6 +796,7 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 
 void Penitent::LadderClimbEnd(const StateInfo& _Info) { IsLadder_ = false; }
+
 
 void Penitent::AttackStart(const StateInfo& _Info)
 {
@@ -1114,10 +1114,7 @@ void Penitent::RespawnUpdate(float _DeltaTime, const StateInfo& _Info)
     Gravity_->SetActive(!IsGround_);
 }
 
-void Penitent::RespawnEnd(const StateInfo& _Info) 
-{
-    BodyCollider_->Off();
-}
+void Penitent::RespawnEnd(const StateInfo& _Info) { BodyCollider_->Off(); }
 
 
 void Penitent::PrayStart(const StateInfo& _Info) {}
@@ -1156,12 +1153,12 @@ void Penitent::DoorEntranceStart(const StateInfo& _Info)
 
 void Penitent::DoorEntranceUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Penitent::DoorEntranceEnd(const StateInfo& _Info) 
-{ 
+void Penitent::DoorEntranceEnd(const StateInfo& _Info)
+{
     GetTransform().SetWorldPosition(
         {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, BeforeParallax5Z});
 
-    GEngine::ChangeLevel(OutDoorLevel_); 
+    GEngine::ChangeLevel(OutDoorLevel_);
 }
 
 

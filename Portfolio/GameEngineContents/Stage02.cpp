@@ -116,10 +116,10 @@ void Stage02::SettingStage()
 
 void Stage02::SettingMonster()
 {
-    Fool_knife* FoolKnife = CreateActor<Fool_knife>();
-    FoolKnife->GetTransform().SetWorldPosition({1300, -1289, MonsterZ});
-    FoolKnife->SetGround(ColMap_);
-    MonsterList_.push_back(FoolKnife);
+    //Fool_knife* FoolKnife = CreateActor<Fool_knife>();
+    //FoolKnife->GetTransform().SetWorldPosition({1300, -1289, MonsterZ});
+    //FoolKnife->SetGround(ColMap_);
+    //MonsterList_.push_back(FoolKnife);
 
     //WingedFace* FlyingEnemy = CreateActor<WingedFace>();
     //FlyingEnemy->GetTransform().SetWorldPosition({2150, -1250, MonsterZ});

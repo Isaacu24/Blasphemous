@@ -69,6 +69,16 @@ void Penitent::LadderCheck()
     float4 MiddleColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x,
                                                                     -(GetTransform().GetWorldPosition().y + 50));
 
+    if ("Fall" == State_.GetCurStateStateName() || "Jump" == State_.GetCurStateStateName())
+    {
+        if (true == MiddleColor.CompareInt4D(float4::GREEN))
+        {
+            State_.ChangeState("LadderClimb");
+            MetaRenderer_->SetCurAnimationPause(true);
+            return;
+        }
+    }
+
     if (true == MiddleColor.CompareInt4D(float4::GREEN))
     {
         if (GameEngineInput::GetInst()->IsDownKey("PenitentUp"))
@@ -83,6 +93,7 @@ void Penitent::LadderCheck()
         if (GameEngineInput::GetInst()->IsDownKey("PenitentDown"))
         {
             CilmbY_ = -50;
+            MetaRenderer_->ChangeMetaAnimation("penitent_ladder_down_from_ground_anim");            
             State_.ChangeState("LadderClimb");
         }
     }
