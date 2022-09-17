@@ -909,9 +909,6 @@ void Penitent::VerticalAttackEnd(const StateInfo& _Info) { AttackCollider_->Off(
 
 void Penitent::PrayAttackStart(const StateInfo& _Info)
 {
-    AttackCollider_->On();
-    //크기 조정 필요
-
     BodyCollider_->Off();
     MetaRenderer_->ChangeMetaAnimation("penitent_aura_anim");
 }
@@ -921,7 +918,14 @@ void Penitent::PrayAttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 void Penitent::PrayAttackEnd(const StateInfo& _Info)
 {
     BodyCollider_->On();
-    AttackCollider_->Off();
+
+    //보스 킬 이벤트
+    if (MetaRenderer_->GetColorData().MulColor.CompareInt4D(float4::ZERO))
+    {
+        return;
+    }
+
+    MetaRenderer_->GetColorData().MulColor = float4{1.0f, 1.0f, 1.0f, 1.0f};
 }
 
 
@@ -932,7 +936,8 @@ void Penitent::RangeAttackStart(const StateInfo& _Info)
 
 void Penitent::RangeAttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Penitent::RangeAttackEnd(const StateInfo& _Info) {}
+void Penitent::RangeAttackEnd(const StateInfo& _Info) { FallTime_ = 0.f; }
+
 
 void Penitent::JumpRangeAttackStart(const StateInfo& _Info)
 {
@@ -1105,6 +1110,27 @@ void Penitent::RespawnUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 
 void Penitent::RespawnEnd(const StateInfo& _Info) {}
+
+
+void Penitent::PrayStart(const StateInfo& _Info) 
+{
+
+}
+
+void Penitent::PrayUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Penitent::PrayEnd(const StateInfo& _Info) {}
+
+
+void Penitent::RestPrayStart(const StateInfo& _Info) 
+{
+    MetaRenderer_->ChangeMetaAnimation("penitent_priedieu_kneeling_anim");
+}
+
+void Penitent::RestPrayUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Penitent::RestPrayEnd(const StateInfo& _Info) {}
+
 
 void Penitent::DeathStart(const StateInfo& _Info)
 {

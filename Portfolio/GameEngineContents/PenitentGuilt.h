@@ -6,6 +6,8 @@ class PenitentGuilt
     : public GameEngineActor
     , public ObjectBase
 {
+    friend class Penitent;
+
 public:
     PenitentGuilt();
     ~PenitentGuilt();
@@ -22,4 +24,6 @@ protected:
 
 private:
     GameEngineTextureRenderer* Renderer_;
+
+    void DestroyGuilt();
 };

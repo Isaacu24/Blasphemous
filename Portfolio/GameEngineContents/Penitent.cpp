@@ -76,7 +76,7 @@ void Penitent::BossKillEventOff()
     PlayerUI_->UIAllOn();
 }
 
-void Penitent::BossDeathUIOn(unsigned int _Key) 
+void Penitent::BossDeathUIOn(unsigned int _Key)
 {
     //마지막 보스 몬스터
     if (0 == _Key)
@@ -144,7 +144,7 @@ void Penitent::Start()
     BodyCollider_->GetTransform().SetWorldMove({0, 30});
 
     AttackCollider_ = CreateComponent<GameEngineCollision>();
-    AttackCollider_->GetTransform().SetWorldScale({75.f, 50.f, 1.f});
+    AttackCollider_->GetTransform().SetWorldScale({75.f, 75.f, 1.f});
     AttackCollider_->ChangeOrder(COLLISIONORDER::PlayerAttack);
     AttackCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 0.0f, 1.0f, 0.5f});
     AttackCollider_->Off();
@@ -258,6 +258,9 @@ void Penitent::Update(float _DeltaTime)
     }
 
     GameEngineDebug::OutPutString("Player HP: " + std::to_string(GetHP()));
+
+    GameEngineDebug::OutPutString("GamePad State: "
+                                  + std::to_string(GameEngineInput::GetInst()->GetInputState().dwPacketNumber));
 }
 
 void Penitent::End() {}
@@ -875,6 +878,7 @@ void Penitent::SetAnimation()
 
                     case 19:
                         AttackCollider_->On();
+                        AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 100.f, 0.f});
                         HitStack_ = 2;
                         break;
 
@@ -888,12 +892,51 @@ void Penitent::SetAnimation()
 
                     case 22:
                         AttackCollider_->Off();
+                        AttackCollider_->GetTransform().SetWorldMove({-RealXDir_ * 100.f, 0.f});
                 }
             });
 
         MetaRenderer_->AnimationBindEnd("penitent_three_hits_attack_combo_no_slashes",
+                                        [&](const FrameAnimation_DESC& _Info)
+                                        {
+                                            if (2 < AttackStack_)
+                                            {
+                                                AttackStack_ = 0;
+                                                MetaRenderer_->ChangeMetaAnimation("penitent_parry_counterv2_old_anim");
+                                                return;
+                                            }
+
+                                            ChangeState("Idle");
+                                        });
+    }
+
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_parry_counterv2_old_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_parry_counterv2_old_anim",
+            {"penitent_parry_counterv2_old_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindFrame("penitent_parry_counterv2_old_anim",
+                                          [&](const FrameAnimation_DESC& _Info)
+                                          {
+                                              if (13 == _Info.CurFrame)
+                                              {
+                                                  AttackCollider_->On();
+                                              }
+
+                                              else if (15 == _Info.CurFrame)
+                                              {
+                                                  AttackCollider_->Off();
+                                              }
+                                          });
+
+        MetaRenderer_->AnimationBindEnd("penitent_parry_counterv2_old_anim",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
+
 
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_getting_up_anim");
@@ -998,6 +1041,23 @@ void Penitent::SetAnimation()
             {"penitent_parry_counter_v2_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
             Data);
 
+        MetaRenderer_->AnimationBindFrame(
+            "penitent_parry_counter_v2_anim",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                if (13 == _Info.CurFrame)
+                {
+                    AttackCollider_->On();
+                    AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 75.f, 50.f});
+                }
+
+                else if (15 == _Info.CurFrame)
+                {
+                    AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
+                    AttackCollider_->Off();
+                }
+            });
+
         MetaRenderer_->AnimationBindEnd("penitent_parry_counter_v2_anim",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
@@ -1079,14 +1139,24 @@ void Penitent::SetAnimation()
                          GetTransform().GetWorldPosition().y - 15.f,
                          PlayerBehindEffectZ});
                 }
+
+                if (30 == _Info.CurFrame)
+                {
+                    AttackCollider_->On();
+                    AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 20.f, 400.f});
+                    AttackCollider_->GetTransform().SetLocalScale({220.f, 400.f});
+                }
+
+                if (40 == _Info.CurFrame)
+                {
+                    AttackCollider_->GetTransform().SetWorldMove({-RealXDir_ * 20.f, -400.f});
+                    AttackCollider_->GetTransform().SetLocalScale({75.f, 75.f});
+                    AttackCollider_->Off();
+                }
             });
 
         MetaRenderer_->AnimationBindEnd("penitent_aura_anim",
-                                        [&](const FrameAnimation_DESC& _Info)
-                                        {
-                                            MetaRenderer_->GetColorData().MulColor = float4{1.0f, 1.0f, 1.0f, 1.0f};
-                                            ChangeState("Idle");
-                                        });
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
     //원거리 공격
@@ -1172,6 +1242,68 @@ void Penitent::SetAnimation()
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
+    //기도
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_priedieu_kneeling_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_priedieu_kneeling_anim",
+            {"penitent_priedieu_kneeling_anim.png", 0, static_cast<unsigned int>(Data.size() - 15), 0.08f, true},
+            Data);
+
+
+        MetaRenderer_->AnimationBindEnd(
+            "penitent_priedieu_kneeling_anim",
+            [&](const FrameAnimation_DESC& _Info)
+            { MetaRenderer_->ChangeMetaAnimation("penitent_priedieu_bended_knee_with_aura"); });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_priedieu_bended_knee_with_aura");
+
+        MetaRenderer_->CreateMetaAnimation("penitent_priedieu_bended_knee_with_aura",
+                                           {"penitent_priedieu_bended_knee_with_aura.png",
+                                            0,
+                                            static_cast<unsigned int>(Data.size() - 15),
+                                            0.08f,
+                                            true},
+                                           Data);
+
+        MetaRenderer_->AnimationBindEnd(
+            "penitent_priedieu_bended_knee_with_aura",
+            [&](const FrameAnimation_DESC& _Info)
+            { MetaRenderer_->ChangeMetaAnimation("penitent_priedieu_bended_knee_aura_turnoff"); });
+    }
+
+    //{
+    //    std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_priedieu_bended_knee_aura_turnoff");
+
+    //    MetaRenderer_->CreateMetaAnimation("penitent_priedieu_bended_knee_aura_turnoff",
+    //                                       {"penitent_priedieu_bended_knee_aura_turnoff.png",
+    //                                        0,
+    //                                        static_cast<unsigned int>(Data.size() - 15),
+    //                                        0.08f,
+    //                                        true},
+    //                                       Data);
+
+
+    //    MetaRenderer_->AnimationBindEnd("penitent_priedieu_bended_knee_aura_turnoff",
+    //                                    [&](const FrameAnimation_DESC& _Info)
+    //                                    { MetaRenderer_->ChangeMetaAnimation("penitent_priedieu_stand_up_anim"); });
+    //}
+
+    //{
+    //    std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_priedieu_stand_up_anim");
+
+    //    MetaRenderer_->CreateMetaAnimation(
+    //        "penitent_priedieu_stand_up_anim",
+    //        {"penitent_priedieu_stand_up_anim.png", 0, static_cast<unsigned int>(Data.size() - 15), 0.08f, true},
+    //        Data);
+
+
+    //    MetaRenderer_->AnimationBindEnd("penitent_priedieu_stand_up_anim",
+    //                                    [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+    //}
 
     MetaRenderer_->SetPivot(PIVOTMODE::METABOT);
 }

@@ -106,6 +106,32 @@ void GameEngineTransform::PixLocalPositiveX()
 	SetLocalScale(Data.LocalScaling);
 }
 
+
+void GameEngineTransform::PixWorldNegativeX()
+{
+	if (0.0f > Data.WorldScaling.x)
+	{
+		return;
+	}
+
+	Data.WorldScaling.x = -Data.WorldScaling.x;
+
+	SetWorldScale(Data.WorldScaling);
+}
+
+void GameEngineTransform::PixWorldPositiveX()
+{
+	if (0.0f < Data.WorldScaling.x)
+	{
+		return;
+	}
+
+	Data.WorldScaling.x = abs(Data.WorldScaling.x);
+
+	SetWorldScale(Data.WorldScaling);
+}
+
+
 void GameEngineTransform::Copy(const GameEngineTransform& _Trans)
 {
 	Data = _Trans.Data;

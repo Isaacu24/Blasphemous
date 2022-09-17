@@ -1,20 +1,17 @@
 #include "PreCompile.h"
 #include "PrieDieu.h"
 
-PrieDieu::PrieDieu() 
-{
-}
+PrieDieu::PrieDieu() {}
 
-PrieDieu::~PrieDieu() 
-{
-}
+PrieDieu::~PrieDieu() {}
 
 void PrieDieu::Start()
 {
-	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
-	Renderer_->CreateFrameAnimationCutTexture("priedieu_stand_and_liton_anim", { "priedieu_stand_and_liton_anim.png", 1, 6, 0.1f, true });
-	Renderer_->ChangeFrameAnimation("priedieu_stand_and_liton_anim");
-	Renderer_->GetTransform().SetWorldScale({ 150, 300 });
+    Renderer_ = CreateComponent<GameEngineTextureRenderer>();
+    Renderer_->CreateFrameAnimationCutTexture("priedieu_stand_and_liton_anim",
+                                              {"priedieu_stand_and_liton_anim.png", 1, 6, 0.1f, true});
+    Renderer_->ChangeFrameAnimation("priedieu_stand_and_liton_anim");
+    Renderer_->GetTransform().SetWorldScale({150, 300});
 
     UICollider_ = CreateComponent<GameEngineCollision>();
     UICollider_->GetTransform().SetWorldScale({100.f, 200.f, 1.f});
@@ -23,7 +20,17 @@ void PrieDieu::Start()
     UICollider_->GetTransform().SetWorldMove({0, -50});
 
     UIRenderer_ = CreateComponent<GameEngineTextureRenderer>();
-    UIRenderer_->SetTexture("CT_Y.png");
+
+    if (0 < GameEngineInput::GetInst()->GetInputState().dwPacketNumber)
+    {
+        UIRenderer_->SetTexture("CT_Y.png");
+    }
+
+    else
+    {
+        UIRenderer_->SetTexture("KB_E.png");
+    }
+
     UIRenderer_->GetTransform().SetWorldScale({30, 30, 1});
     UIRenderer_->GetTransform().SetWorldMove({-7, 150});
     UIRenderer_->Off();
@@ -31,12 +38,20 @@ void PrieDieu::Start()
 
 void PrieDieu::Update(float _DeltaTime)
 {
-    if (true == UICollider_->IsCollision(CollisionType::CT_OBB2D,
-                               COLLISIONORDER::Player,
-                               CollisionType::CT_OBB2D,
-                               nullptr))
+    if (true
+        == UICollider_->IsCollision(CollisionType::CT_OBB2D, COLLISIONORDER::Player, CollisionType::CT_OBB2D, nullptr))
     {
         UIRenderer_->On();
+
+        if (0 < GameEngineInput::GetInst()->GetInputState().dwPacketNumber)
+        {
+            UIRenderer_->SetTexture("CT_Y.png");
+        }
+
+        else
+        {
+            UIRenderer_->SetTexture("KB_E.png");
+        }
     }
 
     else
@@ -45,6 +60,4 @@ void PrieDieu::Update(float _DeltaTime)
     }
 }
 
-void PrieDieu::End()
-{
-}
+void PrieDieu::End() {}

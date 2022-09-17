@@ -165,9 +165,9 @@ void ShieldMaiden::Start()
     BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
     BloodEffect_->GetRenderer()->Off();
 
-    Effect_ = GetLevel()->CreateActor<BlockEffect>();
-    Effect_->GetTransform().SetWorldScale({2, 2, 1});
-    Effect_->Renderer_->Off();
+    BlockEffect_ = GetLevel()->CreateActor<BlockEffect>();
+    BlockEffect_->GetTransform().SetWorldScale({2, 2, 1});
+    BlockEffect_->Renderer_->Off();
 
     State_.CreateStateMember("Idle",
                              std::bind(&ShieldMaiden::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2),
@@ -231,7 +231,7 @@ void ShieldMaiden::Update(float _DeltaTime)
 
     if ("Death" != State_.GetCurStateStateName() && "Execution" != State_.GetCurStateStateName())
     {
-        if (90 > GetHP())
+        if (90 > GetHP() && "Stun" != State_.GetCurStateStateName())
         {
             State_.ChangeState("Stun");
             return;
@@ -260,38 +260,36 @@ void ShieldMaiden::DamageCheck()
         return;
     }
 
-    if (true == IsPlayerLeft_)
+    //패링에 당한 상태가 아닐 경우
+    if ("ParryReaction" != State_.GetCurStateStateName())
     {
-        if (Dir_.CompareInt4D(float4::LEFT))
+        if (true == IsPlayerLeft_ && Dir_.CompareInt4D(float4::LEFT))
         {
             if (true
                 == BodyCollider_->IsCollision(
                     CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
             {
                 float4 EffectPos = GetTransform().GetWorldPosition();
-                Effect_->GetTransform().SetWorldPosition(
+                BlockEffect_->GetTransform().SetWorldPosition(
                     {EffectPos.x + (Dir_.x * 60.f), EffectPos.y - 100.f, MonsterZ});
 
-                Effect_->Renderer_->On();
+                BlockEffect_->Renderer_->On();
             }
 
             return;
         }
-    }
 
-    else if (true == IsPlayerRight_)
-    {
-        if (Dir_.CompareInt4D(float4::RIGHT))
+        else if (true == IsPlayerRight_ && Dir_.CompareInt4D(float4::RIGHT))
         {
             if (true
                 == BodyCollider_->IsCollision(
                     CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
             {
                 float4 EffectPos = GetTransform().GetWorldPosition();
-                Effect_->GetTransform().SetWorldPosition(
+                BlockEffect_->GetTransform().SetWorldPosition(
                     {EffectPos.x + (Dir_.x * 10.f), EffectPos.y - 100.f, MonsterZ});
 
-                Effect_->Renderer_->On();
+                BlockEffect_->Renderer_->On();
             }
 
             return;
@@ -514,7 +512,9 @@ void ShieldMaiden::StunStart(const StateInfo& _Info)
 
 void ShieldMaiden::StunUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    if (true == GameEngineInput::GetInst()->IsDownKey("FreeCamera") && true == ExecutionCheck())
+    bool IsExecution = ExecutionCheck();
+
+    if (true == GameEngineInput::GetInst()->IsDownKey("FreeCamera") && true == IsExecution)
     {
         State_.ChangeState("Execution");
         return;
@@ -525,6 +525,7 @@ void ShieldMaiden::StunUpdate(float _DeltaTime, const StateInfo& _Info)
         DetectCollider_->On();
         ExecutionCollider_->Off();
 
+        SetHP(90);
         State_.ChangeState("Idle");
     }
 }

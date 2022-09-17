@@ -170,8 +170,24 @@ void AttackEffect::Start()
                                     });
     }
 
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_pickUpGuiltFx");
+
+        Renderer_->CreateMetaAnimation(
+            "penitent_pickUpGuiltFx",
+            {"penitent_pickUpGuiltFx.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
+            Data);
+
+        Renderer_->AnimationBindEnd("penitent_pickUpGuiltFx",
+                                    [&](const FrameAnimation_DESC& _Info)
+                                    {
+                                        Renderer_->CurAnimationReset();
+                                        Renderer_->Off();
+                                    });
+    }
+
     Renderer_->SetPivot(PIVOTMODE::METABOT);
-}   
+}
 
 void AttackEffect::Update(float _DeltaTime) {}
 

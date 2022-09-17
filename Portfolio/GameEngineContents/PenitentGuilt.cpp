@@ -30,18 +30,28 @@ void PenitentGuilt::Start()
 
     UICollider_ = CreateComponent<GameEngineCollision>();
     UICollider_->GetTransform().SetWorldScale({100.f, 200.f, 1.f});
-    UICollider_->ChangeOrder(COLLISIONORDER::Object);
+    UICollider_->ChangeOrder(COLLISIONORDER::Guilt);
     UICollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.0f, 0.0f, 1.0f, 0.5f});
     UICollider_->GetTransform().SetWorldMove({0, 100});
 
     UIRenderer_ = CreateComponent<GameEngineTextureRenderer>();
-    UIRenderer_->SetTexture("CT_Y.png");
+
+    if (0 < GameEngineInput::GetInst()->GetInputState().dwPacketNumber)
+    {
+        UIRenderer_->SetTexture("CT_Y.png");
+    }
+
+    else
+    {
+        UIRenderer_->SetTexture("KB_E.png");
+    }
+
     UIRenderer_->GetTransform().SetWorldScale({30, 30, 1});
-    UIRenderer_->GetTransform().SetWorldPosition({0, 0, ObjectZ});
+    UIRenderer_->GetTransform().SetWorldPosition({0, 0, AfterParallaxZ});
     UIRenderer_->GetTransform().SetWorldMove({0, 220});
     UIRenderer_->Off();
 }
-
+ 
 void PenitentGuilt::Update(float _DeltaTime)
 {
     if (true == Interaction_)
@@ -54,21 +64,14 @@ void PenitentGuilt::Update(float _DeltaTime)
     {
         UIRenderer_->On();
 
-        if (true == GameEngineInput::GetInst()->IsDownKey("Interaction"))
+        if (0 < GameEngineInput::GetInst()->GetInputState().dwPacketNumber)
         {
-            UICollider_->Off();
-            UIRenderer_->Off();
-            Renderer_->ChangeFrameAnimation("guiltDropVanish");
+            UIRenderer_->SetTexture("CT_Y.png");
+        }
 
-            MessageUI* UI = GetLevel()->CreateActor<MessageUI>();
-            UI->GetTransform().SetWorldMove({0, 500});
-            UI->GetUIRenderer()->GetColorData().MulColor.a = 1.0f;
-            UI->SetFontSize(35);
-            UI->SetFontPosition({640, 180});
-            UI->CreateLine("Guilt has been restored.");
-            UI->SpeechStart();
-
-            Interaction_ = true;
+        else
+        {
+            UIRenderer_->SetTexture("KB_E.png");
         }
     }
 
@@ -79,3 +82,21 @@ void PenitentGuilt::Update(float _DeltaTime)
 }
 
 void PenitentGuilt::End() {}
+
+
+void PenitentGuilt::DestroyGuilt()
+{
+    UICollider_->Off();
+    UIRenderer_->Off();
+    Renderer_->ChangeFrameAnimation("guiltDropVanish");
+
+    MessageUI* UI = GetLevel()->CreateActor<MessageUI>();
+    UI->GetTransform().SetWorldMove({0, 500});
+    UI->GetUIRenderer()->GetColorData().MulColor.a = 1.0f;
+    UI->SetFontSize(35);
+    UI->SetFontPosition({640, 180});
+    UI->CreateLine("Guilt has been restored.");
+    UI->SpeechStart();
+
+    Interaction_ = true;
+}

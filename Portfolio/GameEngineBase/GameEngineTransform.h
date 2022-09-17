@@ -275,6 +275,10 @@ public:
 
 	void PixLocalPositiveX();
 
+	void PixWorldNegativeX();
+
+	void PixWorldPositiveX();
+
 	// void PushChild(GameEngineTransform* _Child);
 
 	void SetView(const float4x4& _Mat)

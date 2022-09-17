@@ -110,6 +110,8 @@ protected:
 
     void DeadZoneCheck();
 
+    bool ObjectCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
+
     void CollisionCheck();
 
     bool HitEffectCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
@@ -221,6 +223,13 @@ protected:
     void RespawnUpdate(float _DeltaTime, const StateInfo& _Info);
     void RespawnEnd(const StateInfo& _Info);
 
+    void PrayStart(const StateInfo& _Info);
+    void PrayUpdate(float _DeltaTime, const StateInfo& _Info);
+    void PrayEnd(const StateInfo& _Info);
+
+    void RestPrayStart(const StateInfo& _Info);
+    void RestPrayUpdate(float _DeltaTime, const StateInfo& _Info);
+    void RestPrayEnd(const StateInfo& _Info);
 
     //피격 함수
     bool KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other);

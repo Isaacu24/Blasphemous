@@ -202,6 +202,30 @@ void Penitent::DeadZoneCheck()
     };
 }
 
+bool Penitent::ObjectCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
+{
+    if (true == GameEngineInput::GetInst()->IsDownKey("Interaction") && "Idle" == State_.GetCurStateStateName())
+    {
+        PenitentGuilt* Guilt = dynamic_cast<PenitentGuilt*>(_Other->GetActor());
+
+        if (nullptr == Guilt)
+        {
+            return false;
+        }
+
+        Guilt->DestroyGuilt();
+
+        AttackEffect_->Renderer_->On();
+        AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_pickUpGuiltFx");
+        AttackEffect_->GetTransform().SetWorldPosition(
+            {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, PlayerEffectZ});
+
+        return true;
+    }
+
+    return false;
+}
+
 
 void Penitent::CollisionCheck()
 {
@@ -308,6 +332,11 @@ void Penitent::CollisionCheck()
     {
         IsBossHit_ = false;
     }
+
+    BodyCollider_->IsCollision(CollisionType::CT_OBB2D,
+                               COLLISIONORDER::Guilt,
+                               CollisionType::CT_OBB2D,
+                               std::bind(&Penitent::ObjectCheck, this, std::placeholders::_1, std::placeholders::_2));
 
     DeadZoneCheck();
 }

@@ -58,5 +58,5 @@ private:
 
     std::string NextState_;
 
-    class BlockEffect* Effect_;
+    class BlockEffect* BlockEffect_;
 };

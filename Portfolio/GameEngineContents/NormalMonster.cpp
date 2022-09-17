@@ -19,6 +19,22 @@ void NormalMonster::Start()
     ExecutionCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.0f, 0.0f, 0.0f, 0.5f});
     ExecutionCollider_->GetTransform().SetWorldMove({-15.f, 25.f});
     ExecutionCollider_->Off();
+
+    UIRenderer_ = CreateComponent<GameEngineTextureRenderer>();
+
+    if (0 < GameEngineInput::GetInst()->GetInputState().dwPacketNumber)
+    {
+        UIRenderer_->SetTexture("CT_Y.png");
+    }
+
+    else
+    {
+        UIRenderer_->SetTexture("KB_E.png");
+    }
+
+    UIRenderer_->GetTransform().SetWorldScale({15, 15, 1});
+    UIRenderer_->GetTransform().SetWorldMove({0.f, 100.f});
+    UIRenderer_->Off();
 }
 
 void NormalMonster::Update(float _DeltaTime) {}
@@ -140,6 +156,19 @@ bool NormalMonster::ExecutionCheck()
     {
         if (0 < Dir_.x && IsPlayerRight_ || 0 > Dir_.x && IsPlayerLeft_)
         {
+            UIRenderer_->On();
+            UIRenderer_->GetTransform().PixWorldPositiveX();
+
+            if (0 < GameEngineInput::GetInst()->GetInputState().dwPacketNumber)
+            {
+                UIRenderer_->SetTexture("CT_Y.png");
+            }
+
+            else
+            {
+                UIRenderer_->SetTexture("KB_E.png");
+            }
+
             return true;
         }
     }

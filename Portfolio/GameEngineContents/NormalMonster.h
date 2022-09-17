@@ -42,6 +42,8 @@ protected:
 
     GameEngineCollision* ExecutionCollider_;
 
+    GameEngineTextureRenderer* UIRenderer_;
+
     virtual void PatrolMoveX(float _DeltaTime){};
     virtual void PatrolMoveY(float _DeltaTime){};
 

@@ -233,7 +233,7 @@ void Crosscrawler::Update(float _DeltaTime)
 
     if ("Death" != State_.GetCurStateStateName() && "Execution" != State_.GetCurStateStateName())
     {
-        if (90 > GetHP())
+        if (90 > GetHP() && "Stun" != State_.GetCurStateStateName())
         {
             State_.ChangeState("Stun");
             return;
@@ -485,7 +485,9 @@ void Crosscrawler::StunStart(const StateInfo& _Info)
 
 void Crosscrawler::StunUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    if (true == GameEngineInput::GetInst()->IsDownKey("FreeCamera") && true == ExecutionCheck())
+    bool IsExecution = ExecutionCheck();
+
+    if (true == GameEngineInput::GetInst()->IsDownKey("Interaction") && true == IsExecution)
     {
         State_.ChangeState("Execution");
         return;
@@ -495,6 +497,7 @@ void Crosscrawler::StunUpdate(float _DeltaTime, const StateInfo& _Info)
     {
         DetectCollider_->On();
         ExecutionCollider_->Off();
+        SetHP(90);
 
         State_.ChangeState("Idle");
     }
