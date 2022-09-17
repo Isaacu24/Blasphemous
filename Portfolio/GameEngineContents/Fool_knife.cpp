@@ -147,7 +147,7 @@ void Fool_knife::DamageCheck()
             == BodyCollider_->IsCollision(
                 CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
         {
-            MinusHP(10.f);
+            MinusHP(25.f);
             IsHit_ = true;
             State_.ChangeState("Hurt");
 
@@ -226,9 +226,24 @@ void Fool_knife::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
-    else
+    if (true == IsPlayerLeft_)
     {
-        State_.ChangeState("Track");
+        if (true
+            == LeftObstacleCheck(GetTransform().GetWorldPosition().x - 50, -(GetTransform().GetWorldPosition().y + 35)))
+        {
+            State_.ChangeState("Track");
+        }
+
+    }
+
+    else if (true == IsPlayerRight_)
+    {
+        if (true
+            == RightObstacleCheck(GetTransform().GetWorldPosition().x + 50,
+                                  -(GetTransform().GetWorldPosition().y + 35)))
+        {
+            State_.ChangeState("Track");
+        }
     }
 }
 

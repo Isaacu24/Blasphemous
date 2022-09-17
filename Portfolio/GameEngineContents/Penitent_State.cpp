@@ -104,8 +104,9 @@ void Penitent::MoveStart(const StateInfo& _Info)
 
 void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    if (true == GameEngineInput::GetInst()->IsPressKey("PenitentRight")
-        || 20000 < GameEngineInput::GetInst()->GetThumbLX())
+    SHORT ThumbLX = GameEngineInput::GetInst()->GetThumbLX();
+
+    if (true == GameEngineInput::GetInst()->IsPressKey("PenitentRight") || 20000 < ThumbLX)
     {
         GetTransform().PixLocalPositiveX();
         Dir_ = GetTransform().GetRightVector();
@@ -120,8 +121,7 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
         }
     }
 
-    else if (true == GameEngineInput::GetInst()->IsUpKey("PenitentRight")
-             || 20000 < GameEngineInput::GetInst()->GetThumbLX())
+    else if (true == GameEngineInput::GetInst()->IsUpKey("PenitentRight") || 0 > ThumbLX)
     {
         if (1.f <= RunTime_)
         {
@@ -138,10 +138,11 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
         {
             ChangeState("Idle");
         }
+
         return;
     }
 
-    if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft") || 0 > GameEngineInput::GetInst()->GetThumbLX())
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft") || 0 > ThumbLX)
     {
         GetTransform().PixLocalNegativeX();
         Dir_ = -(GetTransform().GetLeftVector());
@@ -155,7 +156,7 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
         }
     }
 
-    else if (GameEngineInput::GetInst()->IsUpKey("PenitentLeft") || 0 > GameEngineInput::GetInst()->GetThumbLX())
+    else if (GameEngineInput::GetInst()->IsUpKey("PenitentLeft")|| 20000 < ThumbLX)
     {
         if (1.f <= RunTime_)
         {
@@ -1114,7 +1115,9 @@ void Penitent::RespawnUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 
 void Penitent::RespawnEnd(const StateInfo& _Info) 
-{ BodyCollider_->On(); }
+{
+    BodyCollider_->Off();
+}
 
 
 void Penitent::PrayStart(const StateInfo& _Info) {}
