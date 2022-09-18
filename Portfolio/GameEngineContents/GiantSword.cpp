@@ -115,6 +115,40 @@ void GiantSword::Update(float _DeltaTime)
 {
     State_.Update(_DeltaTime);
 
+    if (nullptr == Penitent::GetMainPlayer())
+    {
+        return;
+    }
+
+    float4 Center = EyeRenderer_->GetTransform().GetWorldPosition();
+    float4 EyeDir = Penitent::GetMainPlayer()->GetTransform().GetWorldPosition() - EyeRenderer_->GetTransform().GetWorldPosition();
+    EyeDir.Normalize();
+
+    float4 f4CurrentIrisPosition = IrisRenderer_->GetTransform().GetWorldPosition();
+    float4 f4Destination         = float4{
+                                        Center.x + (EyeDir * 5.f).x,
+                                        Center.y + (EyeDir * 5.f).y, 0.f, 0.f
+                                         };
+    float4 f4EyePosition         = float4::Lerp(f4CurrentIrisPosition, f4Destination, 10.f * _DeltaTime);
+    float  len                   = (f4EyePosition - Center).Length();
+    float4 f4CalculatedPosition;
+    if (5.f <= len)
+    {
+        f4CalculatedPosition = float4{(f4EyePosition - Center).x,
+                            (f4EyePosition - Center).y,
+                            f4CurrentIrisPosition.z,
+                            f4CurrentIrisPosition.w};   
+    }
+    else
+    {
+        f4CalculatedPosition = float4{f4EyePosition.x,
+                            f4EyePosition.y,
+                            f4CurrentIrisPosition.z,
+                            f4CurrentIrisPosition.w};
+    }
+    
+    IrisRenderer_->GetTransform().SetWorldPosition(f4CalculatedPosition);
+
     // GameEngineDebug::OutPutString("GiantSword : " + State_.GetCurStateStateName());
 }
 
@@ -296,7 +330,7 @@ void GiantSword::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
 
     MonsterBase::DamageCheck(50.f, "TeleportIN");
 
-    TrackToPlayer(_Info.StateTime);
+    // TrackToPlayer(_Info.StateTime);
 
     DetectCollider_->IsCollision(
         CollisionType::CT_OBB2D,
@@ -310,31 +344,52 @@ void GiantSword::TrackEnd(const StateInfo& _Info) {}
 
 bool GiantSword::LookAtPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-    float4 EyeDir = _Other->GetTransform().GetWorldPosition() - _This->GetTransform().GetWorldPosition();
+    /*
+        float4 f4CurrentEyePosition = eye->GetTransform().GetWorldPosition();
+        float4 f4Direction = 5.f * Vd
+        float4 f4EyePosition = float4::Lerp(f4CurrentEyePosition, f4Direction, 10 * _deltaTime);
+        eye->gettransform().setworldposition(f4EyePosition);
+
+    */
+
+    /*float4 EyeDir = _Other->GetTransform().GetWorldPosition() - _This->GetTransform().GetWorldPosition();
     EyeDir.Normalize();
 
-                //µ¿°ø ·»´õ·¯                                            //È«Ã¤ ·»´õ·¯
-    float A = IrisRenderer_->GetTransform().GetWorldPosition().x - EyeRenderer_->GetTransform().GetWorldPosition().x;
-    float B = IrisRenderer_->GetTransform().GetWorldPosition().y - EyeRenderer_->GetTransform().GetWorldPosition().y;
-
-    double C = sqrt((A * A) + (B * B));
-
-    if (5.f >= C)
+    float4 f4CurrentEyePosition = IrisRenderer_->GetTransform().GetWorldPosition();
+    float4 f4Direction          = EyeDir * 5.f;
+    float4 f4EyePosition        = float4::Lerp(f4CurrentEyePosition, f4Direction, 0.0000005f);
+    float len = (f4EyePosition - _This->GetTransform().GetWorldPosition()).Length();
+    if (5.f <= len)
     {
-        IrisRenderer_->GetTransform().SetWorldMove(
-            {EyeDir.x * 50.f * GameEngineTime::GetDeltaTime(), EyeDir.y * 50.f * GameEngineTime::GetDeltaTime()});
-
-        A = IrisRenderer_->GetTransform().GetWorldPosition().x - EyeRenderer_->GetTransform().GetWorldPosition().x;
-        B = IrisRenderer_->GetTransform().GetWorldPosition().y - EyeRenderer_->GetTransform().GetWorldPosition().y;
-
-        C = sqrt((A * A) + (B * B));
-
-        if (5.f < C)
-        {
-            IrisRenderer_->GetTransform().SetWorldMove({-EyeDir.x * 100.f * GameEngineTime::GetDeltaTime(),
-                                                        -EyeDir.y * 100.f * GameEngineTime::GetDeltaTime()});
-        }
+        IrisRenderer_->GetTransform().SetWorldPosition(f4EyePosition - _This->GetTransform().GetWorldPosition());
     }
+    else
+    {
+        IrisRenderer_->GetTransform().SetWorldPosition(f4EyePosition);
+    }*/
+
+    //            //µ¿°ø ·»´õ·¯                                            //È«Ã¤ ·»´õ·¯
+    //float A = IrisRenderer_->GetTransform().GetWorldPosition().x - EyeRenderer_->GetTransform().GetWorldPosition().x;
+    //float B = IrisRenderer_->GetTransform().GetWorldPosition().y - EyeRenderer_->GetTransform().GetWorldPosition().y;
+
+    //double C = sqrt((A * A) + (B * B));
+
+    //if (5.f >= C)
+    //{
+    //    IrisRenderer_->GetTransform().SetWorldMove(
+    //        {EyeDir.x * 50.f * GameEngineTime::GetDeltaTime(), EyeDir.y * 50.f * GameEngineTime::GetDeltaTime()});
+
+    //    A = IrisRenderer_->GetTransform().GetWorldPosition().x - EyeRenderer_->GetTransform().GetWorldPosition().x;
+    //    B = IrisRenderer_->GetTransform().GetWorldPosition().y - EyeRenderer_->GetTransform().GetWorldPosition().y;
+
+    //    C = sqrt((A * A) + (B * B));
+
+    //    if (5.f < C)
+    //    {
+    //        IrisRenderer_->GetTransform().SetWorldMove({-EyeDir.x * 100.f * GameEngineTime::GetDeltaTime(),
+    //                                                    -EyeDir.y * 100.f * GameEngineTime::GetDeltaTime()});
+    //    }
+    //}
 
     return true;
 }
