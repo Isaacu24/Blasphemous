@@ -41,4 +41,6 @@ private:
 
     float DelayTime_;
     int   StrikeCount_;
+
+    float LimitTime_;
 };

@@ -31,13 +31,32 @@ void Pope::Start()
     }
 
     {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_idle");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "pope_idle_Event", {"pope_idle.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true}, Data);
+    }
+
+
+    {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_appear");
 
         MetaRenderer_->CreateMetaAnimation(
-            "pope_appear", {"pope_appear.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true}, Data);
+            "pope_appear", {"pope_appear.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false}, Data);
 
         MetaRenderer_->AnimationBindEnd("pope_appear",
                                         [&](const FrameAnimation_DESC& _Info) { State_.ChangeState("Idle"); });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_appear");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "pope_appear_Event", {"pope_appear.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false}, Data);
+
+        MetaRenderer_->AnimationBindEnd("pope_appear_Event",
+                                        [&](const FrameAnimation_DESC& _Info)
+                                        { MetaRenderer_->ChangeMetaAnimation("pope_idle_Event"); });
     }
 
     {
@@ -45,7 +64,7 @@ void Pope::Start()
 
         MetaRenderer_->CreateMetaAnimation(
             "pope_hitReaction",
-            {"pope_hitReaction.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            {"pope_hitReaction.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false},
             Data);
 
         MetaRenderer_->AnimationBindEnd("pope_hitReaction",
@@ -57,13 +76,17 @@ void Pope::Start()
 
         MetaRenderer_->CreateMetaAnimation(
             "pope_spellCast", {"pope_spellCast.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true}, Data);
+
+        MetaRenderer_->AnimationBindEnd("pope_spellCast",
+                                        [&](const FrameAnimation_DESC& _Info)
+                                        { MetaRenderer_->ChangeMetaAnimation("pope_idle_Event"); });
     }
 
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_vanishing");
 
         MetaRenderer_->CreateMetaAnimation(
-            "pope_vanishing", {"pope_vanishing.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true}, Data);
+            "pope_vanishing", {"pope_vanishing.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false}, Data);
 
         MetaRenderer_->AnimationBindEnd("pope_vanishing",
                                         [&](const FrameAnimation_DESC& _Info) { State_.ChangeState("Appear"); });
@@ -92,8 +115,15 @@ void Pope::Start()
 
         MetaFXSRenderer_->CreateMetaAnimation(
             "pope_spellCast_FXS",
-            {"pope_spellCast_FXS.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
+            {"pope_spellCast_FXS.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false},
             Data);
+
+        MetaFXSRenderer_->AnimationBindEnd("pope_spellCast_FXS",
+                                           [&](const FrameAnimation_DESC& _Info)
+                                           {
+                                               MetaFXSRenderer_->CurAnimationReset();
+                                               MetaFXSRenderer_->Off();
+                                           });
     }
 
     MetaFXSRenderer_->ChangeMetaAnimation("pope_spellCast_FXS");
@@ -116,6 +146,11 @@ void Pope::Start()
                              std::bind(&Pope::AppearUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&Pope::AppearStart, this, std::placeholders::_1),
                              std::bind(&Pope::AppearEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember("AppearEvent",
+                             std::bind(&Pope::EventAppearUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Pope::EventAppearStart, this, std::placeholders::_1),
+                             std::bind(&Pope::EventAppearEnd, this, std::placeholders::_1));
 
     State_.CreateStateMember("Vanishing",
                              std::bind(&Pope::VanishingUpdate, this, std::placeholders::_1, std::placeholders::_2),
@@ -243,11 +278,13 @@ void Pope::DamageCheck()
 
 void Pope::End() {}
 
+
 void Pope::IdleStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("pope_idle"); }
 
 void Pope::IdleUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Pope::IdleEnd(const StateInfo& _Info) {}
+
 
 void Pope::AppearStart(const StateInfo& _Info)
 {
@@ -270,12 +307,27 @@ void Pope::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 }
 
-void Pope::AppearEnd(const StateInfo& _Info)
+void Pope::AppearEnd(const StateInfo& _Info) {}
+
+
+void Pope::EventAppearStart(const StateInfo& _Info)
+{
+    IsVanishing_ = true;
+
+    MetaRenderer_->On();
+    BodyCollider_->On();
+    MetaRenderer_->ChangeMetaAnimation("pope_appear_Event");
+}
+
+void Pope::EventAppearUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Pope::EventAppearEnd(const StateInfo& _Info)
 {
     BossUI_->AllOn();
     BossUI_->SetBossName("에스크리바르 교황 성하");
     BossUI_->SetFontPosition({470, 590, -100.f});
 }
+
 
 void Pope::VanishingStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("pope_vanishing"); }
 

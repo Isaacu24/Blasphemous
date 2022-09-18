@@ -7,6 +7,7 @@
 #include "AttackEffect.h"
 #include "StageBase.h"
 #include "Door.h"
+#include "Deogracias.h"
 
 void Penitent::GroundCheck()
 {
@@ -69,7 +70,7 @@ void Penitent::LadderCheck()
     float4 MiddleColor = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x,
                                                                     -(GetTransform().GetWorldPosition().y + 50));
 
-    if ("Fall" == State_.GetCurStateStateName() || "Jump" == State_.GetCurStateStateName())
+    if ("Fall" == State_.GetCurStateStateName())
     {
         if (true == MiddleColor.CompareInt4D(float4::GREEN))
         {
@@ -93,7 +94,7 @@ void Penitent::LadderCheck()
         if (GameEngineInput::GetInst()->IsDownKey("PenitentDown"))
         {
             CilmbY_ = -50;
-            MetaRenderer_->ChangeMetaAnimation("penitent_ladder_down_from_ground_anim");            
+            MetaRenderer_->ChangeMetaAnimation("penitent_ladder_down_from_ground_anim");
             State_.ChangeState("LadderClimb");
         }
     }
@@ -228,6 +229,13 @@ bool Penitent::ObjectCheck(GameEngineCollision* _This, GameEngineCollision* _Oth
         switch (Obj->GetObjectType())
         {
             case ObjectType::NPC:
+                {
+                    Deogracias* NPC = dynamic_cast<Deogracias*>(_Other->GetActor());
+                    NPC->SetIsSpeech(true);
+
+                    ChangeState("Freeze");
+                    IsFreezeEnd_ = false;
+                }
                 break;
 
             case ObjectType::Door:

@@ -65,7 +65,7 @@ void MainMenuActor::Start()
 
 	GameEngineInput::GetInst()->CreateKey("MainMenuUpKey", VK_UP);
 	GameEngineInput::GetInst()->CreateKey("MainMenuDownKey", VK_DOWN);
-	GameEngineInput::GetInst()->CreateKey("MainMenuSelectKey", VK_SPACE);
+    GameEngineInput::GetInst()->CreateKey("MainMenuSelectKey", VK_RETURN);
 
 	Selecter_ = CreateComponent<GameEngineUIRenderer>();
 	Selecter_->CreateFrameAnimationCutTexture("alliedCherub", {"alliedCherub.png", 0, 10, 0.1f, true});
@@ -77,8 +77,6 @@ void MainMenuActor::Start()
 
 void MainMenuActor::Update(float _DeltaTime)
 {
-	Selecter_;
-
 	BackgroundAnimation(_DeltaTime);
 	PetalAnimation(_DeltaTime);
 	CrisantaAnimation(_DeltaTime);

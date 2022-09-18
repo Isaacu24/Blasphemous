@@ -503,7 +503,11 @@ void Crosscrawler::StunUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 }
 
-void Crosscrawler::StunEnd(const StateInfo& _Info) { BodyCollider_->ChangeOrder(COLLISIONORDER::Monster); }
+void Crosscrawler::StunEnd(const StateInfo& _Info) 
+{
+    UIRenderer_->Off();
+    BodyCollider_->ChangeOrder(COLLISIONORDER::Monster); 
+}
 
 
 void Crosscrawler::ExecutionStart(const StateInfo& _Info)

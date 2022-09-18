@@ -8,9 +8,15 @@
 #include "AttackEffect.h"
 #include "StageBase.h"
 
-void Penitent::FreezeStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penitent_sheathedIdle"); }
+void Penitent::FreezeStart(const StateInfo& _Info) 
+{ 
+    MetaRenderer_->ChangeMetaAnimation("penitent_sheathedIdle_Start"); 
+}
 
-void Penitent::FreezeUpdate(float _DeltaTime, const StateInfo& _Info) { Gravity_->SetActive(!IsGround_); }
+void Penitent::FreezeUpdate(float _DeltaTime, const StateInfo& _Info) 
+{
+    Gravity_->SetActive(!IsGround_); 
+}
 
 void Penitent::FreezeEnd(const StateInfo& _Info) {}
 
@@ -774,6 +780,15 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
             //¾Ö´Ï¸ÞÀÌ¼Ç ¸ØÃã
             MetaRenderer_->CurAnimationPauseSwitch();
         }
+
+        if (GameEngineInput::GetInst()->IsDownKey("PenitentJump")
+                && GameEngineInput::GetInst()->IsPressKey("PenitentLeft")
+            || GameEngineInput::GetInst()->IsDownKey("PenitentJump")
+                   && GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
+        {
+            State_.ChangeState("Jump");
+            return;
+        }
     }
 
     if (true == IsGround_)
@@ -795,7 +810,10 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 }
 
-void Penitent::LadderClimbEnd(const StateInfo& _Info) { IsLadder_ = false; }
+void Penitent::LadderClimbEnd(const StateInfo& _Info) 
+{
+    IsLadder_ = false; 
+}
 
 
 void Penitent::AttackStart(const StateInfo& _Info)

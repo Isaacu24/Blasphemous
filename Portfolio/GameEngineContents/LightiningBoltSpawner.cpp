@@ -3,8 +3,10 @@
 #include "LightiningBolt.h"
 
 LightiningBoltSpawner::LightiningBoltSpawner()
-    : CurType_(BOLTTYPE::Alone)
+    : CurType_(BOLTTYPE::Alone) 
+    , StrikeCount_(0)
     , IsStrike_(false)
+    , LimitTime_(0.1f) 
 {}
 
 LightiningBoltSpawner::~LightiningBoltSpawner() {}
@@ -13,15 +15,15 @@ void LightiningBoltSpawner::Start() {}
 
 void LightiningBoltSpawner::Update(float _DeltaTime)
 {
-    //if (true == IsStop_)
+    // if (true == IsStop_)
     //{
-    //    if (true == Bolt_->IsDeath())
-    //    {
-    //        Off();
-    //        SpawnerEnd_ = true;
-    //    }
-    //    return;
-    //}
+    //     if (true == Bolt_->IsDeath())
+    //     {
+    //         Off();
+    //         SpawnerEnd_ = true;
+    //     }
+    //     return;
+    // }
 
     DelayTime_ += _DeltaTime;
 
@@ -86,30 +88,55 @@ void LightiningBoltSpawner::Update(float _DeltaTime)
 
         case SPAWNERTYPE::SP_HIGHLEVLE:
             {
-                if (3 == StrikeCount_)
+                if (11 == StrikeCount_)
                 {
                     StrikeCount_ = 0;
-                    SpawnerEnd_ = true;
+                    SpawnerEnd_  = true;
                     Off();
                     return;
                 }
 
-                if (2.0f >= DelayTime_)
+                if (LimitTime_ >= DelayTime_)
                 {
                     return;
                 }
 
-                float4 TargetPos = Target_->GetTransform().GetWorldPosition();
-
+                if (5 > StrikeCount_)
                 {
-                    Bolt_ = GetLevel()->CreateActor<LightiningBolt>();
-                    Bolt_->GetTransform().SetWorldScale({1.15f, 1.3f, 1});
-                    Bolt_->GetTransform().SetWorldPosition(
-                        {TargetPos.x, GetTransform().GetWorldPosition().y, FrontEffetZ});
+                    {
+                        Bolt_ = GetLevel()->CreateActor<LightiningBolt>();
+                        Bolt_->GetTransform().SetWorldScale({1.15f, 1.3f, 1});
+                        Bolt_->GetTransform().SetWorldPosition(
+                            {630 + (StrikeCount_ * 150.f), GetTransform().GetWorldPosition().y, FrontEffetZ});
+                    }
+
+                    DelayTime_ -= LimitTime_;
+                    ++StrikeCount_;
+
+                    if (4 == StrikeCount_)
+                    {
+                        LimitTime_ = 1.0f;
+                    }
                 }
 
-                DelayTime_ -= 2.0f;
-                ++StrikeCount_;
+                else if (5 <= StrikeCount_)
+                {
+                    {
+                        Bolt_ = GetLevel()->CreateActor<LightiningBolt>();
+                        Bolt_->GetTransform().SetWorldScale({1.15f, 1.3f, 1});
+                        Bolt_->GetTransform().SetWorldPosition(
+                            {2600 + (StrikeCount_ * -150.f), GetTransform().GetWorldPosition().y, FrontEffetZ});
+                    }
+
+                    DelayTime_ -= LimitTime_;
+                    ++StrikeCount_;
+
+                    if (5 == StrikeCount_)
+                    {
+                        LimitTime_ = 0.1f;
+                    }
+
+                }
             }
             break;
     }

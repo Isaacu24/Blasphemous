@@ -93,6 +93,8 @@ public:
 
     void BossDeathUIOn(unsigned int _Key);
 
+    void SetIsFreezeEnd(bool _Value) { IsFreezeEnd_ = _Value; }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
@@ -234,7 +236,7 @@ protected:
     void DoorEntranceStart(const StateInfo& _Info);
     void DoorEntranceUpdate(float _DeltaTime, const StateInfo& _Info);
     void DoorEntranceEnd(const StateInfo& _Info);
-   
+
     //피격 함수
     bool KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other);
     bool KnockUp(GameEngineCollision* _This, GameEngineCollision* _Other);
@@ -322,4 +324,6 @@ private:
     bool IsParrySuccess_;
 
     bool ParryOn_;
+
+    bool IsFreezeEnd_;
 };

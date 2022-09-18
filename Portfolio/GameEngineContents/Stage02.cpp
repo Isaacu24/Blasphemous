@@ -112,21 +112,23 @@ void Stage02::SettingStage()
     PlayerLeftPos_  = float4{210, -1425, PlayerZ};
 
     IsLeftExit_ = true;
+
+    SettingMonster();
 }
 
 void Stage02::SettingMonster()
 {
-    //Fool_knife* FoolKnife = CreateActor<Fool_knife>();
-    //FoolKnife->GetTransform().SetWorldPosition({1300, -1289, MonsterZ});
-    //FoolKnife->SetGround(ColMap_);
-    //MonsterList_.push_back(FoolKnife);
+    Fool_knife* FoolKnife = CreateActor<Fool_knife>();
+    FoolKnife->GetTransform().SetWorldPosition({1300, -1289, MonsterZ});
+    FoolKnife->SetGround(ColMap_);
+    MonsterList_.push_back(FoolKnife);
 
-    //WingedFace* FlyingEnemy = CreateActor<WingedFace>();
-    //FlyingEnemy->GetTransform().SetWorldPosition({2150, -1250, MonsterZ});
-    //FlyingEnemy->SetGround(ColMap_);
-    //FlyingEnemy->SetStartPos(-1150);
-    //FlyingEnemy->SetEndPos(-1550);
-    //MonsterList_.push_back(FlyingEnemy);
+    WingedFace* FlyingEnemy = CreateActor<WingedFace>();
+    FlyingEnemy->GetTransform().SetWorldPosition({2150, -1250, MonsterZ});
+    FlyingEnemy->SetGround(ColMap_);
+    FlyingEnemy->SetStartPos(-1150);
+    FlyingEnemy->SetEndPos(-1550);
+    MonsterList_.push_back(FlyingEnemy);
 }
 
 void Stage02::SettingLedge()
@@ -227,6 +229,7 @@ void Stage02::Update(float _DeltaTime)
 
 void Stage02::End() {}
 
+
 void Stage02::LevelStartEvent()
 {
     LoadingActor_ = CreateActor<LoadingActor>();
@@ -266,7 +269,6 @@ void Stage02::LevelStartEvent()
         Penitent_->GetTransform().GetLocalPosition() + float4{0, 100}
     });
 
-    SettingMonster();
 }
 
 void Stage02::LevelEndEvent()

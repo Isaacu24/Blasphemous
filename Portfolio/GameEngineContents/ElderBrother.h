@@ -91,6 +91,8 @@ private:
 
     float4 JumpForce_;
 
+    float AppearTime_;
+
     float DecideTime_;
     float JumpHoldTime_;
 

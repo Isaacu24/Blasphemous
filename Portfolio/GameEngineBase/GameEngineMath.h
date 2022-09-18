@@ -89,6 +89,7 @@ public:
 			(_Left.Arr1D[0] * _Right.Arr1D[1]) - (_Left.Arr1D[1] * _Right.Arr1D[0]),
 			0.0f
 		);
+
 		return vResult;
 	}
 

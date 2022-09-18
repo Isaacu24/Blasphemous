@@ -1,8 +1,11 @@
 #include "PreCompile.h"
 #include "MessageUI.h"
 
-MessageUI::MessageUI() 
+MessageUI::MessageUI()
     : Alpha_(1.f)
+    , StartEventIndex_(-1)
+    , EndEventIndex_(-1)
+    , Speed_(20.f)
 {}
 
 MessageUI::~MessageUI() { Script_.clear(); }
@@ -50,7 +53,7 @@ void MessageUI::Update(float _DeltaTime)
         else
         {
             ConstTime_ = static_cast<float>(Script_[LineIndex_ - 1].size());
-            ConstTime_ /= 10.f;
+            ConstTime_ /= Speed_;
         }
 
         if (ConstTime_ <= BreathTime_)
@@ -59,9 +62,19 @@ void MessageUI::Update(float _DeltaTime)
 
             if (LineIndex_ == Script_.size())
             {
+                if (EndEventIndex_ == LineIndex_)
+                {
+                    EndEvent_();
+                }
+
                 IsSpeech_    = false;
                 IsSpeechEnd_ = true;
                 return;
+            }
+
+            if (StartEventIndex_ == LineIndex_)
+            {
+                StartEvent_();
             }
 
             Font_->SetText(Script_[LineIndex_], "NeoµÕ±Ù¸ð");
@@ -78,7 +91,7 @@ void MessageUI::Update(float _DeltaTime)
 
         if (0.f < Alpha_)
         {
-            Font_->SetColor({0.65f, 0.65f, 0.45f, Alpha_});
+            Font_->SetColor({Font_->GetColor().x, Font_->GetColor().y, Font_->GetColor().z, Alpha_});
         }
 
         if (0.f > Renderer_->GetColorData().MulColor.a)
@@ -94,8 +107,7 @@ void MessageUI::Update(float _DeltaTime)
 void MessageUI::End() {}
 
 
-void MessageUI::LevelEndEvent() 
-{ Death(); }
+void MessageUI::LevelEndEvent() { Death(); }
 
 
 void MessageUI::CreateLine(const std::string& _Line) { Script_.push_back(_Line); }

@@ -84,6 +84,8 @@ void Stage10::SettingStage()
 
     DeadZone* Zone = CreateActor<DeadZone>();
     Zone->GetTransform().SetWorldPosition({1500, -2500, 0});
+
+    SettingMonster();
 }
 
 void Stage10::SettingMonster()
@@ -354,8 +356,6 @@ void Stage10::LevelStartEvent()
     GetMainCameraActor()->GetTransform().SetWorldPosition(float4{
         Penitent_->GetTransform().GetLocalPosition() + float4{0, CameraOffset_}
     });
-
-    SettingMonster();
 }
 
 void Stage10::LevelEndEvent() { StageBase::LevelEndEvent(); }

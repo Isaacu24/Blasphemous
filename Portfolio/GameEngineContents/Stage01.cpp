@@ -123,12 +123,6 @@ void Stage01::LevelStartEvent()
     LoadingActor_ = CreateActor<LoadingActor>();
     LoadingActor_->IsEntrance(true);
 
-    MessageUI* UI = CreateActor<MessageUI>();
-    UI->CreateLine("abscdefghdfdfdfd\nappleappleappleapple");
-    UI->CreateLine("appleappleappleapple\nappleappleappleapple");
-    UI->CreateLine("BlasphemousBlasphemous\nappleappleappleapple");
-    UI->SpeechStart();
-
     if (nullptr == Penitent::GetMainPlayer())
     {
         Penitent_ = CreateActor<Penitent>();

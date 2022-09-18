@@ -66,6 +66,7 @@ void GiantSword::Start()
     BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{1.0f, 0.97f, 0.0f, 0.5f});
     BodyCollider_->GetTransform().SetWorldScale({50.f, 50.f, 1.0f});
     BodyCollider_->GetTransform().SetWorldMove({0, -100});
+    BodyCollider_->Off();
 
     AttackCollider_ = CreateComponent<GameEngineCollision>();
     AttackCollider_->ChangeOrder(COLLISIONORDER::BossMonsterAttack1);
@@ -312,22 +313,28 @@ bool GiantSword::LookAtPlayer(GameEngineCollision* _This, GameEngineCollision* _
     float4 EyeDir = _Other->GetTransform().GetWorldPosition() - _This->GetTransform().GetWorldPosition();
     EyeDir.Normalize();
 
+                //µ¿°ø ·»´õ·¯                                            //È«Ã¤ ·»´õ·¯
     float A = IrisRenderer_->GetTransform().GetWorldPosition().x - EyeRenderer_->GetTransform().GetWorldPosition().x;
     float B = IrisRenderer_->GetTransform().GetWorldPosition().y - EyeRenderer_->GetTransform().GetWorldPosition().y;
 
     double C = sqrt((A * A) + (B * B));
 
-    if (5 > C)
+    if (5.f >= C)
     {
         IrisRenderer_->GetTransform().SetWorldMove(
-            {EyeDir.x * 100.f * GameEngineTime::GetDeltaTime(), EyeDir.y * 100.f * GameEngineTime::GetDeltaTime()});
-    }
+            {EyeDir.x * 50.f * GameEngineTime::GetDeltaTime(), EyeDir.y * 50.f * GameEngineTime::GetDeltaTime()});
 
-    // else
-    //{
-    //     IrisRenderer_->GetTransform().SetWorldMove(
-    //        {-EyeDir.x * 100.f * GameEngineTime::GetDeltaTime(), -EyeDir.y * 100.f * GameEngineTime::GetDeltaTime()});
-    // }
+        A = IrisRenderer_->GetTransform().GetWorldPosition().x - EyeRenderer_->GetTransform().GetWorldPosition().x;
+        B = IrisRenderer_->GetTransform().GetWorldPosition().y - EyeRenderer_->GetTransform().GetWorldPosition().y;
+
+        C = sqrt((A * A) + (B * B));
+
+        if (5.f < C)
+        {
+            IrisRenderer_->GetTransform().SetWorldMove({-EyeDir.x * 100.f * GameEngineTime::GetDeltaTime(),
+                                                        -EyeDir.y * 100.f * GameEngineTime::GetDeltaTime()});
+        }
+    }
 
     return true;
 }
@@ -358,7 +365,6 @@ bool GiantSword::TrackToPlayer(float _StateTime)
         SetSpeed(200.f);
         GetTransform().SetWorldMove({0, NDir.y * Speed_ * GameEngineTime::GetDeltaTime()});
     }
-
 
     if (DistanceX > 300)
     {

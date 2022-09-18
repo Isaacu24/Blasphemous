@@ -30,6 +30,8 @@ private:
 
     float4 PlayerReturnPos_;
 
+    class MessageUI* MessageUI_;
+
     GameEngineActor*           UIActor_;
     GameEngineTextureRenderer* ReturnKey_;
 

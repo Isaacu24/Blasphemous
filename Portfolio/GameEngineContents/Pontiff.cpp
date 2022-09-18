@@ -466,7 +466,9 @@ SPELLTYPE Pontiff::RandomSpell()
             break;
     }
 
-    return Spell;
+    //return Spell;
+
+    return SPELLTYPE::LIGHTININGBOLT;
 }
 
 void Pontiff::CreateSpawner()

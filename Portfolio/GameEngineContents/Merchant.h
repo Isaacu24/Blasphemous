@@ -1,7 +1,7 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
+#include "NPCBase.h"
 
-class Merchant : public GameEngineActor
+class Merchant : public NPCBase
 {
 public:
 	Merchant();

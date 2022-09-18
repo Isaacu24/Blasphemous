@@ -66,6 +66,11 @@ public:
 		Color = _Color;
 	}
 
+	float4 GetColor()
+	{
+		return Color;
+	}
+
 	void SetSize(float _Size)
 	{
 		FontSize = _Size;

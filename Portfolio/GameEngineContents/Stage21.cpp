@@ -67,11 +67,8 @@ void Stage21::SettingMonster()
     {
         TwisterBackground* Twister = CreateActor<TwisterBackground>();
         Twister->GetRenderer()->SetTexture("pontif-twister-foreground.png");
-        Twister->GetTransform().SetWorldPosition({860, -600, AfterLayerZ});
-
-        TwisterBackground* Twister1 = CreateActor<TwisterBackground>();
-        Twister1->GetRenderer()->SetTexture("pontif-twister-foreground.png");
-        Twister1->GetTransform().SetWorldPosition({1640, -600, AfterLayerZ});
+        Twister->GetTransform().SetWorldPosition({1280, -600, AfterLayerZ});
+        Twister->GetTransform().SetWorldScale({2, 2, 1});
     }
 }
 

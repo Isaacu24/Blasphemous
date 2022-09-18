@@ -53,6 +53,42 @@ void Stage20::SettingStage()
     ReturnKey_->SetTexture("CT_B.png");
     ReturnKey_->GetTransform().SetWorldScale({30, 30, 1});
     UIActor_->Off();
+
+    MessageUI_ = CreateActor<MessageUI>();
+    MessageUI_->CreateLine("In my dreams I heard yout footsteps coming closer. In my dreams I tried to talk to "
+                           "you,\nand introduce myself.");
+    MessageUI_->CreateLine(
+        "Guardian of the Miracle, and of the Miracle banner, with great pain,\nI Carry the emblem of the Father.");
+    MessageUI_->CreateLine("I am the hands of bloodied skin, I am the eyes from which our Mother gazes.");
+    MessageUI_->CreateLine("But nothing I know of you, apart from your cold, nameless visage.");
+    MessageUI_->CreateLine("Apart from your callused and wounded hands. Apart from the mourning of your deaths.");
+    MessageUI_->CreateLine("No. I know nothing of you, only the Miracle know.");
+    MessageUI_->SetFontColor(float4{0.63f, 0.6f, 0.55f});
+    MessageUI_->Off();
+
+    MessageUI_->SetMassageStartEvent(0,
+                                     [&]()
+                                     {
+                                         Penitent_->SetIsFreezeEnd(false);
+                                     });
+
+    MessageUI_->SetMassageStartEvent(3,
+                                     [&]()
+                                     {
+                                         Pope_->On();
+                                         Pope_->GetTransform().PixLocalNegativeX();
+                                         Pope_->ChangeMonsterState("AppearEvent");
+                                         Pope_->SetTarget(Penitent_);
+                                     });
+
+    MessageUI_->SetMassageEndEvent(6,
+                                   [&]()
+                                   {
+                                       Penitent_->SetIsFreezeEnd(true);
+                                       Pope_->ChangeMonsterState("Idle");
+                                       CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
+                                       MessageUI_->Off();
+                                   });
 }
 
 void Stage20::SettingMonster()
@@ -92,39 +128,50 @@ void Stage20::Update(float _DeltaTime)
 
             else
             {
-                Pope_->On();
-                Pope_->GetTransform().PixLocalNegativeX();
-                Pope_->ChangeMonsterState("Appear");
-                Pope_->SetTarget(Penitent_);
-
-                CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
+                if (false == MessageUI_->IsUpdate())
+                {
+                    MessageUI_->On();
+                    MessageUI_->SpeechStart();
+                }
             }
             break;
         case STAGEFLOW::BOSSCOMBAT:
-            if (1660.f > Penitent_->GetTransform().GetLocalPosition().x)
             {
-                Penitent_->GetTransform().SetWorldPosition({1660.f, Penitent_->GetTransform().GetWorldPosition().y});
-            }
-
-            else if (2900.f < Penitent_->GetTransform().GetLocalPosition().x)
-            {
-                Penitent_->GetTransform().SetWorldPosition({2900.f, Penitent_->GetTransform().GetWorldPosition().y});
-            }
-
-            if (true == Pope_->IsDeath())
-            {
-                Penitent_->SetReturnToPort(true);
-
-                if ("ReturnToPort" == Penitent_->GetPenitentState())
+                if (1700.f > Penitent_->GetTransform().GetLocalPosition().x)
                 {
-                    UIActor_->Off();
-                    return;
+                    Penitent_->GetTransform().SetWorldPosition(
+                        {1700.f, Penitent_->GetTransform().GetWorldPosition().y});
                 }
 
-                PlayerReturnPos_ = Penitent_->GetTransform().GetWorldPosition();
+                else if (2900.f < Penitent_->GetTransform().GetLocalPosition().x)
+                {
+                    Penitent_->GetTransform().SetWorldPosition(
+                        {2900.f, Penitent_->GetTransform().GetWorldPosition().y});
+                }
 
-                UIActor_->On();
-                UIActor_->GetTransform().SetWorldPosition({PlayerReturnPos_.x, PlayerReturnPos_.y + 200.f, PlayerZ});
+                float4 CamPos = GetMainCameraActor()->GetTransform().GetLocalPosition();
+
+                if (-1550 < CamPos.y)
+                {
+                    GetMainCameraActor()->GetTransform().SetWorldPosition({CamPos.x, -1550, CameraZPos_});
+                }
+
+                if (true == Pope_->IsDeath())
+                {
+                    Penitent_->SetReturnToPort(true);
+
+                    if ("ReturnToPort" == Penitent_->GetPenitentState())
+                    {
+                        UIActor_->Off();
+                        return;
+                    }
+
+                    PlayerReturnPos_ = Penitent_->GetTransform().GetWorldPosition();
+
+                    UIActor_->On();
+                    UIActor_->GetTransform().SetWorldPosition(
+                        {PlayerReturnPos_.x, PlayerReturnPos_.y + 200.f, PlayerZ});
+                }
             }
             break;
         case STAGEFLOW::BOSSDEAD:

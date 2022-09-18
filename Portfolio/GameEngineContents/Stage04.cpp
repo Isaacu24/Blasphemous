@@ -84,7 +84,7 @@ void Stage04::SettingStage()
 void Stage04::SettingMonster()
 {
     ElderBrother_ = CreateActor<ElderBrother>();
-    ElderBrother_->GetTransform().SetWorldPosition({2300, -1200, BeforeParallax2Z});
+    ElderBrother_->GetTransform().SetWorldPosition({2500, -1200, BeforeParallax2Z});
     ElderBrother_->SetGround(ColMap_);
     BossMonster_ = ElderBrother_;
 }
@@ -133,12 +133,14 @@ void Stage04::StageFlowUpdate(float _DeltaTime)
             }
             break;
         case STAGEFLOW::BOSSAPPEAR:
-            GetMainCameraActor()->GetTransform().SetWorldRightMove(75.f, _DeltaTime);
+            if (1850.f > GetMainCameraActor()->GetTransform().GetWorldPosition().x)
+            {
+                GetMainCameraActor()->GetTransform().SetWorldRightMove(75.f, _DeltaTime);
+            }
 
             if (true == ElderBrother_->GetBossEvent())
             {
-                Penitent_->ChangeState("Idle");
-
+                Penitent_->SetIsFreezeEnd(true);
                 CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
             }
             break;

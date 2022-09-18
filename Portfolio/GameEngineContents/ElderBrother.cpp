@@ -22,28 +22,22 @@ void ElderBrother::Start()
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
     Renderer_->CreateFrameAnimationCutTexture("elderBrother_idle", {"elderBrother_idle.png", 0, 9, 0.1f, true});
 
-    Renderer_->CreateFrameAnimationCutTexture("elderBrother_jumpStart", {"elderBrother_jump.png", 0, 8, 0.07f, false});
+    Renderer_->CreateFrameAnimationCutTexture("elderBrother_jumpStart", {"elderBrother_jump.png", 0, 8, 0.1f, false});
+
     Renderer_->CreateFrameAnimationCutTexture("elderBrother_jumpStart_event",
                                               {"elderBrother_jump.png", 0, 8, 0.08f, false});
 
-    Renderer_->AnimationBindFrame(
+    Renderer_->AnimationBindEnd(
         "elderBrother_jumpStart",
         [&](const FrameAnimation_DESC& _Info)
         {
-            if (3 == _Info.CurFrame)
-            {
-                LandEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{0, 50});
-                LandEffect_->GetRenderer()->On();
-                LandEffect_->GetRenderer()->ChangeMetaAnimation("penitent_hardlanding_effects");
-            }
-        });
+            IsJump_ = true;
+            Renderer_->ChangeFrameAnimation("elderBrother_jump");
 
-    Renderer_->AnimationBindFrame("elderBrother_jumpStart",
-                                  [&](const FrameAnimation_DESC& _Info)
-                                  {
-                                      IsJump_ = true;
-                                      Renderer_->ChangeFrameAnimation("elderBrother_jump");
-                                  });
+            LandEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{0, 50});
+            LandEffect_->GetRenderer()->On();
+            LandEffect_->GetRenderer()->ChangeMetaAnimation("penitent_hardlanding_effects");
+        });
 
     Renderer_->AnimationBindEnd("elderBrother_jumpStart_event",
                                 [&](const FrameAnimation_DESC& _Info)
@@ -158,11 +152,12 @@ void ElderBrother::Start()
                                       }
                                   });
 
-    Renderer_->AnimationBindEnd("elderBrother_death", [&](const FrameAnimation_DESC& _Info) 
-        {
-            Penitent::GetMainPlayer()->BossDeathUIOn(1);
-            DeathEventOn_ = true; 
-        });
+    Renderer_->AnimationBindEnd("elderBrother_death",
+                                [&](const FrameAnimation_DESC& _Info)
+                                {
+                                    Penitent::GetMainPlayer()->BossDeathUIOn(1);
+                                    DeathEventOn_ = true;
+                                });
 
     Renderer_->GetTransform().SetWorldScale({1100, 600});
     Renderer_->SetPivot(PIVOTMODE::BOT);
@@ -318,6 +313,13 @@ void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
+    AppearTime_ += _DeltaTime;
+
+    if (3.f > AppearTime_)
+    {
+        return;
+    }
+
     switch (Flow_)
     {
         case APPEARFLOW::Attack:
@@ -329,7 +331,7 @@ void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
         case APPEARFLOW::Jump:
             JumpForce_.y -= _DeltaTime * 200.f;
             Dir_ = GetTransform().GetUpVector() * 20.f;
-            Dir_ += GetTransform().GetLeftVector() * 2.f;
+            Dir_ += GetTransform().GetLeftVector() * 3.f;
 
             GameEngineDebug::OutPutString(std::to_string(GetTransform().GetWorldPosition().y));
 
@@ -349,7 +351,7 @@ void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
         case APPEARFLOW::Fall:
             JumpForce_.y -= _DeltaTime * 350.f;
             Dir_ = GetTransform().GetUpVector() * 5.f;
-            Dir_ += GetTransform().GetLeftVector() * 2.f;
+            Dir_ += GetTransform().GetLeftVector() * 3.f;
 
             Gravity_->SetActive(!IsGround_);
             GetTransform().SetWorldMove(Dir_ * JumpForce_ * _DeltaTime);
@@ -361,55 +363,54 @@ void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
             }
             break;
         case APPEARFLOW::Appear:
-            BossEvent_ = true;
             BossUI_->AllOn();
+            BossEvent_ = true;
             break;
     }
 }
 
-void ElderBrother::AppearEnd(const StateInfo& _Info) {}
+void ElderBrother::AppearEnd(const StateInfo& _Info) { AppearTime_ = 0.f; }
 
 
 void ElderBrother::IdleStart(const StateInfo& _Info)
 {
     Renderer_->ChangeFrameAnimation("elderBrother_idle");
-
-    DecideTime_ = 0.f;
-    Distance_   = 0.f;
+    Distance_ = 0.f;
 }
 
 void ElderBrother::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+    DecideTime_ += _DeltaTime;
+
+    if (1.5f > DecideTime_)
+    {
+        return;
+    }
+
     DetectCollider_->IsCollision(
         CollisionType::CT_OBB2D,
         COLLISIONORDER::Player,
         CollisionType::CT_OBB2D,
         std::bind(&ElderBrother::DetectPlayer, this, std::placeholders::_1, std::placeholders::_2));
 
-    DecideTime_ += _DeltaTime;
-
-    if (2.f > DecideTime_)
+    if (500.f >= Distance_ && 2.f <= DecideTime_)
     {
-        return;
+        int Value = Random_.RandomInt(0, 2);
+
+        if (0 == Value || 1 == Value)
+        {
+            State_.ChangeState("Attack");
+            return;
+        }
+
+        else if (2 == Value)
+        {
+            State_.ChangeState("Jump");
+            return;
+        }
     }
 
-    if (500.f > Distance_)
-    {
-        State_.ChangeState("Attack");
-
-        // int Value = Random_.RandomInt(0, 1);
-
-        // if (0 == Value)
-        //{
-        // }
-
-        // else if (1 == Value)
-        //{
-        //     State_.ChangeState("Jump");
-        // }
-    }
-
-    else
+    else if (500.f < Distance_)
     {
         State_.ChangeState("Jump");
     }
@@ -417,7 +418,7 @@ void ElderBrother::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
     Gravity_->SetActive(!IsGround_);
 }
 
-void ElderBrother::IdleEnd(const StateInfo& _Info) {}
+void ElderBrother::IdleEnd(const StateInfo& _Info) { DecideTime_ = 0.f; }
 
 
 void ElderBrother::JumpStart(const StateInfo& _Info)
@@ -426,8 +427,10 @@ void ElderBrother::JumpStart(const StateInfo& _Info)
 
     Alpha_     = 0.f;
     JumpForce_ = 300.f;
+
     Renderer_->ChangeFrameAnimation("elderBrother_jumpStart");
 }
+
 
 void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -494,13 +497,14 @@ void ElderBrother::FallUpdate(float _DeltaTime, const StateInfo& _Info)
 
     float4 Distance = Target_ - GetTransform().GetWorldPosition();
 
-    if (100 > Distance.y)
+    if (150.f >= Distance.y)
     {
         IsJump_ = false;
     }
 }
 
 void ElderBrother::FallEnd(const StateInfo& _Info) {}
+
 
 void ElderBrother::LandStart(const StateInfo& _Info)
 {
@@ -538,7 +542,6 @@ void ElderBrother::DeathStart(const StateInfo& _Info)
     Renderer_->ChangeFrameAnimation("elderBrother_death");
 
     BossDeathEvent();
-
 }
 
 void ElderBrother::DeathUpdate(float _DeltaTime, const StateInfo& _Info) { Gravity_->SetActive(!IsGround_); }

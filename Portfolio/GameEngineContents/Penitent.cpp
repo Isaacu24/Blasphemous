@@ -528,17 +528,44 @@ void Penitent::SetAnimation()
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
+    // Freeze
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_sheathedIdle");
 
         MetaRenderer_->CreateMetaAnimation(
-            "penitent_sheathedIdle",
-            {"penitent_sheathedIdle.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
-            Data);
+            "penitent_sheathedIdle_Start", {"penitent_sheathedIdle.png", 0, 23, 0.08f, false}, Data);
 
-        MetaRenderer_->AnimationBindEnd("penitent_sheathedIdle",
+        MetaRenderer_->AnimationBindEnd("penitent_sheathedIdle_Start",
+                                        [&](const FrameAnimation_DESC& _Info)
+                                        { MetaRenderer_->ChangeMetaAnimation("penitent_sheathedIdle_Loop"); });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_sheathedIdle");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_sheathedIdle_Loop", {"penitent_sheathedIdle.png", 24, 32, 0.08f, true}, Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_sheathedIdle_Loop",
+                                        [&](const FrameAnimation_DESC& _Info)
+                                        {
+                                            if (true == IsFreezeEnd_)
+                                            {
+                                                MetaRenderer_->ChangeMetaAnimation("penitent_sheathedIdle_End");
+                                            }
+                                        });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_sheathedIdle");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_sheathedIdle_End", {"penitent_sheathedIdle.png", 33, 45, 0.08f, false}, Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_sheathedIdle_End",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
+
 
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_falling_loop_anim");
@@ -620,8 +647,15 @@ void Penitent::SetAnimation()
             {"penitent_ladder_down_from_ground_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false},
             Data);
 
+        MetaRenderer_->AnimationBindStart("penitent_ladder_down_from_ground_anim",
+                                          [&](const FrameAnimation_DESC& _Info) { BodyCollider_->Off(); });
+
         MetaRenderer_->AnimationBindEnd("penitent_ladder_down_from_ground_anim",
-                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+                                        [&](const FrameAnimation_DESC& _Info)
+                                        {
+                                            BodyCollider_->On();
+                                            ChangeState("Idle");
+                                        });
     }
 
     //½ºÅ³
@@ -1312,10 +1346,7 @@ void Penitent::SetAnimation()
             Data);
 
         MetaRenderer_->AnimationBindEnd("penitent_crossing_opendoor_out_anim",
-                                        [&](const FrameAnimation_DESC& _Info) 
-            { 
-                 ChangeState("Idle");
-            });
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
 
@@ -1457,10 +1488,11 @@ void Penitent::SetPlayerState()
                              std::bind(&Penitent::RestPrayStart, this, std::placeholders::_1),
                              std::bind(&Penitent::RestPrayEnd, this, std::placeholders::_1));
 
-    State_.CreateStateMember("DoorEntrance",
-                             std::bind(&Penitent::DoorEntranceUpdate, this, std::placeholders::_1, std::placeholders::_2),
-                             std::bind(&Penitent::DoorEntranceStart, this, std::placeholders::_1),
-                             std::bind(&Penitent::DoorEntranceEnd, this, std::placeholders::_1));
+    State_.CreateStateMember(
+        "DoorEntrance",
+        std::bind(&Penitent::DoorEntranceUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&Penitent::DoorEntranceStart, this, std::placeholders::_1),
+        std::bind(&Penitent::DoorEntranceEnd, this, std::placeholders::_1));
 
     State_.CreateStateMember("Death",
                              std::bind(&Penitent::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2),

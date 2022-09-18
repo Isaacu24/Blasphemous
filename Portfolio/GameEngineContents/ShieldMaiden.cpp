@@ -530,7 +530,11 @@ void ShieldMaiden::StunUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 }
 
-void ShieldMaiden::StunEnd(const StateInfo& _Info) { BodyCollider_->ChangeOrder(COLLISIONORDER::Monster); }
+void ShieldMaiden::StunEnd(const StateInfo& _Info) 
+{
+    BodyCollider_->ChangeOrder(COLLISIONORDER::Monster); 
+    UIRenderer_->Off();
+}
 
 
 void ShieldMaiden::ExecutionStart(const StateInfo& _Info)

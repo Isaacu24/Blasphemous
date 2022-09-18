@@ -30,6 +30,10 @@ public:
     void AppearUpdate(float _DeltaTime, const StateInfo& _Info);
     void AppearEnd(const StateInfo& _Info);
 
+    void EventAppearStart(const StateInfo& _Info);
+    void EventAppearUpdate(float _DeltaTime, const StateInfo& _Info);
+    void EventAppearEnd(const StateInfo& _Info);
+
     void VanishingStart(const StateInfo& _Info);
     void VanishingUpdate(float _DeltaTime, const StateInfo& _Info);
     void VanishingEnd(const StateInfo& _Info);
