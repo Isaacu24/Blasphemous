@@ -12,6 +12,8 @@
 #include "Stage05.h"
 
 #include "Stage10.h"
+#include "Stage11.h"
+#include "Stage12.h"
 
 #include "Stage20.h"
 #include "Stage21.h"
@@ -49,6 +51,8 @@ void Blasphemous::Start()
 
     // 파묻힌 교회의 황무지
     CreateLevel<Stage10>("Stage10");
+    CreateLevel<Stage11>("Stage11");
+    CreateLevel<Stage12>("Stage12");
 
     // 교황 성하의 회랑
     CreateLevel<Stage20>("Stage20");
@@ -166,6 +170,8 @@ void Blasphemous::LoadResources()
     LoadMap("Brotherhood", 1, 5);
 
     LoadMap("BuriedChurches", 2, 1);
+    LoadMap("BuriedChurches", 2, 2);
+    LoadMap("BuriedChurches", 2, 3);
 
     LoadMap("DeambulatoryOfHisHoliness", 12, 2);
     LoadMap("DeambulatoryOfHisHoliness", 12, 3);

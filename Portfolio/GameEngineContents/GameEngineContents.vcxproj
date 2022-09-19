@@ -300,6 +300,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Stage11.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage12.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="SwordIris.h">
       <SubType>
       </SubType>
@@ -665,6 +673,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="SpectrumComponent.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage11.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage12.cpp">
       <SubType>
       </SubType>
     </ClCompile>

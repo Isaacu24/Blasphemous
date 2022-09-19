@@ -115,7 +115,7 @@ void LightiningBoltSpawner::Update(float _DeltaTime)
 
                     if (5 == StrikeCount_)
                     {
-                        LimitTime_ = 1.5f;
+                        LimitTime_ = 1.0f;
                         DelayTime_ = 0.f;
                     }
                 }

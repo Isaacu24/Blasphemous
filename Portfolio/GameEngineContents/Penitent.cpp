@@ -257,10 +257,13 @@ void Penitent::Update(float _DeltaTime)
         GameEngineTime::GetInst()->SetTimeScale(GetOrder(), 1.0f);
     }
 
-    GameEngineDebug::OutPutString("Player HP: " + std::to_string(GetHP()));
+    GameEngineDebug::OutPutString("Player Pos: " + std::to_string(GetTransform().GetWorldPosition().x));
+    GameEngineDebug::OutPutString("Player PosY: " + std::to_string(GetTransform().GetWorldPosition().y));
 
-    GameEngineDebug::OutPutString("GamePad State: "
-                                  + std::to_string(GameEngineInput::GetInst()->GetInputState().dwPacketNumber));
+    // GameEngineDebug::OutPutString("Player HP: " + std::to_string(GetHP()));
+
+    // GameEngineDebug::OutPutString("GamePad State: "
+    //+ std::to_string(GameEngineInput::GetInst()->GetInputState().dwPacketNumber));
 }
 
 void Penitent::End() {}
@@ -1337,6 +1340,7 @@ void Penitent::SetAnimation()
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
+    //πÆ ¿Ãµø
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_crossing_opendoor_out_anim");
 
@@ -1346,6 +1350,18 @@ void Penitent::SetAnimation()
             Data);
 
         MetaRenderer_->AnimationBindEnd("penitent_crossing_opendoor_out_anim",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Freeze"); });
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_crossing_teleportVortex_in");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_crossing_teleportVortex_in",
+            {"penitent_crossing_teleportVortex_in.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, true},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_crossing_teleportVortex_in",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
@@ -1494,6 +1510,11 @@ void Penitent::SetPlayerState()
         std::bind(&Penitent::DoorEntranceStart, this, std::placeholders::_1),
         std::bind(&Penitent::DoorEntranceEnd, this, std::placeholders::_1));
 
+    State_.CreateStateMember("DoorExit",
+                             std::bind(&Penitent::DoorExitUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::DoorExitStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::DoorExitEnd, this, std::placeholders::_1));
+
     State_.CreateStateMember("Death",
                              std::bind(&Penitent::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&Penitent::DeathStart, this, std::placeholders::_1),
@@ -1512,6 +1533,14 @@ void Penitent::LevelStartEvent()
 {
     if (false == IsPlayerDeath_)
     {
+        if (true == IsOutDoor_)
+        {
+            GetTransform().SetWorldPosition(
+                {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, BeforeParallax5Z});
+
+           return;
+        }
+
         ChangeState("Idle");
     }
 

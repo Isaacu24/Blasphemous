@@ -347,7 +347,6 @@ void Stage10::LevelStartEvent()
         }
 
         Penitent_->SetLevelOverOn();
-        Penitent_->SetLastSavePoint("Stage03");
     }
 
     IsRightExit_ = false;

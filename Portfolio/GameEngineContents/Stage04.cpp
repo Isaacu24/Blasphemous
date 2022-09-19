@@ -253,7 +253,7 @@ void Stage04::LevelEndEvent()
 
         else
         {
-            Guilt_->GetTransform().SetLocalPosition(float4{500, -1028, ObjectZ});
+            Guilt_->GetTransform().SetLocalPosition(float4{500, -1020, ObjectZ});
         }
     }
 

@@ -34,7 +34,7 @@ public:
     void TrackUpdate(float _DeltaTime, const StateInfo& _Info);
     void TrackEnd(const StateInfo& _Info);
 
-    bool LookAtPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);
+    bool LookAtPlayer(GameEngineCollision* _This, GameEngineCollision* _Other, float _DeltaTime);
     bool TrackToPlayer(float _StateTime);
 
 protected:
@@ -49,6 +49,8 @@ private:
 
     float RotSpeed_;
     float AttSpeed_;
+
+    float Alpha_;
 
     SpectrumComponent* AttackSpectrum_;
 

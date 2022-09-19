@@ -153,13 +153,10 @@ void Stage03::Update(float _DeltaTime)
     {
         SetLoadingEnd(false);
 
-        if (nullptr != GEngine::GetPrevLevel())
+        if (false == Penitent_->IsUpdate())
         {
-            if (false == Penitent_->IsUpdate())
-            {
-                Penitent_->On();
-                Penitent_->ChangeState("Respawn");
-            }
+            Penitent_->On();
+            Penitent_->ChangeState("Respawn");
         }
     }
 }

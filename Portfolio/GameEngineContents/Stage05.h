@@ -24,5 +24,6 @@ protected:
 
 private:
     class SideFence* Fence_;
+    class Door*      IronDoor_;
 };
 

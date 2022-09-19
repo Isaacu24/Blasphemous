@@ -8,15 +8,12 @@
 #include "AttackEffect.h"
 #include "StageBase.h"
 
-void Penitent::FreezeStart(const StateInfo& _Info) 
-{ 
-    MetaRenderer_->ChangeMetaAnimation("penitent_sheathedIdle_Start"); 
+void Penitent::FreezeStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("penitent_sheathedIdle_Start");
 }
 
-void Penitent::FreezeUpdate(float _DeltaTime, const StateInfo& _Info) 
-{
-    Gravity_->SetActive(!IsGround_); 
-}
+void Penitent::FreezeUpdate(float _DeltaTime, const StateInfo& _Info) { Gravity_->SetActive(!IsGround_); }
 
 void Penitent::FreezeEnd(const StateInfo& _Info) {}
 
@@ -52,12 +49,14 @@ void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
         State_.ChangeState("Slide");
     }
 
-    else if (true == GameEngineInput::GetInst()->IsDownKey("PenitentJump"))
+    else if (true == GameEngineInput::GetInst()->IsDownKey("PenitentJump")
+             || GameEngineInput::GetInst()->IsDownButton("PenitentA"))
     {
         State_.ChangeState("Jump");
     }
 
-    else if (true == GameEngineInput::GetInst()->IsPressKey("PenitentAttack"))
+    else if (true == GameEngineInput::GetInst()->IsPressKey("PenitentAttack")
+             || GameEngineInput::GetInst()->IsDownButton("PenitentB"))
     {
         State_.ChangeState("Attack");
     }
@@ -130,6 +129,8 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 
     else if (true == GameEngineInput::GetInst()->IsUpKey("PenitentRight") || -1000 >= ThumbLX)
     {
+        GameEngineInput::GetInst()->SetThumbLX(0);
+
         if (1.f <= RunTime_)
         {
             MetaRenderer_->ChangeMetaAnimation("penintent_stop_run_anim");
@@ -165,6 +166,8 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 
     else if (GameEngineInput::GetInst()->IsUpKey("PenitentLeft") || 1000 <= ThumbLX)
     {
+        GameEngineInput::GetInst()->SetThumbLX(0);
+
         if (1.f <= RunTime_)
         {
             MetaRenderer_->ChangeMetaAnimation("penintent_stop_run_anim");
@@ -183,7 +186,7 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
-    if (GameEngineInput::GetInst()->IsDownKey("PenitentJump"))
+    if (GameEngineInput::GetInst()->IsDownKey("PenitentJump") || GameEngineInput::GetInst()->IsDownButton("PenitentA"))
     {
         State_.ChangeState("Jump");
     }
@@ -198,7 +201,8 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
         State_.ChangeState("Slide");
     }
 
-    else if (GameEngineInput::GetInst()->IsPressKey("PenitentAttack"))
+    else if (GameEngineInput::GetInst()->IsPressKey("PenitentAttack")
+             || GameEngineInput::GetInst()->IsDownButton("PenitentB"))
     {
         State_.ChangeState("Attack");
     }
@@ -270,7 +274,8 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
-    if (GameEngineInput::GetInst()->IsPressKey("PenitentAttack"))
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentAttack")
+        || GameEngineInput::GetInst()->IsDownButton("PenitentB"))
     {
         ChangeState("JumpAttack");
         return;
@@ -322,13 +327,14 @@ void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
         GetTransform().PixLocalNegativeX();
         RealXDir_ = -1;
 
-        if (false == LeftObstacleCheck())
+        if (false == LeftObstacleCheck())   
         {
             Dir_ += -(GetTransform().GetLeftVector() * 3.f);
         }
     }
 
-    if (GameEngineInput::GetInst()->IsPressKey("PenitentAttack"))
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentAttack")
+        || GameEngineInput::GetInst()->IsDownButton("PenitentB"))
     {
         ChangeState("JumpAttack");
         return;
@@ -810,10 +816,7 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 }
 
-void Penitent::LadderClimbEnd(const StateInfo& _Info) 
-{
-    IsLadder_ = false; 
-}
+void Penitent::LadderClimbEnd(const StateInfo& _Info) { IsLadder_ = false; }
 
 
 void Penitent::AttackStart(const StateInfo& _Info)
@@ -1132,7 +1135,7 @@ void Penitent::RespawnUpdate(float _DeltaTime, const StateInfo& _Info)
     Gravity_->SetActive(!IsGround_);
 }
 
-void Penitent::RespawnEnd(const StateInfo& _Info) { BodyCollider_->Off(); }
+void Penitent::RespawnEnd(const StateInfo& _Info) { BodyCollider_->On(); }
 
 
 void Penitent::PrayStart(const StateInfo& _Info) {}
@@ -1166,6 +1169,7 @@ void Penitent::RestPrayEnd(const StateInfo& _Info)
 
 void Penitent::DoorEntranceStart(const StateInfo& _Info)
 {
+    BodyCollider_->Off();
     MetaRenderer_->ChangeMetaAnimation("penitent_crossing_opendoor_out_anim");
 }
 
@@ -1178,6 +1182,20 @@ void Penitent::DoorEntranceEnd(const StateInfo& _Info)
 
     GEngine::ChangeLevel(OutDoorLevel_);
 }
+
+
+void Penitent::DoorExitStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("penitent_crossing_teleportVortex_in");
+
+    GetTransform().SetWorldPosition(
+        {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, PlayerZ});
+}
+
+void Penitent::DoorExitUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Penitent::DoorExitEnd(const StateInfo& _Info) 
+{ BodyCollider_->On(); }
 
 
 void Penitent::DeathStart(const StateInfo& _Info)

@@ -219,7 +219,8 @@ void ElderBrother::Start()
     AttackCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{1.0f, 1.0f, 1.0f, 0.25f});
     AttackCollider_->Off();
 
-    Renderer_->GetColorData().MulColor = float4{0.065f, 0.065f, 0.065f, 1.0f};
+    Renderer_->GetColorData().MulColor  = float4::ZERO;
+    Renderer_->GetColorData().PlusColor = float4{0.18f, 0.18f, 0.21f, 1.0f};
 
     BossUI_ = GetLevel()->CreateActor<BossUI>();
     BossUI_->SetBossMonster(this);
@@ -341,6 +342,7 @@ void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
             if (0.f < GetTransform().GetWorldPosition().y)
             {
                 Renderer_->GetColorData().MulColor = float4::ONE;
+                Renderer_->GetColorData().PlusColor = float4::ZERO;
 
                 GetTransform().SetWorldPosition(
                     {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, BossMonsterZ});

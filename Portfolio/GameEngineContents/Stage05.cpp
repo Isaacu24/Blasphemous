@@ -31,9 +31,9 @@ void Stage05::SettingStage()
     // NewDeogracias->GetTransform().SetLocalMove({ 940, -570 });
     // NewDeogracias->GetTransform().PixLocalNegativeX();
 
-    Door* IronDoor = CreateActor<Door>();
-    IronDoor->GetTransform().SetWorldPosition({1107, -520, ObjectZ});
-    IronDoor->SetLinkLevel("Stage10");
+    IronDoor_ = CreateActor<Door>();
+    IronDoor_->GetTransform().SetWorldPosition({1107, -520, ObjectZ});
+    IronDoor_->SetLinkLevel("Stage11");
 
     Fence_ = CreateActor<SideFence>();
     Fence_->GetTransform().SetWorldPosition({1390, -530, ObjectZ});
@@ -63,8 +63,8 @@ void Stage05::SettingStage()
 
     GetMainCameraActor()->GetTransform().SetWorldPosition(float4{950, -550});
 
-    PlayerRightPos_ = float4{1600, -674, PlayerZ};
-    PlayerLeftPos_  = float4{480, -674, PlayerZ};
+    PlayerRightPos_ = float4{1600, -764, PlayerZ};
+    PlayerLeftPos_  = float4{480, -764, PlayerZ};
 
     IsLeftExit_ = true;
 }
@@ -120,6 +120,12 @@ void Stage05::Update(float _DeltaTime)
                 MilestoneUI->SetTownName("Brotherhood");
             }
         }
+
+        if (true == Penitent_->GetIsOutDoor())
+        {
+            Penitent_->SetIsOutDoor(false);
+            Penitent_->GetTransform().SetWorldPosition({1107.f, PlayerRightPos_.y});
+        }
     }
 
     // GameEngineDebug::OutPutString("x : " + std::to_string(Penitent_->GetTransform().GetLocalPosition().x));
@@ -157,10 +163,15 @@ void Stage05::LevelStartEvent()
         }
 
         Penitent_->SetLevelOverOn();
-    }
 
-    IsRightExit_ = false;
-    IsLeftExit_  = false;
+        if (true == Penitent_->GetIsOutDoor())
+        {
+            IronDoor_->GetDoorRenderer()->ChangeFrameAnimation("brotherhood_door_anim_Open");
+        }
+
+        IsRightExit_ = false;
+        IsLeftExit_  = false;
+    }
 }
 
 void Stage05::LevelEndEvent() { StageBase::LevelEndEvent(); }

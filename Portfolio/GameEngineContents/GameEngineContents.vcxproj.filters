@@ -278,6 +278,12 @@
     <ClInclude Include="NPCBase.h">
       <Filter>Actor\NPC</Filter>
     </ClInclude>
+    <ClInclude Include="Stage11.h">
+      <Filter>Level\Pilgrimage\02Bridge</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage12.h">
+      <Filter>Level\Pilgrimage\02Bridge</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -559,6 +565,12 @@
     </ClCompile>
     <ClCompile Include="NPCBase.cpp">
       <Filter>Actor\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage11.cpp">
+      <Filter>Level\Pilgrimage\02Bridge</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage12.cpp">
+      <Filter>Level\Pilgrimage\02Bridge</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

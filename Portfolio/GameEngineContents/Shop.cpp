@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Shop.h"
 #include "Merchant.h"
+#include "Door.h"
 
 Shop::Shop() {}
 
@@ -28,6 +29,11 @@ void Shop::Start()
     AfterLayerRenderer->GetTransform().SetWorldPosition({100, 75, AfterLayerZ});
     AfterLayerRenderer->GetTransform().SetWorldScale(AfterLayerRenderer->GetTransform().GetWorldScale());
 
+    Door* ShopDoor = CreateActor<Door>();
+    ShopDoor->GetTransform().SetWorldPosition({580, -500, ObjectZ});
+    ShopDoor->GetDoorRenderer()->Off();
+    ShopDoor->SetLinkLevel("Stage12");
+
     Merchant_ = CreateActor<Merchant>();
     Merchant_->GetTransform().SetWorldPosition({1300, -670, NPCZ});
     Merchant_->GetTransform().PixLocalNegativeX();
@@ -38,6 +44,11 @@ void Shop::Start()
     float4 Offset = {OffsetX, -OffsetY};
 
     Stage_->GetTransform().SetLocalMove(Offset);
+
+    PlayerRightPos_ = float4{600, -860, PlayerZ};
+    PlayerLeftPos_  = float4{600, -860, PlayerZ};
+
+    IsLeftExit_ = true;
 
     GetMainCameraActor()->GetTransform().SetWorldPosition({925, -500});
 }
@@ -51,6 +62,19 @@ void Shop::Update(float _DeltaTime)
         GetMainCameraActor()->GetTransform().SetWorldMove({0, 0, CameraZPos_});
         IsChangeCameraPos_ = true;
     }
+    
+    GetMainCameraActor()->GetTransform().SetWorldPosition({925, -500, CameraZPos_});
+
+    if (true == GetLoadingEnd())
+    {
+        SetLoadingEnd(false);
+
+        if (true == Penitent_->GetIsOutDoor())
+        {
+            Penitent_->SetIsOutDoor(false);
+            Penitent_->GetTransform().SetWorldPosition({580, PlayerRightPos_.y});
+        }
+    }
 }
 
 void Shop::End() {}
@@ -58,10 +82,13 @@ void Shop::End() {}
 
 void Shop::LevelStartEvent()
 {
+    LoadingActor_ = CreateActor<LoadingActor>();
+    LoadingActor_->IsEntrance(true);
+
     if (nullptr == Penitent::GetMainPlayer())
     {
         Penitent_ = CreateActor<Penitent>(ACTORORDER::Player);
-        Penitent_->GetTransform().SetWorldPosition({1250, -860, PlayerZ});
+        Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
         Penitent_->SetGround(ColMap_);
 
         Penitent_->SetLevelOverOn();
@@ -70,26 +97,25 @@ void Shop::LevelStartEvent()
     else if (nullptr != Penitent::GetMainPlayer())
     {
         Penitent_ = Penitent::GetMainPlayer();
-        Penitent_->GetTransform().SetWorldPosition({1250, -860, PlayerZ});
         Penitent_->SetGround(ColMap_);
+
+        if (true == IsRightExit_)
+        {
+            Penitent_->GetTransform().SetWorldPosition(PlayerRightPos_);
+        }
+
+        else if (true == IsLeftExit_)
+        {
+            Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
+        }
 
         Penitent_->SetLevelOverOn();
     }
 
-    if (350 > Penitent_->GetTransform().GetWorldPosition().x)
-    {
-        Penitent_->GetTransform().SetWorldPosition(
-            float4{350, Penitent_->GetTransform().GetWorldPosition().y, PlayerZ});
-    }
-
-    if (2000 < Penitent_->GetTransform().GetWorldPosition().x)
-    {
-        Penitent_->GetTransform().SetWorldPosition(
-            float4{2000, Penitent_->GetTransform().GetWorldPosition().y, PlayerZ});
-    }
-
     IsRightExit_ = false;
     IsLeftExit_  = false;
+
+    GetMainCameraActor()->GetTransform().SetWorldPosition({925, -500});
 }
 
-void Shop::LevelEndEvent() {}
+void Shop::LevelEndEvent() { StageBase::LevelEndEvent(); }

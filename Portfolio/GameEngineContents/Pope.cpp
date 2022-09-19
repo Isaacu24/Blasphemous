@@ -325,7 +325,7 @@ void Pope::EventAppearEnd(const StateInfo& _Info)
 {
     BossUI_->AllOn();
     BossUI_->SetBossName("에스크리바르 교황 성하");
-    BossUI_->SetFontPosition({470, 590, -100.f});
+    BossUI_->SetFontPosition({470, 590, 5.f});
 }
 
 

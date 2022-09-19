@@ -18,6 +18,13 @@ public:
 
     inline std::string& GetLinkLevel() { return LinkLevel_; }
 
+    inline GameEngineTextureRenderer* GetDoorRenderer() { return Renderer_; }
+
+    void SetMoveUIRenderer(const float4& _Value) 
+    { 
+        UIRenderer_->GetTransform().SetWorldMove(_Value);
+    }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;

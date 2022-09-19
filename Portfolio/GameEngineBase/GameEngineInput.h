@@ -131,6 +131,11 @@ public:
 		return ThumbLX_;
 	}
 
+	inline void SetThumbLX(SHORT _Value)
+	{
+		ThumbLX_ = _Value;
+	}
+
 	// 왼쪽 아날로그 스틱 Y축
 	inline SHORT GetThumbLY()
 	{

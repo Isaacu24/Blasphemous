@@ -248,25 +248,39 @@ bool Penitent::ObjectCheck(GameEngineCollision* _This, GameEngineCollision* _Oth
                                                      GetTransform().GetWorldPosition().z});
 
                     Door* DoorObj = dynamic_cast<Door*>(_Other->GetActor());
-                    OutDoorLevel_ = DoorObj->GetLinkLevel();
 
+                    if (nullptr != DoorObj)
+                    {
+                        OutDoorLevel_ = DoorObj->GetLinkLevel();
+                    }
+
+                    IsOutDoor_ = true;
                     ChangeState("DoorEntrance");
                 }
                 break;
 
             case ObjectType::PrieDieu:
                 ChangeState("RestPray");
+
+                if (nullptr != dynamic_cast<StageBase*>(GetLevel()))
+                {
+                    LastSaveLevel_ = dynamic_cast<StageBase*>(GetLevel())->GetNameConstRef();
+                }
                 break;
 
             case ObjectType::Guilt:
                 {
                     PenitentGuilt* Guilt = dynamic_cast<PenitentGuilt*>(_Other->GetActor());
-                    Guilt->DestroyGuilt();
 
-                    AttackEffect_->Renderer_->On();
-                    AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_pickUpGuiltFx");
-                    AttackEffect_->GetTransform().SetWorldPosition(
-                        {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, PlayerEffectZ});
+                    if (nullptr != Guilt)
+                    {
+                        Guilt->DestroyGuilt();
+
+                        AttackEffect_->Renderer_->On();
+                        AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_pickUpGuiltFx");
+                        AttackEffect_->GetTransform().SetWorldPosition(
+                            {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, PlayerEffectZ});
+                    }
                 }
                 break;
 

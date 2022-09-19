@@ -95,6 +95,14 @@ public:
 
     void SetIsFreezeEnd(bool _Value) { IsFreezeEnd_ = _Value; }
 
+    bool GetIsOutDoor() { return IsOutDoor_; }
+
+    void SetIsOutDoor(bool _Value) 
+    {
+        ChangeState("DoorExit");
+        IsOutDoor_ = _Value; 
+    }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
@@ -237,6 +245,10 @@ protected:
     void DoorEntranceUpdate(float _DeltaTime, const StateInfo& _Info);
     void DoorEntranceEnd(const StateInfo& _Info);
 
+    void DoorExitStart(const StateInfo& _Info);
+    void DoorExitUpdate(float _DeltaTime, const StateInfo& _Info);
+    void DoorExitEnd(const StateInfo& _Info);
+
     //피격 함수
     bool KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other);
     bool KnockUp(GameEngineCollision* _This, GameEngineCollision* _Other);
@@ -271,6 +283,7 @@ private:
     EXECUTIONTYPE ExecutionType_;
 
     std::string LastSaveLevel_;
+
     std::string OutDoorLevel_;
 
     int   HP_;
@@ -326,4 +339,6 @@ private:
     bool ParryOn_;
 
     bool IsFreezeEnd_;
+
+    bool IsOutDoor_;
 };
