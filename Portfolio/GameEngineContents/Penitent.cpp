@@ -272,6 +272,11 @@ void Penitent::SetAnimation()
 {
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
+    MetaTextureRenderer* IconRenderer_ = CreateComponent<MetaTextureRenderer>();
+
+    IconRenderer_->SetTexture("items-icons-spritesheet.png", 85);
+    IconRenderer_->ScaleToCutTexture(85);
+
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penintent_idle_anim");
 
@@ -1365,7 +1370,6 @@ void Penitent::SetAnimation()
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
-
     MetaRenderer_->SetPivot(PIVOTMODE::METABOT);
 }
 
@@ -1538,7 +1542,7 @@ void Penitent::LevelStartEvent()
             GetTransform().SetWorldPosition(
                 {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, BeforeParallax5Z});
 
-           return;
+            return;
         }
 
         ChangeState("Idle");

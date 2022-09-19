@@ -101,9 +101,9 @@ enum class COLLISIONORDER
 enum class UIORDER
 {
     LodingUI = 0,
-    Inventory,
     ScreenUI,
     BackScreenUI,
+    Inventory,
     InteractionUI,
     BossUI,
     MonterUI,

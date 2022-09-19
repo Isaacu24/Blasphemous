@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "Inventory.h"
+#include "Item.h"
 
 Inventory::Inventory()
     : InventoryType_(InventoryType::RosaryBeads)
@@ -19,12 +20,6 @@ void Inventory::Start()
     InventoryRenderer_->ScaleToTexture();
     InventoryRenderer_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(UIORDER::Inventory)});
 
-    Cursor_ = CreateComponent<GameEngineUIRenderer>();
-    Cursor_->CreateFrameAnimationCutTexture("ItemCursorAlt", {"ItemCursorAlt.png", 0, 15, 0.1f, true});
-    Cursor_->ChangeFrameAnimation("ItemCursorAlt");
-    Cursor_->GetTransform().SetWorldScale({55, 55});
-    Cursor_->GetTransform().SetWorldPosition({-425, -115, static_cast<int>(UIORDER::Inventory)});
-
     GameEngineInput::GetInst()->CreateButton("InventoryLeftButton", GAMEPAD_LEFT_SHOULDER);
     GameEngineInput::GetInst()->CreateButton("InventoryRightButton", GAMEPAD_RIGHT_SHOULDER);
 
@@ -35,6 +30,223 @@ void Inventory::Start()
     GameEngineInput::GetInst()->CreateKey("CursorRightKey", 'D');
     GameEngineInput::GetInst()->CreateKey("CursorDownKey", 'S');
     GameEngineInput::GetInst()->CreateKey("CursorUpKey", 'W');
+
+    StandardPos_ = float4{-425, -115};
+
+    ItemLists_.resize(6);
+
+    ItemLists_[static_cast<int>(InventoryType::RosaryBeads)].resize(24);
+
+    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::RosaryBeads)].size(); i++)
+    {
+        float XPos_ = -430.f;
+        float YPos_ = 175.f;
+
+        size_t OffsetX = i;
+        size_t OffsetY = 1;
+
+        Item* Item_ = GetLevel()->CreateActor<Item>();
+        Item_->SetIconRenderer(2);
+        Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+
+        if (8 <= i)
+        {
+            OffsetX = i - 8;
+            OffsetY = 2;
+            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+        }
+
+        if (16 <= i)
+        {
+            OffsetX = i - 16;
+            OffsetY = 3;
+            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+        }
+
+        ItemLists_[static_cast<int>(InventoryType::RosaryBeads)][i] = Item_;
+        Item_->Off();
+    }
+
+    ItemLists_[static_cast<int>(InventoryType::Relics)].resize(7);
+
+    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::Relics)].size(); i++)
+    {
+        float XPos_ = -430.f;
+        float YPos_ = 175.f;
+
+        size_t OffsetX = i;
+        size_t OffsetY = 1;
+
+        Item* Item_ = GetLevel()->CreateActor<Item>();
+        Item_->SetIconRenderer(2);
+        Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+
+        ItemLists_[static_cast<int>(InventoryType::Relics)][i] = Item_;
+        Item_->Off();
+    }
+
+    ItemLists_[static_cast<int>(InventoryType::QuestItem)].resize(35);
+
+    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::QuestItem)].size(); i++)
+    {
+        float XPos_ = 130.f;
+        float YPos_ = 215.f;
+
+        size_t OffsetX = i;
+        size_t OffsetY = 1;
+
+        Item* Item_ = GetLevel()->CreateActor<Item>();
+        Item_->SetIconRenderer(2);
+        Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+
+        if (5 <= i)
+        {
+            OffsetX = i - 5;
+            OffsetY = 1;
+            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+        }
+
+        if (10 <= i)
+        {
+            OffsetX = i - 10;
+            OffsetY = 2;
+            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+        }
+
+        if (15 <= i)
+        {
+            OffsetX = i - 15;
+            OffsetY = 3;
+            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+        }
+
+        if (20 <= i)
+        {
+            OffsetX = i - 20;
+            OffsetY = 4;
+            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+        }
+
+        if (25 <= i)
+        {
+            OffsetX = i - 25;
+            OffsetY = 5;
+            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+        }
+
+        if (30 <= i)
+        {
+            OffsetX = i - 30;
+            OffsetY = 6;
+            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+        }
+
+        if (35 <= i)
+        {
+            OffsetX = i - 35;
+            OffsetY = 7;
+            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+        }
+
+        ItemLists_[static_cast<int>(InventoryType::QuestItem)][i] = Item_;
+        Item_->Off();
+    }
+
+    ItemLists_[static_cast<int>(InventoryType::MeaCulpaHearts)].resize(11);
+
+    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::MeaCulpaHearts)].size(); i++)
+    {
+        float XPos_ = -430.f;
+        float YPos_ = 175.f;
+
+        size_t OffsetX = i;
+        size_t OffsetY = 1;
+
+        Item* Item_ = GetLevel()->CreateActor<Item>();
+        Item_->SetIconRenderer(2);
+        Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+
+        if (8 <= i)
+        {
+            OffsetX = i - 8;
+            OffsetY = 2;
+            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+        }
+
+        ItemLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][i] = Item_;
+        Item_->Off();
+    }
+
+    ItemLists_[static_cast<int>(InventoryType::Prayers)].resize(17);
+
+    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::Prayers)].size(); i++)
+    {
+        float XPos_ = -430.f;
+        float YPos_ = 175.f;
+
+        size_t OffsetX = i;
+        size_t OffsetY = 1;
+
+        Item* Item_ = GetLevel()->CreateActor<Item>();
+        Item_->SetIconRenderer(2);
+        Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+        
+        if (8 <= i)
+        {
+            OffsetX = i - 8;
+            OffsetY = 2;
+            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+        }
+
+        if (16 <= i)
+        {
+            OffsetX = i - 16;
+            OffsetY = 3;
+            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+        }
+
+        ItemLists_[static_cast<int>(InventoryType::Prayers)][i] = Item_;
+        Item_->Off();
+    }
+
+    ItemLists_[static_cast<int>(InventoryType::Collectibles) - 1].resize(24);
+
+    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::Collectibles) - 1].size(); i++)
+    {
+        float XPos_ = -430.f;
+        float YPos_ = 175.f;
+
+        size_t OffsetX = i;
+        size_t OffsetY = 1;
+
+        Item* Item_ = GetLevel()->CreateActor<Item>();
+        Item_->SetIconRenderer(2);
+        Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+
+        if (8 <= i)
+        {
+            OffsetX = i - 8;
+            OffsetY = 2;
+            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+        }
+
+        if (16 <= i)
+        {
+            OffsetX = i - 16;
+            OffsetY = 3;
+            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+        }
+
+        if (24 <= i)
+        {
+            OffsetX = i - 24;
+            OffsetY = 4;
+            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+        }
+
+        ItemLists_[static_cast<int>(InventoryType::Collectibles) - 1][i] = Item_;
+        Item_->Off();
+    }
 }
 
 void Inventory::Update(float _DeltaTime)
@@ -70,9 +282,6 @@ void Inventory::Update(float _DeltaTime)
     CursorMove();
 
     GameEngineDebug::OutPutString("CursorPos : " + std::to_string(CursorPos_));
-
-    GameEngineDebug::OutPutString("CursorPosX : " + std::to_string(Cursor_->GetTransform().GetWorldPosition().x));
-    GameEngineDebug::OutPutString("CursorPosY : " + std::to_string(Cursor_->GetTransform().GetWorldPosition().y));
 }
 
 void Inventory::End() {}
@@ -86,54 +295,53 @@ void Inventory::ChangeInventoryIndex()
             CursorPos_     = 1;
             LineSlotCount_ = 8;
             MaxSlotIndex_  = 24;
-            Cursor_->GetTransform().SetWorldPosition({-425, -115, 0.0f});
             break;
+
         case 2:
             InventoryType_ = InventoryType::Relics;
             CursorPos_     = 1;
             MaxSlotIndex_  = 7;
             LineSlotCount_ = 7;
-            Cursor_->GetTransform().SetWorldPosition({-425, -115, 0.0f});
             break;
+
         case 3:
             InventoryType_ = InventoryType::QuestItem;
             CursorPos_     = 1;
             LineSlotCount_ = 5;
             MaxSlotIndex_  = 35;
-            Cursor_->GetTransform().SetWorldPosition({135, 180, 0.0f});
             break;
+
         case 4:
             InventoryType_ = InventoryType::MeaCulpaHearts;
             CursorPos_     = 1;
             LineSlotCount_ = 8;
             MaxSlotIndex_  = 11;
-            Cursor_->GetTransform().SetWorldPosition({-425, -115, 0.0f});
             break;
+
         case 5:
             InventoryType_ = InventoryType::Prayers;
             CursorPos_     = 1;
             MaxSlotIndex_  = 17;
-            Cursor_->GetTransform().SetWorldPosition({-425, -115, -0.1f});
             break;
+
         case 6:
             InventoryType_ = InventoryType::Abilities;
             CursorPos_     = 1;
-            Cursor_->GetTransform().SetWorldPosition({-425, -115, 1.0f});
             break;
+
         case 7:
             InventoryType_ = InventoryType::Collectibles;
             CursorPos_     = 1;
             MaxSlotIndex_  = 24;
-            Cursor_->GetTransform().SetWorldPosition({-425, -115, -0.1f});
             break;
 
         default:
             InventoryType_ = InventoryType::RosaryBeads;
             CursorPos_     = 1;
-            Cursor_->GetTransform().SetWorldPosition({-425, -115, 0.0f});
             break;
     }
 
+    Reset();
     ChangeInventory();
 }
 
@@ -143,25 +351,60 @@ void Inventory::ChangeInventory()
     {
         case InventoryType::RosaryBeads:
             InventoryRenderer_->SetTexture("Inventory_0.png");
+
+            for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::RosaryBeads)].size(); i++)
+            {
+                ItemLists_[static_cast<int>(InventoryType::RosaryBeads)][i]->On();
+            }
             break;
+
         case InventoryType::Relics:
             InventoryRenderer_->SetTexture("Inventory_1.png");
+
+            for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::Relics)].size(); i++)
+            {
+                ItemLists_[static_cast<int>(InventoryType::Relics)][i]->On();
+            }
             break;
+
         case InventoryType::QuestItem:
             InventoryRenderer_->SetTexture("Inventory_2.png");
+
+            for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::QuestItem)].size(); i++)
+            {
+                ItemLists_[static_cast<int>(InventoryType::QuestItem)][i]->On();
+            }
             break;
+
         case InventoryType::MeaCulpaHearts:
             InventoryRenderer_->SetTexture("Inventory_3.png");
+
+            for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::MeaCulpaHearts)].size(); i++)
+            {
+                ItemLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][i]->On();
+            }
             break;
+
         case InventoryType::Prayers:
             InventoryRenderer_->SetTexture("Inventory_4.png");
+
+            for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::Prayers)].size(); i++)
+            {
+                ItemLists_[static_cast<int>(InventoryType::Prayers)][i]->On();
+            }
             break;
+
         case InventoryType::Abilities:
             InventoryRenderer_->SetTexture("Inventory_5.png");
-            Cursor_->GetTransform().SetWorldPosition({0, 0, 100.0f});
             break;
+
         case InventoryType::Collectibles:
             InventoryRenderer_->SetTexture("Inventory_6.png");
+
+            for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::Collectibles) - 1].size(); i++)
+            {
+                ItemLists_[static_cast<int>(InventoryType::Collectibles) - 1][i]->On();
+            }
             break;
     }
 }
@@ -176,10 +419,6 @@ void Inventory::CursorMove()
         }
 
         --CursorPos_;
-
-        Cursor_->GetTransform().SetWorldMove({-68, 0, 0});
-
-        LineBreakCuror();
     }
 
     else if (true == GameEngineInput::GetInst()->IsDownKey("CursorRightKey"))
@@ -190,10 +429,6 @@ void Inventory::CursorMove()
         }
 
         ++CursorPos_;
-
-        Cursor_->GetTransform().SetWorldMove({68, 0, 0});
-
-        LineBreakCuror();
     }
 
     else if (true == GameEngineInput::GetInst()->IsDownKey("CursorDownKey"))
@@ -204,9 +439,6 @@ void Inventory::CursorMove()
         }
 
         CursorPos_ += LineSlotCount_;
-        Cursor_->GetTransform().SetWorldMove({0, -60, 0});
-
-        LineBreakCuror();
     }
 
     else if (true == GameEngineInput::GetInst()->IsDownKey("CursorUpKey"))
@@ -217,80 +449,45 @@ void Inventory::CursorMove()
         }
 
         CursorPos_ -= LineSlotCount_;
-        Cursor_->GetTransform().SetWorldMove({0, 60, 0});
-
-        LineBreakCuror();
     }
 }
 
-void Inventory::LineBreakCuror()
+void Inventory::Reset()
 {
-    if (InventoryType_ == InventoryType::QuestItem)
+    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::RosaryBeads)].size(); i++)
     {
-        switch (CursorPos_)
-        {
-            case 5:
-                Cursor_->GetTransform().SetWorldPosition({407, 180, 0.0f});
-                break;
-            case 6:
-                Cursor_->GetTransform().SetWorldPosition({135, 112, 0.0f});
-                break;
-
-            case 10:
-                Cursor_->GetTransform().SetWorldPosition({407, 112, 0.0f});
-                break;
-            case 11:
-                Cursor_->GetTransform().SetWorldPosition({135, 46, 0.0f});
-                break;
-                    
-            case 15:
-                Cursor_->GetTransform().SetWorldPosition({407, 46, 0.0f});
-                break;
-            case 16:
-                Cursor_->GetTransform().SetWorldPosition({135, 0, 0.0f});
-                break;
-
-            case 20:
-                Cursor_->GetTransform().SetWorldPosition({407, 0, 0.0f});
-                break;
-            case 21:
-                Cursor_->GetTransform().SetWorldPosition({135, -66, 0.0f});
-                break;
-
-            case 25:
-                Cursor_->GetTransform().SetWorldPosition({407, -66, 0.0f});
-                break;
-            case 26:
-                Cursor_->GetTransform().SetWorldPosition({135, -131, 0.0f});
-                break;
-
-            case 30:
-                Cursor_->GetTransform().SetWorldPosition({407, -131, 0.0f});
-                break;
-            case 31:
-                Cursor_->GetTransform().SetWorldPosition({135, -188, 0.0f});
-                break;
-        }
+        ItemLists_[static_cast<int>(InventoryType::RosaryBeads)][i]->Off();
     }
 
-    else
+    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::Relics)].size(); i++)
     {
-        switch (CursorPos_)
-        {
-            case 8:
-                Cursor_->GetTransform().SetWorldPosition({51, -115, 0.0f});
-                break;
-            case 9:
-                Cursor_->GetTransform().SetWorldPosition({-425, -170, 0.0f});
-                break;
-            case 16:
-                Cursor_->GetTransform().SetWorldPosition({51, -170, 0.0f});
-                break;
-            case 17:
-                Cursor_->GetTransform().SetWorldPosition({-425, -235, 0.0f});
-                break;
-            default:
-                break;
-        }
+        ItemLists_[static_cast<int>(InventoryType::Relics)][i]->Off();
+    }
+
+    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::QuestItem)].size(); i++)
+    {
+        ItemLists_[static_cast<int>(InventoryType::QuestItem)][i]->Off();
+    }
+
+    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::MeaCulpaHearts)].size(); i++)
+    {
+        ItemLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][i]->Off();
+    }
+
+    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::Prayers)].size(); i++)
+    {
+        ItemLists_[static_cast<int>(InventoryType::Prayers)][i]->Off();
+    }
+
+    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::Collectibles) - 1].size(); i++)
+    {
+        ItemLists_[static_cast<int>(InventoryType::Collectibles) - 1][i]->Off();
+    }
+
+    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::RosaryBeads)].size(); i++)
+    {
+        ItemLists_[static_cast<int>(InventoryType::RosaryBeads)][i]->Off();
     }
 }
+
+void Inventory::OnEvent() { ChangeInventory(); }

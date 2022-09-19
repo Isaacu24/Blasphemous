@@ -202,7 +202,6 @@ void GameEngineTexture::Cut(UINT _StartX, UINT _StartY, UINT _SizeX, UINT _SizeY
 	FrameData.SizeY = _SizeY / GetScale().y;
 
 	CutData.push_back(FrameData);
-
 }
 
 void GameEngineTexture::Cut(UINT _X, UINT _Y)

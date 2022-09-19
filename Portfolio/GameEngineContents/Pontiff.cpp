@@ -541,7 +541,7 @@ void Pontiff::AppearEnd(const StateInfo& _Info)
     Face_->On();
     BossUI_->AllOn();
     BossUI_->SetBossName("마지막 기적의 아들");
-    BossUI_->SetFontPosition({480, 590, 5.f});
+    BossUI_->SetFontPosition({480, 590, static_cast<int>(UIORDER::BossUI)});
     BossUI_->SetFontSize(35);
 
     PlatformSpawner_->CreateFristPattern();

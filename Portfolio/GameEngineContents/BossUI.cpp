@@ -34,7 +34,6 @@ void BossUI::SetBossUI()
     Font_->SetColor({0.65f, 0.65f, 0.45f, 1.0f});
     Font_->SetScreenPostion({450, 590, static_cast<int>(UIORDER::BossUI)});
     Font_->SetSize(30);
-
     Font_->ChangeCamera(CAMERAORDER::UICAMERA);
 }
 

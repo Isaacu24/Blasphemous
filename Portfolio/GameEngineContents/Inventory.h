@@ -3,52 +3,55 @@
 
 enum class InventoryType
 {
-	RosaryBeads, //묵주
-	Relics, //유물
-	QuestItem, //퀘스트 아이템
-	MeaCulpaHearts, //메아 쿨파 심장
-	Prayers, //기도
-	Abilities, //능력
-	Collectibles //수집품
+    RosaryBeads,     //묵주
+    Relics,          //유물
+    QuestItem,       //퀘스트 아이템
+    MeaCulpaHearts,  //메아 쿨파 심장
+    Prayers,         //기도
+    Abilities,       //능력
+    Collectibles     //수집품
 };
-
 
 class GameEngineTextureRenderer;
 class Inventory : public GameEngineActor
 {
 public:
-	Inventory();
-	~Inventory();
+    Inventory();
+    ~Inventory();
 
-	Inventory(const Inventory& _Other) = delete;
-	Inventory(Inventory&& _Other) noexcept = delete;
-	Inventory& operator=(const Inventory& _Other) = delete;
-	Inventory& operator=(Inventory&& _Other) noexcept = delete;
+    Inventory(const Inventory& _Other)                = delete;
+    Inventory(Inventory&& _Other) noexcept            = delete;
+    Inventory& operator=(const Inventory& _Other)     = delete;
+    Inventory& operator=(Inventory&& _Other) noexcept = delete;
 
 protected:
-	void Start() override;
-	void Update(float _DeltaTime) override;
-	void End() override;
+    void Start() override;
+    void Update(float _DeltaTime) override;
+    void End() override;
 
-	void ChangeInventoryIndex();
-	void ChangeInventory();
+    void ChangeInventoryIndex();
+    void ChangeInventory();
 
-	void CursorMove();
-	void LineBreakCuror();
+    void CursorMove();
+
+    void Reset();
+
+    void OnEvent() override;
 
 private:
-	InventoryType InventoryType_;
-	
-	GameEngineUIRenderer* InventoryRenderer_;
-	int InventoryIndex_;
+    InventoryType InventoryType_;
 
-	//std::vector<Item> Items_;
+    GameEngineUIRenderer* InventoryRenderer_;
 
-	GameEngineUIRenderer* Cursor_;
-	int CursorPos_;
+    int InventoryIndex_;
 
-	int MaxSlotIndex_;
+    std::vector<std::vector<class Item*>> ItemLists_;
 
-	int LineSlotCount_;
+    int CursorPos_;
+
+    int MaxSlotIndex_;
+
+    int LineSlotCount_;
+
+    float4 StandardPos_;
 };
-

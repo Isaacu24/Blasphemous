@@ -89,7 +89,7 @@ void PlayerUI::Start()
     TearFrame_->SetTexture("TearFrame.png");
     TearFrame_->ScaleToTexture();
 
-    Inventory_ = GetLevel()->CreateActor<Inventory>();
+    Inventory_ = GetLevel()->CreateActor<Inventory>(2000);
     Inventory_->SetLevelOverOn();
     Inventory_->Off();
 
