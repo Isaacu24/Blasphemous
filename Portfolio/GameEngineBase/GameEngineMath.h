@@ -411,6 +411,7 @@ public:
 	void Normalize()
 	{
 		float Len = Length();
+
 		if (0 == Len)
 		{
 			return;

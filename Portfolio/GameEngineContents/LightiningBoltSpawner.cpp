@@ -3,10 +3,10 @@
 #include "LightiningBolt.h"
 
 LightiningBoltSpawner::LightiningBoltSpawner()
-    : CurType_(BOLTTYPE::Alone) 
+    : CurType_(BOLTTYPE::Alone)
     , StrikeCount_(0)
     , IsStrike_(false)
-    , LimitTime_(0.1f) 
+    , LimitTime_(0.1f)
 {}
 
 LightiningBoltSpawner::~LightiningBoltSpawner() {}
@@ -88,7 +88,7 @@ void LightiningBoltSpawner::Update(float _DeltaTime)
 
         case SPAWNERTYPE::SP_HIGHLEVLE:
             {
-                if (11 == StrikeCount_)
+                if (10 == StrikeCount_)
                 {
                     StrikeCount_ = 0;
                     SpawnerEnd_  = true;
@@ -101,22 +101,17 @@ void LightiningBoltSpawner::Update(float _DeltaTime)
                     return;
                 }
 
-                if (5 > StrikeCount_)
+                if (5 > StrikeCount_) 
                 {
                     {
                         Bolt_ = GetLevel()->CreateActor<LightiningBolt>();
                         Bolt_->GetTransform().SetWorldScale({1.15f, 1.3f, 1});
                         Bolt_->GetTransform().SetWorldPosition(
-                            {630 + (StrikeCount_ * 150.f), GetTransform().GetWorldPosition().y, FrontEffetZ});
+                            {650 + (StrikeCount_ * 120.f), GetTransform().GetWorldPosition().y, FrontEffetZ});
                     }
 
                     DelayTime_ -= LimitTime_;
                     ++StrikeCount_;
-
-                    if (4 == StrikeCount_)
-                    {
-                        LimitTime_ = 1.0f;
-                    }
                 }
 
                 else if (5 <= StrikeCount_)
@@ -125,17 +120,12 @@ void LightiningBoltSpawner::Update(float _DeltaTime)
                         Bolt_ = GetLevel()->CreateActor<LightiningBolt>();
                         Bolt_->GetTransform().SetWorldScale({1.15f, 1.3f, 1});
                         Bolt_->GetTransform().SetWorldPosition(
-                            {2600 + (StrikeCount_ * -150.f), GetTransform().GetWorldPosition().y, FrontEffetZ});
+                            {2450 + (StrikeCount_ * -120.f), GetTransform().GetWorldPosition().y, FrontEffetZ});
+                        Bolt_->GetTransform().PixWorldNegativeX();
                     }
 
                     DelayTime_ -= LimitTime_;
                     ++StrikeCount_;
-
-                    if (5 == StrikeCount_)
-                    {
-                        LimitTime_ = 0.1f;
-                    }
-
                 }
             }
             break;
