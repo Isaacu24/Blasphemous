@@ -101,17 +101,23 @@ void LightiningBoltSpawner::Update(float _DeltaTime)
                     return;
                 }
 
-                if (5 > StrikeCount_) 
+                if (4 >= StrikeCount_)
                 {
                     {
                         Bolt_ = GetLevel()->CreateActor<LightiningBolt>();
                         Bolt_->GetTransform().SetWorldScale({1.15f, 1.3f, 1});
                         Bolt_->GetTransform().SetWorldPosition(
-                            {650 + (StrikeCount_ * 120.f), GetTransform().GetWorldPosition().y, FrontEffetZ});
+                            {650 + (StrikeCount_ * 110.f), GetTransform().GetWorldPosition().y, FrontEffetZ});
                     }
 
                     DelayTime_ -= LimitTime_;
                     ++StrikeCount_;
+
+                    if (5 == StrikeCount_)
+                    {
+                        LimitTime_ = 1.5f;
+                        DelayTime_ = 0.f;
+                    }
                 }
 
                 else if (5 <= StrikeCount_)
@@ -120,12 +126,18 @@ void LightiningBoltSpawner::Update(float _DeltaTime)
                         Bolt_ = GetLevel()->CreateActor<LightiningBolt>();
                         Bolt_->GetTransform().SetWorldScale({1.15f, 1.3f, 1});
                         Bolt_->GetTransform().SetWorldPosition(
-                            {2450 + (StrikeCount_ * -120.f), GetTransform().GetWorldPosition().y, FrontEffetZ});
+                            {2400 + (StrikeCount_ * -110.f), GetTransform().GetWorldPosition().y, FrontEffetZ});
                         Bolt_->GetTransform().PixWorldNegativeX();
                     }
 
                     DelayTime_ -= LimitTime_;
                     ++StrikeCount_;
+
+                    if (6 == StrikeCount_)
+                    {
+                        LimitTime_ = 0.1f;
+                        DelayTime_ = 0.f;
+                    }
                 }
             }
             break;

@@ -111,43 +111,48 @@ void GiantSword::Start()
     SetSpeed(300.f);
 }
 
+float Alpha_;
+
 void GiantSword::Update(float _DeltaTime)
 {
     State_.Update(_DeltaTime);
 
-    if (nullptr == Penitent::GetMainPlayer())
-    {
-        return;
-    }
-
     float4 Center = EyeRenderer_->GetTransform().GetWorldPosition();
-    float4 EyeDir = Penitent::GetMainPlayer()->GetTransform().GetWorldPosition() - EyeRenderer_->GetTransform().GetWorldPosition();
+
+    float4 EyeDir = Penitent::GetMainPlayer()->GetTransform().GetWorldPosition()
+                  - EyeRenderer_->GetTransform().GetWorldPosition();
     EyeDir.Normalize();
 
-    float4 f4CurrentIrisPosition = IrisRenderer_->GetTransform().GetWorldPosition();
-    float4 f4Destination         = float4{
-                                        Center.x + (EyeDir * 5.f).x,
-                                        Center.y + (EyeDir * 5.f).y, 0.f, 0.f
-                                         };
-    float4 f4EyePosition         = float4::Lerp(f4CurrentIrisPosition, f4Destination, 10.f * _DeltaTime);
-    float  len                   = (f4EyePosition - Center).Length();
-    float4 f4CalculatedPosition;
-    if (5.f <= len)
+    float4 IrisPos = IrisRenderer_->GetTransform().GetWorldPosition();
+
+    float4 EndPos = Center + (EyeDir * 5.f);
+
+    Alpha_ += _DeltaTime;
+
+    if (1.f < Alpha_)
     {
-        f4CalculatedPosition = float4{(f4EyePosition - Center).x,
-                            (f4EyePosition - Center).y,
-                            f4CurrentIrisPosition.z,
-                            f4CurrentIrisPosition.w};   
+        Alpha_ = 1.f;
     }
+
+    float4 Lerp = float4::LerpLimit(IrisPos, EndPos, Alpha_);
+
+    float Length = (Lerp - Center).Length();
+
+    float4 IrisEndPos;
+
+    if (5.f <= Length)
+    {
+        IrisEndPos = float4{
+            (Lerp - Center).x, (Lerp - Center).y, IrisPos.z, IrisPos.w};
+    }
+
     else
     {
-        f4CalculatedPosition = float4{f4EyePosition.x,
-                            f4EyePosition.y,
-                            f4CurrentIrisPosition.z,
-                            f4CurrentIrisPosition.w};
+        IrisEndPos
+            = float4{Lerp.x, Lerp.y, IrisPos.z, IrisPos.w};
     }
-    
-    IrisRenderer_->GetTransform().SetWorldPosition(f4CalculatedPosition);
+
+    IrisRenderer_->GetTransform().SetWorldPosition(IrisEndPos);
 
     // GameEngineDebug::OutPutString("GiantSword : " + State_.GetCurStateStateName());
 }
@@ -369,15 +374,15 @@ bool GiantSword::LookAtPlayer(GameEngineCollision* _This, GameEngineCollision* _
     }*/
 
     //            //µ¿°ø ·»´õ·¯                                            //È«Ã¤ ·»´õ·¯
-    //float A = IrisRenderer_->GetTransform().GetWorldPosition().x - EyeRenderer_->GetTransform().GetWorldPosition().x;
-    //float B = IrisRenderer_->GetTransform().GetWorldPosition().y - EyeRenderer_->GetTransform().GetWorldPosition().y;
+    // float A = IrisRenderer_->GetTransform().GetWorldPosition().x - EyeRenderer_->GetTransform().GetWorldPosition().x;
+    // float B = IrisRenderer_->GetTransform().GetWorldPosition().y - EyeRenderer_->GetTransform().GetWorldPosition().y;
 
-    //double C = sqrt((A * A) + (B * B));
+    // double C = sqrt((A * A) + (B * B));
 
-    //if (5.f >= C)
+    // if (5.f >= C)
     //{
-    //    IrisRenderer_->GetTransform().SetWorldMove(
-    //        {EyeDir.x * 50.f * GameEngineTime::GetDeltaTime(), EyeDir.y * 50.f * GameEngineTime::GetDeltaTime()});
+    //     IrisRenderer_->GetTransform().SetWorldMove(
+    //         {EyeDir.x * 50.f * GameEngineTime::GetDeltaTime(), EyeDir.y * 50.f * GameEngineTime::GetDeltaTime()});
 
     //    A = IrisRenderer_->GetTransform().GetWorldPosition().x - EyeRenderer_->GetTransform().GetWorldPosition().x;
     //    B = IrisRenderer_->GetTransform().GetWorldPosition().y - EyeRenderer_->GetTransform().GetWorldPosition().y;

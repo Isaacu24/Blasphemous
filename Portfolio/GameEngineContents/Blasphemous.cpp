@@ -76,7 +76,7 @@ void Blasphemous::Start()
 
     GameEngineInput::GetInst()->CreateKey("GotoStage5", VK_NUMPAD5);
     GameEngineInput::GetInst()->CreateKey("GotoStage6", VK_NUMPAD6);
-    GameEngineInput::GetInst()->CreateKey("GotoStage7", '7');
+    GameEngineInput::GetInst()->CreateKey("GotoStage7", VK_NUMPAD7);
     GameEngineInput::GetInst()->CreateKey("GotoStage8", VK_NUMPAD8);
     GameEngineInput::GetInst()->CreateKey("GotoStage9", VK_NUMPAD9);
 
