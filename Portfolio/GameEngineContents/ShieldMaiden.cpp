@@ -559,7 +559,7 @@ void ShieldMaiden::DeathStart(const StateInfo& _Info)
     MetaRenderer_->ChangeMetaAnimation("shieldandsword_death");
     MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
 
-    Penitent::GetMainPlayer()->SerTear(GetTear());
+    Penitent::GetMainPlayer()->SetTear(GetTear());
 }
 
 void ShieldMaiden::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}

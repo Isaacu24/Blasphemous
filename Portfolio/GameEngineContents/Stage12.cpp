@@ -60,7 +60,7 @@ void Stage12::Update(float _DeltaTime)
     float4 PlayerPos = Penitent_->GetTransform().GetWorldPosition() + float4{0, CameraOffset_};
     float4 CurPos    = float4::LerpLimit(CamPos, PlayerPos, _DeltaTime * 3);
 
-    GetMainCameraActor()->GetTransform().SetWorldPosition({CurPos.x, -640, CameraZPos_});
+    GetMainCameraActor()->GetTransform().SetWorldPosition({CurPos.x, -600, CameraZPos_});
 
     if (970 > GetMainCameraActor()->GetTransform().GetLocalPosition().x)
     {

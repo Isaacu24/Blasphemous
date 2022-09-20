@@ -1,6 +1,5 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
-#include "MetaTextureRenderer.h"
 
 enum class ItemType
 {
@@ -13,11 +12,96 @@ enum class ItemType
     Collectibles     //수집품
 };
 
+struct ItemInfo
+{
+    int         ItemIndex_;
+    ItemType    ItemType_;
+    std::string ItemName_;
+    std::string ItemDecs_;
+    int         ItemPrice_;
+
+    ItemInfo()
+        : ItemIndex_(0)
+        , ItemType_(ItemType::Abilities)
+        , ItemName_{}
+        , ItemDecs_{}
+        , ItemPrice_(0)
+    {}
+
+    ItemInfo(int _Index, ItemType _Type, const std::string& _Name, const std::string& _Decs, int _Price)
+        : ItemIndex_(_Index)
+        , ItemType_(_Type)
+        , ItemName_{_Name}
+        , ItemDecs_{_Decs}
+        , ItemPrice_(_Price)
+    {}
+
+    ~ItemInfo(){};
+
+    bool operator==(const ItemInfo& _Info)
+    {
+        if (ItemIndex_ != _Info.ItemIndex_)
+        {
+            return false;
+        }
+
+        if (ItemType_ != _Info.ItemType_)
+        {
+            return false;
+        }
+
+        if (ItemName_ != _Info.ItemName_)
+        {
+            return false;
+        }
+
+        if (ItemDecs_ != _Info.ItemDecs_)
+        {
+            return false;
+        }
+
+        if (ItemPrice_ != _Info.ItemPrice_)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+     bool operator!=(const ItemInfo& _Info)
+    {
+        if (ItemIndex_ == _Info.ItemIndex_)
+        {
+            return false;
+        }
+
+        if (ItemType_ == _Info.ItemType_)
+        {
+            return false;
+        }
+
+        if (ItemName_ == _Info.ItemName_)
+        {
+            return false;
+        }
+
+        if (ItemDecs_ == _Info.ItemDecs_)
+        {
+            return false;
+        }
+
+        if (ItemPrice_ == _Info.ItemPrice_)
+        {
+            return false;
+        }
+
+        return true;
+    }
+};
+
 //스킬도 포함
 class Item : public GameEngineActor
 {
-    friend class Inventory;
-
 public:
     Item();
     ~Item();
@@ -27,12 +111,17 @@ public:
     Item& operator=(const Item& _Other)     = delete;
     Item& operator=(Item&& _Other) noexcept = delete;
 
-    inline void SetIconRenderer(size_t _Index)
-    {
-        IconRenderer_->On();
-        IconRenderer_->SetTexture("items-icons-spritesheet.png", _Index);
-        IconRenderer_->ScaleToCutTexture(_Index);
-    }
+    void CreateItemInfo(const ItemInfo& _Info) { Info_ = _Info; }
+
+    GameEngineTextureRenderer* GetItemRenderer() { return ItemRenderer_; }
+
+    void PlayerCheck();
+
+    bool GetIsPlayerCollide() { return IsPlayerCollide_; }
+
+    void SetIsPlayerCollide(bool _Value) { IsPlayerCollide_ = _Value; }
+
+    const ItemInfo& GetItemInfo() { return Info_; }
 
 protected:
     void Start() override;
@@ -40,10 +129,12 @@ protected:
     void End() override;
 
 private:
-    MetaTextureRenderer* IconRenderer_;
+    GameEngineTextureRenderer* UIRenderer_;
 
-    ItemType MyType_;
+    GameEngineTextureRenderer* ItemRenderer_;
+    GameEngineCollision*       ItemCollider_;
 
-    GameEngineFontRenderer* ItemName_;
-    GameEngineFontRenderer* ItemInfo_;
+    ItemInfo Info_;
+
+    bool IsPlayerCollide_;
 };

@@ -55,7 +55,7 @@ void Stage11::Update(float _DeltaTime)
         IsChangeCameraPos_ = true;
     }
 
-    GetMainCameraActor()->GetTransform().SetWorldPosition({1200.f, -710, CameraZPos_});
+    GetMainCameraActor()->GetTransform().SetWorldPosition({1200.f, -690, CameraZPos_});
 
     if (600 > Penitent_->GetTransform().GetWorldPosition().x)
     {
@@ -80,6 +80,20 @@ void Stage11::Update(float _DeltaTime)
         {
             Penitent_->SetIsOutDoor(false);
             Penitent_->GetTransform().SetWorldPosition({1560, PlayerRightPos_.y});
+        }
+    }
+
+    if (true == GetLoadingEnd())
+    {
+        SetLoadingEnd(false);
+
+        if (nullptr != GEngine::GetPrevLevel())
+        {
+            if ("STAGE05" == GEngine::GetPrevLevel()->GetNameConstRef())
+            {
+                Milestone* MilestoneUI = CreateActor<Milestone>();
+                MilestoneUI->SetTownName("Mercy Dreams");
+            }
         }
     }
 
@@ -120,7 +134,7 @@ void Stage11::LevelStartEvent()
             Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
         }
 
-        Penitent_->SetLevelOverOn();
+        //Penitent_->SetLevelOverOn();
     }
 
     if (true == Penitent_->GetIsOutDoor())

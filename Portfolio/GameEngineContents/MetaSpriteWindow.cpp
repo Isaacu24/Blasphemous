@@ -21,8 +21,6 @@ void MetaSpriteWindow::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
     MetaFileButton(_Level);
 
     AllFolderButton(_Level);
-
-    ImGui::ShowDemoWindow();
 }
 
 
@@ -64,9 +62,10 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
             std::string ImageName     = std::filesystem::path{FileName}.replace_extension("").string();  // Remove .meta
             std::string AnimationName = std::filesystem::path{ImageName}.replace_extension("").string();  // Remove .png
 
-            Renderer->CreateFrameAnimationCutTexture(
-                AnimationName, {ImageName, 0, static_cast<unsigned int>(MetaDatas_.size() - 1), 0.1f, true});
-            Renderer->ChangeFrameAnimation(AnimationName);
+            //Renderer->CreateFrameAnimationCutTexture(
+            //    AnimationName, {ImageName, 0, static_cast<unsigned int>(MetaDatas_.size() - 1), 0.1f, true});
+
+            //Renderer->ChangeFrameAnimation(AnimationName);
 
             Renderer->SetCurData(MetaDatas_);
 
@@ -74,15 +73,14 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
         }
     }
 
-     if (nullptr != Renderer && nullptr != TargetTexture && 0 != TargetTexture->GetCutCount())
+    if (nullptr != Renderer && nullptr != TargetTexture && 0 != TargetTexture->GetCutCount())
     {
-         ImGui::SliderInt("ImageIndex", &CurFrame, 0, TargetTexture->GetCutCount() - 1);
-         Renderer->SetTexture(TargetTexture, CurFrame);
-         Renderer->ScaleToCutTexture(CurFrame);
-         Renderer->SetCurData(MetaDatas_);
-     }
+        ImGui::SliderInt("ImageIndex", &CurFrame, 0, TargetTexture->GetCutCount() - 1);
+        Renderer->SetTexture(TargetTexture, CurFrame);
+        Renderer->ScaleToCutTexture(CurFrame);
+    }
 
-
+    //µð¹ö±ë ·»´õ
     if (nullptr != TargetTexture)
     {
         float4 ImagePos = TargetTexture->GetScale().Half();
@@ -202,7 +200,7 @@ void MetaSpriteWindow::MetaParsing(const std::string& _AllText)
     size_t StartPos       = 0;
     size_t AnimationStart = 0;
 
-    while (true)    
+    while (true)
     {
         AnimationStart = _AllText.find("second:", AnimationStart);
 
@@ -357,7 +355,7 @@ void MetaSpriteWindow::CutAllTexture()
             continue;
         }
 
-        for (size_t j = 0; j < AllDatas_[i].size(); j++)    
+        for (size_t j = 0; j < AllDatas_[i].size(); j++)
         {
             TargetTexture->Cut(AllDatas_[i][j].PosX,
                                TargetTexture->GetScale().y - AllDatas_[i][j].PosY - AllDatas_[i][j].Height,

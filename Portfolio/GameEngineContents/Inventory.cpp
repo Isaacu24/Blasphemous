@@ -7,12 +7,93 @@ Inventory::Inventory()
     : InventoryType_(InventoryType::RosaryBeads)
     , InventoryRenderer_(nullptr)
     , InventoryIndex_(1)
-    , CursorPos_(1)
-    , MaxSlotIndex_(24)
+    , CursorPos_(0)
+    , MaxSlotIndex_(0)
     , LineSlotCount_(8)
 {}
 
 Inventory::~Inventory() {}
+
+void Inventory::PushBackItem(const ItemInfo& _Info)
+{
+    if (ItemType::Abilities == _Info.ItemType_)
+    {
+        return;
+    }
+
+    switch (_Info.ItemType_)
+    {
+        case ItemType::RosaryBeads:
+
+            for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)].size(); i++)
+            {
+                if (ItemInfo{} == ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][i]->GetItemInfo())
+                {
+                    ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][i]->SetItemInfo(_Info);
+                    return;
+                }
+            }
+
+            break;
+        case ItemType::Relics:
+
+            for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::Relics)].size(); i++)
+            {
+                if (ItemInfo{} == ItemSlotLists_[static_cast<int>(InventoryType::Relics)][i]->GetItemInfo())
+                {
+                    ItemSlotLists_[static_cast<int>(InventoryType::Relics)][i]->SetItemInfo(_Info);
+                    return;
+                }
+            }
+
+            break;
+        case ItemType::QuestItem:
+            for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::QuestItem)].size(); i++)
+            {
+                if (ItemInfo{} == ItemSlotLists_[static_cast<int>(InventoryType::QuestItem)][i]->GetItemInfo())
+                {
+                    ItemSlotLists_[static_cast<int>(InventoryType::QuestItem)][i]->SetItemInfo(_Info);
+                    return;
+                }
+            }
+            break;
+        case ItemType::MeaCulpaHearts:
+
+            for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)].size(); i++)
+            {
+                if (ItemInfo{} == ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][i]->GetItemInfo())
+                {
+                    ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][i]->SetItemInfo(_Info);
+                    return;
+                }
+            }
+
+            break;
+        case ItemType::Prayers:
+
+            for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::Prayers)].size(); i++)
+            {
+                if (ItemInfo{} == ItemSlotLists_[static_cast<int>(InventoryType::Prayers)][i]->GetItemInfo())
+                {
+                    ItemSlotLists_[static_cast<int>(InventoryType::Prayers)][i]->SetItemInfo(_Info);
+                    return;
+                }
+            }
+
+            break;
+        case ItemType::Collectibles:
+
+            for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::Collectibles) - 1].size(); i++)
+            {
+                if (ItemInfo{} == ItemSlotLists_[static_cast<int>(InventoryType::Collectibles) - 1][i]->GetItemInfo())
+                {
+                    ItemSlotLists_[static_cast<int>(InventoryType::Collectibles) - 1][i]->SetItemInfo(_Info);
+                    return;
+                }
+            }
+            break;
+    }
+}
 
 void Inventory::Start()
 {
@@ -31,6 +112,25 @@ void Inventory::Start()
     GameEngineInput::GetInst()->CreateKey("CursorRightKey", 'D');
     GameEngineInput::GetInst()->CreateKey("CursorDownKey", 'S');
     GameEngineInput::GetInst()->CreateKey("CursorUpKey", 'W');
+
+    IconRenderer_ = CreateComponent<GameEngineUIRenderer>();
+    IconRenderer_->Off();
+
+    ItemName_ = CreateComponent<GameEngineFontRenderer>();
+    ItemName_->SetColor({0.65f, 0.65f, 0.45f, 1.0f});
+    ItemName_->SetScreenPostion({290, 195, static_cast<int>(UIORDER::PlayerUI)});
+    ItemName_->SetSize(25);
+    ItemName_->SetLeftAndRightSort(LeftAndRightSort::LEFT);
+    ItemName_->ChangeCamera(CAMERAORDER::UICAMERA);
+    ItemName_->Off();
+
+    ItemDesc_ = CreateComponent<GameEngineFontRenderer>();
+    ItemDesc_->SetColor({0.65f, 0.65f, 0.45f, 1.0f});
+    ItemDesc_->SetScreenPostion({210, 270, static_cast<int>(UIORDER::PlayerUI)});
+    ItemDesc_->SetSize(25);
+    ItemDesc_->SetLeftAndRightSort(LeftAndRightSort::LEFT);
+    ItemDesc_->ChangeCamera(CAMERAORDER::UICAMERA);
+    ItemDesc_->Off();
 
     ItemSlotLists_.resize(6);
 
@@ -63,6 +163,7 @@ void Inventory::Start()
         }
 
         ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][i] = Slot;
+        Slot->SetLevelOverOn();
         Slot->Off();
     }
 
@@ -81,10 +182,11 @@ void Inventory::Start()
         Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
 
         ItemSlotLists_[static_cast<int>(InventoryType::Relics)][i] = Slot;
+        Slot->SetLevelOverOn();
         Slot->Off();
     }
 
-    ItemSlotLists_[static_cast<int>(InventoryType::QuestItem)].resize(35);
+    ItemSlotLists_[static_cast<int>(InventoryType::QuestItem)].resize(30);
 
     for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::QuestItem)].size(); i++)
     {
@@ -101,53 +203,47 @@ void Inventory::Start()
         if (5 <= i)
         {
             OffsetX = i - 5;
-            OffsetY = 1;
+            OffsetY = 2;
             Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
         }
 
         if (10 <= i)
         {
             OffsetX = i - 10;
-            OffsetY = 2;
+            OffsetY = 3;
             Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
         }
 
         if (15 <= i)
         {
             OffsetX = i - 15;
-            OffsetY = 3;
+            OffsetY = 4;
             Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
         }
 
         if (20 <= i)
         {
             OffsetX = i - 20;
-            OffsetY = 4;
+            OffsetY = 5;
             Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
         }
 
         if (25 <= i)
         {
             OffsetX = i - 25;
-            OffsetY = 5;
+            OffsetY = 6;
             Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
         }
 
         if (30 <= i)
         {
             OffsetX = i - 30;
-            OffsetY = 6;
-            Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
-        }
-
-        if (35 <= i)
-        {
-            OffsetX = i - 35;
             OffsetY = 7;
             Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
         }
 
         ItemSlotLists_[static_cast<int>(InventoryType::QuestItem)][i] = Slot;
+        Slot->SetLevelOverOn();
         Slot->Off();
     }
 
@@ -173,6 +269,7 @@ void Inventory::Start()
         }
 
         ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][i] = Slot;
+        Slot->SetLevelOverOn();
         Slot->Off();
     }
 
@@ -205,6 +302,7 @@ void Inventory::Start()
         }
 
         ItemSlotLists_[static_cast<int>(InventoryType::Prayers)][i] = Slot;
+        Slot->SetLevelOverOn();
         Slot->Off();
     }
 
@@ -244,8 +342,11 @@ void Inventory::Start()
         }
 
         ItemSlotLists_[static_cast<int>(InventoryType::Collectibles) - 1][i] = Slot;
+        Slot->SetLevelOverOn();
         Slot->Off();
     }
+
+    ChangeInventoryIndex();
 }
 
 void Inventory::Update(float _DeltaTime)
@@ -279,7 +380,6 @@ void Inventory::Update(float _DeltaTime)
     }
 
     CursorMove();
-
     GameEngineDebug::OutPutString("CursorPos : " + std::to_string(CursorPos_));
 }
 
@@ -288,60 +388,59 @@ void Inventory::End() {}
 
 void Inventory::ChangeInventoryIndex()
 {
+    CursorReset();
+
     switch (InventoryIndex_)
     {
         case 1:
             InventoryType_ = InventoryType::RosaryBeads;
-            CursorPos_     = 1;
-            LineSlotCount_ = 8;
-            MaxSlotIndex_  = 24;
+            CursorPos_     = 0;
+            MaxSlotIndex_  = 23;
+            LineSlotCount_ = 7;
             break;
 
         case 2:
             InventoryType_ = InventoryType::Relics;
-            CursorPos_     = 1;
-            MaxSlotIndex_  = 7;
-            LineSlotCount_ = 7;
+            CursorPos_     = 0;
+            MaxSlotIndex_  = 6;
+            LineSlotCount_ = 6;
             break;
 
         case 3:
             InventoryType_ = InventoryType::QuestItem;
-            CursorPos_     = 1;
-            LineSlotCount_ = 5;
-            MaxSlotIndex_  = 35;
+            CursorPos_     = 0;
+            MaxSlotIndex_  = 30;
+            LineSlotCount_ = 4;
             break;
 
         case 4:
             InventoryType_ = InventoryType::MeaCulpaHearts;
-            CursorPos_     = 1;
-            LineSlotCount_ = 8;
-            MaxSlotIndex_  = 11;
+            CursorPos_     = 0;
+            MaxSlotIndex_  = 10;
+            LineSlotCount_ = 7;
             break;
 
         case 5:
             InventoryType_ = InventoryType::Prayers;
-            CursorPos_     = 1;
-            MaxSlotIndex_  = 17;
+            CursorPos_     = 0;
+            MaxSlotIndex_  = 16;
+            LineSlotCount_ = 7;
             break;
 
         case 6:
             InventoryType_ = InventoryType::Abilities;
-            CursorPos_     = 1;
+            CursorPos_     = 0;
             break;
 
         case 7:
             InventoryType_ = InventoryType::Collectibles;
-            CursorPos_     = 1;
-            MaxSlotIndex_  = 24;
-            break;
-
-        default:
-            InventoryType_ = InventoryType::RosaryBeads;
-            CursorPos_     = 1;
+            CursorPos_     = 0;
+            MaxSlotIndex_  = 23;
+            LineSlotCount_ = 7;
             break;
     }
 
-    Reset();
+    AllSlotOff();
     ChangeInventory();
 }
 
@@ -409,15 +508,17 @@ void Inventory::ChangeInventory()
     }
 }
 
+
 void Inventory::CursorMove()
 {
     if (true == GameEngineInput::GetInst()->IsDownKey("CursorLeftKey"))
     {
-        if (0 >= CursorPos_ - 1)
+        if (0 > CursorPos_ - 1)
         {
             return;
         }
 
+        CursorReset();
         --CursorPos_;
     }
 
@@ -428,6 +529,7 @@ void Inventory::CursorMove()
             return;
         }
 
+        CursorReset();
         ++CursorPos_;
     }
 
@@ -438,21 +540,190 @@ void Inventory::CursorMove()
             return;
         }
 
+        CursorReset();
         CursorPos_ += LineSlotCount_;
     }
 
     else if (true == GameEngineInput::GetInst()->IsDownKey("CursorUpKey"))
     {
-        if (0 >= CursorPos_ - LineSlotCount_)
+        if (0 > CursorPos_ - LineSlotCount_)
         {
             return;
         }
 
+        CursorReset();
         CursorPos_ -= LineSlotCount_;
+    }
+
+    switch (InventoryType_)
+    {
+        case InventoryType::RosaryBeads:
+            ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][CursorPos_]->SelectRenderer_->On();
+
+            if (ItemInfo{} != ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][CursorPos_]->GetItemInfo())
+            {
+                ItemInfo Info = ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][CursorPos_]->GetItemInfo();
+
+                IconRenderer_->On();
+                IconRenderer_->SetTexture("items-icons-spritesheet.png", Info.ItemIndex_);
+                IconRenderer_->ScaleToCutTexture(Info.ItemIndex_);
+                IconRenderer_->GetTransform().SetWorldScale(IconRenderer_->GetTransform().GetWorldScale() * 2);
+
+                IconRenderer_->GetTransform().SetWorldPosition({-400, 150});
+
+                ItemName_->On();
+                ItemDesc_->On();
+
+                ItemName_->SetText(Info.ItemName_, "NeoµÕ±Ù¸ð");
+                ItemDesc_->SetText(Info.ItemDecs_, "NeoµÕ±Ù¸ð");
+            }
+
+            break;
+        case InventoryType::Relics:
+            ItemSlotLists_[static_cast<int>(InventoryType::Relics)][CursorPos_]->SelectRenderer_->On();
+
+            if (ItemInfo{} != ItemSlotLists_[static_cast<int>(InventoryType::Relics)][CursorPos_]->GetItemInfo())
+            {
+                ItemInfo Info = ItemSlotLists_[static_cast<int>(InventoryType::Relics)][CursorPos_]->GetItemInfo();
+
+                IconRenderer_->On();
+                IconRenderer_->SetTexture("items-icons-spritesheet.png", Info.ItemIndex_);
+                IconRenderer_->ScaleToCutTexture(Info.ItemIndex_);
+                IconRenderer_->GetTransform().SetWorldScale(IconRenderer_->GetTransform().GetWorldScale() * 2);
+
+                IconRenderer_->GetTransform().SetWorldPosition({-400, 150});
+
+                ItemName_->On();
+                ItemDesc_->On();
+
+                ItemName_->SetText(Info.ItemName_, "NeoµÕ±Ù¸ð");
+                ItemDesc_->SetText(Info.ItemDecs_, "NeoµÕ±Ù¸ð");
+            }
+
+            break;
+        case InventoryType::QuestItem:
+            ItemSlotLists_[static_cast<int>(InventoryType::QuestItem)][CursorPos_]->SelectRenderer_->On();
+
+            if (ItemInfo{} != ItemSlotLists_[static_cast<int>(InventoryType::QuestItem)][CursorPos_]->GetItemInfo())
+            {
+                ItemInfo Info = ItemSlotLists_[static_cast<int>(InventoryType::QuestItem)][CursorPos_]->GetItemInfo();
+
+                IconRenderer_->On();
+                IconRenderer_->SetTexture("items-icons-spritesheet.png", Info.ItemIndex_);
+                IconRenderer_->ScaleToCutTexture(Info.ItemIndex_);
+                IconRenderer_->GetTransform().SetWorldScale(IconRenderer_->GetTransform().GetWorldScale() * 2);
+
+                IconRenderer_->GetTransform().SetWorldPosition({-400, 150});
+
+                ItemName_->On();
+                ItemDesc_->On();
+
+                ItemName_->SetText(Info.ItemName_, "NeoµÕ±Ù¸ð");
+                ItemDesc_->SetText(Info.ItemDecs_, "NeoµÕ±Ù¸ð");
+            }
+            break;
+        case InventoryType::MeaCulpaHearts:
+            ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][CursorPos_]->SelectRenderer_->On();
+
+            if (ItemInfo{}
+                != ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][CursorPos_]->GetItemInfo())
+            {
+                ItemInfo Info
+                    = ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][CursorPos_]->GetItemInfo();
+
+                IconRenderer_->On();
+                IconRenderer_->SetTexture("items-icons-spritesheet.png", Info.ItemIndex_);
+                IconRenderer_->ScaleToCutTexture(Info.ItemIndex_);
+                IconRenderer_->GetTransform().SetWorldScale(IconRenderer_->GetTransform().GetWorldScale() * 2);
+
+                IconRenderer_->GetTransform().SetWorldPosition({-400, 150});
+
+                ItemName_->On();
+                ItemDesc_->On();
+
+                ItemName_->SetText(Info.ItemName_, "NeoµÕ±Ù¸ð");
+                ItemDesc_->SetText(Info.ItemDecs_, "NeoµÕ±Ù¸ð");
+            }
+            break;
+        case InventoryType::Prayers:
+            ItemSlotLists_[static_cast<int>(InventoryType::Prayers)][CursorPos_]->SelectRenderer_->On();
+
+            if (ItemInfo{} != ItemSlotLists_[static_cast<int>(InventoryType::Prayers)][CursorPos_]->GetItemInfo())
+            {
+                ItemInfo Info = ItemSlotLists_[static_cast<int>(InventoryType::Prayers)][CursorPos_]->GetItemInfo();
+
+                IconRenderer_->On();
+                IconRenderer_->SetTexture("items-icons-spritesheet.png", Info.ItemIndex_);
+                IconRenderer_->ScaleToCutTexture(Info.ItemIndex_);
+                IconRenderer_->GetTransform().SetWorldScale(IconRenderer_->GetTransform().GetWorldScale() * 2);
+
+                IconRenderer_->GetTransform().SetWorldPosition({-400, 150});
+
+                ItemName_->On();
+                ItemDesc_->On();
+
+                ItemName_->SetText(Info.ItemName_, "NeoµÕ±Ù¸ð");
+                ItemDesc_->SetText(Info.ItemDecs_, "NeoµÕ±Ù¸ð");
+            }
+            break;
+        case InventoryType::Collectibles:
+            ItemSlotLists_[static_cast<int>(InventoryType::Collectibles) - 1][CursorPos_]->SelectRenderer_->On();
+
+            if (ItemInfo{}
+                != ItemSlotLists_[static_cast<int>(InventoryType::Collectibles) - 1][CursorPos_]->GetItemInfo())
+            {
+                ItemInfo Info
+                    = ItemSlotLists_[static_cast<int>(InventoryType::Collectibles) - 1][CursorPos_]->GetItemInfo();
+
+                IconRenderer_->On();
+                IconRenderer_->SetTexture("items-icons-spritesheet.png", Info.ItemIndex_);
+                IconRenderer_->ScaleToCutTexture(Info.ItemIndex_);
+                IconRenderer_->GetTransform().SetWorldScale(IconRenderer_->GetTransform().GetWorldScale() * 2);
+
+                IconRenderer_->GetTransform().SetWorldPosition({-400, 150});
+
+                ItemName_->On();
+                ItemDesc_->On();
+
+                ItemName_->SetText(Info.ItemName_, "NeoµÕ±Ù¸ð");
+                ItemDesc_->SetText(Info.ItemDecs_, "NeoµÕ±Ù¸ð");
+            }
+            break;
     }
 }
 
-void Inventory::Reset()
+void Inventory::CursorReset()
+{
+    IconRenderer_->Off();
+
+    ItemName_->Off();
+    ItemDesc_->Off();
+
+    switch (InventoryType_)
+    {
+        case InventoryType::RosaryBeads:
+            ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][CursorPos_]->SelectRenderer_->Off();
+            break;
+        case InventoryType::Relics:
+            ItemSlotLists_[static_cast<int>(InventoryType::Relics)][CursorPos_]->SelectRenderer_->Off();
+            break;
+        case InventoryType::QuestItem:
+            ItemSlotLists_[static_cast<int>(InventoryType::QuestItem)][CursorPos_]->SelectRenderer_->Off();
+            break;
+        case InventoryType::MeaCulpaHearts:
+            ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][CursorPos_]->SelectRenderer_->Off();
+            break;
+        case InventoryType::Prayers:
+            ItemSlotLists_[static_cast<int>(InventoryType::Prayers)][CursorPos_]->SelectRenderer_->Off();
+            break;
+        case InventoryType::Collectibles:
+            ItemSlotLists_[static_cast<int>(InventoryType::Collectibles) - 1][CursorPos_]->SelectRenderer_->Off();
+            break;
+    }
+}
+
+
+void Inventory::AllSlotOff()
 {
     for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)].size(); i++)
     {
@@ -490,6 +761,18 @@ void Inventory::Reset()
     }
 }
 
-void Inventory::OnEvent() { ChangeInventory(); }
+void Inventory::OnEvent() 
+{
+    ChangeInventoryIndex();
+    ChangeInventory(); 
+}
 
-void Inventory::OffEvent() { Reset(); }
+void Inventory::OffEvent()
+{
+    InventoryIndex_ = 1;
+    CursorPos_      = 0;
+    MaxSlotIndex_   = 0;
+    LineSlotCount_  = 0;
+
+    AllSlotOff();
+}

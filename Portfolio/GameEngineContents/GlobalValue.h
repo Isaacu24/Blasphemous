@@ -93,7 +93,8 @@ enum class COLLISIONORDER
     Platform,
     DeadZone,
     GiantSwordIris,
-    GiantSwordEye
+    GiantSwordEye,
+    Item
     //PlayerParry
 };
 

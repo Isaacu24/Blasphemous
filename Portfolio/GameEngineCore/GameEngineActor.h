@@ -53,7 +53,6 @@ public:
 
 	void SetParent(GameEngineUpdateObject*) override;
 
-
 	void SetLevelOverOn()
 	{
 		IsLevelOver = true;

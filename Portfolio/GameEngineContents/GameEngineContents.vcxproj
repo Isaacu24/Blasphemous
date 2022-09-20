@@ -63,6 +63,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Candle.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Cemetry.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Corpse.h">
       <SubType>
       </SubType>
@@ -140,6 +148,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Item.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ItemBuyWindow.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -450,6 +462,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Candle.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Cemetry.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Corpse.cpp">
       <SubType>
       </SubType>
@@ -523,6 +543,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Item.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ItemBuyWindow.cpp">
       <SubType>
       </SubType>
     </ClCompile>

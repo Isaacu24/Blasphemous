@@ -5,6 +5,8 @@
 #include "Door.h"
 #include "GlassSwitch.h"
 #include "SideFence.h"
+#include "Fly.h"
+#include "MetaTextureRenderer.h"
 
 Stage05::Stage05() {}
 
@@ -53,6 +55,17 @@ void Stage05::SettingStage()
     AfterRendrer->ScaleToTexture();
     AfterRendrer->GetTransform().SetWorldPosition({0, 0, AfterLayerZ});
     AfterRendrer->GetTransform().SetWorldScale(AfterRendrer->GetTransform().GetWorldScale() * 2.f);
+
+    {
+        Fly* NewFly = CreateActor<Fly>();
+        NewFly->GetTransform().SetWorldPosition({650, -550, TileZ});
+    }
+
+    {
+        Fly* NewFly = CreateActor<Fly>();
+        NewFly->GetTransform().SetWorldPosition({850, -600, TileZ});
+        NewFly->GetMetaRenderer()->CurAnimationSetStartPivotFrame(5);
+    }
 
     float OffsetX = StageRenderer->GetTransform().GetLocalScale().x / 2;
     float OffsetY = StageRenderer->GetTransform().GetLocalScale().y / 2;
@@ -114,7 +127,8 @@ void Stage05::Update(float _DeltaTime)
 
         if (nullptr != GEngine::GetPrevLevel())
         {
-            if ("STAGE10" == GEngine::GetPrevLevel()->GetNameConstRef())
+            if ("STAGE10" == GEngine::GetPrevLevel()->GetNameConstRef()
+                || "STAGE11" == GEngine::GetPrevLevel()->GetNameConstRef())
             {
                 Milestone* MilestoneUI = CreateActor<Milestone>();
                 MilestoneUI->SetTownName("Brotherhood");

@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/CoreMinimal.h>
+#include "PlayerUI.h"
 
 enum class EXECUTIONTYPE
 {
@@ -52,7 +53,11 @@ public:
 
     inline int GetMP() { return HP_; }
 
-    inline void SerTear(int _Value) { Tear_ = _Value; }
+    inline void SetTear(int _Value)
+    {
+        Tear_ = _Value;
+        PlayerUI_->SetTear(Tear_);
+    }
 
     inline void PlusTear(int _Value) { Tear_ += _Value; }
 
@@ -97,11 +102,13 @@ public:
 
     bool GetIsOutDoor() { return IsOutDoor_; }
 
-    void SetIsOutDoor(bool _Value) 
+    void SetIsOutDoor(bool _Value)
     {
         ChangeState("DoorExit");
-        IsOutDoor_ = _Value; 
+        IsOutDoor_ = _Value;
     }
+
+    inline PlayerUI* GetPlayerUI() { return PlayerUI_; }
 
 protected:
     void Start() override;
@@ -260,7 +267,7 @@ protected:
 
 private:
     GameEngineStateManager            State_;
-    class PlayerUI*                   PlayerUI_;
+    PlayerUI*                         PlayerUI_;
     class GravityComponent*           Gravity_;
     class GameEngineCollision*        BodyCollider_;
     GameEngineCollision*              AttackCollider_;  // 공격 범위

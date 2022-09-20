@@ -1,8 +1,11 @@
 #pragma once
 #include "NPCBase.h"
 
+class Item;
 class Merchant : public NPCBase
 {
+    friend class ItemBuyWindow;
+
 public:
     Merchant();
     ~Merchant();
@@ -38,4 +41,9 @@ private:
     float HP_;
 
     bool IsHit_;
+
+    class ItemBuyWindow* BuyWindow_;
+
+    std::vector<Item*> SellItemList_;
+
 };

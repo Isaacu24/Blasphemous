@@ -63,6 +63,7 @@
 #include "GlobalValue.h"
 #include "LoadingActor.h"
 #include "StageBase.h"
+#include "Item.h"
 
 #include "Penitent.h"
 

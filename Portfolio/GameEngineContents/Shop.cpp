@@ -2,6 +2,7 @@
 #include "Shop.h"
 #include "Merchant.h"
 #include "Door.h"
+#include "MetaTextureRenderer.h"
 
 Shop::Shop() {}
 
@@ -62,7 +63,7 @@ void Shop::Update(float _DeltaTime)
         GetMainCameraActor()->GetTransform().SetWorldMove({0, 0, CameraZPos_});
         IsChangeCameraPos_ = true;
     }
-    
+
     GetMainCameraActor()->GetTransform().SetWorldPosition({925, -500, CameraZPos_});
 
     if (true == GetLoadingEnd())

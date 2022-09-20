@@ -532,7 +532,7 @@ void Crosscrawler::DeathStart(const StateInfo& _Info)
     MetaRenderer_->ChangeMetaAnimation("crosscrawler_death");
     MetaRenderer_->GetColorData().PlusColor = float4::ZERO;
 
-    Penitent::GetMainPlayer()->SerTear(GetTear());
+    Penitent::GetMainPlayer()->SetTear(GetTear());
     
     DetectCollider_->Death();
     BodyCollider_->Death();

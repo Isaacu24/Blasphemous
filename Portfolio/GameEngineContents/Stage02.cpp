@@ -4,7 +4,9 @@
 #include "Penitent.h"
 #include "Fool_knife.h"
 #include "WingedFace.h"
+#include "Candle.h"
 #include "Fly.h"
+#include "Cemetry.h"
 
 Stage02::Stage02() {}
 
@@ -99,6 +101,49 @@ void Stage02::SettingStage()
         NewFly->GetTransform().SetWorldPosition({3800, -1400, TileZ});
         NewFly->GetMetaRenderer()->GetColorData().MulColor = float4{5.0f, 1.0f, 1.0f, 1.0f};
         NewFly->GetMetaRenderer()->CurAnimationSetStartPivotFrame(2);
+    }
+
+    {
+        Candle* NewCandle = CreateActor<Candle>();
+        NewCandle->GetTransform().SetWorldScale({3, 3, 1});
+        NewCandle->GetTransform().SetWorldPosition({555, -1480, TileZ});
+    }
+
+    {
+        Candle* NewCandle = CreateActor<Candle>();
+        NewCandle->GetTransform().SetWorldPosition({600, -1490, TileZ});
+        NewCandle->GetMetaRenderer()->GetTransform().PixLocalNegativeX();
+    }
+
+    {
+        Candle* NewCandle = CreateActor<Candle>();
+        NewCandle->GetTransform().SetWorldPosition({800, -1495, TileZ});
+        NewCandle->GetMetaRenderer()->ChangeMetaAnimation("candlegroup04");
+    }
+
+    {
+        Candle* NewCandle = CreateActor<Candle>();
+        NewCandle->GetTransform().SetWorldPosition({2950, -1480, TileZ});
+        NewCandle->GetTransform().SetWorldScale({3, 3, 1});
+        NewCandle->GetMetaRenderer()->GetTransform().PixLocalNegativeX();
+    }
+
+    {
+        Candle* NewCandle = CreateActor<Candle>();
+        NewCandle->GetTransform().SetWorldPosition({3220, -1220, TileZ});
+        NewCandle->GetMetaRenderer()->GetTransform().PixLocalNegativeX();
+    }
+
+    {
+        Cemetry* NewCemetry = CreateActor<Cemetry>();
+        NewCemetry->GetTransform().SetWorldPosition({800, -1490, TileZ});
+    }
+
+
+    {
+        Candle* NewCandle = CreateActor<Candle>();
+        NewCandle->GetTransform().SetWorldPosition({3230, -1235, TileZ});
+        NewCandle->GetMetaRenderer()->ChangeMetaAnimation("candlegroup04");
     }
 
     float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
@@ -268,10 +313,6 @@ void Stage02::LevelStartEvent()
     GetMainCameraActor()->GetTransform().SetWorldPosition(float4{
         Penitent_->GetTransform().GetLocalPosition() + float4{0, 100}
     });
-
 }
 
-void Stage02::LevelEndEvent()
-{
-    StageBase::LevelEndEvent();
-}
+void Stage02::LevelEndEvent() { StageBase::LevelEndEvent(); }

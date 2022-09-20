@@ -47,6 +47,8 @@ public:
 
     void UIAllOff();
 
+    void PushBackItem(const ItemInfo& _Info) { Inventory_->PushBackItem(_Info); }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;

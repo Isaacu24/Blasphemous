@@ -113,6 +113,7 @@ void Penitent::Start()
         GameEngineInput::GetInst()->CreateKey("PenitentUp", 'W');
         GameEngineInput::GetInst()->CreateKey("PenitentDown", 'S');
         GameEngineInput::GetInst()->CreateKey("Interaction", 'E');
+        GameEngineInput::GetInst()->CreateKey("Escape", VK_ESCAPE);
         GameEngineInput::GetInst()->CreateKey("PenitentJump", VK_SPACE);
         GameEngineInput::GetInst()->CreateKey("PenitentSlide", VK_LSHIFT);
         GameEngineInput::GetInst()->CreateKey("PenitentRecovery", 'F');
@@ -272,11 +273,6 @@ void Penitent::End() {}
 void Penitent::SetAnimation()
 {
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
-
-    MetaTextureRenderer* IconRenderer_ = CreateComponent<MetaTextureRenderer>();
-
-    IconRenderer_->SetTexture("items-icons-spritesheet.png", 85);
-    IconRenderer_->ScaleToCutTexture(85);
 
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penintent_idle_anim");
