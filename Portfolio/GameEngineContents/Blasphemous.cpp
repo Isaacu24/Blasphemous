@@ -84,9 +84,6 @@ void Blasphemous::Start()
     GameEngineInput::GetInst()->CreateKey("GotoStage8", VK_NUMPAD8);
     GameEngineInput::GetInst()->CreateKey("GotoStage9", VK_NUMPAD9);
 
-    //ÀÎ°ÔÀÓ
-    GameEngineInput::GetInst()->CreateKey("Interaction", 'E');
-
     GameEngineGUI::CreateGUIWindow<GameEngineStatusWindow>("EngineStatus", nullptr);
 }
 

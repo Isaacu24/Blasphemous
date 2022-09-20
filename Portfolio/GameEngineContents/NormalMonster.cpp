@@ -173,6 +173,11 @@ bool NormalMonster::ExecutionCheck()
         }
     }
 
+    else
+    {
+        UIRenderer_->Off();
+    }
+
     return false;
 }
 

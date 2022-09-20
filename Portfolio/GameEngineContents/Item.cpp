@@ -17,10 +17,6 @@ void Item::Start()
     IconRenderer_->ChangeCamera(CAMERAORDER::UICAMERA);
     IconRenderer_->Off();
 
-    FrameRenderer_ = CreateComponent<MetaTextureRenderer>();
-    FrameRenderer_->ChangeCamera(CAMERAORDER::UICAMERA);
-    FrameRenderer_->Off();
-
     ItemName_ = CreateComponent<GameEngineFontRenderer>();
     ItemName_->ChangeCamera(CAMERAORDER::UICAMERA);
 

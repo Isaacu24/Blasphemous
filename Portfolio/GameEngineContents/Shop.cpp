@@ -35,7 +35,7 @@ void Shop::Start()
     ShopDoor->SetLinkLevel("Stage12");
 
     Merchant_ = CreateActor<Merchant>();
-    Merchant_->GetTransform().SetWorldPosition({1300, -670, NPCZ});
+    Merchant_->GetTransform().SetWorldPosition({1300, -680, NPCZ});
     Merchant_->GetTransform().PixLocalNegativeX();
 
     float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;

@@ -514,7 +514,7 @@ void ShieldMaiden::StunUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     bool IsExecution = ExecutionCheck();
 
-    if (true == GameEngineInput::GetInst()->IsDownKey("FreeCamera") && true == IsExecution)
+    if (true == GameEngineInput::GetInst()->IsDownKey("Interaction") && true == IsExecution)
     {
         State_.ChangeState("Execution");
         return;

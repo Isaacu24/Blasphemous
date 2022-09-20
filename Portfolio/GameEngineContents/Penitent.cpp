@@ -112,6 +112,7 @@ void Penitent::Start()
         GameEngineInput::GetInst()->CreateKey("PenitentRight", 'D');
         GameEngineInput::GetInst()->CreateKey("PenitentUp", 'W');
         GameEngineInput::GetInst()->CreateKey("PenitentDown", 'S');
+        GameEngineInput::GetInst()->CreateKey("Interaction", 'E');
         GameEngineInput::GetInst()->CreateKey("PenitentJump", VK_SPACE);
         GameEngineInput::GetInst()->CreateKey("PenitentSlide", VK_LSHIFT);
         GameEngineInput::GetInst()->CreateKey("PenitentRecovery", 'F');
@@ -1524,10 +1525,10 @@ void Penitent::SetPlayerState()
                              std::bind(&Penitent::DeathStart, this, std::placeholders::_1),
                              std::bind(&Penitent::DeathEnd, this, std::placeholders::_1));
 
-    State_.CreateStateMember("Respawn",
-                             std::bind(&Penitent::RespawnUpdate, this, std::placeholders::_1, std::placeholders::_2),
-                             std::bind(&Penitent::RespawnStart, this, std::placeholders::_1),
-                             std::bind(&Penitent::RespawnEnd, this, std::placeholders::_1));
+        State_.CreateStateMember("Respawn",
+                                 std::bind(&Penitent::RespawnUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                                 std::bind(&Penitent::RespawnStart, this, std::placeholders::_1),
+                                 std::bind(&Penitent::RespawnEnd, this, std::placeholders::_1));
 
     State_.ChangeState("Idle");
 }

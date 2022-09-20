@@ -287,6 +287,9 @@
     <ClInclude Include="Item.h">
       <Filter>Actor\UI</Filter>
     </ClInclude>
+    <ClInclude Include="ItemSlot.h">
+      <Filter>Actor\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -576,6 +579,9 @@
       <Filter>Level\Pilgrimage\02Bridge</Filter>
     </ClCompile>
     <ClCompile Include="Item.cpp">
+      <Filter>Actor\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemSlot.cpp">
       <Filter>Actor\UI</Filter>
     </ClCompile>
   </ItemGroup>

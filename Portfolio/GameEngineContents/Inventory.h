@@ -37,6 +37,7 @@ protected:
     void Reset();
 
     void OnEvent() override;
+    void OffEvent() override;
 
 private:
     InventoryType InventoryType_;
@@ -45,13 +46,12 @@ private:
 
     int InventoryIndex_;
 
-    std::vector<std::vector<class Item*>> ItemLists_;
+    std::vector<std::vector<class ItemSlot*>> ItemSlotLists_;
 
     int CursorPos_;
 
     int MaxSlotIndex_;
 
     int LineSlotCount_;
-
-    float4 StandardPos_;
 };
+    

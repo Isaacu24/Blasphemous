@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Inventory.h"
 #include "Item.h"
+#include "ItemSlot.h"
 
 Inventory::Inventory()
     : InventoryType_(InventoryType::RosaryBeads)
@@ -31,63 +32,61 @@ void Inventory::Start()
     GameEngineInput::GetInst()->CreateKey("CursorDownKey", 'S');
     GameEngineInput::GetInst()->CreateKey("CursorUpKey", 'W');
 
-    StandardPos_ = float4{-425, -115};
+    ItemSlotLists_.resize(6);
 
-    ItemLists_.resize(6);
+    ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)].resize(24);
 
-    ItemLists_[static_cast<int>(InventoryType::RosaryBeads)].resize(24);
-
-    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::RosaryBeads)].size(); i++)
+    for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)].size(); i++)
     {
-        float XPos_ = -430.f;
-        float YPos_ = 175.f;
+        float XPos_ = -435.f;
+        float YPos_ = -40.f;
 
         size_t OffsetX = i;
         size_t OffsetY = 1;
 
-        Item* Item_ = GetLevel()->CreateActor<Item>();
-        Item_->SetIconRenderer(2);
-        Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+        ItemSlot* Slot = GetLevel()->CreateActor<ItemSlot>();
+        Slot->SetFrameRenderer(2);
+        Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
 
         if (8 <= i)
         {
             OffsetX = i - 8;
             OffsetY = 2;
-            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+            Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
         }
 
         if (16 <= i)
         {
             OffsetX = i - 16;
             OffsetY = 3;
-            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+            Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
         }
 
-        ItemLists_[static_cast<int>(InventoryType::RosaryBeads)][i] = Item_;
-        Item_->Off();
+        ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][i] = Slot;
+        Slot->Off();
     }
 
-    ItemLists_[static_cast<int>(InventoryType::Relics)].resize(7);
+    ItemSlotLists_[static_cast<int>(InventoryType::Relics)].resize(7);
 
-    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::Relics)].size(); i++)
+    for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::Relics)].size(); i++)
     {
-        float XPos_ = -430.f;
-        float YPos_ = 175.f;
+        float XPos_ = -435.f;
+        float YPos_ = -40.f;
 
         size_t OffsetX = i;
         size_t OffsetY = 1;
 
-        Item* Item_ = GetLevel()->CreateActor<Item>();
-        Item_->SetIconRenderer(2);
-        Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+        ItemSlot* Slot = GetLevel()->CreateActor<ItemSlot>();
+        Slot->SetFrameRenderer(2);
+        Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
 
-        ItemLists_[static_cast<int>(InventoryType::Relics)][i] = Item_;
-        Item_->Off();
+        ItemSlotLists_[static_cast<int>(InventoryType::Relics)][i] = Slot;
+        Slot->Off();
     }
 
-    ItemLists_[static_cast<int>(InventoryType::QuestItem)].resize(35);
+    ItemSlotLists_[static_cast<int>(InventoryType::QuestItem)].resize(35);
 
-    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::QuestItem)].size(); i++)
+    for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::QuestItem)].size(); i++)
     {
         float XPos_ = 130.f;
         float YPos_ = 215.f;
@@ -95,157 +94,157 @@ void Inventory::Start()
         size_t OffsetX = i;
         size_t OffsetY = 1;
 
-        Item* Item_ = GetLevel()->CreateActor<Item>();
-        Item_->SetIconRenderer(2);
-        Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+        ItemSlot* Slot = GetLevel()->CreateActor<ItemSlot>();
+        Slot->SetFrameRenderer(2);
+        Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
 
         if (5 <= i)
         {
             OffsetX = i - 5;
             OffsetY = 1;
-            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+            Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
         }
 
         if (10 <= i)
         {
             OffsetX = i - 10;
             OffsetY = 2;
-            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+            Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
         }
 
         if (15 <= i)
         {
             OffsetX = i - 15;
             OffsetY = 3;
-            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+            Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
         }
 
         if (20 <= i)
         {
             OffsetX = i - 20;
             OffsetY = 4;
-            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+            Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
         }
 
         if (25 <= i)
         {
             OffsetX = i - 25;
             OffsetY = 5;
-            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+            Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
         }
 
         if (30 <= i)
         {
             OffsetX = i - 30;
             OffsetY = 6;
-            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+            Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
         }
 
         if (35 <= i)
         {
             OffsetX = i - 35;
             OffsetY = 7;
-            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+            Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
         }
 
-        ItemLists_[static_cast<int>(InventoryType::QuestItem)][i] = Item_;
-        Item_->Off();
+        ItemSlotLists_[static_cast<int>(InventoryType::QuestItem)][i] = Slot;
+        Slot->Off();
     }
 
-    ItemLists_[static_cast<int>(InventoryType::MeaCulpaHearts)].resize(11);
+    ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)].resize(11);
 
-    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::MeaCulpaHearts)].size(); i++)
+    for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)].size(); i++)
     {
-        float XPos_ = -430.f;
-        float YPos_ = 175.f;
+        float XPos_ = -435.f;
+        float YPos_ = -40.f;
 
         size_t OffsetX = i;
         size_t OffsetY = 1;
 
-        Item* Item_ = GetLevel()->CreateActor<Item>();
-        Item_->SetIconRenderer(2);
-        Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+        ItemSlot* Slot = GetLevel()->CreateActor<ItemSlot>();
+        Slot->SetFrameRenderer(2);
+        Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
 
         if (8 <= i)
         {
             OffsetX = i - 8;
             OffsetY = 2;
-            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+            Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
         }
 
-        ItemLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][i] = Item_;
-        Item_->Off();
+        ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][i] = Slot;
+        Slot->Off();
     }
 
-    ItemLists_[static_cast<int>(InventoryType::Prayers)].resize(17);
+    ItemSlotLists_[static_cast<int>(InventoryType::Prayers)].resize(17);
 
-    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::Prayers)].size(); i++)
+    for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::Prayers)].size(); i++)
     {
-        float XPos_ = -430.f;
-        float YPos_ = 175.f;
+        float XPos_ = -435.f;
+        float YPos_ = -40.f;
 
         size_t OffsetX = i;
         size_t OffsetY = 1;
 
-        Item* Item_ = GetLevel()->CreateActor<Item>();
-        Item_->SetIconRenderer(2);
-        Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
-        
+        ItemSlot* Slot = GetLevel()->CreateActor<ItemSlot>();
+        Slot->SetFrameRenderer(2);
+        Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
+
         if (8 <= i)
         {
             OffsetX = i - 8;
             OffsetY = 2;
-            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+            Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
         }
 
         if (16 <= i)
         {
             OffsetX = i - 16;
             OffsetY = 3;
-            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+            Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
         }
 
-        ItemLists_[static_cast<int>(InventoryType::Prayers)][i] = Item_;
-        Item_->Off();
+        ItemSlotLists_[static_cast<int>(InventoryType::Prayers)][i] = Slot;
+        Slot->Off();
     }
 
-    ItemLists_[static_cast<int>(InventoryType::Collectibles) - 1].resize(24);
+    ItemSlotLists_[static_cast<int>(InventoryType::Collectibles) - 1].resize(24);
 
-    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::Collectibles) - 1].size(); i++)
+    for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::Collectibles) - 1].size(); i++)
     {
-        float XPos_ = -430.f;
-        float YPos_ = 175.f;
+        float XPos_ = -435.f;
+        float YPos_ = -40.f;
 
         size_t OffsetX = i;
         size_t OffsetY = 1;
 
-        Item* Item_ = GetLevel()->CreateActor<Item>();
-        Item_->SetIconRenderer(2);
-        Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+        ItemSlot* Slot = GetLevel()->CreateActor<ItemSlot>();
+        Slot->SetFrameRenderer(2);
+        Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
 
         if (8 <= i)
         {
             OffsetX = i - 8;
             OffsetY = 2;
-            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+            Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
         }
 
         if (16 <= i)
         {
             OffsetX = i - 16;
             OffsetY = 3;
-            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+            Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
         }
 
         if (24 <= i)
         {
             OffsetX = i - 24;
             OffsetY = 4;
-            Item_->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 65.f), YPos_ - (OffsetY * 65.f)});
+            Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
         }
 
-        ItemLists_[static_cast<int>(InventoryType::Collectibles) - 1][i] = Item_;
-        Item_->Off();
+        ItemSlotLists_[static_cast<int>(InventoryType::Collectibles) - 1][i] = Slot;
+        Slot->Off();
     }
 }
 
@@ -285,6 +284,7 @@ void Inventory::Update(float _DeltaTime)
 }
 
 void Inventory::End() {}
+
 
 void Inventory::ChangeInventoryIndex()
 {
@@ -352,45 +352,45 @@ void Inventory::ChangeInventory()
         case InventoryType::RosaryBeads:
             InventoryRenderer_->SetTexture("Inventory_0.png");
 
-            for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::RosaryBeads)].size(); i++)
+            for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)].size(); i++)
             {
-                ItemLists_[static_cast<int>(InventoryType::RosaryBeads)][i]->On();
+                ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][i]->On();
             }
             break;
 
         case InventoryType::Relics:
             InventoryRenderer_->SetTexture("Inventory_1.png");
 
-            for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::Relics)].size(); i++)
+            for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::Relics)].size(); i++)
             {
-                ItemLists_[static_cast<int>(InventoryType::Relics)][i]->On();
+                ItemSlotLists_[static_cast<int>(InventoryType::Relics)][i]->On();
             }
             break;
 
         case InventoryType::QuestItem:
             InventoryRenderer_->SetTexture("Inventory_2.png");
 
-            for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::QuestItem)].size(); i++)
+            for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::QuestItem)].size(); i++)
             {
-                ItemLists_[static_cast<int>(InventoryType::QuestItem)][i]->On();
+                ItemSlotLists_[static_cast<int>(InventoryType::QuestItem)][i]->On();
             }
             break;
 
         case InventoryType::MeaCulpaHearts:
             InventoryRenderer_->SetTexture("Inventory_3.png");
 
-            for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::MeaCulpaHearts)].size(); i++)
+            for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)].size(); i++)
             {
-                ItemLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][i]->On();
+                ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][i]->On();
             }
             break;
 
         case InventoryType::Prayers:
             InventoryRenderer_->SetTexture("Inventory_4.png");
 
-            for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::Prayers)].size(); i++)
+            for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::Prayers)].size(); i++)
             {
-                ItemLists_[static_cast<int>(InventoryType::Prayers)][i]->On();
+                ItemSlotLists_[static_cast<int>(InventoryType::Prayers)][i]->On();
             }
             break;
 
@@ -401,9 +401,9 @@ void Inventory::ChangeInventory()
         case InventoryType::Collectibles:
             InventoryRenderer_->SetTexture("Inventory_6.png");
 
-            for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::Collectibles) - 1].size(); i++)
+            for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::Collectibles) - 1].size(); i++)
             {
-                ItemLists_[static_cast<int>(InventoryType::Collectibles) - 1][i]->On();
+                ItemSlotLists_[static_cast<int>(InventoryType::Collectibles) - 1][i]->On();
             }
             break;
     }
@@ -454,40 +454,42 @@ void Inventory::CursorMove()
 
 void Inventory::Reset()
 {
-    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::RosaryBeads)].size(); i++)
+    for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)].size(); i++)
     {
-        ItemLists_[static_cast<int>(InventoryType::RosaryBeads)][i]->Off();
+        ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][i]->Off();
     }
 
-    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::Relics)].size(); i++)
+    for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::Relics)].size(); i++)
     {
-        ItemLists_[static_cast<int>(InventoryType::Relics)][i]->Off();
+        ItemSlotLists_[static_cast<int>(InventoryType::Relics)][i]->Off();
     }
 
-    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::QuestItem)].size(); i++)
+    for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::QuestItem)].size(); i++)
     {
-        ItemLists_[static_cast<int>(InventoryType::QuestItem)][i]->Off();
+        ItemSlotLists_[static_cast<int>(InventoryType::QuestItem)][i]->Off();
     }
 
-    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::MeaCulpaHearts)].size(); i++)
+    for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)].size(); i++)
     {
-        ItemLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][i]->Off();
+        ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][i]->Off();
     }
 
-    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::Prayers)].size(); i++)
+    for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::Prayers)].size(); i++)
     {
-        ItemLists_[static_cast<int>(InventoryType::Prayers)][i]->Off();
+        ItemSlotLists_[static_cast<int>(InventoryType::Prayers)][i]->Off();
     }
 
-    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::Collectibles) - 1].size(); i++)
+    for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::Collectibles) - 1].size(); i++)
     {
-        ItemLists_[static_cast<int>(InventoryType::Collectibles) - 1][i]->Off();
+        ItemSlotLists_[static_cast<int>(InventoryType::Collectibles) - 1][i]->Off();
     }
 
-    for (size_t i = 0; i < ItemLists_[static_cast<int>(InventoryType::RosaryBeads)].size(); i++)
+    for (size_t i = 0; i < ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)].size(); i++)
     {
-        ItemLists_[static_cast<int>(InventoryType::RosaryBeads)][i]->Off();
+        ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][i]->Off();
     }
 }
 
 void Inventory::OnEvent() { ChangeInventory(); }
+
+void Inventory::OffEvent() { Reset(); }

@@ -27,13 +27,6 @@ public:
     Item& operator=(const Item& _Other)     = delete;
     Item& operator=(Item&& _Other) noexcept = delete;
 
-    inline void SetFrameRenderer(size_t _Index)
-    {
-        FrameRenderer_->On();
-        FrameRenderer_->SetTexture("items-icons-spritesheet.png", _Index);
-        FrameRenderer_->ScaleToCutTexture(_Index);
-    }
-
     inline void SetIconRenderer(size_t _Index)
     {
         IconRenderer_->On();
@@ -48,12 +41,9 @@ protected:
 
 private:
     MetaTextureRenderer* IconRenderer_;
-    MetaTextureRenderer* FrameRenderer_;
 
     ItemType MyType_;
 
     GameEngineFontRenderer* ItemName_;
     GameEngineFontRenderer* ItemInfo_;
-
-    size_t CurIndex_;
 };
