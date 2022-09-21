@@ -15,7 +15,7 @@ void Item::Start()
     ItemRenderer_ = CreateComponent<GameEngineTextureRenderer>();
 
     ItemCollider_ = CreateComponent<GameEngineCollision>();
-    ItemCollider_->GetTransform().SetWorldScale({50.f, 50.f, 1.f});
+    ItemCollider_->GetTransform().SetWorldScale({30.f, 50.f, 1.f});
     ItemCollider_->ChangeOrder(COLLISIONORDER::Item);
     ItemCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.0f, 0.0f, 1.0f, 0.5f});
     ItemCollider_->GetTransform().SetWorldMove({0, 0});

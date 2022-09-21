@@ -160,8 +160,15 @@ void GameEngineRenderingPipeLine::SetOutputMergerBlend(const std::string& _Name)
 	}
 }
 
-void GameEngineRenderingPipeLine::Rendering()
+void GameEngineRenderingPipeLine::Rendering(bool IsInstancing /*= false*/)
 {
+	if (true == IsInstancing)
+	{
+		// 데이터 수집을 한다.
+		InstancingDataCollect();
+		return;
+	}
+
 	InputAssembler1VertexBufferSetting();
 
 	VertexShaderSetting();
@@ -177,8 +184,13 @@ void GameEngineRenderingPipeLine::Rendering()
 	OutputMergerDepthStencilSetting();
 
 	Draw();
-
 }
+
+void GameEngineRenderingPipeLine::InstancingDataCollect()
+{
+	// InstancingDraw();
+}
+
 
 void GameEngineRenderingPipeLine::InputAssembler1VertexBufferSetting()
 {
@@ -225,8 +237,30 @@ void GameEngineRenderingPipeLine::OutputMergerDepthStencilSetting()
 
 void GameEngineRenderingPipeLine::Draw()
 {
-
 	GameEngineDevice::GetContext()->DrawIndexed(IndexBuffer->GetIndexCount(), 0, 0);
+}
+
+
+void GameEngineRenderingPipeLine::InstancingDraw()
+{
+	//[in] IndexCountPerInstance 유형 : UINT
+	//각 인스턴스에 대해 인덱스 버퍼에서 읽은 인덱스 수입니다.
+	//
+
+	//[in] InstanceCount 유형 : UINT
+	//그릴 인스턴스 수입니다.
+
+	//[in] StartIndexLocation
+	//유형 : UINT GPU가 인덱스 버퍼에서 읽은 첫 번째 인덱스의 위치입니다.
+
+	//[in] BaseVertexLocation 유형 : 지능
+	//정점 버퍼에서 정점을 읽기 전에 각 인덱스에 추가된 값입니다.
+
+	//[in] StartInstanceLocation 유형 : UINT
+	//정점 버퍼에서 인스턴스별 데이터를 읽기 전에 각 인덱스에 추가된 값입니다.
+
+	// 그냥 4가 들어간다.
+	GameEngineDevice::GetContext()->DrawIndexedInstanced(IndexBuffer->GetIndexCount(), 100, 0, 0, 0);
 }
 
 void GameEngineRenderingPipeLine::Copy(GameEngineRenderingPipeLine* _Original)

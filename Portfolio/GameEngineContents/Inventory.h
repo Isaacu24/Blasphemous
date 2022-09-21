@@ -40,6 +40,9 @@ protected:
 
     void CursorReset();
 
+    //커서가 움직일 때마다
+    void UpdateSlot();
+    
     void AllSlotOff();
 
     void OnEvent() override;

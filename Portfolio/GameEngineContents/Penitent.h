@@ -37,13 +37,14 @@ public:
         }
     }
     
-    inline void MinusHP(int _Value)
+    inline void SetDamege(int _Damage)
     {
-        HP_ -= _Value;
+        HP_ -= _Damage;
 
         if (0 > HP_)
         {
             HP_ = 0;
+            ChangeState("Death");
         }
     }
 
@@ -74,17 +75,6 @@ public:
     inline void SetGround(GameEngineTextureRenderer* _Ground) { ColMap_ = _Ground; }
 
     inline void ChangeState(const std::string& _State) { State_.ChangeState(_State); }
-
-    inline void SetDamege(int _Damage)
-    {
-        HP_ -= _Damage;
-
-        if (0 > HP_)
-        {
-            HP_ = 0;
-            ChangeState("Death");
-        }
-    }
 
     inline void SetLastSavePoint(const std::string& _LevelName) { LastSaveLevel_ = _LevelName; }
 

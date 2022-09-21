@@ -52,7 +52,7 @@ public:
 
 	void SetOutputMergerDepthStencil(const std::string& _Name);
 
-	void Rendering();
+	void Rendering(bool IsInstancing = false);
 
 	inline GameEngineVertexShader* GetVertexShader()
 	{
@@ -107,6 +107,9 @@ private:
 
 	void Draw();
 
+	void InstancingDraw();
+
+	void InstancingDataCollect();
 };
 
 

@@ -10,6 +10,8 @@ Inventory::Inventory()
     , CursorPos_(0)
     , MaxSlotIndex_(0)
     , LineSlotCount_(8)
+    , ItemName_{}
+    , ItemDesc_{}
 {}
 
 Inventory::~Inventory() {}
@@ -118,7 +120,7 @@ void Inventory::Start()
 
     ItemName_ = CreateComponent<GameEngineFontRenderer>();
     ItemName_->SetColor({0.65f, 0.65f, 0.45f, 1.0f});
-    ItemName_->SetScreenPostion({290, 195, static_cast<int>(UIORDER::PlayerUI)});
+    ItemName_->SetScreenPostion({290, 195, static_cast<int>(UIORDER::Inventory)});
     ItemName_->SetSize(25);
     ItemName_->SetLeftAndRightSort(LeftAndRightSort::LEFT);
     ItemName_->ChangeCamera(CAMERAORDER::UICAMERA);
@@ -126,7 +128,7 @@ void Inventory::Start()
 
     ItemDesc_ = CreateComponent<GameEngineFontRenderer>();
     ItemDesc_->SetColor({0.65f, 0.65f, 0.45f, 1.0f});
-    ItemDesc_->SetScreenPostion({210, 270, static_cast<int>(UIORDER::PlayerUI)});
+    ItemDesc_->SetScreenPostion({210, 270, static_cast<int>(UIORDER::Inventory)});
     ItemDesc_->SetSize(25);
     ItemDesc_->SetLeftAndRightSort(LeftAndRightSort::LEFT);
     ItemDesc_->ChangeCamera(CAMERAORDER::UICAMERA);
@@ -145,6 +147,7 @@ void Inventory::Start()
         size_t OffsetY = 1;
 
         ItemSlot* Slot = GetLevel()->CreateActor<ItemSlot>();
+        Slot->SetParent(this);
         Slot->SetFrameRenderer(2);
         Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
 
@@ -178,6 +181,7 @@ void Inventory::Start()
         size_t OffsetY = 1;
 
         ItemSlot* Slot = GetLevel()->CreateActor<ItemSlot>();
+        Slot->SetParent(this);
         Slot->SetFrameRenderer(2);
         Slot->GetTransform().SetWorldPosition(float4{XPos_ + (OffsetX * 70.f), YPos_ - (OffsetY * 65.f)});
 
@@ -345,8 +349,6 @@ void Inventory::Start()
         Slot->SetLevelOverOn();
         Slot->Off();
     }
-
-    ChangeInventoryIndex();
 }
 
 void Inventory::Update(float _DeltaTime)
@@ -389,52 +391,46 @@ void Inventory::End() {}
 void Inventory::ChangeInventoryIndex()
 {
     CursorReset();
+    CursorPos_ = 0;
 
     switch (InventoryIndex_)
     {
         case 1:
             InventoryType_ = InventoryType::RosaryBeads;
-            CursorPos_     = 0;
             MaxSlotIndex_  = 23;
             LineSlotCount_ = 7;
             break;
 
         case 2:
             InventoryType_ = InventoryType::Relics;
-            CursorPos_     = 0;
             MaxSlotIndex_  = 6;
             LineSlotCount_ = 6;
             break;
 
         case 3:
             InventoryType_ = InventoryType::QuestItem;
-            CursorPos_     = 0;
             MaxSlotIndex_  = 30;
             LineSlotCount_ = 4;
             break;
 
         case 4:
             InventoryType_ = InventoryType::MeaCulpaHearts;
-            CursorPos_     = 0;
             MaxSlotIndex_  = 10;
             LineSlotCount_ = 7;
             break;
 
         case 5:
             InventoryType_ = InventoryType::Prayers;
-            CursorPos_     = 0;
             MaxSlotIndex_  = 16;
             LineSlotCount_ = 7;
             break;
 
         case 6:
             InventoryType_ = InventoryType::Abilities;
-            CursorPos_     = 0;
             break;
 
         case 7:
             InventoryType_ = InventoryType::Collectibles;
-            CursorPos_     = 0;
             MaxSlotIndex_  = 23;
             LineSlotCount_ = 7;
             break;
@@ -506,6 +502,8 @@ void Inventory::ChangeInventory()
             }
             break;
     }
+
+    UpdateSlot();
 }
 
 
@@ -520,6 +518,7 @@ void Inventory::CursorMove()
 
         CursorReset();
         --CursorPos_;
+        UpdateSlot();
     }
 
     else if (true == GameEngineInput::GetInst()->IsDownKey("CursorRightKey"))
@@ -531,6 +530,7 @@ void Inventory::CursorMove()
 
         CursorReset();
         ++CursorPos_;
+        UpdateSlot();
     }
 
     else if (true == GameEngineInput::GetInst()->IsDownKey("CursorDownKey"))
@@ -542,6 +542,7 @@ void Inventory::CursorMove()
 
         CursorReset();
         CursorPos_ += LineSlotCount_;
+        UpdateSlot();
     }
 
     else if (true == GameEngineInput::GetInst()->IsDownKey("CursorUpKey"))
@@ -553,8 +554,43 @@ void Inventory::CursorMove()
 
         CursorReset();
         CursorPos_ -= LineSlotCount_;
+        UpdateSlot();
     }
+}
 
+void Inventory::CursorReset()
+{
+    IconRenderer_->Off();
+
+    ItemName_->Off();
+    ItemDesc_->Off();
+
+    switch (InventoryType_)
+    {
+        case InventoryType::RosaryBeads:
+            ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][CursorPos_]->SelectRenderer_->Off();
+            break;
+        case InventoryType::Relics:
+            ItemSlotLists_[static_cast<int>(InventoryType::Relics)][CursorPos_]->SelectRenderer_->Off();
+            break;
+        case InventoryType::QuestItem:
+            ItemSlotLists_[static_cast<int>(InventoryType::QuestItem)][CursorPos_]->SelectRenderer_->Off();
+            break;
+        case InventoryType::MeaCulpaHearts:
+            ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][CursorPos_]->SelectRenderer_->Off();
+            break;
+        case InventoryType::Prayers:
+            ItemSlotLists_[static_cast<int>(InventoryType::Prayers)][CursorPos_]->SelectRenderer_->Off();
+            break;
+        case InventoryType::Collectibles:
+            ItemSlotLists_[static_cast<int>(InventoryType::Collectibles) - 1][CursorPos_]->SelectRenderer_->Off();
+            break;
+    }
+}
+
+
+void Inventory::UpdateSlot()
+{
     switch (InventoryType_)
     {
         case InventoryType::RosaryBeads:
@@ -571,11 +607,11 @@ void Inventory::CursorMove()
 
                 IconRenderer_->GetTransform().SetWorldPosition({-400, 150});
 
-                ItemName_->On();
-                ItemDesc_->On();
+                // ItemName_->On();
+                // ItemDesc_->On();
 
-                ItemName_->SetText(Info.ItemName_, "NeoµÕ±Ù¸ð");
-                ItemDesc_->SetText(Info.ItemDecs_, "NeoµÕ±Ù¸ð");
+                // ItemName_->SetText(Info.ItemName_, "NeoµÕ±Ù¸ð");
+                // ItemDesc_->SetText(Info.ItemDecs_, "NeoµÕ±Ù¸ð");
             }
 
             break;
@@ -692,36 +728,6 @@ void Inventory::CursorMove()
     }
 }
 
-void Inventory::CursorReset()
-{
-    IconRenderer_->Off();
-
-    ItemName_->Off();
-    ItemDesc_->Off();
-
-    switch (InventoryType_)
-    {
-        case InventoryType::RosaryBeads:
-            ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][CursorPos_]->SelectRenderer_->Off();
-            break;
-        case InventoryType::Relics:
-            ItemSlotLists_[static_cast<int>(InventoryType::Relics)][CursorPos_]->SelectRenderer_->Off();
-            break;
-        case InventoryType::QuestItem:
-            ItemSlotLists_[static_cast<int>(InventoryType::QuestItem)][CursorPos_]->SelectRenderer_->Off();
-            break;
-        case InventoryType::MeaCulpaHearts:
-            ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][CursorPos_]->SelectRenderer_->Off();
-            break;
-        case InventoryType::Prayers:
-            ItemSlotLists_[static_cast<int>(InventoryType::Prayers)][CursorPos_]->SelectRenderer_->Off();
-            break;
-        case InventoryType::Collectibles:
-            ItemSlotLists_[static_cast<int>(InventoryType::Collectibles) - 1][CursorPos_]->SelectRenderer_->Off();
-            break;
-    }
-}
-
 
 void Inventory::AllSlotOff()
 {
@@ -761,10 +767,14 @@ void Inventory::AllSlotOff()
     }
 }
 
-void Inventory::OnEvent() 
+void Inventory::OnEvent()
 {
+    ItemName_->ChangeCamera(CAMERAORDER::UICAMERA);
+    ItemDesc_->ChangeCamera(CAMERAORDER::UICAMERA);
+
     ChangeInventoryIndex();
-    ChangeInventory(); 
+    ChangeInventory();
+    UpdateSlot();
 }
 
 void Inventory::OffEvent()

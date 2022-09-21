@@ -30,7 +30,6 @@ void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
         || true == GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
     {
         State_.ChangeState("Move");
-        MinusHP(10.f);
     }
 
     else if (0 > GameEngineInput::GetInst()->GetThumbLX()
