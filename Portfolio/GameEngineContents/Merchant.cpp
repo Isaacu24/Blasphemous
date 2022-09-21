@@ -86,8 +86,11 @@ void Merchant::Start()
         Item* NewItem = GetLevel()->CreateActor<Item>();
         NewItem->GetItemRenderer()->SetTexture("items-icons-spritesheet.png", 212);
         NewItem->GetItemRenderer()->ScaleToCutTexture(212);
-        NewItem->CreateItemInfo(
-            {212, ItemType::Relics, "진홍의 베헤리트", "가나다라마바사 아자차카타파하\n아에이오우 아야어여오요우유.", 100});
+        NewItem->CreateItemInfo({212,
+                                 ItemType::Relics,
+                                 "진홍의 베헤리트",
+                                 "가나다라마바사 아자차카타파하\n아에이오우 아야어여오요우유.",
+                                 100});
 
         NewItem->GetTransform().SetWorldPosition({830, -580, ObjectZ});
 
@@ -124,6 +127,11 @@ void Merchant::Start()
 void Merchant::Update(float _Update)
 {
     State_.Update(_Update);
+
+    if ("Death" == State_.GetCurStateStateName())
+    {
+        return;
+    }
 
     if (false
         == BodyCollider_->IsCollision(
@@ -195,7 +203,21 @@ void Merchant::HitUpdate(float _DeltaTime, const StateInfo& _Info) {}
 void Merchant::HitEnd(const StateInfo& _Info) {}
 
 
-void Merchant::DeathStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("ladrona_death_anim_0"); }
+void Merchant::DeathStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("ladrona_death_anim_0");
+    MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
+
+    BodyCollider_->Off();
+
+    for (size_t i = 0; i < SellItemList_.size(); i++)
+    {
+        if (true == SellItemList_[i]->IsUpdate())
+        {
+            SellItemList_[i]->GetItemCollsion()->Off();
+        }
+    }
+}
 
 void Merchant::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
 

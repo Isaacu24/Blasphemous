@@ -292,7 +292,7 @@ void ElderBrother::DamageCheck()
              PlayerEffectZ});
         BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
 
-        MinusHP(10.f);
+        MinusHP(5.f);
     }
 
     if (0 >= GetHP())

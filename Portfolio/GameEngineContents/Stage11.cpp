@@ -29,7 +29,7 @@ void Stage11::SettingStage()
     DoorRenderer->GetTransform().SetWorldScale(DoorRenderer->GetTransform().GetWorldScale() * 2.f);
 
     IronDoor_ = CreateActor<Door>();
-    IronDoor_->GetTransform().SetWorldPosition({1555, -710, ObjectZ});
+    IronDoor_->GetTransform().SetWorldPosition({1560, -710, ObjectZ});
     IronDoor_->SetLinkLevel("Stage05");
 
     float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;

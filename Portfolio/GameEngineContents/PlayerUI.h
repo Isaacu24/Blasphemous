@@ -23,7 +23,7 @@ public:
 
     void FillFlask(int _Index);
 
-    void Damage(float _DeltaTime);
+    void DamageCheck(float _DeltaTime);
 
     void PlayerDeathStart(const StateInfo& _Info);
     void PlayerDeathUpdate(float _DeltaTime, const StateInfo& _Info);

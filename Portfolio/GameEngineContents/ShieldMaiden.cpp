@@ -239,6 +239,8 @@ void ShieldMaiden::Update(float _DeltaTime)
 
         DamageCheck();
     }
+
+    GameEngineDebug::OutPutString("ShieldMaiden State : " + State_.GetCurStateStateName());
 }
 
 void ShieldMaiden::End() {}
@@ -380,6 +382,7 @@ void ShieldMaiden::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 
 void ShieldMaiden::IdleEnd(const StateInfo& _Info) {}
+
 
 void ShieldMaiden::PatrolStart(const StateInfo& _Info)
 {
@@ -530,9 +533,9 @@ void ShieldMaiden::StunUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 }
 
-void ShieldMaiden::StunEnd(const StateInfo& _Info) 
+void ShieldMaiden::StunEnd(const StateInfo& _Info)
 {
-    BodyCollider_->ChangeOrder(COLLISIONORDER::Monster); 
+    BodyCollider_->ChangeOrder(COLLISIONORDER::Monster);
     UIRenderer_->Off();
 }
 

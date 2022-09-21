@@ -102,7 +102,7 @@ void Stage10::SettingMonster()
     MonsterList_.push_back(Maiden);
 
     ShieldMaiden* Maiden1 = CreateActor<ShieldMaiden>();
-    Maiden1->GetTransform().SetWorldPosition({2200, -682, MonsterZ});
+    Maiden1->GetTransform().SetWorldPosition({2100, -682, MonsterZ});
     Maiden1->SetGround(ColMap_);
     Maiden1->PatrolStartEnd(false, true);
     MonsterList_.push_back(Maiden1);
@@ -303,6 +303,7 @@ void Stage10::Update(float _DeltaTime)
     if (true == GetLoadingEnd())
     {
         SetLoadingEnd(false);
+
         if (nullptr != GEngine::GetPrevLevel())
         {
             if ("STAGE05" == GEngine::GetPrevLevel()->GetNameConstRef())

@@ -22,6 +22,7 @@ public:
 
     void AllOff()
     {
+        BehindHPBar_->Off();
         HPBar_->Off();
         BarFrame_->Off();
         Off();
@@ -30,6 +31,7 @@ public:
     void AllOn()
     {
         On();
+        BehindHPBar_->On();
         HPBar_->On();
         BarFrame_->On();
     }
@@ -45,13 +47,32 @@ protected:
     void Update(float _DeltaTime) override;
     void End() override;
 
+    void DamageCheck(float _DeltaTime);
+
 private:
     LeftTopUI* BarFrame_;
     LeftTopUI* HPBar_;
+
+    LeftTopUI* BehindHPBar_;
 
     BossMonster* Boss_;
 
     GameEngineFontRenderer* Font_;
 
+    int BossCurHP_;
+    int BossPrevHP_ = 100;
+
+    float Alpha_;
+
+    float LerpHP_ = 100.0f;
+
+    int BehindBossCurHP_;
+    int BehindBossPrevHP_ = 100;
+
+    float BehindAlpha_;
+
+    float BehindLerpHP_ = 100.0f;
     // class GameEngineFontRenderer* TitleName_;
+
+    bool IsEnd_;
 };

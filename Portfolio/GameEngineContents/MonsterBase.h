@@ -20,6 +20,7 @@ public:
 
     inline void MinusHP(float _Value)
     {
+        PrevHP_ = HP_;
         HP_ -= _Value;
 
         if (0 > HP_)
@@ -40,11 +41,16 @@ public:
 
     inline float GetHP() { return HP_; }
 
+    inline float GetPrevHP() { return PrevHP_; }
+
     inline void SetTear(int _Value) { Tear_ = _Value; }
 
     inline int GetTear() { return Tear_; }
 
-    inline void SetSpeed(float _Speed) { Speed_ = _Speed; }
+    inline void SetSpeed(float _Speed) 
+    {
+        Speed_ = _Speed; 
+    }
 
     void SetGround(GameEngineTextureRenderer* _Ground);
 
@@ -72,6 +78,7 @@ protected:
     GameEngineCollision*       AttackCollider_;  //АјАн
 
     float HP_;
+    float PrevHP_;
     int   Att_;
     float Speed_;
 

@@ -131,6 +131,8 @@ public:
 
     const ItemInfo& GetItemInfo() { return Info_; }
 
+    GameEngineCollision* GetItemCollsion() { return ItemCollider_; }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
