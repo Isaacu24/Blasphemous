@@ -1,7 +1,15 @@
-#include "PreCompile.h"
+﻿#include "PreCompile.h"
 #include "Inventory.h"
 #include "Item.h"
 #include "ItemSlot.h"
+
+namespace
+{
+    int RosaryBeads    = static_cast<int>(InventoryType::RosaryBeads);
+    int Relics         = static_cast<int>(InventoryType::Relics);
+    int MeaCulpaHearts = static_cast<int>(InventoryType::QuestItem);
+    int Prayers        = static_cast<int>(InventoryType::MeaCulpaHearts);
+}  // namespace
 
 Inventory::Inventory()
     : InventoryType_(InventoryType::RosaryBeads)
@@ -114,9 +122,25 @@ void Inventory::Start()
     GameEngineInput::GetInst()->CreateKey("CursorRightKey", 'D');
     GameEngineInput::GetInst()->CreateKey("CursorDownKey", 'S');
     GameEngineInput::GetInst()->CreateKey("CursorUpKey", 'W');
+    GameEngineInput::GetInst()->CreateKey("CursorEnter", VK_RETURN);
 
     IconRenderer_ = CreateComponent<GameEngineUIRenderer>();
     IconRenderer_->Off();
+
+    ButtonRenderer_ = CreateComponent<GameEngineUIRenderer>();
+    ButtonRenderer_->SetTexture("CT_A.png");
+    ButtonRenderer_->GetTransform().SetWorldScale({35, 35, 1});
+    ButtonRenderer_->GetTransform().SetWorldPosition({-90, -20, 1});
+    ButtonRenderer_->Off();
+
+    ButtonName_ = CreateComponent<GameEngineFontRenderer>();
+    ButtonName_->SetColor({0.65f, 0.65f, 0.45f, 1.0f});
+    ButtonName_->SetScreenPostion({590, 365, static_cast<int>(UIORDER::Inventory)});
+    ButtonName_->SetSize(27);
+    ButtonName_->SetLeftAndRightSort(LeftAndRightSort::LEFT);
+    ButtonName_->ChangeCamera(CAMERAORDER::UICAMERA);
+    ButtonName_->SetText("Equip", "Neo둥근모");
+    ButtonName_->Off();
 
     ItemName_ = CreateComponent<GameEngineFontRenderer>();
     ItemName_->SetColor({0.65f, 0.65f, 0.45f, 1.0f});
@@ -349,6 +373,8 @@ void Inventory::Start()
         Slot->SetLevelOverOn();
         Slot->Off();
     }
+
+    InitEquipSlotList();
 }
 
 void Inventory::Update(float _DeltaTime)
@@ -386,6 +412,67 @@ void Inventory::Update(float _DeltaTime)
 }
 
 void Inventory::End() {}
+
+void Inventory::InitEquipSlotList()
+{
+    EquipSlotLists_.resize(4);
+
+    EquipSlotLists_[RosaryBeads].resize(2);
+
+    for (size_t i = 0; i < EquipSlotLists_[RosaryBeads].size(); i++)
+    {
+        float XPos_ = 165.f;
+        float YPos_ = -50.f;
+
+        size_t OffsetY = i;
+
+        ItemSlot* Slot = GetLevel()->CreateActor<ItemSlot>();
+        Slot->GetTransform().SetWorldPosition({XPos_, YPos_ + (-70.f * OffsetY)});
+        Slot->SetLevelOverOn();
+
+        EquipSlotLists_[RosaryBeads][i] = Slot;
+        EquipSlotLists_[RosaryBeads][i]->Off();
+    }
+
+    EquipSlotLists_[Relics].resize(3);
+
+    for (size_t i = 0; i < EquipSlotLists_[Relics].size(); i++)
+    {
+        float XPos_ = 178.f;
+        float YPos_ = 75.f;
+
+        size_t OffsetY = i;
+
+        ItemSlot* Slot = GetLevel()->CreateActor<ItemSlot>();
+        Slot->GetTransform().SetWorldPosition({XPos_, YPos_ + (-70.f * OffsetY)});
+        Slot->SetLevelOverOn();
+
+        EquipSlotLists_[Relics][i] = Slot;
+        EquipSlotLists_[Relics][i]->Off();
+    }
+
+    EquipSlotLists_[MeaCulpaHearts].resize(1);
+
+    {
+        ItemSlot* Slot = GetLevel()->CreateActor<ItemSlot>();
+        Slot->GetTransform().SetWorldPosition({197.f, 40.f});
+        Slot->SetLevelOverOn();
+
+        EquipSlotLists_[MeaCulpaHearts][0] = Slot;
+        EquipSlotLists_[MeaCulpaHearts][0]->Off();
+    }
+
+    EquipSlotLists_[Prayers].resize(1);
+
+    {
+        ItemSlot* Slot = GetLevel()->CreateActor<ItemSlot>();
+        Slot->GetTransform().SetWorldPosition({197.f, 40.f});
+        Slot->SetLevelOverOn();
+
+        EquipSlotLists_[Prayers][0] = Slot;
+        EquipSlotLists_[Prayers][0]->Off();
+    }
+}
 
 
 void Inventory::ChangeInventoryIndex()
@@ -556,6 +643,83 @@ void Inventory::CursorMove()
         CursorPos_ -= LineSlotCount_;
         UpdateSlot();
     }
+
+    else if (true == GameEngineInput::GetInst()->IsDownKey("CursorEnter"))
+    {
+        switch (InventoryType_)
+        {
+            case InventoryType::RosaryBeads:
+                if (false
+                    == ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][CursorPos_]->GetItemInfo().IsEquip_)
+                {
+                    ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][CursorPos_]->GetItemInfo().IsEquip_ = true;
+                    Equip(ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][CursorPos_]->GetItemInfo());
+                    return;
+                }
+
+                else
+                {
+                    ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][CursorPos_]->GetItemInfo().IsEquip_
+                        = false;
+                    Release(ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][CursorPos_]->GetItemInfo());
+                    return;
+                }
+                break;
+            case InventoryType::Relics:
+                if (false
+                    == ItemSlotLists_[static_cast<int>(InventoryType::Relics)][CursorPos_]->GetItemInfo().IsEquip_)
+                {
+                    ItemSlotLists_[static_cast<int>(InventoryType::Relics)][CursorPos_]->GetItemInfo().IsEquip_ = true;
+                    Equip(ItemSlotLists_[static_cast<int>(InventoryType::Relics)][CursorPos_]->GetItemInfo());
+                    return;
+                }
+
+                else
+                {
+                    ItemSlotLists_[static_cast<int>(InventoryType::Relics)][CursorPos_]->GetItemInfo().IsEquip_ = false;
+                    Release(ItemSlotLists_[static_cast<int>(InventoryType::Relics)][CursorPos_]->GetItemInfo());
+                    return;
+                }
+                break;
+            case InventoryType::MeaCulpaHearts:
+                if (false
+                    == ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][CursorPos_]
+                           ->GetItemInfo()
+                           .IsEquip_)
+                {
+                    ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][CursorPos_]->GetItemInfo().IsEquip_
+                        = true;
+                    Equip(ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][CursorPos_]->GetItemInfo());
+                    return;
+                }
+
+                else
+                {
+                    ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][CursorPos_]->GetItemInfo().IsEquip_
+                        = false;
+                    Release(ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][CursorPos_]->GetItemInfo());
+                    return;
+                }
+                break;
+            case InventoryType::Prayers:
+                if (false
+                    == ItemSlotLists_[static_cast<int>(InventoryType::Prayers)][CursorPos_]->GetItemInfo().IsEquip_)
+                {
+                    ItemSlotLists_[static_cast<int>(InventoryType::Prayers)][CursorPos_]->GetItemInfo().IsEquip_ = true;
+                    Equip(ItemSlotLists_[static_cast<int>(InventoryType::Prayers)][CursorPos_]->GetItemInfo());
+                    return;
+                }
+
+                else
+                {
+                    ItemSlotLists_[static_cast<int>(InventoryType::Prayers)][CursorPos_]->GetItemInfo().IsEquip_
+                        = false;
+                    Release(ItemSlotLists_[static_cast<int>(InventoryType::Prayers)][CursorPos_]->GetItemInfo());
+                    return;
+                }
+                break;
+        }
+    }
 }
 
 void Inventory::CursorReset()
@@ -564,6 +728,9 @@ void Inventory::CursorReset()
 
     ItemName_->Off();
     ItemDesc_->Off();
+
+    ButtonRenderer_->Off();
+    ButtonName_->Off();
 
     switch (InventoryType_)
     {
@@ -589,6 +756,145 @@ void Inventory::CursorReset()
 }
 
 
+void Inventory::Equip(const ItemInfo& _Info)
+{
+    ButtonName_->SetText("Release", "Neo둥근모");
+
+    switch (InventoryType_)
+    {
+        case InventoryType::RosaryBeads:
+            {
+                for (size_t i = 0; i < EquipSlotLists_[RosaryBeads].size(); i++)
+                {
+                    if (false == EquipSlotLists_[RosaryBeads][i]->GetItemInfo().IsEquip_)
+                    {
+                        EquipSlotLists_[RosaryBeads][i]->SetItemInfo(_Info);
+                        EquipSlotLists_[RosaryBeads][i]->On();
+
+                        EquipSlotLists_[RosaryBeads][i]->FrameRenderer_->Off();
+                        EquipSlotLists_[RosaryBeads][i]->SelectRenderer_->Off();
+                        return;
+                    }
+                }
+            }
+            break;
+        case InventoryType::Relics:
+            {
+                for (size_t i = 0; i < EquipSlotLists_[Relics].size(); i++)
+                {
+                    if (false == EquipSlotLists_[Relics][i]->GetItemInfo().IsEquip_)
+                    {
+                        EquipSlotLists_[Relics][i]->SetItemInfo(_Info);
+                        EquipSlotLists_[Relics][i]->On();
+
+                        EquipSlotLists_[Relics][i]->FrameRenderer_->Off();
+                        EquipSlotLists_[Relics][i]->SelectRenderer_->Off();
+                        return;
+                    }
+                }
+            }
+            break;
+        case InventoryType::MeaCulpaHearts:
+            {
+                for (size_t i = 0; i < EquipSlotLists_[MeaCulpaHearts].size(); i++)
+                {
+                    if (false == EquipSlotLists_[MeaCulpaHearts][i]->GetItemInfo().IsEquip_)
+                    {
+                        EquipSlotLists_[MeaCulpaHearts][i]->SetItemInfo(_Info);
+                        EquipSlotLists_[MeaCulpaHearts][i]->On();
+
+                        EquipSlotLists_[MeaCulpaHearts][i]->FrameRenderer_->Off();
+                        EquipSlotLists_[MeaCulpaHearts][i]->SelectRenderer_->Off();
+                        return;
+                    }
+                }
+            }
+            break;
+        case InventoryType::Prayers:
+            {
+                for (size_t i = 0; i < EquipSlotLists_[Prayers].size(); i++)
+                {
+                    if (false == EquipSlotLists_[Prayers][i]->GetItemInfo().IsEquip_)
+                    {
+                        EquipSlotLists_[Prayers][i]->SetItemInfo(_Info);
+                        EquipSlotLists_[Prayers][i]->On();
+
+                        EquipSlotLists_[Prayers][i]->FrameRenderer_->Off();
+                        EquipSlotLists_[Prayers][i]->SelectRenderer_->Off();
+                        return;
+                    }
+                }
+            }
+            break;
+    }
+}
+
+void Inventory::Release(const ItemInfo& _Info)
+{
+    ButtonName_->SetText("Equip", "Neo둥근모");
+
+    switch (InventoryType_)
+    {
+        case InventoryType::RosaryBeads:
+            {
+                for (size_t i = 0; i < EquipSlotLists_[RosaryBeads].size(); i++)
+                {
+                    if (true == EquipSlotLists_[RosaryBeads][i]->GetItemInfo().IsEquip_
+                        && _Info.ItemIndex_ == EquipSlotLists_[RosaryBeads][i]->GetItemInfo().ItemIndex_)
+                    {
+                        EquipSlotLists_[RosaryBeads][i]->SetItemInfo(ItemInfo{});
+                        EquipSlotLists_[RosaryBeads][i]->Off();
+                        return;
+                    }
+                }
+            }
+            break;
+        case InventoryType::Relics:
+            {
+                for (size_t i = 0; i < EquipSlotLists_[Relics].size(); i++)
+                {
+                    if (true == EquipSlotLists_[Relics][i]->GetItemInfo().IsEquip_
+                        && _Info.ItemIndex_ == EquipSlotLists_[Relics][i]->GetItemInfo().ItemIndex_)
+                    {
+                        EquipSlotLists_[Relics][i]->SetItemInfo(ItemInfo{});
+                        EquipSlotLists_[Relics][i]->Off();
+                        return;
+                    }
+                }
+            }
+            break;
+        case InventoryType::MeaCulpaHearts:
+            {
+                for (size_t i = 0; i < EquipSlotLists_[MeaCulpaHearts].size(); i++)
+                {
+                    if (true == EquipSlotLists_[MeaCulpaHearts][i]->GetItemInfo().IsEquip_
+                        && _Info.ItemIndex_ == EquipSlotLists_[MeaCulpaHearts][i]->GetItemInfo().ItemIndex_)
+                    {
+                        EquipSlotLists_[MeaCulpaHearts][i]->SetItemInfo(ItemInfo{});
+                        EquipSlotLists_[MeaCulpaHearts][i]->Off();
+                        return;
+                    }
+                }
+            }
+            break;
+        case InventoryType::Prayers:
+            {
+                for (size_t i = 0; i < EquipSlotLists_[Prayers].size(); i++)
+                {
+                    if (true == EquipSlotLists_[Prayers][i]->GetItemInfo().IsEquip_
+                        && _Info.ItemIndex_ == EquipSlotLists_[Prayers][i]->GetItemInfo().ItemIndex_)
+                    {
+                        EquipSlotLists_[Prayers][i]->SetItemInfo(ItemInfo{});
+                        EquipSlotLists_[Prayers][i]->Off();
+                        return;
+                    }
+                }
+            }
+            break;
+    }
+}
+
+
 void Inventory::UpdateSlot()
 {
     switch (InventoryType_)
@@ -607,11 +913,19 @@ void Inventory::UpdateSlot()
 
                 IconRenderer_->GetTransform().SetWorldPosition({-400, 150});
 
-                // ItemName_->On();
-                // ItemDesc_->On();
+                ItemName_->On();
+                ItemDesc_->On();
 
-                // ItemName_->SetText(Info.ItemName_, "Neo�ձٸ�");
-                // ItemDesc_->SetText(Info.ItemDecs_, "Neo�ձٸ�");
+                ItemName_->SetText(Info.ItemName_, "Neo둥근모");
+                ItemDesc_->SetText(Info.ItemDecs_, "Neo둥근모");
+            }
+
+            for (size_t i = 0; i < EquipSlotLists_[RosaryBeads].size(); i++)
+            {
+                if (true == EquipSlotLists_[RosaryBeads][i]->GetItemInfo().IsEquip_)
+                {
+                    EquipSlotLists_[RosaryBeads][i]->On();
+                }
             }
 
             break;
@@ -632,8 +946,30 @@ void Inventory::UpdateSlot()
                 ItemName_->On();
                 ItemDesc_->On();
 
-                ItemName_->SetText(Info.ItemName_, "Neo�ձٸ�");
-                ItemDesc_->SetText(Info.ItemDecs_, "Neo�ձٸ�");
+                ItemName_->SetText(Info.ItemName_, "Neo둥근모");
+                ItemDesc_->SetText(Info.ItemDecs_, "Neo둥근모");
+
+                ButtonRenderer_->On();
+
+                if (true == Info.IsEquip_)
+                {
+                    ButtonName_->SetText("Release", "Neo둥근모");
+                }
+
+                else
+                {
+                    ButtonName_->SetText("Equip", "Neo둥근모");
+                }
+
+                ButtonName_->On();
+            }
+
+            for (size_t i = 0; i < EquipSlotLists_[Relics].size(); i++)
+            {
+                if (true == EquipSlotLists_[Relics][i]->GetItemInfo().IsEquip_)
+                {
+                    EquipSlotLists_[Relics][i]->On();
+                }
             }
 
             break;
@@ -654,8 +990,8 @@ void Inventory::UpdateSlot()
                 ItemName_->On();
                 ItemDesc_->On();
 
-                ItemName_->SetText(Info.ItemName_, "Neo�ձٸ�");
-                ItemDesc_->SetText(Info.ItemDecs_, "Neo�ձٸ�");
+                ItemName_->SetText(Info.ItemName_, "Neo둥근모");
+                ItemDesc_->SetText(Info.ItemDecs_, "Neo둥근모");
             }
             break;
         case InventoryType::MeaCulpaHearts:
@@ -677,9 +1013,16 @@ void Inventory::UpdateSlot()
                 ItemName_->On();
                 ItemDesc_->On();
 
-                ItemName_->SetText(Info.ItemName_, "Neo�ձٸ�");
-                ItemDesc_->SetText(Info.ItemDecs_, "Neo�ձٸ�");
+                ItemName_->SetText(Info.ItemName_, "Neo둥근모");
+                ItemDesc_->SetText(Info.ItemDecs_, "Neo둥근모");
             }
+
+            if (true == EquipSlotLists_[MeaCulpaHearts][0]->GetItemInfo().IsEquip_)
+            {
+                EquipSlotLists_[MeaCulpaHearts][0]->On();
+            }
+
+
             break;
         case InventoryType::Prayers:
             ItemSlotLists_[static_cast<int>(InventoryType::Prayers)][CursorPos_]->SelectRenderer_->On();
@@ -698,8 +1041,13 @@ void Inventory::UpdateSlot()
                 ItemName_->On();
                 ItemDesc_->On();
 
-                ItemName_->SetText(Info.ItemName_, "Neo�ձٸ�");
-                ItemDesc_->SetText(Info.ItemDecs_, "Neo�ձٸ�");
+                ItemName_->SetText(Info.ItemName_, "Neo둥근모");
+                ItemDesc_->SetText(Info.ItemDecs_, "Neo둥근모");
+            }
+
+            if (true == EquipSlotLists_[Prayers][0]->GetItemInfo().IsEquip_)
+            {
+                EquipSlotLists_[Prayers][0]->On();
             }
             break;
         case InventoryType::Collectibles:
@@ -721,8 +1069,8 @@ void Inventory::UpdateSlot()
                 ItemName_->On();
                 ItemDesc_->On();
 
-                ItemName_->SetText(Info.ItemName_, "Neo�ձٸ�");
-                ItemDesc_->SetText(Info.ItemDecs_, "Neo�ձٸ�");
+                ItemName_->SetText(Info.ItemName_, "Neo둥근모");
+                ItemDesc_->SetText(Info.ItemDecs_, "Neo둥근모");
             }
             break;
     }
@@ -765,12 +1113,27 @@ void Inventory::AllSlotOff()
     {
         ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][i]->Off();
     }
+
+    //장착 아이템 슬롯
+    for (size_t i = 0; i < EquipSlotLists_[RosaryBeads].size(); i++)
+    {
+        EquipSlotLists_[RosaryBeads][i]->Off();
+    }
+
+    for (size_t i = 0; i < EquipSlotLists_[Relics].size(); i++)
+    {
+        EquipSlotLists_[Relics][i]->Off();
+    }
+
+    EquipSlotLists_[MeaCulpaHearts][0]->Off();
+    EquipSlotLists_[Prayers][0]->Off();
 }
 
 void Inventory::OnEvent()
 {
     ItemName_->ChangeCamera(CAMERAORDER::UICAMERA);
     ItemDesc_->ChangeCamera(CAMERAORDER::UICAMERA);
+    ButtonName_->ChangeCamera(CAMERAORDER::UICAMERA);
 
     ChangeInventoryIndex();
     ChangeInventory();
@@ -785,4 +1148,7 @@ void Inventory::OffEvent()
     LineSlotCount_  = 0;
 
     AllSlotOff();
+
+    ButtonRenderer_->Off();
+    ButtonName_->Off();
 }

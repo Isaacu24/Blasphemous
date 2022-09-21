@@ -32,6 +32,8 @@ protected:
     void Update(float _DeltaTime) override;
     void End() override;
 
+    void InitEquipSlotList();
+
     void ChangeInventoryIndex();
 
     void ChangeInventory();
@@ -45,6 +47,10 @@ protected:
     
     void AllSlotOff();
 
+    void Equip(const ItemInfo& _Info);
+
+    void Release(const ItemInfo& _Info);
+
     void OnEvent() override;
     void OffEvent() override;
 
@@ -54,12 +60,18 @@ private:
     GameEngineUIRenderer* InventoryRenderer_;
 
     GameEngineUIRenderer* IconRenderer_;
-    class GameEngineFontRenderer* ItemName_;
-    GameEngineFontRenderer* ItemDesc_;
 
+    GameEngineUIRenderer* ButtonRenderer_;
+    class GameEngineFontRenderer* ButtonName_;
+
+    GameEngineFontRenderer* ItemName_;
+    GameEngineFontRenderer* ItemDesc_;
+    
     int InventoryIndex_;
 
     std::vector<std::vector<class ItemSlot*>> ItemSlotLists_;
+
+    std::vector<std::vector<ItemSlot*>> EquipSlotLists_;
 
     int CursorPos_;
 

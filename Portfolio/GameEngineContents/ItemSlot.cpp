@@ -56,4 +56,5 @@ void ItemSlot::OffEvent()
 {
     IconRenderer_->Off();
     FrameRenderer_->Off();
+    SelectRenderer_->Off();
 }

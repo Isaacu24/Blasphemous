@@ -151,6 +151,8 @@ void PlayerUI::Start()
 void PlayerUI::Update(float _DeltaTime)
 {
     ScreenState_.Update(_DeltaTime);
+
+    Damage(_DeltaTime);
 }
 
 void PlayerUI::End() {}
@@ -215,7 +217,34 @@ void PlayerUI::UseFlask(int _Index)
 
 void PlayerUI::FillFlask(int _Index) 
 {
-    Flasks_[_Index]->SetTexture("Full_Flask.png");
+    Flasks_[_Index]->SetTexture("Full_Flask.png"); }
+
+
+void PlayerUI::Damage(float _DeltaTime) 
+{
+    //규칙1. 쉐이더에 넘어가는건 무조건 LerpHp
+
+    PlayerCurHp_ = Penitent::GetMainPlayer()->GetHP(); //현재 체력 매 프레임 받아온다
+    
+    if (PlayerPrevHp_ != PlayerCurHp_) //HP의 변화를 감지한다면
+    {
+        HPAlpha_ += _DeltaTime;
+
+        float CurHP = static_cast<float>(PlayerCurHp_);
+        float PrevHP = static_cast<float>(PlayerPrevHp_);
+
+        LerpHp_ = GameEngineMath::LerpLimit(PrevHP, CurHP, HPAlpha_);
+
+        if (LerpHp_ - CurHP < 0.05f) //보간되는 체력 - 현재체력(이미준)이 0의 근사치가된다면
+        {
+            //여기 들어온 시점 : LerpHP == CurHP
+            HPAlpha_      = 0.f;
+            LerpHp_ = CurHP;
+            PlayerPrevHp_ = PlayerCurHp_;
+        }
+    }
+
+    HPBar_->Renderer_->SetUVData(LerpHp_ / 100.f);
 }
 
 

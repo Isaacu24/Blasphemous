@@ -18,7 +18,7 @@ public:
 
     void SetItemInfo(const ItemInfo& _Info);
   
-    inline const ItemInfo& GetItemInfo() { return ItemInfo_; }
+    inline ItemInfo& GetItemInfo() { return ItemInfo_; }
 
     inline void SetFrameRenderer(size_t _Index)
     {

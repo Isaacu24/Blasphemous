@@ -23,6 +23,8 @@ public:
 
     void FillFlask(int _Index);
 
+    void Damage(float _DeltaTime);
+
     void PlayerDeathStart(const StateInfo& _Info);
     void PlayerDeathUpdate(float _DeltaTime, const StateInfo& _Info);
     void PlayerDeathEnd(const StateInfo& _Info);
@@ -80,6 +82,12 @@ private:
 
     float Alpha_;
     float BackAlpha_;
+    
+    int PlayerCurHp_;
+    int PlayerPrevHp_ = 100;
+
+    float LerpHp_ = 100.0f;
+    float HPAlpha_;
 
     float ScreenTime_;
 };

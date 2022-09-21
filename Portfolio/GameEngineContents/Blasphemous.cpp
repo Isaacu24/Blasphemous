@@ -241,7 +241,6 @@ void Blasphemous::LoadResources()
             GameEngineTexture::Load(Textures[i].GetFullPath());
         }
     }
-
     // NPC
     {
         GameEngineDirectory Dir;
@@ -273,6 +272,13 @@ void Blasphemous::LoadResources()
         MovePath(Dir, {"ContentsResources", "Resources", "MetaAtlas", "MetaObject"});
         MetaSpriteManager::Inst_->Load(Dir);
     }
+
+    {
+        GameEngineDirectory Dir;
+        MovePath(Dir, {"ContentsResources", "Resources", "MetaAtlas", "MetaUI"});
+        MetaSpriteManager::Inst_->Load(Dir);
+    }
+
 
     GameEngineFont::Load("±Ã¼­");
     GameEngineFont::Load("NeoµÕ±Ù¸ð");

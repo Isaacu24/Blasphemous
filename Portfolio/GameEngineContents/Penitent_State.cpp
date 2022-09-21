@@ -1217,6 +1217,8 @@ void Penitent::DeathStart(const StateInfo& _Info)
     MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
 }
 
-void Penitent::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
+void Penitent::DeathUpdate(float _DeltaTime, const StateInfo& _Info) 
+{ 
+}
 
 void Penitent::DeathEnd(const StateInfo& _Info) { SetHP(100.f); }

@@ -27,8 +27,11 @@ public:
     Penitent(Penitent&& _Other) noexcept            = delete;
     Penitent& operator=(Penitent&& _Other) noexcept = delete;
 
+    int PrevHp_ = 100;
+
     inline void SetHP(int _Value)
     {
+        PrevHp_ = HP_;
         HP_ = _Value;
 
         if (0 > HP_)
@@ -39,6 +42,7 @@ public:
     
     inline void SetDamege(int _Damage)
     {
+        PrevHp_ = HP_;
         HP_ -= _Damage;
 
         if (0 > HP_)

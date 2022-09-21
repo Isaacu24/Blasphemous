@@ -223,6 +223,8 @@ void Penitent::Update(float _DeltaTime)
 {
     State_.Update(_DeltaTime);
 
+    GroundCheck();
+
     if ("Death" == State_.GetCurStateStateName())
     {
         return;
@@ -237,7 +239,6 @@ void Penitent::Update(float _DeltaTime)
         {GetTransform().GetWorldPosition().x,
          (GetTransform().GetWorldPosition().y + CilmbY_)});  //사다리 타기 시 땅 감지
 
-    GroundCheck();
     LadderCheck();
     CollisionCheck();
 
@@ -1521,10 +1522,10 @@ void Penitent::SetPlayerState()
                              std::bind(&Penitent::DeathStart, this, std::placeholders::_1),
                              std::bind(&Penitent::DeathEnd, this, std::placeholders::_1));
 
-        State_.CreateStateMember("Respawn",
-                                 std::bind(&Penitent::RespawnUpdate, this, std::placeholders::_1, std::placeholders::_2),
-                                 std::bind(&Penitent::RespawnStart, this, std::placeholders::_1),
-                                 std::bind(&Penitent::RespawnEnd, this, std::placeholders::_1));
+    State_.CreateStateMember("Respawn",
+                             std::bind(&Penitent::RespawnUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::RespawnStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::RespawnEnd, this, std::placeholders::_1));
 
     State_.ChangeState("Idle");
 }

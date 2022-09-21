@@ -19,6 +19,7 @@ struct ItemInfo
     std::string ItemName_;
     std::string ItemDecs_;
     int         ItemPrice_;
+    bool        IsEquip_;
 
     ItemInfo()
         : ItemIndex_(0)
@@ -26,6 +27,7 @@ struct ItemInfo
         , ItemName_{}
         , ItemDecs_{}
         , ItemPrice_(0)
+        , IsEquip_(false)
     {}
 
     ItemInfo(int _Index, ItemType _Type, const std::string& _Name, const std::string& _Decs, int _Price)
@@ -34,6 +36,7 @@ struct ItemInfo
         , ItemName_{_Name}
         , ItemDecs_{_Decs}
         , ItemPrice_(_Price)
+        , IsEquip_(false)
     {}
 
     ~ItemInfo(){};
@@ -65,10 +68,15 @@ struct ItemInfo
             return false;
         }
 
+        if (IsEquip_ != _Info.IsEquip_)
+        {
+            return false;
+        }
+
         return true;
     }
 
-     bool operator!=(const ItemInfo& _Info)
+    bool operator!=(const ItemInfo& _Info)
     {
         if (ItemIndex_ == _Info.ItemIndex_)
         {
