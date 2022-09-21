@@ -62,9 +62,9 @@ void MetaTextureRenderer::MetaSetPivot()
     ScaleToCutTexture(Index_);
 }
 
-void MetaTextureRenderer::CreateMetaAnimation(const std::string&         _AnimationName,
-                                              const FrameAnimation_DESC& _Desc,
-                                              std::vector<MetaData>&     _MetaDatas)
+void MetaTextureRenderer::CreateMetaAnimation(const std::string&           _AnimationName,
+                                              const FrameAnimation_DESC&   _Desc,
+                                              std::vector<MetaData>& _MetaDatas)
 {
     GameEngineTextureRenderer::CreateFrameAnimationCutTexture(_AnimationName, _Desc);
     SetCurData(_MetaDatas);

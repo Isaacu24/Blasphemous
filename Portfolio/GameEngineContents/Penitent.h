@@ -36,6 +36,16 @@ public:
             HP_ = 0;
         }
     }
+    
+    inline void MinusHP(int _Value)
+    {
+        HP_ -= _Value;
+
+        if (0 > HP_)
+        {
+            HP_ = 0;
+        }
+    }
 
     inline int GetHP() { return HP_; }
 
@@ -49,9 +59,9 @@ public:
         }
     }
 
-    inline void SetMP(int _Value) { HP_ = _Value; }
+    inline void SetMP(int _Value) { MP_ = _Value; }
 
-    inline int GetMP() { return HP_; }
+    inline int GetMP() { return MP_; }
 
     inline void SetTear(int _Value)
     {

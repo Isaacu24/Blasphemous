@@ -65,9 +65,7 @@ void PlayerUI::Start()
     HPBar_->Renderer_->ScaleToTexture();
     HPBar_->SetLevelOverOn();
 
-    Penitent::GetMainPlayer()->SetHP(20);
     float HP = Penitent::GetMainPlayer()->GetHP() / 100.f;
-
     HPBar_->Renderer_->SetUVData(HP);
 
     MPBar_ = GetLevel()->CreateActor<LeftTopUI>();
@@ -154,7 +152,7 @@ void PlayerUI::Update(float _DeltaTime)
 {
     ScreenState_.Update(_DeltaTime);
 
-    Damage();
+    Damage(_DeltaTime);
 }
 
 void PlayerUI::End() {}
@@ -220,13 +218,6 @@ void PlayerUI::UseFlask(int _Index)
 void PlayerUI::FillFlask(int _Index) 
 {
     Flasks_[_Index]->SetTexture("Full_Flask.png");
-}
-
-void PlayerUI::Damage()
-{
-    //이미 값이 줄여져서 들어옴
-    float HP = Penitent::GetMainPlayer()->GetHP() / 100.f;
-    HPBar_->Renderer_->SetUVData(HP);
 }
 
 

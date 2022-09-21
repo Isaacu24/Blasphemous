@@ -70,6 +70,10 @@
 #include "MessageUI.h"
 #include "Milestone.h"
 
+#include "Candle.h"
+#include "Fly.h"
+#include "Cemetry.h"
+
 
 namespace
 {

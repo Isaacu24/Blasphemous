@@ -83,6 +83,11 @@ void Stage03::SettingStage()
     AfterParallaxRenderer->ScaleToTexture();
     AfterParallaxRenderer->GetTransform().SetWorldPosition({0, 100, AfterParallax5Z});
     AfterParallaxRenderer->GetTransform().SetWorldScale(AfterParallaxRenderer->GetTransform().GetWorldScale() * 2.f);
+    
+    {
+        Cemetry* NewCemetry = CreateActor<Cemetry>();
+        NewCemetry->GetTransform().SetWorldPosition({550, -1150, TileZ});
+    }
 
     float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
     float OffsetY = ColMap_->GetTransform().GetLocalScale().y / 2;
@@ -176,14 +181,12 @@ void Stage03::LevelStartEvent()
         Penitent_->SetGround(ColMap_);
 
         Penitent_->SetLevelOverOn();
-        Penitent_->GetTransform().SetWorldPosition({1800, -1067, PlayerZ});
     }
 
     else if (nullptr != Penitent::GetMainPlayer())
     {
         Penitent_ = Penitent::GetMainPlayer();
         Penitent_->SetGround(ColMap_);
-        Penitent_->SetLevelOverOn();
 
         if (true == IsRightExit_)
         {

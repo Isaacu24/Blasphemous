@@ -4,13 +4,13 @@
 class Cemetry : public GameEngineActor
 {
 public:
-	Cemetry();
-	~Cemetry();
+    Cemetry();
+    ~Cemetry();
 
-	Cemetry(const Cemetry& _Other) = delete;
-	Cemetry(Cemetry&& _Other) noexcept = delete;
-	Cemetry& operator=(const Cemetry& _Other) = delete;
-	Cemetry& operator=(Cemetry&& _Other) noexcept = delete;
+    Cemetry(const Cemetry& _Other)                = delete;
+    Cemetry(Cemetry&& _Other) noexcept            = delete;
+    Cemetry& operator=(const Cemetry& _Other)     = delete;
+    Cemetry& operator=(Cemetry&& _Other) noexcept = delete;
 
 protected:
     void Start() override;
@@ -19,5 +19,7 @@ protected:
 
 private:
     class MetaTextureRenderer* MetaRenderer_;
-};
+    class GameEngineCollision* Collider_;
 
+    bool IsExplode_;
+};

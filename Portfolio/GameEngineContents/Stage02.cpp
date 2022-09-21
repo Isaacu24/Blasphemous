@@ -4,9 +4,6 @@
 #include "Penitent.h"
 #include "Fool_knife.h"
 #include "WingedFace.h"
-#include "Candle.h"
-#include "Fly.h"
-#include "Cemetry.h"
 
 Stage02::Stage02() {}
 
@@ -136,7 +133,7 @@ void Stage02::SettingStage()
 
     {
         Cemetry* NewCemetry = CreateActor<Cemetry>();
-        NewCemetry->GetTransform().SetWorldPosition({800, -1490, TileZ});
+        NewCemetry->GetTransform().SetWorldPosition({720, -1510, TileZ});
     }
 
 
