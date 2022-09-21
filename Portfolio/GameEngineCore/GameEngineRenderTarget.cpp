@@ -93,7 +93,7 @@ void GameEngineRenderTarget::Effect(GameEngineRenderingPipeLine* _Other, GameEng
 	Setting();
 	_ShaderResourcesHelper->AllResourcesSetting();
 	_Other->Rendering();
-	_ShaderResourcesHelper->AllResourcesSetting();
+	_ShaderResourcesHelper->AllResourcesReset();
 }
 
 void GameEngineRenderTarget::CreateRenderTargetTexture(ID3D11Texture2D* _Texture, float4 _Color)
@@ -116,7 +116,7 @@ void GameEngineRenderTarget::SettingDepthTexture(GameEngineTexture* _Texture)
 void GameEngineRenderTarget::CreateRenderTargetTexture(float4 _Size, DXGI_FORMAT _Format, float4 _Color)
 {
 	D3D11_TEXTURE2D_DESC NewData = { 0 };
-	NewData.ArraySize = 1; 
+	NewData.ArraySize = 1;
 	NewData.Width = _Size.uix();
 	NewData.Height = _Size.uiy();
 	NewData.Format = _Format;

@@ -86,7 +86,7 @@ void GameEngineShaderResourcesHelper::ShaderCheck(GameEngineShader* _Shader)
 
 bool GameEngineShaderResourcesHelper::IsConstantBuffer(const std::string& _Name)
 {
-	std::string Key = GameEngineString::ToUpperReturn(_Name); 
+	std::string Key = GameEngineString::ToUpperReturn(_Name);
 
 	if (ConstantBufferSettingMap.end() != ConstantBufferSettingMap.find(Key))
 	{

@@ -10,6 +10,7 @@
 class GameEngineFont : public GameEngineRes<GameEngineFont>
 {
 public:
+	// 이녀석은 한번만 만들면 됩니다.
 	static IFW1Factory* FontFactiory;
 
 	static GameEngineFont* Load(const std::string& _Path)

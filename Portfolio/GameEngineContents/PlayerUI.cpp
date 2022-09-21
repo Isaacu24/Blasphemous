@@ -151,8 +151,6 @@ void PlayerUI::Start()
 void PlayerUI::Update(float _DeltaTime)
 {
     ScreenState_.Update(_DeltaTime);
-
-    Damage(_DeltaTime);
 }
 
 void PlayerUI::End() {}
