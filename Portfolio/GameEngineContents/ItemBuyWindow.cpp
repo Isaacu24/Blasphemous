@@ -149,6 +149,7 @@ void ItemBuyWindow::Update(float _DeltaTime)
                 if (nullptr != Merchant_->SellItemList_[i] 
                     && Merchant_->SellItemList_[i]->GetItemInfo() == Info_)
                 {
+                    Merchant_->SellItemList_[i]->SetIsPlayerCollide(false);
                     Merchant_->SellItemList_[i]->Off();
                     Off();
 

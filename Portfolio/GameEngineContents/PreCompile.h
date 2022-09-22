@@ -73,7 +73,7 @@
 #include "Candle.h"
 #include "Fly.h"
 #include "Cemetry.h"
-
+#include "Lantern.h"
 
 namespace
 {

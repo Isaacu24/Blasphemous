@@ -444,7 +444,26 @@ void Inventory::InitEquipSlotList()
         size_t OffsetY = i;
 
         ItemSlot* Slot = GetLevel()->CreateActor<ItemSlot>();
-        Slot->GetTransform().SetWorldPosition({XPos_, YPos_ + (-70.f * OffsetY)});
+
+        switch (i)
+        {
+            case 0:
+                Slot->GetTransform().SetWorldPosition({XPos_, 75.f});
+                break;
+
+            case 1:
+                Slot->GetTransform().SetWorldPosition({XPos_, -3.f});
+                break;
+
+            case 2:
+                Slot->GetTransform().SetWorldPosition({XPos_, -93.f});
+                break;
+
+            default:
+                Slot->GetTransform().SetWorldPosition({XPos_, 75.f});
+                break;
+        }
+
         Slot->SetLevelOverOn();
 
         EquipSlotLists_[Relics][i] = Slot;
@@ -649,10 +668,18 @@ void Inventory::CursorMove()
         switch (InventoryType_)
         {
             case InventoryType::RosaryBeads:
+
+                if (ItemInfo{}
+                    == ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][CursorPos_]->GetItemInfo())
+                {
+                    return;
+                }
+
                 if (false
                     == ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][CursorPos_]->GetItemInfo().IsEquip_)
                 {
-                    ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][CursorPos_]->GetItemInfo().IsEquip_ = true;
+                    ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][CursorPos_]->GetItemInfo().IsEquip_
+                        = true;
                     Equip(ItemSlotLists_[static_cast<int>(InventoryType::RosaryBeads)][CursorPos_]->GetItemInfo());
                     return;
                 }
@@ -666,6 +693,11 @@ void Inventory::CursorMove()
                 }
                 break;
             case InventoryType::Relics:
+                if (ItemInfo{} == ItemSlotLists_[static_cast<int>(InventoryType::Relics)][CursorPos_]->GetItemInfo())
+                {
+                    return;
+                }
+
                 if (false
                     == ItemSlotLists_[static_cast<int>(InventoryType::Relics)][CursorPos_]->GetItemInfo().IsEquip_)
                 {
@@ -682,6 +714,13 @@ void Inventory::CursorMove()
                 }
                 break;
             case InventoryType::MeaCulpaHearts:
+
+                if (ItemInfo{}
+                    == ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][CursorPos_]->GetItemInfo())
+                {
+                    return;
+                }
+
                 if (false
                     == ItemSlotLists_[static_cast<int>(InventoryType::MeaCulpaHearts)][CursorPos_]
                            ->GetItemInfo()
@@ -702,6 +741,12 @@ void Inventory::CursorMove()
                 }
                 break;
             case InventoryType::Prayers:
+
+                if (ItemInfo{} == ItemSlotLists_[static_cast<int>(InventoryType::Prayers)][CursorPos_]->GetItemInfo())
+                {
+                    return;
+                }
+
                 if (false
                     == ItemSlotLists_[static_cast<int>(InventoryType::Prayers)][CursorPos_]->GetItemInfo().IsEquip_)
                 {
@@ -782,7 +827,8 @@ void Inventory::Equip(const ItemInfo& _Info)
             {
                 for (size_t i = 0; i < EquipSlotLists_[Relics].size(); i++)
                 {
-                    if (false == EquipSlotLists_[Relics][i]->GetItemInfo().IsEquip_)
+                    if (false == EquipSlotLists_[Relics][i]->GetItemInfo().IsEquip_
+                        && ItemInfo{} == EquipSlotLists_[Relics][i]->GetItemInfo())
                     {
                         EquipSlotLists_[Relics][i]->SetItemInfo(_Info);
                         EquipSlotLists_[Relics][i]->On();

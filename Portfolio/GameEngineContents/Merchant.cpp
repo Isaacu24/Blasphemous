@@ -182,6 +182,7 @@ void Merchant::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
                 {
                     BuyWindow_->On();
                     BuyWindow_->SetItemInfo(SellItemList_[i]->GetItemInfo());
+                    return;
                 }
 
                 else if (true == GameEngineInput::GetInst()->IsDownKey("Escape"))

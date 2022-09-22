@@ -66,6 +66,10 @@ void Stage03::SettingStage()
     PrieDieu_->GetTransform().SetWorldPosition({0, 0, ObjectZ});
     PrieDieu_->GetTransform().SetWorldMove({1800, -1000});
 
+    Lantern* NewLantern = CreateActor<Lantern>();
+    NewLantern->GetTransform().SetWorldPosition({0, 0, ObjectZ});
+    NewLantern->GetTransform().SetWorldMove({2840, -900});
+
     GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     DoorRenderer->SetTexture("1_3_Door.png");
     DoorRenderer->ScaleToTexture();

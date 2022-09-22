@@ -29,7 +29,7 @@ void Stage12::SettingStage()
     DoorRenderer->GetTransform().SetWorldScale(DoorRenderer->GetTransform().GetWorldScale() * 2.f);
 
     Door* ShopDoor = CreateActor<Door>();
-    ShopDoor->GetTransform().SetWorldPosition({1090, -650, ObjectZ});
+    ShopDoor->GetTransform().SetWorldPosition({1300, -800, ObjectZ});
     ShopDoor->GetDoorRenderer()->Off();
     ShopDoor->SetLinkLevel("Shop");
 
@@ -40,10 +40,10 @@ void Stage12::SettingStage()
 
     Stage_->GetTransform().SetLocalMove(Offset);
 
-    PlayerRightPos_ = float4{740, -854, PlayerZ};
-    PlayerLeftPos_  = float4{1700, -854, PlayerZ};
+    PlayerRightPos_ = float4{1970, -1025, PlayerZ};
+    PlayerLeftPos_  = float4{600, -1025, PlayerZ};
 
-    IsLeftExit_ = true;
+    IsRightExit_ = true;
 }
 
 void Stage12::Start() { SettingStage(); }
@@ -60,28 +60,28 @@ void Stage12::Update(float _DeltaTime)
     float4 PlayerPos = Penitent_->GetTransform().GetWorldPosition() + float4{0, CameraOffset_};
     float4 CurPos    = float4::LerpLimit(CamPos, PlayerPos, _DeltaTime * 3);
 
-    GetMainCameraActor()->GetTransform().SetWorldPosition({CurPos.x, -600, CameraZPos_});
+    GetMainCameraActor()->GetTransform().SetWorldPosition({CurPos.x, -730, CameraZPos_});
 
-    if (970 > GetMainCameraActor()->GetTransform().GetLocalPosition().x)
+    if (1100 > GetMainCameraActor()->GetTransform().GetLocalPosition().x)
     {
         GetMainCameraActor()->GetTransform().SetWorldPosition(
-            float4{970, GetMainCameraActor()->GetTransform().GetLocalPosition().y, CameraZPos_});
+            float4{1100, GetMainCameraActor()->GetTransform().GetLocalPosition().y, CameraZPos_});
     }
 
-    if (1150 < GetMainCameraActor()->GetTransform().GetLocalPosition().x)
+    if (1450 < GetMainCameraActor()->GetTransform().GetLocalPosition().x)
     {
         GetMainCameraActor()->GetTransform().SetWorldPosition(
-            float4{1150, GetMainCameraActor()->GetTransform().GetLocalPosition().y, CameraZPos_});
+            float4{1450, GetMainCameraActor()->GetTransform().GetLocalPosition().y, CameraZPos_});
     }
 
-    if (730 > Penitent_->GetTransform().GetWorldPosition().x)
+    if (550 > Penitent_->GetTransform().GetWorldPosition().x)
     {
         //¹Ì±¸Çö
     }
 
-    if (1750 < Penitent_->GetTransform().GetWorldPosition().x)
+    if (2000 < Penitent_->GetTransform().GetWorldPosition().x)
     {
-        IsLeftExit_ = true;
+        IsRightExit_ = true;
 
         LoadingActor_->On();
         LoadingActor_->IsEntrance(false);
@@ -95,11 +95,11 @@ void Stage12::Update(float _DeltaTime)
         if (true == Penitent_->GetIsOutDoor())
         {
             Penitent_->SetIsOutDoor(false);
-            Penitent_->GetTransform().SetWorldPosition({1090, PlayerRightPos_.y});
+            Penitent_->GetTransform().SetWorldPosition({1300, PlayerRightPos_.y});
         }
     }
 
-    GameEngineDebug::OutPutString("Cam Pos: " + std::to_string(GetMainCamera()->GetTransform().GetWorldPosition().y));
+    GameEngineDebug::OutPutString("Cam Pos: " + std::to_string(GetMainCamera()->GetTransform().GetWorldPosition().x));
 }
 
 void Stage12::End() {}

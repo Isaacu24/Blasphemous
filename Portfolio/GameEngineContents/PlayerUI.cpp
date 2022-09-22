@@ -226,7 +226,7 @@ void PlayerUI::DamageCheck(float _DeltaTime)
     
     if (PlayerPrevHp_ != PlayerCurHp_) 
     {
-        HPAlpha_ += _DeltaTime;
+        HPAlpha_ += _DeltaTime * 2;
 
         float CurHP = static_cast<float>(PlayerCurHp_);
         float PrevHP = static_cast<float>(PlayerPrevHp_);

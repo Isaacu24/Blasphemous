@@ -61,7 +61,7 @@ void BossUI::DamageCheck(float _DeltaTime)
 
     if (BossPrevHP_ != BossCurHP_)
     {
-        Alpha_ += _DeltaTime;
+        Alpha_ += _DeltaTime * 2;
 
         float CurHP  = static_cast<float>(BossCurHP_);
         float PrevHP = static_cast<float>(BossPrevHP_);
@@ -86,7 +86,7 @@ void BossUI::DamageCheck(float _DeltaTime)
 
     if (BehindBossPrevHP_ != BehindBossCurHP_)
     {
-        BehindAlpha_ += _DeltaTime;
+        BehindAlpha_ += _DeltaTime * 2;
 
         float CurHP  = static_cast<float>(BehindBossCurHP_);
         float PrevHP = static_cast<float>(BehindBossPrevHP_);

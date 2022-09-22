@@ -299,6 +299,10 @@
     <ClInclude Include="Fly.h">
       <Filter>Actor\Object\Static</Filter>
     </ClInclude>
+    <ClInclude Include="ShopObejct.h" />
+    <ClInclude Include="Lantern.h">
+      <Filter>Actor\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -601,6 +605,10 @@
     </ClCompile>
     <ClCompile Include="Fly.cpp">
       <Filter>Actor\Object\Static</Filter>
+    </ClCompile>
+    <ClCompile Include="ShopObejct.cpp" />
+    <ClCompile Include="Lantern.cpp">
+      <Filter>Actor\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
