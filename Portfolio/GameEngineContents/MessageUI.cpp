@@ -56,6 +56,11 @@ void MessageUI::Update(float _DeltaTime)
             ConstTime_ /= Speed_;
         }
 
+        if (true == GameEngineInput::GetInst()->IsDownKey("ScriptSkip"))
+        {
+            ConstTime_ = 0.f;
+        }
+
         if (ConstTime_ <= BreathTime_)
         {
             BreathTime_ = 0.f;
@@ -98,6 +103,8 @@ void MessageUI::Update(float _DeltaTime)
         {
             Off();
             Font_->Off();
+
+            Alpha_ = 1.f;
 
             IsSpeechEnd_ = false;
         }
