@@ -66,10 +66,6 @@ void Stage03::SettingStage()
     PrieDieu_->GetTransform().SetWorldPosition({0, 0, ObjectZ});
     PrieDieu_->GetTransform().SetWorldMove({1800, -1000});
 
-    Lantern* NewLantern = CreateActor<Lantern>();
-    NewLantern->GetTransform().SetWorldPosition({0, 0, ObjectZ});
-    NewLantern->GetTransform().SetWorldMove({2840, -900});
-
     GameEngineTextureRenderer* DoorRenderer = Stage_->CreateComponent<GameEngineTextureRenderer>();
     DoorRenderer->SetTexture("1_3_Door.png");
     DoorRenderer->ScaleToTexture();
@@ -87,10 +83,28 @@ void Stage03::SettingStage()
     AfterParallaxRenderer->ScaleToTexture();
     AfterParallaxRenderer->GetTransform().SetWorldPosition({0, 100, AfterParallax5Z});
     AfterParallaxRenderer->GetTransform().SetWorldScale(AfterParallaxRenderer->GetTransform().GetWorldScale() * 2.f);
-    
+
     {
         Cemetry* NewCemetry = CreateActor<Cemetry>();
         NewCemetry->GetTransform().SetWorldPosition({550, -1150, TileZ});
+    }
+
+    {
+        Lantern* NewLantern = CreateActor<Lantern>();
+        NewLantern->GetTransform().SetWorldPosition({0, 0, ObjectZ});
+        NewLantern->GetTransform().SetWorldMove({2840, -900});
+    }
+
+    {
+        Lantern* NewLantern = CreateActor<Lantern>();
+        NewLantern->GetTransform().SetWorldPosition({0, 0, ObjectZ});
+        NewLantern->GetTransform().SetWorldMove({1035, -900});
+    }
+
+    {
+        Lantern* NewLantern = CreateActor<Lantern>();
+        NewLantern->GetTransform().SetWorldPosition({0, 0, ObjectZ});
+        NewLantern->GetTransform().SetWorldMove({580, -900});
     }
 
     float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;

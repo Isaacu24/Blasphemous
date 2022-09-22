@@ -169,8 +169,6 @@ void Stage21::LevelStartEvent()
         Penitent_ = Penitent::GetMainPlayer();
         Penitent_->GetTransform().SetWorldPosition({1250, -860, PlayerZ});
         Penitent_->SetGround(ColMap_);
-
-        Penitent_->SetLevelOverOn();
     }
 
     if (350 > Penitent_->GetTransform().GetWorldPosition().x)

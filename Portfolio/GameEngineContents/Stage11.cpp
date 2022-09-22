@@ -42,7 +42,7 @@ void Stage11::SettingStage()
     PlayerRightPos_ = float4{1870, -1200, PlayerZ};
     PlayerLeftPos_  = float4{750, -1200, PlayerZ};
 
-    IsRightExit_ = true;
+    IsLeftExit_ = true;
 }
 
 void Stage11::Start() { SettingStage(); }
@@ -142,8 +142,6 @@ void Stage11::LevelStartEvent()
         {
             Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
         }
-
-        // Penitent_->SetLevelOverOn();
     }
 
     if (true == Penitent_->GetIsOutDoor())

@@ -27,11 +27,8 @@ void Lantern::Start()
     {
         MetaRenderer_->CreateMetaAnimation(
             "BreakableLantern01_Explode",
-            {"BreakableLantern01.png", 6, static_cast<unsigned int>(Data.size() - 1), 0.08f, true},
+            {"BreakableLantern01.png", 6, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
             Data);
-
-        MetaRenderer_->AnimationBindEnd("BreakableLantern01_Explode",
-                                        [&](const FrameAnimation_DESC& _Info) { Death(); });
     }
 
     MetaRenderer_->ChangeMetaAnimation("BreakableLantern01");

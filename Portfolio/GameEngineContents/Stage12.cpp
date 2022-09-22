@@ -133,8 +133,6 @@ void Stage12::LevelStartEvent()
         {
             Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
         }
-
-        Penitent_->SetLevelOverOn();
     }
 
     IsRightExit_ = false;

@@ -296,7 +296,7 @@ void Penitent::SetAnimation()
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Fall"); });
     }
 
-    {
+{
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_jum_forward_anim");
 
         MetaRenderer_->CreateMetaAnimation(
@@ -1532,7 +1532,7 @@ void Penitent::SetPlayerState()
 
 
 void Penitent::LevelStartEvent()
-{
+{   
     if (false == IsPlayerDeath_)
     {
         if (true == IsOutDoor_)
@@ -1547,6 +1547,8 @@ void Penitent::LevelStartEvent()
     }
 
     CurStage_ = dynamic_cast<StageBase*>(GetLevel());
+
+    PlayerUI_->Inventory_->Off();
 }
 
 void Penitent::LevelEndEvent() {}

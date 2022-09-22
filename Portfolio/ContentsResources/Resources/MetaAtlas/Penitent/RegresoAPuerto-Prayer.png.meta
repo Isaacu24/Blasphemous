@@ -3,6 +3,24 @@ guid: d38267b56c969c44098cf258d4104e02
 TextureImporter:
   internalIDToNameTable:
   - first:
+      213: 21300004
+    second: RegresoAPuerto-Prayer_0
+  - first:
+      213: 21300006
+    second: RegresoAPuerto-Prayer_1
+    - first:
+      213: 21300000
+    second: RegresoAPuerto-Prayer_2
+  - first:
+      213: 21300002
+    second: RegresoAPuerto-Prayer_3
+  - first:
+      213: 21300004
+    second: RegresoAPuerto-Prayer_4
+  - first:
+      213: 21300006
+    second: RegresoAPuerto-Prayer_5
+  - first:
       213: 21300000
     second: RegresoAPuerto-Prayer_6
   - first:
@@ -169,6 +187,132 @@ TextureImporter:
   spriteSheet:
     serializedVersion: 2
     sprites:
+        - serializedVersion: 2
+      name: RegresoAPuerto-Prayer_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1080
+        width: 230
+        height: 270
+      alignment: 9
+      pivot: {x: 0.45, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ba66a84f69bbc448a66b52738e08593
+      internalID: 526760901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RegresoAPuerto-Prayer_1
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 1080
+        width: 230
+        height: 270
+      alignment: 9
+      pivot: {x: 0.45, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a6b2616419410145a055ee5f04d9d91
+      internalID: 1892747081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RegresoAPuerto-Prayer_2
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 1080
+        width: 230
+        height: 270
+      alignment: 9
+      pivot: {x: 0.45, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0cec259389fca042956a794ecb6979e
+      internalID: 1558789469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RegresoAPuerto-Prayer_3
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 1080
+        width: 230
+        height: 270
+      alignment: 9
+      pivot: {x: 0.45, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 004635f8f2da0754c9022bc57f1b58f2
+      internalID: 260476864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RegresoAPuerto-Prayer_4
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 1080
+        width: 230
+        height: 270
+      alignment: 9
+      pivot: {x: 0.45, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3e3760f072109f4f8911a335c9cae4a
+      internalID: 1674383831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RegresoAPuerto-Prayer_5
+      rect:
+        serializedVersion: 2
+        x: 1150
+        y: 1080
+        width: 230
+        height: 270
+      alignment: 9
+      pivot: {x: 0.45, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a5f5bdc2756efe40b26d3dc91debd6c
+      internalID: -1738628990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: RegresoAPuerto-Prayer_6
       rect:
@@ -180,43 +324,11 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.45, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -115, y: -135}
-        - {x: -115, y: 135}
-        - {x: 115, y: 135}
-        - {x: 115, y: -135}
-      physicsShape:
-      - - {x: 3, y: -39}
-        - {x: 29, y: -44}
-        - {x: 35, y: -44}
-        - {x: 36, y: -42}
-        - {x: 36, y: -40}
-        - {x: 31, y: -36}
-        - {x: 11, y: -33}
-        - {x: -12, y: -15}
-        - {x: -18, y: -15}
-        - {x: -19, y: -16}
-        - {x: -24, y: -29}
-        - {x: -24, y: -47}
-        - {x: -20, y: -58}
-        - {x: -37, y: -72}
-        - {x: -37, y: -76}
-        - {x: -36, y: -79}
-        - {x: -20, y: -73}
-        - {x: -20, y: -93}
-        - {x: -12, y: -97}
-        - {x: -10, y: -97}
-        - {x: -9, y: -94}
-        - {x: -9, y: -92}
-        - {x: -9, y: -95}
-        - {x: -7, y: -97}
-        - {x: 0, y: -97}
-        - {x: 2, y: -95}
-        - {x: 2, y: -94}
-        - {x: 5, y: -63}
+      outline: []
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02305410000000000800000000000000
+      spriteID: cc4c37e837330a74c85772fdd43e3894
       internalID: 21300000
       vertices: []
       indices: 
@@ -4617,7 +4729,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d05e93563944e2c4f80310ca61c07ddb
     internalID: 0
     vertices: []
     indices: 
@@ -4627,15 +4739,19 @@ TextureImporter:
     nameFileIdTable:
       RegresoAPuerto-Prayer_17: 21300022
       RegresoAPuerto-Prayer_18: 21300024
+      RegresoAPuerto-Prayer_4: 1558789469
       RegresoAPuerto-Prayer_22: 21300032
       RegresoAPuerto-Prayer_10: 21300008
+      RegresoAPuerto-Prayer_0: 526760901
       RegresoAPuerto-Prayer_21: 21300030
       RegresoAPuerto-Prayer_13: 21300014
+      RegresoAPuerto-Prayer_2: 1558789469
       RegresoAPuerto-Prayer_33: 21300054
       RegresoAPuerto-Prayer_16: 21300020
       RegresoAPuerto-Prayer_8: 21300004
       RegresoAPuerto-Prayer_6: 21300000
       RegresoAPuerto-Prayer_27: 21300042
+      RegresoAPuerto-Prayer_3: 260476864
       RegresoAPuerto-Prayer_26: 21300040
       RegresoAPuerto-Prayer_14: 21300016
       RegresoAPuerto-Prayer_34: 21300056
@@ -4647,14 +4763,17 @@ TextureImporter:
       RegresoAPuerto-Prayer_25: 21300038
       RegresoAPuerto-Prayer_23: 21300034
       RegresoAPuerto-Prayer_35: 21300058
+      RegresoAPuerto-Prayer_5: -1738628990
       RegresoAPuerto-Prayer_12: 21300012
       RegresoAPuerto-Prayer_11: 21300010
       RegresoAPuerto-Prayer_15: 21300018
       RegresoAPuerto-Prayer_19: 21300026
       RegresoAPuerto-Prayer_31: 21300050
       RegresoAPuerto-Prayer_32: 21300052
+      RegresoAPuerto-Prayer_36: 762621949
       RegresoAPuerto-Prayer_9: 21300006
       RegresoAPuerto-Prayer_7: 21300002
+      RegresoAPuerto-Prayer_1: 1892747081
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

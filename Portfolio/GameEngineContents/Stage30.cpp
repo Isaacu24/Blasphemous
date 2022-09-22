@@ -139,8 +139,6 @@ void Stage30::LevelStartEvent()
         Penitent_ = Penitent::GetMainPlayer();
         Penitent_->GetTransform().SetWorldPosition({150, -963, PlayerZ});
         Penitent_->SetGround(ColMap_);
-
-        Penitent_->SetLevelOverOn();
     }
 
     IsRightExit_ = false;

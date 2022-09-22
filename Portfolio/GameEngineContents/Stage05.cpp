@@ -176,16 +176,14 @@ void Stage05::LevelStartEvent()
             Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
         }
 
-        Penitent_->SetLevelOverOn();
-
         if (true == Penitent_->GetIsOutDoor())
         {
             IronDoor_->GetDoorRenderer()->ChangeFrameAnimation("brotherhood_door_anim_Open");
         }
-
-        IsRightExit_ = false;
-        IsLeftExit_  = false;
     }
+
+    IsRightExit_ = false;
+    IsLeftExit_  = false;
 }
 
 void Stage05::LevelEndEvent() { StageBase::LevelEndEvent(); }

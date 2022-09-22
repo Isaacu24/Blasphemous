@@ -80,6 +80,8 @@ void WingedFace::Start()
 
     SetSpeed(150.f);
 
+    SetTear(100);
+
     PatrolStart_ = true;
     PatrolEnd_   = false;
 }
@@ -185,6 +187,8 @@ void WingedFace::DeathStart(const StateInfo& _Info)
     MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
 
     DetectCollider_->Off();
+
+    Penitent::GetMainPlayer()->PlusTear(GetTear());
 }
 
 void WingedFace::DeathUpdate(float _DeltaTime, const StateInfo& _Info)

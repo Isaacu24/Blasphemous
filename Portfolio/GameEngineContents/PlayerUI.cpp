@@ -166,6 +166,14 @@ void PlayerUI::SetTear(int _Value)
 {
     std::vector<int> Numbers;
 
+    for (size_t i = 0; i < TearRenderers_.size(); i++)
+    {
+        if (nullptr != TearRenderers_[i])
+        {
+            TearRenderers_[i]->Off();
+        }
+    }
+
     while (true)
     {
         int Temp = _Value % 10;
@@ -200,6 +208,7 @@ void PlayerUI::SetTear(int _Value)
             }
         }
 
+        TearRenderers_[i]->On();
         TearRenderers_[i]->SetTexture(std::to_string(Numbers[i]) + ".png");
         TearRenderers_[i]->ScaleToTexture();
         TearRenderers_[i]->GetTransform().SetWorldPosition(

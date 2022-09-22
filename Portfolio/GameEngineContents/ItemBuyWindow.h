@@ -5,6 +5,13 @@ class Merchant;
 class ItemBuyWindow : public GameEngineActor
 {
 public:
+    enum class WindowMode
+    {
+        Buy,
+        Show
+    };
+
+public:
     ItemBuyWindow();
     ~ItemBuyWindow();
 
@@ -22,7 +29,12 @@ protected:
     void Update(float _DeltaTime) override;
     void End() override;
 
+    void OnEvent() override;
+    void OffEvent() override;
+
 private:
+    WindowMode Mode_;
+
     Merchant* Merchant_;
 
     GameEngineUIRenderer* PointRenderer_;
@@ -44,7 +56,15 @@ private:
     GameEngineFontRenderer* ItemName_;
     GameEngineFontRenderer* ItemDecs_;
 
+    GameEngineFontRenderer* AcquiredFont_;
+    GameEngineFontRenderer* AcquiredItemName_;
+
+    GameEngineUIRenderer* AcquiredIcon_;
+    GameEngineUIRenderer* AcquiredFrame_;
+
     ItemInfo Info_;
 
     bool IsBuy_;
+
+    float AlphaTime_;
 };

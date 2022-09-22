@@ -32,14 +32,14 @@ public:
     inline void SetHP(int _Value)
     {
         PrevHp_ = HP_;
-        HP_ = _Value;
+        HP_     = _Value;
 
         if (0 > HP_)
         {
             HP_ = 0;
         }
     }
-    
+
     inline void SetDamege(int _Damage)
     {
         PrevHp_ = HP_;
@@ -74,7 +74,22 @@ public:
         PlayerUI_->SetTear(Tear_);
     }
 
-    inline void PlusTear(int _Value) { Tear_ += _Value; }
+    inline int GetTear()
+    {
+        return Tear_;
+    }
+
+    inline void PlusTear(int _Value) 
+    {
+        Tear_ += _Value; 
+        PlayerUI_->SetTear(Tear_);
+    }
+
+    inline void MinusTear(int _Value) 
+    { 
+        Tear_ -= _Value; 
+        PlayerUI_->SetTear(Tear_);
+    }
 
     inline void SetGround(GameEngineTextureRenderer* _Ground) { ColMap_ = _Ground; }
 

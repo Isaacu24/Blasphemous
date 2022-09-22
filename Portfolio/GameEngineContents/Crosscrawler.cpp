@@ -217,8 +217,9 @@ void Crosscrawler::Start()
     State_.ChangeState("Patrol");
 
     SetSpeed(50.f);
-    SetTear(20);
     SetCrossroad(150.f);
+
+    SetTear(20);
 
     PatrolStart_ = true;
     PatrolEnd_   = false;
@@ -514,6 +515,7 @@ void Crosscrawler::ExecutionStart(const StateInfo& _Info)
 {
     Penitent::GetMainPlayer()->SetExecutionType(EXECUTIONTYPE::Crosscrawler);
     Penitent::GetMainPlayer()->ChangeState("Execution");
+    Penitent::GetMainPlayer()->PlusTear(GetTear());
 
     DetectCollider_->Death();
     BodyCollider_->Death();
@@ -532,13 +534,14 @@ void Crosscrawler::DeathStart(const StateInfo& _Info)
     MetaRenderer_->ChangeMetaAnimation("crosscrawler_death");
     MetaRenderer_->GetColorData().PlusColor = float4::ZERO;
 
-    Penitent::GetMainPlayer()->SetTear(GetTear());
-    
     DetectCollider_->Death();
     BodyCollider_->Death();
     AttackCollider_->Death();
+
+    Penitent::GetMainPlayer()->PlusTear(GetTear());
 }
 
 void Crosscrawler::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Crosscrawler::DeathEnd(const StateInfo& _Info) {}
+void Crosscrawler::DeathEnd(const StateInfo& _Info) 
+{  }

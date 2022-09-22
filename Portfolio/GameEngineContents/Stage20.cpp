@@ -66,11 +66,7 @@ void Stage20::SettingStage()
     MessageUI_->SetFontColor(float4{0.63f, 0.6f, 0.55f});
     MessageUI_->Off();
 
-    MessageUI_->SetMassageStartEvent(0,
-                                     [&]()
-                                     {
-                                         Penitent_->SetIsFreezeEnd(false);
-                                     });
+    MessageUI_->SetMassageStartEvent(0, [&]() { Penitent_->SetIsFreezeEnd(false); });
 
     MessageUI_->SetMassageStartEvent(3,
                                      [&]()
@@ -163,6 +159,7 @@ void Stage20::Update(float _DeltaTime)
                     if ("ReturnToPort" == Penitent_->GetPenitentState())
                     {
                         UIActor_->Off();
+                        CurrentFlow_ = STAGEFLOW::BOSSDEAD;
                         return;
                     }
 
@@ -215,22 +212,10 @@ void Stage20::LevelStartEvent()
         {
             Penitent_->GetTransform().SetWorldPosition(PlayerReturnPos_);
         }
-
-        Penitent_->SetLevelOverOn();
     }
 
     IsRightExit_ = false;
     IsLeftExit_  = false;
-
-    GetMainCameraActor()->GetTransform().SetWorldPosition(float4{
-        Penitent_->GetTransform().GetLocalPosition() + float4{0, CameraOffset_}
-    });
-
-    if (STAGEFLOW::BOSSCOMBAT == CurrentFlow_)
-    {
-        ReturnKey_->Off();
-        CurrentFlow_ = STAGEFLOW::BOSSDEAD;
-    }
 }
 
 void Stage20::LevelEndEvent() { StageBase::LevelEndEvent(); }

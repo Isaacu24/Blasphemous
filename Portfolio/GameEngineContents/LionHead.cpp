@@ -139,8 +139,8 @@ void LionHead::Start()
     State_.ChangeState("Idle");
 
     SetSpeed(50.f);
-    SetTear(300);
     SetCrossroad(300.f);
+    SetTear(300);
 
     PatrolStart_ = true;
     PatrolEnd_   = false;
@@ -282,10 +282,17 @@ void LionHead::AttackStart(const StateInfo& _Info)
 {
     BodyCollider_->GetTransform().SetWorldScale({30.0f, 150.0f, 1.0f});
     BodyCollider_->GetTransform().SetWorldMove({0, -50.f});
-    MetaRenderer_->ChangeMetaAnimation("Lionhead_attack_anim");
+
+    MetaRenderer_->ChangeMetaAnimation("Lionhead_idle_anim");
 }
 
-void LionHead::AttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
+void LionHead::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    if (1.f < _Info.StateTime)
+    {
+        MetaRenderer_->ChangeMetaAnimation("Lionhead_attack_anim");
+    }
+}
 
 void LionHead::AttackEnd(const StateInfo& _Info)
 {
@@ -298,6 +305,8 @@ void LionHead::DeathStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("Lionhead_death_anim");
     MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
+
+    Penitent::GetMainPlayer()->PlusTear(GetTear());
 }
 
 void LionHead::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}

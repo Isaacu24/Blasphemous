@@ -107,6 +107,8 @@ void Fool_knife::Start()
 
     SetSpeed(70.f);
 
+    SetTear(5);
+
     PatrolStart_ = true;
 }
 
@@ -126,7 +128,7 @@ void Fool_knife::End() {}
 
 void Fool_knife::DamageCheck()
 {
-    if ("Death" != State_.GetCurStateStateName() || "Hurt" != State_.GetCurStateStateName())
+    if ("Death" != State_.GetCurStateStateName() && "Hurt" != State_.GetCurStateStateName())
     {
         if (false
             == BodyCollider_->IsCollision(
@@ -233,7 +235,6 @@ void Fool_knife::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
         {
             State_.ChangeState("Track");
         }
-
     }
 
     else if (true == IsPlayerRight_)
@@ -386,8 +387,10 @@ void Fool_knife::DeathStart(const StateInfo& _Info)
 
     Renderer_->ChangeFrameAnimation("Fool_death_knife");
     Renderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
+
+    Penitent::GetMainPlayer()->PlusTear(GetTear());
 }
 
 void Fool_knife::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Fool_knife::DeathEnd(const StateInfo& _Info) {}
+void Fool_knife::DeathEnd(const StateInfo& _Info) {  }
