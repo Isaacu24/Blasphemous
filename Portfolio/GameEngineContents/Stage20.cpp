@@ -124,6 +124,13 @@ void Stage20::Update(float _DeltaTime)
 
             else
             {
+                MassageTime_ += _DeltaTime;
+
+                if (1.5f > MassageTime_)
+                {
+                    return;
+                }
+
                 if (false == MessageUI_->IsUpdate())
                 {
                     MessageUI_->On();

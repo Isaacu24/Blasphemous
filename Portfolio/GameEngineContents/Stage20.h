@@ -37,4 +37,6 @@ private:
 
     void PlayerCameraMove(float _DeltaTime);
 
+    float MassageTime_;
+
 };

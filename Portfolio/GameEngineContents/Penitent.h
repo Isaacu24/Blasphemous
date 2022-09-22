@@ -74,20 +74,17 @@ public:
         PlayerUI_->SetTear(Tear_);
     }
 
-    inline int GetTear()
-    {
-        return Tear_;
-    }
+    inline int GetTear() { return Tear_; }
 
-    inline void PlusTear(int _Value) 
+    inline void PlusTear(int _Value)
     {
-        Tear_ += _Value; 
+        Tear_ += _Value;
         PlayerUI_->SetTear(Tear_);
     }
 
-    inline void MinusTear(int _Value) 
-    { 
-        Tear_ -= _Value; 
+    inline void MinusTear(int _Value)
+    {
+        Tear_ -= _Value;
         PlayerUI_->SetTear(Tear_);
     }
 
@@ -129,6 +126,8 @@ public:
 
     inline PlayerUI* GetPlayerUI() { return PlayerUI_; }
 
+    void SetIsRising(bool _Value) { IsRising_ = _Value; }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
@@ -136,6 +135,10 @@ protected:
 
     void SetAnimation();
     void SetPlayerState();
+
+    void RisingStart(const StateInfo& _Info);
+    void RisingUpdate(float _DeltaTime, const StateInfo& _Info);
+    void RisingEnd(const StateInfo& _Info);
 
     void GroundCheck();
     void LadderCheck();
@@ -367,4 +370,6 @@ private:
     bool IsFreezeEnd_;
 
     bool IsOutDoor_;
+
+    bool IsRising_;
 };

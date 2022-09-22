@@ -65,6 +65,8 @@ void Stage01::SettingStage()
 
     PlayerRightPos_ = float4{3600, -1730, PlayerZ};
     PlayerLeftPos_  = float4{1230, -940, PlayerZ};
+
+    IsLeftExit_ = true;
 }
 
 void Stage01::Start()
@@ -114,6 +116,13 @@ void Stage01::Update(float _DeltaTime)
         LoadingActor_->IsEntrance(false);
         LoadingActor_->Exit("Stage02");
     }
+
+    if (true == GetLoadingEnd() && true == IsPlayerCreate_)
+    {
+        IsPlayerCreate_ = false;
+        Penitent_->SetIsRising(true);
+        SetLoadingEnd(false);
+    }
 }
 
 void Stage01::End() {}
@@ -130,6 +139,7 @@ void Stage01::LevelStartEvent()
         Penitent_->SetGround(ColMap_);
 
         Penitent_->SetLevelOverOn();
+        IsPlayerCreate_ = true;
     }
 
     else if (nullptr != Penitent::GetMainPlayer())

@@ -327,7 +327,7 @@ void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
         GetTransform().PixLocalNegativeX();
         RealXDir_ = -1;
 
-        if (false == LeftObstacleCheck())   
+        if (false == LeftObstacleCheck())
         {
             Dir_ += -(GetTransform().GetLeftVector() * 3.f);
         }
@@ -1194,8 +1194,7 @@ void Penitent::DoorExitStart(const StateInfo& _Info)
 
 void Penitent::DoorExitUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Penitent::DoorExitEnd(const StateInfo& _Info) 
-{ BodyCollider_->On(); }
+void Penitent::DoorExitEnd(const StateInfo& _Info) { BodyCollider_->On(); }
 
 
 void Penitent::DeathStart(const StateInfo& _Info)
@@ -1217,8 +1216,26 @@ void Penitent::DeathStart(const StateInfo& _Info)
     MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
 }
 
-void Penitent::DeathUpdate(float _DeltaTime, const StateInfo& _Info) 
-{ 
-}
+void Penitent::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Penitent::DeathEnd(const StateInfo& _Info) { SetHP(100.f); }
+
+
+void Penitent::RisingStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("penitent_risingFromFallen_anim");
+    MetaRenderer_->SetCurAnimationPause(true);
+}
+
+void Penitent::RisingUpdate(float _DeltaTime, const StateInfo& _Info) 
+{
+    if (true == IsRising_)
+    {
+        IsRising_ = false;
+        MetaRenderer_->SetCurAnimationPause(false);
+    }
+
+    Gravity_->SetActive(!IsGround_); 
+}
+
+void Penitent::RisingEnd(const StateInfo& _Info) {}

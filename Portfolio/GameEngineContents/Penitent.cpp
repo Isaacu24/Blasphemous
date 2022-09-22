@@ -9,6 +9,7 @@
 #include "AttackEffect.h"
 #include "StageBase.h"
 #include "BloodProjectile.h"
+#include "Stage01.h"
 
 Penitent* Penitent::MainPlayer_ = nullptr;
 
@@ -296,7 +297,7 @@ void Penitent::SetAnimation()
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Fall"); });
     }
 
-{
+    {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_jum_forward_anim");
 
         MetaRenderer_->CreateMetaAnimation(
@@ -544,6 +545,19 @@ void Penitent::SetAnimation()
         MetaRenderer_->AnimationBindEnd("penitent_sheathedIdle_Start",
                                         [&](const FrameAnimation_DESC& _Info)
                                         { MetaRenderer_->ChangeMetaAnimation("penitent_sheathedIdle_Loop"); });
+    }
+
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_risingFromFallen_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_risingFromFallen_anim",
+            {"penitent_risingFromFallen_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_risingFromFallen_anim",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
     {
@@ -1527,12 +1541,16 @@ void Penitent::SetPlayerState()
                              std::bind(&Penitent::RespawnStart, this, std::placeholders::_1),
                              std::bind(&Penitent::RespawnEnd, this, std::placeholders::_1));
 
+    State_.CreateStateMember("Rising",
+                             std::bind(&Penitent::RisingUpdate, this, std::placeholders::_1, std::placeholders::_2),
+                             std::bind(&Penitent::RisingStart, this, std::placeholders::_1),
+                             std::bind(&Penitent::RisingEnd, this, std::placeholders::_1));
+
     State_.ChangeState("Idle");
 }
 
-
 void Penitent::LevelStartEvent()
-{   
+{
     if (false == IsPlayerDeath_)
     {
         if (true == IsOutDoor_)
@@ -1547,6 +1565,17 @@ void Penitent::LevelStartEvent()
     }
 
     CurStage_ = dynamic_cast<StageBase*>(GetLevel());
+
+    if (nullptr != CurStage_
+        && "STAGE01" == CurStage_->GetNameConstRef())
+    {
+        Stage01* Stage = dynamic_cast<Stage01*>(CurStage_);
+
+        if (true == Stage->GetIsPlayerCreate())
+        {
+            ChangeState("Rising");
+        }
+    }
 
     PlayerUI_->Inventory_->Off();
 }

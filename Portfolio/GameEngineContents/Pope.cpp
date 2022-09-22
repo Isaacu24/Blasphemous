@@ -130,6 +130,29 @@ void Pope::Start()
     MetaFXSRenderer_->SetPivot(PIVOTMODE::METABOT);
     MetaFXSRenderer_->Off();
 
+
+    DustEffectRenderer_ = CreateComponent<MetaTextureRenderer>();
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_parrysuccess_dust_effect_anim");
+
+        DustEffectRenderer_->CreateMetaAnimation(
+            "penitent_parrysuccess_dust_effect_anim",
+            {"penitent_parrysuccess_dust_effect_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false},
+            Data);
+
+        DustEffectRenderer_->AnimationBindEnd("penitent_parrysuccess_dust_effect_anim",
+                                              [&](const FrameAnimation_DESC& _Info)
+                                              {
+                                                  DustEffectRenderer_->CurAnimationReset();
+                                                  DustEffectRenderer_->Off();
+                                              });
+    }
+
+    DustEffectRenderer_->ChangeMetaAnimation("penitent_parrysuccess_dust_effect_anim");
+    DustEffectRenderer_->SetPivot(PIVOTMODE::METABOT);
+    DustEffectRenderer_->Off();
+
     // MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 1.0f};
 
     Symbol_ = GetLevel()->CreateActor<SymbolEffect>();
@@ -379,6 +402,9 @@ void Pope::SpellCastStart(const StateInfo& _Info)
 
     MetaFXSRenderer_->On();
     MetaRenderer_->ChangeMetaAnimation("pope_spellCast");
+
+    DustEffectRenderer_->On();
+    DustEffectRenderer_->ChangeMetaAnimation("penitent_parrysuccess_dust_effect_anim");
 
     MetaRenderer_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
 

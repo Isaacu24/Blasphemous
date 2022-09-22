@@ -65,6 +65,7 @@ private:
 
     SPELLTYPE SpellType_;
 
+    class MetaTextureRenderer* DustEffectRenderer_;
     class MetaTextureRenderer* MetaFXSRenderer_;
     class SymbolEffect*        Symbol_;
 
