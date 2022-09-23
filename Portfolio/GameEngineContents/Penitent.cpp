@@ -188,10 +188,10 @@ void Penitent::Start()
     //     {GetTransform().GetWorldPosition().x + 20, (GetTransform().GetWorldPosition().y + 30)});
     // DebugColliders_[1]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
 
-    // DebugColliders_[2]->On();
-    // DebugColliders_[2]->GetTransform().SetWorldPosition(
-    //     {GetTransform().GetWorldPosition().x - 20, GetTransform().GetWorldPosition().y + 30});
-    // DebugColliders_[2]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
+     DebugColliders_[2]->On();
+     DebugColliders_[2]->GetTransform().SetWorldPosition(
+         {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y - 15.f});
+     DebugColliders_[2]->SetDebugSetting(CollisionType::CT_AABB, float4{0.0f, 1.0f, 1.f, 0.5f});
 
     PlayerUI_ = GetLevel()->CreateActor<PlayerUI>();
     PlayerUI_->SetLevelOverOn();

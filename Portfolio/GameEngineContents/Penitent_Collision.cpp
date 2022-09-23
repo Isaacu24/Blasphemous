@@ -46,6 +46,7 @@ void Penitent::GroundCheck()
 
     else
     {
+        std::string Name = State_.GetCurStateStateName();
         IsGround_ = false;
     }
 
@@ -496,7 +497,7 @@ bool Penitent::Dangle(GameEngineCollision* _This, GameEngineCollision* _Other)
 bool Penitent::FallCollisionCheck()
 {
     float4 Color = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x,
-                                                              -(GetTransform().GetWorldPosition().y - 15));
+                                                              -(GetTransform().GetWorldPosition().y - 15.f));
 
     if (true == Color.CompareInt4D(float4::BLACK) || true == Color.CompareInt4D(float4::MAGENTA))
     {

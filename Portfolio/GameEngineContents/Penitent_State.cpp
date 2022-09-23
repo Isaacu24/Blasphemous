@@ -639,6 +639,7 @@ void Penitent::CrouchEnd(const StateInfo& _Info)
     BodyCollider_->GetTransform().SetWorldMove({0, 50});
 }
 
+
 void Penitent::SlideStart(const StateInfo& _Info)
 {
     SlideForce_ = 500.f;
@@ -651,11 +652,13 @@ void Penitent::SlideStart(const StateInfo& _Info)
 
     if (1 == RealXDir_)
     {
+        Dir_ = GetTransform().GetRightVector();
         MoveEffect_->GetTransform().PixLocalPositiveX();
     }
 
     else if (-1 == RealXDir_)
     {
+        Dir_ = GetTransform().GetLeftVector();
         MoveEffect_->GetTransform().PixLocalNegativeX();
     }
 
