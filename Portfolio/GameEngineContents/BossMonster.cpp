@@ -7,6 +7,14 @@ BossMonster::BossMonster()
 
 BossMonster::~BossMonster() {}
 
+void BossMonster::Start() 
+{
+    HitEffect_ = GetLevel()->CreateActor<MonsterHitEffect>();
+    
+    BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
+    BloodEffect_->GetRenderer()->Off();
+}
+
 void BossMonster::Update(float _DeltaTime)
 {
     if (true == BossDeathEvent_)
@@ -73,11 +81,14 @@ void BossMonster::DamageCheck(float _Damage)
     {
         IsHit_ = true;
 
-        BloodEffect_->GetTransform().SetWorldPosition({BodyCollider_->GetTransform().GetWorldPosition().x,
-                                                       BodyCollider_->GetTransform().GetWorldPosition().y,
-                                                       PlayerEffectZ});
+        float4 HitPos = BodyCollider_->GetTransform().GetWorldPosition();
+
         BloodEffect_->GetRenderer()->On();
-        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
+        BloodEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
+        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
+
+        HitEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
+        HitEffect_->ShowHitEffet();
 
         MinusHP(_Damage);
     }
@@ -85,6 +96,45 @@ void BossMonster::DamageCheck(float _Damage)
     if (0 >= GetHP())
     {
         State_.ChangeState("Death");
+    }
+}
+
+
+void BossMonster::DamageCheck(float _Damage, const std::string& _State)
+{
+    if (false
+        == BodyCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+    {
+        IsHit_ = false;
+    }
+
+    if (true == IsHit_)
+    {
+        return;
+    }
+
+    if (true
+        == BodyCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+    {
+        IsHit_ = true;
+
+        float4 HitPos = BodyCollider_->GetTransform().GetWorldPosition();
+
+        BloodEffect_->GetRenderer()->On();
+        BloodEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
+        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
+
+        HitEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
+        HitEffect_->ShowHitEffet();
+
+        MinusHP(_Damage);
+    }
+
+    if (0 >= GetHP())
+    {
+        State_.ChangeState(_State);
     }
 }
 

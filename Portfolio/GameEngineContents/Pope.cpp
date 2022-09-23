@@ -16,6 +16,8 @@ Pope::~Pope() {}
 
 void Pope::Start()
 {
+    BossMonster::Start();
+
     GetTransform().SetWorldScale({2.f, 2.f, 1.f});
 
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
@@ -241,9 +243,6 @@ void Pope::CreateSpawner()
     MagicMissileSpawner_ = GetLevel()->CreateActor<MagicMissileSpawner>();
     MagicMissileSpawner_->GetTransform().SetWorldPosition({0, 0, BossMonsterEffectZ});
     MagicMissileSpawner_->Off();
-
-    BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
-    BloodEffect_->GetRenderer()->Off();
 }
 
 
@@ -282,11 +281,14 @@ void Pope::DamageCheck()
     {
         IsHit_ = true;
 
-        BloodEffect_->GetTransform().SetWorldPosition({BodyCollider_->GetTransform().GetWorldPosition().x,
-                                                       BodyCollider_->GetTransform().GetWorldPosition().y,
-                                                       PlayerEffectZ});
+        float4 HitPos = BodyCollider_->GetTransform().GetWorldPosition();
+
         BloodEffect_->GetRenderer()->On();
-        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
+        BloodEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
+        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
+
+        HitEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
+        HitEffect_->ShowHitEffet();
 
         MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
 

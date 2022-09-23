@@ -153,8 +153,6 @@ protected:
 
     void CollisionCheck();
 
-    bool HitEffectCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
-
     //추락 시 거리 체크: 짧은 높이는 추락 상태가 되지 않음
     bool FallCollisionCheck();
 
@@ -278,6 +276,14 @@ protected:
     void DoorExitUpdate(float _DeltaTime, const StateInfo& _Info);
     void DoorExitEnd(const StateInfo& _Info);
 
+    void ChargeAttackStart(const StateInfo& _Info);
+    void ChargeAttackUpdate(float _DeltaTime, const StateInfo& _Info);
+    void ChargeAttackEnd(const StateInfo& _Info);
+
+    void CollectSoulStart(const StateInfo& _Info);
+    void CollectSoulUpdate(float _DeltaTime, const StateInfo& _Info);
+    void CollectSoulEnd(const StateInfo& _Info);
+
     //피격 함수
     bool KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other);
     bool KnockUp(GameEngineCollision* _This, GameEngineCollision* _Other);
@@ -336,7 +342,6 @@ private:
     int Tear_;
 
     int AttackStack_;
-    int HitStack_;  //피격 이펙트 분기
 
     bool IsHit_;      //유효타
     bool IsBossHit_;  //유효타
@@ -372,4 +377,5 @@ private:
     bool IsOutDoor_;
 
     bool IsRising_;
+    bool IsCharging_;
 };

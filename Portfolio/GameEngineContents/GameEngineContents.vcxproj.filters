@@ -119,9 +119,6 @@
     <ClInclude Include="Door.h">
       <Filter>Actor\Object</Filter>
     </ClInclude>
-    <ClInclude Include="PrieDieu.h">
-      <Filter>Actor\Object</Filter>
-    </ClInclude>
     <ClInclude Include="WingedFace.h">
       <Filter>Actor\NormalMonster</Filter>
     </ClInclude>
@@ -299,9 +296,17 @@
     <ClInclude Include="Fly.h">
       <Filter>Actor\Object\Static</Filter>
     </ClInclude>
-    <ClInclude Include="ShopObejct.h" />
     <ClInclude Include="Lantern.h">
       <Filter>Actor\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="PrieDieu.h">
+      <Filter>Actor\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ShopObejct.h">
+      <Filter>Actor\Object\Static</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterHitEffect.h">
+      <Filter>Actor\Effect\Monster</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -606,9 +611,14 @@
     <ClCompile Include="Fly.cpp">
       <Filter>Actor\Object\Static</Filter>
     </ClCompile>
-    <ClCompile Include="ShopObejct.cpp" />
     <ClCompile Include="Lantern.cpp">
       <Filter>Actor\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ShopObejct.cpp">
+      <Filter>Actor\Object\Static</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterHitEffect.cpp">
+      <Filter>Actor\Effect\Monster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

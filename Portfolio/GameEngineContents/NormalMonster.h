@@ -1,5 +1,6 @@
 #pragma once
 #include "MonsterBase.h"
+#include "MonsterHitEffect.h"
 #include <GameEngineCore/GameEngineActor.h>
 
 class Penitent;

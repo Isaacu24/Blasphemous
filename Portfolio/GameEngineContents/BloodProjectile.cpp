@@ -15,7 +15,7 @@ void BloodProjectile::Start()
     
     Collider_ = CreateComponent<GameEngineCollision>();
     Collider_->GetTransform().SetWorldScale({100.f, 50.f, 1.f});
-    Collider_->ChangeOrder(COLLISIONORDER::PlayerAttack);
+    Collider_->ChangeOrder(COLLISIONORDER::PlayerRangeAttack);
     Collider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.0f, 0.0f, 1.0f, 0.5f});
 
     {

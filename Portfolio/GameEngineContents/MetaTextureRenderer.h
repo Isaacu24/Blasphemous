@@ -23,9 +23,9 @@ public:
 
     inline void SetCurData(const std::vector<MetaData>& _MetaData) { CurData_ = _MetaData; }
 
-    void CreateMetaAnimation(const std::string&           _AnimationName,
-                             const FrameAnimation_DESC&   _Desc,
-                             std::vector<MetaData>& _MetaDatas);
+    void CreateMetaAnimation(const std::string&         _AnimationName,
+                             const FrameAnimation_DESC& _Desc,
+                             std::vector<MetaData>&     _MetaDatas);
 
     void ChangeMetaAnimation(const std::string& _AnimationName);
 

@@ -13,6 +13,8 @@ WingedFace::~WingedFace() {}
 
 void WingedFace::Start()
 {
+    NormalMonster::Start();
+
     GetTransform().SetWorldScale({2, 2, 1});
 
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
@@ -63,9 +65,6 @@ void WingedFace::Start()
     BodyCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.3f, 0.0f, 1.0f, 0.5f});
     BodyCollider_->GetTransform().SetWorldScale({30.0f, 30.0f, 1.0f});
     
-    BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
-    BloodEffect_->GetRenderer()->Off();
-
     State_.CreateStateMember("Patrol",
                              std::bind(&WingedFace::PatrolUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&WingedFace::PatrolStart, this, std::placeholders::_1));

@@ -7,6 +7,8 @@ Fool_knife::~Fool_knife() {}
 
 void Fool_knife::Start()
 {
+    NormalMonster::Start();
+
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
     Renderer_->CreateFrameAnimationCutTexture("fool_idle_knife", {"fool_idle_knife.png", 0, 11, 0.1f, true});
 
@@ -69,9 +71,6 @@ void Fool_knife::Start()
     AttackCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{1.0f, 0.0f, 0.0f, 0.5f});
     AttackCollider_->GetTransform().SetWorldScale({30.f, 20.0f, 1.0f});
     AttackCollider_->GetTransform().SetWorldMove({40, 130});
-
-    BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
-    BloodEffect_->GetRenderer()->Off();
 
     State_.CreateStateMember("Idle",
                              std::bind(&Fool_knife::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2),
@@ -153,12 +152,34 @@ void Fool_knife::DamageCheck()
             IsHit_ = true;
             State_.ChangeState("Hurt");
 
+            float4 HitPos = BodyCollider_->GetTransform().GetWorldPosition();
+
             BloodEffect_->GetRenderer()->On();
-            BloodEffect_->GetTransform().SetWorldPosition(
-                {BodyCollider_->GetTransform().GetWorldPosition().x + (-(Dir_.x) * 10.f),
-                 BodyCollider_->GetTransform().GetWorldPosition().y,
-                 PlayerEffectZ});
+            BloodEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
             BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
+
+            HitEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
+            HitEffect_->ShowHitEffet();
+        }
+
+        else if (true
+                 == BodyCollider_->IsCollision(
+                     CollisionType::CT_OBB2D, COLLISIONORDER::PlayerRangeAttack, CollisionType::CT_OBB2D, nullptr))
+        {
+            IsHit_ = true;
+
+            Renderer_->GetColorData().MulColor = float4{1.0f, 1.0f, 1.0f, 1.0f};
+
+            float4 HitPos = BodyCollider_->GetTransform().GetWorldPosition();
+
+            BloodEffect_->GetRenderer()->On();
+            BloodEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
+            BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
+
+            HitEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
+            HitEffect_->ShowRangeHitEffect();
+
+            MinusHP(7.f);
         }
 
         if (0 >= GetHP())
@@ -393,4 +414,4 @@ void Fool_knife::DeathStart(const StateInfo& _Info)
 
 void Fool_knife::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Fool_knife::DeathEnd(const StateInfo& _Info) {  }
+void Fool_knife::DeathEnd(const StateInfo& _Info) {}

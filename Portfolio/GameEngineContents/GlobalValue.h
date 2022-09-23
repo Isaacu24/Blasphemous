@@ -67,6 +67,7 @@ enum class COLLISIONORDER
     Player,
     PlayerFoot,
     PlayerAttack,
+    PlayerRangeAttack,
     PlayerSkill,
     PlayerSkill1,
     PlayerSkill2,

@@ -10,6 +10,7 @@ Crosscrawler::~Crosscrawler() {}
 void Crosscrawler::Start()
 {
     NormalMonster::Start();
+
     GetTransform().SetWorldScale({2, 2, 1});
 
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
@@ -162,9 +163,6 @@ void Crosscrawler::Start()
     AttackCollider_->GetTransform().SetWorldScale({150.0f, 150.0f, 1.0f});
     AttackCollider_->GetTransform().SetWorldMove({50, 50.f});
     AttackCollider_->Off();
-
-    BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
-    BloodEffect_->GetRenderer()->Off();
 
     State_.CreateStateMember("Idle",
                              std::bind(&Crosscrawler::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2),

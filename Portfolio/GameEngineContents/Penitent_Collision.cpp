@@ -278,9 +278,7 @@ bool Penitent::ObjectCheck(GameEngineCollision* _This, GameEngineCollision* _Oth
                         Guilt->DestroyGuilt();
 
                         AttackEffect_->Renderer_->On();
-                        AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_pickUpGuiltFx");
-                        AttackEffect_->GetTransform().SetWorldPosition(
-                            {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, PlayerEffectZ});
+                        ChangeState("CollectSoul");
                     }
                 }
                 break;
@@ -300,7 +298,8 @@ void Penitent::CollisionCheck()
 {
     if ("KnockBack" == State_.GetCurStateStateName() || "KnockUp" == State_.GetCurStateStateName()
         || "Death" == State_.GetCurStateStateName() || true == IsParrySuccess_
-        || "ParryingAttack" == State_.GetCurStateStateName())
+        || "ParryingAttack" == State_.GetCurStateStateName()
+        || "CollectSoul" == State_.GetCurStateStateName())
     {
         return;
     }
@@ -348,23 +347,6 @@ void Penitent::CollisionCheck()
                                CollisionType::CT_OBB2D,
                                std::bind(&Penitent::Dangle, this, std::placeholders::_1, std::placeholders::_2));
 
-    bool IsMonsterHit = AttackCollider_->IsCollision(
-        CollisionType::CT_OBB2D,
-        COLLISIONORDER::Monster,
-        CollisionType::CT_OBB2D,
-        std::bind(&Penitent::HitEffectCheck, this, std::placeholders::_1, std::placeholders::_2));
-
-    bool IsMonsterBodyHit = AttackCollider_->IsCollision(
-        CollisionType::CT_OBB2D,
-        COLLISIONORDER::MonsterBody,
-        CollisionType::CT_OBB2D,
-        std::bind(&Penitent::HitEffectCheck, this, std::placeholders::_1, std::placeholders::_2));
-
-    if (true == IsMonsterHit || true == IsMonsterBodyHit)
-    {
-        IsHit_ = true;
-    }
-
     if (false
             == AttackCollider_->IsCollision(
                 CollisionType::CT_OBB2D, COLLISIONORDER::Monster, CollisionType::CT_OBB2D, nullptr)
@@ -373,23 +355,6 @@ void Penitent::CollisionCheck()
                    CollisionType::CT_OBB2D, COLLISIONORDER::MonsterBody, CollisionType::CT_OBB2D, nullptr))
     {
         IsHit_ = false;
-    }
-
-    bool IsBossMonsterHit = AttackCollider_->IsCollision(
-        CollisionType::CT_OBB2D,
-        COLLISIONORDER::BossMonster,
-        CollisionType::CT_OBB2D,
-        std::bind(&Penitent::HitEffectCheck, this, std::placeholders::_1, std::placeholders::_2));
-
-    bool IsBossMonsterBodyHit = AttackCollider_->IsCollision(
-        CollisionType::CT_OBB2D,
-        COLLISIONORDER::BossMonsterBody,
-        CollisionType::CT_OBB2D,
-        std::bind(&Penitent::HitEffectCheck, this, std::placeholders::_1, std::placeholders::_2));
-
-    if (true == IsBossMonsterHit || true == IsBossMonsterBodyHit)
-    {
-        IsBossHit_ = true;
     }
 
     if (false
@@ -508,46 +473,26 @@ bool Penitent::FallCollisionCheck()
 }
 
 
-bool Penitent::HitEffectCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
-{
-    float4 MonsterPos = _Other->GetTransform().GetWorldPosition();
-
-    HitEffect_->GetTransform().SetWorldPosition(
-        {MonsterPos.x, MonsterPos.y, HitEffect_->GetTransform().GetWorldPosition().z});
-
-    if (0 < RealXDir_)  //坷弗率
-    {
-        HitEffect_->GetTransform().PixLocalNegativeX();
-
-        CurStage_->SetShake(true);
-    }
-
-    else if (0 > RealXDir_)  //哭率
-    {
-        HitEffect_->GetTransform().PixLocalPositiveX();
-
-        CurStage_->SetShake(true);
-    }
-
-    switch (HitStack_)
-    {
-        case 0:
-            HitEffect_->Renderer_->ChangeMetaAnimation("penitent_attack_spark_1_revision_anim");
-            break;
-
-        case 1:
-            HitEffect_->Renderer_->ChangeMetaAnimation("penitent_attack_spark_2_revision_anim");
-            break;
-
-        case 2:
-            HitEffect_->Renderer_->ChangeMetaAnimation("penitent_attack_spark_3_revision_anim");
-            break;
-
-        default:
-            HitEffect_->Renderer_->ChangeMetaAnimation("penitent_attack_spark_1_anim");
-            HitStack_ = 0;
-            break;
-    }
-
-    return true;
-}
+//bool Penitent::HitEffectCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
+//{
+//    float4 MonsterPos = _Other->GetTransform().GetWorldPosition();
+//
+//    HitEffect_->GetTransform().SetWorldPosition(
+//        {MonsterPos.x, MonsterPos.y, HitEffect_->GetTransform().GetWorldPosition().z});
+//
+//    if (0 < RealXDir_)  //坷弗率
+//    {
+//        HitEffect_->GetTransform().PixLocalNegativeX();
+//
+//        CurStage_->SetShake(true);
+//    }
+//
+//    else if (0 > RealXDir_)  //哭率
+//    {
+//        HitEffect_->GetTransform().PixLocalPositiveX();
+//
+//        CurStage_->SetShake(true);
+//    }
+//
+//    return true;
+//}

@@ -23,5 +23,7 @@ protected:
 
 private:
     MetaTextureRenderer* Renderer_;
+
+	bool IsGettingSoul_;
 };
 

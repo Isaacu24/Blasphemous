@@ -183,6 +183,7 @@ void AttackEffect::Start()
                                     {
                                         Renderer_->CurAnimationReset();
                                         Renderer_->Off();
+                                        IsGettingSoul_ = false;
                                     });
     }
 

@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include "MonsterHitEffect.h"
 #include "MonsterBase.h"
 #include "BossUI.h"
 
@@ -35,6 +36,8 @@ protected:
     GameEngineTextureRenderer* Backgorund_;
 
     void DamageCheck(float _Damage) override;
+
+    void DamageCheck(float _Damage, const std::string& _State) override;
 
     // void DamageCheck(float _Damage, std::function<void>()) override;
 

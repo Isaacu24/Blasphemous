@@ -10,6 +10,8 @@ LionHead::~LionHead() {}
 
 void LionHead::Start()
 {
+    NormalMonster::Start();
+
     GetTransform().SetWorldScale({2, 2, 1});
 
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
@@ -112,9 +114,6 @@ void LionHead::Start()
     AttackCollider_->GetTransform().SetWorldScale({250.0f, 100.0f, 1.0f});
     AttackCollider_->GetTransform().SetWorldMove({150.f, 0.f});
     AttackCollider_->Off();
-
-    BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
-    BloodEffect_->GetRenderer()->Off();
 
     State_.CreateStateMember("Idle",
                              std::bind(&LionHead::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2),

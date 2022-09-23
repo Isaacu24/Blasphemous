@@ -9,6 +9,8 @@ GiantSword::~GiantSword() {}
 
 void GiantSword::Start()
 {
+    BossMonster::Start();
+
     EyeRenderer_ = CreateComponent<GameEngineTextureRenderer>();
     EyeRenderer_->SetTexture("pontiff_giantSword_eyeGlobeSprite.png");
     EyeRenderer_->GetTransform().SetLocalScale({125, 400});
@@ -74,10 +76,6 @@ void GiantSword::Start()
     AttackCollider_->GetTransform().SetWorldScale({50.f, 200.f, 1.0f});
     AttackCollider_->GetTransform().SetWorldMove({0, -250});
     AttackCollider_->Off();
-
-    BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
-    BloodEffect_->GetRenderer()->Off();
-
 
     State_.CreateStateMember(
         "TeleportIN",
@@ -294,7 +292,7 @@ void GiantSword::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
                                                        PlayerEffectZ});
     }
 
-    MonsterBase::DamageCheck(50.f, "TeleportIN");
+    BossMonster::DamageCheck(50.f, "TeleportIN");
 
     TrackToPlayer(_Info.StateTime);
 

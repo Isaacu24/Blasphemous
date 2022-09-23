@@ -53,6 +53,8 @@ protected:
 
     void DamageCheck() override;
 
+    bool RangeAttackCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
+
 private:
     float IdleTime_;
 

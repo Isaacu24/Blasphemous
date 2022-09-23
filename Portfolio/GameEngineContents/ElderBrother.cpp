@@ -19,6 +19,8 @@ ElderBrother::~ElderBrother() {}
 
 void ElderBrother::Start()
 {
+    BossMonster::Start();
+
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
     Renderer_->CreateFrameAnimationCutTexture("elderBrother_idle", {"elderBrother_idle.png", 0, 9, 0.1f, true});
 
@@ -228,9 +230,7 @@ void ElderBrother::Start()
     BossUI_->SetBossName("Ä§¹¬ÇÏ´Â ºñÅºÀÇ ÆÄ¼ö²Û");
     BossUI_->AllOff();
 
-    BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
     BloodEffect_->SetScale(200, 200);
-    BloodEffect_->GetRenderer()->Off();
 
     LandEffect_ = GetLevel()->CreateActor<HardLandingEffect>();
     LandEffect_->GetTransform().SetWorldScale({2.5f, 2.5f, 1});
@@ -284,15 +284,37 @@ void ElderBrother::DamageCheck()
         IsHit_ = true;
 
         Renderer_->GetColorData().MulColor = float4{1.5f, 1.5f, 1.5f, 1.0f};
+        
+        float4 HitPos = BodyCollider_->GetTransform().GetWorldPosition();
 
         BloodEffect_->GetRenderer()->On();
-        BloodEffect_->GetTransform().SetWorldPosition(
-            {BodyCollider_->GetTransform().GetWorldPosition().x + (-(Dir_.x) * 75.f),
-             BodyCollider_->GetTransform().GetWorldPosition().y,
-             PlayerEffectZ});
-        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
+        BloodEffect_->GetTransform().SetWorldPosition({HitPos.x + (-(Dir_.x) * 75.f), HitPos.y, BossMonsterEffectZ});
+        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
+
+        HitEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
+        HitEffect_->ShowHitEffet();
 
         MinusHP(5.f);
+    }
+
+    else if (true
+             == BodyCollider_->IsCollision(
+                 CollisionType::CT_OBB2D, COLLISIONORDER::PlayerRangeAttack, CollisionType::CT_OBB2D, nullptr))
+    {
+        IsHit_ = true;
+
+        Renderer_->GetColorData().MulColor = float4{1.5f, 1.5f, 1.5f, 1.0f};
+
+        float4 HitPos = BodyCollider_->GetTransform().GetWorldPosition();
+
+        BloodEffect_->GetRenderer()->On();
+        BloodEffect_->GetTransform().SetWorldPosition({HitPos.x + (-(Dir_.x) * 75.f), HitPos.y, BossMonsterEffectZ});
+        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
+
+        HitEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
+        HitEffect_->ShowRangeHitEffect();
+
+        MinusHP(7.f);
     }
 
     if (0 >= GetHP())

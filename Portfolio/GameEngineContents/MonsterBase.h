@@ -4,6 +4,7 @@
 
 //몬스터의 기본적인 클래스
 class MetaTextureRenderer;
+class MonsterHitEffect;
 class GameEngineTextureRenderer;
 class MonsterBase
 {
@@ -66,6 +67,7 @@ protected:
     GameEngineStateManager State_;
 
     BloodSplatters* BloodEffect_;
+    MonsterHitEffect* HitEffect_;
 
     MetaTextureRenderer*       MetaRenderer_;
     GameEngineTextureRenderer* Renderer_;

@@ -19,6 +19,8 @@ Pontiff::~Pontiff() {}
 
 void Pontiff::Start()
 {
+    BossMonster::Start();
+
     Helmet_ = CreateComponent<GameEngineTextureRenderer>();
     Body_   = CreateComponent<GameEngineTextureRenderer>();
     Face_   = CreateComponent<GameEngineTextureRenderer>();
@@ -125,9 +127,6 @@ void Pontiff::Start()
     BodyCollider_->GetTransform().SetWorldMove({-30, 70});
     BodyCollider_->Off();
 
-    BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
-    BloodEffect_->GetRenderer()->Off();
-
     Symbol_[0] = GetLevel()->CreateActor<SymbolEffect>();
     Symbol_[0]->GetTransform().SetWorldScale({2, 2, 1});
     Symbol_[0]->GetTransform().SetWorldPosition({860, -600, BossMonsterEffectZ});
@@ -188,11 +187,14 @@ void Pontiff::DamageCheck()
     {
         IsHit_ = true;
 
+        float4 HitPos = BodyCollider_->GetTransform().GetWorldPosition();
+
         BloodEffect_->GetRenderer()->On();
-        BloodEffect_->GetTransform().SetWorldPosition({BodyCollider_->GetTransform().GetWorldPosition().x,
-                                                       BodyCollider_->GetTransform().GetWorldPosition().y,
-                                                       PlayerEffectZ});
-        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
+        BloodEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
+        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
+
+        HitEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
+        HitEffect_->ShowHitEffet();
 
         MinusHP(50.f);
         Face_->GetColorData().MulColor = float4{1.5f, 1.5f, 1.5f, 1.0f};

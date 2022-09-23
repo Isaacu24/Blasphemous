@@ -123,6 +123,7 @@ void Penitent::Start()
         GameEngineInput::GetInst()->CreateKey("PenitentTelport", 'B');
         GameEngineInput::GetInst()->CreateKey("PenitentPary", 'P');
         GameEngineInput::GetInst()->CreateKey("PenitentL", 'L');
+        GameEngineInput::GetInst()->CreateKey("PenitentChrage", 'Q');
         GameEngineInput::GetInst()->CreateKey("FreeCamera", 'O');
 
         GameEngineInput::GetInst()->CreateKey("PenitentAnimation", '1');
@@ -188,10 +189,10 @@ void Penitent::Start()
     //     {GetTransform().GetWorldPosition().x + 20, (GetTransform().GetWorldPosition().y + 30)});
     // DebugColliders_[1]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
 
-     DebugColliders_[2]->On();
-     DebugColliders_[2]->GetTransform().SetWorldPosition(
-         {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y - 15.f});
-     DebugColliders_[2]->SetDebugSetting(CollisionType::CT_AABB, float4{0.0f, 1.0f, 1.f, 0.5f});
+    DebugColliders_[2]->On();
+    DebugColliders_[2]->GetTransform().SetWorldPosition(
+        {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y - 15.f});
+    DebugColliders_[2]->SetDebugSetting(CollisionType::CT_AABB, float4{0.0f, 1.0f, 1.f, 0.5f});
 
     PlayerUI_ = GetLevel()->CreateActor<PlayerUI>();
     PlayerUI_->SetLevelOverOn();
@@ -337,7 +338,6 @@ void Penitent::SetAnimation()
                                               {
                                                   case 2:
                                                       AttackCollider_->On();
-                                                      HitStack_ = 0;
                                                       break;
                                                   case 3:
                                                       if (true == IsHit_ || true == IsBossHit_)
@@ -351,7 +351,6 @@ void Penitent::SetAnimation()
                                                       break;
                                                   case 7:
                                                       AttackCollider_->On();
-                                                      HitStack_ = 1;
                                                       break;
                                                   case 8:
                                                       if (true == IsHit_ || true == IsBossHit_)
@@ -387,7 +386,6 @@ void Penitent::SetAnimation()
                 {
                     case 1:
                         AttackCollider_->On();
-                        HitStack_ = 0;
                         break;
 
                     case 2:
@@ -684,8 +682,42 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_charged_attack_v2_anim",
-            {"penitent_charged_attack_v2_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
+            {"penitent_charged_attack_v2_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
             Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_charged_attack_v2_anim",
+                                        [&](const FrameAnimation_DESC& _Info)
+                                        {
+                                            ChangeState("Idle");
+                                            IsCharging_ = false;
+                                        });
+
+
+        MetaRenderer_->AnimationBindFrame(
+            "penitent_charged_attack_v2_anim",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                if (32 >= _Info.CurFrame)
+                {
+                    IsCharging_ = true;
+                    return;
+                }
+
+                if (37 == _Info.CurFrame)
+                {
+                    AttackCollider_->GetTransform().SetLocalPosition({0, 0, 0});
+                    AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 100.f, 75.f});
+                    AttackCollider_->On();
+                }
+
+                if (40 == _Info.CurFrame)
+                {
+                    AttackCollider_->GetTransform().SetLocalPosition({0, 0, 0});
+                    AttackCollider_->Off();
+                }
+
+                IsCharging_ = false;
+            });
     }
 
     {
@@ -710,7 +742,6 @@ void Penitent::SetAnimation()
                                               {
                                                   case 5:
                                                       AttackCollider_->On();
-                                                      HitStack_ = 2;
                                                       break;
 
                                                   case 18:
@@ -805,7 +836,6 @@ void Penitent::SetAnimation()
                     case 5:
                         {
                             AttackCollider_->On();
-                            HitStack_ = 0;
 
                             AttackEffect_->Renderer_->On();
                             AttackEffect_->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
@@ -854,7 +884,6 @@ void Penitent::SetAnimation()
                 {
                     case 4:
                         AttackCollider_->On();
-                        HitStack_ = 0;
 
                         AttackEffect_->Renderer_->On();
                         AttackEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
@@ -864,7 +893,6 @@ void Penitent::SetAnimation()
                     case 5:
                         if (true == IsHit_ || true == IsBossHit_)
                         {
-                            HitEffect_->Renderer_->On();
                             IsHit_ = false;
                         }
                         break;
@@ -895,13 +923,11 @@ void Penitent::SetAnimation()
 
                     case 10:
                         AttackCollider_->On();
-                        HitStack_ = 1;
                         break;
 
                     case 11:
                         if (true == IsHit_ || true == IsBossHit_)
                         {
-                            HitEffect_->Renderer_->On();
                             IsHit_ = false;
                         }
                         break;
@@ -933,13 +959,11 @@ void Penitent::SetAnimation()
                     case 19:
                         AttackCollider_->On();
                         AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 100.f, 0.f});
-                        HitStack_ = 2;
                         break;
 
                     case 20:
                         if (true == IsHit_ || true == IsBossHit_)
                         {
-                            HitEffect_->Renderer_->On();
                             IsHit_ = false;
                         }
                         break;
@@ -1488,6 +1512,12 @@ void Penitent::SetPlayerState()
         std::bind(&Penitent::JumpRangeAttackStart, this, std::placeholders::_1),
         std::bind(&Penitent::JumpRangeAttackEnd, this, std::placeholders::_1));
 
+    State_.CreateStateMember(
+        "ChargeAttack",
+        std::bind(&Penitent::ChargeAttackUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&Penitent::ChargeAttackStart, this, std::placeholders::_1),
+        std::bind(&Penitent::ChargeAttackEnd, this, std::placeholders::_1));
+
     State_.CreateStateMember("Execution",
                              std::bind(&Penitent::ExecutionUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&Penitent::ExecutionStart, this, std::placeholders::_1),
@@ -1546,6 +1576,12 @@ void Penitent::SetPlayerState()
                              std::bind(&Penitent::RisingStart, this, std::placeholders::_1),
                              std::bind(&Penitent::RisingEnd, this, std::placeholders::_1));
 
+    State_.CreateStateMember(
+        "CollectSoul",
+        std::bind(&Penitent::CollectSoulUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&Penitent::CollectSoulStart, this, std::placeholders::_1),
+        std::bind(&Penitent::CollectSoulEnd, this, std::placeholders::_1));
+
     State_.ChangeState("Idle");
 }
 
@@ -1566,8 +1602,7 @@ void Penitent::LevelStartEvent()
 
     CurStage_ = dynamic_cast<StageBase*>(GetLevel());
 
-    if (nullptr != CurStage_
-        && "STAGE01" == CurStage_->GetNameConstRef())
+    if (nullptr != CurStage_ && "STAGE01" == CurStage_->GetNameConstRef())
     {
         Stage01* Stage = dynamic_cast<Stage01*>(CurStage_);
 

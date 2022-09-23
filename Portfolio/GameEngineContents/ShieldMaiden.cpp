@@ -162,9 +162,6 @@ void ShieldMaiden::Start()
     AttackCollider_->GetTransform().SetWorldMove({80, 50.f});
     AttackCollider_->Off();
 
-    BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
-    BloodEffect_->GetRenderer()->Off();
-
     BlockEffect_ = GetLevel()->CreateActor<BlockEffect>();
     BlockEffect_->GetTransform().SetWorldScale({2, 2, 1});
     BlockEffect_->Renderer_->Off();
@@ -268,8 +265,8 @@ void ShieldMaiden::DamageCheck()
         if (true == IsPlayerLeft_ && Dir_.CompareInt4D(float4::LEFT))
         {
             if (true
-                == BodyCollider_->IsCollision(
-                    CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+                    == BodyCollider_->IsCollision(
+                        CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
             {
                 float4 EffectPos = GetTransform().GetWorldPosition();
                 BlockEffect_->GetTransform().SetWorldPosition(
@@ -312,12 +309,60 @@ void ShieldMaiden::DamageCheck()
              PlayerEffectZ});
         BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
 
+        float4 HitPos = BodyCollider_->GetTransform().GetWorldPosition();
+        HitEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
+        HitEffect_->ShowHitEffet();
+
         MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
+    }
+
+    else if (true
+             == BodyCollider_->IsCollision(
+                 CollisionType::CT_OBB2D, COLLISIONORDER::PlayerRangeAttack, CollisionType::CT_OBB2D, nullptr))
+    {
+        IsHit_ = true;
+
+        if (nullptr != Renderer_)
+        {
+            Renderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
+        }
+
+        if (nullptr != MetaRenderer_)
+        {
+            MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
+        }
+
+        float4 HitPos = BodyCollider_->GetTransform().GetWorldPosition();
+
+        BloodEffect_->GetRenderer()->On();
+        BloodEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
+        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
+
+        HitEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
+        HitEffect_->ShowRangeHitEffect();
+
+        MinusHP(7.f);
     }
 
     if (0 >= GetHP())
     {
         State_.ChangeState("Death");
+    }
+}
+
+bool ShieldMaiden::RangeAttackCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
+{
+    float4 Dir = _This->GetTransform().GetWorldPosition() - _Other->GetTransform().GetWorldPosition();
+    Dir.Normalize();
+
+    if (0.f < Dir.x)
+    {
+        return true;
+    }
+
+    else
+    {
+        return false;
     }
 }
 
