@@ -561,6 +561,9 @@ void Penitent::LandingStart(const StateInfo& _Info)
 {
     if ("VerticalAttack" == _Info.PrevState)
     {
+        AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
+        AttackCollider_->On();
+
         MetaRenderer_->ChangeMetaAnimation("penitent_verticalattack_landing");
 
         float4 PlayerPos = GetTransform().GetWorldPosition();
@@ -575,6 +578,12 @@ void Penitent::LandingStart(const StateInfo& _Info)
 
     if (0.9f <= FallTime_)
     {
+        //카메라 쉐이킹
+        BodyCollider_->Off();
+
+        AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
+        AttackCollider_->On();
+
         MetaRenderer_->ChangeMetaAnimation("penitent_hardlanding_rocks_anim");
     }
 
@@ -607,7 +616,10 @@ void Penitent::LandingStart(const StateInfo& _Info)
 
 void Penitent::LandingUpdate(float _DeltaTime, const StateInfo& _Info) { Gravity_->SetActive(!IsGround_); }
 
-void Penitent::LandingEnd(const StateInfo& _Info) { FallTime_ = 0.f; }
+void Penitent::LandingEnd(const StateInfo& _Info) 
+{
+    FallTime_ = 0.f; 
+}
 
 
 void Penitent::CrouchStart(const StateInfo& _Info)
@@ -649,10 +661,6 @@ void Penitent::SlideStart(const StateInfo& _Info)
 {
     SlideForce_ = 500.f;
     MetaRenderer_->ChangeMetaAnimation("penitent_dodge_anim");
-
-    BodyCollider_->GetTransform().SetWorldScale({ColScale_.y, ColScale_.x});
-    BodyCollider_->GetTransform().SetWorldMove({0, -50});
-
     MoveEffect_->Renderer_->On();
 
     if (1 == RealXDir_)
@@ -704,11 +712,7 @@ void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 }
 
-void Penitent::SlideEnd(const StateInfo& _Info)
-{
-    BodyCollider_->GetTransform().SetWorldScale(ColScale_);
-    BodyCollider_->GetTransform().SetWorldMove({0, 50});
-}
+void Penitent::SlideEnd(const StateInfo& _Info) { }
 
 void Penitent::DangleStart(const StateInfo& _Info)
 {
@@ -874,8 +878,7 @@ void Penitent::SlideAttackStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_dodge_attack_LVL3");
     AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
-    AttackCollider_->ChangeOrder(COLLISIONORDER::PlayerSkill);
-    BodyCollider_->Off();
+    //AttackCollider_->ChangeOrder(COLLISIONORDER::PlayerSkill);
 
     SlideAttackSpectrum_->SetIsMetaDraw(true);
 }
@@ -887,6 +890,19 @@ void Penitent::SlideAttackUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
+    //내리막길
+    if (false == IsGround_)
+    {
+        if (false == FallCollisionCheck())
+        {
+            MoveEffect_->Renderer_->Off();
+
+            JumpForce_ = 10.f;
+            State_.ChangeState("Fall");
+            return;
+        }
+    }
+
     GetTransform().SetWorldMove({RealXDir_ * 350.f * _DeltaTime, 0.f});
     Gravity_->SetActive(!IsGround_);
 }
@@ -895,8 +911,7 @@ void Penitent::SlideAttackEnd(const StateInfo& _Info)
 {
     AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
     AttackCollider_->Off();
-    AttackCollider_->ChangeOrder(COLLISIONORDER::PlayerAttack);
-    BodyCollider_->On();
+    //AttackCollider_->ChangeOrder(COLLISIONORDER::PlayerAttack);
 }
 
 
@@ -907,10 +922,6 @@ void Penitent::VerticalAttackStart(const StateInfo& _Info)
 
     ReadySkill_ = false;
     Gravity_->SetActive(false);
-
-    AttackCollider_->On();
-    AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
-    BodyCollider_->Off();
 }
 
 void Penitent::VerticalAttackUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -934,12 +945,14 @@ void Penitent::VerticalAttackUpdate(float _DeltaTime, const StateInfo& _Info)
     Gravity_->SetActive(!IsGround_);
 }
 
-void Penitent::VerticalAttackEnd(const StateInfo& _Info) { AttackCollider_->Off(); }
+void Penitent::VerticalAttackEnd(const StateInfo& _Info) 
+{
+     
+}
 
 
 void Penitent::PrayAttackStart(const StateInfo& _Info)
 {
-    BodyCollider_->Off();
     MetaRenderer_->ChangeMetaAnimation("penitent_aura_anim");
 }
 
@@ -947,8 +960,6 @@ void Penitent::PrayAttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Penitent::PrayAttackEnd(const StateInfo& _Info)
 {
-    BodyCollider_->On();
-
     //보스 킬 이벤트
     if (MetaRenderer_->GetColorData().MulColor.CompareInt4D(float4::ZERO))
     {
@@ -983,8 +994,6 @@ void Penitent::JumpRangeAttackEnd(const StateInfo& _Info) { FallTime_ = 0.f; }
 
 void Penitent::ExecutionStart(const StateInfo& _Info)
 {
-    BodyCollider_->Off();
-
     switch (ExecutionType_)
     {
         case EXECUTIONTYPE::None:
@@ -1034,8 +1043,6 @@ void Penitent::ExecutionEnd(const StateInfo& _Info)
         default:
             break;
     }
-
-    BodyCollider_->On();
 }
 
 
@@ -1131,8 +1138,6 @@ void Penitent::RespawnStart(const StateInfo& _Info)
         AttackEffect_->Renderer_->On();
         AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_respawning_anim_querubs");
     }
-
-    BodyCollider_->Off();
 }
 
 void Penitent::RespawnUpdate(float _DeltaTime, const StateInfo& _Info)

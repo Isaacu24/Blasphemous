@@ -262,8 +262,8 @@ void Penitent::Update(float _DeltaTime)
         GameEngineTime::GetInst()->SetTimeScale(GetOrder(), 1.0f);
     }
 
-    //GameEngineDebug::OutPutString("Player Pos: " + std::to_string(GetTransform().GetWorldPosition().x));
-    //GameEngineDebug::OutPutString("Player PosY: " + std::to_string(GetTransform().GetWorldPosition().y));
+    // GameEngineDebug::OutPutString("Player Pos: " + std::to_string(GetTransform().GetWorldPosition().x));
+    // GameEngineDebug::OutPutString("Player PosY: " + std::to_string(GetTransform().GetWorldPosition().y));
 
     // GameEngineDebug::OutPutString("Player HP: " + std::to_string(GetHP()));
 
@@ -427,8 +427,21 @@ void Penitent::SetAnimation()
             {"penitent_hardlanding_rocks_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
             Data);
 
+        MetaRenderer_->AnimationBindFrame("penitent_hardlanding_rocks_anim",
+                                          [&](const FrameAnimation_DESC& _Info)
+                                          {
+                                              if (3 == _Info.CurFrame)
+                                              {
+                                                  AttackCollider_->Off();
+                                              }
+                                          });
+
         MetaRenderer_->AnimationBindEnd("penitent_hardlanding_rocks_anim",
-                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
+                                        [&](const FrameAnimation_DESC& _Info)
+                                        {
+                                            BodyCollider_->On();
+                                            ChangeState("Idle");
+                                        });
     }
 
     {
@@ -797,10 +810,18 @@ void Penitent::SetAnimation()
             {"penitent_verticalattack_landing.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
             Data);
 
+        MetaRenderer_->AnimationBindFrame("penitent_verticalattack_landing",
+                                          [&](const FrameAnimation_DESC& _Info)
+                                          {
+                                              if (3 == _Info.CurFrame)
+                                              {
+                                                  AttackCollider_->Off();
+                                              }
+                                          });
+
         MetaRenderer_->AnimationBindEnd("penitent_verticalattack_landing",
                                         [&](const FrameAnimation_DESC& _Info)
                                         {
-                                            BodyCollider_->On();
                                             ChangeState("Idle");
                                         });
     }
@@ -813,7 +834,7 @@ void Penitent::SetAnimation()
                                            {"penitent_verticalattack_landing_effects_anim.png",
                                             0,
                                             static_cast<unsigned int>(Data.size() - 1),
-                                            0.1f,
+                                            0.07f,
                                             false},
                                            Data);
     }
@@ -1123,13 +1144,13 @@ void Penitent::SetAnimation()
             "penitent_parry_counter_v2_anim",
             [&](const FrameAnimation_DESC& _Info)
             {
-                if (13 == _Info.CurFrame)
+                if (10 == _Info.CurFrame)
                 {
                     AttackCollider_->On();
                     AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 75.f, 50.f});
                 }
 
-                else if (15 == _Info.CurFrame)
+                else if (12 == _Info.CurFrame)
                 {
                     AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
                     AttackCollider_->Off();

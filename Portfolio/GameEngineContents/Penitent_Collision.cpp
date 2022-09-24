@@ -47,7 +47,7 @@ void Penitent::GroundCheck()
     else
     {
         std::string Name = State_.GetCurStateStateName();
-        IsGround_ = false;
+        IsGround_        = false;
     }
 
     if (true
@@ -296,10 +296,15 @@ bool Penitent::ObjectCheck(GameEngineCollision* _This, GameEngineCollision* _Oth
 
 void Penitent::CollisionCheck()
 {
+    //데스존 체크는 어떤 상태는 상관없이 무조건 실행
+    DeadZoneCheck();
+
+    //몬스터와의 상호작용을 위해 콜라이더를 끄기보단 충돌을 무시하는 편이 좋음
     if ("KnockBack" == State_.GetCurStateStateName() || "KnockUp" == State_.GetCurStateStateName()
         || "Death" == State_.GetCurStateStateName() || true == IsParrySuccess_
-        || "ParryingAttack" == State_.GetCurStateStateName()
-        || "CollectSoul" == State_.GetCurStateStateName())
+        || "ParryingAttack" == State_.GetCurStateStateName() || "Execution" == State_.GetCurStateStateName()
+        || "Slide" == State_.GetCurStateStateName() || "SlideAttack" == State_.GetCurStateStateName()
+        || "VerticalAttack" == State_.GetCurStateStateName() || "Respawn" == State_.GetCurStateStateName())
     {
         return;
     }
@@ -371,8 +376,6 @@ void Penitent::CollisionCheck()
                                COLLISIONORDER::Object,
                                CollisionType::CT_OBB2D,
                                std::bind(&Penitent::ObjectCheck, this, std::placeholders::_1, std::placeholders::_2));
-
-    DeadZoneCheck();
 }
 
 //피격 함수
@@ -473,26 +476,26 @@ bool Penitent::FallCollisionCheck()
 }
 
 
-//bool Penitent::HitEffectCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
+// bool Penitent::HitEffectCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
 //{
-//    float4 MonsterPos = _Other->GetTransform().GetWorldPosition();
+//     float4 MonsterPos = _Other->GetTransform().GetWorldPosition();
 //
-//    HitEffect_->GetTransform().SetWorldPosition(
-//        {MonsterPos.x, MonsterPos.y, HitEffect_->GetTransform().GetWorldPosition().z});
+//     HitEffect_->GetTransform().SetWorldPosition(
+//         {MonsterPos.x, MonsterPos.y, HitEffect_->GetTransform().GetWorldPosition().z});
 //
-//    if (0 < RealXDir_)  //오른쪽
-//    {
-//        HitEffect_->GetTransform().PixLocalNegativeX();
+//     if (0 < RealXDir_)  //오른쪽
+//     {
+//         HitEffect_->GetTransform().PixLocalNegativeX();
 //
-//        CurStage_->SetShake(true);
-//    }
+//         CurStage_->SetShake(true);
+//     }
 //
-//    else if (0 > RealXDir_)  //왼쪽
-//    {
-//        HitEffect_->GetTransform().PixLocalPositiveX();
+//     else if (0 > RealXDir_)  //왼쪽
+//     {
+//         HitEffect_->GetTransform().PixLocalPositiveX();
 //
-//        CurStage_->SetShake(true);
-//    }
+//         CurStage_->SetShake(true);
+//     }
 //
-//    return true;
-//}
+//     return true;
+// }

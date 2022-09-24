@@ -95,11 +95,11 @@ void Stage10::SettingMonster()
     CrosscrawlerClone->SetGround(ColMap_);
     MonsterList_.push_back(CrosscrawlerClone);
 
-    //ShieldMaiden* Maiden = CreateActor<ShieldMaiden>();
-    //Maiden->GetTransform().SetWorldPosition({1300, -682, MonsterZ});
-    //Maiden->SetGround(ColMap_);
-    //Maiden->SetSpeed(60.f);
-    //MonsterList_.push_back(Maiden);
+    ShieldMaiden* Maiden = CreateActor<ShieldMaiden>();
+    Maiden->GetTransform().SetWorldPosition({1300, -682, MonsterZ});
+    Maiden->SetGround(ColMap_);
+    Maiden->SetSpeed(60.f);
+    MonsterList_.push_back(Maiden);
 
     ShieldMaiden* Maiden1 = CreateActor<ShieldMaiden>();
     Maiden1->GetTransform().SetWorldPosition({2100, -682, MonsterZ});
