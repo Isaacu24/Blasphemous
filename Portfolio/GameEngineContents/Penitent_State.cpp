@@ -120,15 +120,15 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
     if (true == GameEngineInput::GetInst()->IsPressKey("PenitentRight") || 30000 < ThumbLX)
     {
         GetTransform().PixLocalPositiveX();
-        Dir_ = float4::RIGHT;
+        MoveDir_ = float4::RIGHT;
 
-        RealXDir_ = 1;
+        RealDirX_ = 1;
 
         if (false == RightObstacleCheck())
         {
             RunTime_ += _DeltaTime;
 
-            GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime);
+            GetTransform().SetWorldMove(MoveDir_ * Speed_ * _DeltaTime);
         }
     }
 
@@ -143,7 +143,7 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
             MoveEffect_->Renderer_->On();
             MoveEffect_->GetTransform().PixLocalPositiveX();
             MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()
-                                                         + float4{RealXDir_ * 50.f, 0});
+                                                         + float4{RealDirX_ * 50.f, 0});
             MoveEffect_->Renderer_->ChangeMetaAnimation("penitent-stop-running-dust");
         }
 
@@ -158,14 +158,14 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
     if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft") || -30000 > ThumbLX)
     {
         GetTransform().PixLocalNegativeX();
-        Dir_ = float4::LEFT;
+        MoveDir_ = float4::LEFT;
 
-        RealXDir_ = -1;
+        RealDirX_ = -1;
 
         if (false == LeftObstacleCheck())
         {
             RunTime_ += _DeltaTime;
-            GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime);
+            GetTransform().SetWorldMove(MoveDir_ * Speed_ * _DeltaTime);
         }
     }
 
@@ -180,7 +180,7 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
             MoveEffect_->Renderer_->On();
             MoveEffect_->GetTransform().PixLocalNegativeX();
             MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()
-                                                         + float4{RealXDir_ * 50.f, 0});
+                                                         + float4{RealDirX_ * 50.f, 0});
             MoveEffect_->Renderer_->ChangeMetaAnimation("penitent-stop-running-dust");
         }
 
@@ -244,31 +244,31 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     JumpForce_.y -= _DeltaTime * 100.f;
 
-    Dir_ = float4::UP * 10.f;
+    MoveDir_ = float4::UP * 10.f;
 
     if (GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
     {
         GetTransform().PixLocalPositiveX();
-        RealXDir_ = 1;
+        RealDirX_ = 1;
 
         MetaRenderer_->ChangeMetaAnimation("penitent_jum_forward_anim");
 
         if (false == RightObstacleCheck())
         {
-            Dir_ += float4::RIGHT * 3.f;
+            MoveDir_ += float4::RIGHT * 3.f;
         }
     }
 
     if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
     {
         GetTransform().PixLocalNegativeX();
-        RealXDir_ = -1;
+        RealDirX_ = -1;
 
         MetaRenderer_->ChangeMetaAnimation("penitent_jum_forward_anim");
 
         if (false == LeftObstacleCheck())
         {
-            Dir_ += float4::LEFT * 3.f;
+            MoveDir_ += float4::LEFT * 3.f;
         }
     }
 
@@ -292,7 +292,7 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
-    GetTransform().SetWorldMove(Dir_ * JumpForce_ * _DeltaTime);
+    GetTransform().SetWorldMove(MoveDir_ * JumpForce_ * _DeltaTime);
     Gravity_->SetActive(!IsGround_);
 }
 
@@ -314,27 +314,27 @@ void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
     JumpForce_.y -= _DeltaTime * 100.f;
     FallTime_ += _DeltaTime;
 
-    Dir_ = GetTransform().GetUpVector() * 10.f;
+    MoveDir_ = GetTransform().GetUpVector() * 10.f;
 
     if (GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
     {
         GetTransform().PixLocalPositiveX();
-        RealXDir_ = 1;
+        RealDirX_ = 1;
 
         if (false == RightObstacleCheck())
         {
-            Dir_ += -(GetTransform().GetLeftVector() * 3.f);
+            MoveDir_ += -(GetTransform().GetLeftVector() * 3.f);
         }
     }
 
     if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
     {
         GetTransform().PixLocalNegativeX();
-        RealXDir_ = -1;
+        RealDirX_ = -1;
 
         if (false == LeftObstacleCheck())
         {
-            Dir_ += -(GetTransform().GetLeftVector() * 3.f);
+            MoveDir_ += -(GetTransform().GetLeftVector() * 3.f);
         }
     }
 
@@ -357,7 +357,7 @@ void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
-    GetTransform().SetWorldMove(Dir_ * JumpForce_ * _DeltaTime);
+    GetTransform().SetWorldMove(MoveDir_ * JumpForce_ * _DeltaTime);
     Gravity_->SetActive(!IsGround_);
 }
 
@@ -382,16 +382,16 @@ void Penitent::JumpAttackStart(const StateInfo& _Info)
 
     MetaRenderer_->ChangeMetaAnimation("penitent_jumping_attack_noslashes");
 
-    if (0 < RealXDir_)  //坷弗率
+    if (0 < RealDirX_)  //坷弗率
     {
         AttackEffect_->GetTransform().PixLocalPositiveX();
-        AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
+        AttackCollider_->GetTransform().SetWorldMove({RealDirX_ * 80.f, 50.f});
     }
 
-    else if (0 > RealXDir_)  //哭率
+    else if (0 > RealDirX_)  //哭率
     {
         AttackEffect_->GetTransform().PixLocalNegativeX();
-        AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
+        AttackCollider_->GetTransform().SetWorldMove({RealDirX_ * 80.f, 50.f});
     }
 }
 
@@ -402,27 +402,27 @@ void Penitent::JumpAttackUpdate(float _DeltaTime, const StateInfo& _Info)
     AttackEffect_->GetTransform().SetWorldPosition(
         {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, PlayerEffectZ});
 
-    Dir_ = GetTransform().GetUpVector() * 10.f;
+    MoveDir_ = GetTransform().GetUpVector() * 10.f;
 
     if (GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
     {
         GetTransform().PixLocalPositiveX();
-        RealXDir_ = 1;
+        RealDirX_ = 1;
 
         if (false == RightObstacleCheck())
         {
-            Dir_ += -(GetTransform().GetLeftVector() * 3.f);
+            MoveDir_ += -(GetTransform().GetLeftVector() * 3.f);
         }
     }
 
     if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft"))
     {
         GetTransform().PixLocalNegativeX();
-        RealXDir_ = -1;
+        RealDirX_ = -1;
 
         if (false == LeftObstacleCheck())
         {
-            Dir_ += -(GetTransform().GetLeftVector() * 3.f);
+            MoveDir_ += -(GetTransform().GetLeftVector() * 3.f);
         }
     }
 
@@ -440,7 +440,7 @@ void Penitent::JumpAttackUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
-    GetTransform().SetWorldMove(Dir_ * JumpForce_ * _DeltaTime);
+    GetTransform().SetWorldMove(MoveDir_ * JumpForce_ * _DeltaTime);
     Gravity_->SetActive(!IsGround_);
 }
 
@@ -452,6 +452,7 @@ void Penitent::JumpAttackEnd(const StateInfo& _Info)
     AttackEffect_->Renderer_->Off();
 }
 
+
 void Penitent::KnockBackStart(const StateInfo& _Info)
 {
     if ("LadderClimb" == _Info.PrevState)
@@ -460,14 +461,13 @@ void Penitent::KnockBackStart(const StateInfo& _Info)
         return;
     }
 
-    FallTime_ = 0.f;
     MetaRenderer_->ChangeMetaAnimation("Penitent_pushback_grounded");
     MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
 
     HitEffect_->Renderer_->On();
     HitEffect_->Renderer_->ChangeMetaAnimation("pushback_sparks_anim");
 
-    if (0 > KnockBackXDir_)
+    if (0 < RealDirX_)
     {
         HitEffect_->GetTransform().PixLocalPositiveX();
         MoveEffect_->GetTransform().PixLocalPositiveX();
@@ -483,19 +483,21 @@ void Penitent::KnockBackStart(const StateInfo& _Info)
 
     CurStage_->SetForceY(5.f);
     CurStage_->SetShake(true);
+
+    FallTime_ = 0.f;
 }
 
 void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    if (true == RightObstacleCheck() || true == LeftObstacleCheck())
+    if (0.f < MoveDir_.x && true == RightObstacleCheck() || 0.f > MoveDir_.x && true == LeftObstacleCheck())
     {
         return;
     }
 
-    // if (false == IsGround_)
-    //{
-    //     ChangeState("Fall");
-    // }
+    if (false == IsGround_)
+    {
+        ChangeState("Fall");
+    }
 
     if (0.2f <= _Info.StateTime && 1 <= MetaRenderer_->GetColorData().PlusColor.r)
     {
@@ -505,11 +507,16 @@ void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
     HitEffect_->GetTransform().SetWorldPosition(
         {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y + 75.f, PlayerEffectZ});
 
-    GetTransform().SetWorldMove(float4{KnockBackXDir_, 0} * 150.f * _DeltaTime);
+    GetTransform().SetWorldMove(float4{MoveDir_.x, 0} * 150.f * _DeltaTime);
     Gravity_->SetActive(!IsGround_);
 }
 
-void Penitent::KnockBackEnd(const StateInfo& _Info) {}
+void Penitent::KnockBackEnd(const StateInfo& _Info)
+{
+    MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
+
+    float4 ScaleX = GetTransform().GetLocalScale();
+}
 
 
 void Penitent::KnockUpStart(const StateInfo& _Info)
@@ -525,7 +532,7 @@ void Penitent::KnockUpStart(const StateInfo& _Info)
     MetaRenderer_->ChangeMetaAnimation("penitent_throwback_anim");
     MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
 
-    if (0 > KnockBackXDir_)
+    if (0 > RealDirX_)
     {
         GetTransform().PixLocalPositiveX();
     }
@@ -540,7 +547,7 @@ void Penitent::KnockUpStart(const StateInfo& _Info)
 
 void Penitent::KnockUpUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    if (true == RightObstacleCheck() || true == LeftObstacleCheck())
+    if (0.f < MoveDir_.x && true == RightObstacleCheck() || 0.f > MoveDir_.x && true == LeftObstacleCheck())
     {
         return;
     }
@@ -550,11 +557,14 @@ void Penitent::KnockUpUpdate(float _DeltaTime, const StateInfo& _Info)
         MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
     }
 
-    GetTransform().SetWorldMove(float4{KnockBackXDir_, 0} * 150.f * _DeltaTime);
+    GetTransform().SetWorldMove(float4{MoveDir_.x, 0} * 150.f * _DeltaTime);
     Gravity_->SetActive(!IsGround_);
 }
 
-void Penitent::KnockUpEnd(const StateInfo& _Info) {}
+void Penitent::KnockUpEnd(const StateInfo& _Info) 
+{
+    MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
+}
 
 
 void Penitent::LandingStart(const StateInfo& _Info)
@@ -616,10 +626,7 @@ void Penitent::LandingStart(const StateInfo& _Info)
 
 void Penitent::LandingUpdate(float _DeltaTime, const StateInfo& _Info) { Gravity_->SetActive(!IsGround_); }
 
-void Penitent::LandingEnd(const StateInfo& _Info) 
-{
-    FallTime_ = 0.f; 
-}
+void Penitent::LandingEnd(const StateInfo& _Info) { FallTime_ = 0.f; }
 
 
 void Penitent::CrouchStart(const StateInfo& _Info)
@@ -663,19 +670,19 @@ void Penitent::SlideStart(const StateInfo& _Info)
     MetaRenderer_->ChangeMetaAnimation("penitent_dodge_anim");
     MoveEffect_->Renderer_->On();
 
-    if (1 == RealXDir_)
+    if (1 == RealDirX_)
     {
-        Dir_ = float4::RIGHT;
+        MoveDir_ = float4::RIGHT;
         MoveEffect_->GetTransform().PixLocalPositiveX();
     }
 
-    else if (-1 == RealXDir_)
+    else if (-1 == RealDirX_)
     {
-        Dir_ = float4::LEFT;
+        MoveDir_ = float4::LEFT;
         MoveEffect_->GetTransform().PixLocalNegativeX();
     }
 
-    MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{RealXDir_ * 50.f, 0});
+    MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{RealDirX_ * 50.f, 0});
     MoveEffect_->Renderer_->ChangeMetaAnimation("penitent_start_dodge_dust_anim");
 
     SlideSpectrum_->SetIsMetaDraw(true);
@@ -695,7 +702,7 @@ void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 
     SlideForce_ -= _DeltaTime * 350.f;
-    GetTransform().SetWorldMove(Dir_ * SlideForce_ * _DeltaTime);
+    GetTransform().SetWorldMove(MoveDir_ * SlideForce_ * _DeltaTime);
 
     Gravity_->SetActive(!IsGround_);
 
@@ -712,7 +719,7 @@ void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 }
 
-void Penitent::SlideEnd(const StateInfo& _Info) { }
+void Penitent::SlideEnd(const StateInfo& _Info) {}
 
 void Penitent::DangleStart(const StateInfo& _Info)
 {
@@ -732,7 +739,7 @@ void Penitent::DangleUpdate(float _DeltaTime, const StateInfo& _Info)
 
         MetaRenderer_->ChangeMetaAnimation("penitent_climbledge_reviewed");
 
-        GetTransform().SetWorldMove({RealXDir_ * 20.f, 100.f});
+        GetTransform().SetWorldMove({RealDirX_ * 20.f, 100.f});
     }
 
     else if (GameEngineInput::GetInst()->IsPressKey("PenitentDown"))
@@ -745,7 +752,7 @@ void Penitent::DangleUpdate(float _DeltaTime, const StateInfo& _Info)
     if (true == IsClimbLedge_)
     {
         float4 StartPos = GetTransform().GetWorldPosition();
-        float4 EndPos   = GetTransform().GetWorldPosition() + float4{RealXDir_ * 50.f, 50.f};
+        float4 EndPos   = GetTransform().GetWorldPosition() + float4{RealDirX_ * 50.f, 50.f};
 
         GetTransform().SetWorldPosition(float4::LerpLimit(StartPos, EndPos, _DeltaTime * 1.5f));
     }
@@ -834,14 +841,14 @@ void Penitent::LadderClimbEnd(const StateInfo& _Info) { IsLadder_ = false; }
 void Penitent::AttackStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_three_hits_attack_combo_no_slashes");
-    AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
+    AttackCollider_->GetTransform().SetWorldMove({RealDirX_ * 80.f, 50.f});
 
-    if (1 == RealXDir_)
+    if (1 == RealDirX_)
     {
         AttackEffect_->GetTransform().PixLocalPositiveX();
     }
 
-    else if (-1 == RealXDir_)
+    else if (-1 == RealDirX_)
     {
         AttackEffect_->GetTransform().PixLocalNegativeX();
     }
@@ -877,8 +884,8 @@ void Penitent::AttackEnd(const StateInfo& _Info)
 void Penitent::SlideAttackStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_dodge_attack_LVL3");
-    AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 80.f, 50.f});
-    //AttackCollider_->ChangeOrder(COLLISIONORDER::PlayerSkill);
+    AttackCollider_->GetTransform().SetWorldMove({RealDirX_ * 80.f, 50.f});
+    // AttackCollider_->ChangeOrder(COLLISIONORDER::PlayerSkill);
 
     SlideAttackSpectrum_->SetIsMetaDraw(true);
 }
@@ -903,7 +910,7 @@ void Penitent::SlideAttackUpdate(float _DeltaTime, const StateInfo& _Info)
         }
     }
 
-    GetTransform().SetWorldMove({RealXDir_ * 350.f * _DeltaTime, 0.f});
+    GetTransform().SetWorldMove({RealDirX_ * 350.f * _DeltaTime, 0.f});
     Gravity_->SetActive(!IsGround_);
 }
 
@@ -911,7 +918,7 @@ void Penitent::SlideAttackEnd(const StateInfo& _Info)
 {
     AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
     AttackCollider_->Off();
-    //AttackCollider_->ChangeOrder(COLLISIONORDER::PlayerAttack);
+    // AttackCollider_->ChangeOrder(COLLISIONORDER::PlayerAttack);
 }
 
 
@@ -933,7 +940,7 @@ void Penitent::VerticalAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 
     JumpForce_.y -= _DeltaTime * 150.f;
 
-    Dir_ = GetTransform().GetUpVector() * 10.f;
+    MoveDir_ = GetTransform().GetUpVector() * 10.f;
 
     if (true == IsGround_)
     {
@@ -941,20 +948,14 @@ void Penitent::VerticalAttackUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
-    GetTransform().SetWorldMove(Dir_ * JumpForce_ * _DeltaTime);
+    GetTransform().SetWorldMove(MoveDir_ * JumpForce_ * _DeltaTime);
     Gravity_->SetActive(!IsGround_);
 }
 
-void Penitent::VerticalAttackEnd(const StateInfo& _Info) 
-{
-     
-}
+void Penitent::VerticalAttackEnd(const StateInfo& _Info) {}
 
 
-void Penitent::PrayAttackStart(const StateInfo& _Info)
-{
-    MetaRenderer_->ChangeMetaAnimation("penitent_aura_anim");
-}
+void Penitent::PrayAttackStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penitent_aura_anim"); }
 
 void Penitent::PrayAttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
@@ -989,7 +990,10 @@ void Penitent::JumpRangeAttackStart(const StateInfo& _Info)
 
 void Penitent::JumpRangeAttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Penitent::JumpRangeAttackEnd(const StateInfo& _Info) { FallTime_ = 0.f; }
+void Penitent::JumpRangeAttackEnd(const StateInfo& _Info) 
+{
+    FallTime_ = 0.f; 
+}
 
 
 void Penitent::ExecutionStart(const StateInfo& _Info)
@@ -1018,7 +1022,7 @@ void Penitent::ExecutionEnd(const StateInfo& _Info)
         case EXECUTIONTYPE::None:
             break;
         case EXECUTIONTYPE::Crosscrawler:
-            if (0 > RealXDir_)
+            if (0 > RealDirX_)
             {
                 GetTransform().SetWorldMove({30.f, 0});
             }
@@ -1030,7 +1034,7 @@ void Penitent::ExecutionEnd(const StateInfo& _Info)
             break;
 
         case EXECUTIONTYPE::ShieldMaiden:
-            if (0 > RealXDir_)
+            if (0 > RealDirX_)
             {
                 GetTransform().SetWorldMove({70.f, 0});
             }
@@ -1087,12 +1091,12 @@ void Penitent::RecoveryStart(const StateInfo& _Info)
 
             AttackEffect_->Renderer_->On();
 
-            if (1 == RealXDir_)
+            if (1 == RealDirX_)
             {
                 AttackEffect_->GetTransform().PixLocalPositiveX();
             }
 
-            else if (-1 == RealXDir_)
+            else if (-1 == RealDirX_)
             {
                 AttackEffect_->GetTransform().PixLocalNegativeX();
             }

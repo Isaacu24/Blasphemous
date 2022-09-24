@@ -326,8 +326,6 @@ private:
     float Speed_;
     float SlideForce_;
 
-    float RealXDir_;
-    float KnockBackXDir_;
 
     float RunTime_;  //달리기 시간 체크
 
@@ -335,7 +333,8 @@ private:
 
     float FallTime_;
 
-    float4 Dir_;
+    float4 MoveDir_;
+    float RealDirX_;
 
     float CilmbY_;
 

@@ -22,7 +22,7 @@ Penitent::Penitent()
     , JumpForce_(float4::ZERO)
     , MetaRenderer_(nullptr)
     , ColMap_(nullptr)
-    , RealXDir_(1)
+    , RealDirX_(1)
     , HP_(100)
     , MP_(100)
     , Speed_(250.0f)
@@ -468,7 +468,7 @@ void Penitent::SetAnimation()
                 {
                     MoveEffect_->Renderer_->On();
                     MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()
-                                                                 + float4{RealXDir_ * 50.f, 0});
+                                                                 + float4{RealDirX_ * 50.f, 0});
                     MoveEffect_->Renderer_->ChangeMetaAnimation("penitent_stop_dodge_dust_anim");
                 }
 
@@ -506,18 +506,18 @@ void Penitent::SetAnimation()
                     MoveEffect_->Renderer_->On();
                     MoveEffect_->Renderer_->ChangeMetaAnimation("penitent_running_dust_anim");
 
-                    if (1 == RealXDir_)
+                    if (1 == RealDirX_)
                     {
                         MoveEffect_->GetTransform().PixLocalPositiveX();
                     }
 
-                    else if (-1 == RealXDir_)
+                    else if (-1 == RealDirX_)
                     {
                         MoveEffect_->GetTransform().PixLocalNegativeX();
                     }
 
                     MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()
-                                                                 + float4{-(RealXDir_ * 50.f), 0});
+                                                                 + float4{-(RealDirX_ * 50.f), 0});
                 }
             });
     }
@@ -539,7 +539,7 @@ void Penitent::SetAnimation()
                     return;
                 }
 
-                GetTransform().SetWorldMove(Dir_ * 300.f * GameEngineTime::GetDeltaTime());
+                GetTransform().SetWorldMove(MoveDir_ * 300.f * GameEngineTime::GetDeltaTime());
             });
 
         MetaRenderer_->AnimationBindEnd("penintent_stop_run_anim",
@@ -719,7 +719,7 @@ void Penitent::SetAnimation()
                 if (37 == _Info.CurFrame)
                 {
                     AttackCollider_->GetTransform().SetLocalPosition({0, 0, 0});
-                    AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 100.f, 75.f});
+                    AttackCollider_->GetTransform().SetWorldMove({RealDirX_ * 100.f, 75.f});
                     AttackCollider_->On();
                 }
 
@@ -979,7 +979,7 @@ void Penitent::SetAnimation()
 
                     case 19:
                         AttackCollider_->On();
-                        AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 100.f, 0.f});
+                        AttackCollider_->GetTransform().SetWorldMove({RealDirX_ * 100.f, 0.f});
                         break;
 
                     case 20:
@@ -991,7 +991,7 @@ void Penitent::SetAnimation()
 
                     case 22:
                         AttackCollider_->Off();
-                        AttackCollider_->GetTransform().SetWorldMove({-RealXDir_ * 100.f, 0.f});
+                        AttackCollider_->GetTransform().SetWorldMove({-RealDirX_ * 100.f, 0.f});
                 }
             });
 
@@ -1147,7 +1147,7 @@ void Penitent::SetAnimation()
                 if (10 == _Info.CurFrame)
                 {
                     AttackCollider_->On();
-                    AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 75.f, 50.f});
+                    AttackCollider_->GetTransform().SetWorldMove({RealDirX_ * 75.f, 50.f});
                 }
 
                 else if (12 == _Info.CurFrame)
@@ -1234,7 +1234,7 @@ void Penitent::SetAnimation()
                     AttackEffect_->Renderer_->On();
                     AttackEffect_->Renderer_->ChangeMetaAnimation("threeAnguishBigBeamBlue");
                     AttackEffect_->GetTransform().SetWorldPosition(
-                        {GetTransform().GetWorldPosition().x + (RealXDir_ * 30.f),
+                        {GetTransform().GetWorldPosition().x + (RealDirX_ * 30.f),
                          GetTransform().GetWorldPosition().y - 15.f,
                          PlayerBehindEffectZ});
                 }
@@ -1242,13 +1242,13 @@ void Penitent::SetAnimation()
                 if (30 == _Info.CurFrame)
                 {
                     AttackCollider_->On();
-                    AttackCollider_->GetTransform().SetWorldMove({RealXDir_ * 20.f, 400.f});
+                    AttackCollider_->GetTransform().SetWorldMove({RealDirX_ * 20.f, 400.f});
                     AttackCollider_->GetTransform().SetLocalScale({220.f, 400.f});
                 }
 
                 if (40 == _Info.CurFrame)
                 {
-                    AttackCollider_->GetTransform().SetWorldMove({-RealXDir_ * 20.f, -400.f});
+                    AttackCollider_->GetTransform().SetWorldMove({-RealDirX_ * 20.f, -400.f});
                     AttackCollider_->GetTransform().SetLocalScale({75.f, 75.f});
                     AttackCollider_->Off();
                 }
@@ -1275,8 +1275,8 @@ void Penitent::SetAnimation()
                 {
                     BloodProjectile* Projectile = GetLevel()->CreateActor<BloodProjectile>();
                     Projectile->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()
-                                                                + float4{RealXDir_ * 100.f, 75.f});
-                    Projectile->SetDirection(RealXDir_);
+                                                                + float4{RealDirX_ * 100.f, 75.f});
+                    Projectile->SetDirection(RealDirX_);
                     Projectile->SetGround(ColMap_);
                 }
             });
@@ -1302,9 +1302,9 @@ void Penitent::SetAnimation()
                 {
                     BloodProjectile* Projectile = GetLevel()->CreateActor<BloodProjectile>();
                     Projectile->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()
-                                                                + float4{RealXDir_ * 100.f, 75.f});
+                                                                + float4{RealDirX_ * 100.f, 75.f});
 
-                    Projectile->SetDirection(RealXDir_);
+                    Projectile->SetDirection(RealDirX_);
                     Projectile->SetGround(ColMap_);
                 }
             });

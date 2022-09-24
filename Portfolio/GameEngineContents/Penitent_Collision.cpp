@@ -381,10 +381,20 @@ void Penitent::CollisionCheck()
 //피격 함수
 bool Penitent::KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-    float4 Dir = _This->GetTransform().GetWorldPosition() - _Other->GetTransform().GetWorldPosition();
+    float4 Dir = _This->GetTransform().GetWorldPosition() - _Other->GetActor()->GetTransform().GetWorldPosition();
     Dir.Normalize();
 
-    KnockBackXDir_ = Dir.x;
+    if (0.f > Dir.x)
+    {
+        MoveDir_ = float4::LEFT;
+    }
+
+    else 
+    {
+        MoveDir_ = float4::RIGHT;
+    }
+
+    RealDirX_ = -(Dir.x);
 
     if (false == IsGround_)
     {
@@ -403,11 +413,21 @@ bool Penitent::KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other
 
 bool Penitent::KnockUp(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-    float4 Dir = _This->GetTransform().GetWorldPosition() - _Other->GetTransform().GetWorldPosition();
+    float4 Dir = _This->GetTransform().GetWorldPosition() - _Other->GetActor()->GetTransform().GetWorldPosition();
     Dir.Normalize();
+    
+    if (0.f > Dir.x)
+    {
+        MoveDir_ = float4::LEFT;
+    }
 
-    KnockBackXDir_ = Dir.x;
+    else
+    {
+        MoveDir_ = float4::RIGHT;
+    }
 
+    RealDirX_ = -(Dir.x);
+    
     if (false == IsGround_)
     {
         return true;
@@ -437,7 +457,7 @@ bool Penitent::Dangle(GameEngineCollision* _This, GameEngineCollision* _Other)
 
     if (static_cast<int>(COLLISIONORDER::LeftLedge) == _Other->GetCollsionOrder())
     {
-        if (0 > RealXDir_)  //왼쪽이라면
+        if (0 > RealDirX_)  //왼쪽이라면
         {
             return false;
         }
@@ -445,7 +465,7 @@ bool Penitent::Dangle(GameEngineCollision* _This, GameEngineCollision* _Other)
 
     if (static_cast<int>(COLLISIONORDER::RightLedge) == _Other->GetCollsionOrder())
     {
-        if (0 < RealXDir_)  //오른쪽이라면
+        if (0 < RealDirX_)  //오른쪽이라면
         {
             return false;
         }
