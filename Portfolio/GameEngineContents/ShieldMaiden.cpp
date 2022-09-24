@@ -262,15 +262,30 @@ void ShieldMaiden::DamageCheck()
     //패링에 당한 상태가 아닐 경우
     if ("ParryReaction" != State_.GetCurStateStateName())
     {
+        if (true
+            == BodyCollider_->IsCollision(
+                CollisionType::CT_OBB2D,
+                COLLISIONORDER::PlayerRangeAttack,
+                CollisionType::CT_OBB2D,
+                std::bind(&ShieldMaiden::RangeAttackCheck, this, std::placeholders::_1, std::placeholders::_2)))
+        {
+            float4 EffectPos = GetTransform().GetWorldPosition();
+            BlockEffect_->GetTransform().SetWorldPosition(
+                {EffectPos.x + (Dir_.x * 50.f), EffectPos.y - 100.f, MonsterZ});
+
+            BlockEffect_->Renderer_->On();
+            return;
+        }
+
         if (true == IsPlayerLeft_ && Dir_.CompareInt4D(float4::LEFT))
         {
             if (true
-                    == BodyCollider_->IsCollision(
-                        CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+                == BodyCollider_->IsCollision(
+                    CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
             {
                 float4 EffectPos = GetTransform().GetWorldPosition();
                 BlockEffect_->GetTransform().SetWorldPosition(
-                    {EffectPos.x + (Dir_.x * 60.f), EffectPos.y - 100.f, MonsterZ});
+                    {EffectPos.x + (Dir_.x * 50.f), EffectPos.y - 100.f, MonsterZ});
 
                 BlockEffect_->Renderer_->On();
             }
@@ -316,9 +331,9 @@ void ShieldMaiden::DamageCheck()
         MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
     }
 
-    else if (true
-             == BodyCollider_->IsCollision(
-                 CollisionType::CT_OBB2D, COLLISIONORDER::PlayerRangeAttack, CollisionType::CT_OBB2D, nullptr))
+    if (true
+        == BodyCollider_->IsCollision(
+            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerRangeAttack, CollisionType::CT_OBB2D, nullptr))
     {
         IsHit_ = true;
 
@@ -352,18 +367,26 @@ void ShieldMaiden::DamageCheck()
 
 bool ShieldMaiden::RangeAttackCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-    float4 Dir = _This->GetTransform().GetWorldPosition() - _Other->GetTransform().GetWorldPosition();
-    Dir.Normalize();
-
-    if (0.f < Dir.x)
+    float4 HitDir = GetTransform().GetWorldPosition() - _Other->GetTransform().GetWorldPosition();
+    HitDir.Normalize();
+    
+    if (0 < Dir_.x)
     {
-        return true;
+        if (0 > HitDir.x)
+        {
+            return true;
+        }
     }
 
-    else
+    if (0 > Dir_.x)
     {
-        return false;
+        if (0 < HitDir.x)
+        {
+            return true;
+        }
     }
+
+    return false;
 }
 
 
@@ -374,7 +397,8 @@ void ShieldMaiden::PatrolMoveX(float _DeltaTime)
         if (true
             == RightObstacleCheck(GetTransform().GetWorldPosition().x + 70, -(GetTransform().GetWorldPosition().y)))
         {
-            GetTransform().SetWorldMove(float4::RIGHT * Speed_ * _DeltaTime);
+            Dir_ = float4::RIGHT;
+            GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime);
         }
 
         else
@@ -390,7 +414,8 @@ void ShieldMaiden::PatrolMoveX(float _DeltaTime)
     {
         if (true == LeftObstacleCheck(GetTransform().GetWorldPosition().x - 70, -(GetTransform().GetWorldPosition().y)))
         {
-            GetTransform().SetWorldMove(float4::LEFT * Speed_ * _DeltaTime);
+            Dir_ = float4::LEFT;
+            GetTransform().SetWorldMove(Dir_ * Speed_ * _DeltaTime);
         }
 
         else

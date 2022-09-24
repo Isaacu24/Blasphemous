@@ -262,8 +262,8 @@ void Penitent::Update(float _DeltaTime)
         GameEngineTime::GetInst()->SetTimeScale(GetOrder(), 1.0f);
     }
 
-    GameEngineDebug::OutPutString("Player Pos: " + std::to_string(GetTransform().GetWorldPosition().x));
-    GameEngineDebug::OutPutString("Player PosY: " + std::to_string(GetTransform().GetWorldPosition().y));
+    //GameEngineDebug::OutPutString("Player Pos: " + std::to_string(GetTransform().GetWorldPosition().x));
+    //GameEngineDebug::OutPutString("Player PosY: " + std::to_string(GetTransform().GetWorldPosition().y));
 
     // GameEngineDebug::OutPutString("Player HP: " + std::to_string(GetHP()));
 

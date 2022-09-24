@@ -12,7 +12,7 @@ void BloodProjectile::Start()
     GetTransform().SetWorldScale({2, 2, 1});
 
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
-    
+
     Collider_ = CreateComponent<GameEngineCollision>();
     Collider_->GetTransform().SetWorldScale({100.f, 50.f, 1.f});
     Collider_->ChangeOrder(COLLISIONORDER::PlayerRangeAttack);
@@ -37,6 +37,15 @@ void BloodProjectile::Start()
                                             0.08f,
                                             true},
                                            Data);
+
+        MetaRenderer_->AnimationBindFrame("penitent_rangeAttack_projectile_explode_anim",
+                                          [&](const FrameAnimation_DESC& _Info)
+                                          {
+                                              if (1 == _Info.CurFrame)
+                                              {
+                                                  Collider_->Death();
+                                              }
+                                          });
 
         MetaRenderer_->AnimationBindEnd("penitent_rangeAttack_projectile_explode_anim",
                                         [&](const FrameAnimation_DESC& _Info) { Death(); });
@@ -135,7 +144,6 @@ void BloodProjectile::ShootEnd(const StateInfo& _Info) {}
 void BloodProjectile::ExplodeStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_rangeAttack_projectile_explode_anim");
-    Collider_->Death();
 }
 
 void BloodProjectile::ExplodeUpdate(float _DeltaTime, const StateInfo& _Info) {}
