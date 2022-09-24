@@ -218,7 +218,7 @@ void ElderBrother::Start()
     AttackCollider_ = CreateComponent<GameEngineCollision>();
     AttackCollider_->ChangeOrder(COLLISIONORDER::BossMonsterAttack);
     AttackCollider_->GetTransform().SetWorldScale({100.0f, 100.0f});
-    AttackCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{1.0f, 1.0f, 1.0f, 0.25f});
+    AttackCollider_->SetDebugSetting(CollisionType::CT_OBB, float4{1.0f, 0.0f, 0.0f, 0.25f});
     AttackCollider_->Off();
 
     Renderer_->GetColorData().MulColor  = float4::ZERO;

@@ -212,6 +212,10 @@ protected:
     void VerticalAttackUpdate(float _DeltaTime, const StateInfo& _Info);
     void VerticalAttackEnd(const StateInfo& _Info);
 
+    void VerticalAttackLandingStart(const StateInfo& _Info);
+    void VerticalAttackLandingUpdate(float _DeltaTime, const StateInfo& _Info);
+    void VerticalAttackLandingEnd(const StateInfo& _Info);
+
     void PrayAttackStart(const StateInfo& _Info);
     void PrayAttackUpdate(float _DeltaTime, const StateInfo& _Info);
     void PrayAttackEnd(const StateInfo& _Info);
@@ -352,7 +356,7 @@ private:
     bool IsOnInventory_;
     bool IsClimbLedge_;
 
-    bool ReadySkill_;  //스킬 준비 여부
+    bool ReadySkill_;  //착지 스킬 준비 여부
 
     float JumpTime_;
     float SlideTime_;
@@ -377,4 +381,8 @@ private:
 
     bool IsRising_;
     bool IsCharging_;
+
+    //게임 패드 
+    SHORT ThumbLX_;
+    SHORT ThumbLY_;
 };

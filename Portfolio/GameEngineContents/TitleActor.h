@@ -28,10 +28,12 @@ private:
 
 	bool IsReverse_;
 	bool IsDown_;
+    bool IsChage_;
 
 	float Alpha_;
 
 	float ChangeTime_;
+
 
 };
 

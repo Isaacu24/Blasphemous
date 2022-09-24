@@ -67,4 +67,9 @@ private:
     bool IsBuy_;
 
     float AlphaTime_;
+    
+	bool  IsPadInput_;
+    float PadDelayTime_;
+
+    SHORT ThumbLY_;
 };

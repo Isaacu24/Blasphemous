@@ -78,5 +78,11 @@ private:
     int MaxSlotIndex_;
 
     int LineSlotCount_;
+
+    SHORT ThumbLX_;
+    SHORT ThumbLY_;
+
+	bool  IsPadInput_;
+    float PadDelayTime_;
 };
     

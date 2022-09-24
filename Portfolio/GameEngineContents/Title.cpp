@@ -17,7 +17,6 @@ void Title::Start()
 	CameraActor->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
 
 	TitleActor* Actor = CreateActor<TitleActor>();
-
 }
 
 void Title::Update(float _DeltaTime)

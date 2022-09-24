@@ -86,6 +86,57 @@ void Blasphemous::Start()
 
     GameEngineInput::GetInst()->CreateKey("ScriptSkip", VK_RETURN);
 
+    GameEngineInput::GetInst()->CreateButton("GamePadX", GAMEPAD_X);
+    GameEngineInput::GetInst()->CreateButton("GamePadA", GAMEPAD_A);
+    GameEngineInput::GetInst()->CreateButton("GamePadB", GAMEPAD_B);
+    GameEngineInput::GetInst()->CreateButton("GamePadY", GAMEPAD_Y);
+
+    //플레이어 키
+    if (false == GameEngineInput::GetInst()->IsButton("PenitentA"))
+    {
+        GameEngineInput::GetInst()->CreateButton("PenitentA", GAMEPAD_A);
+        GameEngineInput::GetInst()->CreateButton("PenitentX", GAMEPAD_X);
+        GameEngineInput::GetInst()->CreateButton("PenitentB", GAMEPAD_B);
+        GameEngineInput::GetInst()->CreateButton("PenitentY", GAMEPAD_Y);
+
+        GameEngineInput::GetInst()->CreateButton("PenitentLeftShoulder", GAMEPAD_LEFT_SHOULDER);  // LB
+        GameEngineInput::GetInst()->CreateButton("PenitentRightShoulder", GAMEPAD_RIGHT_SHOULDER);
+
+        GameEngineInput::GetInst()->CreateButton("PenitentLeftThumb", GAMEPAD_LEFT_THUMB);
+        GameEngineInput::GetInst()->CreateButton("PenitentRightThumb", GAMEPAD_RIGHT_THUMB);
+
+        GameEngineInput::GetInst()->CreateButton("PenitentStart", GAMEPAD_START);
+        GameEngineInput::GetInst()->CreateButton("PenitentBack", GAMEPAD_BACK);
+
+        GameEngineInput::GetInst()->CreateButton("PenitentDPADUP", XINPUT_GAMEPAD_DPAD_UP);
+        GameEngineInput::GetInst()->CreateButton("PenitentDPADDOWN", XINPUT_GAMEPAD_DPAD_DOWN);
+        GameEngineInput::GetInst()->CreateButton("PenitentDPADLEFT", XINPUT_GAMEPAD_DPAD_LEFT);
+        GameEngineInput::GetInst()->CreateButton("PenitentDPADRIGHT", XINPUT_GAMEPAD_DPAD_RIGHT);
+    }
+
+    if (false == GameEngineInput::GetInst()->IsKey("PenitentLeft"))
+    {
+        GameEngineInput::GetInst()->CreateKey("PenitentLeft", 'A');
+        GameEngineInput::GetInst()->CreateKey("PenitentRight", 'D');
+        GameEngineInput::GetInst()->CreateKey("PenitentUp", 'W');
+        GameEngineInput::GetInst()->CreateKey("PenitentDown", 'S');
+        GameEngineInput::GetInst()->CreateKey("Interaction", 'E');
+        GameEngineInput::GetInst()->CreateKey("Escape", VK_ESCAPE);
+        GameEngineInput::GetInst()->CreateKey("PenitentJump", VK_SPACE);
+        GameEngineInput::GetInst()->CreateKey("PenitentSlide", VK_LSHIFT);
+        GameEngineInput::GetInst()->CreateKey("PenitentRecovery", 'F');
+        GameEngineInput::GetInst()->CreateKey("PenitentAttack", 'K');
+        GameEngineInput::GetInst()->CreateKey("PenitentParry", 'J');
+        GameEngineInput::GetInst()->CreateKey("PenitentTelport", 'B');
+        GameEngineInput::GetInst()->CreateKey("PenitentPary", 'P');
+        GameEngineInput::GetInst()->CreateKey("PenitentL", 'L');
+        GameEngineInput::GetInst()->CreateKey("PenitentChrage", 'Q');
+        GameEngineInput::GetInst()->CreateKey("FreeCamera", 'O');
+
+        GameEngineInput::GetInst()->CreateKey("PenitentAnimation", '1');
+        GameEngineInput::GetInst()->CreateKey("InventoryOn", 'I');
+    }
+
     GameEngineGUI::CreateGUIWindow<GameEngineStatusWindow>("EngineStatus", nullptr);
 }
 

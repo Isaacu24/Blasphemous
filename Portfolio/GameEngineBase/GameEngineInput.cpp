@@ -127,7 +127,7 @@ bool GameEngineInput::IsDownButton(const std::string& _Name)
 
 	if (AllInputButton_.end() == AllInputButton_.find(UpperKey))
 	{
-		MsgBoxAssert("존재하지 않는 버튼 입니다.");
+	MsgBoxAssert("존재하지 않는 버튼 입니다.");
 		return false;
 	}
 	return AllInputButton_[UpperKey].Down_;

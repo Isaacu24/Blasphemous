@@ -486,7 +486,8 @@ void Crosscrawler::StunUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     bool IsExecution = ExecutionCheck();
 
-    if (true == GameEngineInput::GetInst()->IsDownKey("Interaction") && true == IsExecution)
+    if (true == GameEngineInput::GetInst()->IsDownKey("Interaction") && true == IsExecution
+        || true == GameEngineInput::GetInst()->IsDownButton("PenitentY") && true == IsExecution)
     {
         State_.ChangeState("Execution");
         return;

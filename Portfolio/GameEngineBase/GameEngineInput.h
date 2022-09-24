@@ -174,11 +174,20 @@ public:
 		return sqrt(ThumbLX_ * ThumbLX_ + ThumbLY_ * ThumbLY_);
 	}
 
+	inline double GetMagnitudeLX()
+	{
+		return sqrt(ThumbLX_ * ThumbLX_);
+	}
+
+	inline double GetMagnitudeLY()
+	{
+		return sqrt(ThumbLY_ * ThumbLY_);
+	}
+
 	inline double GetMagnitudeR()
 	{
 		return sqrt(ThumbRX_ * ThumbRX_ + ThumbRY_ * ThumbRY_);
 	}
-
 
 	inline XINPUT_STATE GetInputState()
 	{

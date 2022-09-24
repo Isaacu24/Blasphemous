@@ -138,6 +138,21 @@ void ItemBuyWindow::Update(float _DeltaTime)
     switch (Mode_)
     {
         case ItemBuyWindow::WindowMode::Buy:
+
+            if (true == IsPadInput_)
+            {
+                PadDelayTime_ += _DeltaTime;
+
+                if (0.2f > PadDelayTime_)
+                {
+                    return;
+                }
+            }
+
+            PadDelayTime_ = 0.f;
+
+            ThumbLY_ = GameEngineInput::GetInst()->GetThumbLY();
+
             if (nullptr != SelectRenderer_ && false == IsBuy_)
             {
                 if (false == SelectRenderer_->IsUpdate())
@@ -145,7 +160,9 @@ void ItemBuyWindow::Update(float _DeltaTime)
                     return;
                 }
 
-                if (GameEngineInput::GetInst()->IsDownKey("ShopUp") && 2 == SelectIndex_)
+                if (GameEngineInput::GetInst()->IsDownKey("ShopUp") && 2 == SelectIndex_
+                    || 30000 < ThumbLY_ && 2 == SelectIndex_
+                    || true == GameEngineInput::GetInst()->IsDownButton("PenitentDPADUP"))
                 {
                     SelectRenderer_->GetTransform().SetWorldMove({0, 50});
                     --SelectIndex_;
@@ -153,7 +170,9 @@ void ItemBuyWindow::Update(float _DeltaTime)
                     NoFont_->SetColor({0.74f, 0.74f, 0.74f, 1.0f});
                 }
 
-                else if (GameEngineInput::GetInst()->IsDownKey("ShopDown") && 1 == SelectIndex_)
+                else if (GameEngineInput::GetInst()->IsDownKey("ShopDown") && 1 == SelectIndex_
+                         || -30000 > ThumbLY_ && 1 == SelectIndex_
+                         || true == GameEngineInput::GetInst()->IsDownButton("PenitentDPADDOWN"))
                 {
                     SelectRenderer_->GetTransform().SetWorldMove({0, -50});
                     ++SelectIndex_;
@@ -161,7 +180,8 @@ void ItemBuyWindow::Update(float _DeltaTime)
                     NoFont_->SetColor({0.65f, 0.62f, 0.47f, 1.0f});
                 }
 
-                if (GameEngineInput::GetInst()->IsDownKey("ShopEnter"))
+                if (GameEngineInput::GetInst()->IsDownKey("ShopEnter")
+                    || GameEngineInput::GetInst()->IsDownButton("PenitentA"))
                 {
                     if (1 == SelectIndex_)
                     {

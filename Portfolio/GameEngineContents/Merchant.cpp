@@ -178,14 +178,16 @@ void Merchant::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
         {
             if (true == SellItemList_[i]->GetIsPlayerCollide())
             {
-                if (true == GameEngineInput::GetInst()->IsDownKey("Interaction"))
+                if (true == GameEngineInput::GetInst()->IsDownKey("Interaction")
+                    || true == GameEngineInput::GetInst()->IsDownButton("PenitentY"))
                 {
                     BuyWindow_->On();
                     BuyWindow_->SetItemInfo(SellItemList_[i]->GetItemInfo());
                     return;
                 }
 
-                else if (true == GameEngineInput::GetInst()->IsDownKey("Escape"))
+                else if (true == GameEngineInput::GetInst()->IsDownKey("Escape")
+                         || true == GameEngineInput::GetInst()->IsDownButton("PenitentB"))
                 {
                     BuyWindow_->Off();
                 }

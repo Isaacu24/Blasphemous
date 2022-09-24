@@ -379,6 +379,9 @@ void Inventory::Start()
 
 void Inventory::Update(float _DeltaTime)
 {
+    ThumbLX_ = GameEngineInput::GetInst()->GetThumbLX();
+    ThumbLY_ = GameEngineInput::GetInst()->GetThumbLY();
+
     if (GameEngineInput::GetInst()->IsDownButton("InventoryLeftButton")
         || GameEngineInput::GetInst()->IsDownKey("InventoryLeftKey"))
     {
@@ -406,6 +409,20 @@ void Inventory::Update(float _DeltaTime)
         ++InventoryIndex_;
         ChangeInventoryIndex();
     }
+
+    if (true == IsPadInput_)
+    {
+        PadDelayTime_ += _DeltaTime;
+
+        if (0.2f > PadDelayTime_)
+        {
+            return;
+        }
+    }
+
+    PadDelayTime_ = 0.f;
+
+    ThumbLY_ = GameEngineInput::GetInst()->GetThumbLY();
 
     CursorMove();
     GameEngineDebug::OutPutString("CursorPos : " + std::to_string(CursorPos_));
@@ -615,7 +632,8 @@ void Inventory::ChangeInventory()
 
 void Inventory::CursorMove()
 {
-    if (true == GameEngineInput::GetInst()->IsDownKey("CursorLeftKey"))
+    if (true == GameEngineInput::GetInst()->IsDownKey("CursorLeftKey") || -30000 > ThumbLX_
+        || true == GameEngineInput::GetInst()->IsDownButton("PenitentDPADLEFT"))
     {
         if (0 > CursorPos_ - 1)
         {
@@ -627,7 +645,8 @@ void Inventory::CursorMove()
         UpdateSlot();
     }
 
-    else if (true == GameEngineInput::GetInst()->IsDownKey("CursorRightKey"))
+    else if (true == GameEngineInput::GetInst()->IsDownKey("CursorRightKey") || -30000 > ThumbLX_
+             || true == GameEngineInput::GetInst()->IsDownButton("PenitentDPADRIGHT"))
     {
         if (MaxSlotIndex_ < CursorPos_ + 1)
         {
@@ -639,7 +658,8 @@ void Inventory::CursorMove()
         UpdateSlot();
     }
 
-    else if (true == GameEngineInput::GetInst()->IsDownKey("CursorDownKey"))
+    else if (true == GameEngineInput::GetInst()->IsDownKey("CursorDownKey") || -30000 > ThumbLY_
+             || true == GameEngineInput::GetInst()->IsDownButton("PenitentDPADDOWN"))
     {
         if (MaxSlotIndex_ < CursorPos_ + LineSlotCount_)
         {
@@ -651,7 +671,8 @@ void Inventory::CursorMove()
         UpdateSlot();
     }
 
-    else if (true == GameEngineInput::GetInst()->IsDownKey("CursorUpKey"))
+    else if (true == GameEngineInput::GetInst()->IsDownKey("CursorUpKey") || 30000 < ThumbLY_
+             || true == GameEngineInput::GetInst()->IsDownButton("PenitentDPADUP"))
     {
         if (0 > CursorPos_ - LineSlotCount_)
         {
@@ -663,7 +684,8 @@ void Inventory::CursorMove()
         UpdateSlot();
     }
 
-    else if (true == GameEngineInput::GetInst()->IsDownKey("CursorEnter"))
+    else if (true == GameEngineInput::GetInst()->IsDownKey("CursorEnter")
+             || true == GameEngineInput::GetInst()->IsDownButton("PenitentA"))
     {
         switch (InventoryType_)
         {

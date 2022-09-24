@@ -38,7 +38,8 @@ void Penitent::GroundCheck()
         IsDangle_ = false;
         IsGround_ = true;
 
-        if (true == GameEngineInput::GetInst()->IsPressKey("PenitentAnimation"))
+        if (true == GameEngineInput::GetInst()->IsPressKey("PenitentAnimation")
+            || true == GameEngineInput::GetInst()->IsPressButton("PenitentA") && -30000 > ThumbLY_)
         {
             IsGround_ = false;
         }
@@ -83,7 +84,7 @@ void Penitent::LadderCheck()
 
     if (true == MiddleColor.CompareInt4D(float4::GREEN))
     {
-        if (GameEngineInput::GetInst()->IsDownKey("PenitentUp"))
+        if (GameEngineInput::GetInst()->IsDownKey("PenitentUp") || 30000 < ThumbLY_)
         {
             CilmbY_ = 30.f;
             State_.ChangeState("LadderClimb");
@@ -92,7 +93,7 @@ void Penitent::LadderCheck()
 
     if (true == LowColor.CompareInt4D(float4::GREEN))
     {
-        if (GameEngineInput::GetInst()->IsDownKey("PenitentDown"))
+        if (GameEngineInput::GetInst()->IsDownKey("PenitentDown") || -30000 > ThumbLY_)
         {
             CilmbY_ = -50;
             MetaRenderer_->ChangeMetaAnimation("penitent_ladder_down_from_ground_anim");
@@ -218,7 +219,8 @@ void Penitent::DeadZoneCheck()
 
 bool Penitent::ObjectCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-    if (true == GameEngineInput::GetInst()->IsDownKey("Interaction") && "Idle" == State_.GetCurStateStateName())
+    if (true == GameEngineInput::GetInst()->IsDownKey("Interaction") && "Idle" == State_.GetCurStateStateName()
+        || true == GameEngineInput::GetInst()->IsDownButton("PenitentY") && "Idle" == State_.GetCurStateStateName())
     {
         ObjectBase* Obj = dynamic_cast<ObjectBase*>(_Other->GetActor());
 
@@ -304,7 +306,8 @@ void Penitent::CollisionCheck()
         || "Death" == State_.GetCurStateStateName() || true == IsParrySuccess_
         || "ParryingAttack" == State_.GetCurStateStateName() || "Execution" == State_.GetCurStateStateName()
         || "Slide" == State_.GetCurStateStateName() || "SlideAttack" == State_.GetCurStateStateName()
-        || "VerticalAttack" == State_.GetCurStateStateName() || "Respawn" == State_.GetCurStateStateName())
+        || "VerticalAttack" == State_.GetCurStateStateName() || "VerticalAttackLan5ding" == State_.GetCurStateStateName()
+        || "Respawn" == State_.GetCurStateStateName())
     {
         return;
     }
@@ -390,6 +393,7 @@ bool Penitent::KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other
     }
 
     else 
+
     {
         MoveDir_ = float4::RIGHT;
     }

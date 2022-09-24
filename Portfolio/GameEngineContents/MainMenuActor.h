@@ -60,5 +60,8 @@ private:
 	void ChangeMenuSelect();
 
 	void SelectMenu();
+
+	bool IsPadInput_;
+    float PadDelayTime_;
 };
 

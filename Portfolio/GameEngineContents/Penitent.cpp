@@ -93,43 +93,6 @@ void Penitent::BossDeathUIOn(unsigned int _Key)
 
 void Penitent::Start()
 {
-    if (false == GameEngineInput::GetInst()->IsButton("PenitentA"))
-    {
-        GameEngineInput::GetInst()->CreateButton("PenitentA", GAMEPAD_A);
-        GameEngineInput::GetInst()->CreateButton("PenitentX", GAMEPAD_X);
-        GameEngineInput::GetInst()->CreateButton("PenitentB", GAMEPAD_B);
-        GameEngineInput::GetInst()->CreateButton("PenitentY", GAMEPAD_Y);
-
-        GameEngineInput::GetInst()->CreateButton("PenitentLeftShoulder", GAMEPAD_LEFT_SHOULDER);  // LB
-        GameEngineInput::GetInst()->CreateButton("PenitentRightShoulder", GAMEPAD_RIGHT_SHOULDER);
-
-        GameEngineInput::GetInst()->CreateButton("PenitentLeftThumb", GAMEPAD_LEFT_THUMB);
-        GameEngineInput::GetInst()->CreateButton("PenitentRightThumb", GAMEPAD_RIGHT_THUMB);
-    }
-
-    if (false == GameEngineInput::GetInst()->IsKey("PenitentLeft"))
-    {
-        GameEngineInput::GetInst()->CreateKey("PenitentLeft", 'A');
-        GameEngineInput::GetInst()->CreateKey("PenitentRight", 'D');
-        GameEngineInput::GetInst()->CreateKey("PenitentUp", 'W');
-        GameEngineInput::GetInst()->CreateKey("PenitentDown", 'S');
-        GameEngineInput::GetInst()->CreateKey("Interaction", 'E');
-        GameEngineInput::GetInst()->CreateKey("Escape", VK_ESCAPE);
-        GameEngineInput::GetInst()->CreateKey("PenitentJump", VK_SPACE);
-        GameEngineInput::GetInst()->CreateKey("PenitentSlide", VK_LSHIFT);
-        GameEngineInput::GetInst()->CreateKey("PenitentRecovery", 'F');
-        GameEngineInput::GetInst()->CreateKey("PenitentAttack", 'K');
-        GameEngineInput::GetInst()->CreateKey("PenitentParry", 'J');
-        GameEngineInput::GetInst()->CreateKey("PenitentTelport", 'B');
-        GameEngineInput::GetInst()->CreateKey("PenitentPary", 'P');
-        GameEngineInput::GetInst()->CreateKey("PenitentL", 'L');
-        GameEngineInput::GetInst()->CreateKey("PenitentChrage", 'Q');
-        GameEngineInput::GetInst()->CreateKey("FreeCamera", 'O');
-
-        GameEngineInput::GetInst()->CreateKey("PenitentAnimation", '1');
-        GameEngineInput::GetInst()->CreateKey("InventoryOn", 'I');
-    }
-
     Flasks_.resize(3);
 
     for (size_t i = 0; i < Flasks_.size(); i++)
@@ -244,7 +207,8 @@ void Penitent::Update(float _DeltaTime)
     LadderCheck();
     CollisionCheck();
 
-    if (false == IsOnInventory_ && true == GameEngineInput::GetInst()->IsDownKey("InventoryOn"))
+    if (false == IsOnInventory_ && true == GameEngineInput::GetInst()->IsDownKey("InventoryOn")
+        || false == IsOnInventory_ && true == GameEngineInput::GetInst()->IsDownButton("PenitentStart"))
     {
         IsOnInventory_ = true;
         PlayerUI_->Inventory_->On();
@@ -253,7 +217,8 @@ void Penitent::Update(float _DeltaTime)
         GameEngineTime::GetInst()->SetTimeScale(GetOrder(), 0.0f);
     }
 
-    else if (true == IsOnInventory_ && true == GameEngineInput::GetInst()->IsDownKey("InventoryOn"))
+    else if (true == IsOnInventory_ && true == GameEngineInput::GetInst()->IsDownKey("InventoryOn")
+             || true == IsOnInventory_ && true == GameEngineInput::GetInst()->IsDownButton("PenitentStart"))
     {
         IsOnInventory_ = false;
         PlayerUI_->Inventory_->Off();
@@ -269,6 +234,12 @@ void Penitent::Update(float _DeltaTime)
 
     // GameEngineDebug::OutPutString("GamePad State: "
     //+ std::to_string(GameEngineInput::GetInst()->GetInputState().dwPacketNumber));
+
+    ThumbLX_ = GameEngineInput::GetInst()->GetThumbLX();
+    ThumbLY_ = GameEngineInput::GetInst()->GetThumbLY();
+
+    GameEngineDebug::OutPutString("ThumbLX_ : " + std::to_string(ThumbLX_));
+    GameEngineDebug::OutPutString("ThumbLY_ : " + std::to_string(ThumbLY_));
 }
 
 void Penitent::End() {}
@@ -820,10 +791,7 @@ void Penitent::SetAnimation()
                                           });
 
         MetaRenderer_->AnimationBindEnd("penitent_verticalattack_landing",
-                                        [&](const FrameAnimation_DESC& _Info)
-                                        {
-                                            ChangeState("Idle");
-                                        });
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
 
@@ -1596,6 +1564,12 @@ void Penitent::SetPlayerState()
                              std::bind(&Penitent::RisingUpdate, this, std::placeholders::_1, std::placeholders::_2),
                              std::bind(&Penitent::RisingStart, this, std::placeholders::_1),
                              std::bind(&Penitent::RisingEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember(
+        "VerticalAttackLanding",
+        std::bind(&Penitent::VerticalAttackLandingUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&Penitent::VerticalAttackLandingStart, this, std::placeholders::_1),
+        std::bind(&Penitent::VerticalAttackLandingEnd, this, std::placeholders::_1));
 
     State_.CreateStateMember(
         "CollectSoul",

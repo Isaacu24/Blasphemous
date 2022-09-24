@@ -59,7 +59,8 @@ void Door::Update(float _DeltaTime)
             UIRenderer_->SetTexture("KB_E.png");
         }
 
-        if (true == GameEngineInput::GetInst()->IsDownKey("Interaction") && (ObjectType::Door == GetObjectType()))
+        if (true == GameEngineInput::GetInst()->IsDownKey("Interaction") && (ObjectType::Door == GetObjectType())
+            || true == GameEngineInput::GetInst()->IsDownButton("PenitentY") && (ObjectType::Door == GetObjectType()))
         {
             Renderer_->ChangeFrameAnimation("brotherhood_door_anim_Open");
             return;
@@ -73,7 +74,8 @@ void Door::Update(float _DeltaTime)
 
     if (ObjectType::Door == GetObjectType())
     {
-        if (true == GameEngineInput::GetInst()->IsUpKey("Interaction"))
+        if (true == GameEngineInput::GetInst()->IsUpKey("Interaction")
+            || true == GameEngineInput::GetInst()->IsUpButton("PenitentY"))
         {
             SetObjectType(ObjectType::OpenDoor);
         }
