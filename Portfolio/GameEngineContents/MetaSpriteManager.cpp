@@ -156,11 +156,11 @@ void MetaSpriteManager::MetaParsing(const std::string& _AllText)
 
             size_t UnderBarPos = IndexString.rfind("_");
 
-            int Size = IndexString.size();
+            size_t Size = IndexString.size();
 
             IndexString = IndexString.substr(UnderBarPos + 1, IndexString.size() - UnderBarPos);
 
-            Index = atof(IndexString.c_str());
+            Index = atoi(IndexString.c_str());
         }
 
         {

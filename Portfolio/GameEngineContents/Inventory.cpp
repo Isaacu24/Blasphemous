@@ -661,26 +661,26 @@ void Inventory::CursorMove()
     else if (true == GameEngineInput::GetInst()->IsDownKey("CursorDownKey") || -30000 > ThumbLY_
              || true == GameEngineInput::GetInst()->IsDownButton("PenitentDPADDOWN"))
     {
-        if (MaxSlotIndex_ < CursorPos_ + LineSlotCount_)
+        if (MaxSlotIndex_ < CursorPos_ + LineSlotCount_ + 1)
         {
             return;
         }
 
         CursorReset();
-        CursorPos_ += LineSlotCount_;
+        CursorPos_ += LineSlotCount_ + 1;
         UpdateSlot();
     }
 
     else if (true == GameEngineInput::GetInst()->IsDownKey("CursorUpKey") || 30000 < ThumbLY_
              || true == GameEngineInput::GetInst()->IsDownButton("PenitentDPADUP"))
     {
-        if (0 > CursorPos_ - LineSlotCount_)
+        if (0 > CursorPos_ - LineSlotCount_ + 1)
         {
             return;
         }
 
         CursorReset();
-        CursorPos_ -= LineSlotCount_;
+        CursorPos_ -= LineSlotCount_ + 1;
         UpdateSlot();
     }
 

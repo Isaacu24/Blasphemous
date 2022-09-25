@@ -306,8 +306,8 @@ void Penitent::CollisionCheck()
         || "Death" == State_.GetCurStateStateName() || true == IsParrySuccess_
         || "ParryingAttack" == State_.GetCurStateStateName() || "Execution" == State_.GetCurStateStateName()
         || "Slide" == State_.GetCurStateStateName() || "SlideAttack" == State_.GetCurStateStateName()
-        || "VerticalAttack" == State_.GetCurStateStateName() || "VerticalAttackLan5ding" == State_.GetCurStateStateName()
-        || "Respawn" == State_.GetCurStateStateName())
+        || "VerticalAttack" == State_.GetCurStateStateName()
+        || "VerticalAttackLan5ding" == State_.GetCurStateStateName() || "Respawn" == State_.GetCurStateStateName())
     {
         return;
     }
@@ -358,11 +358,31 @@ void Penitent::CollisionCheck()
     if (false
             == AttackCollider_->IsCollision(
                 CollisionType::CT_OBB2D, COLLISIONORDER::Monster, CollisionType::CT_OBB2D, nullptr)
+        || false
+               == AttackCollider_->IsCollision(
+                   CollisionType::CT_OBB2D, COLLISIONORDER::MonsterBody, CollisionType::CT_OBB2D, nullptr))
+    {
+        IsHit_ = true;
+    }
+
+    if (false
+            == AttackCollider_->IsCollision(
+                CollisionType::CT_OBB2D, COLLISIONORDER::Monster, CollisionType::CT_OBB2D, nullptr)
         && false
                == AttackCollider_->IsCollision(
                    CollisionType::CT_OBB2D, COLLISIONORDER::MonsterBody, CollisionType::CT_OBB2D, nullptr))
     {
         IsHit_ = false;
+    }
+
+    if (false
+            == AttackCollider_->IsCollision(
+                CollisionType::CT_OBB2D, COLLISIONORDER::BossMonster, CollisionType::CT_OBB2D, nullptr)
+        || false
+               == AttackCollider_->IsCollision(
+                   CollisionType::CT_OBB2D, COLLISIONORDER::BossMonsterBody, CollisionType::CT_OBB2D, nullptr))
+    {
+        IsBossHit_ = true;
     }
 
     if (false
@@ -392,7 +412,7 @@ bool Penitent::KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other
         MoveDir_ = float4::LEFT;
     }
 
-    else 
+    else
 
     {
         MoveDir_ = float4::RIGHT;
@@ -405,7 +425,7 @@ bool Penitent::KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other
         return true;
     }
 
-    SetDamege(7.f);
+    SetDamege(7);
 
     if (0 < GetHP())
     {
@@ -419,25 +439,18 @@ bool Penitent::KnockUp(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
     float4 Dir = _This->GetTransform().GetWorldPosition() - _Other->GetActor()->GetTransform().GetWorldPosition();
     Dir.Normalize();
-    
-    if (0.f > Dir.x)
-    {
-        MoveDir_ = float4::LEFT;
-    }
 
-    else
-    {
-        MoveDir_ = float4::RIGHT;
-    }
-
+    //피격을 당했다.
+    //피격 당한 방향으로 날아간다.(반대)
+    MoveDir_ = -(Dir.x); 
     RealDirX_ = -(Dir.x);
-    
+
     if (false == IsGround_)
     {
         return true;
     }
 
-    SetDamege(10.f);
+    SetDamege(10);
 
     if (0 < GetHP())
     {
@@ -498,28 +511,3 @@ bool Penitent::FallCollisionCheck()
 
     return false;
 }
-
-
-// bool Penitent::HitEffectCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
-//{
-//     float4 MonsterPos = _Other->GetTransform().GetWorldPosition();
-//
-//     HitEffect_->GetTransform().SetWorldPosition(
-//         {MonsterPos.x, MonsterPos.y, HitEffect_->GetTransform().GetWorldPosition().z});
-//
-//     if (0 < RealXDir_)  //오른쪽
-//     {
-//         HitEffect_->GetTransform().PixLocalNegativeX();
-//
-//         CurStage_->SetShake(true);
-//     }
-//
-//     else if (0 > RealXDir_)  //왼쪽
-//     {
-//         HitEffect_->GetTransform().PixLocalPositiveX();
-//
-//         CurStage_->SetShake(true);
-//     }
-//
-//     return true;
-// }

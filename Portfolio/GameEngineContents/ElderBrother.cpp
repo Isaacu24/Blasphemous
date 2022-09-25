@@ -2,7 +2,7 @@
 #include "ElderBrother.h"
 #include "GravityActor.h"
 #include "BloodSplatters.h"
-#include "HardLandingEffect.h "
+#include "HardLandingEffect.h"
 
 namespace
 {
@@ -61,12 +61,27 @@ void ElderBrother::Start()
         "elderBrother_land",
         [&](const FrameAnimation_DESC& _Info)
         {
+            if (1 == _Info.CurFrame)
+            {
+                GameEngineInput::GetInst()->VibrationOn(0.5f);
+            }
+
             if (2 == _Info.CurFrame)
             {
                 JumpEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{0, 75});
                 JumpEffecter_->CreateEffect();
             }
         });
+
+    Renderer_->AnimationBindFrame("elderBrother_land_event",
+                                  [&](const FrameAnimation_DESC& _Info)
+                                  {
+                                      if (1 == _Info.CurFrame)
+                                      {
+                                          GameEngineInput::GetInst()->VibrationOn(0.5f);
+                                      }
+                                  });
+
 
     Renderer_->AnimationBindEnd("elderBrother_land", [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     Renderer_->AnimationBindEnd("elderBrother_land_event",
@@ -80,6 +95,8 @@ void ElderBrother::Start()
         {
             if (16 == _Info.CurFrame)
             {
+                GameEngineInput::GetInst()->VibrationOn(0.75f);
+
                 AffectChecker->Move();
                 AffectChecker->On();
 
@@ -141,6 +158,16 @@ void ElderBrother::Start()
 
                                     Renderer_->CurAnimationReset();
                                 });
+
+
+    Renderer_->AnimationBindFrame("elderBrother_attack_event",
+                                  [&](const FrameAnimation_DESC& _Info)
+                                  {
+                                      if (16 == _Info.CurFrame)
+                                      {
+                                          GameEngineInput::GetInst()->VibrationOn(0.75f);
+                                      }
+                                  });
 
     Renderer_->CreateFrameAnimationCutTexture("elderBrother_death", {"elderBrother_death.png", 0, 48, 0.07f, false});
     Renderer_->AnimationBindFrame("elderBrother_death",
@@ -284,7 +311,7 @@ void ElderBrother::DamageCheck()
         IsHit_ = true;
 
         Renderer_->GetColorData().MulColor = float4{1.5f, 1.5f, 1.5f, 1.0f};
-        
+
         float4 HitPos = BodyCollider_->GetTransform().GetWorldPosition();
 
         BloodEffect_->GetRenderer()->On();
@@ -363,7 +390,7 @@ void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
 
             if (0.f < GetTransform().GetWorldPosition().y)
             {
-                Renderer_->GetColorData().MulColor = float4::ONE;
+                Renderer_->GetColorData().MulColor  = float4::ONE;
                 Renderer_->GetColorData().PlusColor = float4::ZERO;
 
                 GetTransform().SetWorldPosition(

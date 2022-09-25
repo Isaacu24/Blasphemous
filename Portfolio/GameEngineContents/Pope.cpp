@@ -354,12 +354,25 @@ void Pope::EventAppearEnd(const StateInfo& _Info)
 }
 
 
-void Pope::VanishingStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("pope_vanishing"); }
+void Pope::VanishingStart(const StateInfo& _Info) 
+{
+    if (0 >= GetHP())
+    {
+        return;
+    }
+
+    MetaRenderer_->ChangeMetaAnimation("pope_vanishing"); 
+}
 
 void Pope::VanishingUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Pope::VanishingEnd(const StateInfo& _Info)
 {
+    if (0 >= GetHP())
+    {
+        return;
+    }
+
     MetaRenderer_->Off();
     BodyCollider_->Off();
 

@@ -39,8 +39,8 @@ void Stage11::SettingStage()
 
     Stage_->GetTransform().SetLocalMove(Offset);
 
-    PlayerRightPos_ = float4{1870, -1200, PlayerZ};
-    PlayerLeftPos_  = float4{750, -1200, PlayerZ};
+    PlayerRightPos_ = float4{750, -1200, PlayerZ};
+    PlayerLeftPos_  = float4{1870, -1200, PlayerZ};
 
     IsLeftExit_ = true;
 }
@@ -73,7 +73,7 @@ void Stage11::Update(float _DeltaTime)
 
     if (730 > Penitent_->GetTransform().GetWorldPosition().x)
     {
-        IsLeftExit_ = true;
+        IsRightExit_ = true;
 
         LoadingActor_->On();
         LoadingActor_->IsEntrance(false);
@@ -151,10 +151,6 @@ void Stage11::LevelStartEvent()
 
     IsRightExit_ = false;
     IsLeftExit_  = false;
-
-    GetMainCameraActor()->GetTransform().SetWorldPosition(float4{
-        Penitent_->GetTransform().GetLocalPosition() + float4{0, CameraOffset_}
-    });
 }
 
 void Stage11::LevelEndEvent() { StageBase::LevelEndEvent(); }

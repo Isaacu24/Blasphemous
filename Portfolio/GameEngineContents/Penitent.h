@@ -322,14 +322,12 @@ private:
     EXECUTIONTYPE ExecutionType_;
 
     std::string LastSaveLevel_;
-
     std::string OutDoorLevel_;
 
     int   HP_;
     int   MP_;
     float Speed_;
     float SlideForce_;
-
 
     float RunTime_;  //달리기 시간 체크
 
@@ -338,7 +336,7 @@ private:
     float FallTime_;
 
     float4 MoveDir_;
-    float RealDirX_;
+    float  RealDirX_;
 
     float CilmbY_;
 
@@ -346,43 +344,39 @@ private:
 
     int AttackStack_;
 
-    bool IsHit_;      //유효타
-    bool IsBossHit_;  //유효타
+    float JumpTime_;
+    float SlideTime_;
+
+    float4 LastJumpPos_;
+
+    class StageBase* CurStage_;
+
+    std::vector<bool> Flasks_;
 
     bool IsGround_;
     bool IsDangle_;
     bool IsLadder_;
-
     bool IsOnInventory_;
     bool IsClimbLedge_;
-
-    bool ReadySkill_;  //착지 스킬 준비 여부
-
-    float JumpTime_;
-    float SlideTime_;
-
-    std::vector<bool> Flasks_;
-
-    float4 LastJumpPos_;
-
-    bool IsPlayerDeath_;
-
-    class StageBase* CurStage_;
 
     bool IsShake_;
     bool IsReturnToPort_;
     bool IsParrySuccess_;
-
     bool ParryOn_;
-
     bool IsFreezeEnd_;
-
     bool IsOutDoor_;
-
     bool IsRising_;
     bool IsCharging_;
+    bool IsPlayerDeath_;
+    bool ReadySkill_;  //착지 스킬 준비 여부
+    bool IsHit_;       //유효타
+    bool IsBossHit_;   //보스 유효타
+    bool IsKnockUp_;
 
-    //게임 패드 
+    //게임 패드
     SHORT ThumbLX_;
     SHORT ThumbLY_;
+
+    //게임 패드 신호 숫자
+    DWORD PacketNumber_;
 };

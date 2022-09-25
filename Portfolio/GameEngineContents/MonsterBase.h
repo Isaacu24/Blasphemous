@@ -48,10 +48,7 @@ public:
 
     inline int GetTear() { return Tear_; }
 
-    inline void SetSpeed(float _Speed) 
-    {
-        Speed_ = _Speed; 
-    }
+    inline void SetSpeed(float _Speed) { Speed_ = _Speed; }
 
     void SetGround(GameEngineTextureRenderer* _Ground);
 
@@ -59,14 +56,14 @@ public:
 
     inline void ChangeIdleState(const FrameAnimation_DESC& _Info) { State_.ChangeState("Idle"); }
 
-    //inline MetaTextureRenderer* GetMetaRenderer() { return MetaRenderer_; }
+    // inline MetaTextureRenderer* GetMetaRenderer() { return MetaRenderer_; }
 
-    //inline GameEngineTextureRenderer* GetRenderer() { return Renderer_; }
+    // inline GameEngineTextureRenderer* GetRenderer() { return Renderer_; }
 
 protected:
     GameEngineStateManager State_;
 
-    BloodSplatters* BloodEffect_;
+    BloodSplatters*   BloodEffect_;
     MonsterHitEffect* HitEffect_;
 
     MetaTextureRenderer*       MetaRenderer_;
@@ -92,6 +89,9 @@ protected:
 
     bool GroundCheck(int _X, int _Y);
     bool UphillRoadCheck(int _X, int _Y);
+
+    bool GroundCheck(float _X, float _Y);
+    bool UphillRoadCheck(float _X, float _Y);
 
     virtual void DamageCheck();
 

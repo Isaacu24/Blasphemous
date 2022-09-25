@@ -115,6 +115,8 @@ public:
 	PixelColor GetPixelToPixelColor(int _x, int _y);
 
 	float4 GetPixelToFloat4(int _x, int _y);
+	
+	float4 GetPixelToFloat4(float _x, float _y);
 
 	void Cut(UINT _StartX, UINT _StartY, UINT _SizeX, UINT _SizeY);
 

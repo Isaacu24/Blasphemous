@@ -138,9 +138,10 @@ void Stage12::LevelStartEvent()
     IsRightExit_ = false;
     IsLeftExit_  = false;
 
-    GetMainCameraActor()->GetTransform().SetWorldPosition(float4{
-        Penitent_->GetTransform().GetLocalPosition() + float4{0, CameraOffset_}
-    });
+    if (true == Penitent_->GetIsOutDoor())
+    {
+        Penitent_->GetTransform().SetWorldPosition({1300, -1025});
+    }
 }
 
 void Stage12::LevelEndEvent() { StageBase::LevelEndEvent(); }

@@ -2,7 +2,7 @@
 #include <GameEngineCore/GameEngineActor.h>
 #include "BossMonster.h"
 
-class TenPiedad : public GameEngineActor, public BossMonster
+class TenPiedad : public BossMonster
 {
 public:
 	TenPiedad();

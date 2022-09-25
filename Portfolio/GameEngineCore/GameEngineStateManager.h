@@ -43,7 +43,7 @@ public:
 };
 
 // 설명 :
-class GameEngineStateManager final // 더는 상속 못내려
+class GameEngineStateManager final 
 {
 public:
 	// constrcuter destructer
@@ -56,7 +56,6 @@ public:
 	GameEngineStateManager& operator=(const GameEngineStateManager& _Other) = delete;
 	GameEngineStateManager& operator=(GameEngineStateManager&& _Other) noexcept = delete;
 
-	// 맴버함수만 됩니다.
 	void CreateStateMember(const std::string& _StateName
 		, std::function<void(float, const StateInfo&)> _Update
 		, std::function<void(const StateInfo&)> _Start = nullptr

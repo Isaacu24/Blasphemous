@@ -181,7 +181,7 @@ bool GameEngineInput::IsButton(const std::string& _Name)
 	return false;
 }
 
-void GameEngineInput::Vibration()
+void GameEngineInput::VibrationUpdate()
 {
 	if (true == IsVibration_)
 	{
@@ -291,7 +291,7 @@ void GameEngineInput::Update(float _DeltaTime)
 		CurrentButtton.Update(_DeltaTime);
 	}
 
-	Vibration();
+	VibrationUpdate();
 	ThumbUpdate();
 }
 

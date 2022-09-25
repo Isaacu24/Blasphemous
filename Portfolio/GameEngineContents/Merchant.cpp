@@ -36,7 +36,7 @@ void Merchant::Start()
         MetaRenderer_->AnimationBindEnd("ladrona_death_anim_0",
                                         [&](const FrameAnimation_DESC& _Info)
                                         {
-                                            Penitent::GetMainPlayer()->SetTear(5000.f);
+                                            Penitent::GetMainPlayer()->SetTear(5000);
                                             BodyCollider_->Death();
                                             BuyWindow_->Death();
                                         });

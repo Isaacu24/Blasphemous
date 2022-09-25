@@ -59,6 +59,45 @@ bool MonsterBase::UphillRoadCheck(int _X, int _Y)
     }
 }
 
+bool MonsterBase::GroundCheck(float _X, float _Y) 
+{
+    float4 Color = ColMap_->GetCurTexture()->GetPixelToFloat4(_X, _Y);
+
+    if (Color.CompareInt4D(float4::BLACK))
+    {
+        IsGround_ = true;
+        return true;
+    }
+
+    else if (Color.CompareInt4D(float4::MAGENTA))
+    {
+        IsGround_ = true;
+        return true;
+    }
+
+    IsGround_ = false;
+    return false;
+}
+
+bool MonsterBase::UphillRoadCheck(float _X, float _Y) 
+{
+    while (true)
+    {
+        float4 Color = ColMap_->GetCurTexture()->GetPixelToFloat4(_X, _Y);
+
+        if (true == Color.CompareInt4D(float4::BLACK))
+        {
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
+    }
+}
+
+
 
 void MonsterBase::DamageCheck()
 {

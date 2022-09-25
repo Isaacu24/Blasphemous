@@ -238,6 +238,8 @@ void Penitent::Update(float _DeltaTime)
     ThumbLX_ = GameEngineInput::GetInst()->GetThumbLX();
     ThumbLY_ = GameEngineInput::GetInst()->GetThumbLY();
 
+    PacketNumber_ = GameEngineInput::GetInst()->GetInputState().dwPacketNumber;
+
     GameEngineDebug::OutPutString("ThumbLX_ : " + std::to_string(ThumbLX_));
     GameEngineDebug::OutPutString("ThumbLY_ : " + std::to_string(ThumbLY_));
 }
@@ -313,7 +315,8 @@ void Penitent::SetAnimation()
                                                   case 3:
                                                       if (true == IsHit_ || true == IsBossHit_)
                                                       {
-                                                          HitEffect_->Renderer_->On();
+                                                          CurStage_->SetForceX(5.f);
+                                                          CurStage_->SetShake(true);
                                                           IsHit_ = false;
                                                       }
                                                       break;
@@ -326,7 +329,8 @@ void Penitent::SetAnimation()
                                                   case 8:
                                                       if (true == IsHit_ || true == IsBossHit_)
                                                       {
-                                                          HitEffect_->Renderer_->On();
+                                                          CurStage_->SetForceX(15.f);
+                                                          CurStage_->SetShake(true);
                                                           IsHit_ = false;
                                                       }
                                                       break;
@@ -362,7 +366,8 @@ void Penitent::SetAnimation()
                     case 2:
                         if (true == IsHit_ || true == IsBossHit_)
                         {
-                            HitEffect_->Renderer_->On();
+                            CurStage_->SetForceX(10.f);
+                            CurStage_->SetShake(true);
                             IsHit_ = false;
                         }
                         break;
@@ -735,7 +740,8 @@ void Penitent::SetAnimation()
 
                                               if (true == IsHit_ || true == IsBossHit_)
                                               {
-                                                  HitEffect_->Renderer_->On();
+                                                  CurStage_->SetShake(true);
+                                                  CurStage_->SetForceX(10.f);
                                                   IsHit_ = false;
                                               }
                                           });
@@ -744,7 +750,6 @@ void Penitent::SetAnimation()
                                         [&](const FrameAnimation_DESC& _Info)
                                         {
                                             ChangeState("Idle");
-                                            HitEffect_->Renderer_->Off();
                                         });
     }
 
@@ -838,7 +843,8 @@ void Penitent::SetAnimation()
                     case 6:
                         if (true == IsHit_ || true == IsBossHit_)
                         {
-                            HitEffect_->Renderer_->On();
+                            CurStage_->SetForceX(5.f);
+                            CurStage_->SetShake(true);
                             IsHit_ = false;
                         }
                         break;
@@ -882,6 +888,8 @@ void Penitent::SetAnimation()
                     case 5:
                         if (true == IsHit_ || true == IsBossHit_)
                         {
+                            CurStage_->SetForceX(10.f);
+                            CurStage_->SetShake(true);
                             IsHit_ = false;
                         }
                         break;
@@ -917,6 +925,8 @@ void Penitent::SetAnimation()
                     case 11:
                         if (true == IsHit_ || true == IsBossHit_)
                         {
+                            CurStage_->SetForceX(10.f);
+                            CurStage_->SetShake(true);
                             IsHit_ = false;
                         }
                         break;
@@ -953,6 +963,8 @@ void Penitent::SetAnimation()
                     case 20:
                         if (true == IsHit_ || true == IsBossHit_)
                         {
+                            CurStage_->SetForceX(15.f);
+                            CurStage_->SetShake(true);
                             IsHit_ = false;
                         }
                         break;
@@ -989,12 +1001,22 @@ void Penitent::SetAnimation()
         MetaRenderer_->AnimationBindFrame("penitent_parry_counterv2_old_anim",
                                           [&](const FrameAnimation_DESC& _Info)
                                           {
-                                              if (13 == _Info.CurFrame)
+                                              if (12 == _Info.CurFrame)
                                               {
                                                   AttackCollider_->On();
                                               }
 
-                                              else if (15 == _Info.CurFrame)
+                                              if (13 == _Info.CurFrame)
+                                              {
+                                                  if (true == IsHit_ || true == IsBossHit_)
+                                                  {
+                                                      CurStage_->SetForceX(20.f);
+                                                      CurStage_->SetShake(true);
+                                                      IsHit_ = false;
+                                                  }
+                                              }
+
+                                              if (14 == _Info.CurFrame)
                                               {
                                                   AttackCollider_->Off();
                                               }
@@ -1056,7 +1078,10 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->AnimationBindEnd("penitent_throwback_anim",
                                         [&](const FrameAnimation_DESC& _Info)
-                                        { MetaRenderer_->ChangeMetaAnimation("penitent_getting_up_anim"); });
+                                        {
+                                            IsKnockUp_ = false;
+                                            MetaRenderer_->ChangeMetaAnimation("penitent_getting_up_anim");
+                                        });
     }
 
     //ÆÐ¸µ

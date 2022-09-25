@@ -62,10 +62,10 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
             std::string ImageName     = std::filesystem::path{FileName}.replace_extension("").string();  // Remove .meta
             std::string AnimationName = std::filesystem::path{ImageName}.replace_extension("").string();  // Remove .png
 
-            //Renderer->CreateFrameAnimationCutTexture(
-            //    AnimationName, {ImageName, 0, static_cast<unsigned int>(MetaDatas_.size() - 1), 0.1f, true});
+            // Renderer->CreateFrameAnimationCutTexture(
+            //     AnimationName, {ImageName, 0, static_cast<unsigned int>(MetaDatas_.size() - 1), 0.1f, true});
 
-            //Renderer->ChangeFrameAnimation(AnimationName);
+            // Renderer->ChangeFrameAnimation(AnimationName);
 
             Renderer->SetCurData(MetaDatas_);
 
@@ -89,7 +89,7 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
 
         GameEngineDebug::DrawTexture(TargetTexture, ImagePos);
 
-        for (size_t i = 0; i < TargetTexture->GetCutCount(); i++)
+        for (size_t i = 0; i < static_cast<size_t>(TargetTexture->GetCutCount()); i++)
         {
             float4 Pos   = TargetTexture->GetCutPos(i);
             float4 Scale = TargetTexture->GetCutScale(i);
@@ -235,10 +235,10 @@ void MetaSpriteWindow::MetaParsing(const std::string& _AllText)
         std::string CutDataString = _AllText.substr(StartPos, EndPos - StartPos);
 
         int   Index  = 0;
-        int   StartX = 0;
-        int   StartY = 0;
-        int   SizeX  = 0;
-        int   SizeY  = 0;
+        float StartX = 0;
+        float StartY = 0;
+        float SizeX  = 0;
+        float SizeY  = 0;
         float PivotX = 0;
         float PivotY = 0;
 
@@ -251,7 +251,7 @@ void MetaSpriteWindow::MetaParsing(const std::string& _AllText)
 
             size_t UnderBarPos = IndexString.rfind("_");
 
-            int Size = IndexString.size();
+            size_t Size = IndexString.size();
 
             IndexString = IndexString.substr(UnderBarPos + 1, IndexString.size() - UnderBarPos);
 
@@ -265,7 +265,7 @@ void MetaSpriteWindow::MetaParsing(const std::string& _AllText)
             std::string XString
                 = CutDataString.substr(DataStartPos + FindString.size(), DataEndpos - DataStartPos + FindString.size());
 
-            StartX = atoi(XString.c_str());
+            StartX = atof(XString.c_str());
         }
 
         {
@@ -274,7 +274,7 @@ void MetaSpriteWindow::MetaParsing(const std::string& _AllText)
             size_t      DataEndpos   = CutDataString.find("\n", DataStartPos);
             std::string XString
                 = CutDataString.substr(DataStartPos + FindString.size(), DataEndpos - DataStartPos + FindString.size());
-            StartY = atoi(XString.c_str());
+            StartY = atof(XString.c_str());
         }
 
         {
@@ -283,7 +283,7 @@ void MetaSpriteWindow::MetaParsing(const std::string& _AllText)
             size_t      DataEndpos   = CutDataString.find("\n", DataStartPos);
             std::string XString
                 = CutDataString.substr(DataStartPos + FindString.size(), DataEndpos - DataStartPos + FindString.size());
-            SizeX = atoi(XString.c_str());
+            SizeX = atof(XString.c_str());
         }
 
         {
@@ -294,7 +294,7 @@ void MetaSpriteWindow::MetaParsing(const std::string& _AllText)
             std::string XString
                 = CutDataString.substr(DataStartPos + FindString.size(), DataEndpos - DataStartPos + FindString.size());
 
-            SizeY = atoi(XString.c_str());
+            SizeY = atof(XString.c_str());
         }
 
         {

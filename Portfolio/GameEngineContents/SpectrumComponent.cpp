@@ -78,7 +78,7 @@ void SpectrumComponent::DrawSpectrum(float _DeltaTime)
 
         if (SpectrumSize_ <= Index_)
         {
-            Index_       = 0.f;
+            Index_       = 0;
             IsDraw_      = false;
             IsDisAppear_ = true;
             return;
@@ -87,7 +87,7 @@ void SpectrumComponent::DrawSpectrum(float _DeltaTime)
         SpectrumActors_[Index_]->On();
         Spectrums_[Index_]->On();
 
-        Spectrums_[Index_]->GetColorData().MulColor = float4{0.15, 0.5f, 0.98f, 0.5f};
+        Spectrums_[Index_]->GetColorData().MulColor = float4{0.15f, 0.5f, 0.98f, 0.5f};
 
         if (0.0f > GetActor()->GetTransform().GetLocalScale().x)
         {
@@ -140,7 +140,7 @@ void SpectrumComponent::DrawMetaSpectrum(float _DeltaTime)
         SpectrumActors_[Index_]->On();
         MetaSpectrums_[Index_]->On();
 
-        MetaSpectrums_[Index_]->GetColorData().MulColor = float4{0.65, 0.f, 1.0f, 0.5f};
+        MetaSpectrums_[Index_]->GetColorData().MulColor = float4{0.65f, 0.f, 1.0f, 0.5f};
 
         if (0.0f > GetActor()->GetTransform().GetLocalScale().x)
         {
@@ -239,7 +239,7 @@ void SpectrumComponent::SetSpectrumFrame(size_t Start, size_t End)
 
     for (size_t i = 0; i < Length - 1; i++)
     {
-        Spectrums_[i]->CurAnimationSetStartPivotFrame(Start);
+        Spectrums_[i]->CurAnimationSetStartPivotFrame(static_cast<int>(Start));
         Spectrums_[i]->CurAnimationPauseOn();
         ++Start;
     }
@@ -252,7 +252,7 @@ void SpectrumComponent::SetMetaSpectrumFrame(size_t Start, size_t End)
 
     for (size_t i = 0; i < Length - 1; i++)
     {
-        MetaSpectrums_[i]->CurAnimationSetStartPivotFrame(Start);
+        MetaSpectrums_[i]->CurAnimationSetStartPivotFrame(static_cast<int>(Start));
         MetaSpectrums_[i]->CurAnimationPauseOn();
         ++Start;
     }
@@ -260,7 +260,7 @@ void SpectrumComponent::SetMetaSpectrumFrame(size_t Start, size_t End)
 
 void SpectrumComponent::SetOnceSpectrumFrame(size_t _Length)
 {
-    SpectrumSize_ = _Length - 1;
+    SpectrumSize_ = static_cast<int>(_Length - 1);
 
     for (size_t i = 0; i < _Length - 1; i++)
     {

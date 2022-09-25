@@ -117,7 +117,7 @@ public:
 		LitmitVibrationTime_ = _Time;
 	}
 
-	void Vibration();
+	void VibrationUpdate();
 	void ThumbUpdate();
 
 	inline int GetMouseWheel()

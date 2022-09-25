@@ -162,6 +162,7 @@ void LionHead::Update(float _DeltaTime)
 
 void LionHead::End() {}
 
+
 void LionHead::IdleStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("Lionhead_idle_anim"); }
 
 void LionHead::IdleUpdate(float _DeltaTime, const StateInfo& _Info)

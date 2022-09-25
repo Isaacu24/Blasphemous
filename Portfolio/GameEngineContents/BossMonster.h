@@ -5,7 +5,6 @@
 #include "BossUI.h"
 
 class BossUI;
-
 class BossMonster
     : public GameEngineActor
     , public MonsterBase

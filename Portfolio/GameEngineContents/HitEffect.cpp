@@ -20,6 +20,15 @@ void HitEffect::Start()
             {"pushback_sparks_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
             Data);
 
+        Renderer_->AnimationBindFrame("pushback_sparks_anim",
+                                    [&](const FrameAnimation_DESC& _Info)
+                                    {
+                                          if (1 == _Info.CurFrame)
+                                          {
+                                              int a = 0;
+                                          }
+                                    });
+
         Renderer_->AnimationBindEnd("pushback_sparks_anim",
                                     [&](const FrameAnimation_DESC& _Info)
                                     {

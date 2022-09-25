@@ -309,7 +309,7 @@ void Penitent::FallStart(const StateInfo& _Info)
     MetaRenderer_->ChangeMetaAnimation("penitent_falling_loop_anim");
 
     if (GameEngineInput::GetInst()->IsPressKey("PenitentRight")
-        || GameEngineInput::GetInst()->IsPressKey("PenitentLeft") || 30000 < ThumbLX_ || -30000 > ThumbLX_)
+        || GameEngineInput::GetInst()->IsPressKey("PenitentLeft") /*|| 30000 < ThumbLX_ || -30000 > ThumbLX_*/)
     {
         MetaRenderer_->ChangeMetaAnimation("penitent_jum_forward_fall_anim");
     }
@@ -351,7 +351,7 @@ void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
-    if (GameEngineInput::GetInst()->IsPressKey("PenitentDown") || -30000 > ThumbLY_)
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentDown") /* || -30000 > ThumbLY_*/)
     {
         JumpForce_.y -= _DeltaTime * 50.f;
         FallTime_ += _DeltaTime / 2;
@@ -477,6 +477,7 @@ void Penitent::KnockBackStart(const StateInfo& _Info)
     {
         HitEffect_->GetTransform().PixLocalPositiveX();
         MoveEffect_->GetTransform().PixLocalPositiveX();
+        AttackEffect_->GetTransform().PixLocalPositiveX();
         GetTransform().PixLocalPositiveX();
     }
 
@@ -484,6 +485,7 @@ void Penitent::KnockBackStart(const StateInfo& _Info)
     {
         HitEffect_->GetTransform().PixLocalNegativeX();
         MoveEffect_->GetTransform().PixLocalNegativeX();
+        AttackEffect_->GetTransform().PixLocalNegativeX();
         GetTransform().PixLocalNegativeX();
     }
 
@@ -495,6 +497,11 @@ void Penitent::KnockBackStart(const StateInfo& _Info)
 
 void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+    if (0.2f <= _Info.StateTime && 1 <= MetaRenderer_->GetColorData().PlusColor.r)
+    {
+        MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
+    }
+
     if (0.f < MoveDir_.x && true == RightObstacleCheck() || 0.f > MoveDir_.x && true == LeftObstacleCheck())
     {
         return;
@@ -502,12 +509,9 @@ void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
 
     if (false == IsGround_)
     {
+        JumpForce_ = 10.f;
         ChangeState("Fall");
-    }
-
-    if (0.2f <= _Info.StateTime && 1 <= MetaRenderer_->GetColorData().PlusColor.r)
-    {
-        MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
+        return;
     }
 
     HitEffect_->GetTransform().SetWorldPosition(
@@ -535,16 +539,23 @@ void Penitent::KnockUpStart(const StateInfo& _Info)
 
     FallTime_ = 0.f;
 
+    IsKnockUp_ = true;
     MetaRenderer_->ChangeMetaAnimation("penitent_throwback_anim");
     MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
 
-    if (0 > RealDirX_)
+    if (0 < RealDirX_)
     {
+        HitEffect_->GetTransform().PixLocalPositiveX();
+        MoveEffect_->GetTransform().PixLocalPositiveX();
+        AttackEffect_->GetTransform().PixLocalPositiveX();
         GetTransform().PixLocalPositiveX();
     }
 
     else
     {
+        HitEffect_->GetTransform().PixLocalNegativeX();
+        MoveEffect_->GetTransform().PixLocalNegativeX();
+        AttackEffect_->GetTransform().PixLocalNegativeX();
         GetTransform().PixLocalNegativeX();
     }
 
@@ -553,17 +564,21 @@ void Penitent::KnockUpStart(const StateInfo& _Info)
 
 void Penitent::KnockUpUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    if (0.f < MoveDir_.x && true == RightObstacleCheck() || 0.f > MoveDir_.x && true == LeftObstacleCheck())
-    {
-        return;
-    }
-
     if (0.2f <= _Info.StateTime && 1 <= MetaRenderer_->GetColorData().PlusColor.r)
     {
         MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
     }
 
-    GetTransform().SetWorldMove(float4{MoveDir_.x, 0} * 150.f * _DeltaTime);
+    if (0.f < MoveDir_.x && true == RightObstacleCheck() || 0.f > MoveDir_.x && true == LeftObstacleCheck())
+    {
+        return;
+    }
+
+    if (true == IsKnockUp_)
+    {
+        GetTransform().SetWorldMove(float4{MoveDir_.x, 0} * 150.f * _DeltaTime);
+    }
+
     Gravity_->SetActive(!IsGround_);
 }
 
@@ -803,7 +818,7 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
         }
 
         if (GameEngineInput::GetInst()->IsUpKey("PenitentUp") || GameEngineInput::GetInst()->IsUpKey("PenitentDown")
-            || 5000.f > GameEngineInput::GetInst()->GetMagnitudeLY())
+            || 5000.f > GameEngineInput::GetInst()->GetMagnitudeLY() && PacketNumber_)
         {
             //¾Ö´Ï¸ÞÀÌ¼Ç ¸ØÃã
             if (false == MetaRenderer_->IsCurAnimationPause())
@@ -1006,6 +1021,7 @@ void Penitent::PrayAttackEnd(const StateInfo& _Info)
     }
 
     MetaRenderer_->GetColorData().MulColor = float4{1.0f, 1.0f, 1.0f, 1.0f};
+    AttackCollider_->On();
 }
 
 
@@ -1123,7 +1139,6 @@ void Penitent::RecoveryStart(const StateInfo& _Info)
             PlayerUI_->UseFlask(i);
 
             MetaRenderer_->ChangeMetaAnimation("penitent_healthpotion_consuming_anim");
-
             AttackEffect_->Renderer_->On();
 
             if (1 == RealDirX_)
@@ -1148,7 +1163,7 @@ void Penitent::RecoveryStart(const StateInfo& _Info)
 
 void Penitent::RecoveryUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Penitent::RecoveryEnd(const StateInfo& _Info) {}
+void Penitent::RecoveryEnd(const StateInfo& _Info) { AttackEffect_->Renderer_->Off(); }
 
 
 void Penitent::ReturnToPortStart(const StateInfo& _Info)
@@ -1309,7 +1324,7 @@ void Penitent::DeathStart(const StateInfo& _Info)
 
 void Penitent::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Penitent::DeathEnd(const StateInfo& _Info) { SetHP(100.f); }
+void Penitent::DeathEnd(const StateInfo& _Info) { SetHP(100); }
 
 
 void Penitent::RisingStart(const StateInfo& _Info)

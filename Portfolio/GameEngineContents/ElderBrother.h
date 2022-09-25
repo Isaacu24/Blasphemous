@@ -75,37 +75,29 @@ protected:
 
 private:
     float4 Dir_;
+    float4 Target_;
+    float4 JumpForce_;
 
     AttackCorpseEffecter* AttackEffecter_;
     JumpCorpseEffecter*   JumpEffecter_;
-
     GravityActor* AffectChecker;
 
     class HardLandingEffect* LandEffect_;
 
-    float4 Target_;
-
+    GameEngineRandom Random_;
     APPEARFLOW Flow_;
 
-    bool IsDecide_;
-
-    float4 JumpForce_;
-
     float AppearTime_;
-
     float DecideTime_;
     float JumpHoldTime_;
-
     float RealXDir_;
-
+    float Distance_;
     float Alpha_;
+    
+    int AttackCount_;
+
     bool  IsJump_;
     bool  EventOn_;
     bool  DeathEventOn_;
-
-    float Distance_;
-
-    int AttackCount_;
-
-    GameEngineRandom Random_;
+    bool  IsDecide_;
 };

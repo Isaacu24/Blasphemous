@@ -42,13 +42,13 @@ void BossUI::SetBossUI()
     Font_->SetColor({0.65f, 0.65f, 0.45f, 1.0f});
     Font_->SetScreenPostion({450, 590, static_cast<int>(UIORDER::BossUI)});
     Font_->SetSize(30);
-    Font_->ChangeCamera(CAMERAORDER::UICAMERA);
+
+    //인벤토리에 가려지기 위해 메인 카메라에 둠
+    //Font_->ChangeCamera(CAMERAORDER::UICAMERA);
 }
 
 void BossUI::Update(float _DeltaTime)
 {
-    // float HP = Boss_->GetHP() / 100.f;
-    // HPBar_->Renderer_->SetUVData(HP);
     DamageCheck(_DeltaTime);
 }
 
@@ -56,8 +56,8 @@ void BossUI::End() {}
 
 void BossUI::DamageCheck(float _DeltaTime)
 {
-    BossCurHP_ = Boss_->GetHP();
-    BehindBossCurHP_ = Boss_->GetHP();
+    BossCurHP_ = static_cast<int>(Boss_->GetHP());
+    BehindBossCurHP_ = static_cast<int>(Boss_->GetHP());
 
     if (BossPrevHP_ != BossCurHP_)
     {

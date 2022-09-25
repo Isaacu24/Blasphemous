@@ -73,7 +73,7 @@ void EngineSubSetting()
 		Desc.RenderTarget[0].SrcBlend = D3D11_BLEND::D3D11_BLEND_ONE;
 		Desc.RenderTarget[0].DestBlend = D3D11_BLEND::D3D11_BLEND_ONE;
 		Desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP::D3D11_BLEND_OP_ADD;
-		Desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND::D3D11_BLEND_ZERO;
+		Desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND::D3D11_BLEND_ONE;
 		Desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND::D3D11_BLEND_ONE;
 
 		GameEngineBlend::Create("TransparentBlend", Desc);
@@ -87,27 +87,27 @@ void EngineSubSetting()
 
 		GameEngineRasterizer::Create("EngineRasterizer", Desc);
 	}
+
 	{
-		D3D11_DEPTH_STENCIL_DESC Desc = { 0 };
+		D3D11_DEPTH_STENCIL_DESC Desc = {0};
 
 		Desc.DepthEnable = true;
 		Desc.DepthFunc = D3D11_COMPARISON_FUNC::D3D11_COMPARISON_LESS_EQUAL;
 		Desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK::D3D11_DEPTH_WRITE_MASK_ALL;
 		Desc.StencilEnable = false;
-
 		GameEngineDepthStencil::Create("EngineBaseDepth", Desc);
 	}
+
 
 	{
 		D3D11_DEPTH_STENCIL_DESC Desc = { 0 };
 
 		Desc.DepthEnable = true;
 		Desc.DepthFunc = D3D11_COMPARISON_FUNC::D3D11_COMPARISON_ALWAYS;
-		Desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK::D3D11_DEPTH_WRITE_MASK_ZERO;
+		Desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK::D3D11_DEPTH_WRITE_MASK_ALL;
 		Desc.StencilEnable = false;
 		GameEngineDepthStencil::Create("AlwaysDepth", Desc);
 	}
-
 }
 
 void EngineTextureLoad()
