@@ -440,8 +440,6 @@ bool Penitent::KnockUp(GameEngineCollision* _This, GameEngineCollision* _Other)
     float4 Dir = _This->GetTransform().GetWorldPosition() - _Other->GetActor()->GetTransform().GetWorldPosition();
     Dir.Normalize();
 
-    //피격을 당했다.
-    //피격 당한 방향으로 날아간다.(반대)
     MoveDir_ = -(Dir.x); 
     RealDirX_ = -(Dir.x);
 

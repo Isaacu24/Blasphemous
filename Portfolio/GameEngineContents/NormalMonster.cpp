@@ -186,6 +186,21 @@ bool NormalMonster::ExecutionCheck()
     return false;
 }
 
+bool NormalMonster::ReverseBloodEffect(GameEngineCollision* _This, GameEngineCollision* _Other) 
+{
+    if (_This->GetTransform().GetWorldPosition().x < _Other->GetTransform().GetWorldPosition().x)
+    {
+        BloodEffect_->GetTransform().PixLocalPositiveX();
+    }
+
+    else
+    {
+        BloodEffect_->GetTransform().PixLocalNegativeX();
+    }
+
+    return true; 
+}
+
 
 void NormalMonster::DamageCheck(float _Damage, float _Offset)
 {
@@ -214,7 +229,10 @@ void NormalMonster::DamageCheck(float _Damage, float _Offset)
 
     if (true
         == BodyCollider_->IsCollision(
-            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+            CollisionType::CT_OBB2D,
+            COLLISIONORDER::PlayerAttack,
+            CollisionType::CT_OBB2D,
+            std::bind(&NormalMonster::ReverseBloodEffect, this, std::placeholders::_1, std::placeholders::_2)))
     {
         MinusHP(_Damage);
         IsHit_ = true;
@@ -258,10 +276,10 @@ void NormalMonster::DamageCheck(float _Damage, float _Offset)
         float4 HitPos = BodyCollider_->GetTransform().GetWorldPosition();
 
         BloodEffect_->GetRenderer()->On();
-        BloodEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
+        BloodEffect_->GetTransform().SetWorldPosition({HitPos.x + (Dir_.x * 30.f), HitPos.y, BossMonsterEffectZ});
         BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
 
-        HitEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
+        HitEffect_->GetTransform().SetWorldPosition({HitPos.x + (Dir_.x * 30.f), HitPos.y, BossMonsterEffectZ});
         HitEffect_->ShowRangeHitEffect();
 
         MinusHP(7.f);

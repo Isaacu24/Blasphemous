@@ -35,6 +35,9 @@ protected:
 private:
     GameEngineStateManager State_;
 
+    class MonsterHitEffect* HitEffect_;
+    class BloodSplatters*   BloodEffect_;
+
     class MetaTextureRenderer* MetaRenderer_;
     GameEngineCollision*       BodyCollider_;
 
@@ -45,5 +48,4 @@ private:
     class ItemBuyWindow* BuyWindow_;
 
     std::vector<Item*> SellItemList_;
-
 };

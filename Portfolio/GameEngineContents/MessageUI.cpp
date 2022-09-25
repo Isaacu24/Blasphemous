@@ -56,7 +56,8 @@ void MessageUI::Update(float _DeltaTime)
             ConstTime_ /= Speed_;
         }
 
-        if (true == GameEngineInput::GetInst()->IsDownKey("ScriptSkip"))
+        if (true == GameEngineInput::GetInst()->IsDownKey("ScriptSkip")
+            || true == GameEngineInput::GetInst()->IsDownButton("PenitentA"))
         {
             ConstTime_ = 0.f;
         }

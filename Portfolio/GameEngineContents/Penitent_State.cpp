@@ -55,7 +55,7 @@ void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 
     else if (true == GameEngineInput::GetInst()->IsDownKey("PenitentAttack")
-             || GameEngineInput::GetInst()->IsDownButton("PenitentB"))
+             || GameEngineInput::GetInst()->IsDownButton("PenitentB") && false == IsReturnToPort_)
     {
         State_.ChangeState("Attack");
     }
@@ -292,7 +292,7 @@ void Penitent::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
-    if (GameEngineInput::GetInst()->IsPressKey("PenitentL"))
+    if (GameEngineInput::GetInst()->IsPressKey("PenitentL") || GameEngineInput::GetInst()->IsDownButton("PenitentX"))
     {
         ChangeState("JumpRangeAttack");
         return;
@@ -309,7 +309,7 @@ void Penitent::FallStart(const StateInfo& _Info)
     MetaRenderer_->ChangeMetaAnimation("penitent_falling_loop_anim");
 
     if (GameEngineInput::GetInst()->IsPressKey("PenitentRight")
-        || GameEngineInput::GetInst()->IsPressKey("PenitentLeft") /*|| 30000 < ThumbLX_ || -30000 > ThumbLX_*/)
+        || GameEngineInput::GetInst()->IsPressKey("PenitentLeft") || 30000 < ThumbLX_ || -30000 > ThumbLX_)
     {
         MetaRenderer_->ChangeMetaAnimation("penitent_jum_forward_fall_anim");
     }
@@ -1039,12 +1039,14 @@ void Penitent::JumpRangeAttackStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_rangeAttack_symbol_midair_anim");
 
+    JumpForce_ = 10.f;
     Gravity_->SetActive(false);
 }
 
 void Penitent::JumpRangeAttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Penitent::JumpRangeAttackEnd(const StateInfo& _Info) { FallTime_ = 0.f; }
+void Penitent::JumpRangeAttackEnd(const StateInfo& _Info) 
+{ FallTime_ = 0.f; }
 
 
 void Penitent::ExecutionStart(const StateInfo& _Info)
@@ -1168,6 +1170,7 @@ void Penitent::RecoveryEnd(const StateInfo& _Info) { AttackEffect_->Renderer_->O
 
 void Penitent::ReturnToPortStart(const StateInfo& _Info)
 {
+    IsReturnToPort_ = false;
     MetaRenderer_->ChangeMetaAnimation("RegresoAPuerto-Prayer");
 
     // AttackEffect_->Renderer_->On();

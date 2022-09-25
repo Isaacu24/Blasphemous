@@ -37,6 +37,7 @@ void FrameAnimation::Update(float _Delta)
 			{
 				Start(Info);
 			}
+
 			bOnceStart = true;
 			bOnceEnd = false;
 		}
@@ -54,6 +55,7 @@ void FrameAnimation::Update(float _Delta)
 			}
 
 			++Info.CurFrame;
+
 			if (nullptr != Frame)
 			{
 				Frame(Info);

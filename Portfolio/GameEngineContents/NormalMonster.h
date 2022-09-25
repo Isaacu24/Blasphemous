@@ -64,5 +64,7 @@ protected:
 
     inline void SetCrossroad(float _Distance) { Crossroad_ = _Distance; }
 
+    bool ReverseBloodEffect(GameEngineCollision* _This, GameEngineCollision* _Other);
+
 private:
 };

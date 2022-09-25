@@ -7,10 +7,10 @@ BossMonster::BossMonster()
 
 BossMonster::~BossMonster() {}
 
-void BossMonster::Start() 
+void BossMonster::Start()
 {
     HitEffect_ = GetLevel()->CreateActor<MonsterHitEffect>();
-    
+
     BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
     BloodEffect_->GetRenderer()->Off();
 }
@@ -116,7 +116,10 @@ void BossMonster::DamageCheck(float _Damage, const std::string& _State)
 
     if (true
         == BodyCollider_->IsCollision(
-            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+            CollisionType::CT_OBB2D,
+            COLLISIONORDER::PlayerAttack,
+            CollisionType::CT_OBB2D,
+            std::bind(&BossMonster::ReverseBloodEffect, this, std::placeholders::_1, std::placeholders::_2)))
     {
         IsHit_ = true;
 
@@ -161,10 +164,26 @@ void BossMonster::BossDeathEvent()
 
     else if (nullptr != Renderer_)
     {
-        Renderer_->GetColorData().MulColor = float4::ZERO;
+        Renderer_->GetColorData().MulColor  = float4::ZERO;
         Renderer_->GetColorData().PlusColor = float4{0.57f, 0.14f, 0.21f, 1.0f};
         GameEngineTime::GetInst()->SetTimeScale(Renderer_->GetOrder(), 0.5f);
     }
 
     BossDeathEvent_ = true;
+}
+
+
+bool BossMonster::ReverseBloodEffect(GameEngineCollision* _This, GameEngineCollision* _Other)
+{
+    if (_This->GetTransform().GetWorldPosition().x < _Other->GetTransform().GetWorldPosition().x)
+    {
+        BloodEffect_->GetTransform().PixLocalNegativeX();
+    }
+
+    else
+    {
+        BloodEffect_->GetTransform().PixLocalPositiveX();
+    }
+
+    return true;
 }

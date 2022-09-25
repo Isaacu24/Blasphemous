@@ -24,6 +24,8 @@ public:
 
     inline bool GetLose() { return IsLose_; }
 
+    bool ReverseBloodEffect(GameEngineCollision* _This, GameEngineCollision* _Other);
+
 protected:
     void Start() = 0;
     void Update(float _DeltaTime) override;

@@ -3,6 +3,8 @@
 #include "MetaSpriteManager.h"
 #include "MetaTextureRenderer.h"
 #include "ItemBuyWindow.h"
+#include "MonsterHitEffect.h"
+#include "BloodSplatters.h"
 
 Merchant::Merchant()
     : HP_(100)
@@ -15,6 +17,12 @@ void Merchant::Start()
     GetTransform().SetWorldScale({2, 2, 1});
 
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
+    
+    HitEffect_ = GetLevel()->CreateActor<MonsterHitEffect>();
+
+    BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
+    BloodEffect_->GetRenderer()->Off();
+
 
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("ladrona_idle_anim");
@@ -155,6 +163,15 @@ void Merchant::Update(float _Update)
         State_.ChangeState("Hit");
 
         HP_ -= 50.f;
+
+        float4 HitPos = BodyCollider_->GetTransform().GetWorldPosition();
+
+        HitEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, NPCZ});
+        HitEffect_->ShowHitEffet();
+
+        BloodEffect_->GetRenderer()->On();
+        BloodEffect_->GetTransform().SetWorldPosition({HitPos.x + 50.f, HitPos.y, NPCZ});
+        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
 
         MetaRenderer_->GetColorData().PlusColor = float4{1.5f, 1.5f, 1.5f, 0.0f};
     }

@@ -747,10 +747,7 @@ void Penitent::SetAnimation()
                                           });
 
         MetaRenderer_->AnimationBindEnd("penitent_dodge_attack_LVL3",
-                                        [&](const FrameAnimation_DESC& _Info)
-                                        {
-                                            ChangeState("Idle");
-                                        });
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
     {

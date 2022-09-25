@@ -260,7 +260,7 @@ void ShieldMaiden::DamageCheck()
     }
 
     //패링에 당한 상태가 아닐 경우
-    if ("ParryReaction" != State_.GetCurStateStateName())
+    if ("ParryReaction" != State_.GetCurStateStateName() && "Stun" != State_.GetCurStateStateName())
     {
         if (true
             == BodyCollider_->IsCollision(
@@ -312,7 +312,10 @@ void ShieldMaiden::DamageCheck()
 
     if (true
         == BodyCollider_->IsCollision(
-            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+            CollisionType::CT_OBB2D,
+            COLLISIONORDER::PlayerAttack,
+            CollisionType::CT_OBB2D,
+            std::bind(&ShieldMaiden::ReverseBloodEffect, this, std::placeholders::_1, std::placeholders::_2)))
     {
         IsHit_ = true;
         MinusHP(30.f);
@@ -333,7 +336,10 @@ void ShieldMaiden::DamageCheck()
 
     if (true
         == BodyCollider_->IsCollision(
-            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerRangeAttack, CollisionType::CT_OBB2D, nullptr))
+            CollisionType::CT_OBB2D,
+            COLLISIONORDER::PlayerRangeAttack,
+            CollisionType::CT_OBB2D,
+            std::bind(&ShieldMaiden::ReverseBloodEffect, this, std::placeholders::_1, std::placeholders::_2)))
     {
         IsHit_ = true;
 
@@ -369,7 +375,7 @@ bool ShieldMaiden::RangeAttackCheck(GameEngineCollision* _This, GameEngineCollis
 {
     float4 HitDir = GetTransform().GetWorldPosition() - _Other->GetTransform().GetWorldPosition();
     HitDir.Normalize();
-    
+
     if (0 < Dir_.x)
     {
         if (0 > HitDir.x)

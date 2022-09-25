@@ -190,7 +190,7 @@ void ElderBrother::Start()
 
     Renderer_->GetTransform().SetWorldScale({1100, 600});
     Renderer_->SetPivot(PIVOTMODE::BOT);
-    Renderer_->GetTransform().PixLocalNegativeX();
+    GetTransform().PixLocalNegativeX();
 
     AttackEffecter_ = GetLevel()->CreateActor<AttackCorpseEffecter>();
     JumpEffecter_   = GetLevel()->CreateActor<JumpCorpseEffecter>();
@@ -284,9 +284,19 @@ void ElderBrother::Update(float _DeltaTime)
     }
 
     DamageCheck();
+
+    if (true == BloodEffect_->IsUpdate() && true == HitEffect_->IsUpdate())
+    {
+        float4 HitPos = BodyCollider_->GetTransform().GetWorldPosition();
+
+        BloodEffect_->GetTransform().SetWorldPosition({HitPos.x + (-(Dir_.x) * 40.f), HitPos.y, BossMonsterEffectZ});
+        HitEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
+    }
 }
 
 void ElderBrother::End() {}
+
+
 
 void ElderBrother::DamageCheck()
 {
@@ -306,7 +316,10 @@ void ElderBrother::DamageCheck()
 
     if (true
         == BodyCollider_->IsCollision(
-            CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+            CollisionType::CT_OBB2D,
+            COLLISIONORDER::PlayerAttack,
+            CollisionType::CT_OBB2D,
+            std::bind(&BossMonster::ReverseBloodEffect, this, std::placeholders::_1, std::placeholders::_2)))
     {
         IsHit_ = true;
 
@@ -315,10 +328,8 @@ void ElderBrother::DamageCheck()
         float4 HitPos = BodyCollider_->GetTransform().GetWorldPosition();
 
         BloodEffect_->GetRenderer()->On();
-        BloodEffect_->GetTransform().SetWorldPosition({HitPos.x + (-(Dir_.x) * 75.f), HitPos.y, BossMonsterEffectZ});
-        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
+        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
 
-        HitEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
         HitEffect_->ShowHitEffet();
 
         MinusHP(5.f);
@@ -326,7 +337,10 @@ void ElderBrother::DamageCheck()
 
     else if (true
              == BodyCollider_->IsCollision(
-                 CollisionType::CT_OBB2D, COLLISIONORDER::PlayerRangeAttack, CollisionType::CT_OBB2D, nullptr))
+                 CollisionType::CT_OBB2D,
+                 COLLISIONORDER::PlayerRangeAttack,
+                 CollisionType::CT_OBB2D,
+                 std::bind(&BossMonster::ReverseBloodEffect, this, std::placeholders::_1, std::placeholders::_2)))
     {
         IsHit_ = true;
 
@@ -335,10 +349,8 @@ void ElderBrother::DamageCheck()
         float4 HitPos = BodyCollider_->GetTransform().GetWorldPosition();
 
         BloodEffect_->GetRenderer()->On();
-        BloodEffect_->GetTransform().SetWorldPosition({HitPos.x + (-(Dir_.x) * 75.f), HitPos.y, BossMonsterEffectZ});
-        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
+        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplatters");
 
-        HitEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
         HitEffect_->ShowRangeHitEffect();
 
         MinusHP(7.f);
@@ -381,7 +393,7 @@ void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
         case APPEARFLOW::Jump:
             JumpForce_.y -= _DeltaTime * 200.f;
             Dir_ = GetTransform().GetUpVector() * 20.f;
-            Dir_ += GetTransform().GetLeftVector() * 3.f;
+            Dir_ += float4::LEFT * 3.f;
 
             GameEngineDebug::OutPutString(std::to_string(GetTransform().GetWorldPosition().y));
 
@@ -402,7 +414,7 @@ void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
         case APPEARFLOW::Fall:
             JumpForce_.y -= _DeltaTime * 350.f;
             Dir_ = GetTransform().GetUpVector() * 5.f;
-            Dir_ += GetTransform().GetLeftVector() * 3.f;
+            Dir_ += float4::LEFT * 3.f;
 
             Gravity_->SetActive(!IsGround_);
             GetTransform().SetWorldMove(Dir_ * JumpForce_ * _DeltaTime);
@@ -610,15 +622,13 @@ bool ElderBrother::DetectPlayer(GameEngineCollision* _This, GameEngineCollision*
     if (_This->GetTransform().GetWorldPosition().x < _Other->GetTransform().GetWorldPosition().x)
     {
         Dir_.x = 1;
-        BloodEffect_->GetTransform().PixLocalNegativeX();
-        Renderer_->GetTransform().PixLocalPositiveX();
+        GetTransform().PixLocalPositiveX();
     }
 
     else
     {
         Dir_.x = -1;
-        BloodEffect_->GetTransform().PixLocalPositiveX();
-        Renderer_->GetTransform().PixLocalNegativeX();
+        GetTransform().PixLocalNegativeX();
     }
 
     Distance_ = abs(_This->GetTransform().GetWorldPosition().x - _Other->GetTransform().GetWorldPosition().x);

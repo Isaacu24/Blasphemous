@@ -532,7 +532,7 @@ void Inventory::ChangeInventoryIndex()
 
         case 3:
             InventoryType_ = InventoryType::QuestItem;
-            MaxSlotIndex_  = 30;
+            MaxSlotIndex_  = 29;
             LineSlotCount_ = 4;
             break;
 
@@ -674,13 +674,13 @@ void Inventory::CursorMove()
     else if (true == GameEngineInput::GetInst()->IsDownKey("CursorUpKey") || 30000 < ThumbLY_
              || true == GameEngineInput::GetInst()->IsDownButton("PenitentDPADUP"))
     {
-        if (0 > CursorPos_ - LineSlotCount_ + 1)
+        if (0 > CursorPos_ - (LineSlotCount_ + 1))
         {
             return;
         }
 
         CursorReset();
-        CursorPos_ -= LineSlotCount_ + 1;
+        CursorPos_ -= (LineSlotCount_ + 1);
         UpdateSlot();
     }
 
