@@ -66,7 +66,7 @@ private:
     SPELLTYPE SpellType_;
 
     class MetaTextureRenderer* DustEffectRenderer_;
-    class MetaTextureRenderer* MetaFXSRenderer_;
+    MetaTextureRenderer*       MetaFXSRenderer_;
     class SymbolEffect*        Symbol_;
 
     class FireBallSpawner*       FireBallSpawner_;
@@ -83,4 +83,6 @@ private:
     bool IsVanishing_;
 
     int AppearPos_;
+
+    int DustAnimCount_;
 };

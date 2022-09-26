@@ -13,6 +13,8 @@ public:
     MultipleMagicMissile& operator=(const MultipleMagicMissile& _Other)     = delete;
     MultipleMagicMissile& operator=(MultipleMagicMissile&& _Other) noexcept = delete;
 
+    void SetGround(GameEngineTextureRenderer* _Texture) { ColMap_ = _Texture; }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
@@ -23,4 +25,6 @@ private:
 
     int  AnimationCount_;
     bool IsCreate_;
+
+    GameEngineTextureRenderer* ColMap_;
 };

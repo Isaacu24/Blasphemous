@@ -47,7 +47,16 @@ void MagicMissile::Update(float _DeltaTime)
         return;
     }
 
-    Speed_ += _DeltaTime * 300.f;
+    float4 Color = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x,
+                                                              -(GetTransform().GetWorldPosition().y));
+
+    if (Color.CompareInt4D(float4::BLACK))
+    {
+        IsExplosion_ = true;
+        Renderer_->ChangeFrameAnimation("Death");
+    }
+
+    Speed_ += _DeltaTime * 400.f;
     GetTransform().SetWorldMove({(Dir_.x * Speed_ * _DeltaTime), (Dir_.y * Speed_ * _DeltaTime)});
 
     Collider_->IsCollision(CollisionType::CT_OBB2D,

@@ -389,6 +389,7 @@ void Pontiff::LightiningBolt()
 void Pontiff::MagicMissile()
 {
     MagicMissileSpawner_->On();
+    MagicMissileSpawner_->SetGround(ColMap_);
     MagicMissileSpawner_->GetTransform().SetWorldPosition(
         {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y + 100.f});
 }

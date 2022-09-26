@@ -90,7 +90,7 @@ void Stage20::SettingStage()
 void Stage20::SettingMonster()
 {
     Pope_ = CreateActor<Pope>();
-    Pope_->GetTransform().SetWorldPosition({2500, -1760, BossMonsterZ});
+    Pope_->GetTransform().SetWorldPosition({2500, -1755, BossMonsterZ});
     Pope_->SetGround(ColMap_);
     BossMonster_ = Pope_;
     Pope_->Off();

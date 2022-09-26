@@ -1,7 +1,10 @@
 #pragma once
+#include "Projectile.h"
 #include <GameEngineCore/GameEngineActor.h>
 
-class MagicMissile : public GameEngineActor
+class MagicMissile
+    : public Projectile
+    , public GameEngineActor
 {
 public:
     MagicMissile();
@@ -12,8 +15,8 @@ public:
     MagicMissile& operator=(const MagicMissile& _Other)     = delete;
     MagicMissile& operator=(MagicMissile&& _Other) noexcept = delete;
 
-    void SetDirection(float4 _Dir) 
-    { 
+    virtual void SetDirection(float4 _Dir)
+    {
         if (0 > _Dir.x)
         {
             GetTransform().PixLocalNegativeX();
@@ -24,7 +27,7 @@ public:
             GetTransform().PixLocalPositiveX();
         }
 
-        Dir_ = _Dir; 
+        Dir_ = _Dir;
     }
 
     inline void SetSpeed(float _Speed) { Speed_ = _Speed; }

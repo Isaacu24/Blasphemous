@@ -82,6 +82,7 @@ void MultipleMagicMissile::Update(float _DeltaTime)
         Clone->SetStartPosition(Clone->GetTransform().GetWorldPosition());
         Clone->SetSpeed(0.f);
         Clone->SetWeight(500.f);
+        Clone->SetGround(ColMap_);
 
         switch (i)
         {

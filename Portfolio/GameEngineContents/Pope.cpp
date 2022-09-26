@@ -20,13 +20,13 @@ void Pope::Start()
 
     GetTransform().SetWorldScale({2.f, 2.f, 1.f});
 
-    MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
+    MetaRenderer_    = CreateComponent<MetaTextureRenderer>();
 
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_idle");
 
         MetaRenderer_->CreateMetaAnimation(
-            "pope_idle", {"pope_idle.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true}, Data);
+            "pope_idle", {"pope_idle.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, true}, Data);
 
         MetaRenderer_->AnimationBindEnd("pope_idle",
                                         [&](const FrameAnimation_DESC& _Info) { State_.ChangeState("SpellCast"); });
@@ -36,7 +36,7 @@ void Pope::Start()
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_idle");
 
         MetaRenderer_->CreateMetaAnimation(
-            "pope_idle_Event", {"pope_idle.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true}, Data);
+            "pope_idle_Event", {"pope_idle.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, true}, Data);
     }
 
 
@@ -44,7 +44,7 @@ void Pope::Start()
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_appear");
 
         MetaRenderer_->CreateMetaAnimation(
-            "pope_appear", {"pope_appear.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false}, Data);
+            "pope_appear", {"pope_appear.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false}, Data);
 
         MetaRenderer_->AnimationBindEnd("pope_appear",
                                         [&](const FrameAnimation_DESC& _Info) { State_.ChangeState("Idle"); });
@@ -54,7 +54,9 @@ void Pope::Start()
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_appear");
 
         MetaRenderer_->CreateMetaAnimation(
-            "pope_appear_Event", {"pope_appear.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false}, Data);
+            "pope_appear_Event",
+            {"pope_appear.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
+            Data);
 
         MetaRenderer_->AnimationBindEnd("pope_appear_Event",
                                         [&](const FrameAnimation_DESC& _Info)
@@ -66,7 +68,7 @@ void Pope::Start()
 
         MetaRenderer_->CreateMetaAnimation(
             "pope_hitReaction",
-            {"pope_hitReaction.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false},
+            {"pope_hitReaction.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
             Data);
 
         MetaRenderer_->AnimationBindEnd("pope_hitReaction",
@@ -77,7 +79,7 @@ void Pope::Start()
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_spellCast");
 
         MetaRenderer_->CreateMetaAnimation(
-            "pope_spellCast", {"pope_spellCast.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true}, Data);
+            "pope_spellCast", {"pope_spellCast.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, true}, Data);
 
         MetaRenderer_->AnimationBindEnd("pope_spellCast",
                                         [&](const FrameAnimation_DESC& _Info)
@@ -88,7 +90,9 @@ void Pope::Start()
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_vanishing");
 
         MetaRenderer_->CreateMetaAnimation(
-            "pope_vanishing", {"pope_vanishing.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false}, Data);
+            "pope_vanishing",
+            {"pope_vanishing.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
+            Data);
 
         MetaRenderer_->AnimationBindEnd("pope_vanishing",
                                         [&](const FrameAnimation_DESC& _Info) { State_.ChangeState("Appear"); });
@@ -98,13 +102,9 @@ void Pope::Start()
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_death");
 
         MetaRenderer_->CreateMetaAnimation(
-            "pope_death", {"pope_death.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false}, Data);
+            "pope_death", {"pope_death.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false}, Data);
 
-        MetaRenderer_->AnimationBindEnd("pope_death",
-                                        [&](const FrameAnimation_DESC& _Info)
-                                        {
-                                            Death();
-                                        });
+        MetaRenderer_->AnimationBindEnd("pope_death", [&](const FrameAnimation_DESC& _Info) { Death(); });
     }
 
     MetaRenderer_->SetPivot(PIVOTMODE::METABOT);
@@ -116,7 +116,7 @@ void Pope::Start()
 
         MetaFXSRenderer_->CreateMetaAnimation(
             "pope_spellCast_FXS",
-            {"pope_spellCast_FXS.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false},
+            {"pope_spellCast_FXS.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
             Data);
 
         MetaFXSRenderer_->AnimationBindEnd("pope_spellCast_FXS",
@@ -139,14 +139,21 @@ void Pope::Start()
 
         DustEffectRenderer_->CreateMetaAnimation(
             "penitent_parrysuccess_dust_effect_anim",
-            {"penitent_parrysuccess_dust_effect_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, false},
+            {"penitent_parrysuccess_dust_effect_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, true},
             Data);
 
         DustEffectRenderer_->AnimationBindEnd("penitent_parrysuccess_dust_effect_anim",
                                               [&](const FrameAnimation_DESC& _Info)
                                               {
-                                                  DustEffectRenderer_->CurAnimationReset();
-                                                  DustEffectRenderer_->Off();
+                                                  if (5 == DustAnimCount_)
+                                                  {
+                                                      DustAnimCount_ = 0;
+
+                                                      DustEffectRenderer_->CurAnimationReset();
+                                                      DustEffectRenderer_->Off();
+                                                  }
+
+                                                  ++DustAnimCount_;
                                               });
     }
 
@@ -208,10 +215,10 @@ void Pope::Start()
     BodyCollider_->GetTransform().SetWorldScale({50.0f, 100.0f, 1.0f});
     BodyCollider_->GetTransform().SetWorldMove({0, 100});
 
-    TeleportPos_[0] = float4{1800, -1760, BossMonsterZ};
-    TeleportPos_[1] = float4{2100, -1760, BossMonsterZ};
-    TeleportPos_[2] = float4{2500, -1760, BossMonsterZ};
-    TeleportPos_[3] = float4{2800, -1760, BossMonsterZ};
+    TeleportPos_[0] = float4{1800, -1755, BossMonsterZ};
+    TeleportPos_[1] = float4{2100, -1755, BossMonsterZ};
+    TeleportPos_[2] = float4{2500, -1755, BossMonsterZ};
+    TeleportPos_[3] = float4{2800, -1755, BossMonsterZ};
 
     CreateSpawner();
 
@@ -353,14 +360,14 @@ void Pope::EventAppearEnd(const StateInfo& _Info)
 }
 
 
-void Pope::VanishingStart(const StateInfo& _Info) 
+void Pope::VanishingStart(const StateInfo& _Info)
 {
     if (0 >= GetHP())
     {
         return;
     }
 
-    MetaRenderer_->ChangeMetaAnimation("pope_vanishing"); 
+    MetaRenderer_->ChangeMetaAnimation("pope_vanishing");
 }
 
 void Pope::VanishingUpdate(float _DeltaTime, const StateInfo& _Info) {}
@@ -476,6 +483,7 @@ void Pope::SpellCastStart(const StateInfo& _Info)
             Symbol_->SetColor(COLORTYPE::PURPLE);
 
             MagicMissileSpawner_->On();
+            MagicMissileSpawner_->SetGround(ColMap_);
 
             if (0 == AppearPos_ || 1 == AppearPos_)
             {

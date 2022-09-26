@@ -15,6 +15,8 @@ public:
     MagicMissileSpawner& operator=(const MagicMissileSpawner& _Other)     = delete;
     MagicMissileSpawner& operator=(MagicMissileSpawner&& _Other) noexcept = delete;
 
+    void SetGround(GameEngineTextureRenderer* _Texture) { ColMap_ = _Texture; }
+
     void SetDirection(float4 _Dir) { Dir_ = _Dir; }
 
 protected:
@@ -25,10 +27,11 @@ protected:
 private:
     float DelayTime_;
     
-    //짝수라면 위, 홀수라면 아래
     int MissileCount_;
+    int NestingCount_;
 
     bool IsCreate_;
 
     float4 Dir_;
+    GameEngineTextureRenderer* ColMap_;
 };
