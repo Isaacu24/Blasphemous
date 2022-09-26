@@ -82,4 +82,6 @@ private:
     //Å¬¼ö·Ï »¡¸® ¹Ù²ñ
     float Speed_;
 
+    bool IsFadeIn_;
+
 };

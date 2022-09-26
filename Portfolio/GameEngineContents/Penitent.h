@@ -264,9 +264,9 @@ protected:
     void RespawnUpdate(float _DeltaTime, const StateInfo& _Info);
     void RespawnEnd(const StateInfo& _Info);
 
-    void PrayStart(const StateInfo& _Info);
-    void PrayUpdate(float _DeltaTime, const StateInfo& _Info);
-    void PrayEnd(const StateInfo& _Info);
+    //void PrayStart(const StateInfo& _Info);
+    //void PrayUpdate(float _DeltaTime, const StateInfo& _Info);
+    //void PrayEnd(const StateInfo& _Info);
 
     void RestPrayStart(const StateInfo& _Info);
     void RestPrayUpdate(float _DeltaTime, const StateInfo& _Info);
@@ -372,6 +372,8 @@ private:
     bool IsHit_;       //유효타
     bool IsBossHit_;   //보스 유효타
     bool IsKnockUp_;
+    //넉백->낙하->착지(IsKnockBackGround_ = true)->이동->넉백
+    bool IsKnockBackFall_;
 
     //게임 패드
     SHORT ThumbLX_;
@@ -379,4 +381,5 @@ private:
 
     //게임 패드 신호 숫자
     DWORD PacketNumber_;
+
 };

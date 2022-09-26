@@ -49,6 +49,9 @@ public:
 
     void PushBackItem(const ItemInfo& _Info) { Inventory_->PushBackItem(_Info); }
 
+    void OnInventoryTear();
+    void OffInventoryTear();
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;

@@ -166,7 +166,6 @@ void Stage20::Update(float _DeltaTime)
                     if ("ReturnToPort" == Penitent_->GetPenitentState())
                     {
                         UIActor_->Off();
-                        CurrentFlow_ = STAGEFLOW::BOSSDEAD;
                         return;
                     }
 
@@ -179,10 +178,17 @@ void Stage20::Update(float _DeltaTime)
             }
             break;
         case STAGEFLOW::BOSSDEAD:
+            if (true == GetLoadingEnd())
+            {
+                SetLoadingEnd(false);
+                Penitent::GetMainPlayer()->BossDeathUIOn(0);
+            }
+
             PlayerCameraMove(_DeltaTime);
             break;
     }
 }
+
 
 void Stage20::End() {}
 
@@ -215,8 +221,10 @@ void Stage20::LevelStartEvent()
             Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
         }
 
-        if (STAGEFLOW::BOSSDEAD == CurrentFlow_)
+        if (STAGEFLOW::BOSSCOMBAT == CurrentFlow_)
         {
+            CurrentFlow_ = STAGEFLOW::BOSSDEAD;
+            SetLoadingEnd(false);
             Penitent_->GetTransform().SetWorldPosition(PlayerReturnPos_);
         }
     }

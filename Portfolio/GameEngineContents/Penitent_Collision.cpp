@@ -301,18 +301,59 @@ void Penitent::CollisionCheck()
     //데스존 체크는 어떤 상태는 상관없이 무조건 실행
     DeadZoneCheck();
 
+    if (false
+            == AttackCollider_->IsCollision(
+                CollisionType::CT_OBB2D, COLLISIONORDER::Monster, CollisionType::CT_OBB2D, nullptr)
+        || false
+               == AttackCollider_->IsCollision(
+                   CollisionType::CT_OBB2D, COLLISIONORDER::MonsterBody, CollisionType::CT_OBB2D, nullptr))
+    {
+        IsHit_ = true;
+    }
+
+    if (false
+            == AttackCollider_->IsCollision(
+                CollisionType::CT_OBB2D, COLLISIONORDER::Monster, CollisionType::CT_OBB2D, nullptr)
+        && false
+               == AttackCollider_->IsCollision(
+                   CollisionType::CT_OBB2D, COLLISIONORDER::MonsterBody, CollisionType::CT_OBB2D, nullptr))
+    {
+        IsHit_ = false;
+    }
+
+    if (false
+            == AttackCollider_->IsCollision(
+                CollisionType::CT_OBB2D, COLLISIONORDER::BossMonster, CollisionType::CT_OBB2D, nullptr)
+        || false
+               == AttackCollider_->IsCollision(
+                   CollisionType::CT_OBB2D, COLLISIONORDER::BossMonsterBody, CollisionType::CT_OBB2D, nullptr))
+    {
+        IsBossHit_ = true;
+    }
+
+    if (false
+            == AttackCollider_->IsCollision(
+                CollisionType::CT_OBB2D, COLLISIONORDER::BossMonster, CollisionType::CT_OBB2D, nullptr)
+        && false
+               == AttackCollider_->IsCollision(
+                   CollisionType::CT_OBB2D, COLLISIONORDER::BossMonsterBody, CollisionType::CT_OBB2D, nullptr))
+    {
+        IsBossHit_ = false;
+    }
+
     //몬스터와의 상호작용을 위해 콜라이더를 끄기보단 충돌을 무시하는 편이 좋음
     if ("KnockBack" == State_.GetCurStateStateName() || "KnockUp" == State_.GetCurStateStateName()
         || "Death" == State_.GetCurStateStateName() || true == IsParrySuccess_
         || "ParryingAttack" == State_.GetCurStateStateName() || "Execution" == State_.GetCurStateStateName()
         || "Slide" == State_.GetCurStateStateName() || "SlideAttack" == State_.GetCurStateStateName()
-        || "VerticalAttack" == State_.GetCurStateStateName()
-        || "VerticalAttackLan5ding" == State_.GetCurStateStateName() || "Respawn" == State_.GetCurStateStateName())
+        || "VerticalAttack" == State_.GetCurStateStateName() || "VerticalAttackLanding" == State_.GetCurStateStateName()
+        || "Respawn" == State_.GetCurStateStateName() || true == IsKnockBackFall_)
     {
         return;
     }
 
     //몬스터 피격
+    //공중에서 피격 판정은 하지 않는다.
     {
         BodyCollider_->IsCollision(CollisionType::CT_OBB2D,
                                    COLLISIONORDER::Monster,
@@ -355,46 +396,6 @@ void Penitent::CollisionCheck()
                                CollisionType::CT_OBB2D,
                                std::bind(&Penitent::Dangle, this, std::placeholders::_1, std::placeholders::_2));
 
-    if (false
-            == AttackCollider_->IsCollision(
-                CollisionType::CT_OBB2D, COLLISIONORDER::Monster, CollisionType::CT_OBB2D, nullptr)
-        || false
-               == AttackCollider_->IsCollision(
-                   CollisionType::CT_OBB2D, COLLISIONORDER::MonsterBody, CollisionType::CT_OBB2D, nullptr))
-    {
-        IsHit_ = true;
-    }
-
-    if (false
-            == AttackCollider_->IsCollision(
-                CollisionType::CT_OBB2D, COLLISIONORDER::Monster, CollisionType::CT_OBB2D, nullptr)
-        && false
-               == AttackCollider_->IsCollision(
-                   CollisionType::CT_OBB2D, COLLISIONORDER::MonsterBody, CollisionType::CT_OBB2D, nullptr))
-    {
-        IsHit_ = false;
-    }
-
-    if (false
-            == AttackCollider_->IsCollision(
-                CollisionType::CT_OBB2D, COLLISIONORDER::BossMonster, CollisionType::CT_OBB2D, nullptr)
-        || false
-               == AttackCollider_->IsCollision(
-                   CollisionType::CT_OBB2D, COLLISIONORDER::BossMonsterBody, CollisionType::CT_OBB2D, nullptr))
-    {
-        IsBossHit_ = true;
-    }
-
-    if (false
-            == AttackCollider_->IsCollision(
-                CollisionType::CT_OBB2D, COLLISIONORDER::BossMonster, CollisionType::CT_OBB2D, nullptr)
-        && false
-               == AttackCollider_->IsCollision(
-                   CollisionType::CT_OBB2D, COLLISIONORDER::BossMonsterBody, CollisionType::CT_OBB2D, nullptr))
-    {
-        IsBossHit_ = false;
-    }
-
     BodyCollider_->IsCollision(CollisionType::CT_OBB2D,
                                COLLISIONORDER::Object,
                                CollisionType::CT_OBB2D,
@@ -409,16 +410,15 @@ bool Penitent::KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other
 
     if (0.f > Dir.x)
     {
-        MoveDir_ = float4::LEFT;
+        MoveDir_  = float4::LEFT;
+        RealDirX_ = 1;
     }
 
     else
-
     {
         MoveDir_ = float4::RIGHT;
+        RealDirX_ -= 1;
     }
-
-    RealDirX_ = -(Dir.x);
 
     if (false == IsGround_)
     {
@@ -440,8 +440,17 @@ bool Penitent::KnockUp(GameEngineCollision* _This, GameEngineCollision* _Other)
     float4 Dir = _This->GetTransform().GetWorldPosition() - _Other->GetActor()->GetTransform().GetWorldPosition();
     Dir.Normalize();
 
-    MoveDir_ = -(Dir.x); 
-    RealDirX_ = -(Dir.x);
+    if (0.f > Dir.x)
+    {
+        MoveDir_  = float4::LEFT;
+        RealDirX_ = 1;
+    }
+
+    else
+    {
+        MoveDir_ = float4::RIGHT;
+        RealDirX_ -= 1;
+    }
 
     if (false == IsGround_)
     {

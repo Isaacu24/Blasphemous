@@ -244,6 +244,9 @@ void ItemBuyWindow::Update(float _DeltaTime)
                 }
 
                 Mode_  = WindowMode::Show;
+                GameEngineTime::GetInst()->SetTimeScale(AcquiredIcon_->GetOrder(), 1.0f);
+                GameEngineTime::GetInst()->SetTimeScale(GetOrder(), 1.0f);
+
                 IsBuy_ = false;
             }
             break;
@@ -309,6 +312,9 @@ void ItemBuyWindow::End() {}
 
 void ItemBuyWindow::OnEvent()
 {
+    Penitent::GetMainPlayer()->ChangeState("Freeze");
+    Penitent::GetMainPlayer()->SetIsFreezeEnd(false);
+
     Mode_        = WindowMode::Buy;
     SelectIndex_ = 1;
 
@@ -340,14 +346,16 @@ void ItemBuyWindow::OnEvent()
     AcquiredFrame_->Off();
     AcquiredFont_->Off();
     AcquiredIcon_->Off();
-
-    BuyFont_->SetColor({0.65f, 0.62f, 0.47f, 1.0f});
-    NoFont_->SetColor({0.74f, 0.74f, 0.74f, 1.0f});
 }
 
 
 void ItemBuyWindow::OffEvent()
 {
+    if (nullptr != Penitent::GetMainPlayer())
+    {
+        Penitent::GetMainPlayer()->SetIsFreezeEnd(true);
+    }
+
     AlphaTime_ = 0.f;
 
     SelectIndex_ = 1;

@@ -70,10 +70,12 @@ void Pontiff::Start()
                                   }
                               });
 
-    Face_->AnimationBindEnd("pontiff_openedIdle_face_DEATH", [&](const FrameAnimation_DESC& _Info) 
-        {
-            IsLose_ = true; 
-        });
+    Face_->AnimationBindEnd("pontiff_openedIdle_face_DEATH",
+                            [&](const FrameAnimation_DESC& _Info)
+                            {
+                                Penitent::GetMainPlayer()->PlusTear(10);
+                                IsLose_ = true;
+                            });
 
     Face_->GetTransform().SetLocalScale({950, 1300});
     Face_->GetTransform().SetLocalMove({0, 50, -1});
@@ -606,8 +608,6 @@ void Pontiff::DeathStart(const StateInfo& _Info)
 
     AscensionSpeed_ = 100;
 
-    Face_->ChangeFrameAnimation("pontiff_openedIdle_face_DEATH");
-
     Body_->CurAnimationPauseOn();
     Helmet_->CurAnimationPauseOn();
 
@@ -631,7 +631,7 @@ void Pontiff::DeathStart(const StateInfo& _Info)
     Symbol_[1]->Death();
 }
 
-void Pontiff::DeathUpdate(float _DeltaTime, const StateInfo& _Info) 
+void Pontiff::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     if (true == BossDeathEvent_)
     {
@@ -664,13 +664,14 @@ void Pontiff::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
                 Face_->GetColorData().PlusColor = float4::ZERO;
             }
 
+            Face_->ChangeFrameAnimation("pontiff_openedIdle_face_DEATH");
+
             BossDeathEvent_ = false;
         }
     }
 }
 
-void Pontiff::DeathEnd(const StateInfo& _Info) 
-{  }
+void Pontiff::DeathEnd(const StateInfo& _Info) {}
 
 
 void Pontiff::BossDeathEvent()

@@ -21,7 +21,6 @@ void Milestone::Start()
     UIRenderer_->GetColorData().MulColor.a = 0.f;
 
     Font_ = CreateComponent<GameEngineFontRenderer>();
-    Font_->SetColor({0.65f, 0.65f, 0.45f, 1.0f});
     Font_->SetScreenPostion({640, 190, static_cast<int>(UIORDER::PlayerUI)});
     Font_->SetSize(40);
     Font_->SetLeftAndRightSort(LeftAndRightSort::CENTER);

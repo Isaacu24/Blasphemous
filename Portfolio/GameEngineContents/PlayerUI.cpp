@@ -58,6 +58,29 @@ void PlayerUI::UIAllOff()
     }
 }
 
+void PlayerUI::OnInventoryTear()
+{
+    for (size_t i = 0; i < TearRenderers_.size(); i++)
+    {
+        if (nullptr != TearRenderers_[i])
+        {
+            TearRenderers_[i]->GetTransform().SetWorldMove({80, 20, -10});
+        }
+    }
+}
+
+void PlayerUI::OffInventoryTear() 
+{
+    for (size_t i = 0; i < TearRenderers_.size(); i++)
+    {
+        if (nullptr != TearRenderers_[i])
+        {
+            TearRenderers_[i]->GetTransform().SetWorldMove({-80, -20, 10});
+        }
+    }
+}
+
+
 void PlayerUI::Start()
 {
     HPBar_ = GetLevel()->CreateActor<LeftTopUI>();
@@ -224,28 +247,26 @@ void PlayerUI::UseFlask(int _Index)
     HPBar_->Renderer_->SetUVData(HP);
 }
 
-void PlayerUI::FillFlask(int _Index) 
-{
-    Flasks_[_Index]->SetTexture("Full_Flask.png"); }
+void PlayerUI::FillFlask(int _Index) { Flasks_[_Index]->SetTexture("Full_Flask.png"); }
 
 
 void PlayerUI::DamageCheck(float _DeltaTime)
 {
-    PlayerCurHp_ = Penitent::GetMainPlayer()->GetHP(); 
-    
-    if (PlayerPrevHp_ != PlayerCurHp_) 
+    PlayerCurHp_ = Penitent::GetMainPlayer()->GetHP();
+
+    if (PlayerPrevHp_ != PlayerCurHp_)
     {
         HPAlpha_ += _DeltaTime * 2;
 
-        float CurHP = static_cast<float>(PlayerCurHp_);
+        float CurHP  = static_cast<float>(PlayerCurHp_);
         float PrevHP = static_cast<float>(PlayerPrevHp_);
 
         LerpHp_ = GameEngineMath::LerpLimit(PrevHP, CurHP, HPAlpha_);
 
-        if (LerpHp_ - CurHP < 0.05f) 
+        if (LerpHp_ - CurHP < 0.05f)
         {
             HPAlpha_      = 0.f;
-            LerpHp_ = CurHP;
+            LerpHp_       = CurHP;
             PlayerPrevHp_ = PlayerCurHp_;
         }
     }
@@ -359,8 +380,7 @@ void PlayerUI::BossDeathUpdate(float _DeltaTime, const StateInfo& _Info)
     BackRenderer_->GetColorData().MulColor   = float4{1.f, 1.f, 1.f, BackAlpha_};
 }
 
-void PlayerUI::BossDeathEnd(const StateInfo& _Info) {}
-
+void PlayerUI::BossDeathEnd(const StateInfo& _Info) { }
 
 void PlayerUI::FinalBossDeathStart(const StateInfo& _Info)
 {
@@ -422,7 +442,7 @@ void PlayerUI::FinalBossDeathUpdate(float _DeltaTime, const StateInfo& _Info)
     BackRenderer_->GetColorData().MulColor   = float4{1.f, 1.f, 1.f, BackAlpha_};
 }
 
-void PlayerUI::FinalBossDeathEnd(const StateInfo& _Info) {}
+void PlayerUI::FinalBossDeathEnd(const StateInfo& _Info) { }
 
 
 void PlayerUI::BehindScreenStart(const StateInfo& _Info)

@@ -190,12 +190,12 @@ bool NormalMonster::ReverseBloodEffect(GameEngineCollision* _This, GameEngineCol
 {
     if (_This->GetTransform().GetWorldPosition().x < _Other->GetTransform().GetWorldPosition().x)
     {
-        BloodEffect_->GetTransform().PixLocalPositiveX();
+        BloodEffect_->GetTransform().PixLocalNegativeX();
     }
 
     else
     {
-        BloodEffect_->GetTransform().PixLocalNegativeX();
+        BloodEffect_->GetTransform().PixLocalPositiveX();
     }
 
     return true; 

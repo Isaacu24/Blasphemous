@@ -140,17 +140,21 @@ void Fool_knife::DamageCheck()
 
         if (true == IsHit_)
         {
-            Renderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
             return;
         }
 
         if (true
             == BodyCollider_->IsCollision(
-                CollisionType::CT_OBB2D, COLLISIONORDER::PlayerAttack, CollisionType::CT_OBB2D, nullptr))
+                CollisionType::CT_OBB2D,
+                COLLISIONORDER::PlayerAttack,
+                CollisionType::CT_OBB2D,
+                std::bind(&Fool_knife::ReverseBloodEffect, this, std::placeholders::_1, std::placeholders::_2)))
         {
             MinusHP(25.f);
             IsHit_ = true;
             State_.ChangeState("Hurt");
+
+            Renderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
 
             float4 HitPos = BodyCollider_->GetTransform().GetWorldPosition();
 
@@ -164,11 +168,14 @@ void Fool_knife::DamageCheck()
 
         else if (true
                  == BodyCollider_->IsCollision(
-                     CollisionType::CT_OBB2D, COLLISIONORDER::PlayerRangeAttack, CollisionType::CT_OBB2D, nullptr))
+                     CollisionType::CT_OBB2D,
+                     COLLISIONORDER::PlayerRangeAttack,
+                     CollisionType::CT_OBB2D,
+                     std::bind(&Fool_knife::ReverseBloodEffect, this, std::placeholders::_1, std::placeholders::_2)))
         {
             IsHit_ = true;
 
-            Renderer_->GetColorData().MulColor = float4{1.0f, 1.0f, 1.0f, 1.0f};
+            Renderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
 
             float4 HitPos = BodyCollider_->GetTransform().GetWorldPosition();
 
@@ -360,7 +367,13 @@ void Fool_knife::TrackEnd(const StateInfo& _Info) {}
 
 void Fool_knife::HurtStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("Fool_hurt_knife"); }
 
-void Fool_knife::HurtUpdate(float _DeltaTime, const StateInfo& _Info) {}
+void Fool_knife::HurtUpdate(float _DeltaTime, const StateInfo& _Info) 
+{
+    if (0.2f < _Info.StateTime)
+    {
+        Renderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
+    }
+}
 
 void Fool_knife::HurtEnd(const StateInfo& _Info) {}
 

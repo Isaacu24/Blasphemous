@@ -129,6 +129,8 @@ void GiantSword::TeleportINStart(const StateInfo& _Info)
 
     Pontiff_->ChangeMonsterState("Opening");
     BodyCollider_->Off();
+
+    Penitent::GetMainPlayer()->PlusTear(10);
 }
 
 void GiantSword::TeleportINUpdate(float _DeltaTime, const StateInfo& _Info) {}

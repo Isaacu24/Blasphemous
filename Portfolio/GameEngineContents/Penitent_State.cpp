@@ -26,6 +26,12 @@ void Penitent::IdleStart(const StateInfo& _Info)
 
 void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+    //연속 데미지 막기
+    if (0.5f < _Info.StateTime && true == IsKnockBackFall_)
+    {
+        IsKnockBackFall_ = false;
+    }
+
     if (30000 < ThumbLX_ || true == GameEngineInput::GetInst()->IsPressKey("PenitentRight"))
     {
         State_.ChangeState("Move");
@@ -119,6 +125,12 @@ void Penitent::MoveStart(const StateInfo& _Info)
 
 void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+    //연속 데미지 막기
+    if (0.5f < _Info.StateTime && true == IsKnockBackFall_)
+    {
+        IsKnockBackFall_ = false;
+    }
+
     if (true == GameEngineInput::GetInst()->IsPressKey("PenitentRight") || 30000 < ThumbLX_)
     {
         GetTransform().PixLocalPositiveX();
@@ -135,7 +147,7 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 
     else if (true == GameEngineInput::GetInst()->IsUpKey("PenitentRight")
-             || MoveDir_.CompareInt2D(float4::RIGHT) && 5000 > ThumbLX_ && ThumbLX_ > 0)
+             || MoveDir_.CompareInt2D(float4::RIGHT) && 30000 > ThumbLX_ && ThumbLX_ > 0)
     {
         GameEngineInput::GetInst()->SetThumbLX(0);
 
@@ -173,7 +185,7 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 
     else if (GameEngineInput::GetInst()->IsUpKey("PenitentLeft")
-             || MoveDir_.CompareInt2D(float4::LEFT) && 5000 > ThumbLX_ && ThumbLX_ > 0)
+             || MoveDir_.CompareInt2D(float4::LEFT) && -30000 < ThumbLX_ && ThumbLX_ > 0)
     {
         GameEngineInput::GetInst()->SetThumbLX(0);
 
@@ -489,6 +501,7 @@ void Penitent::KnockBackStart(const StateInfo& _Info)
         GetTransform().PixLocalNegativeX();
     }
 
+    CurStage_->SetForceX(0.f);
     CurStage_->SetForceY(5.f);
     CurStage_->SetShake(true);
 
@@ -511,6 +524,7 @@ void Penitent::KnockBackUpdate(float _DeltaTime, const StateInfo& _Info)
     {
         JumpForce_ = 10.f;
         ChangeState("Fall");
+        IsKnockBackFall_ = true;
         return;
     }
 
@@ -593,6 +607,10 @@ void Penitent::LandingStart(const StateInfo& _Info)
     if (0.9f <= FallTime_)
     {
         //카메라 쉐이킹
+        CurStage_->SetForceX(0.f);
+        CurStage_->SetForceY(15.f);
+        CurStage_->SetShake(true);
+
         BodyCollider_->Off();
 
         AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
@@ -869,6 +887,8 @@ void Penitent::LadderClimbEnd(const StateInfo& _Info) { IsLadder_ = false; }
 void Penitent::AttackStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_three_hits_attack_combo_no_slashes");
+
+    AttackCollider_->GetTransform().SetLocalPosition({0, 0, 0});
     AttackCollider_->GetTransform().SetWorldMove({RealDirX_ * 80.f, 50.f});
 
     if (1 == RealDirX_)
@@ -913,6 +933,8 @@ void Penitent::AttackEnd(const StateInfo& _Info)
 void Penitent::SlideAttackStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_dodge_attack_LVL3");
+
+    AttackCollider_->GetTransform().SetLocalPosition({0, 0, 0});
     AttackCollider_->GetTransform().SetWorldMove({RealDirX_ * 80.f, 50.f});
     // AttackCollider_->ChangeOrder(COLLISIONORDER::PlayerSkill);
 
@@ -1021,7 +1043,10 @@ void Penitent::PrayAttackEnd(const StateInfo& _Info)
     }
 
     MetaRenderer_->GetColorData().MulColor = float4{1.0f, 1.0f, 1.0f, 1.0f};
-    AttackCollider_->On();
+
+    AttackCollider_->GetTransform().SetWorldMove({-RealDirX_ * 20.f, -400.f});
+    AttackCollider_->GetTransform().SetLocalScale({75.f, 75.f});
+    AttackCollider_->Off();
 }
 
 
@@ -1045,8 +1070,7 @@ void Penitent::JumpRangeAttackStart(const StateInfo& _Info)
 
 void Penitent::JumpRangeAttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Penitent::JumpRangeAttackEnd(const StateInfo& _Info) 
-{ FallTime_ = 0.f; }
+void Penitent::JumpRangeAttackEnd(const StateInfo& _Info) { FallTime_ = 0.f; }
 
 
 void Penitent::ExecutionStart(const StateInfo& _Info)
@@ -1122,7 +1146,9 @@ void Penitent::ParryingAttackStart(const StateInfo& _Info)
     MetaRenderer_->ChangeMetaAnimation("penitent_parry_counter_v2_anim");
 }
 
-void Penitent::ParryingAttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
+void Penitent::ParryingAttackUpdate(float _DeltaTime, const StateInfo& _Info) 
+{
+}
 
 void Penitent::ParryingAttackEnd(const StateInfo& _Info) {}
 
@@ -1210,11 +1236,21 @@ void Penitent::RespawnUpdate(float _DeltaTime, const StateInfo& _Info)
 void Penitent::RespawnEnd(const StateInfo& _Info) { BodyCollider_->On(); }
 
 
-void Penitent::PrayStart(const StateInfo& _Info) {}
-
-void Penitent::PrayUpdate(float _DeltaTime, const StateInfo& _Info) {}
-
-void Penitent::PrayEnd(const StateInfo& _Info) {}
+//void Penitent::PrayStart(const StateInfo& _Info) 
+//{
+//    MetaRenderer_->ChangeMetaAnimation("penitent_kneeled"); 
+//    PlayerUI_->IsPrayEnd_ = false;
+//}
+//
+//void Penitent::PrayUpdate(float _DeltaTime, const StateInfo& _Info)
+//{
+//    if (true == PlayerUI_->IsPrayEnd_)
+//    {
+//        MetaRenderer_->ChangeMetaAnimation("penitent_priedieu_stand_up_anim");
+//    }
+//}
+//
+//void Penitent::PrayEnd(const StateInfo& _Info) {}
 
 
 void Penitent::RestPrayStart(const StateInfo& _Info)

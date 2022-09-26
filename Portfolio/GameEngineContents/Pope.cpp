@@ -103,7 +103,6 @@ void Pope::Start()
         MetaRenderer_->AnimationBindEnd("pope_death",
                                         [&](const FrameAnimation_DESC& _Info)
                                         {
-                                            Penitent::GetMainPlayer()->BossDeathUIOn(0);
                                             Death();
                                         });
     }
@@ -543,11 +542,13 @@ void Pope::SpellCastEnd(const StateInfo& _Info)
     Symbol_->Renderer_->ChangeFrameAnimation("pope_twistedOne_symbol_disappear");
 }
 
+
 void Pope::HitStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("pope_hitReaction"); }
 
 void Pope::HitUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Pope::HitEnd(const StateInfo& _Info) {}
+
 
 void Pope::DeathStart(const StateInfo& _Info)
 {

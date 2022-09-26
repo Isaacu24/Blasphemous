@@ -343,15 +343,7 @@ void ShieldMaiden::DamageCheck()
     {
         IsHit_ = true;
 
-        if (nullptr != Renderer_)
-        {
-            Renderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
-        }
-
-        if (nullptr != MetaRenderer_)
-        {
-            MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
-        }
+        MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
 
         float4 HitPos = BodyCollider_->GetTransform().GetWorldPosition();
 

@@ -65,8 +65,7 @@ float4 TextureAtlas_PS(Output _Input) : SV_Target0
         discard;
     }
     
-    _Input.Tex.x += Time.
-x;
+    _Input.Tex.x += Time.x;
     
     return ((Tex.Sample(Smp, _Input.Tex.xy) * MulColor) + PlusColor);
 }

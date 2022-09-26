@@ -186,6 +186,8 @@ void ElderBrother::Start()
                                 {
                                     Penitent::GetMainPlayer()->BossDeathUIOn(1);
                                     DeathEventOn_ = true;
+
+                                    Penitent::GetMainPlayer()->PlusTear(300);
                                 });
 
     Renderer_->GetTransform().SetWorldScale({1100, 600});
@@ -295,7 +297,6 @@ void ElderBrother::Update(float _DeltaTime)
 }
 
 void ElderBrother::End() {}
-
 
 
 void ElderBrother::DamageCheck()
@@ -605,15 +606,14 @@ void ElderBrother::DeathStart(const StateInfo& _Info)
     Renderer_->ChangeFrameAnimation("elderBrother_death");
 
     BossDeathEvent();
+
+    AttackEffecter_->Death();
+    JumpEffecter_->Death();
 }
 
 void ElderBrother::DeathUpdate(float _DeltaTime, const StateInfo& _Info) { Gravity_->SetActive(!IsGround_); }
 
-void ElderBrother::DeathEnd(const StateInfo& _Info)
-{
-    AttackEffecter_->Death();
-    JumpEffecter_->Death();
-}
+void ElderBrother::DeathEnd(const StateInfo& _Info) {}
 
 
 //Ãæµ¹
