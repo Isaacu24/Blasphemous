@@ -203,6 +203,9 @@ void GameEngineTextureRenderer::SetPivot(PIVOTMODE _Mode)
 	case PIVOTMODE::METABOT:
 		SetPivotToVector(float4(0.0f, GetTransform().GetWorldScale().hy()));
 		break;
+	case PIVOTMODE::METATOP:
+		SetPivotToVector(float4(0.0f, -GetTransform().GetWorldScale().hy()));
+		break;
 	case PIVOTMODE::TOP:
 		AtlasDataInst.PivotPos = float4(0.0f, -0.5f, 0.0f, 0.0f);
 		break;

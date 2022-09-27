@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Stage11.h"
 #include "Door.h"
+#include "DaggerLady.h"
 
 Stage11::Stage11() {}
 
@@ -31,6 +32,9 @@ void Stage11::SettingStage()
     IronDoor_ = CreateActor<Door>();
     IronDoor_->GetTransform().SetWorldPosition({1870, -895, ObjectZ});
     IronDoor_->SetLinkLevel("Stage05");
+
+    DaggerLady* Lady = CreateActor<DaggerLady>();
+    Lady->GetTransform().SetWorldPosition({1300, -900, ObjectZ});
 
     float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
     float OffsetY = ColMap_->GetTransform().GetLocalScale().y / 2;

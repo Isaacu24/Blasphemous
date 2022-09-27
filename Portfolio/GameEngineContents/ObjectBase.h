@@ -7,7 +7,7 @@ enum class ObjectType
     Door,
     OpenDoor,
     PrieDieu,
-    Guilt
+    Guilt,
 };
 
 class ObjectBase : public GameEngineActor

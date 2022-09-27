@@ -317,6 +317,9 @@
     <ClInclude Include="Cloud.h">
       <Filter>Actor\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="DaggerLady.h">
+      <Filter>Actor\NPC</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -637,6 +640,9 @@
     </ClCompile>
     <ClCompile Include="Cloud.cpp">
       <Filter>Actor\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="DaggerLady.cpp">
+      <Filter>Actor\NPC</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

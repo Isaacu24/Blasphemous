@@ -1146,9 +1146,7 @@ void Penitent::ParryingAttackStart(const StateInfo& _Info)
     MetaRenderer_->ChangeMetaAnimation("penitent_parry_counter_v2_anim");
 }
 
-void Penitent::ParryingAttackUpdate(float _DeltaTime, const StateInfo& _Info) 
-{
-}
+void Penitent::ParryingAttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Penitent::ParryingAttackEnd(const StateInfo& _Info) {}
 
@@ -1236,21 +1234,21 @@ void Penitent::RespawnUpdate(float _DeltaTime, const StateInfo& _Info)
 void Penitent::RespawnEnd(const StateInfo& _Info) { BodyCollider_->On(); }
 
 
-//void Penitent::PrayStart(const StateInfo& _Info) 
+// void Penitent::PrayStart(const StateInfo& _Info)
 //{
-//    MetaRenderer_->ChangeMetaAnimation("penitent_kneeled"); 
-//    PlayerUI_->IsPrayEnd_ = false;
-//}
+//     MetaRenderer_->ChangeMetaAnimation("penitent_kneeled");
+//     PlayerUI_->IsPrayEnd_ = false;
+// }
 //
-//void Penitent::PrayUpdate(float _DeltaTime, const StateInfo& _Info)
+// void Penitent::PrayUpdate(float _DeltaTime, const StateInfo& _Info)
 //{
-//    if (true == PlayerUI_->IsPrayEnd_)
-//    {
-//        MetaRenderer_->ChangeMetaAnimation("penitent_priedieu_stand_up_anim");
-//    }
-//}
+//     if (true == PlayerUI_->IsPrayEnd_)
+//     {
+//         MetaRenderer_->ChangeMetaAnimation("penitent_priedieu_stand_up_anim");
+//     }
+// }
 //
-//void Penitent::PrayEnd(const StateInfo& _Info) {}
+// void Penitent::PrayEnd(const StateInfo& _Info) {}
 
 
 void Penitent::RestPrayStart(const StateInfo& _Info)
@@ -1361,7 +1359,8 @@ void Penitent::DeathStart(const StateInfo& _Info)
     MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
 }
 
-void Penitent::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
+void Penitent::DeathUpdate(float _DeltaTime, const StateInfo& _Info) 
+{ Gravity_->SetActive(!IsGround_); }
 
 void Penitent::DeathEnd(const StateInfo& _Info) { SetHP(100); }
 
@@ -1384,3 +1383,4 @@ void Penitent::RisingUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 
 void Penitent::RisingEnd(const StateInfo& _Info) {}
+

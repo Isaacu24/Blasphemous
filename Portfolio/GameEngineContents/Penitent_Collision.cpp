@@ -233,7 +233,13 @@ bool Penitent::ObjectCheck(GameEngineCollision* _This, GameEngineCollision* _Oth
         {
             case ObjectType::NPC:
                 {
-                    Deogracias* NPC = dynamic_cast<Deogracias*>(_Other->GetActor());
+                    NPCBase* NPC = dynamic_cast<NPCBase*>(_Other->GetActor());
+
+                    if (nullptr == NPC)
+                    {
+                        return false;
+                    }
+
                     NPC->SetIsSpeech(true);
 
                     ChangeState("Freeze");

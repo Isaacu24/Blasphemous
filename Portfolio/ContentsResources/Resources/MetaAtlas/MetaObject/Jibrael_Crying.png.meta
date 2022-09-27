@@ -1,0 +1,2512 @@
+fileFormatVersion: 2
+guid: edcb3a3a3607e3e4a9b44aabc64fa750
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Jibrael_Crying_0
+  - first:
+      213: 21300002
+    second: Jibrael_Crying_1
+  - first:
+      213: 21300004
+    second: Jibrael_Crying_2
+  - first:
+      213: 21300006
+    second: Jibrael_Crying_3
+  - first:
+      213: 21300008
+    second: Jibrael_Crying_4
+  - first:
+      213: 21300010
+    second: Jibrael_Crying_5
+  - first:
+      213: 21300012
+    second: Jibrael_Crying_6
+  - first:
+      213: 21300014
+    second: Jibrael_Crying_7
+  - first:
+      213: 21300016
+    second: Jibrael_Crying_8
+  - first:
+      213: 21300018
+    second: Jibrael_Crying_9
+  - first:
+      213: 21300020
+    second: Jibrael_Crying_10
+  - first:
+      213: 21300022
+    second: Jibrael_Crying_11
+  - first:
+      213: 21300024
+    second: Jibrael_Crying_12
+  - first:
+      213: 21300026
+    second: Jibrael_Crying_13
+  - first:
+      213: 21300028
+    second: Jibrael_Crying_14
+  - first:
+      213: 21300030
+    second: Jibrael_Crying_15
+  - first:
+      213: 21300032
+    second: Jibrael_Crying_16
+  - first:
+      213: 21300034
+    second: Jibrael_Crying_17
+  - first:
+      213: 21300036
+    second: Jibrael_Crying_18
+  - first:
+      213: 21300038
+    second: Jibrael_Crying_19
+  - first:
+      213: 21300040
+    second: Jibrael_Crying_20
+  - first:
+      213: 21300042
+    second: Jibrael_Crying_21
+  - first:
+      213: 21300044
+    second: Jibrael_Crying_22
+  - first:
+      213: 21300046
+    second: Jibrael_Crying_23
+  - first:
+      213: 21300048
+    second: Jibrael_Crying_24
+  - first:
+      213: 21300050
+    second: Jibrael_Crying_25
+  - first:
+      213: 21300052
+    second: Jibrael_Crying_26
+  - first:
+      213: 21300054
+    second: Jibrael_Crying_27
+  - first:
+      213: 21300056
+    second: Jibrael_Crying_28
+  - first:
+      213: 21300058
+    second: Jibrael_Crying_29
+  - first:
+      213: 21300060
+    second: Jibrael_Crying_30
+  - first:
+      213: 21300062
+    second: Jibrael_Crying_31
+  - first:
+      213: 21300064
+    second: Jibrael_Crying_32
+  - first:
+      213: 21300066
+    second: Jibrael_Crying_33
+  - first:
+      213: 21300068
+    second: Jibrael_Crying_34
+  - first:
+      213: 21300070
+    second: Jibrael_Crying_35
+  - first:
+      213: 21300072
+    second: Jibrael_Crying_36
+  - first:
+      213: 21300074
+    second: Jibrael_Crying_37
+  - first:
+      213: 21300076
+    second: Jibrael_Crying_38
+  - first:
+      213: 21300078
+    second: Jibrael_Crying_39
+  - first:
+      213: 21300080
+    second: Jibrael_Crying_40
+  - first:
+      213: 21300082
+    second: Jibrael_Crying_41
+  - first:
+      213: 21300084
+    second: Jibrael_Crying_42
+  - first:
+      213: 21300086
+    second: Jibrael_Crying_43
+  - first:
+      213: 21300088
+    second: Jibrael_Crying_44
+  - first:
+      213: 21300090
+    second: Jibrael_Crying_45
+  - first:
+      213: 21300092
+    second: Jibrael_Crying_46
+  - first:
+      213: 21300094
+    second: Jibrael_Crying_47
+  - first:
+      213: 21300096
+    second: Jibrael_Crying_48
+  - first:
+      213: 21300098
+    second: Jibrael_Crying_49
+  - first:
+      213: 21300100
+    second: Jibrael_Crying_50
+  - first:
+      213: 21300102
+    second: Jibrael_Crying_51
+  - first:
+      213: 21300104
+    second: Jibrael_Crying_52
+  - first:
+      213: 21300106
+    second: Jibrael_Crying_53
+  - first:
+      213: 21300108
+    second: Jibrael_Crying_54
+  - first:
+      213: 21300110
+    second: Jibrael_Crying_55
+  - first:
+      213: 21300112
+    second: Jibrael_Crying_56
+  - first:
+      213: 21300114
+    second: Jibrael_Crying_57
+  - first:
+      213: 21300116
+    second: Jibrael_Crying_58
+  - first:
+      213: 21300118
+    second: Jibrael_Crying_59
+  - first:
+      213: 21300120
+    second: Jibrael_Crying_60
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 4
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 0
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Jibrael_Crying_0
+      rect:
+        serializedVersion: 2
+        x: 32.076122
+        y: 1600.0267
+        width: 272.89713
+        height: 133.9465
+      alignment: 9
+      pivot: {x: 0.46876225, y: -0.00019958266}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 135.47531, y: -66.999985}
+        - {x: -136.52469, y: -66.999985}
+        - {x: -136.52469, y: -5.9999847}
+        - {x: -87.52469, y: 61.000015}
+        - {x: 20.475311, y: 45.000015}
+        - {x: 20.475311, y: 63.000015}
+        - {x: 24.475311, y: 67.000015}
+        - {x: 79.47531, y: 67.000015}
+        - {x: 136.47531, y: 9.000015}
+        - {x: 136.47531, y: -60.999985}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_1
+      rect:
+        serializedVersion: 2
+        x: 352.0761
+        y: 1600.0267
+        width: 273.89713
+        height: 132.93034
+      alignment: 9
+      pivot: {x: 0.46705085, y: -0.00020110833}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -137.02469, y: -16.491905}
+        - {x: -70.02468, y: 66.508095}
+        - {x: 76.97532, y: 66.508095}
+        - {x: 136.97531, y: -3.4919052}
+        - {x: 136.97531, y: -60.491905}
+        - {x: 130.97531, y: -66.491905}
+        - {x: -137.02469, y: -66.491905}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_2
+      rect:
+        serializedVersion: 2
+        x: 672.0761
+        y: 1600.0267
+        width: 274.89713
+        height: 131.93034
+      alignment: 9
+      pivot: {x: 0.46535185, y: -0.00020263267}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -137.52467, y: -27.991905}
+        - {x: -97.52467, y: 66.008095}
+        - {x: 110.47533, y: 66.008095}
+        - {x: 137.47533, y: -19.991905}
+        - {x: 137.47533, y: -41.991905}
+        - {x: 134.47533, y: -56.991905}
+        - {x: 127.47533, y: -65.991905}
+        - {x: 125.47533, y: -65.991905}
+        - {x: 114.47533, y: -50.991905}
+        - {x: 116.47533, y: -55.991905}
+        - {x: 119.47533, y: -58.991905}
+        - {x: 112.47533, y: -65.991905}
+        - {x: 31.475327, y: -65.991905}
+        - {x: -41.524673, y: -40.991905}
+        - {x: -38.524673, y: -48.991905}
+        - {x: -59.524673, y: -58.991905}
+        - {x: -137.52467, y: -55.991905}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_3
+      rect:
+        serializedVersion: 2
+        x: 992.0761
+        y: 1600.0267
+        width: 274.88098
+        height: 131.89713
+      alignment: 9
+      pivot: {x: 0.46537918, y: -0.0002026837}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -90.51661, y: 66.024704}
+        - {x: -61.51661, y: 66.024704}
+        - {x: 27.48339, y: 43.024704}
+        - {x: 25.48339, y: 66.024704}
+        - {x: 94.48339, y: 66.024704}
+        - {x: 137.4834, y: -12.975296}
+        - {x: 137.4834, y: -57.975296}
+        - {x: 121.48339, y: -62.975296}
+        - {x: 116.48339, y: -55.975296}
+        - {x: 117.48339, y: -58.975296}
+        - {x: 121.48339, y: -62.975296}
+        - {x: 124.48339, y: -65.975296}
+        - {x: -110.51661, y: -65.975296}
+        - {x: -137.5166, y: -62.975296}
+        - {x: -137.5166, y: -19.975296}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_4
+      rect:
+        serializedVersion: 2
+        x: 1312.0762
+        y: 1600.0267
+        width: 275.89713
+        height: 133.92194
+      alignment: 9
+      pivot: {x: 0.46366495, y: -0.00019961926}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 115.975266, y: -66.9877}
+        - {x: -127.024734, y: -66.9877}
+        - {x: -138.02473, y: -65.9877}
+        - {x: -138.02473, y: -15.987701}
+        - {x: -105.024734, y: 41.0123}
+        - {x: -52.024734, y: 51.0123}
+        - {x: 52.975266, y: -3.9877014}
+        - {x: 57.975266, y: 27.012299}
+        - {x: 51.975266, y: 27.012299}
+        - {x: 32.975266, y: 45.0123}
+        - {x: 30.975266, y: 66.0123}
+        - {x: 35.975266, y: 67.0123}
+        - {x: 69.975266, y: 67.0123}
+        - {x: 90.975266, y: 53.0123}
+        - {x: 137.97527, y: -20.987701}
+        - {x: 137.97527, y: -53.9877}
+        - {x: 126.975266, y: -64.9877}
+        - {x: 119.975266, y: -61.9877}
+        - {x: 111.975266, y: -44.9877}
+        - {x: 100.975266, y: -54.9877}
+        - {x: 115.975266, y: -56.9877}
+        - {x: 118.975266, y: -59.9877}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_5
+      rect:
+        serializedVersion: 2
+        x: 1632.0762
+        y: 1600.0267
+        width: 276.89713
+        height: 132.92194
+      alignment: 9
+      pivot: {x: 0.46199045, y: -0.00020112105}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -98.524734, y: 34.5123}
+        - {x: -81.524734, y: 52.5123}
+        - {x: 61.475266, y: 24.512299}
+        - {x: 50.475266, y: 27.512299}
+        - {x: 35.475266, y: 44.5123}
+        - {x: 33.475266, y: 65.5123}
+        - {x: 38.475266, y: 66.5123}
+        - {x: 72.475266, y: 66.5123}
+        - {x: 78.475266, y: 62.5123}
+        - {x: 89.475266, y: 50.5123}
+        - {x: 133.47527, y: -28.487701}
+        - {x: 136.47527, y: -28.487701}
+        - {x: 138.47527, y: -32.4877}
+        - {x: 138.47527, y: -39.4877}
+        - {x: 137.47527, y: -50.4877}
+        - {x: 126.475266, y: -65.4877}
+        - {x: 121.475266, y: -64.4877}
+        - {x: 115.475266, y: -56.4877}
+        - {x: 116.475266, y: -59.4877}
+        - {x: 121.475266, y: -64.4877}
+        - {x: 123.475266, y: -66.4877}
+        - {x: -138.52473, y: -66.4877}
+        - {x: -138.52473, y: -17.487701}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_6
+      rect:
+        serializedVersion: 2
+        x: 1952.0762
+        y: 1600.043
+        width: 276.89713
+        height: 131.90578
+      alignment: 9
+      pivot: {x: 0.46199045, y: -0.00032575335}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -138.52473, y: -65.99586}
+        - {x: -138.52473, y: 43.004143}
+        - {x: -129.52473, y: 66.00414}
+        - {x: 131.47527, y: 66.00414}
+        - {x: 138.47527, y: 63.004143}
+        - {x: 138.47527, y: -49.995857}
+        - {x: 128.47527, y: -65.99586}
+        - {x: 123.475266, y: -65.99586}
+        - {x: 119.475266, y: -63.995857}
+        - {x: 115.475266, y: -55.995857}
+        - {x: 116.475266, y: -58.995857}
+        - {x: 115.475266, y: -65.99586}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_7
+      rect:
+        serializedVersion: 2
+        x: 32.076122
+        y: 1400.0267
+        width: 276.89713
+        height: 132.92194
+      alignment: 9
+      pivot: {x: 0.46199062, y: -0.00020112105}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -105.52469, y: 24.512299}
+        - {x: -82.52469, y: 55.5123}
+        - {x: 61.47531, y: 24.512299}
+        - {x: 50.47531, y: 27.512299}
+        - {x: 35.47531, y: 44.5123}
+        - {x: 33.47531, y: 65.5123}
+        - {x: 38.47531, y: 66.5123}
+        - {x: 72.47531, y: 66.5123}
+        - {x: 78.47531, y: 62.5123}
+        - {x: 89.47531, y: 50.5123}
+        - {x: 133.47531, y: -28.487701}
+        - {x: 136.47531, y: -28.487701}
+        - {x: 138.47531, y: -32.4877}
+        - {x: 138.47531, y: -39.4877}
+        - {x: 137.47531, y: -50.4877}
+        - {x: 126.47531, y: -65.4877}
+        - {x: 121.47531, y: -64.4877}
+        - {x: 115.47531, y: -56.4877}
+        - {x: 116.47531, y: -59.4877}
+        - {x: 121.47531, y: -64.4877}
+        - {x: 123.47531, y: -66.4877}
+        - {x: -31.524689, y: -66.4877}
+        - {x: -60.52469, y: -60.4877}
+        - {x: -138.52469, y: -53.4877}
+        - {x: -138.52469, y: -39.4877}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_8
+      rect:
+        serializedVersion: 2
+        x: 352.0761
+        y: 1400.0267
+        width: 275.89713
+        height: 133.92194
+      alignment: 9
+      pivot: {x: 0.4636652, y: -0.00019961926}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100.02467, y: 54.0123}
+        - {x: 5.9753265, y: 38.0123}
+        - {x: 52.975327, y: -4.9877014}
+        - {x: 62.975327, y: 28.012299}
+        - {x: 57.975327, y: 27.012299}
+        - {x: 51.975327, y: 27.012299}
+        - {x: 32.975327, y: 45.0123}
+        - {x: 30.975327, y: 66.0123}
+        - {x: 35.975327, y: 67.0123}
+        - {x: 69.97533, y: 67.0123}
+        - {x: 90.97533, y: 53.0123}
+        - {x: 137.97533, y: -20.987701}
+        - {x: 137.97533, y: -53.9877}
+        - {x: 126.97533, y: -64.9877}
+        - {x: 119.97533, y: -61.9877}
+        - {x: 111.97533, y: -44.9877}
+        - {x: 100.97533, y: -54.9877}
+        - {x: 115.97533, y: -56.9877}
+        - {x: 118.97533, y: -59.9877}
+        - {x: 109.97533, y: -66.9877}
+        - {x: -138.02467, y: -66.9877}
+        - {x: -138.02467, y: -12.987701}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_9
+      rect:
+        serializedVersion: 2
+        x: 672.0761
+        y: 1400.0267
+        width: 274.88098
+        height: 131.89713
+      alignment: 9
+      pivot: {x: 0.46537918, y: -0.0002026837}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -90.51661, y: 66.024704}
+        - {x: -61.51661, y: 66.024704}
+        - {x: 27.48339, y: 43.024704}
+        - {x: 25.48339, y: 66.024704}
+        - {x: 94.48339, y: 66.024704}
+        - {x: 137.4834, y: -12.975296}
+        - {x: 137.4834, y: -57.975296}
+        - {x: 121.48339, y: -62.975296}
+        - {x: 116.48339, y: -55.975296}
+        - {x: 117.48339, y: -58.975296}
+        - {x: 121.48339, y: -62.975296}
+        - {x: 124.48339, y: -65.975296}
+        - {x: -110.51661, y: -65.975296}
+        - {x: -137.5166, y: -62.975296}
+        - {x: -137.5166, y: -19.975296}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_10
+      rect:
+        serializedVersion: 2
+        x: 992.0761
+        y: 1400.0267
+        width: 274.89713
+        height: 131.93034
+      alignment: 9
+      pivot: {x: 0.46535185, y: -0.00020263267}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -59.524673, y: -58.991905}
+        - {x: -103.52467, y: -55.991905}
+        - {x: -137.52467, y: -52.991905}
+        - {x: -137.52467, y: -20.991905}
+        - {x: -118.52467, y: 66.008095}
+        - {x: 108.47533, y: 66.008095}
+        - {x: 137.47533, y: -10.991905}
+        - {x: 137.47533, y: -46.991905}
+        - {x: 132.47533, y: -65.991905}
+        - {x: -0.52467346, y: -65.991905}
+        - {x: -38.524673, y: -48.991905}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43305410000000000800000000000000
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_11
+      rect:
+        serializedVersion: 2
+        x: 1312.0762
+        y: 1400.0267
+        width: 273.89713
+        height: 132.93034
+      alignment: 9
+      pivot: {x: 0.46705064, y: -0.00020110833}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -112.024734, y: 47.508095}
+        - {x: -67.024734, y: 66.508095}
+        - {x: 99.975266, y: 66.508095}
+        - {x: 136.97527, y: 3.5080948}
+        - {x: 136.97527, y: -58.491905}
+        - {x: 128.97527, y: -64.491905}
+        - {x: 113.975266, y: -51.491905}
+        - {x: 101.975266, y: -54.491905}
+        - {x: 116.975266, y: -56.491905}
+        - {x: 123.975266, y: -60.491905}
+        - {x: 116.975266, y: -66.491905}
+        - {x: -137.02473, y: -66.491905}
+        - {x: -137.02473, y: 3.5080948}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63305410000000000800000000000000
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_12
+      rect:
+        serializedVersion: 2
+        x: 1632.0762
+        y: 1400.0267
+        width: 272.89713
+        height: 133.9465
+      alignment: 9
+      pivot: {x: 0.4687621, y: -0.00019958266}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 119.475266, y: -66.999985}
+        - {x: -136.52473, y: -66.999985}
+        - {x: -136.52473, y: 4.0000153}
+        - {x: -113.524734, y: 49.000015}
+        - {x: -42.524734, y: 67.000015}
+        - {x: 67.475266, y: 67.000015}
+        - {x: 89.475266, y: 54.000015}
+        - {x: 135.47527, y: -18.999985}
+        - {x: 136.47527, y: -21.999985}
+        - {x: 136.47527, y: -42.999985}
+        - {x: 127.475266, y: -63.999985}
+        - {x: 117.475266, y: -56.999985}
+        - {x: 121.475266, y: -59.999985}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83305410000000000800000000000000
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_13
+      rect:
+        serializedVersion: 2
+        x: 1952.0762
+        y: 1400.0267
+        width: 273.89713
+        height: 132.93034
+      alignment: 9
+      pivot: {x: 0.46705064, y: -0.00020110833}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -137.02473, y: -15.491905}
+        - {x: -82.024734, y: 66.508095}
+        - {x: 103.975266, y: 66.508095}
+        - {x: 135.97527, y: -19.491905}
+        - {x: 136.97527, y: -21.491905}
+        - {x: 136.97527, y: -43.491905}
+        - {x: 128.97527, y: -64.491905}
+        - {x: 113.975266, y: -51.491905}
+        - {x: 101.975266, y: -54.491905}
+        - {x: 116.975266, y: -56.491905}
+        - {x: 123.975266, y: -60.491905}
+        - {x: 116.975266, y: -66.491905}
+        - {x: -137.02473, y: -66.491905}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3305410000000000800000000000000
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_14
+      rect:
+        serializedVersion: 2
+        x: 32.076122
+        y: 1200.0267
+        width: 274.89713
+        height: 131.93034
+      alignment: 9
+      pivot: {x: 0.46535182, y: -0.00020263267}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -59.52469, y: -58.991905}
+        - {x: -103.52469, y: -55.991905}
+        - {x: -137.52469, y: -52.991905}
+        - {x: -137.52469, y: -33.991905}
+        - {x: -114.52469, y: 27.008095}
+        - {x: -96.52469, y: 66.008095}
+        - {x: 112.47531, y: 66.008095}
+        - {x: 137.47531, y: -8.991905}
+        - {x: 137.47531, y: -46.991905}
+        - {x: 132.47531, y: -65.991905}
+        - {x: -0.5246887, y: -65.991905}
+        - {x: -38.52469, y: -48.991905}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3305410000000000800000000000000
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_15
+      rect:
+        serializedVersion: 2
+        x: 352.0761
+        y: 1200.0267
+        width: 274.88098
+        height: 131.89713
+      alignment: 9
+      pivot: {x: 0.46537918, y: -0.0002026837}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -90.51661, y: 66.024704}
+        - {x: -61.51661, y: 66.024704}
+        - {x: 27.48339, y: 43.024704}
+        - {x: 25.48339, y: 66.024704}
+        - {x: 94.48339, y: 66.024704}
+        - {x: 137.4834, y: -12.975296}
+        - {x: 137.4834, y: -57.975296}
+        - {x: 121.48339, y: -62.975296}
+        - {x: 116.48339, y: -55.975296}
+        - {x: 117.48339, y: -58.975296}
+        - {x: 121.48339, y: -62.975296}
+        - {x: 124.48339, y: -65.975296}
+        - {x: -110.51661, y: -65.975296}
+        - {x: -137.5166, y: -62.975296}
+        - {x: -137.5166, y: -19.975296}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3305410000000000800000000000000
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_16
+      rect:
+        serializedVersion: 2
+        x: 672.0761
+        y: 1200.0267
+        width: 275.89713
+        height: 133.92194
+      alignment: 9
+      pivot: {x: 0.4636652, y: -0.00019961926}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 115.97533, y: -66.9877}
+        - {x: -127.02467, y: -66.9877}
+        - {x: -138.02467, y: -65.9877}
+        - {x: -138.02467, y: -15.987701}
+        - {x: -105.02467, y: 41.0123}
+        - {x: -52.024673, y: 51.0123}
+        - {x: 52.975327, y: -3.9877014}
+        - {x: 57.975327, y: 27.012299}
+        - {x: 51.975327, y: 27.012299}
+        - {x: 32.975327, y: 45.0123}
+        - {x: 30.975327, y: 66.0123}
+        - {x: 35.975327, y: 67.0123}
+        - {x: 69.97533, y: 67.0123}
+        - {x: 90.97533, y: 53.0123}
+        - {x: 137.97533, y: -20.987701}
+        - {x: 137.97533, y: -53.9877}
+        - {x: 126.97533, y: -64.9877}
+        - {x: 119.97533, y: -61.9877}
+        - {x: 111.97533, y: -44.9877}
+        - {x: 100.97533, y: -54.9877}
+        - {x: 115.97533, y: -56.9877}
+        - {x: 118.97533, y: -59.9877}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04305410000000000800000000000000
+      internalID: 21300032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_17
+      rect:
+        serializedVersion: 2
+        x: 992.0761
+        y: 1200.0267
+        width: 276.89713
+        height: 132.92194
+      alignment: 9
+      pivot: {x: 0.46199068, y: -0.00020112105}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -98.52467, y: 34.5123}
+        - {x: -81.52467, y: 52.5123}
+        - {x: 61.475327, y: 24.512299}
+        - {x: 50.475327, y: 27.512299}
+        - {x: 35.475327, y: 44.5123}
+        - {x: 33.475327, y: 65.5123}
+        - {x: 38.475327, y: 66.5123}
+        - {x: 72.47533, y: 66.5123}
+        - {x: 78.47533, y: 62.5123}
+        - {x: 89.47533, y: 50.5123}
+        - {x: 133.47533, y: -28.487701}
+        - {x: 136.47533, y: -28.487701}
+        - {x: 138.47533, y: -32.4877}
+        - {x: 138.47533, y: -39.4877}
+        - {x: 137.47533, y: -50.4877}
+        - {x: 126.47533, y: -65.4877}
+        - {x: 121.47533, y: -64.4877}
+        - {x: 115.47533, y: -56.4877}
+        - {x: 116.47533, y: -59.4877}
+        - {x: 121.47533, y: -64.4877}
+        - {x: 123.47533, y: -66.4877}
+        - {x: -138.52467, y: -66.4877}
+        - {x: -138.52467, y: -17.487701}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24305410000000000800000000000000
+      internalID: 21300034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_18
+      rect:
+        serializedVersion: 2
+        x: 1312.0762
+        y: 1200.043
+        width: 276.89713
+        height: 131.90578
+      alignment: 9
+      pivot: {x: 0.46199045, y: -0.00032575335}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -138.52473, y: -65.99586}
+        - {x: -138.52473, y: 43.004143}
+        - {x: -129.52473, y: 66.00414}
+        - {x: 131.47527, y: 66.00414}
+        - {x: 138.47527, y: 63.004143}
+        - {x: 138.47527, y: -49.995857}
+        - {x: 128.47527, y: -65.99586}
+        - {x: 123.475266, y: -65.99586}
+        - {x: 119.475266, y: -63.995857}
+        - {x: 115.475266, y: -55.995857}
+        - {x: 116.475266, y: -58.995857}
+        - {x: 115.475266, y: -65.99586}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44305410000000000800000000000000
+      internalID: 21300036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_19
+      rect:
+        serializedVersion: 2
+        x: 1632.0762
+        y: 1200.0267
+        width: 276.89713
+        height: 132.92194
+      alignment: 9
+      pivot: {x: 0.46199045, y: -0.00020112105}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -105.524734, y: 24.512299}
+        - {x: -82.524734, y: 55.5123}
+        - {x: 61.475266, y: 24.512299}
+        - {x: 50.475266, y: 27.512299}
+        - {x: 35.475266, y: 44.5123}
+        - {x: 33.475266, y: 65.5123}
+        - {x: 38.475266, y: 66.5123}
+        - {x: 72.475266, y: 66.5123}
+        - {x: 78.475266, y: 62.5123}
+        - {x: 89.475266, y: 50.5123}
+        - {x: 133.47527, y: -28.487701}
+        - {x: 136.47527, y: -28.487701}
+        - {x: 138.47527, y: -32.4877}
+        - {x: 138.47527, y: -39.4877}
+        - {x: 137.47527, y: -50.4877}
+        - {x: 126.475266, y: -65.4877}
+        - {x: 121.475266, y: -64.4877}
+        - {x: 115.475266, y: -56.4877}
+        - {x: 116.475266, y: -59.4877}
+        - {x: 121.475266, y: -64.4877}
+        - {x: 123.475266, y: -66.4877}
+        - {x: -31.524734, y: -66.4877}
+        - {x: -60.524734, y: -60.4877}
+        - {x: -138.52473, y: -53.4877}
+        - {x: -138.52473, y: -39.4877}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64305410000000000800000000000000
+      internalID: 21300038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_20
+      rect:
+        serializedVersion: 2
+        x: 1952.0762
+        y: 1200.0267
+        width: 275.89713
+        height: 133.92194
+      alignment: 9
+      pivot: {x: 0.46366495, y: -0.00019961926}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100.024734, y: 54.0123}
+        - {x: 5.9752655, y: 38.0123}
+        - {x: 52.975266, y: -4.9877014}
+        - {x: 62.975266, y: 28.012299}
+        - {x: 57.975266, y: 27.012299}
+        - {x: 51.975266, y: 27.012299}
+        - {x: 32.975266, y: 45.0123}
+        - {x: 30.975266, y: 66.0123}
+        - {x: 35.975266, y: 67.0123}
+        - {x: 69.975266, y: 67.0123}
+        - {x: 90.975266, y: 53.0123}
+        - {x: 137.97527, y: -20.987701}
+        - {x: 137.97527, y: -53.9877}
+        - {x: 126.975266, y: -64.9877}
+        - {x: 119.975266, y: -61.9877}
+        - {x: 111.975266, y: -44.9877}
+        - {x: 100.975266, y: -54.9877}
+        - {x: 115.975266, y: -56.9877}
+        - {x: 118.975266, y: -59.9877}
+        - {x: 109.975266, y: -66.9877}
+        - {x: -138.02473, y: -66.9877}
+        - {x: -138.02473, y: -12.987701}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84305410000000000800000000000000
+      internalID: 21300040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_21
+      rect:
+        serializedVersion: 2
+        x: 32.076122
+        y: 1000.02673
+        width: 274.88098
+        height: 131.89713
+      alignment: 9
+      pivot: {x: 0.46537915, y: -0.0002026837}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -59.516617, y: -58.975296}
+        - {x: -103.51662, y: -63.975296}
+        - {x: -137.51662, y: -55.975296}
+        - {x: -137.51662, y: 4.024704}
+        - {x: -78.51662, y: 66.024704}
+        - {x: -7.516617, y: 66.024704}
+        - {x: 27.483383, y: 43.024704}
+        - {x: 25.483383, y: 66.024704}
+        - {x: 94.48338, y: 66.024704}
+        - {x: 137.48338, y: -12.975296}
+        - {x: 137.48338, y: -57.975296}
+        - {x: 121.48338, y: -62.975296}
+        - {x: 116.48338, y: -55.975296}
+        - {x: 117.48338, y: -58.975296}
+        - {x: 121.48338, y: -62.975296}
+        - {x: 124.48338, y: -65.975296}
+        - {x: -27.516617, y: -65.975296}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4305410000000000800000000000000
+      internalID: 21300042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_22
+      rect:
+        serializedVersion: 2
+        x: 352.0761
+        y: 1000.02673
+        width: 274.89713
+        height: 131.93034
+      alignment: 9
+      pivot: {x: 0.46535185, y: -0.00020263267}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -59.524673, y: -58.991905}
+        - {x: -103.52467, y: -55.991905}
+        - {x: -137.52467, y: -52.991905}
+        - {x: -137.52467, y: -33.991905}
+        - {x: -114.52467, y: 27.008095}
+        - {x: -96.52467, y: 66.008095}
+        - {x: 112.47533, y: 66.008095}
+        - {x: 137.47533, y: -8.991905}
+        - {x: 137.47533, y: -46.991905}
+        - {x: 132.47533, y: -65.991905}
+        - {x: -0.52467346, y: -65.991905}
+        - {x: -38.524673, y: -48.991905}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4305410000000000800000000000000
+      internalID: 21300044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_23
+      rect:
+        serializedVersion: 2
+        x: 672.0761
+        y: 1000.02673
+        width: 273.89713
+        height: 132.93034
+      alignment: 9
+      pivot: {x: 0.46705085, y: -0.00020110833}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -129.02469, y: 42.508095}
+        - {x: -66.02468, y: 66.508095}
+        - {x: 89.97532, y: 66.508095}
+        - {x: 94.97532, y: 65.508095}
+        - {x: 136.97531, y: -20.491905}
+        - {x: 136.97531, y: -47.491905}
+        - {x: 128.97531, y: -64.491905}
+        - {x: 113.97532, y: -51.491905}
+        - {x: 101.97532, y: -54.491905}
+        - {x: 116.97532, y: -56.491905}
+        - {x: 123.97532, y: -60.491905}
+        - {x: 116.97532, y: -66.491905}
+        - {x: -137.02469, y: -66.491905}
+        - {x: -137.02469, y: 21.508095}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4305410000000000800000000000000
+      internalID: 21300046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_24
+      rect:
+        serializedVersion: 2
+        x: 992.0761
+        y: 1000.02673
+        width: 274.88098
+        height: 131.89713
+      alignment: 9
+      pivot: {x: 0.46537918, y: -0.0002026837}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -77.51661, y: -21.975296}
+        - {x: -74.51661, y: -23.975296}
+        - {x: -78.51661, y: -18.975296}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05305410000000000800000000000000
+      internalID: 21300048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_25
+      rect:
+        serializedVersion: 2
+        x: 1312.0762
+        y: 1000.0761
+        width: 275.89713
+        height: 133.88512
+      alignment: 9
+      pivot: {x: 0.46366495, y: -0.0005684787}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 112.975266, y: -67.01867}
+        - {x: -118.024734, y: -67.01867}
+        - {x: -138.02473, y: -59.01867}
+        - {x: -138.02473, y: 66.98133}
+        - {x: 137.97527, y: 66.98133}
+        - {x: 137.97527, y: -60.01867}
+        - {x: 124.975266, y: -67.01867}
+        - {x: 117.975266, y: -67.01867}
+        - {x: 117.975266, y: -63.01867}
+        - {x: 116.975266, y: -60.01867}
+        - {x: 115.975266, y: -63.01867}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25305410000000000800000000000000
+      internalID: 21300050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_26
+      rect:
+        serializedVersion: 2
+        x: 1632.0762
+        y: 1000.0761
+        width: 274.89713
+        height: 133.89713
+      alignment: 9
+      pivot: {x: 0.46535164, y: -0.0005684277}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -78.524734, y: -20.024673}
+        - {x: -77.524734, y: -23.024673}
+        - {x: -74.524734, y: -25.024673}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45305410000000000800000000000000
+      internalID: 21300052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_27
+      rect:
+        serializedVersion: 2
+        x: 1952.0762
+        y: 1000.0761
+        width: 275.89713
+        height: 133.88512
+      alignment: 9
+      pivot: {x: 0.46366495, y: -0.0005684787}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -138.02473, y: -67.01867}
+        - {x: -138.02473, y: -8.018669}
+        - {x: -105.024734, y: 40.98133}
+        - {x: -52.024734, y: 49.98133}
+        - {x: 38.975266, y: 42.98133}
+        - {x: 39.975266, y: 66.98133}
+        - {x: 78.975266, y: 66.98133}
+        - {x: 85.975266, y: 65.98133}
+        - {x: 135.97527, y: -29.01867}
+        - {x: 137.97527, y: -38.01867}
+        - {x: 137.97527, y: -60.01867}
+        - {x: 124.975266, y: -67.01867}
+        - {x: 117.975266, y: -67.01867}
+        - {x: 117.975266, y: -63.01867}
+        - {x: 116.975266, y: -60.01867}
+        - {x: 116.975266, y: -67.01867}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65305410000000000800000000000000
+      internalID: 21300054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_28
+      rect:
+        serializedVersion: 2
+        x: 32.076122
+        y: 800.0429
+        width: 276.89713
+        height: 131.90578
+      alignment: 9
+      pivot: {x: 0.46199062, y: -0.00032529063}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 113.47531, y: -65.9958}
+        - {x: -90.52469, y: -65.9958}
+        - {x: -138.52469, y: -62.995796}
+        - {x: -138.52469, y: 66.0042}
+        - {x: 138.47531, y: 66.0042}
+        - {x: 138.47531, y: -58.995796}
+        - {x: 129.47531, y: -65.9958}
+        - {x: 123.47531, y: -65.9958}
+        - {x: 119.47531, y: -63.995796}
+        - {x: 115.47531, y: -55.995796}
+        - {x: 116.47531, y: -58.995796}
+        - {x: 115.47531, y: -61.995796}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85305410000000000800000000000000
+      internalID: 21300056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_29
+      rect:
+        serializedVersion: 2
+        x: 352.0761
+        y: 800.0761
+        width: 275.89713
+        height: 133.88512
+      alignment: 9
+      pivot: {x: 0.4636652, y: -0.0005684787}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -138.02467, y: -37.01867}
+        - {x: -92.02467, y: 41.98133}
+        - {x: -53.024673, y: 44.98133}
+        - {x: 38.975327, y: 42.98133}
+        - {x: 39.975327, y: 66.98133}
+        - {x: 78.97533, y: 66.98133}
+        - {x: 85.97533, y: 65.98133}
+        - {x: 135.97533, y: -29.01867}
+        - {x: 137.97533, y: -38.01867}
+        - {x: 137.97533, y: -60.01867}
+        - {x: 124.97533, y: -67.01867}
+        - {x: 117.97533, y: -67.01867}
+        - {x: 117.97533, y: -63.01867}
+        - {x: 116.97533, y: -60.01867}
+        - {x: 115.97533, y: -63.01867}
+        - {x: 105.97533, y: -67.01867}
+        - {x: 51.975327, y: -67.01867}
+        - {x: -39.024673, y: -50.01867}
+        - {x: -60.024673, y: -60.01867}
+        - {x: -138.02467, y: -56.01867}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5305410000000000800000000000000
+      internalID: 21300058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_30
+      rect:
+        serializedVersion: 2
+        x: 672.0761
+        y: 800.0761
+        width: 274.89713
+        height: 133.89713
+      alignment: 9
+      pivot: {x: 0.46535185, y: -0.0005684277}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -96.52467, y: 66.97533}
+        - {x: 86.47533, y: 66.97533}
+        - {x: 115.47533, y: 25.975327}
+        - {x: 134.47533, y: -31.024673}
+        - {x: 137.47533, y: -33.024673}
+        - {x: 137.47533, y: -67.02467}
+        - {x: -137.52467, y: -67.02467}
+        - {x: -137.52467, y: 23.975327}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5305410000000000800000000000000
+      internalID: 21300060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_31
+      rect:
+        serializedVersion: 2
+        x: 992.0761
+        y: 800.0761
+        width: 275.89713
+        height: 133.88512
+      alignment: 9
+      pivot: {x: 0.4636652, y: -0.0005684787}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -138.02467, y: -67.01867}
+        - {x: -138.02467, y: -8.018669}
+        - {x: -105.02467, y: 40.98133}
+        - {x: -52.024673, y: 49.98133}
+        - {x: 38.975327, y: 42.98133}
+        - {x: 39.975327, y: 66.98133}
+        - {x: 78.97533, y: 66.98133}
+        - {x: 85.97533, y: 65.98133}
+        - {x: 135.97533, y: -29.01867}
+        - {x: 137.97533, y: -38.01867}
+        - {x: 137.97533, y: -60.01867}
+        - {x: 124.97533, y: -67.01867}
+        - {x: 117.97533, y: -67.01867}
+        - {x: 117.97533, y: -63.01867}
+        - {x: 116.97533, y: -60.01867}
+        - {x: 116.97533, y: -67.01867}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5305410000000000800000000000000
+      internalID: 21300062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_32
+      rect:
+        serializedVersion: 2
+        x: 1312.0762
+        y: 800.0429
+        width: 276.89713
+        height: 130.90578
+      alignment: 9
+      pivot: {x: 0.46199045, y: -0.00032777557}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -138.52473, y: -35.495796}
+        - {x: -96.524734, y: 65.5042}
+        - {x: 87.475266, y: 65.5042}
+        - {x: 113.475266, y: 32.504204}
+        - {x: 137.47527, y: -27.495796}
+        - {x: 138.47527, y: -32.495796}
+        - {x: 138.47527, y: -49.495796}
+        - {x: 128.47527, y: -65.4958}
+        - {x: 123.475266, y: -65.4958}
+        - {x: 119.475266, y: -63.495796}
+        - {x: 115.475266, y: -55.495796}
+        - {x: 116.475266, y: -58.495796}
+        - {x: 115.475266, y: -61.495796}
+        - {x: 113.475266, y: -65.4958}
+        - {x: -0.5247345, y: -65.4958}
+        - {x: -60.524734, y: -59.495796}
+        - {x: -138.52473, y: -52.495796}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06305410000000000800000000000000
+      internalID: 21300064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_33
+      rect:
+        serializedVersion: 2
+        x: 1632.0762
+        y: 800.0761
+        width: 275.89713
+        height: 133.88512
+      alignment: 9
+      pivot: {x: 0.46366495, y: -0.0005684787}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -138.02473, y: -37.01867}
+        - {x: -92.024734, y: 41.98133}
+        - {x: -53.024734, y: 44.98133}
+        - {x: 38.975266, y: 42.98133}
+        - {x: 39.975266, y: 66.98133}
+        - {x: 78.975266, y: 66.98133}
+        - {x: 85.975266, y: 65.98133}
+        - {x: 135.97527, y: -29.01867}
+        - {x: 137.97527, y: -38.01867}
+        - {x: 137.97527, y: -60.01867}
+        - {x: 124.975266, y: -67.01867}
+        - {x: 117.975266, y: -67.01867}
+        - {x: 117.975266, y: -63.01867}
+        - {x: 116.975266, y: -60.01867}
+        - {x: 115.975266, y: -63.01867}
+        - {x: 105.975266, y: -67.01867}
+        - {x: 51.975266, y: -67.01867}
+        - {x: -39.024734, y: -50.01867}
+        - {x: -60.024734, y: -60.01867}
+        - {x: -138.02473, y: -56.01867}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26305410000000000800000000000000
+      internalID: 21300066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_34
+      rect:
+        serializedVersion: 2
+        x: 1952.0762
+        y: 800.0761
+        width: 274.89713
+        height: 133.89713
+      alignment: 9
+      pivot: {x: 0.46535164, y: -0.0005684277}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -77.524734, y: -23.024673}
+        - {x: -74.524734, y: -25.024673}
+        - {x: -74.524734, y: -25.024673}
+        - {x: -77.524734, y: -22.024673}
+        - {x: -79.524734, y: -19.024673}
+        - {x: -81.524734, y: -24.024673}
+        - {x: -80.524734, y: -23.024673}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46305410000000000800000000000000
+      internalID: 21300068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_35
+      rect:
+        serializedVersion: 2
+        x: 32.076122
+        y: 600.0761
+        width: 275.89713
+        height: 133.88512
+      alignment: 9
+      pivot: {x: 0.46366513, y: -0.0005684787}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 107.97531, y: -67.01867}
+        - {x: -138.02469, y: -67.01867}
+        - {x: -138.02469, y: -24.01867}
+        - {x: -96.02469, y: 46.98133}
+        - {x: -53.02469, y: 46.98133}
+        - {x: 38.97531, y: 42.98133}
+        - {x: 39.97531, y: 66.98133}
+        - {x: 78.97531, y: 66.98133}
+        - {x: 85.97531, y: 65.98133}
+        - {x: 135.97531, y: -29.01867}
+        - {x: 137.97531, y: -38.01867}
+        - {x: 137.97531, y: -60.01867}
+        - {x: 124.97531, y: -67.01867}
+        - {x: 117.97531, y: -67.01867}
+        - {x: 117.97531, y: -63.01867}
+        - {x: 116.97531, y: -60.01867}
+        - {x: 115.97531, y: -63.01867}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66305410000000000800000000000000
+      internalID: 21300070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_36
+      rect:
+        serializedVersion: 2
+        x: 352.0761
+        y: 600.0429
+        width: 276.89713
+        height: 131.90578
+      alignment: 9
+      pivot: {x: 0.46199068, y: -0.00032529063}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -138.52467, y: -65.9958}
+        - {x: -138.52467, y: 66.0042}
+        - {x: 116.47533, y: 66.0042}
+        - {x: 137.47533, y: -27.995796}
+        - {x: 138.47533, y: -32.995796}
+        - {x: 138.47533, y: -49.995796}
+        - {x: 128.47533, y: -65.9958}
+        - {x: 123.47533, y: -65.9958}
+        - {x: 119.47533, y: -63.995796}
+        - {x: 115.47533, y: -55.995796}
+        - {x: 116.47533, y: -58.995796}
+        - {x: 115.47533, y: -65.9958}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86305410000000000800000000000000
+      internalID: 21300072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_37
+      rect:
+        serializedVersion: 2
+        x: 672.0761
+        y: 600.0761
+        width: 275.89713
+        height: 133.88512
+      alignment: 9
+      pivot: {x: 0.4636652, y: -0.0005684787}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -138.02467, y: -37.01867}
+        - {x: -92.02467, y: 41.98133}
+        - {x: -53.024673, y: 44.98133}
+        - {x: 38.975327, y: 42.98133}
+        - {x: 39.975327, y: 66.98133}
+        - {x: 78.97533, y: 66.98133}
+        - {x: 85.97533, y: 65.98133}
+        - {x: 135.97533, y: -29.01867}
+        - {x: 137.97533, y: -38.01867}
+        - {x: 137.97533, y: -60.01867}
+        - {x: 124.97533, y: -67.01867}
+        - {x: 117.97533, y: -67.01867}
+        - {x: 117.97533, y: -63.01867}
+        - {x: 116.97533, y: -60.01867}
+        - {x: 115.97533, y: -63.01867}
+        - {x: 105.97533, y: -67.01867}
+        - {x: 51.975327, y: -67.01867}
+        - {x: -39.024673, y: -50.01867}
+        - {x: -60.024673, y: -60.01867}
+        - {x: -138.02467, y: -56.01867}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6305410000000000800000000000000
+      internalID: 21300074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_38
+      rect:
+        serializedVersion: 2
+        x: 992.0761
+        y: 600.0761
+        width: 274.89713
+        height: 133.89713
+      alignment: 9
+      pivot: {x: 0.46535185, y: -0.0005684277}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -96.52467, y: 66.97533}
+        - {x: 86.47533, y: 66.97533}
+        - {x: 115.47533, y: 25.975327}
+        - {x: 134.47533, y: -31.024673}
+        - {x: 137.47533, y: -33.024673}
+        - {x: 137.47533, y: -67.02467}
+        - {x: -137.52467, y: -67.02467}
+        - {x: -137.52467, y: 23.975327}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6305410000000000800000000000000
+      internalID: 21300076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_39
+      rect:
+        serializedVersion: 2
+        x: 1312.0762
+        y: 600.0761
+        width: 275.89713
+        height: 133.88512
+      alignment: 9
+      pivot: {x: 0.46366495, y: -0.0005684787}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -138.02473, y: -37.01867}
+        - {x: -92.024734, y: 41.98133}
+        - {x: -53.024734, y: 44.98133}
+        - {x: 38.975266, y: 42.98133}
+        - {x: 39.975266, y: 66.98133}
+        - {x: 78.975266, y: 66.98133}
+        - {x: 85.975266, y: 65.98133}
+        - {x: 135.97527, y: -29.01867}
+        - {x: 137.97527, y: -38.01867}
+        - {x: 137.97527, y: -60.01867}
+        - {x: 124.975266, y: -67.01867}
+        - {x: 117.975266, y: -67.01867}
+        - {x: 117.975266, y: -63.01867}
+        - {x: 116.975266, y: -60.01867}
+        - {x: 115.975266, y: -63.01867}
+        - {x: 105.975266, y: -67.01867}
+        - {x: 51.975266, y: -67.01867}
+        - {x: -39.024734, y: -50.01867}
+        - {x: -60.024734, y: -60.01867}
+        - {x: -138.02473, y: -56.01867}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6305410000000000800000000000000
+      internalID: 21300078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_40
+      rect:
+        serializedVersion: 2
+        x: 1632.0762
+        y: 600.0429
+        width: 276.89713
+        height: 130.90578
+      alignment: 9
+      pivot: {x: 0.46199045, y: -0.00032777557}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -113.524734, y: 31.504204}
+        - {x: -92.524734, y: 65.5042}
+        - {x: 115.475266, y: 65.5042}
+        - {x: 138.47527, y: 0.5042038}
+        - {x: 138.47527, y: -49.495796}
+        - {x: 128.47527, y: -65.4958}
+        - {x: 123.475266, y: -65.4958}
+        - {x: 119.475266, y: -63.495796}
+        - {x: 115.475266, y: -55.495796}
+        - {x: 116.475266, y: -58.495796}
+        - {x: 115.475266, y: -61.495796}
+        - {x: 109.475266, y: -65.4958}
+        - {x: 65.475266, y: -65.4958}
+        - {x: 28.475266, y: -62.495796}
+        - {x: -39.524734, y: -48.495796}
+        - {x: -60.524734, y: -58.495796}
+        - {x: -138.52473, y: -53.495796}
+        - {x: -138.52473, y: -31.495796}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07305410000000000800000000000000
+      internalID: 21300080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_41
+      rect:
+        serializedVersion: 2
+        x: 1952.0762
+        y: 600.02673
+        width: 276.89713
+        height: 132.92194
+      alignment: 9
+      pivot: {x: 0.46199045, y: -0.00020112105}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -138.52473, y: -33.4877}
+        - {x: -101.524734, y: 54.5123}
+        - {x: -1.5247345, y: 39.5123}
+        - {x: 61.475266, y: 24.512299}
+        - {x: 50.475266, y: 27.512299}
+        - {x: 35.475266, y: 44.5123}
+        - {x: 33.475266, y: 65.5123}
+        - {x: 38.475266, y: 66.5123}
+        - {x: 72.475266, y: 66.5123}
+        - {x: 78.475266, y: 62.5123}
+        - {x: 89.475266, y: 50.5123}
+        - {x: 133.47527, y: -28.487701}
+        - {x: 136.47527, y: -28.487701}
+        - {x: 138.47527, y: -32.4877}
+        - {x: 138.47527, y: -39.4877}
+        - {x: 137.47527, y: -50.4877}
+        - {x: 126.475266, y: -65.4877}
+        - {x: 121.475266, y: -64.4877}
+        - {x: 115.475266, y: -56.4877}
+        - {x: 116.475266, y: -59.4877}
+        - {x: 121.475266, y: -64.4877}
+        - {x: 123.475266, y: -66.4877}
+        - {x: -30.524734, y: -66.4877}
+        - {x: -60.524734, y: -59.4877}
+        - {x: -138.52473, y: -54.4877}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27305410000000000800000000000000
+      internalID: 21300082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_42
+      rect:
+        serializedVersion: 2
+        x: 32.076122
+        y: 400.02676
+        width: 275.89713
+        height: 133.92194
+      alignment: 9
+      pivot: {x: 0.46366513, y: -0.00019984714}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100.02469, y: 54.012268}
+        - {x: 5.9753113, y: 38.012268}
+        - {x: 52.97531, y: -4.987732}
+        - {x: 62.97531, y: 28.012268}
+        - {x: 57.97531, y: 27.012268}
+        - {x: 51.97531, y: 27.012268}
+        - {x: 32.97531, y: 45.012268}
+        - {x: 30.975311, y: 66.01227}
+        - {x: 35.97531, y: 67.01227}
+        - {x: 69.97531, y: 67.01227}
+        - {x: 90.97531, y: 53.012268}
+        - {x: 137.97531, y: -20.987732}
+        - {x: 137.97531, y: -53.987732}
+        - {x: 126.97531, y: -64.98773}
+        - {x: 119.97531, y: -61.987732}
+        - {x: 111.97531, y: -44.987732}
+        - {x: 100.97531, y: -54.987732}
+        - {x: 115.97531, y: -56.987732}
+        - {x: 118.97531, y: -59.987732}
+        - {x: 109.97531, y: -66.98773}
+        - {x: -138.02469, y: -66.98773}
+        - {x: -138.02469, y: -12.987732}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47305410000000000800000000000000
+      internalID: 21300084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_43
+      rect:
+        serializedVersion: 2
+        x: 352.0761
+        y: 400.02676
+        width: 274.89713
+        height: 132.92194
+      alignment: 9
+      pivot: {x: 0.46535185, y: -0.00020135063}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -59.524673, y: -59.487732}
+        - {x: -103.52467, y: -56.487732}
+        - {x: -137.52467, y: -53.487732}
+        - {x: -137.52467, y: -34.487732}
+        - {x: -100.52467, y: 66.51227}
+        - {x: 119.47533, y: 66.51227}
+        - {x: 137.47533, y: -3.487732}
+        - {x: 137.47533, y: -47.487732}
+        - {x: 132.47533, y: -66.48773}
+        - {x: -0.52467346, y: -66.48773}
+        - {x: -38.524673, y: -49.487732}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67305410000000000800000000000000
+      internalID: 21300086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_44
+      rect:
+        serializedVersion: 2
+        x: 672.0761
+        y: 400.02676
+        width: 273.89713
+        height: 132.93034
+      alignment: 9
+      pivot: {x: 0.46705085, y: -0.0002013379}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -128.02469, y: 41.508064}
+        - {x: -48.02468, y: 66.508064}
+        - {x: 110.97532, y: 66.508064}
+        - {x: 136.97531, y: 13.508064}
+        - {x: 136.97531, y: -57.491936}
+        - {x: 128.97531, y: -64.491936}
+        - {x: 113.97532, y: -51.491936}
+        - {x: 101.97532, y: -54.491936}
+        - {x: 116.97532, y: -56.491936}
+        - {x: 123.97532, y: -60.491936}
+        - {x: 116.97532, y: -66.491936}
+        - {x: -137.02469, y: -66.491936}
+        - {x: -137.02469, y: 17.508064}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87305410000000000800000000000000
+      internalID: 21300088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_45
+      rect:
+        serializedVersion: 2
+        x: 992.0761
+        y: 400.02676
+        width: 272.89713
+        height: 133.93034
+      alignment: 9
+      pivot: {x: 0.4687623, y: -0.0001998346}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -136.52467, y: 64.008064}
+        - {x: -77.52467, y: 67.008064}
+        - {x: 75.47533, y: 67.008064}
+        - {x: 136.47533, y: -19.991936}
+        - {x: 136.47533, y: -47.991936}
+        - {x: 127.47533, y: -63.991936}
+        - {x: 117.47533, y: -56.991936}
+        - {x: 121.47533, y: -59.991936}
+        - {x: 119.47533, y: -66.991936}
+        - {x: -136.52467, y: -66.991936}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7305410000000000800000000000000
+      internalID: 21300090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_46
+      rect:
+        serializedVersion: 2
+        x: 1312.0762
+        y: 400.02676
+        width: 270.89713
+        height: 135.9345
+      alignment: 9
+      pivot: {x: 0.4722229, y: -0.00019688833}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -109.524734, y: 25.00599}
+        - {x: -49.524734, y: 64.00599}
+        - {x: 48.475266, y: 27.00599}
+        - {x: 30.475266, y: 45.00599}
+        - {x: 29.475266, y: 64.00599}
+        - {x: 29.475266, y: 68.00599}
+        - {x: 86.475266, y: 68.00599}
+        - {x: 135.47527, y: -11.994011}
+        - {x: 135.47527, y: -54.99401}
+        - {x: 126.475266, y: -64.99401}
+        - {x: 118.475266, y: -57.99401}
+        - {x: 119.475266, y: -60.99401}
+        - {x: 120.475266, y: -65.99401}
+        - {x: 117.475266, y: -67.99401}
+        - {x: -135.52473, y: -67.99401}
+        - {x: -135.52473, y: -29.99401}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7305410000000000800000000000000
+      internalID: 21300092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_47
+      rect:
+        serializedVersion: 2
+        x: 1632.0762
+        y: 400.02676
+        width: 270.89713
+        height: 143.91689
+      alignment: 9
+      pivot: {x: 0.4722229, y: -0.00018596786}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -84.524734, y: -30.985207}
+        - {x: -82.524734, y: -32.985207}
+        - {x: -82.524734, y: -31.985207}
+        - {x: -81.524734, y: -30.985207}
+        - {x: -78.524734, y: -27.985207}
+        - {x: -77.524734, y: -25.985207}
+        - {x: -81.524734, y: -30.985207}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7305410000000000800000000000000
+      internalID: 21300094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_48
+      rect:
+        serializedVersion: 2
+        x: 1952.0762
+        y: 400.02676
+        width: 269.89713
+        height: 147.89713
+      alignment: 9
+      pivot: {x: 0.47397256, y: -0.00018096306}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -92.024734, y: -28.975327}
+        - {x: -98.024734, y: -20.975327}
+        - {x: -97.024734, y: 48.024673}
+        - {x: 37.975266, y: 54.024673}
+        - {x: 47.975266, y: 74.02467}
+        - {x: 101.975266, y: 74.02467}
+        - {x: 134.97527, y: -10.975327}
+        - {x: 134.97527, y: -68.97533}
+        - {x: 123.975266, y: -70.97533}
+        - {x: 119.975266, y: -69.97533}
+        - {x: 117.975266, y: -67.97533}
+        - {x: 117.975266, y: -73.97533}
+        - {x: -128.02473, y: -73.97533}
+        - {x: -135.02473, y: -72.97533}
+        - {x: -135.02473, y: -43.975327}
+        - {x: -115.024734, y: -26.975327}
+        - {x: -100.024734, y: -24.975327}
+        - {x: -96.024734, y: -25.975327}
+        - {x: -88.024734, y: -33.975327}
+        - {x: -74.024734, y: -29.975327}
+        - {x: -76.024734, y: -26.975327}
+        - {x: -79.024734, y: -30.975327}
+        - {x: -90.024734, y: -30.975327}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08305410000000000800000000000000
+      internalID: 21300096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_49
+      rect:
+        serializedVersion: 2
+        x: 32.076122
+        y: 200.05132
+        width: 268.89713
+        height: 150.87256
+      alignment: 9
+      pivot: {x: 0.47573537, y: -0.00034012354}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -127.52469, y: -75.487595}
+        - {x: -134.52469, y: -69.487595}
+        - {x: -134.52469, y: -48.487595}
+        - {x: -114.52469, y: -28.487595}
+        - {x: -99.52469, y: -26.487595}
+        - {x: -94.52469, y: -26.487595}
+        - {x: -87.52469, y: -34.487595}
+        - {x: -83.52469, y: -33.487595}
+        - {x: -84.52469, y: -33.487595}
+        - {x: -89.52469, y: -28.487595}
+        - {x: -105.52469, y: 25.512405}
+        - {x: -50.52469, y: 71.512405}
+        - {x: -26.524689, y: 75.512405}
+        - {x: 134.47531, y: 75.512405}
+        - {x: 134.47531, y: -75.487595}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28305410000000000800000000000000
+      internalID: 21300098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_50
+      rect:
+        serializedVersion: 2
+        x: 352.0761
+        y: 200.07613
+        width: 268.89713
+        height: 150.84775
+      alignment: 9
+      pivot: {x: 0.47573543, y: -0.0005046552}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 110.47533, y: -64.5}
+        - {x: 110.47533, y: -64.5}
+        - {x: 112.47533, y: -65.5}
+        - {x: 111.47533, y: -64.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48305410000000000800000000000000
+      internalID: 21300100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_51
+      rect:
+        serializedVersion: 2
+        x: 672.0761
+        y: 200
+        width: 268.89713
+        height: 149.92387
+      alignment: 9
+      pivot: {x: 0.47573543, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -134.52467, y: 57.038063}
+        - {x: 18.475327, y: 75.03806}
+        - {x: 72.47533, y: 75.03806}
+        - {x: 97.47533, y: 57.038063}
+        - {x: 134.47533, y: -30.961937}
+        - {x: 134.47533, y: -74.96194}
+        - {x: -134.52467, y: -74.96194}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68305410000000000800000000000000
+      internalID: 21300102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_52
+      rect:
+        serializedVersion: 2
+        x: 992.0761
+        y: 200
+        width: 266.89713
+        height: 148.92387
+      alignment: 9
+      pivot: {x: 0.47930035, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -98.52467, y: 53.538063}
+        - {x: -48.524673, y: 74.53806}
+        - {x: 109.47533, y: 74.53806}
+        - {x: 133.47533, y: 11.538063}
+        - {x: 133.47533, y: -74.46194}
+        - {x: -133.52467, y: -74.46194}
+        - {x: -133.52467, y: -17.461937}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88305410000000000800000000000000
+      internalID: 21300104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_53
+      rect:
+        serializedVersion: 2
+        x: 1312.0762
+        y: 201.07613
+        width: 265.91098
+        height: 152.84775
+      alignment: 9
+      pivot: {x: 0.48107764, y: -0.00704051}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 132.96834, y: -76.5}
+        - {x: -97.03166, y: -76.5}
+        - {x: -133.03166, y: -71.5}
+        - {x: -133.03166, y: -39.5}
+        - {x: -84.03166, y: 50.5}
+        - {x: 64.96834, y: 75.5}
+        - {x: 67.96834, y: 76.5}
+        - {x: 93.96834, y: 76.5}
+        - {x: 132.96834, y: 50.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8305410000000000800000000000000
+      internalID: 21300106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_54
+      rect:
+        serializedVersion: 2
+        x: 1632.0762
+        y: 201.07613
+        width: 274.89713
+        height: 174.84775
+      alignment: 9
+      pivot: {x: 0.46535164, y: -0.0061546466}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 137.47527, y: -87.5}
+        - {x: -123.524734, y: -87.5}
+        - {x: -137.52473, y: -83.5}
+        - {x: -137.52473, y: -36.5}
+        - {x: -70.524734, y: 55.5}
+        - {x: -0.5247345, y: 87.5}
+        - {x: 116.475266, y: 87.5}
+        - {x: 137.47527, y: 59.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8305410000000000800000000000000
+      internalID: 21300108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_55
+      rect:
+        serializedVersion: 2
+        x: 1952.0762
+        y: 201.07613
+        width: 275.89713
+        height: 180.84775
+      alignment: 9
+      pivot: {x: 0.46366495, y: -0.005950453}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 44.975266, y: -22.5}
+        - {x: 46.975266, y: -20.5}
+        - {x: 42.975266, y: -20.5}
+        - {x: 42.975266, y: -21.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8305410000000000800000000000000
+      internalID: 21300110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_56
+      rect:
+        serializedVersion: 2
+        x: 32.076122
+        y: 1.0761205
+        width: 282.89713
+        height: 186.84775
+      alignment: 9
+      pivot: {x: 0.4521922, y: -0.0057593444}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -90.5247, y: -53.499992}
+        - {x: -88.5247, y: -54.499992}
+        - {x: -88.5247, y: -54.499992}
+        - {x: -84.5247, y: -50.499992}
+        - {x: -89.5247, y: -46.499992}
+        - {x: -94.5247, y: -53.499992}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09305410000000000800000000000000
+      internalID: 21300112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_57
+      rect:
+        serializedVersion: 2
+        x: 352.0761
+        y: 2.026751
+        width: 283.89713
+        height: 170.89713
+      alignment: 9
+      pivot: {x: 0.45059946, y: -0.01185948}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -112.02467, y: -37.47531}
+        - {x: -117.02467, y: -17.475311}
+        - {x: -100.02467, y: 17.524689}
+        - {x: -88.02467, y: 32.52469}
+        - {x: -1.0246735, y: 10.524689}
+        - {x: 25.975327, y: -33.47531}
+        - {x: 34.975327, y: -33.47531}
+        - {x: 31.975327, y: -31.475311}
+        - {x: 26.975327, y: -27.475311}
+        - {x: 25.975327, y: -17.475311}
+        - {x: 59.975327, y: 49.52469}
+        - {x: 44.975327, y: 65.52469}
+        - {x: 52.975327, y: 85.52469}
+        - {x: 73.97533, y: 85.52469}
+        - {x: 100.97533, y: 63.52469}
+        - {x: 141.97533, y: -15.475311}
+        - {x: 141.97533, y: -50.47531}
+        - {x: 131.97533, y: -65.47531}
+        - {x: 96.97533, y: -76.47531}
+        - {x: 99.97533, y: -79.47531}
+        - {x: 96.97533, y: -85.47531}
+        - {x: -142.02467, y: -85.47531}
+        - {x: -142.02467, y: -51.47531}
+        - {x: -122.02467, y: -40.47531}
+        - {x: -102.02467, y: -38.47531}
+        - {x: -96.02467, y: -35.47531}
+        - {x: -103.02467, y: -38.47531}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29305410000000000800000000000000
+      internalID: 21300114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_58
+      rect:
+        serializedVersion: 2
+        x: 672.0761
+        y: 0.026750982
+        width: 274.88098
+        height: 140.91689
+      alignment: 9
+      pivot: {x: 0.46537918, y: -0.00018983518}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -92.51661, y: -70.48519}
+        - {x: -137.5166, y: -62.48519}
+        - {x: -137.5166, y: -3.4851913}
+        - {x: -95.51661, y: 38.51481}
+        - {x: -59.51661, y: 44.51481}
+        - {x: -5.516609, y: 19.514809}
+        - {x: 47.48339, y: -13.485191}
+        - {x: 63.48339, y: -8.485191}
+        - {x: 67.48339, y: -7.4851913}
+        - {x: 65.48339, y: -7.4851913}
+        - {x: 63.48339, y: -6.4851913}
+        - {x: 30.48339, y: 45.51481}
+        - {x: 38.48339, y: 70.51481}
+        - {x: 103.48339, y: 70.51481}
+        - {x: 137.4834, y: 2.5148087}
+        - {x: 137.4834, y: -70.48519}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49305410000000000800000000000000
+      internalID: 21300116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_59
+      rect:
+        serializedVersion: 2
+        x: 992.0761
+        y: 0.026750982
+        width: 274.89713
+        height: 131.93034
+      alignment: 9
+      pivot: {x: 0.46535185, y: -0.00020276595}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -103.52467, y: -63.99192}
+        - {x: -137.52467, y: -55.99192}
+        - {x: -137.52467, y: -38.99192}
+        - {x: -117.52467, y: -18.99192}
+        - {x: -94.52467, y: -15.99192}
+        - {x: -108.52467, y: -16.99192}
+        - {x: -112.52467, y: -15.99192}
+        - {x: -106.52467, y: 22.00808}
+        - {x: -87.52467, y: 57.00808}
+        - {x: 25.475327, y: 36.00808}
+        - {x: 26.475327, y: 62.00808}
+        - {x: 33.475327, y: 66.00808}
+        - {x: 73.47533, y: 66.00808}
+        - {x: 102.47533, y: 35.00808}
+        - {x: 132.47533, y: -23.99192}
+        - {x: 135.47533, y: -23.99192}
+        - {x: 137.47533, y: -25.99192}
+        - {x: 137.47533, y: -65.99192}
+        - {x: -4.5246735, y: -65.99192}
+        - {x: -38.524673, y: -48.99192}
+        - {x: -59.524673, y: -58.99192}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69305410000000000800000000000000
+      internalID: 21300118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jibrael_Crying_60
+      rect:
+        serializedVersion: 2
+        x: 1312.0762
+        y: 0.026750982
+        width: 273.89713
+        height: 132.93034
+      alignment: 9
+      pivot: {x: 0.46705064, y: -0.0002012406}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -63.024734, y: -63.49192}
+        - {x: -103.024734, y: -64.49192}
+        - {x: -137.02473, y: -56.49192}
+        - {x: -137.02473, y: -39.49192}
+        - {x: -135.02473, y: -37.49192}
+        - {x: -119.024734, y: -22.49192}
+        - {x: -116.024734, y: -20.49192}
+        - {x: -109.024734, y: -19.49192}
+        - {x: -108.024734, y: -15.49192}
+        - {x: -101.024734, y: 25.50808}
+        - {x: -96.024734, y: 47.50808}
+        - {x: 7.9752655, y: 66.50808}
+        - {x: 65.975266, y: 66.50808}
+        - {x: 86.975266, y: 55.50808}
+        - {x: 135.97527, y: -19.49192}
+        - {x: 136.97527, y: -20.49192}
+        - {x: 136.97527, y: -66.49192}
+        - {x: -44.024734, y: -66.49192}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89305410000000000800000000000000
+      internalID: 21300120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Jibrael_Crying_37: 21300074
+      Jibrael_Crying_43: 21300086
+      Jibrael_Crying_47: 21300094
+      Jibrael_Crying_7: 21300014
+      Jibrael_Crying_19: 21300038
+      Jibrael_Crying_4: 21300008
+      Jibrael_Crying_13: 21300026
+      Jibrael_Crying_49: 21300098
+      Jibrael_Crying_0: 21300000
+      Jibrael_Crying_57: 21300114
+      Jibrael_Crying_40: 21300080
+      Jibrael_Crying_31: 21300062
+      Jibrael_Crying_55: 21300110
+      Jibrael_Crying_32: 21300064
+      Jibrael_Crying_11: 21300022
+      Jibrael_Crying_38: 21300076
+      Jibrael_Crying_5: 21300010
+      Jibrael_Crying_17: 21300034
+      Jibrael_Crying_15: 21300030
+      Jibrael_Crying_51: 21300102
+      Jibrael_Crying_20: 21300040
+      Jibrael_Crying_50: 21300100
+      Jibrael_Crying_46: 21300092
+      Jibrael_Crying_56: 21300112
+      Jibrael_Crying_21: 21300042
+      Jibrael_Crying_22: 21300044
+      Jibrael_Crying_44: 21300088
+      Jibrael_Crying_12: 21300024
+      Jibrael_Crying_10: 21300020
+      Jibrael_Crying_41: 21300082
+      Jibrael_Crying_24: 21300048
+      Jibrael_Crying_58: 21300116
+      Jibrael_Crying_59: 21300118
+      Jibrael_Crying_14: 21300028
+      Jibrael_Crying_18: 21300036
+      Jibrael_Crying_1: 21300002
+      Jibrael_Crying_28: 21300056
+      Jibrael_Crying_23: 21300046
+      Jibrael_Crying_8: 21300016
+      Jibrael_Crying_45: 21300090
+      Jibrael_Crying_42: 21300084
+      Jibrael_Crying_33: 21300066
+      Jibrael_Crying_39: 21300078
+      Jibrael_Crying_48: 21300096
+      Jibrael_Crying_6: 21300012
+      Jibrael_Crying_29: 21300058
+      Jibrael_Crying_9: 21300018
+      Jibrael_Crying_34: 21300068
+      Jibrael_Crying_30: 21300060
+      Jibrael_Crying_26: 21300052
+      Jibrael_Crying_27: 21300054
+      Jibrael_Crying_16: 21300032
+      Jibrael_Crying_53: 21300106
+      Jibrael_Crying_60: 21300120
+      Jibrael_Crying_3: 21300006
+      Jibrael_Crying_35: 21300070
+      Jibrael_Crying_25: 21300050
+      Jibrael_Crying_36: 21300072
+      Jibrael_Crying_2: 21300004
+      Jibrael_Crying_54: 21300108
+      Jibrael_Crying_52: 21300104
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

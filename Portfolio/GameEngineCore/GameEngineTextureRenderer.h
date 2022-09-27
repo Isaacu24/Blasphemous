@@ -13,7 +13,8 @@ enum class PIVOTMODE
 	LEFTBOT,
 	RIGHTBOT,
 	CUSTOM,
-	METABOT
+	METABOT, 
+	METATOP
 };
 
 enum class SCALEMODE
