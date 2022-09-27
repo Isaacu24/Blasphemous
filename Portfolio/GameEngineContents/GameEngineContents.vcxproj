@@ -99,10 +99,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="DaggerLady.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="DeadZone.h">
       <SubType>
       </SubType>
@@ -523,10 +519,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="CutScenePlayer.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="DaggerLady.cpp">
       <SubType>
       </SubType>
     </ClCompile>

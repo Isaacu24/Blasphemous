@@ -1,7 +1,7 @@
 #include "PreCompile.h"
 #include "Stage11.h"
 #include "Door.h"
-#include "DaggerLady.h"
+#include "PrieDieu.h"
 
 Stage11::Stage11() {}
 
@@ -33,8 +33,8 @@ void Stage11::SettingStage()
     IronDoor_->GetTransform().SetWorldPosition({1870, -895, ObjectZ});
     IronDoor_->SetLinkLevel("Stage05");
 
-    DaggerLady* Lady = CreateActor<DaggerLady>();
-    Lady->GetTransform().SetWorldPosition({1300, -900, ObjectZ});
+    PrieDieu* NewPrieDieu = CreateActor<PrieDieu>();
+    NewPrieDieu->GetTransform().SetWorldPosition({1440, -990, ObjectZ});
 
     float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
     float OffsetY = ColMap_->GetTransform().GetLocalScale().y / 2;
@@ -94,6 +94,12 @@ void Stage11::Update(float _DeltaTime)
     {
         SetLoadingEnd(false);
 
+        if (false == Penitent_->IsUpdate())
+        {
+            Penitent_->On();
+            Penitent_->ChangeState("Respawn");
+        }
+
         if (true == Penitent_->GetIsOutDoor())
         {
             Penitent_->SetIsOutDoor(false);
@@ -145,6 +151,11 @@ void Stage11::LevelStartEvent()
         else if (true == IsLeftExit_)
         {
             Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
+        }
+
+        if (false == Penitent_->IsUpdate())
+        {
+            Penitent_->GetTransform().SetWorldPosition({1435, -1200, PlayerZ});
         }
     }
 

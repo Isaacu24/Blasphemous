@@ -16,28 +16,27 @@ void DaggerLady::Start()
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("Jibrael_Idle");
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("daggerLady_idle_anim");
 
         MetaRenderer_->CreateMetaAnimation(
-            "Jibrael_Idle",
-            {"Jibrael_Idle.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, true},
+            "daggerLady_idle_anim",
+            {"daggerLady_idle_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, true},
             Data);
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("Jibrael_startBlow");
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("daggerchestlady_vanishing_animV2");
 
         MetaRenderer_->CreateMetaAnimation(
-            "Jibrael_startBlow",
-            {"Jibrael_startBlow.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
+            "daggerchestlady_vanishing_animV2",
+            {"daggerchestlady_vanishing_animV2.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
             Data);
 
-        //MetaRenderer_->AnimationBindEnd("jibrael_endBlow",
-        //                                [&](const FrameAnimation_DESC& _Info) { Death(); });
+        MetaRenderer_->AnimationBindEnd("daggerchestlady_vanishing_animV2",
+                                        [&](const FrameAnimation_DESC& _Info) { Death(); });
     }
 
-    MetaRenderer_->ChangeMetaAnimation("Jibrael_Idle");
-    MetaRenderer_->MetaSetPivot();
+    MetaRenderer_->ChangeMetaAnimation("daggerLady_idle_anim");
 
     UICollider_ = CreateComponent<GameEngineCollision>();
     UICollider_->GetTransform().SetWorldScale({100.f, 300.f, 1.f});
@@ -74,7 +73,7 @@ void DaggerLady::Start()
     MessageUI_->SetMassageEndEvent(3,
                                    [&]()
                                    {
-                                       MetaRenderer_->ChangeMetaAnimation("Jibrael_startBlow");
+                                       MetaRenderer_->ChangeMetaAnimation("daggerchestlady_vanishing_animV2");
                                        Penitent::GetMainPlayer()->SetIsFreezeEnd(true);
                                    });
 }

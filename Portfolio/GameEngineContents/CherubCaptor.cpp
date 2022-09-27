@@ -69,6 +69,8 @@ void CherubCaptor::Update(float _DeltaTime) { State_.Update(_DeltaTime); }
 
 void CherubCaptor::End() {}
 
+
+
 void CherubCaptor::PatrolXMove(float _DeltaTime)
 {
     if (true == PatrolStart_)
