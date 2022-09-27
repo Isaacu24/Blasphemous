@@ -45,10 +45,13 @@ void FrameAnimation::Update(float _Delta)
 		if (Info.Inter <= Info.FrameTime)
 		{
 			if (Info.CurFrame == (Info.Frames.size() - 1)
-				&& false == bOnceEnd
-				&& nullptr != End)
+				&& false == bOnceEnd)				
 			{
-				End(Info);
+				if (nullptr != End)
+				{
+					End(Info);
+				}
+
 				bOnceEnd = true;
 				bOnceStart = false;
 				return;
@@ -63,11 +66,11 @@ void FrameAnimation::Update(float _Delta)
 
 			if (Info.CurFrame >= Info.Frames.size())
 			{
-
 				if (true == Info.Loop)
 				{
 					Info.CurFrame = 0;
 				}
+
 				else
 				{
 					Info.CurFrame = static_cast<unsigned int>(Info.Frames.size()) - 1;

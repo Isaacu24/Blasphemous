@@ -164,6 +164,7 @@ void Pontiff::Update(float _DeltaTime)
 
 void Pontiff::End() {}
 
+
 void Pontiff::DamageCheck()
 {
     if (false
@@ -507,27 +508,29 @@ void Pontiff::CreateSpawner()
     AnguishBeamSpawner_->Off();
 }
 
+
+
 void Pontiff::AppearStart(const StateInfo& _Info)
 {
     Helmet_->ChangeFrameAnimation("pontiff_opening_helmet");
     Body_->ChangeFrameAnimation("pontiff_idle_torso");
     Face_->Off();
 
-    Helmet_->GetColorData().MulColor = float4{0.15f, 0.15f, 0.15f, 1.0f};
-    Body_->GetColorData().MulColor   = float4{0.15f, 0.15f, 0.15f, 1.0f};
+    Helmet_->GetColorData().MulColor = float4{0.f, 0.f, 0.f, 1.0f};
+    Body_->GetColorData().MulColor   = float4{0.f, 0.f, 0.f, 1.0f};
 }
 
 void Pontiff::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     Time_ += _DeltaTime;
 
-    if (3.f <= Time_)
+    if (5.f <= Time_)
     {
         Time_ = 0.f;
         State_.ChangeState("CloseIdle");
     }
 
-    float Alpha = _DeltaTime / 2;
+    float Alpha = _DeltaTime / 4;
 
     Helmet_->GetColorData().MulColor += float4{Alpha, Alpha, Alpha, 0.0f};
     Body_->GetColorData().MulColor += float4{Alpha, Alpha, Alpha, 0.0f};
@@ -548,11 +551,12 @@ void Pontiff::AppearEnd(const StateInfo& _Info)
     BossUI_->SetFontSize(35);
 
     PlatformSpawner_->CreateFristPattern();
-
+    
     //주문 시작
     IsSpellCast_ = false;
     CurType_     = RandomSpell();
 }
+
 
 void Pontiff::OpeningStart(const StateInfo& _Info)
 {

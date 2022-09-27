@@ -2,10 +2,11 @@
 #include "MessageUI.h"
 
 MessageUI::MessageUI()
-    : Alpha_(1.f)
+    : Alpha_(0.f)
     , StartEventIndex_(-1)
     , EndEventIndex_(-1)
     , Speed_(20.f)
+    , BackgroundAlpha_(0.75f)
 {}
 
 MessageUI::~MessageUI() { Script_.clear(); }
@@ -19,42 +20,54 @@ void MessageUI::Start()
     Renderer_ = CreateComponent<GameEngineUIRenderer>();
     Renderer_->SetTexture("popup_message_background.png");
     Renderer_->GetTransform().SetLocalPosition({0, 0, static_cast<int>(UIORDER::PlayerUI)});
-    Renderer_->GetColorData().MulColor.a = 0.75f;
+    // Renderer_->GetColorData().MulColor.a = 0.75f;
+    Renderer_->GetColorData().MulColor.a = 0.f;
     Renderer_->ScaleToTexture();
 
     Font_ = CreateComponent<GameEngineFontRenderer>();
-    Font_->SetColor({0.65f, 0.65f, 0.45f, 1.0f});
+    // Font_->SetColor({0.65f, 0.65f, 0.45f, 1.0f});
+    Font_->SetColor({0.65f, 0.65f, 0.45f, 0.0f});
     Font_->SetScreenPostion({640, 650, static_cast<int>(UIORDER::PlayerUI)});
     Font_->SetSize(25);
     Font_->SetLeftAndRightSort(LeftAndRightSort::CENTER);
-
     Font_->ChangeCamera(CAMERAORDER::UICAMERA);
+
+    IsOn_ = true;
 }
 
 void MessageUI::Update(float _DeltaTime)
 {
-    if (true == IsSpeech_)
+    if (true == IsOn_)
     {
-        if (0 == Script_.size())
+        Renderer_->GetColorData().MulColor.a += _DeltaTime;
+
+        Alpha_ += _DeltaTime * 1.5f;
+
+        if (1.f <= Alpha_)
         {
-            Off();
-            Font_->Off();
-            IsSpeech_ = false;
-            return;
+            Alpha_ = 1.f;
         }
 
+        Font_->SetText(Script_[0], "NeoµÕ±Ù¸ð");
+        Font_->SetColor({0.65f, 0.65f, 0.45f, Alpha_});
+
+        if (0.75f <= Renderer_->GetColorData().MulColor.a)
+        {
+            IsOn_  = false;
+            Alpha_ = 1;
+            ++LineIndex_;
+
+            Font_->SetColor({0.65f, 0.65f, 0.45f, 1.f});
+            Renderer_->GetColorData().MulColor.a = BackgroundAlpha_;
+        }
+    }
+
+    if (true == IsSpeech_ && false == IsOn_)
+    {
         BreathTime_ += _DeltaTime;
 
-        if (0 == LineIndex_)
-        {
-            ConstTime_ = 0.f;
-        }
-
-        else
-        {
-            ConstTime_ = static_cast<float>(Script_[LineIndex_ - 1].size());
-            ConstTime_ /= Speed_;
-        }
+        ConstTime_ = static_cast<float>(Script_[LineIndex_ - 1].size());
+        ConstTime_ /= Speed_;
 
         if (true == GameEngineInput::GetInst()->IsDownKey("ScriptSkip")
             || true == GameEngineInput::GetInst()->IsDownButton("PenitentA"))
@@ -68,7 +81,7 @@ void MessageUI::Update(float _DeltaTime)
 
             if (LineIndex_ == Script_.size())
             {
-                if (EndEventIndex_ == LineIndex_)
+                if (EndEventIndex_ == LineIndex_ && nullptr != EndEvent_)
                 {
                     EndEvent_();
                 }
@@ -78,7 +91,7 @@ void MessageUI::Update(float _DeltaTime)
                 return;
             }
 
-            if (StartEventIndex_ == LineIndex_)
+            if (StartEventIndex_ == LineIndex_ && nullptr != StartEvent_)
             {
                 StartEvent_();
             }
@@ -94,19 +107,20 @@ void MessageUI::Update(float _DeltaTime)
         Renderer_->GetColorData().MulColor.a -= _DeltaTime;
 
         Alpha_ -= _DeltaTime * 2;
+        Font_->SetColor({Font_->GetColor().x, Font_->GetColor().y, Font_->GetColor().z, Alpha_});
 
-        if (0.f < Alpha_)
+        if (0.f >= Alpha_)
         {
+            Alpha_ = 0.f;
             Font_->SetColor({Font_->GetColor().x, Font_->GetColor().y, Font_->GetColor().z, Alpha_});
         }
 
-        if (0.f > Renderer_->GetColorData().MulColor.a)
+        if (0.f >= Renderer_->GetColorData().MulColor.a)
         {
             Off();
             Font_->Off();
 
-            Alpha_ = 1.f;
-
+            Alpha_       = 0.f;
             IsSpeechEnd_ = false;
         }
     }

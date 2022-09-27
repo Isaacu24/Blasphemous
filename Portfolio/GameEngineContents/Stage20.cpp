@@ -64,6 +64,7 @@ void Stage20::SettingStage()
     MessageUI_->CreateLine("Apart from your callused and wounded hands. Apart from the mourning of your deaths.");
     MessageUI_->CreateLine("No. I know nothing of you, only the Miracle know.");
     MessageUI_->SetFontColor(float4{0.63f, 0.6f, 0.55f});
+    MessageUI_->SetBackgroudAlpha(0.25f);
     MessageUI_->Off();
 
     MessageUI_->SetMassageStartEvent(0, [&]() { Penitent_->SetIsFreezeEnd(false); });

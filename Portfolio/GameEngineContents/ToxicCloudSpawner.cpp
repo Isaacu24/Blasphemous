@@ -55,12 +55,10 @@ void ToxicCloudSpawner::Update(float _DeltaTime)
         case SPAWNERTYPE::SP_HIGHLEVLE:
             if (0.5f <= DelayTime_)
             {
-                float XPos = Random_.RandomFloat(700, 1500);
-
                 DelayTime_ -= 0.5f;
 
                 ToxicCloud* Clone  = GetLevel()->CreateActor<ToxicCloud>();
-                Clone->GetTransform().SetWorldPosition({XPos, -350, FrontEffetZ});
+                Clone->GetTransform().SetWorldPosition({750.f + (CloudCount_ * 200.f), -375.f, FrontEffetZ});
                 Clone->SetGround(ColMap_);
 
                 float4 Dir = Target_->GetTransform().GetWorldPosition() - GetTransform().GetWorldPosition();

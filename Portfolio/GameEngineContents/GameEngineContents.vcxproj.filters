@@ -308,6 +308,15 @@
     <ClInclude Include="MonsterHitEffect.h">
       <Filter>Actor\Effect\Monster</Filter>
     </ClInclude>
+    <ClInclude Include="CherubCaptor.h">
+      <Filter>Actor\NormalMonster</Filter>
+    </ClInclude>
+    <ClInclude Include="CherubPopUp.h">
+      <Filter>Actor\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Cloud.h">
+      <Filter>Actor\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -619,6 +628,15 @@
     </ClCompile>
     <ClCompile Include="MonsterHitEffect.cpp">
       <Filter>Actor\Effect\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CherubCaptor.cpp">
+      <Filter>Actor\NormalMonster</Filter>
+    </ClCompile>
+    <ClCompile Include="CherubPopUp.cpp">
+      <Filter>Actor\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Cloud.cpp">
+      <Filter>Actor\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

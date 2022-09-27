@@ -145,7 +145,8 @@ void GiantSword::TeleportOutStart(const StateInfo& _Info)
 
     Renderer_->ChangeFrameAnimation("pontiff_giantSword_teleportOUT");
 
-    if ("CloseIdle" != Pontiff_->GetState())
+    if ("CloseIdle" != Pontiff_->GetState()
+        && "Appear" != Pontiff_->GetState())
     {
         Pontiff_->ChangeMonsterState("Closing");
     }

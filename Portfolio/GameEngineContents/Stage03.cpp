@@ -2,6 +2,7 @@
 #include "Stage03.h"
 #include "Penitent.h"
 #include "PrieDieu.h"
+#include "CherubCaptor.h"
 
 Stage03::Stage03() {}
 
@@ -105,6 +106,13 @@ void Stage03::SettingStage()
         Lantern* NewLantern = CreateActor<Lantern>();
         NewLantern->GetTransform().SetWorldPosition({0, 0, ObjectZ});
         NewLantern->GetTransform().SetWorldMove({580, -900});
+    }
+
+    {
+        CherubCaptor* Captor = CreateActor<CherubCaptor>();
+        Captor->GetTransform().SetWorldPosition({0, 0, ObjectZ});
+        Captor->GetTransform().SetWorldMove({500, -700});
+        Captor->SetPatrolPosX(500.f, 1200.f);
     }
 
     float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;

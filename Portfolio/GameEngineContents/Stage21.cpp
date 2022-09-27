@@ -4,6 +4,7 @@
 #include "Pontiff.h"
 #include "Platform.h"
 #include "TwisterBackground.h"
+#include "Cloud.h"
 
 Stage21::Stage21() {}
 
@@ -35,6 +36,26 @@ void Stage21::SettingStage()
     StageRenderer->ScaleToTexture();
     StageRenderer->GetTransform().SetWorldPosition({0, 0, AfterLayerZ});
     StageRenderer->GetTransform().SetWorldScale(StageRenderer->GetTransform().GetWorldScale() * 2.f);
+
+    {
+        Cloud* NewCloud = CreateActor<Cloud>();
+        NewCloud->SetDirection(float4::RIGHT);
+        NewCloud->GetTransform().SetWorldPosition({1260, -670, AfterLayerZ});
+    }
+
+    {
+        Cloud* NewCloud = CreateActor<Cloud>();
+        NewCloud->GetRenderer()->SetTexture("ash-clouds_1.png");
+        NewCloud->SetDirection(float4::LEFT);
+        NewCloud->GetTransform().SetWorldPosition({1400, -670, AfterLayerZ});
+    }
+
+    {
+        Cloud* NewCloud = CreateActor<Cloud>();
+        NewCloud->GetRenderer()->SetTexture("ash-clouds_2.png");
+        NewCloud->SetDirection(float4::RIGHT);
+        NewCloud->GetTransform().SetWorldPosition({1100, -670, AfterLayerZ});
+    }
 
     float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
     float OffsetY = ColMap_->GetTransform().GetLocalScale().y / 2;

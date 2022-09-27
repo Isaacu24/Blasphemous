@@ -55,7 +55,6 @@ void Deogracias::Start()
                                    [&]()
                                    {
                                        Penitent::GetMainPlayer()->SetIsFreezeEnd(true);
-                                       MessageUI_->Off();
                                    });
 }
 

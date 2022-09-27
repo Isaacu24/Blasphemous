@@ -71,6 +71,18 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="CherubCaptor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CherubPopUp.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Cloud.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Corpse.h">
       <SubType>
       </SubType>
@@ -479,6 +491,18 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Cemetry.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CherubCaptor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CherubPopUp.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Cloud.cpp">
       <SubType>
       </SubType>
     </ClCompile>

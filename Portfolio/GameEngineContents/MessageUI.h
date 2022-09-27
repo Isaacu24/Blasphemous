@@ -46,6 +46,9 @@ public:
 
     void SetSpeed(float _Speed) { Speed_ = _Speed; }
 
+    void SetBackgroudAlpha(float _Alpha) { BackgroundAlpha_ = _Alpha;
+    }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
@@ -59,10 +62,10 @@ private:
 
     std::vector<std::string> Script_;
 
-    //텍스트가 출력되기 이전에 실행
+    //텍스트가 처음 출력되기 이전에 실행
     std::function<void()> StartEvent_;
 
-    //텍스트가 출력된 후 실행
+    //텍스트가 전부 출력된 후 실행
     std::function<void()> EndEvent_;
 
     int StartEventIndex_;
@@ -82,6 +85,8 @@ private:
     //클수록 빨리 바뀜
     float Speed_;
 
-    bool IsFadeIn_;
+    bool IsOn_;
+    bool IsOff_;
 
+    float BackgroundAlpha_;
 };
