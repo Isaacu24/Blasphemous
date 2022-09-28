@@ -97,13 +97,14 @@ public:
 	void CreateKey(const std::string& _Name, int _Key);
 	void CreateButton(const std::string& _Name, int _Button);
 
-	float GetTime(const std::string& _Name);
+	float GetKeyTime(const std::string& _Name);
 	bool IsDownKey(const std::string& _Name);
 	bool IsUpKey(const std::string& _Name);
 	bool IsPressKey(const std::string& _Name);
 	bool IsFreeKey(const std::string& _Name);
 	bool IsKey(const std::string& _Name);
 
+	float GetButtonTime(const std::string& _Name);
 	bool IsDownButton(const std::string& _Name);
 	bool IsUpButton(const std::string& _Name);
 	bool IsPressButton(const std::string& _Name);

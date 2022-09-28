@@ -94,8 +94,8 @@ void Stage12::Update(float _DeltaTime)
 
         if (true == Penitent_->GetIsOutDoor())
         {
-            Penitent_->SetIsOutDoor(false);
-            Penitent_->GetTransform().SetWorldPosition({1300, PlayerRightPos_.y});
+            Penitent_->SetIsOutDoor(false); 
+            Penitent_->GetTransform().SetWorldPosition({1300, PlayerRightPos_.y, PlayerZ});
         }
     }
 
@@ -140,7 +140,7 @@ void Stage12::LevelStartEvent()
 
     if (true == Penitent_->GetIsOutDoor())
     {
-        Penitent_->GetTransform().SetWorldPosition({1300, -1025});
+        Penitent_->GetTransform().SetWorldPosition({1300, -1025, PlayerZ});
     }
 }
 

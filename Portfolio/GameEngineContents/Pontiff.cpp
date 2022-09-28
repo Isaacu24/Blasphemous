@@ -509,7 +509,6 @@ void Pontiff::CreateSpawner()
 }
 
 
-
 void Pontiff::AppearStart(const StateInfo& _Info)
 {
     Helmet_->ChangeFrameAnimation("pontiff_opening_helmet");
@@ -551,7 +550,7 @@ void Pontiff::AppearEnd(const StateInfo& _Info)
     BossUI_->SetFontSize(35);
 
     PlatformSpawner_->CreateFristPattern();
-    
+
     //주문 시작
     IsSpellCast_ = false;
     CurType_     = RandomSpell();
@@ -613,6 +612,7 @@ void Pontiff::DeathStart(const StateInfo& _Info)
 
     AscensionSpeed_ = 100;
 
+    Face_->CurAnimationPauseOn();
     Body_->CurAnimationPauseOn();
     Helmet_->CurAnimationPauseOn();
 
@@ -669,6 +669,7 @@ void Pontiff::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
                 Face_->GetColorData().PlusColor = float4::ZERO;
             }
 
+            Face_->CurAnimationPauseOff();
             Face_->ChangeFrameAnimation("pontiff_openedIdle_face_DEATH");
 
             BossDeathEvent_ = false;
@@ -684,6 +685,8 @@ void Pontiff::BossDeathEvent()
     Backgorund_ = CreateComponent<GameEngineTextureRenderer>();
     Backgorund_->SetTexture("BlackBackground.png");
     Backgorund_->ScaleToTexture();
+    
+    Face_->ChangeFrameAnimation("pontiff_openIdle_face");
 
     float4 CamPos = GetLevel()->GetMainCamera()->GetTransform().GetWorldPosition();
     Backgorund_->GetTransform().SetWorldPosition({CamPos.x, CamPos.y, -99});

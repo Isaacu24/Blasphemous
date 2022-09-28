@@ -149,7 +149,7 @@ void ItemBuyWindow::Update(float _DeltaTime)
                 }
             }
 
-            PadDelayTime_ = 0.f;
+            PadDelayTime_ = 0.f;    
 
             ThumbLY_ = GameEngineInput::GetInst()->GetThumbLY();
 
@@ -382,7 +382,7 @@ void ItemBuyWindow::OffEvent()
     AcquiredFont_->Off();
     AcquiredIcon_->Off();
 
-    BuyFont_->SetColor({0.74f, 0.74f, 0.74f, 1.0f});
+    BuyFont_->SetColor({0.65f, 0.62f, 0.47f, 1.0f});
     NoFont_->SetColor({0.74f, 0.74f, 0.74f, 1.0f});
 }
 

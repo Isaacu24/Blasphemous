@@ -108,7 +108,7 @@ enum class UIORDER
     Inventory,
     InteractionUI,
     BossUI,
-    MonterUI,
+    MonterUI,       
     NumberUI,
     PlayerUIFrame,
     PlayerUI,

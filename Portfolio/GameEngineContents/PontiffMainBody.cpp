@@ -38,8 +38,8 @@ void PontiffMainBody::Update(float _DeltaTime)
         GetTransform().SetWorldMove(float4::UP * Speed_ * _DeltaTime);
         Alpha_ -= _DeltaTime;
         Renderer_->GetColorData().PlusColor += float4{_DeltaTime, _DeltaTime, _DeltaTime, 0.0f};
-        Renderer_->GetColorData().MulColor = float4{1.0f, 1.0f, 1.0f, Alpha_};
-        
+        Renderer_->GetColorData().MulColor.a = Alpha_;
+
         if (0 > Alpha_)
         {
             Death();

@@ -219,6 +219,11 @@ void Penitent::DeadZoneCheck()
 
 bool Penitent::ObjectCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
+    if ("Freeze" == State_.GetCurStateStateName())
+    {
+        return false;
+    }
+                
     if (true == GameEngineInput::GetInst()->IsDownKey("Interaction") && "Idle" == State_.GetCurStateStateName()
         || true == GameEngineInput::GetInst()->IsDownButton("PenitentY") && "Idle" == State_.GetCurStateStateName())
     {

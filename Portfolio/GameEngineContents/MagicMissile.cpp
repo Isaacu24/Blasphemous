@@ -50,25 +50,25 @@ void MagicMissile::Update(float _DeltaTime)
     float4 Color = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x,
                                                               -(GetTransform().GetWorldPosition().y));
 
-    if (Color.CompareInt4D(float4::BLACK))
-    {
-        IsExplosion_ = true;
-        Renderer_->ChangeFrameAnimation("Death");
-    }
+    //if (Color.CompareInt4D(float4::BLACK))
+    //{
+    //    IsExplosion_ = true;
+    //    Renderer_->ChangeFrameAnimation("Death");
+    //}
 
     Speed_ += _DeltaTime * 400.f;
     GetTransform().SetWorldMove({(Dir_.x * Speed_ * _DeltaTime), (Dir_.y * Speed_ * _DeltaTime)});
 
-    Collider_->IsCollision(CollisionType::CT_OBB2D,
-                           COLLISIONORDER::Player,
-                           CollisionType::CT_OBB2D,
-                           [&](GameEngineCollision* _This, GameEngineCollision* _Other)
-                           {
-                               Renderer_->ChangeFrameAnimation("Death");
+    //Collider_->IsCollision(CollisionType::CT_OBB2D,
+    //                       COLLISIONORDER::Player,
+    //                       CollisionType::CT_OBB2D,
+    //                       [&](GameEngineCollision* _This, GameEngineCollision* _Other)
+    //                       {
+    //                           Renderer_->ChangeFrameAnimation("Death");
 
-                               IsExplosion_ = true;
-                               return true;
-                           });
+    //                           IsExplosion_ = true;
+    //                           return true;
+    //                       });
 
     float4 Distance    = StartPos_ - GetTransform().GetWorldPosition();
     float4 ABSDistance = float4::ABS3DReturn(Distance);

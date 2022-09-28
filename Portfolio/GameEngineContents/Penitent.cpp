@@ -548,7 +548,7 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_risingFromFallen_anim",
-            {"penitent_risingFromFallen_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false},
+            {"penitent_risingFromFallen_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
             Data);
 
         MetaRenderer_->AnimationBindEnd("penitent_risingFromFallen_anim",
@@ -559,7 +559,7 @@ void Penitent::SetAnimation()
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_sheathedIdle");
 
         MetaRenderer_->CreateMetaAnimation(
-            "penitent_sheathedIdle_Loop", {"penitent_sheathedIdle.png", 24, 32, 0.08f, true}, Data);
+            "penitent_sheathedIdle_Loop", {"penitent_sheathedIdle.png", 24, 32, 0.07f, true}, Data);
 
         MetaRenderer_->AnimationBindEnd("penitent_sheathedIdle_Loop",
                                         [&](const FrameAnimation_DESC& _Info)
@@ -575,7 +575,7 @@ void Penitent::SetAnimation()
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_sheathedIdle");
 
         MetaRenderer_->CreateMetaAnimation(
-            "penitent_sheathedIdle_End", {"penitent_sheathedIdle.png", 33, 45, 0.08f, false}, Data);
+            "penitent_sheathedIdle_End", {"penitent_sheathedIdle.png", 33, 45, 0.07f, false}, Data);
 
         MetaRenderer_->AnimationBindEnd("penitent_sheathedIdle_End",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });

@@ -24,6 +24,7 @@ public:
     {
         BehindHPBar_->Off();
         HPBar_->Off();
+        BackHPBar_->Off();
         BarFrame_->Off();
         Off();
     }
@@ -34,6 +35,7 @@ public:
         BehindHPBar_->On();
         HPBar_->On();
         BarFrame_->On();
+        BackHPBar_->On();
     }
 
     void SetBossName(const std::string& _Name) { Font_->SetText(_Name, "NeoµÕ±Ù¸ð"); }
@@ -54,6 +56,8 @@ private:
     LeftTopUI* HPBar_;
 
     LeftTopUI* BehindHPBar_;
+
+    LeftTopUI* BackHPBar_;
 
     BossMonster* Boss_;
 

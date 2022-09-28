@@ -104,7 +104,7 @@ void Shop::Update(float _DeltaTime)
         if (true == Penitent_->GetIsOutDoor())
         {
             Penitent_->SetIsOutDoor(false);
-            Penitent_->GetTransform().SetWorldPosition({580, PlayerRightPos_.y});
+            Penitent_->GetTransform().SetWorldPosition({580, PlayerRightPos_.y, PlayerZ});
         }
     }
 }

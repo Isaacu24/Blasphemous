@@ -11,6 +11,7 @@
 void Penitent::FreezeStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_sheathedIdle_Start");
+    IsFreezeEnd_ = false;
 }
 
 void Penitent::FreezeUpdate(float _DeltaTime, const StateInfo& _Info) { Gravity_->SetActive(!IsGround_); }

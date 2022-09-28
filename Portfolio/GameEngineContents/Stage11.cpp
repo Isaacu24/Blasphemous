@@ -2,6 +2,7 @@
 #include "Stage11.h"
 #include "Door.h"
 #include "PrieDieu.h"
+#include "MetaTextureRenderer.h"
 
 Stage11::Stage11() {}
 
@@ -34,7 +35,8 @@ void Stage11::SettingStage()
     IronDoor_->SetLinkLevel("Stage05");
 
     PrieDieu* NewPrieDieu = CreateActor<PrieDieu>();
-    NewPrieDieu->GetTransform().SetWorldPosition({1440, -990, ObjectZ});
+    NewPrieDieu->GetTransform().SetWorldPosition({1430, -920, ObjectZ});
+    NewPrieDieu->GetMetaRenderer()->ChangeMetaAnimation("priedieu_upgrade2_stand_and_liton_anim");
 
     float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
     float OffsetY = ColMap_->GetTransform().GetLocalScale().y / 2;
@@ -103,7 +105,8 @@ void Stage11::Update(float _DeltaTime)
         if (true == Penitent_->GetIsOutDoor())
         {
             Penitent_->SetIsOutDoor(false);
-            Penitent_->GetTransform().SetWorldPosition({1870, PlayerRightPos_.y});
+
+            Penitent_->GetTransform().SetWorldPosition({1870, PlayerRightPos_.y, PlayerZ});
         }
 
         if (nullptr != GEngine::GetPrevLevel())

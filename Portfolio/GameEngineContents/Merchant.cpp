@@ -17,7 +17,7 @@ void Merchant::Start()
     GetTransform().SetWorldScale({2, 2, 1});
 
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
-    
+
     HitEffect_ = GetLevel()->CreateActor<MonsterHitEffect>();
 
     BloodEffect_ = GetLevel()->CreateActor<BloodSplatters>();
@@ -195,16 +195,17 @@ void Merchant::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
         {
             if (true == SellItemList_[i]->GetIsPlayerCollide())
             {
-                if (true == GameEngineInput::GetInst()->IsDownKey("Interaction")
-                    || true == GameEngineInput::GetInst()->IsDownButton("PenitentY"))
+                if (true == GameEngineInput::GetInst()->IsDownKey("Interaction") && false == BuyWindow_->IsUpdate()
+                    || true == GameEngineInput::GetInst()->IsDownButton("PenitentY") && false == BuyWindow_->IsUpdate())
                 {
                     BuyWindow_->On();
                     BuyWindow_->SetItemInfo(SellItemList_[i]->GetItemInfo());
                     return;
                 }
 
-                else if (true == GameEngineInput::GetInst()->IsDownKey("Escape")
-                         || true == GameEngineInput::GetInst()->IsDownButton("PenitentB"))
+                else if (true == GameEngineInput::GetInst()->IsDownKey("Escape") && true == BuyWindow_->IsUpdate()
+                         || true == GameEngineInput::GetInst()->IsDownButton("PenitentB")
+                                && true == BuyWindow_->IsUpdate())
                 {
                     BuyWindow_->Off();
                 }

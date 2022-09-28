@@ -81,6 +81,11 @@ bool GameEngineCollision::IsCollision(CollisionType _ThisType, int _GroupOrder
 
 	for (GameEngineCollision* Collision : Collisions)
 	{
+		if (Collision == this)
+		{
+			continue;
+		}
+
 		if (false == Collision->IsUpdate())
 		{
 			continue;

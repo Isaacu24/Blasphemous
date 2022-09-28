@@ -1,5 +1,7 @@
 #include "PreCompile.h"
 #include "PrieDieu.h"
+#include "MetaSpriteManager.h"
+#include "MetaTextureRenderer.h"
 
 PrieDieu::PrieDieu() {}
 
@@ -7,13 +9,31 @@ PrieDieu::~PrieDieu() {}
 
 void PrieDieu::Start()
 {
+    GetTransform().SetWorldScale({2, 2, 1});
+
     SetObjectType(ObjectType::PrieDieu);
 
-    Renderer_ = CreateComponent<GameEngineTextureRenderer>();
-    Renderer_->CreateFrameAnimationCutTexture("priedieu_stand_and_liton_anim",
-                                              {"priedieu_stand_and_liton_anim.png", 1, 6, 0.1f, true});
-    Renderer_->ChangeFrameAnimation("priedieu_stand_and_liton_anim");
-    Renderer_->GetTransform().SetWorldScale({150, 300});
+    MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("priedieu_stand_and_liton_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "priedieu_stand_and_liton_anim",
+            {"priedieu_stand_and_liton_anim.png", 1, static_cast<unsigned int>(Data.size() - 1), 0.06f, true},
+            Data);
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("priedieu_upgrade2_stand_and_liton_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "priedieu_upgrade2_stand_and_liton_anim",
+            {"priedieu_upgrade2_stand_and_liton_anim.png", 1, static_cast<unsigned int>(Data.size() - 1), 0.06f, true},
+            Data);
+    }
+
+    MetaRenderer_->ChangeMetaAnimation("priedieu_stand_and_liton_anim");
 
     UICollider_ = CreateComponent<GameEngineCollision>();
     UICollider_->GetTransform().SetWorldScale({100.f, 200.f, 1.f});

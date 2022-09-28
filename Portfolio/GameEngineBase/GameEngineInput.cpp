@@ -127,7 +127,7 @@ bool GameEngineInput::IsDownButton(const std::string& _Name)
 
 	if (AllInputButton_.end() == AllInputButton_.find(UpperKey))
 	{
-	MsgBoxAssert("존재하지 않는 버튼 입니다.");
+		MsgBoxAssert("존재하지 않는 버튼 입니다.");
 		return false;
 	}
 	return AllInputButton_[UpperKey].Down_;
@@ -295,7 +295,20 @@ void GameEngineInput::Update(float _DeltaTime)
 	ThumbUpdate();
 }
 
-float GameEngineInput::GetTime(const std::string& _Name)
+float  GameEngineInput::GetButtonTime(const std::string& _Name)
+{
+	std::string UpperButton = GameEngineString::ToUpperReturn(_Name);
+
+	if (AllInputButton_.end() == AllInputButton_.find(UpperButton))
+	{
+		MsgBoxAssert("존재하지 않는 키 입니다.");
+		return false;
+	}
+
+	return AllInputButton_[UpperButton].Time_;
+}
+
+float GameEngineInput::GetKeyTime(const std::string& _Name)
 {
 	std::string UpperKey = GameEngineString::ToUpperReturn(_Name);
 

@@ -138,7 +138,7 @@ void Stage05::Update(float _DeltaTime)
         if (true == Penitent_->GetIsOutDoor())
         {
             Penitent_->SetIsOutDoor(false);
-            Penitent_->GetTransform().SetWorldPosition({1107.f, PlayerRightPos_.y});
+            Penitent_->GetTransform().SetWorldPosition({1107.f, PlayerRightPos_.y, PlayerZ});
         }
     }
 

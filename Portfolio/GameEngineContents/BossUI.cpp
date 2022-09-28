@@ -11,6 +11,12 @@ void BossUI::Start() {}
 
 void BossUI::SetBossUI()
 {
+    BackHPBar_ = GetLevel()->CreateActor<LeftTopUI>();
+    BackHPBar_->Renderer_->SetTexture("BossHPBar_Back.png");
+    BackHPBar_->Renderer_->ScaleToTexture();
+    BackHPBar_->Renderer_->SetPivot(PIVOTMODE::LEFTTOP);
+    BackHPBar_->Renderer_->GetTransform().SetWorldPosition({0, 0, static_cast<int>(UIORDER::BossUI)});
+        
     BehindHPBar_ = GetLevel()->CreateActor<LeftTopUI>();
     BehindHPBar_->Renderer_->SetTexture("BossHPBar.png");
     BehindHPBar_->Renderer_->ScaleToTexture();
@@ -36,6 +42,8 @@ void BossUI::SetBossUI()
 
     HPBar_->GetTransform().SetWorldPosition({-292, -300});
     BehindHPBar_->GetTransform().SetWorldPosition({-292, -300});
+    BackHPBar_->GetTransform().SetWorldPosition({-292, -300});
+    
     BarFrame_->GetTransform().SetWorldPosition({-350, -277});
 
     Font_ = CreateComponent<GameEngineFontRenderer>();
