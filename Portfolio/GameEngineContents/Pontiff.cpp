@@ -529,7 +529,7 @@ void Pontiff::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
         State_.ChangeState("CloseIdle");
     }
 
-    float Alpha = _DeltaTime / 4;
+    float Alpha = _DeltaTime / 2;
 
     Helmet_->GetColorData().MulColor += float4{Alpha, Alpha, Alpha, 0.0f};
     Body_->GetColorData().MulColor += float4{Alpha, Alpha, Alpha, 0.0f};
@@ -612,7 +612,6 @@ void Pontiff::DeathStart(const StateInfo& _Info)
 
     AscensionSpeed_ = 100;
 
-    Face_->CurAnimationPauseOn();
     Body_->CurAnimationPauseOn();
     Helmet_->CurAnimationPauseOn();
 

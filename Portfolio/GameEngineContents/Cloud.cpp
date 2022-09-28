@@ -13,14 +13,14 @@ void Cloud::Start()
     Renderer_->ScaleToTexture();
     Renderer_->GetTransform().SetWorldScale(Renderer_->GetTransform().GetWorldScale() * 2);
 
-    AccSpeed_ = 500.f;
+    AccSpeed_ = 700.f;
 }
 
 void Cloud::Update(float _DeltaTime) 
 {
     AccSpeed_ += _DeltaTime;
 
-    GetTransform().SetWorldMove(float4{Dir_.x * _DeltaTime * AccSpeed_, 0, -1.f * _DeltaTime * 50.f});
+    GetTransform().SetWorldMove(float4{Dir_.x * _DeltaTime * AccSpeed_, 0, -1.f * _DeltaTime * 350.f});
 
     if (10.f < GetAccTime())    
     {

@@ -35,6 +35,12 @@ Blasphemous::~Blasphemous() {}
 
 void Blasphemous::Start()
 {
+    GameEngineRenderingPipeLine* NewPipe = GameEngineRenderingPipeLine::Create("Distortion");
+    NewPipe->SetInputAssembler1VertexBuffer("FullRect");
+    NewPipe->SetInputAssembler2IndexBuffer("FullRect");
+    NewPipe->SetVertexShader("Distortion.hlsl");
+    NewPipe->SetPixelShader("Distortion.hlsl");
+
     LoadResources();
     CutTexture();
 

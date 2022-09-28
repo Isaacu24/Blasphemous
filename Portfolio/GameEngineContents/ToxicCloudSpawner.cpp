@@ -36,7 +36,7 @@ void ToxicCloudSpawner::Update(float _DeltaTime)
                 Clone->GetTransform().SetWorldPosition({XPos, -1300, FrontEffetZ});
                 Clone->SetGround(ColMap_);
 
-                float4 Dir = Target_->GetTransform().GetWorldPosition() - GetTransform().GetWorldPosition();
+                float4 Dir = Target_->GetTransform().GetWorldPosition() - Clone->GetTransform().GetWorldPosition();
                 Dir.Normalize();
                 Dir.z = 0;
                 Clone->SetDirectionX(Dir);
@@ -61,7 +61,7 @@ void ToxicCloudSpawner::Update(float _DeltaTime)
                 Clone->GetTransform().SetWorldPosition({750.f + (CloudCount_ * 200.f), -375.f, FrontEffetZ});
                 Clone->SetGround(ColMap_);
 
-                float4 Dir = Target_->GetTransform().GetWorldPosition() - GetTransform().GetWorldPosition();
+                float4 Dir = Target_->GetTransform().GetWorldPosition() - Clone->GetTransform().GetWorldPosition();
                 Dir.Normalize();
                 Dir.z = 0;
                 Clone->SetDirectionX(Dir);

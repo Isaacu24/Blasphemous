@@ -17,18 +17,21 @@ enum class TopAndBotSort
 	BOTTOM = 0x8,
 };
 
-// Ό³Έν :
+enum class FontPositionMode
+{
+	WORLD = 0x4,
+	SCREEN = 0x8,
+};
+
 class GameEngineDevice;
 class GameEngineFontRenderer : public GameEngineDefaultRenderer
 {
 	friend GameEngineDevice;
 
 public:
-	// constrcuter destructer
 	GameEngineFontRenderer();
 	~GameEngineFontRenderer();
 
-	// delete Functionq
 	GameEngineFontRenderer(const GameEngineFontRenderer& _Other) = delete;
 	GameEngineFontRenderer(GameEngineFontRenderer&& _Other) noexcept = delete;
 	GameEngineFontRenderer& operator=(const GameEngineFontRenderer& _Other) = delete;
@@ -51,14 +54,14 @@ public:
 		return Text;
 	}
 
+	void SetPositionMode(FontPositionMode _Mode)
+	{
+		Mode = _Mode;
+	}
+
 	void SetScreenPostion(float4 _ScreenPostion)
 	{
 		ScreenPostion = _ScreenPostion;
-	}
-
-	float4 GetScreenPostion()
-	{
-		return ScreenPostion;
 	}
 
 	void SetColor(float4 _Color)
@@ -89,6 +92,7 @@ protected:
 	float4 Color;
 	float4 ScreenPostion;
 
+	FontPositionMode Mode;
 	LeftAndRightSort LR;
 	TopAndBotSort TB;
 };

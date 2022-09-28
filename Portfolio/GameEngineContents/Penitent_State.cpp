@@ -97,7 +97,8 @@ void Penitent::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
         State_.ChangeState("RangeAttack");
     }
 
-    else if (true == GameEngineInput::GetInst()->IsPressKey("PenitentChrage"))
+    else if (true == GameEngineInput::GetInst()->IsPressKey("PenitentChrage")
+             || 0.1f < GameEngineInput::GetInst()->GetButtonTime("PenitentB"))
     {
         State_.ChangeState("ChargeAttack");
     }

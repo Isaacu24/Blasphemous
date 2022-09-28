@@ -19,12 +19,7 @@ protected:
 	void End() override;
 
 private:
-	GameEngineTextureRenderer* Renderer_;
-
-	inline void EffetEnd(const FrameAnimation_DESC& _Info, CorpseGroundEffect* _Actor)
-	{
-		_Actor->Death();
-	}
-
+    class MetaTextureRenderer* MetaRenderer_;
+    GameEngineCollision*       Collider_;
 };
 

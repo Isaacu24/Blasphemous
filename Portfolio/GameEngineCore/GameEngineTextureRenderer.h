@@ -245,6 +245,11 @@ public:
 		DeltaTimeData.x += _Data;
 	}
 
+	float4 GetTimeData()
+	{
+		return DeltaTimeData;
+	}
+
 	void CurAnimationPauseOn();
 
 	void CurAnimationPauseOff();

@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Stage12.h"
 #include "Door.h"
+#include "CherubCaptor.h"
 
 Stage12::Stage12() {}
 
@@ -32,6 +33,11 @@ void Stage12::SettingStage()
     ShopDoor->GetTransform().SetWorldPosition({1300, -800, ObjectZ});
     ShopDoor->GetDoorRenderer()->Off();
     ShopDoor->SetLinkLevel("Shop");
+
+    CherubCaptor* Captor = CreateActor<CherubCaptor>();
+    Captor->GetTransform().SetWorldPosition({0, 0, MonsterZ});
+    Captor->GetTransform().SetWorldMove({800, -550});
+    Captor->SetPatrolPosX(800.f, 1200.f);
 
     float OffsetX = ColMap_->GetTransform().GetLocalScale().x / 2;
     float OffsetY = ColMap_->GetTransform().GetLocalScale().y / 2;

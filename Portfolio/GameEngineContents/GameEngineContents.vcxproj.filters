@@ -317,6 +317,9 @@
     <ClInclude Include="Cloud.h">
       <Filter>Actor\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="DistortionEffect.h">
+      <Filter>Actor\PostEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -638,6 +641,9 @@
     <ClCompile Include="Cloud.cpp">
       <Filter>Actor\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="DistortionEffect.cpp">
+      <Filter>Actor\PostEffect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -753,6 +759,9 @@
     </Filter>
     <Filter Include="Actor\Object\Static">
       <UniqueIdentifier>{bb84479d-752c-4b6f-94e8-030c35791f4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\PostEffect">
+      <UniqueIdentifier>{7f83e4fc-a887-4722-8b26-46d908686b47}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

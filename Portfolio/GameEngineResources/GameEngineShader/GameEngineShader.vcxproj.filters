@@ -37,7 +37,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="TextureAtlas_Inst.hlsl">
+    <FxCompile Include="Distortion.hlsl">
       <Filter>Object</Filter>
     </FxCompile>
   </ItemGroup>

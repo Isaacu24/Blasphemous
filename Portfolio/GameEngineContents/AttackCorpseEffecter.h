@@ -1,7 +1,9 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include <GameEngineBase/GameEngineRandom.h>
+#include "CorpseGroundEffect.h"
+#include "Corpse.h"
 
-class Corpse;
 class GameEngineTextureRenderer;
 class AttackCorpseEffecter : public GameEngineActor
 {
@@ -16,7 +18,19 @@ public:
 
     inline void SetCreatePos(float4 _Pos) { CreatePos_ = _Pos; }
 
-    inline void CreateEffect() { IsCreate_ = true; }
+    inline void CreateEffect()
+    {
+        float FRandom = GameEngineRandom::MainRandom.RandomFloat(50, 100);
+
+        CorpseGroundEffect* Effect = GetLevel()->CreateActor<CorpseGroundEffect>();
+        Effect->GetTransform().SetWorldPosition(
+            {CreatePos_.x + ((DirX_ * 30.f) * Index_), CreatePos_.y, BossMonsterEffectZ});
+
+        Corpse* NewCorpse = GetLevel()->CreateActor<Corpse>();
+        NewCorpse->SetCreatePos(CreatePos_ + float4{0, FRandom});
+        NewCorpse->GetTransform().SetWorldPosition(
+            {CreatePos_.x + ((DirX_ * 30.f) * Index_), CreatePos_.y, BossMonsterEffectZ});
+    }
 
     inline void SetDir(float _X) { DirX_ = _X; }
 

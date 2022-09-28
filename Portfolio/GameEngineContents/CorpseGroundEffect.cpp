@@ -1,28 +1,37 @@
 #include "PreCompile.h"
 #include "CorpseGroundEffect.h"
+#include "MetaSpriteManager.h"
+#include "MetaTextureRenderer.h"
 
-CorpseGroundEffect::CorpseGroundEffect() 
-{
-}
+CorpseGroundEffect::CorpseGroundEffect() {}
 
-CorpseGroundEffect::~CorpseGroundEffect() 
-{
-}
+CorpseGroundEffect::~CorpseGroundEffect() {}
 
 void CorpseGroundEffect::Start()
 {
-	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
-	Renderer_->CreateFrameAnimationCutTexture("burntFace_rayBeam_impact", { "burntFace_rayBeam_impact.png", 0, 19, 0.07f, false });
-	Renderer_->ChangeFrameAnimation("burntFace_rayBeam_impact");
-    Renderer_->GetTransform().SetWorldScale({220.f, 220.f});
+    GetTransform().SetWorldScale({2, 2, 1});
 
-	Renderer_->AnimationBindEnd("burntFace_rayBeam_impact", std::bind(&CorpseGroundEffect::EffetEnd, this, std::placeholders::_1, this));
+    MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("burntFace_rayBeam_impact");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "burntFace_rayBeam_impact",
+            {"burntFace_rayBeam_impact.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("burntFace_rayBeam_impact", [&](const FrameAnimation_DESC& _Info) { Death(); });
+    }
+
+    MetaRenderer_->ChangeFrameAnimation("burntFace_rayBeam_impact");
+
+    Collider_ = CreateComponent<GameEngineCollision>();
+    Collider_->ChangeOrder(COLLISIONORDER::BossMonsterAttack);
+    Collider_->GetTransform().SetWorldScale({100.0f, 100.0f});
+    Collider_->SetDebugSetting(CollisionType::CT_OBB, float4{1.0f, 0.0f, 0.5f, 0.25f});
 }
 
-void CorpseGroundEffect::Update(float _DeltaTime)
-{
-}
+void CorpseGroundEffect::Update(float _DeltaTime) {}
 
-void CorpseGroundEffect::End()
-{
-}
+void CorpseGroundEffect::End() {}

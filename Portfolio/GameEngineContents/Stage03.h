@@ -1,6 +1,7 @@
 #pragma once
 #include "StageBase.h"
 
+class DistortionEffect;
 class Stage03 : public StageBase
 {
 public:
@@ -24,4 +25,5 @@ protected:
 
 private:
 	class PrieDieu* PrieDieu_;
+    class DistortionEffect* Distortion_;
 };

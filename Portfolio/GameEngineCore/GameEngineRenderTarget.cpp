@@ -30,6 +30,7 @@ void GameEngineRenderTarget::GetPrevRenderTarget()
 void GameEngineRenderTarget::SetPrevRenderTarget()
 {
 	GameEngineDevice::GetContext()->OMSetRenderTargets(1, &PrevRenderTargetViews, PrevDepthStencilView);
+
 	if (nullptr != PrevRenderTargetViews)
 	{
 		PrevRenderTargetViews->Release();
@@ -199,6 +200,11 @@ void GameEngineRenderTarget::EffectProcess()
 
 	for (GameEnginePostEffect* Effect : Effects)
 	{
+		if (false == Effect->IsUpdate())
+		{
+			continue;
+		}
+
 		Effect->Effect(this);
 	}
 }

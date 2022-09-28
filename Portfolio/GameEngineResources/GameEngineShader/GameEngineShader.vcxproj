@@ -184,7 +184,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="TextureAtlas_Inst.hlsl" />
+    <FxCompile Include="Distortion.hlsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

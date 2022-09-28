@@ -4,12 +4,6 @@
 #include "BloodSplatters.h"
 #include "HardLandingEffect.h"
 
-namespace
-{
-    const char*                ELDER_ATTACK_NAME = "elderBrother_attack";
-    constexpr std::string_view TEST              = "TEST";
-}  // namespace
-
 ElderBrother::ElderBrother()
     : Flow_(APPEARFLOW::Attack)
     , JumpForce_(500.f)
@@ -61,12 +55,12 @@ void ElderBrother::Start()
         "elderBrother_land",
         [&](const FrameAnimation_DESC& _Info)
         {
-            if (1 == _Info.CurFrame)
+            if (0 == _Info.CurFrame)
             {
                 GameEngineInput::GetInst()->VibrationOn(0.5f);
             }
 
-            if (2 == _Info.CurFrame)
+            if (1 == _Info.CurFrame)
             {
                 JumpEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{0, 75});
                 JumpEffecter_->CreateEffect();
@@ -87,7 +81,7 @@ void ElderBrother::Start()
     Renderer_->AnimationBindEnd("elderBrother_land_event",
                                 [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
 
-    Renderer_->CreateFrameAnimationCutTexture("elderBrother_attack", {"elderBrother_attack.png", 0, 23, 0.08f, false});
+    Renderer_->CreateFrameAnimationCutTexture("elderBrother_attack", {"elderBrother_attack.png", 0, 23, 0.07f, false});
 
     Renderer_->AnimationBindFrame(
         "elderBrother_attack",
@@ -99,13 +93,9 @@ void ElderBrother::Start()
 
                 AffectChecker->Move();
                 AffectChecker->On();
-
-                AttackCollider_->On();
-                AttackCollider_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()
-                                                                 + float4{0.f, 100.f});
             }
 
-            if (16 < _Info.CurFrame)
+            if (18 < _Info.CurFrame)
             {
                 if (nullptr == AffectChecker)
                 {
@@ -116,24 +106,17 @@ void ElderBrother::Start()
 
                 if (0 > DirX)
                 {
-                    AttackEffecter_->SetCreatePos(AffectChecker->GetTransform().GetWorldPosition() + float4{0, 75.f});
+                    AttackEffecter_->SetCreatePos(AffectChecker->GetTransform().GetWorldPosition() + float4{0, 0.f});
                     AttackEffecter_->SetDir(-1);
                     AttackEffecter_->CreateEffect();
                 }
 
                 else
                 {
-                    AttackEffecter_->SetCreatePos(AffectChecker->GetTransform().GetWorldPosition() + float4{0, 75.f});
+                    AttackEffecter_->SetCreatePos(AffectChecker->GetTransform().GetWorldPosition() + float4{0, 0.f});
                     AttackEffecter_->SetDir(1);
                     AttackEffecter_->CreateEffect();
                 }
-
-                AttackCollider_->GetTransform().SetWorldMove({Dir_.x * 100.f, 0.f});
-            }
-
-            if (22 == _Info.CurFrame)
-            {
-                AttackCollider_->Off();
             }
         });
 

@@ -30,10 +30,5 @@ private:
 
 	float4 CreatePos_;
 	bool IsSolstice_;
-
-	inline void CorpseEnd(const FrameAnimation_DESC& _Info, Corpse* _Corpse)
-	{
-		_Corpse->Death();
-	}
 };
 

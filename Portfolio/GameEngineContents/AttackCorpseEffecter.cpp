@@ -5,7 +5,7 @@
 
 namespace
 {
-    constexpr float DEFAULT_DELAY_TIME = 0.1f;
+    constexpr float DEFAULT_DELAY_TIME = 0.15f;
 }
 
 AttackCorpseEffecter::AttackCorpseEffecter()
@@ -19,31 +19,6 @@ void AttackCorpseEffecter::Start() {}
 
 void AttackCorpseEffecter::Update(float _DeltaTime)
 {
-    if (true == IsCreate_)
-    {
-        DelayTime_ += _DeltaTime;
-
-        if (DEFAULT_DELAY_TIME < DelayTime_)
-        {
-            ++Index_;
-            DelayTime_ -= DEFAULT_DELAY_TIME;
-
-            CorpseGroundEffect* Effect = GetLevel()->CreateActor<CorpseGroundEffect>();
-            Effect->GetTransform().SetWorldPosition(
-                {CreatePos_.x + ((DirX_ * 30.f) * Index_), CreatePos_.y, BossMonsterEffectZ});
-
-            Corpse* NewCorpse = GetLevel()->CreateActor<Corpse>();
-            NewCorpse->SetCreatePos(CreatePos_);
-            NewCorpse->GetTransform().SetWorldPosition(
-                {CreatePos_.x + ((DirX_ * 30.f) * Index_), CreatePos_.y, BossMonsterEffectZ});
-
-            if (5 == Index_)
-            {
-                Index_    = 0;
-                IsCreate_ = false;
-            }
-        }
-    }
 }
 
 void AttackCorpseEffecter::End() {}

@@ -3,6 +3,8 @@
 #include "Penitent.h"
 #include "PrieDieu.h"
 #include "CherubCaptor.h"
+#include <GameEngineCore/GameEngineRenderTarget.h>
+#include "DistortionEffect.h"
 
 Stage03::Stage03() {}
 
@@ -110,7 +112,7 @@ void Stage03::SettingStage()
 
     {
         CherubCaptor* Captor = CreateActor<CherubCaptor>();
-        Captor->GetTransform().SetWorldPosition({0, 0, ObjectZ});
+        Captor->GetTransform().SetWorldPosition({0, 0, MonsterZ});
         Captor->GetTransform().SetWorldMove({500, -700});
         Captor->SetPatrolPosX(500.f, 1200.f);
     }
@@ -126,12 +128,28 @@ void Stage03::SettingStage()
     PlayerLeftPos_  = float4{150, -1067, PlayerZ};
 
     IsLeftExit_ = true;
+
+    if (false == GameEngineInput::GetInst()->IsKey("Distortion"))
+    {
+        GameEngineInput::GetInst()->CreateKey("Distortion", 'U');
+    }
 }
 
-void Stage03::Start() { SettingStage(); }
+void Stage03::Start()
+{
+    SettingStage();
+
+    Distortion_ = GetMainCamera()->GetCameraRenderTarget()->AddEffect<DistortionEffect>();
+    Distortion_->Off();
+}
 
 void Stage03::Update(float _DeltaTime)
 {
+    if (true == GameEngineInput::GetInst()->IsDownKey("Distortion"))
+    {
+        Distortion_->On();
+    }
+
     if (false == IsChangeCameraPos_)
     {
         GetMainCameraActor()->GetTransform().SetWorldMove({0, 0, CameraZPos_});
