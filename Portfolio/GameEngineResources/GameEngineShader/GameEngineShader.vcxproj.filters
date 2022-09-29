@@ -40,5 +40,8 @@
     <FxCompile Include="Distortion.hlsl">
       <Filter>Object</Filter>
     </FxCompile>
+    <FxCompile Include="SinWave.hlsl">
+      <Filter>Object</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

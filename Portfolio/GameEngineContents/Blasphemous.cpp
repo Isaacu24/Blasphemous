@@ -35,11 +35,21 @@ Blasphemous::~Blasphemous() {}
 
 void Blasphemous::Start()
 {
-    GameEngineRenderingPipeLine* NewPipe = GameEngineRenderingPipeLine::Create("Distortion");
-    NewPipe->SetInputAssembler1VertexBuffer("FullRect");
-    NewPipe->SetInputAssembler2IndexBuffer("FullRect");
-    NewPipe->SetVertexShader("Distortion.hlsl");
-    NewPipe->SetPixelShader("Distortion.hlsl");
+    {
+        GameEngineRenderingPipeLine* NewPipe = GameEngineRenderingPipeLine::Create("Distortion");
+        NewPipe->SetInputAssembler1VertexBuffer("FullRect");
+        NewPipe->SetInputAssembler2IndexBuffer("FullRect");
+        NewPipe->SetVertexShader("Distortion.hlsl");
+        NewPipe->SetPixelShader("Distortion.hlsl");
+    }
+
+    {
+        GameEngineRenderingPipeLine* NewPipe = GameEngineRenderingPipeLine::Create("SinWave");
+        NewPipe->SetInputAssembler1VertexBuffer("FullRect");
+        NewPipe->SetInputAssembler2IndexBuffer("FullRect");
+        NewPipe->SetVertexShader("SinWave.hlsl");
+        NewPipe->SetPixelShader("SinWave.hlsl");
+    }
 
     LoadResources();
     CutTexture();

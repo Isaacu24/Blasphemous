@@ -2,11 +2,11 @@
 #include <GameEngineCore/GameEngineRenderTarget.h>
 #include <GameEngineCore/GameEngineRenderSet.h>
 
-struct DeltaTimeData
+struct DistortionData
 {
-    float Time;
+    float AccTime;
     float ScreenXY[2];
-    int   padding;
+    float Offset;
 };
 
 class DistortionEffect : public GameEnginePostEffect
@@ -20,16 +20,18 @@ public:
     DistortionEffect& operator=(const DistortionEffect& _Other)     = delete;
     DistortionEffect& operator=(DistortionEffect&& _Other) noexcept = delete;
 
-    GameEngineRenderTarget* CopyTarget_;
-
+    void SetEffectLocalPos(float _Offset) { Data_.Offset = _Offset; }
 
 protected:
     void EffectInit();
     void Effect(class GameEngineRenderTarget* _Target);
 
 private:
-    GameEngineRenderSet EffectSet_;
-    GameEngineRenderingPipeLine* DistortionPipe_;
+    GameEngineRenderSet          EffectSet_;
 
-    DeltaTimeData Data_;
+    GameEngineRenderTarget* CopyTarget_;
+
+    DistortionData Data_;
+
+    float AccTime_;
 };

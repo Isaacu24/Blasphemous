@@ -320,6 +320,9 @@
     <ClInclude Include="DistortionEffect.h">
       <Filter>Actor\PostEffect</Filter>
     </ClInclude>
+    <ClInclude Include="SinWaveEffect.h">
+      <Filter>Actor\PostEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -642,6 +645,9 @@
       <Filter>Actor\Effect</Filter>
     </ClCompile>
     <ClCompile Include="DistortionEffect.cpp">
+      <Filter>Actor\PostEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="SinWaveEffect.cpp">
       <Filter>Actor\PostEffect</Filter>
     </ClCompile>
   </ItemGroup>

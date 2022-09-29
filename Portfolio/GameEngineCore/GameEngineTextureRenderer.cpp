@@ -383,8 +383,6 @@ void GameEngineTextureRenderer::Update(float _Delta)
 	}
 }
 
-
-
 void GameEngineTextureRenderer::ScaleToCutTexture(int _Index)
 {
 	float4 Scale = CurTex->GetCutScale(_Index);

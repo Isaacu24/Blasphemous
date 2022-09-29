@@ -1,105 +1,99 @@
-//#include "TransformHeader.fx"
-//#include "RenderOption.fx"
 
 struct Input
 {
-    float4 Pos : POSITION;
+    float4 LocalPos : POSITION;
     float4 Tex : TEXCOORD;
 };
 
 struct Output
 {
     float4 Pos : SV_POSITION;
-    float4 PosLocal : POSITION;
     float4 Tex : TEXCOORD;
 };
 
 
-Output TextureAtlas_VS(Input _Input)
+Output Distortion_VS(Input _Input)
 {
     Output NewOutPut = (Output) 0;
-    //_Input.Pos += PivotPos;
-    NewOutPut.Pos = _Input.Pos;
-    NewOutPut.PosLocal = _Input.Pos;
-    
-    //NewOutPut.Tex.x = (_Input.Tex.x * TextureFrameSize.x) + TextureFramePos.x;
-    //NewOutPut.Tex.y = (_Input.Tex.y * TextureFrameSize.y) + TextureFramePos.y;
+    NewOutPut.Pos = _Input.LocalPos;
     
     return NewOutPut;
 }
 
 cbuffer DeltaTimeData : register(b9)
 {
-    float Time;
+    float AccTime;
     float2 ScreenXY;
-    int padding;
+    float Offset;
 }
 
 Texture2D Tex : register(t0);
 SamplerState Smp : register(s0);
 
 
-float2 GetOffsetFromCenter(float2 screenCoords, float2 screenSize)
+float2 GetOffsetFromCenter(float2 ScreenCoords, float2 ScreenSize)
 {
-    float2 halfScreenSize = screenSize / 2.0;
-    return (screenCoords.xy - halfScreenSize) / min(halfScreenSize.x, halfScreenSize.y);
+    float2 HalfScreenSize = ScreenSize / 2.f; //위치
+    return (ScreenCoords.xy - HalfScreenSize) / min(HalfScreenSize.x, HalfScreenSize.y);
 }
 
-float2 GetDistortionTexelOffset(float2 offsetDirection, float offsetDistance, float time)
+float2 GetDistortionTexelOffset(float2 OffsetDirection, float OffsetDistance, float Time)
 {
-    float EffectDuration = 1.0;
-    float EffectFadeInTimeFactor = 0.5;
-    float EffectWidth = 0.4;
-    float EffectMaxTexelOffset = 20.0;
+    float EffectDuration = 1.0f; 
+    float EffectFadeInTimeFactor = 0.25f;
+    float EffectWidth = 0.1f;
+    float EffectMaxTexelOffset = 50.f; //일그러질 텍셀의 폭
     
-    float progress = Time / EffectDuration;
+    //힘
+    float Progress = Time / EffectDuration;
     
-    float halfWidth = EffectWidth / 2.0;
-    float lower = 1.0 - smoothstep(progress - halfWidth, progress, offsetDistance);
-    float upper = smoothstep(progress, progress + halfWidth, offsetDistance);
+    float HalfWidth = EffectWidth / 2.0;
     
-    float band = 1.0 - (upper + lower);
+    float Lower = 1.0 - smoothstep(Progress - HalfWidth, Progress, OffsetDistance); 
+    float Upper = smoothstep(Progress, Progress + HalfWidth, OffsetDistance);
     
-    float strength = 1.0 - progress;
-    float fadeStrength = smoothstep(0.0, EffectFadeInTimeFactor, progress);
+    float Band = 1.0 - (Upper + Lower);
     
-    float distortion = band * strength * fadeStrength;
+    float Strength = 1.0 - Progress;
+    float FadeStrength = smoothstep(0.0, EffectFadeInTimeFactor, Progress);
     
-    return distortion * offsetDirection * EffectMaxTexelOffset;
-}
-
-
-float3 GetTextureOffset(float2 coords, float2 textureSize, float2 texelOffset)
-{
-    float2 texelSize = 1.0 / textureSize;
-    float2 offsetCoords = coords + texelSize * texelOffset;
+    float Distortion = Band * Strength * FadeStrength;
     
-    float2 halfTexelSize = texelSize / 2.0;
-    float2 clampedOffsetCoords = clamp(offsetCoords, halfTexelSize, 1.0 - halfTexelSize);
-    
-    return Tex.Sample(Smp, clampedOffsetCoords).rgb;
+    return Distortion * OffsetDirection * EffectMaxTexelOffset;
 }
 
 
-float4 TextureAtlas_PS(Output _Input) : SV_Target0
+float3 GetTextureOffset(float2 Coords, float2 TextureSize, float2 TexelOffset)
 {
-    float time = Time;
+    float2 TexelSize = 1.0 / TextureSize;
+    float2 OffsetCoords = Coords + TexelSize * TexelOffset;
+    float2 HalfTexelSize = TexelSize / 2.0;
     
-    float2 screenCoords = _Input.Pos;
-    float2 screenSize = ScreenXY.xy;
+    //최종 UV
+    float2 ClampedOffsetCoords = clamp(OffsetCoords, HalfTexelSize, 1.0 - HalfTexelSize);
+    
+    return Tex.Sample(Smp, ClampedOffsetCoords).rgb;
+}
+
+
+float4 Distortion_PS(Output _Input) : SV_Target0
+{
+    float DeltaTime = AccTime;
+    
+    float2 ScreenCoords = _Input.Pos;
+    float2 ScreenSize = ScreenXY.xy;
         
-    float2 offsetFromCenter = GetOffsetFromCenter(screenCoords, screenSize);
-    float2 offsetDirection = normalize(-offsetFromCenter);
-    float offsetDistance = length(offsetFromCenter);
+    //센터에서 현재 픽셀의 길이값
+    float2 OffsetFromCenter = GetOffsetFromCenter(ScreenCoords, ScreenSize); 
+    float2 OffsetDirection = normalize(-OffsetFromCenter); //왜 마이너스일까
+    float OffsetDistance = length(OffsetFromCenter);
     
-    float2 offset = GetDistortionTexelOffset(offsetDirection, offsetDistance, time);
+    float2 Offset = GetDistortionTexelOffset(OffsetDirection, OffsetDistance * 0.15f, DeltaTime);
     
-    float2 coords = (screenCoords / screenSize);
-    //coords.y = 1.0 - coords.y;
+    float2 Coords = (ScreenCoords / ScreenSize);
+    //Coords.x = 1.0 - Coords.x;
     
-    float3 background = GetTextureOffset(coords, screenSize, offset);
+    float3 Background = GetTextureOffset(Coords, ScreenSize, Offset);
     
-    float4 result = float4(background, 1.0);
-    
-    return result;
+    return float4(Background, 1.0);
 }

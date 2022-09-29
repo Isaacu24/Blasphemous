@@ -82,6 +82,8 @@ private:
     JumpCorpseEffecter*   JumpEffecter_;
     GravityActor* AffectChecker;
 
+    class DistortionEffect* Distortion_;
+
     class HardLandingEffect* LandEffect_;
 
     GameEngineRandom Random_;
@@ -93,6 +95,8 @@ private:
     float RealXDir_;
     float Distance_;
     float Alpha_;
+
+    float4 MonsterPos_;
     
     int AttackCount_;
 

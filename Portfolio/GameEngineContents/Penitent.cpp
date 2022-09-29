@@ -186,6 +186,15 @@ void Penitent::Start()
 
 void Penitent::Update(float _DeltaTime)
 {
+    float4 Pos = GetTransform().GetWorldPosition();
+    Pos        = Pos * GetLevel()->GetUICamera()->GetView();
+    Pos        = Pos * GetLevel()->GetUICamera()->GetProjectionMatrix();
+
+    float4x4 ViewPort;
+    ViewPort.ViewPort(GameEngineWindow::GetInst()->GetScale().x, GameEngineWindow::GetInst()->GetScale().y, 0, 0, 0, 1);
+
+    Pos = Pos * ViewPort;
+
     if (false == IsOnInventory_)
     {
         State_.Update(_DeltaTime);

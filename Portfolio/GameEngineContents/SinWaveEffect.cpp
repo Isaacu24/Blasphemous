@@ -1,17 +1,21 @@
 #include "PreCompile.h"
-#include "DistortionEffect.h"
+#include "SinWaveEffect.h"
 
-DistortionEffect::DistortionEffect() {}
+SinWaveEffect::SinWaveEffect() 
+{
+}
 
-DistortionEffect::~DistortionEffect() {}
+SinWaveEffect::~SinWaveEffect() 
+{}
 
-void DistortionEffect::EffectInit()
+
+void SinWaveEffect::EffectInit() 
 {
     CopyTarget_ = new GameEngineRenderTarget();
     CopyTarget_->CreateRenderTargetTexture(
         GameEngineWindow::GetScale(), DXGI_FORMAT::DXGI_FORMAT_R32G32B32A32_FLOAT, float4::ZERO);
 
-    EffectSet_.SetPipeLine("Distortion");
+    EffectSet_.SetPipeLine("SinWave");
 
     EffectSet_.ShaderResources.SetConstantBufferLink("DeltaTimeData", Data_);
 
@@ -19,7 +23,7 @@ void DistortionEffect::EffectInit()
     Data_.ScreenXY[1] = 720.f;
 }
 
-void DistortionEffect::Effect(GameEngineRenderTarget* _Target)
+void SinWaveEffect::Effect(GameEngineRenderTarget* _Target) 
 {
     AccTime_ += GameEngineTime::GetDeltaTime();
     Data_.AccTime = AccTime_;
@@ -37,3 +41,4 @@ void DistortionEffect::Effect(GameEngineRenderTarget* _Target)
     _Target->Setting();
     _Target->Effect(EffectSet_);
 }
+

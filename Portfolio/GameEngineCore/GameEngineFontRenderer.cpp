@@ -43,7 +43,7 @@ void GameEngineFontRenderer::Render(float _DeltaTime)
 
 	float4 Pos = ScreenPostion;
 
-	if (Mode == FontPositionMode::WORLD)
+	if (Mode == FontPositionMode::WORLD)	
 	{
 		Pos = GetTransform().GetWorldPosition();
 

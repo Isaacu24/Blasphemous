@@ -16,7 +16,6 @@ public:
 	GameEngineRenderSet& operator=(const GameEngineRenderSet& _Other) = delete;
 	GameEngineRenderSet& operator=(GameEngineRenderSet&& _Other) noexcept = delete;
 
-
 	void SetPipeLine(const std::string& _Name);
 
 	void Render();

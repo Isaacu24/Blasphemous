@@ -277,7 +277,7 @@ void GameEngineLevel::Release(float _DelataTime)
 
 		std::list<GameEngineActor*>::iterator GroupStart = Group.begin();
 		std::list<GameEngineActor*>::iterator GroupEnd = Group.end();
-
+			
 		for (; GroupStart != GroupEnd; )
 		{
 			(*GroupStart)->ReleaseObject(DeleteObject);

@@ -3,6 +3,7 @@
 #include "GravityActor.h"
 #include "BloodSplatters.h"
 #include "HardLandingEffect.h"
+#include "DistortionEffect.h"
 
 ElderBrother::ElderBrother()
     : Flow_(APPEARFLOW::Attack)
@@ -55,13 +56,15 @@ void ElderBrother::Start()
         "elderBrother_land",
         [&](const FrameAnimation_DESC& _Info)
         {
-            if (0 == _Info.CurFrame)
-            {
-                GameEngineInput::GetInst()->VibrationOn(0.5f);
-            }
-
             if (1 == _Info.CurFrame)
             {
+                // float Ratio = sqrtf((Pos.x * Pos.x) + (Pos.y * Pos.y));
+
+                // Distortion_->On();
+                // Distortion_->SetEffectLocalPos(Ratio);
+
+                GameEngineInput::GetInst()->VibrationOn(0.5f);
+
                 JumpEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{0, 75});
                 JumpEffecter_->CreateEffect();
             }
@@ -72,6 +75,11 @@ void ElderBrother::Start()
                                   {
                                       if (1 == _Info.CurFrame)
                                       {
+                                          // float Ratio = MonsterPos_.Length();
+
+                                          Distortion_->On();
+                                          // Distortion_->SetEffectLocalPos(Ratio);
+
                                           GameEngineInput::GetInst()->VibrationOn(0.5f);
                                       }
                                   });
@@ -93,6 +101,9 @@ void ElderBrother::Start()
 
                 AffectChecker->Move();
                 AffectChecker->On();
+
+                Distortion_->On();
+                // Distortion_->SetEffectLocalPos(Ratio);
             }
 
             if (18 < _Info.CurFrame)
@@ -148,6 +159,9 @@ void ElderBrother::Start()
                                   {
                                       if (16 == _Info.CurFrame)
                                       {
+                                          Distortion_->On();
+                                          // Distortion_->SetEffectLocalPos(Ratio);
+
                                           GameEngineInput::GetInst()->VibrationOn(0.75f);
                                       }
                                   });
@@ -247,6 +261,9 @@ void ElderBrother::Start()
     LandEffect_ = GetLevel()->CreateActor<HardLandingEffect>();
     LandEffect_->GetTransform().SetWorldScale({2.5f, 2.5f, 1});
     LandEffect_->GetRenderer()->Off();
+
+    Distortion_ = GetLevel()->GetMainCamera()->GetCameraRenderTarget()->AddEffect<DistortionEffect>();
+    Distortion_->Off();
 }
 
 void ElderBrother::Update(float _DeltaTime)
@@ -478,7 +495,6 @@ void ElderBrother::JumpStart(const StateInfo& _Info)
     Renderer_->ChangeFrameAnimation("elderBrother_jumpStart");
 }
 
-
 void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     if (false == IsJump_)
@@ -489,7 +505,7 @@ void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
     JumpForce_.y -= _DeltaTime * 500.f;
     Dir_ = GetTransform().GetUpVector() * 10.f;
 
-    if (0 > JumpForce_.y)
+    if (0.f >= JumpForce_.y)
     {
         ChangeState("Fall");
         return;
@@ -509,6 +525,7 @@ void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
     GetTransform().SetWorldMove(Dir_ * JumpForce_ * _DeltaTime);
 }
 
+
 void ElderBrother::JumpEnd(const StateInfo& _Info) {}
 
 
@@ -516,6 +533,12 @@ void ElderBrother::FallStart(const StateInfo& _Info) {}
 
 void ElderBrother::FallUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+    DetectCollider_->IsCollision(
+        CollisionType::CT_OBB2D,
+        COLLISIONORDER::Player,
+        CollisionType::CT_OBB2D,
+        std::bind(&ElderBrother::DetectPlayer, this, std::placeholders::_1, std::placeholders::_2));
+
     JumpForce_.y -= _DeltaTime * 250.f;
     Dir_ = GetTransform().GetUpVector() * 10.f;
 
@@ -544,7 +567,7 @@ void ElderBrother::FallUpdate(float _DeltaTime, const StateInfo& _Info)
 
     float4 Distance = Target_ - GetTransform().GetWorldPosition();
 
-    if (150.f >= Distance.y)
+    if (300.f >= Distance.y)
     {
         IsJump_ = false;
     }

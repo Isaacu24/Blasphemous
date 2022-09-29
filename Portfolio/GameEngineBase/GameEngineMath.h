@@ -38,6 +38,12 @@ public:
 		return Lerp(p1, p2, Time);
 	}
 
+	static float Sqrtf(float _X)
+	{
+		// sqrtf 제곱근 구해줍니다.
+		return sqrtf(_X);
+	}
+
 private:
 	// constrcuter destructer
 	GameEngineMath();
@@ -407,6 +413,7 @@ public:
 		// sqrtf 제곱근 구해줍니다.
 		return sqrtf((x * x) + (y * y) + (z * z));
 	}
+
 
 	void Normalize()
 	{
@@ -872,7 +879,7 @@ public:
 	// Fov to Degree
 	void PerspectiveFovLH(float _FovDegree, float _Width, float _Height, float _Near, float _Far)
 	{
-
+		//XMMatrixPerspectiveFovLH(float FovAngleY, float AspectRatio, float NearZ, float FarZ);
 		DirectMatrix = DirectX::XMMatrixPerspectiveFovLH(_FovDegree * GameEngineMath::DegreeToRadian * 0.5f, _Width / _Height, _Near, _Far);
 
 		////assert(NearZ > 0.f && FarZ > 0.f);
@@ -887,8 +894,6 @@ public:
 		////               45                                 
 		//float Tan = tanf(_FovDegree * GameEngineMath::DegreeToRadian * 0.5f);
 		//float fRange = _Far / (_Far - _Near);
-
-		//// z가 무슨 z죠?
 
 		//Arr2D[0][0] = 1.0f / (Tan * (_Width / _Height)); // / z
 		//Arr2D[0][1] = 0.0f;
