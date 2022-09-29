@@ -20,7 +20,7 @@ public:
 
     inline void CreateEffect()
     {
-        float FRandom = GameEngineRandom::MainRandom.RandomFloat(50, 100);
+        float FRandom = GameEngineRandom::MainRandom.RandomFloat(30, 80);
 
         CorpseGroundEffect* Effect = GetLevel()->CreateActor<CorpseGroundEffect>();
         Effect->GetTransform().SetWorldPosition(
@@ -40,7 +40,7 @@ public:
             Corpse* NewCorpse = GetLevel()->CreateActor<Corpse>();
             NewCorpse->SetCreatePos(CreatePos_ + float4{0, FRandom});
             NewCorpse->GetTransform().SetWorldPosition(
-                {CreatePos_.x + XRandom, CreatePos_.y - YRandom, BossMonsterEffectZ});
+                {CreatePos_.x + XRandom, CreatePos_.y + YRandom, BossMonsterEffectZ});
         }
     }
 

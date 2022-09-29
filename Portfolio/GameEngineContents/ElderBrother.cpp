@@ -7,7 +7,7 @@
 
 ElderBrother::ElderBrother()
     : Flow_(APPEARFLOW::Attack)
-    , JumpForce_(500.f)
+    , JumpForce_(0.f)
 {}
 
 ElderBrother::~ElderBrother() {}
@@ -490,7 +490,11 @@ void ElderBrother::JumpStart(const StateInfo& _Info)
     IsJump_ = false;
 
     Alpha_     = 0.f;
-    JumpForce_ = 300.f;
+
+    JumpForce_   = 0.f;
+    JumpForce_.y = 400.f;
+
+    Dir_ = GetTransform().GetUpVector() * 10.f;
 
     Renderer_->ChangeFrameAnimation("elderBrother_jumpStart");
 }
@@ -503,7 +507,6 @@ void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 
     JumpForce_.y -= _DeltaTime * 500.f;
-    Dir_ = GetTransform().GetUpVector() * 10.f;
 
     if (0.f >= JumpForce_.y)
     {
@@ -512,11 +515,6 @@ void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 
     Alpha_ += _DeltaTime * 0.1f;
-
-    if (1 < Alpha_)
-    {
-        Alpha_ = 1.f;
-    }
 
     float4 LerpPos = float4::LerpLimit(GetTransform().GetWorldPosition(), Target_, Alpha_);
     GetTransform().SetWorldPosition({LerpPos.x, LerpPos.y, BossMonsterZ});
@@ -529,9 +527,7 @@ void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 void ElderBrother::JumpEnd(const StateInfo& _Info) {}
 
 
-void ElderBrother::FallStart(const StateInfo& _Info) {}
-
-void ElderBrother::FallUpdate(float _DeltaTime, const StateInfo& _Info)
+void ElderBrother::FallStart(const StateInfo& _Info) 
 {
     DetectCollider_->IsCollision(
         CollisionType::CT_OBB2D,
@@ -539,12 +535,11 @@ void ElderBrother::FallUpdate(float _DeltaTime, const StateInfo& _Info)
         CollisionType::CT_OBB2D,
         std::bind(&ElderBrother::DetectPlayer, this, std::placeholders::_1, std::placeholders::_2));
 
-    JumpForce_.y -= _DeltaTime * 250.f;
     Dir_ = GetTransform().GetUpVector() * 10.f;
+}
 
-    Gravity_->SetActive(!IsGround_);
-    GetTransform().SetWorldMove(Dir_ * JumpForce_ * _DeltaTime);
-
+void ElderBrother::FallUpdate(float _DeltaTime, const StateInfo& _Info)
+{
     if (true == IsGround_)
     {
         ChangeState("Land");
@@ -555,22 +550,10 @@ void ElderBrother::FallUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
-    Alpha_ += _DeltaTime * 0.1f;
+    JumpForce_.y -= _DeltaTime * 300.f;
 
-    if (1 < Alpha_)
-    {
-        Alpha_ = 1.f;
-    }
-
-    float4 LerpPos = float4::LerpLimit(GetTransform().GetWorldPosition(), Target_, Alpha_);
-    GetTransform().SetWorldPosition({LerpPos.x, LerpPos.y, BossMonsterZ});
-
-    float4 Distance = Target_ - GetTransform().GetWorldPosition();
-
-    if (300.f >= Distance.y)
-    {
-        IsJump_ = false;
-    }
+    Gravity_->SetActive(!IsGround_);
+    GetTransform().SetWorldMove(Dir_ * JumpForce_ * _DeltaTime);
 }
 
 void ElderBrother::FallEnd(const StateInfo& _Info) {}

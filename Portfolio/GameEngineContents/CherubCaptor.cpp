@@ -75,9 +75,9 @@ void CherubCaptor::PatrolXMove(float _DeltaTime)
 {
     if (true == PatrolStart_)
     {
-        if (GetTransform().GetWorldPosition().x < EndPos_.x - 10.f)
+        if (GetTransform().GetWorldPosition().x < EndPos_.x - 20.f)
         {
-            Alpha_ += _DeltaTime / 15.f;
+            Alpha_ += _DeltaTime / 10.f;
 
             float XPos = GameEngineMath::LerpLimit(GetTransform().GetWorldPosition().x, EndPos_.x, Alpha_ / 50.f);
             GetTransform().SetWorldPosition(
@@ -97,9 +97,9 @@ void CherubCaptor::PatrolXMove(float _DeltaTime)
 
     else if (true == PatrolEnd_)
     {
-        if (GetTransform().GetWorldPosition().x > StartPos_.x + 10.f)  // 근사치 인정
+        if (GetTransform().GetWorldPosition().x > StartPos_.x + 20.f)  // 근사치 인정
         {
-            Alpha_ += _DeltaTime / 15.f;
+            Alpha_ += _DeltaTime / 10.f;
 
             float XPos = GameEngineMath::LerpLimit(GetTransform().GetWorldPosition().x, StartPos_.x, Alpha_ / 50.f);
             GetTransform().SetWorldPosition(

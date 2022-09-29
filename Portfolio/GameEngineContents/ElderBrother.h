@@ -80,14 +80,14 @@ private:
 
     AttackCorpseEffecter* AttackEffecter_;
     JumpCorpseEffecter*   JumpEffecter_;
-    GravityActor* AffectChecker;
+    GravityActor*         AffectChecker;
 
     class DistortionEffect* Distortion_;
 
     class HardLandingEffect* LandEffect_;
 
     GameEngineRandom Random_;
-    APPEARFLOW Flow_;
+    APPEARFLOW       Flow_;
 
     float AppearTime_;
     float DecideTime_;
@@ -97,11 +97,11 @@ private:
     float Alpha_;
 
     float4 MonsterPos_;
-    
+
     int AttackCount_;
 
-    bool  IsJump_;
-    bool  EventOn_;
-    bool  DeathEventOn_;
-    bool  IsDecide_;
+    bool IsJump_;
+    bool EventOn_;
+    bool DeathEventOn_;
+    bool IsDecide_;
 };
