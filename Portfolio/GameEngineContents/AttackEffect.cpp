@@ -187,6 +187,23 @@ void AttackEffect::Start()
                                     });
     }
 
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_crouch_slashes_lvl2");
+
+        Renderer_->CreateMetaAnimation(
+            "penitent_crouch_slashes_lvl2",
+            {"penitent_crouch_slashes_lvl2.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
+            Data);
+
+        Renderer_->AnimationBindEnd("penitent_crouch_slashes_lvl2",
+                                    [&](const FrameAnimation_DESC& _Info)
+                                    {
+                                        Renderer_->CurAnimationReset();
+                                        Renderer_->Off();
+                                        IsGettingSoul_ = false;
+                                    });
+    }
+
     Renderer_->SetPivot(PIVOTMODE::METABOT);
 }
 

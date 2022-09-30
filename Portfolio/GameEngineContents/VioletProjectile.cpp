@@ -69,6 +69,7 @@ void VioletProjectile::ShootStart(const StateInfo& _Info) { Renderer_->ChangeFra
 
 void VioletProjectile::ShootUpdate(float _DeltaTime, const StateInfo& _Info) { Shoot(_DeltaTime); }
 
+
 void VioletProjectile::ExplosionStart(const StateInfo& _Info)
 {
     Renderer_->GetTransform().SetWorldScale({200.f, 200.f, 1.f});

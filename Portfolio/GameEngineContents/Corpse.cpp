@@ -11,7 +11,7 @@ void Corpse::Start()
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
     Renderer_->CreateFrameAnimationCutTexture("elderBrother_corpse", {"elderBrother_corpse.png", 0, 11, 0.08f, false});
     Renderer_->ChangeFrameAnimation("elderBrother_corpse");
-    Renderer_->GetTransform().SetWorldScale({350.f, 350.f});
+    Renderer_->GetTransform().SetWorldScale({300.f, 300.f});
 }
 
 void Corpse::Update(float _DeltaTime)

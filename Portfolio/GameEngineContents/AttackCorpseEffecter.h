@@ -26,21 +26,16 @@ public:
         Effect->GetTransform().SetWorldPosition(
             {CreatePos_.x + ((DirX_ * 30.f) * Index_), CreatePos_.y, BossMonsterEffectZ});
 
+        float IRandom = GameEngineRandom::MainRandom.RandomInt(0, 1);
+
         Corpse* NewCorpse = GetLevel()->CreateActor<Corpse>();
-        NewCorpse->SetCreatePos(CreatePos_ + float4{0, FRandom});
+        NewCorpse->SetCreatePos(CreatePos_ + float4{0, FRandom + (10.f * Index_)});
         NewCorpse->GetTransform().SetWorldPosition(
             {CreatePos_.x + ((DirX_ * 30.f) * Index_), CreatePos_.y, BossMonsterEffectZ});
 
-        float IRandom = GameEngineRandom::MainRandom.RandomInt(0, 3);
-        float XRandom = GameEngineRandom::MainRandom.RandomInt(CreatePos_.x - 50, CreatePos_.x + 50);
-        float YRandom = GameEngineRandom::MainRandom.RandomInt(CreatePos_.y - 30, CreatePos_.y + 30);
-
-        if (1 == IRandom)
+        if (0 == IRandom)
         {
-            Corpse* NewCorpse = GetLevel()->CreateActor<Corpse>();
-            NewCorpse->SetCreatePos(CreatePos_ + float4{0, FRandom});
-            NewCorpse->GetTransform().SetWorldPosition(
-                {CreatePos_.x + XRandom, CreatePos_.y + YRandom, BossMonsterEffectZ});
+            NewCorpse->GetTransform().PixLocalNegativeX();
         }
     }
 

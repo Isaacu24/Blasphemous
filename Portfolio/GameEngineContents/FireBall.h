@@ -2,9 +2,7 @@
 #include "Projectile.h"
 #include <GameEngineCore/GameEngineActor.h>
 
-class FireBall
-    : public Projectile
-    , public GameEngineActor
+class FireBall : public Projectile
 {
     friend class FireBallSpawner;
 

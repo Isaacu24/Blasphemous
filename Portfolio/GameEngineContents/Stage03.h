@@ -24,5 +24,5 @@ protected:
 
 private:
 	class PrieDieu* PrieDieu_;
-    class SinWaveEffect* SinWave_;
+    class DistortionEffect* Distortion_	;
 };

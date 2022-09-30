@@ -37,7 +37,7 @@ void MagicMissileSpawner::Update(float _DeltaTime)
                 {
                     MagicMissile* Missile = GetLevel()->CreateActor<MagicMissile>();
                     Missile->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
-                                                              GetTransform().GetWorldPosition().y + 60.f,
+                                                              GetTransform().GetWorldPosition().y + 30.f,
                                                               BossMonsterEffectZ});
                     Missile->SetStartPosition(Missile->GetTransform().GetWorldPosition());
                     Missile->SetDirection(Dir_);
@@ -50,8 +50,8 @@ void MagicMissileSpawner::Update(float _DeltaTime)
                 else if (1 == MissileCount_)
                 {
                     MagicMissile* Missile = GetLevel()->CreateActor<MagicMissile>();
-                    Missile->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x - 10.f,
-                                                              GetTransform().GetWorldPosition().y,
+                    Missile->GetTransform().SetWorldPosition({GetTransform().GetWorldPosition().x,
+                                                              GetTransform().GetWorldPosition().y - 30.f,
                                                               BossMonsterEffectZ});
                     Missile->SetStartPosition(Missile->GetTransform().GetWorldPosition());
                     Missile->SetDirection(Dir_);
@@ -71,7 +71,7 @@ void MagicMissileSpawner::Update(float _DeltaTime)
                     Missile->SetDirection(Dir_);
                     Missile->SetGround(ColMap_);
 
-                    DelayTime_ = 0.f;
+                    DelayTime_ = 0.5f;
                     MissileCount_ = 0;
                     ++NestingCount_;
                 }

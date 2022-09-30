@@ -10,6 +10,7 @@
 #include "StageBase.h"
 #include "BloodProjectile.h"
 #include "Stage01.h"
+#include "GuardianLadyComponent.h"
 
 Penitent* Penitent::MainPlayer_ = nullptr;
 
@@ -176,6 +177,8 @@ void Penitent::Start()
     HitEffect_->GetTransform().SetLocalPosition({0, 0, PlayerEffectZ});
     HitEffect_->SetLevelOverOn();
 
+    GuardianLady_ = CreateComponent<GuardianLadyComponent>();
+
     GetTransform().SetLocalScale({2, 2, 1});
 
     SetAnimation();
@@ -186,14 +189,22 @@ void Penitent::Start()
 
 void Penitent::Update(float _DeltaTime)
 {
-    float4 Pos = GetTransform().GetWorldPosition();
-    Pos        = Pos * GetLevel()->GetUICamera()->GetView();
-    Pos        = Pos * GetLevel()->GetUICamera()->GetProjectionMatrix();
+    //if (true == GuardianLady_->GetMetaTextureRenderer()->IsUpdate())
+    //{
+    //    GuardianLady_->GetMetaTextureRenderer()->GetTransform().SetWorldScale(GetTransform().GetWorldScale());
 
-    float4x4 ViewPort;
-    ViewPort.ViewPort(GameEngineWindow::GetInst()->GetScale().x, GameEngineWindow::GetInst()->GetScale().y, 0, 0, 0, 1);
+    //    if (0 < GetTransform().GetWorldScale().x)
+    //    {
+    //        GuardianLady_->GetMetaTextureRenderer()->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()
+    //                                                                                 + float4{100, 500});
+    //    }
 
-    Pos = Pos * ViewPort;
+    //    else
+    //    {
+    //        GuardianLady_->GetMetaTextureRenderer()->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()
+    //                                                                                 + float4{100, 500});
+    //    }
+    //}
 
     if (false == IsOnInventory_)
     {
@@ -1457,6 +1468,38 @@ void Penitent::SetAnimation()
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_ladder_sliding");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_ladder_sliding",
+            {"penitent_ladder_sliding.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, true},
+            Data);
+    }
+
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_crouchslash_noslashes_anim");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_crouchslash_noslashes_anim",
+            {"penitent_crouchslash_noslashes_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindFrame(
+            "penitent_crouchslash_noslashes_anim",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                if (3 == _Info.CurFrame)
+                {
+                    AttackEffect_->Renderer_->On();
+                    AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_crouch_slashes_lvl2");
+                }
+            });
+
+        MetaRenderer_->AnimationBindEnd("penitent_crouchslash_noslashes_anim",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Crouch"); });
+    }
+
     //{
     //    std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_kneeled");
 
@@ -1647,6 +1690,18 @@ void Penitent::SetPlayerState()
         std::bind(&Penitent::CollectSoulUpdate, this, std::placeholders::_1, std::placeholders::_2),
         std::bind(&Penitent::CollectSoulStart, this, std::placeholders::_1),
         std::bind(&Penitent::CollectSoulEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember(
+        "LadderSlide",
+        std::bind(&Penitent::LadderSlideUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&Penitent::LadderSlideStart, this, std::placeholders::_1),
+        std::bind(&Penitent::LadderSlideEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember(
+        "CrouchAttack",
+        std::bind(&Penitent::CrouchAttackUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&Penitent::CrouchAttackStart, this, std::placeholders::_1),
+        std::bind(&Penitent::CrouchAttackEnd, this, std::placeholders::_1));
 
     // State_.CreateStateMember("Pray",
     //                          std::bind(&Penitent::PrayUpdate, this, std::placeholders::_1, std::placeholders::_2),

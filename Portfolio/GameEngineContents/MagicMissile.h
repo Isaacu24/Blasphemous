@@ -2,9 +2,7 @@
 #include "Projectile.h"
 #include <GameEngineCore/GameEngineActor.h>
 
-class MagicMissile
-    : public Projectile
-    , public GameEngineActor
+class MagicMissile : public Projectile
 {
 public:
     MagicMissile();
@@ -30,11 +28,17 @@ public:
         Dir_ = _Dir;
     }
 
-    inline void SetSpeed(float _Speed) { Speed_ = _Speed; }
-
     inline void SetWeight(float _Speed) { Weight_ = _Speed; }
 
     inline void SetStartPosition(float4 _Pos) { StartPos_ = _Pos; }
+
+    void ShootStart(const StateInfo& _Info);
+    void ShootUpdate(float _DeltaTime, const StateInfo& _Info);
+    void ShootEnd(const StateInfo& _Info);
+
+    void ExplosionStart(const StateInfo& _Info);
+    void ExplosionUpdate(float _DeltaTime, const StateInfo& _Info);
+    void ExplosionEnd(const StateInfo& _Info);
 
 protected:
     void Start() override;
@@ -45,12 +49,11 @@ private:
     GameEngineTextureRenderer* Renderer_;
     GameEngineCollision*       Collider_;
 
-    float Speed_;
-    float Weight_;
-
     float4 StartPos_;
+    float4 Dir_;
+
+    float Weight_;
 
     bool IsExplosion_;
 
-    float4 Dir_;
 };

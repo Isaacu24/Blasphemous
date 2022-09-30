@@ -1,7 +1,9 @@
 #include "PreCompile.h"
 #include "DistortionEffect.h"
 
-DistortionEffect::DistortionEffect() {}
+DistortionEffect::DistortionEffect()
+    : Delay_(1.f)
+{}
 
 DistortionEffect::~DistortionEffect() {}
 
@@ -13,21 +15,25 @@ void DistortionEffect::EffectInit()
 
     EffectSet_.SetPipeLine("Distortion");
 
-    EffectSet_.ShaderResources.SetConstantBufferLink("DeltaTimeData", Data_);
+    EffectSet_.ShaderResources.SetConstantBufferLink("DistortionData", Data_);
+    EffectSet_.ShaderResources.SetConstantBufferLink("OffsetData", OffsetData_);
 
     Data_.ScreenXY[0] = 1280.f;
     Data_.ScreenXY[1] = 720.f;
+
+    OffsetData_.Offset[0] = 1.f;
+    OffsetData_.Offset[1] = 1.f;
 }
 
 void DistortionEffect::Effect(GameEngineRenderTarget* _Target)
 {
-    AccTime_ += GameEngineTime::GetDeltaTime();
+    AccTime_ += GameEngineTime::GetDeltaTime() * Delay_;
     Data_.AccTime = AccTime_;
 
     if (1.f <= AccTime_)
     {
-        Off();
         AccTime_ = 0.f;
+        Off();
     }
 
     CopyTarget_->Copy(_Target);

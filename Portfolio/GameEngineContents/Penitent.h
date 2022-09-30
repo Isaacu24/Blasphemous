@@ -184,6 +184,10 @@ protected:
     void CrouchUpdate(float _DeltaTime, const StateInfo& _Info);
     void CrouchEnd(const StateInfo& _Info);
 
+    void CrouchAttackStart(const StateInfo& _Info);
+    void CrouchAttackUpdate(float _DeltaTime, const StateInfo& _Info);
+    void CrouchAttackEnd(const StateInfo& _Info);
+
     void SlideStart(const StateInfo& _Info);
     void SlideUpdate(float _DeltaTime, const StateInfo& _Info);
     void SlideEnd(const StateInfo& _Info);
@@ -264,9 +268,13 @@ protected:
     void RespawnUpdate(float _DeltaTime, const StateInfo& _Info);
     void RespawnEnd(const StateInfo& _Info);
 
-    //void PrayStart(const StateInfo& _Info);
-    //void PrayUpdate(float _DeltaTime, const StateInfo& _Info);
-    //void PrayEnd(const StateInfo& _Info);
+    void LadderSlideStart(const StateInfo& _Info);
+    void LadderSlideUpdate(float _DeltaTime, const StateInfo& _Info);
+    void LadderSlideEnd(const StateInfo& _Info);
+
+    // void PrayStart(const StateInfo& _Info);
+    // void PrayUpdate(float _DeltaTime, const StateInfo& _Info);
+    // void PrayEnd(const StateInfo& _Info);
 
     void RestPrayStart(const StateInfo& _Info);
     void RestPrayUpdate(float _DeltaTime, const StateInfo& _Info);
@@ -309,6 +317,8 @@ private:
     GameEngineTextureRenderer*        ColMap_;
     float4                            ColScale_;
     class GameEngineFontRederer*      Font_;
+
+    class GuardianLadyComponent* GuardianLady_;
 
     SpectrumComponent* SlideSpectrum_;
     SpectrumComponent* SlideAttackSpectrum_;
@@ -381,5 +391,4 @@ private:
 
     //게임 패드 신호 숫자
     DWORD PacketNumber_;
-
 };

@@ -31,10 +31,22 @@ void JumpCorpseEffecter::Update(float _DeltaTime)
 			DelayTime_ -= 0.15f;
 
 			float PosX = Random_.RandomFloat(-100.f, 100.f);
+            float RandomX = Random_.RandomInt(0, 1);
 
-			Corpse* NewCorpse = GetLevel()->CreateActor<Corpse>();
-			NewCorpse->SetCreatePos({ CreatePos_.x + PosX, CreatePos_.y });
-			NewCorpse->GetTransform().SetWorldPosition({CreatePos_.x + PosX, CreatePos_.y, BossMonsterEffectZ});
+			if (0 == RandomX)
+            {
+                Corpse* NewCorpse = GetLevel()->CreateActor<Corpse>();
+                NewCorpse->SetCreatePos({CreatePos_.x + PosX, CreatePos_.y});
+                NewCorpse->GetTransform().SetWorldPosition({CreatePos_.x + PosX, CreatePos_.y, BossMonsterEffectZ});
+			}
+
+			else
+            {
+                Corpse* NewCorpse = GetLevel()->CreateActor<Corpse>();
+                NewCorpse->GetTransform().PixLocalNegativeX(); 
+                NewCorpse->SetCreatePos({CreatePos_.x + PosX, CreatePos_.y});
+                NewCorpse->GetTransform().SetWorldPosition({CreatePos_.x + PosX, CreatePos_.y, BossMonsterEffectZ});
+			}
 
 			if (3 < Index_)
 			{

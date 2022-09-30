@@ -4,6 +4,7 @@
 #include "BloodSplatters.h"
 #include "HardLandingEffect.h"
 #include "DistortionEffect.h"
+#include "StageBase.h"
 
 ElderBrother::ElderBrother()
     : Flow_(APPEARFLOW::Attack)
@@ -14,6 +15,8 @@ ElderBrother::~ElderBrother() {}
 
 void ElderBrother::Start()
 {
+    CurStage_ = static_cast<StageBase*>(GetLevel());
+
     BossMonster::Start();
 
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
@@ -58,15 +61,18 @@ void ElderBrother::Start()
         {
             if (1 == _Info.CurFrame)
             {
-                // float Ratio = sqrtf((Pos.x * Pos.x) + (Pos.y * Pos.y));
 
-                // Distortion_->On();
-                // Distortion_->SetEffectLocalPos(Ratio);
+                Distortion_->On();
+                Distortion_->SetEffectLocalPos(GetScreenPos().x, GetScreenPos().y);
 
                 GameEngineInput::GetInst()->VibrationOn(0.5f);
 
                 JumpEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{0, 75});
                 JumpEffecter_->CreateEffect();
+
+                CurStage_->SetForceX(0.f);
+                CurStage_->SetForceY(10.f);
+                CurStage_->SetShake(true);
             }
         });
 
@@ -75,12 +81,14 @@ void ElderBrother::Start()
                                   {
                                       if (1 == _Info.CurFrame)
                                       {
-                                          // float Ratio = MonsterPos_.Length();
-
                                           Distortion_->On();
-                                          // Distortion_->SetEffectLocalPos(Ratio);
+                                          Distortion_->SetEffectLocalPos(GetScreenPos().x, GetScreenPos().y);
 
                                           GameEngineInput::GetInst()->VibrationOn(0.5f);
+
+                                          CurStage_->SetForceX(0.f);
+                                          CurStage_->SetForceY(10.f);
+                                          CurStage_->SetShake(true);
                                       }
                                   });
 
@@ -95,7 +103,7 @@ void ElderBrother::Start()
         "elderBrother_attack",
         [&](const FrameAnimation_DESC& _Info)
         {
-            if (16 == _Info.CurFrame)
+            if (15 == _Info.CurFrame)
             {
                 GameEngineInput::GetInst()->VibrationOn(0.75f);
 
@@ -103,10 +111,14 @@ void ElderBrother::Start()
                 AffectChecker->On();
 
                 Distortion_->On();
-                // Distortion_->SetEffectLocalPos(Ratio);
+                Distortion_->SetEffectLocalPos(GetScreenPos().x, GetScreenPos().y);
+
+                CurStage_->SetForceX(5.f);
+                CurStage_->SetForceY(5.f);
+                CurStage_->SetShake(true);
             }
 
-            if (18 < _Info.CurFrame)
+            if (17 < _Info.CurFrame)
             {
                 if (nullptr == AffectChecker)
                 {
@@ -160,9 +172,13 @@ void ElderBrother::Start()
                                       if (16 == _Info.CurFrame)
                                       {
                                           Distortion_->On();
-                                          // Distortion_->SetEffectLocalPos(Ratio);
+                                          Distortion_->SetEffectLocalPos(GetScreenPos().x, GetScreenPos().y);
 
                                           GameEngineInput::GetInst()->VibrationOn(0.75f);
+
+                                          CurStage_->SetForceX(5.f);
+                                          CurStage_->SetForceY(5.f);
+                                          CurStage_->SetShake(true);
                                       }
                                   });
 
@@ -283,6 +299,11 @@ void ElderBrother::Update(float _DeltaTime)
     if ("Death" == State_.GetCurStateStateName() || "Appear" == State_.GetCurStateStateName())
     {
         return;
+    }
+
+    if (nullptr != CurStage_)
+    {
+        CurStage_->CameraShaking(_DeltaTime);
     }
 
     DamageCheck();
@@ -446,7 +467,7 @@ void ElderBrother::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     DecideTime_ += _DeltaTime;
 
-    if (1.5f > DecideTime_)
+    if (1.0f > DecideTime_)
     {
         return;
     }
@@ -489,7 +510,7 @@ void ElderBrother::JumpStart(const StateInfo& _Info)
 {
     IsJump_ = false;
 
-    Alpha_     = 0.f;
+    Alpha_ = 0.f;
 
     JumpForce_   = 0.f;
     JumpForce_.y = 400.f;
@@ -527,7 +548,7 @@ void ElderBrother::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 void ElderBrother::JumpEnd(const StateInfo& _Info) {}
 
 
-void ElderBrother::FallStart(const StateInfo& _Info) 
+void ElderBrother::FallStart(const StateInfo& _Info)
 {
     DetectCollider_->IsCollision(
         CollisionType::CT_OBB2D,

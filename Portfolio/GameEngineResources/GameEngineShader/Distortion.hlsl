@@ -20,11 +20,17 @@ Output Distortion_VS(Input _Input)
     return NewOutPut;
 }
 
-cbuffer DeltaTimeData : register(b9)
+cbuffer DistortionData : register(b8)
 {
     float AccTime;
     float2 ScreenXY;
-    float Offset;
+    float fPadding;
+}
+
+cbuffer OffSetData : register(b7)
+{
+    float2 Offset;
+    float2 Padding;
 }
 
 Texture2D Tex : register(t0);
@@ -33,7 +39,7 @@ SamplerState Smp : register(s0);
 
 float2 GetOffsetFromCenter(float2 ScreenCoords, float2 ScreenSize)
 {
-    float2 HalfScreenSize = ScreenSize / 2.f; //위치
+    float2 HalfScreenSize = ScreenSize * Offset; //위치
     return (ScreenCoords.xy - HalfScreenSize) / min(HalfScreenSize.x, HalfScreenSize.y);
 }
 

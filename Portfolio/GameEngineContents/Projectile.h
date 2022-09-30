@@ -3,7 +3,7 @@
 
 class GameEngineCollision;
 class GameEngineTextureRenderer;
-class Projectile
+class Projectile : public GameEngineActor
 {
 public:
     Projectile();
@@ -35,7 +35,13 @@ public:
 
     virtual void SetSpeed(float _Speed) { Speed_ = _Speed; }
 
+    GameEngineStateManager& GetState() { return State_; }
+
 protected:
+    void Start() = 0;
+    void Update(float _DeltaTime) override;
+    void End() override;
+
     GameEngineStateManager     State_;
     GameEngineTextureRenderer* Renderer_;
 

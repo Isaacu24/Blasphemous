@@ -65,13 +65,14 @@ void ToxicCloud::Update(float _DeltaTime)
         State_.ChangeState("Explosion");
     }
 
-    if (false == IsExplosion_)
-    {
-        Collider_->IsCollision(CollisionType::CT_OBB2D,
-                               COLLISIONORDER::Player,
-                               CollisionType::CT_OBB2D,
-                               std::bind(&ToxicCloud::Explosion, this, std::placeholders::_1, std::placeholders::_2));
-    }
+    // if (false == IsExplosion_)
+    //{
+    //     Collider_->IsCollision(CollisionType::CT_OBB2D,
+    //                            COLLISIONORDER::Player,
+    //                            CollisionType::CT_OBB2D,
+    //                            std::bind(&ToxicCloud::Explosion, this, std::placeholders::_1,
+    //                            std::placeholders::_2));
+    // }
 
     if (false == IsExplosion_)
     {
@@ -89,21 +90,17 @@ void ToxicCloud::End() {}
 
 void ToxicCloud::IdleStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("pope_toxicOrb_create"); }
 
-void ToxicCloud::IdleUpdate(float _DeltaTime, const StateInfo& _Info) 
-{ BackMove(_DeltaTime); }
+void ToxicCloud::IdleUpdate(float _DeltaTime, const StateInfo& _Info) { BackMove(_DeltaTime); }
 
 
-void ToxicCloud::ShootStart(const StateInfo& _Info) 
-{
-    Renderer_->ChangeFrameAnimation("pope_toxicOrb_shoot"); 
-}
+void ToxicCloud::ShootStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("pope_toxicOrb_shoot"); }
 
 void ToxicCloud::ShootUpdate(float _DeltaTime, const StateInfo& _Info) { Shoot(_DeltaTime); }
 
 void ToxicCloud::ExplosionStart(const StateInfo& _Info)
 {
     ExplsionV1_->On();
-    Collider_->ChangeOrder(COLLISIONORDER::Gas);
+    // Collider_->ChangeOrder(COLLISIONORDER::Gas);
     Collider_->GetTransform().SetWorldScale({100.0f, 100.0f, 1.0f});
 
     Renderer_->ChangeFrameAnimation("pope_toxicOrb_broken");

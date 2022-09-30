@@ -2,9 +2,7 @@
 #include "Projectile.h"
 #include <GameEngineCore/GameEngineActor.h>
 
-class ToxicCloud
-    : public Projectile
-    , public GameEngineActor
+class ToxicCloud : public Projectile
 {
 public:
     ToxicCloud();
@@ -36,15 +34,13 @@ protected:
     void Update(float _DeltaTime) override;
     void End() override;
 
-    void Shoot(float _DeltaTime) override 
-    { 
+    void Shoot(float _DeltaTime) override
+    {
         Speed_ += _DeltaTime * 300.f;
-        GetTransform().SetWorldMove({(Dir_.x * Speed_ * _DeltaTime), (Dir_.y * Speed_ * _DeltaTime)}); 
+        GetTransform().SetWorldMove({(Dir_.x * Speed_ * _DeltaTime), (Dir_.y * Speed_ * _DeltaTime)});
     }
 
-    void BackMove(float _DeltaTime) 
-    { GetTransform().SetWorldUpMove(50, _DeltaTime); 
-    }
+    void BackMove(float _DeltaTime) { GetTransform().SetWorldUpMove(50, _DeltaTime); }
 
 private:
     GameEngineTextureRenderer* ExplsionV1_;

@@ -9,6 +9,7 @@
 #include "ToxicCloudSpawner.h"
 #include "FireBallSpawner.h"
 #include "SymbolEffect.h"
+#include "DistortionEffect.h"
 
 Pontiff::Pontiff()
     : CurType_(SPELLTYPE::FIREBALL)
@@ -138,6 +139,9 @@ void Pontiff::Start()
     Symbol_[1]->GetTransform().SetWorldScale({2, 2, 1});
     Symbol_[1]->GetTransform().SetWorldPosition({1660, -600, BossMonsterEffectZ});
     Symbol_[1]->Renderer_->Off();
+
+    Distortion_ = GetLevel()->GetMainCamera()->GetCameraRenderTarget()->AddEffect<DistortionEffect>();
+    Distortion_->Off();
 }
 
 void Pontiff::Update(float _DeltaTime)
@@ -671,6 +675,10 @@ void Pontiff::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
             Face_->CurAnimationPauseOff();
             Face_->ChangeFrameAnimation("pontiff_openedIdle_face_DEATH");
 
+            Distortion_->On();
+            Distortion_->SetDelayTime(0.25f);
+            Distortion_->SetEffectLocalPos(0.5f, 1.f);
+
             BossDeathEvent_ = false;
         }
     }
@@ -684,7 +692,7 @@ void Pontiff::BossDeathEvent()
     Backgorund_ = CreateComponent<GameEngineTextureRenderer>();
     Backgorund_->SetTexture("BlackBackground.png");
     Backgorund_->ScaleToTexture();
-    
+
     Face_->ChangeFrameAnimation("pontiff_openIdle_face");
 
     float4 CamPos = GetLevel()->GetMainCamera()->GetTransform().GetWorldPosition();

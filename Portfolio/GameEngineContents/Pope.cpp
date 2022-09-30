@@ -441,6 +441,8 @@ void Pope::SpellCastStart(const StateInfo& _Info)
         }
     }
 
+    Spell = 1;
+
     switch (Spell)
     {
         case 0:  //파이어볼

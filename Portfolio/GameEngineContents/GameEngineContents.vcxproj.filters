@@ -83,9 +83,6 @@
     <ClInclude Include="Deogracias.h">
       <Filter>Actor\NPC</Filter>
     </ClInclude>
-    <ClInclude Include="GravityComponent.h">
-      <Filter>Component</Filter>
-    </ClInclude>
     <ClInclude Include="Pontiff.h">
       <Filter>Actor\BossMonster\Pontiff</Filter>
     </ClInclude>
@@ -323,6 +320,12 @@
     <ClInclude Include="SinWaveEffect.h">
       <Filter>Actor\PostEffect</Filter>
     </ClInclude>
+    <ClInclude Include="GravityComponent.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GuardianLadyComponent.h">
+      <Filter>Actor\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -406,9 +409,6 @@
     </ClCompile>
     <ClCompile Include="Deogracias.cpp">
       <Filter>Actor\NPC</Filter>
-    </ClCompile>
-    <ClCompile Include="GravityComponent.cpp">
-      <Filter>Component</Filter>
     </ClCompile>
     <ClCompile Include="Pontiff.cpp">
       <Filter>Actor\BossMonster\Pontiff</Filter>
@@ -649,6 +649,12 @@
     </ClCompile>
     <ClCompile Include="SinWaveEffect.cpp">
       <Filter>Actor\PostEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="GravityComponent.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="GuardianLadyComponent.cpp">
+      <Filter>Actor\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

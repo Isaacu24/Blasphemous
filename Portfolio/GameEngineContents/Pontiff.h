@@ -94,6 +94,8 @@ private:
     class MagicMissileSpawner*   MagicMissileSpawner_;
     class AnguishBeamSpawner*    AnguishBeamSpawner_;
 
+    class DistortionEffect* Distortion_;
+
     class PlatformSpawner* PlatformSpawner_;
 
     GameEngineRandom Random_;

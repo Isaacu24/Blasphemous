@@ -13,6 +13,21 @@ Projectile::Projectile()
 
 Projectile::~Projectile() 
 {
+
 }
 
 
+void Projectile::Start() 
+{
+    
+}
+
+void Projectile::Update(float _DeltaTime)
+{
+
+}
+
+void Projectile::End() 
+{
+
+}

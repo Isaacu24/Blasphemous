@@ -66,6 +66,27 @@ public:
 
     inline bool GetDeathEvent() { return DeathEventOn_; }
 
+    float4 GetScreenPos()
+    {
+        float4 Pos = GetTransform().GetWorldPosition();
+        Pos        = Pos * GetLevel()->GetMainCamera()->GetView();
+        Pos        = Pos * GetLevel()->GetMainCamera()->GetProjectionMatrix();
+
+        float PosZ = Pos.w;
+        Pos /= PosZ;
+
+        float4x4 ViewPort;
+        ViewPort.ViewPort(
+            GameEngineWindow::GetInst()->GetScale().x, GameEngineWindow::GetInst()->GetScale().y, 0, 0, 0, 1);
+
+        Pos = Pos * ViewPort;
+
+        float RatioX = Pos.x / GameEngineWindow::GetInst()->GetScale().x;
+        float RatioY = Pos.y / GameEngineWindow::GetInst()->GetScale().y;
+
+        return {RatioX, RatioY};
+    }
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
@@ -104,4 +125,6 @@ private:
     bool EventOn_;
     bool DeathEventOn_;
     bool IsDecide_;
+
+    class StageBase* CurStage_;
 };

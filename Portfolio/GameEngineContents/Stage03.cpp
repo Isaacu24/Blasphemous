@@ -3,7 +3,7 @@
 #include "Penitent.h"
 #include "PrieDieu.h"
 #include "CherubCaptor.h"
-#include "SinWaveEffect.h"
+#include "DistortionEffect.h"
 #include <GameEngineCore/GameEngineRenderTarget.h>
 
 Stage03::Stage03() {}
@@ -139,15 +139,16 @@ void Stage03::Start()
 {
     SettingStage();
 
-    SinWave_ = GetMainCamera()->GetCameraRenderTarget()->AddEffect<SinWaveEffect>();
-    SinWave_->Off();
+    Distortion_ = GetMainCamera()->GetCameraRenderTarget()->AddEffect<DistortionEffect>();
+    Distortion_->SetEffectLocalPos(2.f, 1.f); 
+    Distortion_->Off();
 }
 
 void Stage03::Update(float _DeltaTime)
 {
     if (true == GameEngineInput::GetInst()->IsDownKey("Distortion"))
     {
-        SinWave_->On();
+        Distortion_->On();
     }
 
     if (false == IsChangeCameraPos_)

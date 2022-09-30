@@ -658,12 +658,22 @@ void Penitent::CrouchStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_crouch_anim");
 
+    if ("CrouchAttack" == _Info.PrevState)
+    {
+        MetaRenderer_->CurAnimationSetStartPivotFrame(6);
+    }
+
     BodyCollider_->GetTransform().SetWorldScale({ColScale_.y, ColScale_.x});
     BodyCollider_->GetTransform().SetWorldMove({0, -50});
 }
 
 void Penitent::CrouchUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+    if (GameEngineInput::GetInst()->IsFreeKey("PenitentDown"))
+    {
+        MetaRenderer_->ChangeMetaAnimation("penitent_crouch_up_anim");
+    }
+
     if (GameEngineInput::GetInst()->IsUpKey("PenitentDown") || 0 < ThumbLY_)
     {
         MetaRenderer_->ChangeMetaAnimation("penitent_crouch_up_anim");
@@ -671,12 +681,19 @@ void Penitent::CrouchUpdate(float _DeltaTime, const StateInfo& _Info)
 
     if (GameEngineInput::GetInst()->IsPressKey("PenitentRight") || 30000 < ThumbLX_)
     {
+        RealDirX_ = 1;
         GetTransform().PixLocalPositiveX();
     }
 
     if (GameEngineInput::GetInst()->IsPressKey("PenitentLeft") || -30000 > ThumbLX_)
     {
+        RealDirX_ = -1;
         GetTransform().PixLocalNegativeX();
+    }
+
+    if (GameEngineInput::GetInst()->IsDownKey("PenitentAttack"))
+    {
+        ChangeState("CrouchAttack");
     }
 
     if (false == IsGround_)
@@ -692,6 +709,27 @@ void Penitent::CrouchEnd(const StateInfo& _Info)
     BodyCollider_->GetTransform().SetWorldScale(ColScale_);
     BodyCollider_->GetTransform().SetWorldMove({0, 50});
 }
+
+
+void Penitent::CrouchAttackStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("penitent_crouchslash_noslashes_anim");
+    AttackEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
+
+    if (1 == RealDirX_)
+    {
+        AttackEffect_->GetTransform().PixLocalPositiveX();
+    }
+
+    else if (-1 == RealDirX_)
+    {
+        AttackEffect_->GetTransform().PixLocalNegativeX();
+    }
+}
+
+void Penitent::CrouchAttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Penitent::CrouchAttackEnd(const StateInfo& _Info) {}
 
 
 void Penitent::SlideStart(const StateInfo& _Info)
@@ -811,7 +849,7 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     if (false == IsLadder_)
     {
-        if (GameEngineInput::GetInst()->IsPressKey("PenitentUp") || 30000 < ThumbLY_)
+        if (GameEngineInput::GetInst()->IsPressKey("PenitentUp"))
         {
             CilmbY_ = 30.f;
 
@@ -835,6 +873,13 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
 
             MetaRenderer_->ChangeMetaAnimation("penintent_ladder_climb_loop_anim");
             GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed_ * _DeltaTime);
+        }
+
+        if (GameEngineInput::GetInst()->IsPressKey("PenitentDown")
+                && GameEngineInput::GetInst()->IsPressKey("PenitentSlide")
+            || -30000 > ThumbLY_)
+        {
+            ChangeState("LadderSlide");
         }
 
         if (GameEngineInput::GetInst()->IsUpKey("PenitentUp") || GameEngineInput::GetInst()->IsUpKey("PenitentDown")
@@ -876,7 +921,6 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
         else if (0 < CilmbY_)  //위 사다리
         {
             IsLadder_ = true;
-
             GetTransform().SetWorldUpMove(500.f, _DeltaTime);
             MetaRenderer_->ChangeMetaAnimation("penitent_ladder_down_from_ground_anim");
         }
@@ -884,6 +928,40 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 
 void Penitent::LadderClimbEnd(const StateInfo& _Info) { IsLadder_ = false; }
+
+
+void Penitent::LadderSlideStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("penitent_ladder_sliding");
+
+    Speed_ *= 1.5f;
+}
+
+void Penitent::LadderSlideUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    if (GameEngineInput::GetInst()->IsUpKey("PenitentSlide"))
+    {
+        ChangeState("LadderClimb");
+    }
+
+    GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed_ * _DeltaTime);
+
+    if (true == IsGround_)
+    {
+        if (0 > CilmbY_)  //아래 사다리
+        {
+            IsLadder_ = true;
+            Gravity_->SetActive(true);
+            MetaRenderer_->ChangeMetaAnimation("penintent_ladder_up_from_ground");
+        }
+    }
+}
+
+void Penitent::LadderSlideEnd(const StateInfo& _Info)
+{
+    IsLadder_ = false;
+    Speed_    = 250.f;
+}
 
 
 void Penitent::AttackStart(const StateInfo& _Info)
@@ -1021,7 +1099,6 @@ void Penitent::VerticalAttackLandingStart(const StateInfo& _Info)
 
     AttackEffect_->Renderer_->On();
     AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_verticalattack_landing_effects_anim");
-    AttackEffect_->Renderer_->CurAnimationReset();
 }
 
 void Penitent::VerticalAttackLandingUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -1339,7 +1416,7 @@ void Penitent::CollectSoulUpdate(float _DeltaTime, const StateInfo& _Info)
         {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y, PlayerEffectZ});
 }
 
-void Penitent::CollectSoulEnd(const StateInfo& _Info) {}
+void Penitent::CollectSoulEnd(const StateInfo& _Info) { AttackEffect_->Renderer_->Off(); }
 
 
 void Penitent::DeathStart(const StateInfo& _Info)
@@ -1361,8 +1438,7 @@ void Penitent::DeathStart(const StateInfo& _Info)
     MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
 }
 
-void Penitent::DeathUpdate(float _DeltaTime, const StateInfo& _Info) 
-{ Gravity_->SetActive(!IsGround_); }
+void Penitent::DeathUpdate(float _DeltaTime, const StateInfo& _Info) { Gravity_->SetActive(!IsGround_); }
 
 void Penitent::DeathEnd(const StateInfo& _Info) { SetHP(100); }
 
@@ -1385,4 +1461,3 @@ void Penitent::RisingUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 
 void Penitent::RisingEnd(const StateInfo& _Info) {}
-

@@ -40,7 +40,7 @@ public:
 		Alpha_ = 0.f;
 
 		StartPos_ = GetTransform().GetWorldPosition();
-		EndPos_ = StartPos_ + float4{ Dir_.x * 700.f, 0.f };
+		EndPos_ = StartPos_ + float4{ Dir_.x * 800.f, 0.f };
 	}
 	
 	void GroundCheck();
