@@ -29,7 +29,6 @@ protected:
 
 private:
     class ElderBrother*   ElderBrother_;
-    GameEngineSoundPlayer BackgroundPlayer_;
 
     void PlayerCameraMove(float _DeltaTime);
 };

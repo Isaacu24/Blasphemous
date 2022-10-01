@@ -93,4 +93,6 @@ private:
     float HPAlpha_;
 
     float ScreenTime_;
+
+    GameEngineSoundPlayer SoundPlayer_;
 };

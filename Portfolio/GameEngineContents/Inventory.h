@@ -84,5 +84,7 @@ private:
 
 	bool  IsPadInput_;
     float PadDelayTime_;
+
+    GameEngineSoundPlayer SoundPlayer_;
 };
     

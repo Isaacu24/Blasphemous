@@ -12,6 +12,9 @@ BloodSplatters::~BloodSplatters() {}
 
 void BloodSplatters::Start()
 {
+    /// <summary>
+    /// 메타 텍스쳐 애니메이션으로 변경
+    /// </summary>
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
     Renderer_->CreateFrameAnimationCutTexture("BloodSplatters", {"BloodSplatters.png", 0, 23, 0.05f, true});
 

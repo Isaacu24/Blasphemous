@@ -128,6 +128,7 @@ private:
 
     class StageBase* CurStage_;
 
-    GameEngineSoundPlayer SoundPlayer_;
+    GameEngineSoundPlayer AttackSoundPlayer_;
     GameEngineSoundPlayer VoiceSoundPlayer_;
+    GameEngineSoundPlayer BackgroundPlayer_;
 };

@@ -35,4 +35,6 @@ private:
     float Alpha_;
 
     bool IsInvisible_;
+
+    GameEngineSoundPlayer SoundPlayer_;
 };

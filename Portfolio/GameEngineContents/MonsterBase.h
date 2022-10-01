@@ -76,6 +76,8 @@ protected:
     GameEngineCollision*       BodyCollider_;    //¸öÃ¼
     GameEngineCollision*       AttackCollider_;  //°ø°Ý
 
+    GameEngineSoundPlayer SoundPlayer_;
+
     float HP_;
     float PrevHP_;
     int   Att_;

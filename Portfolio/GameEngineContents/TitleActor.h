@@ -26,6 +26,8 @@ private:
 
 	GameEngineUIRenderer* DescRenderer_;
 
+	GameEngineSoundPlayer SoundPlayer_;
+
 	bool IsReverse_;
 	bool IsDown_;
     bool IsChage_;

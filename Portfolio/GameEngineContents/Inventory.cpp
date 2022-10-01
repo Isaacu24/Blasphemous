@@ -687,6 +687,8 @@ void Inventory::CursorMove()
     else if (true == GameEngineInput::GetInst()->IsDownKey("CursorEnter")
              || true == GameEngineInput::GetInst()->IsDownButton("PenitentA"))
     {
+        SoundPlayer_ = GameEngineSound::SoundPlayControl("Relic.wav");
+
         switch (InventoryType_)
         {
             case InventoryType::RosaryBeads:

@@ -131,7 +131,6 @@ void Pope::Start()
     MetaFXSRenderer_->SetPivot(PIVOTMODE::METABOT);
     MetaFXSRenderer_->Off();
 
-
     DustEffectRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {

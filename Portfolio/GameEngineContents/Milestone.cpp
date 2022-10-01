@@ -27,6 +27,8 @@ void Milestone::Start()
     Font_->SetColor(float4{0.65f, 0.65f, 0.45f, 0.f});
 
     Font_->ChangeCamera(CAMERAORDER::UICAMERA);
+
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("ZONE_INFO.wav");
 }
 
 void Milestone::Update(float _DeltaTime)
@@ -55,7 +57,7 @@ void Milestone::Update(float _DeltaTime)
 
             if (1.f <= ShowTime_)
             {
-                ShowTime_ = 0.f;
+                ShowTime_    = 0.f;
                 IsInvisible_ = true;
             }
         }
@@ -91,3 +93,4 @@ void Milestone::End() {}
 void Milestone::LevelStartEvent() {}
 
 void Milestone::LevelEndEvent() { Death(); }
+

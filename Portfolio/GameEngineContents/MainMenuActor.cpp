@@ -51,23 +51,23 @@ void MainMenuActor::Start()
     Option_ = CreateComponent<GameEngineUIRenderer>();
     Option_->GetTransform().SetWorldScale({58, 30});
     Option_->GetTransform().SetWorldPosition({440, -125, 0.0f});
-    Option_->SetTexture("Option.png");
+    Option_->SetTexture("Option.png"); 
 
     Exit_ = CreateComponent<GameEngineUIRenderer>();
     Exit_->GetTransform().SetWorldScale({84, 30});
     Exit_->GetTransform().SetWorldPosition({425, -200, 0.0f});
-    Exit_->SetTexture("Exit.png");
+    Exit_->SetTexture("Exit.png"); 
 
     GameEngineInput::GetInst()->CreateKey("MainMenuUpKey", VK_UP);
     GameEngineInput::GetInst()->CreateKey("MainMenuDownKey", VK_DOWN);
-    GameEngineInput::GetInst()->CreateKey("MainMenuSelectKey", VK_RETURN);
+    GameEngineInput::GetInst()->CreateKey("MainMenuSelectKey", VK_RETURN); 
 
     Selecter_ = CreateComponent<GameEngineUIRenderer>();
     Selecter_->CreateFrameAnimationCutTexture("alliedCherub", {"alliedCherub.png", 0, 10, 0.1f, true});
     Selecter_->ChangeFrameAnimation("alliedCherub");
     Selecter_->GetTransform().SetWorldScale({170, 170});
     Selecter_->GetTransform().SetWorldPosition({520, -45, 0.0f});
-    Selecter_->GetTransform().PixLocalNegativeX();
+    Selecter_->GetTransform().PixLocalNegativeX(); 
 }
 
 void MainMenuActor::Update(float _DeltaTime)
@@ -249,7 +249,7 @@ void MainMenuActor::ChangeMenuSelect()
             Pilgrimage_->SetTexture("Pilgrimage.png");
             Option_->SetTexture("Option.png");
 
-            Selecter_->GetTransform().SetWorldPosition({520, -195, 0.0f});
+            Selecter_->GetTransform().SetWorldPosition({520, -195, 0.0f}); 
             break;
         default:
             break;

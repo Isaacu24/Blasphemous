@@ -46,8 +46,7 @@ public:
 
     void SetSpeed(float _Speed) { Speed_ = _Speed; }
 
-    void SetBackgroudAlpha(float _Alpha) { BackgroundAlpha_ = _Alpha;
-    }
+    void SetBackgroudAlpha(float _Alpha) { BackgroundAlpha_ = _Alpha; }
 
 protected:
     void Start() override;

@@ -72,6 +72,7 @@ StyleCopReport.xml
 *.obj
 *.iobj
 *.pch
+*.ini
 *.pdb
 *.ipdb
 *.pgc

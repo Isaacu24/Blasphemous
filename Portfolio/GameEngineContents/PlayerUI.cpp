@@ -69,7 +69,7 @@ void PlayerUI::OnInventoryTear()
     }
 }
 
-void PlayerUI::OffInventoryTear() 
+void PlayerUI::OffInventoryTear()
 {
     for (size_t i = 0; i < TearRenderers_.size(); i++)
     {
@@ -277,6 +277,8 @@ void PlayerUI::DamageCheck(float _DeltaTime)
 
 void PlayerUI::PlayerDeathStart(const StateInfo& _Info)
 {
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("Player_Death.wav");
+
     ScreenRenderer_->SetTexture("Death_Screen.png");
     ScreenRenderer_->ScaleToTexture();
     ScreenRenderer_->GetTransform().SetWorldScale(ScreenRenderer_->GetTransform().GetWorldScale());
@@ -322,6 +324,8 @@ void PlayerUI::PlayerDeathEnd(const StateInfo& _Info) {}
 
 void PlayerUI::BossDeathStart(const StateInfo& _Info)
 {
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("Boss_Fight_Ending.wav");
+
     ScreenRenderer_->SetTexture("boss-defeated-screen-title.png");
     ScreenRenderer_->ScaleToTexture();
     ScreenRenderer_->GetTransform().SetWorldScale(ScreenRenderer_->GetTransform().GetWorldScale() * 2);
@@ -380,10 +384,12 @@ void PlayerUI::BossDeathUpdate(float _DeltaTime, const StateInfo& _Info)
     BackRenderer_->GetColorData().MulColor   = float4{1.f, 1.f, 1.f, BackAlpha_};
 }
 
-void PlayerUI::BossDeathEnd(const StateInfo& _Info) { }
+void PlayerUI::BossDeathEnd(const StateInfo& _Info) {}
 
 void PlayerUI::FinalBossDeathStart(const StateInfo& _Info)
 {
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("Boss_Fight_Ending.wav");
+
     ScreenRenderer_->SetTexture("pontiff-defeated-screen-title.png");
     ScreenRenderer_->ScaleToTexture();
     ScreenRenderer_->GetTransform().SetWorldScale(ScreenRenderer_->GetTransform().GetWorldScale() * 2);
@@ -442,7 +448,7 @@ void PlayerUI::FinalBossDeathUpdate(float _DeltaTime, const StateInfo& _Info)
     BackRenderer_->GetColorData().MulColor   = float4{1.f, 1.f, 1.f, BackAlpha_};
 }
 
-void PlayerUI::FinalBossDeathEnd(const StateInfo& _Info) { }
+void PlayerUI::FinalBossDeathEnd(const StateInfo& _Info) {}
 
 
 void PlayerUI::BehindScreenStart(const StateInfo& _Info)

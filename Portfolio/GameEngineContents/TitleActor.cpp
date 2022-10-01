@@ -46,6 +46,8 @@ void TitleActor::Update(float _DeltaTime)
         || true == GameEngineInput::GetInst()->IsDownButton("GamePadA"))
     {
         IsDown_ = true;
+
+        SoundPlayer_ = GameEngineSound::SoundPlayControl("Relic.wav");
     }
 
     if (true == IsChage_)
@@ -69,7 +71,7 @@ void TitleActor::Update(float _DeltaTime)
 
         if (0.f >= Alpha_)
         {
-            IsDown_ = false;
+            IsDown_  = false;
             IsChage_ = true;
             DescRenderer_->GetTransform().SetWorldMove({0.f, 0.f, 10.f});
         }

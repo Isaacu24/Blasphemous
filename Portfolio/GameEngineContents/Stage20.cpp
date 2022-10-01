@@ -55,21 +55,26 @@ void Stage20::SettingStage()
     UIActor_->Off();
 
     MessageUI_ = CreateActor<MessageUI>();
-    MessageUI_->CreateLine("In my dreams I heard yout footsteps coming closer. In my dreams I tried to talk to "
-                           "you,\nand introduce myself.");
-    MessageUI_->CreateLine(
-        "Guardian of the Miracle, and of the Miracle banner, with great pain,\nI Carry the emblem of the Father.");
-    MessageUI_->CreateLine("I am the hands of bloodied skin, I am the eyes from which our Mother gazes.");
-    MessageUI_->CreateLine("But nothing I know of you, apart from your cold, nameless visage.");
-    MessageUI_->CreateLine("Apart from your callused and wounded hands. Apart from the mourning of your deaths.");
-    MessageUI_->CreateLine("No. I know nothing of you, only the Miracle know.");
+    MessageUI_->SetSpeed(10.f); 
+    MessageUI_->CreateLine("꿈 속에서 나는 다가오는 그대의 발소리를 들었다. \n꿈 속에서 나는 그대에게 말을 걸고 "
+                           "인사를 하려 했다.");
+    MessageUI_->CreateLine("기적의 수호자이자, 기적의 깃발을 지키는 수호자인 나는 \n큰 고통을 짊어지고 아버지의"
+                           "문장을 지니고 있음이라.");
+    MessageUI_->CreateLine("나는 피투성이로 덮인 두 손이며, \n성모님의 시선을 향하는 두 눈이니라.");
+    MessageUI_->CreateLine("그러나 그 차가운 이름 없는 모습 외에는, 그대를 모른다.");
+    MessageUI_->CreateLine("그대의 상처투성이 굳은 살 박힌 손을 경계하라. \n그대의 죽음의 신음을 경계하라.");
+    MessageUI_->CreateLine("아니, 그대를 아는 건 기적 뿐이니");
+    MessageUI_->CreateLine("죄를 가득 짊어진 그대의 칼과, \n황금에 빛나는 나의 칼을 맞부딪히도록 하지.");
+    MessageUI_->CreateLine("상처를 입히고, 걷게 하리라.");
+    MessageUI_->CreateLine("그대의 이름을 나는 영원히 저주하리라.");
+    MessageUI_->CreateLine("그대의 죽음을 나는 영원히 축복하리라.");
     MessageUI_->SetFontColor(float4{0.63f, 0.6f, 0.55f});
     MessageUI_->SetBackgroudAlpha(0.25f);
     MessageUI_->Off();
 
     MessageUI_->SetMassageStartEvent(0, [&]() { Penitent_->SetIsFreezeEnd(false); });
 
-    MessageUI_->SetMassageStartEvent(3,
+    MessageUI_->SetMassageStartEvent(5,
                                      [&]()
                                      {
                                          Pope_->On();
@@ -78,7 +83,7 @@ void Stage20::SettingStage()
                                          Pope_->SetTarget(Penitent_);
                                      });
 
-    MessageUI_->SetMassageEndEvent(6,
+    MessageUI_->SetMassageEndEvent(10,
                                    [&]()
                                    {
                                        Penitent_->SetIsFreezeEnd(true);
@@ -127,7 +132,7 @@ void Stage20::Update(float _DeltaTime)
             {
                 MassageTime_ += _DeltaTime;
 
-                if (1.5f > MassageTime_)
+                if (2.0f > MassageTime_)
                 {
                     return;
                 }
