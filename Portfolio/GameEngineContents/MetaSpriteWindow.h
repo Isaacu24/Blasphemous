@@ -17,7 +17,7 @@ public:
     GameEngineDirectory MetaDir;
     GameEngineTexture*  TargetTexture;
 
-    // void MetaSetPivot();
+    //void MetaSetPivot();
 
 protected:
     void Initialize(class GameEngineLevel* _Level) override;

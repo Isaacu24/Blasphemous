@@ -441,8 +441,6 @@ void Pope::SpellCastStart(const StateInfo& _Info)
         }
     }
 
-    Spell = 1;
-
     switch (Spell)
     {
         case 0:  //파이어볼
@@ -455,7 +453,7 @@ void Pope::SpellCastStart(const StateInfo& _Info)
             FireBallSpawner_->SetGround(ColMap_);
             FireBallSpawner_->GetTransform().SetWorldPosition(
                 {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y + 500});
-            break;
+            break;  
 
         case 1:  //독안개
             SpellType_ = SPELLTYPE::TOXICCLOUD;

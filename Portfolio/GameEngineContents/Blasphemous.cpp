@@ -247,6 +247,43 @@ void Blasphemous::LoadResources()
     LoadMap("Shop", 15, 1);
 
 
+    {
+        GameEngineDirectory Dir;
+        MovePath(Dir, {"ContentsResources", "Resources", "Sound", "Actor", "Player"});
+
+        std::vector<GameEngineFile> Sounds = Dir.GetAllFile();
+
+        for (size_t i = 0; i < Sounds.size(); i++)
+        {
+            GameEngineSound::LoadRessource(Sounds[i].GetFullPath());
+        }
+    }
+
+    {
+        GameEngineDirectory Dir;
+        MovePath(Dir, {"ContentsResources", "Resources", "Sound", "BossMusic"});
+
+        std::vector<GameEngineFile> Sounds = Dir.GetAllFile();
+
+        for (size_t i = 0; i < Sounds.size(); i++)
+        {
+            GameEngineSound::LoadRessource(Sounds[i].GetFullPath());
+        }
+    }
+
+
+    {
+        GameEngineDirectory Dir;
+        MovePath(Dir, {"ContentsResources", "Resources", "Sound", "Actor", "ElderBrother"});
+
+        std::vector<GameEngineFile> Sounds = Dir.GetAllFile();
+
+        for (size_t i = 0; i < Sounds.size(); i++)
+        {
+            GameEngineSound::LoadRessource(Sounds[i].GetFullPath());
+        }
+    }
+
     // UI ÀÌ¹ÌÁö
     {
         GameEngineDirectory Dir;

@@ -61,7 +61,6 @@ void ElderBrother::Start()
         {
             if (1 == _Info.CurFrame)
             {
-
                 Distortion_->On();
                 Distortion_->SetEffectLocalPos(GetScreenPos().x, GetScreenPos().y);
 
@@ -454,7 +453,10 @@ void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 }
 
-void ElderBrother::AppearEnd(const StateInfo& _Info) { AppearTime_ = 0.f; }
+void ElderBrother::AppearEnd(const StateInfo& _Info)
+{
+    AppearTime_ = 0.f;
+}
 
 
 void ElderBrother::IdleStart(const StateInfo& _Info)
@@ -508,6 +510,9 @@ void ElderBrother::IdleEnd(const StateInfo& _Info) { DecideTime_ = 0.f; }
 
 void ElderBrother::JumpStart(const StateInfo& _Info)
 {
+    SoundPlayer_      = GameEngineSound::SoundPlayControl("ELDER_BROTHER_JUMP.wav");
+    VoiceSoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_JUMP_VOICE.wav");
+
     IsJump_ = false;
 
     Alpha_ = 0.f;
@@ -582,6 +587,8 @@ void ElderBrother::FallEnd(const StateInfo& _Info) {}
 
 void ElderBrother::LandStart(const StateInfo& _Info)
 {
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_LANDING.wav");
+
     Renderer_->ChangeFrameAnimation("elderBrother_land");
 
     LandEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{0, 50});
@@ -596,6 +603,9 @@ void ElderBrother::LandEnd(const StateInfo& _Info) {}
 
 void ElderBrother::AttackStart(const StateInfo& _Info)
 {
+    SoundPlayer_      = GameEngineSound::SoundPlayControl("ELDER_BROTHER_ATTACK.wav");
+    VoiceSoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_ATTACK_VOICE.wav");
+
     Renderer_->ChangeFrameAnimation("elderBrother_attack");
 
     AffectChecker->SetGround(ColMap_);
@@ -611,6 +621,9 @@ void ElderBrother::AttackEnd(const StateInfo& _Info) {}
 
 void ElderBrother::DeathStart(const StateInfo& _Info)
 {
+    SoundPlayer_      = GameEngineSound::SoundPlayControl("ELDER_BROTHER_DEATH.wav");
+    VoiceSoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_DEATH_VOICE_2.wav");
+
     BossUI_->AllOff();
 
     Renderer_->ChangeFrameAnimation("elderBrother_death");

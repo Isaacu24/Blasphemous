@@ -40,7 +40,7 @@ SamplerState Smp : register(s0);
 float2 GetOffsetFromCenter(float2 ScreenCoords, float2 ScreenSize)
 {
     float2 HalfScreenSize = ScreenSize * Offset; //위치
-    return (ScreenCoords.xy - HalfScreenSize) / min(HalfScreenSize.x, HalfScreenSize.y);
+    return (ScreenCoords.xy - HalfScreenSize) /     (HalfScreenSize.x, HalfScreenSize.y);
 }
 
 float2 GetDistortionTexelOffset(float2 OffsetDirection, float OffsetDistance, float Time)
@@ -91,7 +91,7 @@ float4 Distortion_PS(Output _Input) : SV_Target0
         
     //센터에서 현재 픽셀의 길이값
     float2 OffsetFromCenter = GetOffsetFromCenter(ScreenCoords, ScreenSize); 
-    float2 OffsetDirection = normalize(-OffsetFromCenter); //왜 마이너스일까
+    float2 OffsetDirection = normalize(-OffsetFromCenter); 
     float OffsetDistance = length(OffsetFromCenter);
     
     float2 Offset = GetDistortionTexelOffset(OffsetDirection, OffsetDistance * 0.15f, DeltaTime);

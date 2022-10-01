@@ -15,7 +15,12 @@ void ToxicCloud::Start()
 
     Renderer_->CreateFrameAnimationCutTexture("pope_toxicOrb_shoot", {"pope_toxicOrb.png", 9, 24, 0.07f, true});
     Renderer_->CreateFrameAnimationCutTexture("pope_toxicOrb_broken", {"pope_toxicOrb.png", 25, 35, 0.07f, false});
-    Renderer_->AnimationBindEnd("pope_toxicOrb_broken", [&](const FrameAnimation_DESC& _Info) { Renderer_->Off(); });
+    Renderer_->AnimationBindEnd("pope_toxicOrb_broken",
+                                [&](const FrameAnimation_DESC& _Info)
+                                {
+                                    Collider_->ChangeOrder(COLLISIONORDER::Gas);
+                                    Renderer_->Off();
+                                });
 
     Renderer_->GetTransform().SetWorldScale({300.f, 300.f, 1.f});
     Renderer_->SetPivot(PIVOTMODE::CENTER);
@@ -35,7 +40,7 @@ void ToxicCloud::Start()
 
     Collider_ = CreateComponent<GameEngineCollision>();
     Collider_->ChangeOrder(COLLISIONORDER::Projectile);
-    Collider_->GetTransform().SetWorldScale({10.0f, 10.0f, 1.0f});
+    Collider_->GetTransform().SetWorldScale({30.0f, 30.0f, 1.0f});
 
     State_.CreateStateMember("Idle",
                              std::bind(&ToxicCloud::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2),
@@ -55,8 +60,24 @@ void ToxicCloud::Start()
     Speed_ = 100.f;
 }
 
-void ToxicCloud::Update(float _DeltaTime)
+void ToxicCloud::Update(float _DeltaTime) { State_.Update(_DeltaTime); }
+
+void ToxicCloud::End() {}
+
+
+void ToxicCloud::IdleStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("pope_toxicOrb_create"); }
+
+void ToxicCloud::IdleUpdate(float _DeltaTime, const StateInfo& _Info) { BackMove(_DeltaTime); }
+
+void ToxicCloud::IdleEnd(const StateInfo& _Info) {}
+
+
+void ToxicCloud::ShootStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("pope_toxicOrb_shoot"); }
+
+void ToxicCloud::ShootUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+    Shoot(_DeltaTime);
+
     float4 Color = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x,
                                                               -(GetTransform().GetWorldPosition().y));
 
@@ -65,42 +86,36 @@ void ToxicCloud::Update(float _DeltaTime)
         State_.ChangeState("Explosion");
     }
 
-    // if (false == IsExplosion_)
-    //{
-    //     Collider_->IsCollision(CollisionType::CT_OBB2D,
-    //                            COLLISIONORDER::Player,
-    //                            CollisionType::CT_OBB2D,
-    //                            std::bind(&ToxicCloud::Explosion, this, std::placeholders::_1,
-    //                            std::placeholders::_2));
-    // }
+    Collider_->IsCollision(CollisionType::CT_OBB2D,
+                           COLLISIONORDER::Platform,
+                           CollisionType::CT_OBB2D,
+                           std::bind(&ToxicCloud::Explosion, this, std::placeholders::_1, std::placeholders::_2));
 
-    if (false == IsExplosion_)
-    {
-        Collider_->IsCollision(CollisionType::CT_OBB2D,
-                               COLLISIONORDER::Platform,
-                               CollisionType::CT_OBB2D,
-                               std::bind(&ToxicCloud::Explosion, this, std::placeholders::_1, std::placeholders::_2));
-    }
+    Collider_->IsCollision(CollisionType::CT_OBB2D,
+                           COLLISIONORDER::Player,
+                           CollisionType::CT_OBB2D,
+                           std::bind(&ToxicCloud::Explosion, this, std::placeholders::_1, std::placeholders::_2));
 
+    Collider_->IsCollision(CollisionType::CT_OBB2D,
+                           COLLISIONORDER::PlayerAttack,
+                           CollisionType::CT_OBB2D,
+                           [&](GameEngineCollision* _This, GameEngineCollision* _Other)
+                           {
+                               float4 Pos = _This->GetTransform().GetWorldPosition()
+                                   - _Other->GetTransform().GetWorldPosition();
 
-    State_.Update(_DeltaTime);
+                               Dir_ = Pos.NormalizeReturn();
+
+                               return false;
+                           });
 }
 
-void ToxicCloud::End() {}
+void ToxicCloud::ShootEnd(const StateInfo& _Info) {}
 
-void ToxicCloud::IdleStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("pope_toxicOrb_create"); }
-
-void ToxicCloud::IdleUpdate(float _DeltaTime, const StateInfo& _Info) { BackMove(_DeltaTime); }
-
-
-void ToxicCloud::ShootStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("pope_toxicOrb_shoot"); }
-
-void ToxicCloud::ShootUpdate(float _DeltaTime, const StateInfo& _Info) { Shoot(_DeltaTime); }
 
 void ToxicCloud::ExplosionStart(const StateInfo& _Info)
 {
     ExplsionV1_->On();
-    // Collider_->ChangeOrder(COLLISIONORDER::Gas);
     Collider_->GetTransform().SetWorldScale({100.0f, 100.0f, 1.0f});
 
     Renderer_->ChangeFrameAnimation("pope_toxicOrb_broken");
@@ -108,3 +123,6 @@ void ToxicCloud::ExplosionStart(const StateInfo& _Info)
 }
 
 void ToxicCloud::ExplosionUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void ToxicCloud::ExplosionEnd(const StateInfo& _Info) {}
+    

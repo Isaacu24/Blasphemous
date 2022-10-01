@@ -10,7 +10,6 @@
 #include "StageBase.h"
 #include "BloodProjectile.h"
 #include "Stage01.h"
-#include "GuardianLadyComponent.h"
 
 Penitent* Penitent::MainPlayer_ = nullptr;
 
@@ -40,6 +39,8 @@ Penitent::~Penitent() {}
 
 void Penitent::BossKillEventOn()
 {
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_BOSS_DEATH_HIT.wav");
+
     float4 PlayerPos = GetTransform().GetWorldPosition();
     GetTransform().SetWorldPosition({PlayerPos.x, PlayerPos.y, -150});
 
@@ -177,8 +178,6 @@ void Penitent::Start()
     HitEffect_->GetTransform().SetLocalPosition({0, 0, PlayerEffectZ});
     HitEffect_->SetLevelOverOn();
 
-    GuardianLady_ = CreateComponent<GuardianLadyComponent>();
-
     GetTransform().SetLocalScale({2, 2, 1});
 
     SetAnimation();
@@ -189,23 +188,6 @@ void Penitent::Start()
 
 void Penitent::Update(float _DeltaTime)
 {
-    //if (true == GuardianLady_->GetMetaTextureRenderer()->IsUpdate())
-    //{
-    //    GuardianLady_->GetMetaTextureRenderer()->GetTransform().SetWorldScale(GetTransform().GetWorldScale());
-
-    //    if (0 < GetTransform().GetWorldScale().x)
-    //    {
-    //        GuardianLady_->GetMetaTextureRenderer()->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()
-    //                                                                                 + float4{100, 500});
-    //    }
-
-    //    else
-    //    {
-    //        GuardianLady_->GetMetaTextureRenderer()->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()
-    //                                                                                 + float4{100, 500});
-    //    }
-    //}
-
     if (false == IsOnInventory_)
     {
         State_.Update(_DeltaTime);
@@ -251,14 +233,6 @@ void Penitent::Update(float _DeltaTime)
         GameEngineTime::GetInst()->SetTimeScale(MetaRenderer_->GetOrder(), 1.0f);
         GameEngineTime::GetInst()->SetTimeScale(GetOrder(), 1.0f);
     }
-
-    // GameEngineDebug::OutPutString("Player Pos: " + std::to_string(GetTransform().GetWorldPosition().x));
-    // GameEngineDebug::OutPutString("Player PosY: " + std::to_string(GetTransform().GetWorldPosition().y));
-
-    // GameEngineDebug::OutPutString("Player HP: " + std::to_string(GetHP()));
-
-    // GameEngineDebug::OutPutString("GamePad State: "
-    //+ std::to_string(GameEngineInput::GetInst()->GetInputState().dwPacketNumber));
 
     ThumbLX_ = GameEngineInput::GetInst()->GetThumbLX();
     ThumbLY_ = GameEngineInput::GetInst()->GetThumbLY();

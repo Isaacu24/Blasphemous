@@ -513,6 +513,8 @@ bool Penitent::Dangle(GameEngineCollision* _This, GameEngineCollision* _Other)
     GetTransform().SetWorldPosition({DanglePos.x, DanglePos.y, PlayerZ});
     ChangeState("Dangle");
 
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("Penitent_EdgeGrab.wav");
+
     return true;
 }
 

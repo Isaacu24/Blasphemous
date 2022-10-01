@@ -318,8 +318,6 @@ private:
     float4                            ColScale_;
     class GameEngineFontRederer*      Font_;
 
-    class GuardianLadyComponent* GuardianLady_;
-
     SpectrumComponent* SlideSpectrum_;
     SpectrumComponent* SlideAttackSpectrum_;
 
@@ -391,4 +389,6 @@ private:
 
     //게임 패드 신호 숫자
     DWORD PacketNumber_;
+
+    GameEngineSoundPlayer SoundPlayer_;
 };

@@ -323,9 +323,6 @@
     <ClInclude Include="GravityComponent.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="GuardianLadyComponent.h">
-      <Filter>Actor\Player</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -652,9 +649,6 @@
     </ClCompile>
     <ClCompile Include="GravityComponent.cpp">
       <Filter>Component</Filter>
-    </ClCompile>
-    <ClCompile Include="GuardianLadyComponent.cpp">
-      <Filter>Actor\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

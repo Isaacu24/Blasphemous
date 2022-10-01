@@ -5,7 +5,16 @@ DistortionEffect::DistortionEffect()
     : Delay_(1.f)
 {}
 
-DistortionEffect::~DistortionEffect() {}
+DistortionEffect::~DistortionEffect()
+{
+    CopyTarget_->Clear();
+
+    if (nullptr != CopyTarget_)
+    {
+        delete CopyTarget_;
+        CopyTarget_ = nullptr;
+    }
+}
 
 void DistortionEffect::EffectInit()
 {

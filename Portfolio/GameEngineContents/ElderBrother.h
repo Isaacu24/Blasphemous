@@ -127,4 +127,7 @@ private:
     bool IsDecide_;
 
     class StageBase* CurStage_;
+
+    GameEngineSoundPlayer SoundPlayer_;
+    GameEngineSoundPlayer VoiceSoundPlayer_;
 };

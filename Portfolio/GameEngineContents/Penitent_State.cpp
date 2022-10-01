@@ -162,6 +162,8 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
             MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()
                                                          + float4{RealDirX_ * 50.f, 0});
             MoveEffect_->Renderer_->ChangeMetaAnimation("penitent-stop-running-dust");
+
+            SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_RUNSTOP_MARBLE.wav");
         }
 
         else
@@ -200,6 +202,8 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
             MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()
                                                          + float4{RealDirX_ * 50.f, 0});
             MoveEffect_->Renderer_->ChangeMetaAnimation("penitent-stop-running-dust");
+
+            SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_RUNSTOP_MARBLE.wav");
         }
 
         else
@@ -251,6 +255,8 @@ void Penitent::JumpStart(const StateInfo& _Info)
 {
     JumpForce_ = 100.f;
     MetaRenderer_->ChangeMetaAnimation("penitent_jump_anim");
+
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_JUMP.wav");
 
     MoveEffect_->Renderer_->On();
     MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
@@ -475,6 +481,8 @@ void Penitent::JumpAttackEnd(const StateInfo& _Info)
 
 void Penitent::KnockBackStart(const StateInfo& _Info)
 {
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_HIT_DAMAGE_1.wav");
+
     if ("LadderClimb" == _Info.PrevState)
     {
         State_.ChangeState("LadderClimb");
@@ -547,6 +555,8 @@ void Penitent::KnockBackEnd(const StateInfo& _Info)
 
 void Penitent::KnockUpStart(const StateInfo& _Info)
 {
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_HIT_DAMAGE_2.wav");
+
     if ("LadderClimb" == _Info.PrevState)
     {
         State_.ChangeState("LadderClimb");
@@ -623,6 +633,8 @@ void Penitent::LandingStart(const StateInfo& _Info)
 
     else
     {
+        SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_JUMP_FALL_STONE.wav");
+
         MetaRenderer_->ChangeMetaAnimation("penintent_standing_up");
 
         MoveEffect_->Renderer_->On();
@@ -738,6 +750,8 @@ void Penitent::SlideStart(const StateInfo& _Info)
     MetaRenderer_->ChangeMetaAnimation("penitent_dodge_anim");
     MoveEffect_->Renderer_->On();
 
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_DASH.wav");
+
     if (1 == RealDirX_)
     {
         MoveDir_ = float4::RIGHT;
@@ -799,6 +813,8 @@ void Penitent::SlideEnd(const StateInfo& _Info)
 
 void Penitent::DangleStart(const StateInfo& _Info)
 {
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("Penitent_EdgeClimb.wav");
+
     Gravity_->SetActive(false);
     MetaRenderer_->ChangeMetaAnimation("penitent_hangonledge_anim");
 
@@ -1109,7 +1125,11 @@ void Penitent::VerticalAttackLandingUpdate(float _DeltaTime, const StateInfo& _I
 void Penitent::VerticalAttackLandingEnd(const StateInfo& _Info) { AttackCollider_->Off(); }
 
 
-void Penitent::PrayAttackStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penitent_aura_anim"); }
+void Penitent::PrayAttackStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("penitent_aura_anim");
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_ACTIVATE_PRAYER.wav");
+}
 
 void Penitent::PrayAttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
@@ -1206,22 +1226,33 @@ void Penitent::ExecutionEnd(const StateInfo& _Info)
 }
 
 
-void Penitent::ParryingStart(const StateInfo& _Info) { MetaRenderer_->ChangeMetaAnimation("penitent_parry_failed"); }
+void Penitent::ParryingStart(const StateInfo& _Info)
+{
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_START_PARRY.wav");
+
+    MetaRenderer_->ChangeMetaAnimation("penitent_parry_failed");
+}
 
 void Penitent::ParryingUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     if (true == IsParrySuccess_)
     {
+        IsParrySuccess_ = false;
+
+        SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_GUARD.wav");
+
         MetaRenderer_->ChangeMetaAnimation("penitent_parry_success_animv3");
         ParryOn_ = false;
     }
 }
 
-void Penitent::ParryingEnd(const StateInfo& _Info) { IsParrySuccess_ = false; }
+void Penitent::ParryingEnd(const StateInfo& _Info) {}
 
 
 void Penitent::ParryingAttackStart(const StateInfo& _Info)
 {
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_PARRY_HIT.wav");
+
     MetaRenderer_->ChangeMetaAnimation("penitent_parry_counter_v2_anim");
 }
 
@@ -1289,6 +1320,8 @@ void Penitent::ReturnToPortEnd(const StateInfo& _Info) {}
 void Penitent::RespawnStart(const StateInfo& _Info)
 {
     BodyCollider_->Off();
+
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_RESPAWN.wav");
 
     //일단 무조건 오른쪽을 본다.
     GetTransform().PixLocalPositiveX();
@@ -1424,6 +1457,8 @@ void Penitent::DeathStart(const StateInfo& _Info)
     IsPlayerDeath_ = true;
 
     MetaRenderer_->ChangeMetaAnimation("death_anim_blood");
+
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_DEATH_DEFAULT.wav");
 
     if (true == LastSaveLevel_.empty())
     {

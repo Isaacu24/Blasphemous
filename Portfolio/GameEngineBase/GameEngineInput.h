@@ -67,8 +67,6 @@ private:
 			Up_ = false;
 			Free_ = true;
 		}
-
-
 	};
 
 	friend class GameEngineWindow;

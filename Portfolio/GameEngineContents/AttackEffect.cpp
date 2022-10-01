@@ -207,6 +207,9 @@ void AttackEffect::Start()
     Renderer_->SetPivot(PIVOTMODE::METABOT);
 }
 
-void AttackEffect::Update(float _DeltaTime) {}
+void AttackEffect::Update(float _DeltaTime)
+{
+    GameEngineDebug::OutPutString("ZZZ : " + std::to_string(GetTransform().GetWorldPosition().z));
+}
 
 void AttackEffect::End() {}

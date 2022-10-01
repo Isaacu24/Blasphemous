@@ -144,13 +144,13 @@ void Stage20::Update(float _DeltaTime)
                 if (1700.f > Penitent_->GetTransform().GetLocalPosition().x)
                 {
                     Penitent_->GetTransform().SetWorldPosition(
-                        {1700.f, Penitent_->GetTransform().GetWorldPosition().y});
+                        {1700.f, Penitent_->GetTransform().GetWorldPosition().y, PlayerZ});
                 }
 
                 else if (2900.f < Penitent_->GetTransform().GetLocalPosition().x)
                 {
                     Penitent_->GetTransform().SetWorldPosition(
-                        {2900.f, Penitent_->GetTransform().GetWorldPosition().y});
+                        {2900.f, Penitent_->GetTransform().GetWorldPosition().y, PlayerZ});
                 }
 
                 float4 CamPos = GetMainCameraActor()->GetTransform().GetLocalPosition();

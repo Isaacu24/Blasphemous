@@ -142,6 +142,8 @@ void Stage04::StageFlowUpdate(float _DeltaTime)
             {
                 Penitent_->SetIsFreezeEnd(true);
                 CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
+
+                BackgroundPlayer_ = GameEngineSound::SoundPlayControl("ElderBrother.wav", -1);
             }
             break;
         case STAGEFLOW::BOSSCOMBAT:
@@ -173,6 +175,7 @@ void Stage04::StageFlowUpdate(float _DeltaTime)
 
             if (true == ElderBrother_->GetDeathEvent())
             {
+                BackgroundPlayer_.Stop();
                 CurrentFlow_ = STAGEFLOW::BOSSDEAD;
             }
             break;

@@ -41,6 +41,8 @@ void MagicMissile::Start()
         std::bind(&MagicMissile::ExplosionStart, this, std::placeholders::_1),
         std::bind(&MagicMissile::ExplosionEnd, this, std::placeholders::_1));
 
+    State_.ChangeState("Shoot");
+
     Renderer_->ChangeFrameAnimation("Create");
     Renderer_->GetTransform().SetWorldScale({200.f, 200.f});
     Renderer_->SetPivot(PIVOTMODE::CENTER);
@@ -52,7 +54,8 @@ void MagicMissile::Start()
     SetSpeed(200.f);
 }
 
-void MagicMissile::Update(float _DeltaTime) {}
+void MagicMissile::Update(float _DeltaTime) 
+{ State_.Update(_DeltaTime); }
 
 void MagicMissile::End() {}
 
@@ -61,11 +64,6 @@ void MagicMissile::ShootStart(const StateInfo& _Info) { Renderer_->ChangeFrameAn
 
 void MagicMissile::ShootUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    if (true == IsExplosion_)
-    {
-        return;
-    }
-
     float4 Color = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x,
                                                               -(GetTransform().GetWorldPosition().y));
 

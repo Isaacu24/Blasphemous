@@ -155,10 +155,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="GuardianLadyComponent.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="HardLandingEffect.h">
       <SubType>
       </SubType>
@@ -583,10 +579,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="GravityComponent.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="GuardianLadyComponent.cpp">
       <SubType>
       </SubType>
     </ClCompile>

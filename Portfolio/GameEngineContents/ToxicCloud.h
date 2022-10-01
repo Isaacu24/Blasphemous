@@ -15,12 +15,15 @@ public:
 
     void IdleStart(const StateInfo& _Info);
     void IdleUpdate(float _DeltaTime, const StateInfo& _Info);
+    void IdleEnd(const StateInfo& _Info);
 
     void ShootStart(const StateInfo& _Info);
     void ShootUpdate(float _DeltaTime, const StateInfo& _Info);
+    void ShootEnd(const StateInfo& _Info);
 
     void ExplosionStart(const StateInfo& _Info);
     void ExplosionUpdate(float _DeltaTime, const StateInfo& _Info);
+    void ExplosionEnd(const StateInfo& _Info);
 
     bool Explosion(GameEngineCollision* _This, GameEngineCollision* _Other)
     {

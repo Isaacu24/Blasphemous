@@ -400,6 +400,7 @@ void GameEngineInput::GameEngineButton::Update(float _DeltaTime)
 				Time_ = 0.0f;
 				Time_ += _DeltaTime;
 			}
+
 			else if (true == Press_)
 			{
 				Down_ = false;

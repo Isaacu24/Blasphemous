@@ -62,10 +62,10 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
             std::string ImageName     = std::filesystem::path{FileName}.replace_extension("").string();  // Remove .meta
             std::string AnimationName = std::filesystem::path{ImageName}.replace_extension("").string();  // Remove .png
 
-            // Renderer->CreateFrameAnimationCutTexture(
-            //     AnimationName, {ImageName, 0, static_cast<unsigned int>(MetaDatas_.size() - 1), 0.1f, true});
+             Renderer->CreateFrameAnimationCutTexture(
+                 AnimationName, {ImageName, 0, static_cast<unsigned int>(MetaDatas_.size() - 1), 0.1f, true});
 
-            // Renderer->ChangeFrameAnimation(AnimationName);
+             Renderer->ChangeFrameAnimation(AnimationName);
 
             Renderer->SetCurData(MetaDatas_);
 
@@ -367,7 +367,7 @@ void MetaSpriteWindow::CutAllTexture()
     Textures_.clear();
 }
 
-//
+
 // void MetaSpriteWindow::MetaSetPivot()
 //{
 //     float X = Vectors_[CurFrame].x - 0.5f;
@@ -404,5 +404,5 @@ void MetaSpriteWindow::CutAllTexture()
 //         Renderer->GetTransform().SetLocalPosition({-(Width), (Height)});
 //     }
 // }
-//
-//
+
+
