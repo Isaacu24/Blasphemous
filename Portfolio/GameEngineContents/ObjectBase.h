@@ -35,6 +35,9 @@ protected:
 
     bool Interaction_;
 
+    GameEngineSoundPlayer SoundPlayer_;
+
 private:
     ObjectType MyType_;
+
 };

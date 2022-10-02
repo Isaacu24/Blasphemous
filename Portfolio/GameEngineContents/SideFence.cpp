@@ -1,7 +1,7 @@
 #include "PreCompile.h"
 #include "SideFence.h"
 
-SideFence::SideFence() 
+SideFence::SideFence()
     : IsClose_(true)
 {}
 
@@ -23,7 +23,7 @@ void SideFence::Start()
 
     Rendrerer_->CreateFrameAnimationCutTexture("reja_lateral_invertedBell_descending",
                                                {"reja_lateral_invertedBell_descending.png", Order, 0.1f, true});
-    
+
     Rendrerer_->AnimationBindFrame("reja_lateral_invertedBell_descending",
                                    [&](const FrameAnimation_DESC& _Info)
                                    {
@@ -34,10 +34,7 @@ void SideFence::Start()
                                    });
 
     Rendrerer_->AnimationBindEnd("reja_lateral_invertedBell_descending",
-                                 [&](const FrameAnimation_DESC& _Info)
-                                 {
-                                     State_.ChangeState("Open");
-                                 });
+                                 [&](const FrameAnimation_DESC& _Info) { State_.ChangeState("Open"); });
 
     Rendrerer_->CreateFrameAnimationCutTexture("reja_lateral_invertedBell_Open",
                                                {"reja_lateral_invertedBell_descending.png", 0, 0, 0.1f, false});
@@ -75,6 +72,8 @@ void SideFence::OpenStart(const StateInfo& _Info)
 {
     IsClose_ = false;
     Rendrerer_->ChangeFrameAnimation("reja_lateral_invertedBell_Open");
+
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("GATE_OPEN.wav");
 }
 
 void SideFence::OpenUpdate(float _DeltaTime, const StateInfo& _Info) {}
@@ -94,12 +93,9 @@ void SideFence::CloseEnd(const StateInfo& _Info) {}
 
 void SideFence::DescendingStart(const StateInfo& _Info)
 {
-    //PrevState_ = _Info.PrevState;
+    // PrevState_ = _Info.PrevState;
     Rendrerer_->ChangeFrameAnimation("reja_lateral_invertedBell_descending");
 }
 void SideFence::DescendingUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void SideFence::DescendingEnd(const StateInfo& _Info) {}
-
-
-

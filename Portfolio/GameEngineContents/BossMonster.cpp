@@ -143,6 +143,8 @@ void BossMonster::DamageCheck(float _Damage, const std::string& _State)
 
 void BossMonster::BossDeathEvent()
 {
+    BossDeathEvent_ = true;
+
     Backgorund_ = CreateComponent<GameEngineTextureRenderer>();
     Backgorund_->SetTexture("BlackBackground.png");
     Backgorund_->ScaleToTexture();

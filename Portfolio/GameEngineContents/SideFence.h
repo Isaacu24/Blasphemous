@@ -1,7 +1,7 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
+#include "ObjectBase.h"
 
-class SideFence : public GameEngineActor
+class SideFence : public ObjectBase
 {
 public:
     SideFence();

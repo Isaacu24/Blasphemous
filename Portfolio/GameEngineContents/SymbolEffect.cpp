@@ -12,6 +12,16 @@ void SymbolEffect::Start()
     Renderer_->CreateFrameAnimationCutTexture("pope_twistedOne_symbol_appear",
                                               {"pope_twistedOne_symbol.png", 0, 5, 0.06f, false});
 
+
+    Renderer_->AnimationBindFrame("pope_twistedOne_symbol_appear",
+                                  [&](const FrameAnimation_DESC& _Info)
+                                  {
+                                      if (1 == _Info.CurFrame)
+                                      {
+                                          SoundPlayer_ = GameEngineSound::SoundPlayControl("PONTIFF_CAST_SPELL.wav");
+                                      }
+                                  });
+
     Renderer_->AnimationBindEnd("pope_twistedOne_symbol_appear",
                                 [&](const FrameAnimation_DESC& _Info)
                                 {
@@ -23,6 +33,16 @@ void SymbolEffect::Start()
     Renderer_->CreateFrameAnimationCutTexture("pope_twistedOne_symbol_loop",
                                               {"pope_twistedOne_symbol.png", 6, 17, 0.06f, true});
 
+    Renderer_->AnimationBindFrame("pope_twistedOne_symbol_loop",
+                                  [&](const FrameAnimation_DESC& _Info)
+                                  {
+                                      if (1 == _Info.CurFrame)
+                                      {
+                                          SoundPlayer_ = GameEngineSound::SoundPlayControl("PONTIFF_SPELL_LOOP.wav");
+                                          SoundPlayer_.Volume(0.05f);
+                                      }
+                                  });
+
 
     Renderer_->CreateFrameAnimationCutTexture("pope_twistedOne_symbol_disAppear",
                                               {"pope_twistedOne_symbol.png", 18, 23, 0.06f, false});
@@ -33,6 +53,18 @@ void SymbolEffect::Start()
 
     Renderer_->CreateFrameAnimationCutTexture("pope_twistedOne_symbol",
                                               {"pope_twistedOne_symbol.png", 0, 23, 0.06f, false});
+
+
+    Renderer_->AnimationBindFrame("pope_twistedOne_symbol",
+                                  [&](const FrameAnimation_DESC& _Info)
+                                  {
+                                      if (1 == _Info.CurFrame)
+                                      {
+                                          SoundPlayer_ = GameEngineSound::SoundPlayControl("PONTIFF_CAST_SPELL.wav");
+                                          SoundPlayer_.Volume(0.05f);
+                                      }
+                                  });
+
 
     Renderer_->AnimationBindEnd("pope_twistedOne_symbol",
                                 [&](const FrameAnimation_DESC& _Info)
@@ -65,9 +97,6 @@ void SymbolEffect::SetColor(COLORTYPE _Type)
             break;
         case COLORTYPE::PURPLE:
             Renderer_->GetColorData().MulColor = float4{0.46f, 0.0f, 1.0f, 1.f};
-            break;
-        default:
-            Renderer_->GetColorData().MulColor = float4::ONE;
             break;
     }
 }

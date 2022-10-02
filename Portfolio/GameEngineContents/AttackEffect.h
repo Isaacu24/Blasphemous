@@ -24,6 +24,8 @@ protected:
 private:
     MetaTextureRenderer* Renderer_;
 
+	GameEngineSoundPlayer SoundPlayer_;
+
 	bool IsGettingSoul_;
 };
 

@@ -126,7 +126,7 @@ void Stage03::SettingStage()
 
     PlayerRightPos_ = float4{3200, -1067, PlayerZ};
     PlayerLeftPos_  = float4{150, -1067, PlayerZ};
-        
+
     IsLeftExit_ = true;
 
     if (false == GameEngineInput::GetInst()->IsKey("Distortion"))
@@ -140,7 +140,7 @@ void Stage03::Start()
     SettingStage();
 
     Distortion_ = GetMainCamera()->GetCameraRenderTarget()->AddEffect<DistortionEffect>();
-    Distortion_->SetEffectLocalPos(2.f, 1.f); 
+    Distortion_->SetEffectLocalPos(2.f, 1.f);
     Distortion_->Off();
 }
 
@@ -202,6 +202,9 @@ void Stage03::Update(float _DeltaTime)
     if (true == GetLoadingEnd())
     {
         SetLoadingEnd(false);
+
+        StageSoundPlayer_.Volume(0.15f);
+        StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Brotherhood_Ambient.wav", -1);
 
         if (false == Penitent_->IsUpdate())
         {

@@ -463,7 +463,6 @@ void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
             if (true == IsGround_)
             {
                 Renderer_->ChangeFrameAnimation("elderBrother_land_event");
-                BackgroundPlayer_ = GameEngineSound::SoundPlayControl("ElderBrother.wav", -1);
                 Flow_             = APPEARFLOW::Appear;
             }
             break;
@@ -640,12 +639,12 @@ void ElderBrother::DeathStart(const StateInfo& _Info)
 {
     SoundPlayer_      = GameEngineSound::SoundPlayControl("ELDER_BROTHER_DEATH.wav");
     VoiceSoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_DEATH_VOICE_2.wav");
-    BackgroundPlayer_.Stop();
 
     BossUI_->AllOff();
 
     Renderer_->ChangeFrameAnimation("elderBrother_death");
 
+    BossDeathEvent_ = true;
     BossDeathEvent();
 
     AttackEffecter_->Death();

@@ -54,6 +54,8 @@ public:
 
     inline void ChangeMonsterState(const std::string& _State) { State_.ChangeState(_State); }
 
+    inline const std::string& GetMonsterState() { return State_.GetCurStateStateName(); }
+
     inline void ChangeIdleState(const FrameAnimation_DESC& _Info) { State_.ChangeState("Idle"); }
 
     // inline MetaTextureRenderer* GetMetaRenderer() { return MetaRenderer_; }

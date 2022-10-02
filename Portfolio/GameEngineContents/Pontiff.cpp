@@ -68,6 +68,8 @@ void Pontiff::Start()
                                   if (50 == _Info.CurFrame)
                                   {
                                       MainBody_->On();
+
+                                      SoundPlayer_ = GameEngineSound::SoundPlayControl("PILGRIM_2_DEATH.wav");
                                   }
                               });
 
@@ -568,6 +570,8 @@ void Pontiff::OpeningStart(const StateInfo& _Info)
     Helmet_->ChangeFrameAnimation("pontiff_opening_helmet");
     Body_->ChangeFrameAnimation("pontiff_opening_torso");
     Face_->ChangeFrameAnimation("pontiff_opening_face");
+
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("PONTIFF_MASK_OPEN.wav");
 }
 
 void Pontiff::OpeningUpdate(float _DeltaTime, const StateInfo& _Info) {}
@@ -591,6 +595,8 @@ void Pontiff::ClosingStart(const StateInfo& _Info)
     Helmet_->ChangeFrameAnimation("pontiff_closing_helmet");
     Body_->ChangeFrameAnimation("pontiff_closing_torso");
     Face_->ChangeFrameAnimation("pontiff_closing_face");
+
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("PONTIFF_MASK_CLOSE.wav");
 }
 
 void Pontiff::ClosingUpdate(float _DeltaTime, const StateInfo& _Info) {}
@@ -612,6 +618,8 @@ void Pontiff::CloseIdleEnd(const StateInfo& _Info) { Face_->On(); }
 
 void Pontiff::DeathStart(const StateInfo& _Info)
 {
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("PONTIFF_OLD_DEATH.wav");
+
     BossDeathEvent();
 
     AscensionSpeed_ = 100;

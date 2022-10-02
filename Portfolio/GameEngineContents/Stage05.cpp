@@ -125,6 +125,9 @@ void Stage05::Update(float _DeltaTime)
     {
         SetLoadingEnd(false);
 
+        StageSoundPlayer_.Volume(0.15f);
+        StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Brotherhood_Ambient.wav", -1);
+
         if (nullptr != GEngine::GetPrevLevel())
         {
             if ("STAGE10" == GEngine::GetPrevLevel()->GetNameConstRef()
@@ -175,11 +178,12 @@ void Stage05::LevelStartEvent()
         {
             Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
         }
+    }
 
-        if (true == Penitent_->GetIsOutDoor())
-        {
-            IronDoor_->GetDoorRenderer()->ChangeFrameAnimation("brotherhood_door_anim_Open");
-        }
+    if (true == Penitent_->GetIsOutDoor())
+    {
+        IronDoor_->SetObjectType(ObjectType::OpenDoor);
+        IronDoor_->GetDoorRenderer()->ChangeFrameAnimation("brotherhood_door_anim_Open");
     }
 
     IsRightExit_ = false;

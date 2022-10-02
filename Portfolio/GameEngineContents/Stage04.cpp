@@ -104,6 +104,14 @@ void Stage04::Update(float _DeltaTime)
     }
 
     StageFlowUpdate(_DeltaTime);
+
+    if (true == GetLoadingEnd())
+    {
+        SetLoadingEnd(false);
+
+        StageSoundPlayer_.Volume(0.15f);
+        StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Boss_Zone_Background.wav", -1);
+    }
 }
 
 void Stage04::BossStateCheck()
@@ -129,6 +137,8 @@ void Stage04::StageFlowUpdate(float _DeltaTime)
                 Penitent_->ChangeState("Freeze");
                 ElderBrother_->EventOn();
 
+                StageSoundPlayer_.Stop();
+
                 CurrentFlow_ = STAGEFLOW::BOSSAPPEAR;
             }
             break;
@@ -142,6 +152,8 @@ void Stage04::StageFlowUpdate(float _DeltaTime)
             {
                 Penitent_->SetIsFreezeEnd(true);
                 CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
+
+                StageSoundPlayer_ = GameEngineSound::SoundPlayControl("ElderBrother.wav", -1);
             }
             break;
         case STAGEFLOW::BOSSCOMBAT:
@@ -171,15 +183,15 @@ void Stage04::StageFlowUpdate(float _DeltaTime)
                     float4{1850, GetMainCameraActor()->GetTransform().GetLocalPosition().y, CameraZPos_});
             }
 
-            if (true == ElderBrother_->GetDeathEvent())
+            if (true == ElderBrother_->GetBossDeathEvent())
             {
-                CurrentFlow_ = STAGEFLOW::BOSSDEAD;
+                StageSoundPlayer_.Stop();
+
+                CurrentFlow_      = STAGEFLOW::BOSSDEAD;
+                StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Brotherhood_Ambient.wav", -1);
             }
             break;
         case STAGEFLOW::BOSSDEAD:
-            PlayerCameraMove(_DeltaTime);
-            break;
-        default:
             PlayerCameraMove(_DeltaTime);
             break;
     }

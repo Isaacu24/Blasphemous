@@ -12,11 +12,16 @@ void Penitent::FreezeStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_sheathedIdle_Start");
     IsFreezeEnd_ = false;
+
+    if ("DoorEntrance" == _Info.PrevState)
+    {
+        IsDoorExit_ = true;
+    }
 }
 
 void Penitent::FreezeUpdate(float _DeltaTime, const StateInfo& _Info) { Gravity_->SetActive(!IsGround_); }
 
-void Penitent::FreezeEnd(const StateInfo& _Info) {}
+void Penitent::FreezeEnd(const StateInfo& _Info) { IsDoorExit_ = false; }
 
 
 void Penitent::IdleStart(const StateInfo& _Info)
@@ -629,6 +634,8 @@ void Penitent::LandingStart(const StateInfo& _Info)
         AttackCollider_->On();
 
         MetaRenderer_->ChangeMetaAnimation("penitent_hardlanding_rocks_anim");
+
+        SoundPlayer_ = GameEngineSound::SoundPlayControl("HARD_LANDING.wav");
     }
 
     else
@@ -646,6 +653,8 @@ void Penitent::LandingStart(const StateInfo& _Info)
             || GameEngineInput::GetInst()->IsPressKey("PenitentLeft") || 30000 < ThumbLX_ || -30000 > ThumbLX_)
         {
             ChangeState("Move");
+
+            SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_LANDING_RUNNING.wav");
         }
 
         else if (GameEngineInput::GetInst()->IsPressKey("PenitentAttack")
@@ -905,6 +914,7 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
             if (false == MetaRenderer_->IsCurAnimationPause())
             {
                 MetaRenderer_->CurAnimationPauseSwitch();
+                SoundPlayer_.Stop();
             }
         }
 
@@ -1071,6 +1081,8 @@ void Penitent::SlideAttackEnd(const StateInfo& _Info)
 
 void Penitent::VerticalAttackStart(const StateInfo& _Info)
 {
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("VERTICAL_ATTACK_START.wav");
+
     MetaRenderer_->ChangeMetaAnimation("penitent_verticalattack_start_anim");
     FallTime_ = 0;
 
@@ -1122,7 +1134,11 @@ void Penitent::VerticalAttackLandingUpdate(float _DeltaTime, const StateInfo& _I
     Gravity_->SetActive(!IsGround_);
 }
 
-void Penitent::VerticalAttackLandingEnd(const StateInfo& _Info) { AttackCollider_->Off(); }
+void Penitent::VerticalAttackLandingEnd(const StateInfo& _Info)
+{
+    AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
+    AttackCollider_->Off();
+}
 
 
 void Penitent::PrayAttackStart(const StateInfo& _Info)
@@ -1151,6 +1167,8 @@ void Penitent::PrayAttackEnd(const StateInfo& _Info)
 
 void Penitent::RangeAttackStart(const StateInfo& _Info)
 {
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("RANGE_ATTACK.wav");
+
     MetaRenderer_->ChangeMetaAnimation("penitent_rangeAttack_shoot_anim");
 }
 
@@ -1161,6 +1179,8 @@ void Penitent::RangeAttackEnd(const StateInfo& _Info) {}
 
 void Penitent::JumpRangeAttackStart(const StateInfo& _Info)
 {
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("RANGE_ATTACK.wav");
+
     MetaRenderer_->ChangeMetaAnimation("penitent_rangeAttack_symbol_midair_anim");
 
     JumpForce_ = 10.f;

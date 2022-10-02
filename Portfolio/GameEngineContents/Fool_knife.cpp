@@ -30,6 +30,15 @@ void Fool_knife::Start()
 
     Renderer_->CreateFrameAnimationCutTexture("Fool_walk_knife", {"Fool_walk_knife.png", 0, 8, 0.1f, true});
 
+    Renderer_->AnimationBindFrame("Fool_walk_knife",
+                                  [&](const FrameAnimation_DESC& _Info)
+                                  {
+                                      if (0 == _Info.CurFrame % 4)
+                                      {
+                                          SoundPlayer_ = GameEngineSound::SoundPlayControl("FOOL_FOOTSTEP_4.wav");
+                                      }
+                                  });
+
     Renderer_->CreateFrameAnimationCutTexture("Fool_hurt_knife", {"Fool_hurt_knife.png", 0, 8, 0.07f, false});
 
     Renderer_->AnimationBindEnd("Fool_hurt_knife",
@@ -365,9 +374,13 @@ void Fool_knife::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
 void Fool_knife::TrackEnd(const StateInfo& _Info) {}
 
 
-void Fool_knife::HurtStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("Fool_hurt_knife"); }
+void Fool_knife::HurtStart(const StateInfo& _Info)
+{
+    Renderer_->ChangeFrameAnimation("Fool_hurt_knife");
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("FOOL_DEATH_2.wav");
+}
 
-void Fool_knife::HurtUpdate(float _DeltaTime, const StateInfo& _Info) 
+void Fool_knife::HurtUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     if (0.2f < _Info.StateTime)
     {
@@ -415,6 +428,8 @@ void Fool_knife::TrackTurnEnd(const StateInfo& _Info)
 
 void Fool_knife::DeathStart(const StateInfo& _Info)
 {
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("FOOL_DEATH_1.wav");
+
     BodyCollider_->Off();
     DetectCollider_->Off();
     AttackCollider_->Off();

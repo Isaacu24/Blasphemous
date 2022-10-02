@@ -63,6 +63,11 @@ void Door::Update(float _DeltaTime)
             || true == GameEngineInput::GetInst()->IsDownButton("PenitentY") && (ObjectType::Door == GetObjectType()))
         {
             Renderer_->ChangeFrameAnimation("brotherhood_door_anim_Open");
+
+            if (true == Renderer_->IsUpdate())
+            {
+                SoundPlayer_ = GameEngineSound::SoundPlayControl("DOOR_METAL_DOUBLE.wav");
+            }
             return;
         }
     }

@@ -296,6 +296,79 @@ void Blasphemous::LoadResources()
 
     {
         GameEngineDirectory Dir;
+        MovePath(Dir, {"ContentsResources", "Resources", "Sound", "Actor", "Monster", "Normal", "ShieldMaiden"});
+
+        std::vector<GameEngineFile> Sounds = Dir.GetAllFile();
+
+        for (size_t i = 0; i < Sounds.size(); i++)
+        {
+            GameEngineSound::LoadRessource(Sounds[i].GetFullPath());
+        }
+    }
+
+    {
+        GameEngineDirectory Dir;
+        MovePath(Dir, {"ContentsResources", "Resources", "Sound", "Actor", "Monster", "Normal", "Fool"});
+
+        std::vector<GameEngineFile> Sounds = Dir.GetAllFile();
+
+        for (size_t i = 0; i < Sounds.size(); i++)
+        {
+            GameEngineSound::LoadRessource(Sounds[i].GetFullPath());
+        }
+    }
+
+    
+    {
+        GameEngineDirectory Dir;
+        MovePath(Dir, {"ContentsResources", "Resources", "Sound", "Actor", "Monster", "Normal", "LionHead"});
+
+        std::vector<GameEngineFile> Sounds = Dir.GetAllFile();
+
+        for (size_t i = 0; i < Sounds.size(); i++)
+        {
+            GameEngineSound::LoadRessource(Sounds[i].GetFullPath());
+        }
+    }
+
+    {
+        GameEngineDirectory Dir;
+        MovePath(Dir, {"ContentsResources", "Resources", "Sound", "Actor", "Monster", "Normal", "Crosscrawler"});
+
+        std::vector<GameEngineFile> Sounds = Dir.GetAllFile();
+
+        for (size_t i = 0; i < Sounds.size(); i++)
+        {
+            GameEngineSound::LoadRessource(Sounds[i].GetFullPath());
+        }
+    }
+
+    {
+        GameEngineDirectory Dir;
+        MovePath(Dir, {"ContentsResources", "Resources", "Sound", "BGM"});
+
+        std::vector<GameEngineFile> Sounds = Dir.GetAllFile();
+
+        for (size_t i = 0; i < Sounds.size(); i++)
+        {
+            GameEngineSound::LoadRessource(Sounds[i].GetFullPath());
+        }
+    }
+
+    {
+        GameEngineDirectory Dir;
+        MovePath(Dir, {"ContentsResources", "Resources", "Sound", "Effect"});
+
+        std::vector<GameEngineFile> Sounds = Dir.GetAllFile();
+
+        for (size_t i = 0; i < Sounds.size(); i++)
+        {
+            GameEngineSound::LoadRessource(Sounds[i].GetFullPath());
+        }
+    }
+
+    {
+        GameEngineDirectory Dir;
         MovePath(Dir, {"ContentsResources", "Resources", "Sound", "KeyEvents"});
 
         std::vector<GameEngineFile> Sounds = Dir.GetAllFile();
@@ -575,8 +648,6 @@ void Blasphemous::CutTexture()
 
     GameEngineTexture::Cut("guiltSystem_blinkFxs.png", 7, 5);
     GameEngineTexture::Cut("guiltDropVanish.png", 5, 2);
-
-    // Effect
     GameEngineTexture::Cut("BloodSplatters.png", 5, 5);
     GameEngineTexture::Cut("BloodSplattersV3.png", 4, 4);
     GameEngineTexture::Cut("BloodSplattersV4.png", 4, 4);
@@ -586,7 +657,6 @@ void Blasphemous::CutTexture()
 
     GameEngineTexture::Cut("TakeBackProyectile.png", 6, 2);
     GameEngineTexture::Cut("TakeBackProyectileExplosion.png", 6, 3);
-    GameEngineTexture::Cut("TakeBackProyectileHead.png", 6, 2);
 
     GameEngineTexture::Cut("pope_twistedOne_symbol.png", 8, 3);
     GameEngineTexture::Cut("pope_fireBall.png", 4, 3);

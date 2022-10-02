@@ -142,4 +142,6 @@ void StageBase::LevelEndEvent()
     {
         IsLeftExit_ = true;
     }
+
+    StageSoundPlayer_.Stop();
 }

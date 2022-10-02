@@ -267,6 +267,13 @@ void Stage02::Update(float _DeltaTime)
         LoadingActor_->IsEntrance(false);
         LoadingActor_->Exit("Stage03");
     }
+
+    if (true == GetLoadingEnd())
+    {
+        StageSoundPlayer_.Volume(0.15f);
+        StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Brotherhood_Ambient.wav", -1);
+        SetLoadingEnd(false);
+    }
 }
 
 void Stage02::End() {}

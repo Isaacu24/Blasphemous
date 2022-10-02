@@ -47,8 +47,19 @@ void FireBall::Start()
     State_.ChangeState("Shoot");
 }
 
-void FireBall::Update(float _DeltaTime)
+void FireBall::Update(float _DeltaTime) { State_.Update(_DeltaTime); }
+
+void FireBall::End() {}
+
+void FireBall::ShootStart(const StateInfo& _Info)
 {
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("FIREBALL_FLY.wav");
+}
+
+void FireBall::ShootUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    Shoot(_DeltaTime);
+
     float4 Color = ColMap_->GetCurTexture()->GetPixelToFloat4(GetTransform().GetWorldPosition().x,
                                                               -(GetTransform().GetWorldPosition().y));
 
@@ -72,18 +83,12 @@ void FireBall::Update(float _DeltaTime)
     {
         Death();
     }
-
-    State_.Update(_DeltaTime);
 }
-
-void FireBall::End() {}
-
-void FireBall::ShootStart(const StateInfo& _Info) {}
-
-void FireBall::ShootUpdate(float _DeltaTime, const StateInfo& _Info) { Shoot(_DeltaTime); }
 
 void FireBall::ExplosionStart(const StateInfo& _Info)
 {
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("FIRE_BALL_EXPLODE.wav");
+
     Renderer_->Off();
     Collider_->Off();
 

@@ -64,8 +64,6 @@ public:
 
     inline void EventOn() { EventOn_ = true; }
 
-    inline bool GetDeathEvent() { return DeathEventOn_; }
-
     float4 GetScreenPos()
     {
         float4 Pos = GetTransform().GetWorldPosition();
@@ -123,12 +121,10 @@ private:
 
     bool IsJump_;
     bool EventOn_;
-    bool DeathEventOn_;
     bool IsDecide_;
 
     class StageBase* CurStage_;
 
     GameEngineSoundPlayer AttackSoundPlayer_;
     GameEngineSoundPlayer VoiceSoundPlayer_;
-    GameEngineSoundPlayer BackgroundPlayer_;
 };

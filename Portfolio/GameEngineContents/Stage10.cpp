@@ -95,17 +95,17 @@ void Stage10::SettingMonster()
     CrosscrawlerClone->SetGround(ColMap_);
     MonsterList_.push_back(CrosscrawlerClone);
 
-    ShieldMaiden* Maiden = CreateActor<ShieldMaiden>();
-    Maiden->GetTransform().SetWorldPosition({1300, -682, MonsterZ});
-    Maiden->SetGround(ColMap_);
-    Maiden->SetSpeed(60.f);
-    MonsterList_.push_back(Maiden);
+    //ShieldMaiden* Maiden = CreateActor<ShieldMaiden>();
+    //Maiden->GetTransform().SetWorldPosition({1300, -682, MonsterZ});
+    //Maiden->SetGround(ColMap_);
+    //Maiden->SetSpeed(60.f);
+    //MonsterList_.push_back(Maiden);
 
-    ShieldMaiden* Maiden1 = CreateActor<ShieldMaiden>();
-    Maiden1->GetTransform().SetWorldPosition({2100, -682, MonsterZ});
-    Maiden1->SetGround(ColMap_);
-    Maiden1->PatrolStartEnd(false, true);
-    MonsterList_.push_back(Maiden1);
+    //ShieldMaiden* Maiden1 = CreateActor<ShieldMaiden>();
+    //Maiden1->GetTransform().SetWorldPosition({2100, -682, MonsterZ});
+    //Maiden1->SetGround(ColMap_);
+    //Maiden1->PatrolStartEnd(false, true);
+    //MonsterList_.push_back(Maiden1);
 
     LionHead* LionHeadClone = CreateActor<LionHead>();
     LionHeadClone->GetTransform().SetWorldPosition({3600, -682, MonsterZ});
@@ -303,6 +303,9 @@ void Stage10::Update(float _DeltaTime)
     if (true == GetLoadingEnd())
     {
         SetLoadingEnd(false);
+
+        StageSoundPlayer_.Volume(0.1f);
+        StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Bridge.wav", -1);
 
         if (nullptr != GEngine::GetPrevLevel())
         {

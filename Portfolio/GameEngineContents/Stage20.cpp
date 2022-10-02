@@ -55,10 +55,10 @@ void Stage20::SettingStage()
     UIActor_->Off();
 
     MessageUI_ = CreateActor<MessageUI>();
-    MessageUI_->SetSpeed(10.f); 
+    MessageUI_->SetSpeed(10.f);
     MessageUI_->CreateLine("꿈 속에서 나는 다가오는 그대의 발소리를 들었다. \n꿈 속에서 나는 그대에게 말을 걸고 "
                            "인사를 하려 했다.");
-    MessageUI_->CreateLine("기적의 수호자이자, 기적의 깃발을 지키는 수호자인 나는 \n큰 고통을 짊어지고 아버지의"
+    MessageUI_->CreateLine("기적의 수호자이자, 기적의 깃발을 지키는 수호자인 나는 \n큰 고통을 짊어지고 아버지의 "
                            "문장을 지니고 있음이라.");
     MessageUI_->CreateLine("나는 피투성이로 덮인 두 손이며, \n성모님의 시선을 향하는 두 눈이니라.");
     MessageUI_->CreateLine("그러나 그 차가운 이름 없는 모습 외에는, 그대를 모른다.");
@@ -113,12 +113,20 @@ void Stage20::Update(float _DeltaTime)
     switch (CurrentFlow_)
     {
         case STAGEFLOW::NORMAL:
+            if (true == GetLoadingEnd())
+            {
+                StageSoundPlayer_.Volume(0.15f);
+                StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Gallery of Albores_Loop.wav", -1);
+            }
+
             PlayerCameraMove(_DeltaTime);
 
             if (2000.f <= Penitent_->GetTransform().GetWorldPosition().x)
             {
                 Penitent_->ChangeState("Freeze");
                 CurrentFlow_ = STAGEFLOW::BOSSAPPEAR;
+
+                StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Final Boss_MASTER.wav", -1);
             }
             break;
 
@@ -171,6 +179,8 @@ void Stage20::Update(float _DeltaTime)
 
                     if ("ReturnToPort" == Penitent_->GetPenitentState())
                     {
+                        StageSoundPlayer_.Stop();
+
                         UIActor_->Off();
                         return;
                     }
@@ -186,6 +196,8 @@ void Stage20::Update(float _DeltaTime)
         case STAGEFLOW::BOSSDEAD:
             if (true == GetLoadingEnd())
             {
+                StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Gallery of Albores_Loop.wav", -1);
+
                 SetLoadingEnd(false);
                 Penitent::GetMainPlayer()->BossDeathUIOn(0);
             }

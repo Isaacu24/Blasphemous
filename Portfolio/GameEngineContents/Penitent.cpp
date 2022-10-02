@@ -497,6 +497,11 @@ void Penitent::SetAnimation()
                     MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()
                                                                  + float4{-(RealDirX_ * 50.f), 0});
                 }
+
+                if (0 == _Info.CurFrame % 5)
+                {
+                    SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_RUN_MARBLE_2.wav");
+                }
             });
     }
 
@@ -530,6 +535,16 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_sheathedIdle_Start", {"penitent_sheathedIdle.png", 0, 23, 0.08f, false}, Data);
+
+        MetaRenderer_->AnimationBindFrame("penitent_sheathedIdle_Start",
+                                          [&](const FrameAnimation_DESC& _Info)
+                                          {
+                                              if (4 == _Info.CurFrame && false == IsDoorExit_)
+                                              {
+                                                  SoundPlayer_
+                                                      = GameEngineSound::SoundPlayControl("PENITENT_START_TALK.wav");
+                                              }
+                                          });
 
         MetaRenderer_->AnimationBindEnd("penitent_sheathedIdle_Start",
                                         [&](const FrameAnimation_DESC& _Info)
@@ -570,6 +585,16 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_sheathedIdle_End", {"penitent_sheathedIdle.png", 33, 45, 0.07f, false}, Data);
+
+        MetaRenderer_->AnimationBindFrame("penitent_sheathedIdle_End",
+                                          [&](const FrameAnimation_DESC& _Info)
+                                          {
+                                              if (5 == _Info.CurFrame && false == IsDoorExit_)
+                                              {
+                                                  SoundPlayer_
+                                                      = GameEngineSound::SoundPlayControl("PENITENT_END_TALK.wav");
+                                              }
+                                          });
 
         MetaRenderer_->AnimationBindEnd("penitent_sheathedIdle_End",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
@@ -634,6 +659,16 @@ void Penitent::SetAnimation()
             "penintent_ladder_climb_loop_anim",
             {"penintent_ladder_climb_loop_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, true},
             Data);
+
+        MetaRenderer_->AnimationBindFrame(
+            "penintent_ladder_climb_loop_anim",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                if (0 == _Info.CurFrame % 3)
+                {
+                    SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_CLIMB_LADDER_3.wav");
+                }
+            });
     }
 
     {
@@ -894,6 +929,8 @@ void Penitent::SetAnimation()
                         break;
 
                     case 5:
+                        SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_SLASH_AIR_1.wav");
+
                         if (true == IsHit_ || true == IsBossHit_)
                         {
                             CurStage_->SetForceX(10.f);
@@ -932,6 +969,8 @@ void Penitent::SetAnimation()
                         break;
 
                     case 11:
+                        SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_SLASH_AIR_2.wav");
+
                         if (true == IsHit_ || true == IsBossHit_)
                         {
                             CurStage_->SetForceX(10.f);
@@ -967,10 +1006,13 @@ void Penitent::SetAnimation()
 
                     case 19:
                         AttackCollider_->On();
-                        AttackCollider_->GetTransform().SetWorldMove({RealDirX_ * 100.f, 0.f});
+                        AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
+                        AttackCollider_->GetTransform().SetWorldMove({RealDirX_ * 100.f, 50.f});
                         break;
 
                     case 20:
+                        SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_SLASH_AIR_3.wav");
+
                         if (true == IsHit_ || true == IsBossHit_)
                         {
                             CurStage_->SetForceX(15.f);
@@ -982,22 +1024,25 @@ void Penitent::SetAnimation()
 
                     case 22:
                         AttackCollider_->Off();
-                        AttackCollider_->GetTransform().SetWorldMove({-RealDirX_ * 100.f, 0.f});
+                        AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
+                        AttackCollider_->GetTransform().SetWorldMove({RealDirX_ * 100.f, 50.f});
                 }
             });
 
-        MetaRenderer_->AnimationBindEnd("penitent_three_hits_attack_combo_no_slashes",
-                                        [&](const FrameAnimation_DESC& _Info)
-                                        {
-                                            if (2 < AttackStack_)
-                                            {
-                                                AttackStack_ = 0;
-                                                MetaRenderer_->ChangeMetaAnimation("penitent_parry_counterv2_old_anim");
-                                                return;
-                                            }
+        MetaRenderer_->AnimationBindEnd(
+            "penitent_three_hits_attack_combo_no_slashes",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                if (2 < AttackStack_)
+                {
+                    AttackStack_ = 0;
+                    MetaRenderer_->ChangeMetaAnimation("penitent_parry_counterv2_old_anim");
+                    SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_COMBO_FINAL_DOWN.wav");
+                    return;
+                }
 
-                                            ChangeState("Idle");
-                                        });
+                ChangeState("Idle");
+            });
     }
 
 
@@ -1009,30 +1054,32 @@ void Penitent::SetAnimation()
             {"penitent_parry_counterv2_old_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, false},
             Data);
 
-        MetaRenderer_->AnimationBindFrame("penitent_parry_counterv2_old_anim",
-                                          [&](const FrameAnimation_DESC& _Info)
-                                          {
-                                              if (12 == _Info.CurFrame)
-                                              {
-                                                  AttackCollider_->On();
-                                              }
+        MetaRenderer_->AnimationBindFrame(
+            "penitent_parry_counterv2_old_anim",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                if (12 == _Info.CurFrame)
+                {
+                    AttackCollider_->On();
+                }
 
-                                              if (13 == _Info.CurFrame)
-                                              {
-                                                  if (true == IsHit_ || true == IsBossHit_)
-                                                  {
-                                                      CurStage_->SetForceX(20.f);
-                                                      CurStage_->SetForceY(0.f);
-                                                      CurStage_->SetShake(true);
-                                                      IsHit_ = false;
-                                                  }
-                                              }
+                if (13 == _Info.CurFrame)
+                {
+                    if (true == IsHit_ || true == IsBossHit_)
+                    {
+                        SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_CRITICAL_HIT_2.wav");
+                        CurStage_->SetForceX(20.f);
+                        CurStage_->SetForceY(0.f);
+                        CurStage_->SetShake(true);
+                        IsHit_ = false;
+                    }
+                }
 
-                                              if (14 == _Info.CurFrame)
-                                              {
-                                                  AttackCollider_->Off();
-                                              }
-                                          });
+                if (14 == _Info.CurFrame)
+                {
+                    AttackCollider_->Off();
+                }
+            });
 
         MetaRenderer_->AnimationBindEnd("penitent_parry_counterv2_old_anim",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
@@ -1365,6 +1412,15 @@ void Penitent::SetAnimation()
             {"penitent_priedieu_kneeling_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, true},
             Data);
 
+        MetaRenderer_->AnimationBindFrame("penitent_priedieu_kneeling_anim",
+                                          [&](const FrameAnimation_DESC& _Info)
+                                          {
+                                              if (10 == _Info.CurFrame)
+                                              {
+                                                  SoundPlayer_
+                                                      = GameEngineSound::SoundPlayControl("CHECKPOINT_KNEEL_DOWN.wav");
+                                              }
+                                          });
 
         MetaRenderer_->AnimationBindEnd(
             "penitent_priedieu_kneeling_anim",
@@ -1398,10 +1454,13 @@ void Penitent::SetAnimation()
                                             true},
                                            Data);
 
-
         MetaRenderer_->AnimationBindEnd("penitent_priedieu_bended_knee_aura_turnoff",
                                         [&](const FrameAnimation_DESC& _Info)
-                                        { MetaRenderer_->ChangeMetaAnimation("penitent_priedieu_stand_up_anim"); });
+                                        {
+                                            MetaRenderer_->ChangeMetaAnimation("penitent_priedieu_stand_up_anim");
+                                            SoundPlayer_
+                                                = GameEngineSound::SoundPlayControl("CHECKPOINT_KNEEL_DOWN_FINISH.wav");
+                                        });
     }
 
     {
@@ -1678,9 +1737,9 @@ void Penitent::SetPlayerState()
         std::bind(&Penitent::CrouchAttackEnd, this, std::placeholders::_1));
 
     // State_.CreateStateMember("Pray",
-    //                          std::bind(&Penitent::PrayUpdate, this, std::placeholders::_1, std::placeholders::_2),
-    //                          std::bind(&Penitent::PrayStart, this, std::placeholders::_1),
-    //                          std::bind(&Penitent::PrayEnd, this, std::placeholders::_1));
+    //                          std::bind(&Penitent::PrayUpdate, this, std::placeholders::_1,
+    //                          std::placeholders::_2), std::bind(&Penitent::PrayStart, this,
+    //                          std::placeholders::_1), std::bind(&Penitent::PrayEnd, this, std::placeholders::_1));
 
     State_.ChangeState("Idle");
 }

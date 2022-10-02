@@ -61,6 +61,8 @@ void FireBallSpawner::CreateFireBall(const FrameAnimation_DESC& _Info)
 {
     if (39 == _Info.CurFrame)
     {
+        SoundPlayer_ = GameEngineSound::SoundPlayControl("FIREBALL_FIRE.wav");
+
         FireBall* Clone = GetLevel()->CreateActor<FireBall>();
         Clone->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
         Clone->SetStartPosition(GetTransform().GetWorldPosition());

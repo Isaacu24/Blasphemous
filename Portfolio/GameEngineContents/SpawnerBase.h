@@ -36,5 +36,7 @@ protected:
 
     bool IsStop_;
 
+    GameEngineSoundPlayer SoundPlayer_;
+
 private:
 };

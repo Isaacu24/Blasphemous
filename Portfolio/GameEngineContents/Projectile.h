@@ -49,6 +49,8 @@ protected:
 
     GameEngineTextureRenderer* ColMap_;
 
+    GameEngineSoundPlayer SoundPlayer_;
+
     float4 Dir_;
     float  Speed_;
     bool   IsExplosion_;

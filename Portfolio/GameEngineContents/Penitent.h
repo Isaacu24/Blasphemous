@@ -382,6 +382,7 @@ private:
     bool IsKnockUp_;
     //≥ÀπÈ->≥´«œ->¬¯¡ˆ(IsKnockBackGround_ = true)->¿Ãµø->≥ÀπÈ
     bool IsKnockBackFall_;
+    bool IsDoorExit_;
 
     //∞‘¿” ∆–µÂ
     SHORT ThumbLX_;

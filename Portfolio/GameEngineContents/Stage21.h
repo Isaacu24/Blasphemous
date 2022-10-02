@@ -28,5 +28,7 @@ private:
     float          ChangeTime_;
 
     void PlayerCameraMove(float _DeltaTime);
+
+    GameEngineSoundPlayer BackgorundPlayer_;
 };
 

@@ -33,19 +33,32 @@ void LionHead::Start()
             {"Lionhead_attack_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true},
             Data);
 
-        MetaRenderer_->AnimationBindFrame("Lionhead_attack_anim",
-                                          [&](const FrameAnimation_DESC& _Info)
-                                          {
-                                              if (12 == _Info.CurFrame)
-                                              {
-                                                  AttackCollider_->On();
-                                              }
+        MetaRenderer_->AnimationBindFrame(
+            "Lionhead_attack_anim",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                if (1 == _Info.CurFrame)
+                {
+                    SoundPlayer_ = GameEngineSound::SoundPlayControl("LEON_START_ATTACK.wav");
+                }
 
-                                              else if (13 == _Info.CurFrame)
-                                              {
-                                                  AttackCollider_->Off();
-                                              }
-                                          });
+                if (9 == _Info.CurFrame)
+                {
+                    SoundPlayer_ = GameEngineSound::SoundPlayControl("LEON_PREATTACK.wav");
+                }
+
+                if (12 == _Info.CurFrame)
+                {
+                    AttackCollider_->On();
+
+                    SoundPlayer_ = GameEngineSound::SoundPlayControl("LEON_HIT.wav");
+                }
+
+                else if (13 == _Info.CurFrame)
+                {
+                    AttackCollider_->Off();
+                }
+            });
 
         MetaRenderer_->AnimationBindEnd("Lionhead_attack_anim",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeMonsterState("Idle"); });
@@ -143,6 +156,8 @@ void LionHead::Start()
 
     PatrolStart_ = true;
     PatrolEnd_   = false;
+
+    SoundPlayer_.Volume(0.05f);
 }
 
 void LionHead::Update(float _DeltaTime)
@@ -288,7 +303,7 @@ void LionHead::AttackStart(const StateInfo& _Info)
 
 void LionHead::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    if (1.f < _Info.StateTime)
+    if (1.f <= _Info.StateTime)
     {
         MetaRenderer_->ChangeMetaAnimation("Lionhead_attack_anim");
     }
@@ -305,6 +320,8 @@ void LionHead::DeathStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("Lionhead_death_anim");
     MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
+
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("LEON_DEATH.wav");
 
     Penitent::GetMainPlayer()->PlusTear(GetTear());
 }

@@ -60,4 +60,6 @@ private:
     float4 Dir_;
 
     float4 StartPos_;
+
+    GameEngineSoundPlayer SoundPlayer_;
 };

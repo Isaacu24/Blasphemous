@@ -96,6 +96,7 @@ void BloodProjectile::End() {}
 void BloodProjectile::ShootStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("penitent_rangeAttack_projectile_anim");
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("RANGE_ATTACK_FLY.wav");
 }
 
 void BloodProjectile::ShootUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -143,6 +144,7 @@ void BloodProjectile::ShootEnd(const StateInfo& _Info) {}
 
 void BloodProjectile::ExplodeStart(const StateInfo& _Info)
 {
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("RANGE_ATTACK_EXPLODE.wav");
     MetaRenderer_->ChangeMetaAnimation("penitent_rangeAttack_projectile_explode_anim");
 }
 
@@ -153,6 +155,7 @@ void BloodProjectile::ExplodeEnd(const StateInfo& _Info) {}
 
 void BloodProjectile::VanishStart(const StateInfo& _Info)
 {
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("RANGE_ATTACK_DISSAPEAR.wav");
     MetaRenderer_->ChangeMetaAnimation("penitent_rangeAttack_projectile_vanish_anim");
 }
 

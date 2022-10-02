@@ -31,6 +31,16 @@ void Crosscrawler::Start()
             "crosscrawler_walking",
             {"crosscrawler_walking.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
             Data);
+
+        MetaRenderer_->AnimationBindFrame("crosscrawler_walking",
+                                          [&](const FrameAnimation_DESC& _Info)
+                                          {
+                                              if (10 == _Info.CurFrame)
+                                              {
+                                                  SoundPlayer_
+                                                      = GameEngineSound::SoundPlayControl("CROSSCRAWLER_WALK_1.wav");
+                                              }
+                                          });
     }
 
     {
@@ -40,6 +50,22 @@ void Crosscrawler::Start()
             "crosscrawler_turnaround",
             {"crosscrawler_turnaround.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true},
             Data);
+
+        MetaRenderer_->AnimationBindFrame("crosscrawler_turnaround",
+                                          [&](const FrameAnimation_DESC& _Info)
+                                          {
+                                              if (1 == _Info.CurFrame)
+                                              {
+                                                  SoundPlayer_
+                                                      = GameEngineSound::SoundPlayControl("CROSSCRAWLER_TURN.wav");
+                                              }
+
+                                              if (17 == _Info.CurFrame)
+                                              {
+                                                  SoundPlayer_
+                                                      = GameEngineSound::SoundPlayControl("CROSSCRAWLER_TURN_END.wav");
+                                              }
+                                          });
 
         MetaRenderer_->AnimationBindEnd("crosscrawler_turnaround",
                                         [&](const FrameAnimation_DESC& _Info)
@@ -64,19 +90,32 @@ void Crosscrawler::Start()
             {"crosscrawler_attack.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
             Data);
 
-        MetaRenderer_->AnimationBindFrame("crosscrawler_attack",
-                                          [&](const FrameAnimation_DESC& _Info)
-                                          {
-                                              if (19 == _Info.CurFrame)
-                                              {
-                                                  AttackCollider_->On();
-                                              }
+        MetaRenderer_->AnimationBindFrame(
+            "crosscrawler_attack",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                if (1 == _Info.CurFrame)
+                {
+                    SoundPlayer_ = GameEngineSound::SoundPlayControl("CROSSCRAWLER_ATTACK_1.wav");
+                }
 
-                                              else if (20 == _Info.CurFrame)
-                                              {
-                                                  AttackCollider_->Off();
-                                              }
-                                          });
+                if (15 == _Info.CurFrame)
+                {
+                    SoundPlayer_ = GameEngineSound::SoundPlayControl("CROSSCRAWLER_ATTACK_2.wav");
+                }
+
+                if (19 == _Info.CurFrame)
+                {
+                    AttackCollider_->On();
+
+                    SoundPlayer_ = GameEngineSound::SoundPlayControl("CROSSCRAWLER_ATTACK_HIT.wav");
+                }
+
+                else if (20 == _Info.CurFrame)
+                {
+                    AttackCollider_->Off();
+                }
+            });
 
         MetaRenderer_->AnimationBindEnd("crosscrawler_attack",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeMonsterState("Track"); });
@@ -221,6 +260,8 @@ void Crosscrawler::Start()
 
     PatrolStart_ = true;
     PatrolEnd_   = false;
+
+    SoundPlayer_.Volume(0.03f);
 }
 
 void Crosscrawler::Update(float _DeltaTime)
@@ -467,7 +508,7 @@ void Crosscrawler::AttackStart(const StateInfo& _Info) { MetaRenderer_->ChangeMe
 void Crosscrawler::AttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Crosscrawler::AttackEnd(const StateInfo& _Info) {}
-    
+
 
 void Crosscrawler::StunStart(const StateInfo& _Info)
 {
@@ -503,10 +544,10 @@ void Crosscrawler::StunUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 }
 
-void Crosscrawler::StunEnd(const StateInfo& _Info) 
+void Crosscrawler::StunEnd(const StateInfo& _Info)
 {
     UIRenderer_->Off();
-    BodyCollider_->ChangeOrder(COLLISIONORDER::Monster); 
+    BodyCollider_->ChangeOrder(COLLISIONORDER::Monster);
 }
 
 
@@ -520,7 +561,11 @@ void Crosscrawler::ExecutionStart(const StateInfo& _Info)
     BodyCollider_->Death();
     AttackCollider_->Death();
     BloodEffect_->Death();
-    Death();
+    MetaRenderer_->Death();
+
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("CROSSCRAWLER_EXECUTION.wav");
+
+    Death(10.f);
 }
 
 void Crosscrawler::ExecutionUpdate(float _DeltaTime, const StateInfo& _Info) {}
@@ -530,6 +575,8 @@ void Crosscrawler::ExecutionEnd(const StateInfo& _Info) {}
 
 void Crosscrawler::DeathStart(const StateInfo& _Info)
 {
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("CROSSCRAWLER_DEATH.wav");
+
     MetaRenderer_->ChangeMetaAnimation("crosscrawler_death");
     MetaRenderer_->GetColorData().PlusColor = float4::ZERO;
 
@@ -542,5 +589,4 @@ void Crosscrawler::DeathStart(const StateInfo& _Info)
 
 void Crosscrawler::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
-void Crosscrawler::DeathEnd(const StateInfo& _Info) 
-{  }
+void Crosscrawler::DeathEnd(const StateInfo& _Info) {}

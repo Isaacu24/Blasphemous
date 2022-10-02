@@ -322,6 +322,8 @@ void Pope::AppearStart(const StateInfo& _Info)
     VanishingTime_ = 0.f;
 
     Symbol_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{-100, 0});
+
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("PONTIFF_TELEPORT_IN.wav");
 }
 
 void Pope::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -347,6 +349,8 @@ void Pope::EventAppearStart(const StateInfo& _Info)
     MetaRenderer_->On();
     BodyCollider_->On();
     MetaRenderer_->ChangeMetaAnimation("pope_appear_Event");
+
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("PONTIFF_TELEPORT_IN.wav");
 }
 
 void Pope::EventAppearUpdate(float _DeltaTime, const StateInfo& _Info) {}
@@ -367,6 +371,8 @@ void Pope::VanishingStart(const StateInfo& _Info)
     }
 
     MetaRenderer_->ChangeMetaAnimation("pope_vanishing");
+
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("PONTIFF_TELEPORT_OUT.wav");
 }
 
 void Pope::VanishingUpdate(float _DeltaTime, const StateInfo& _Info) {}

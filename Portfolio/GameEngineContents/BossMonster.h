@@ -26,6 +26,8 @@ public:
 
     bool ReverseBloodEffect(GameEngineCollision* _This, GameEngineCollision* _Other);
 
+    inline bool GetBossDeathEvent() { return BossDeathEvent_; }
+
 protected:
     void Start() = 0;
     void Update(float _DeltaTime) override;

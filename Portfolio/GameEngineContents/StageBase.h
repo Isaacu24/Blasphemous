@@ -69,6 +69,8 @@ protected:
 
     GameEngineTextureRenderer* ColMap_;
 
+    GameEngineSoundPlayer StageSoundPlayer_;
+
     std::vector<GameEngineCollision*> DangleColiders_;
 
     class Penitent* Penitent_;

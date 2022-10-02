@@ -96,6 +96,9 @@ void Stage11::Update(float _DeltaTime)
     {
         SetLoadingEnd(false);
 
+        StageSoundPlayer_.Volume(0.15f);
+        StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Brotherhood_Ambient.wav", -1);
+
         if (false == Penitent_->IsUpdate())
         {
             Penitent_->On();
@@ -164,6 +167,7 @@ void Stage11::LevelStartEvent()
 
     if (true == Penitent_->GetIsOutDoor())
     {
+        IronDoor_->SetObjectType(ObjectType::OpenDoor);
         IronDoor_->GetDoorRenderer()->ChangeFrameAnimation("brotherhood_door_anim_Open");
     }
 

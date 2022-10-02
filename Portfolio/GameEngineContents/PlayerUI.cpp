@@ -247,7 +247,11 @@ void PlayerUI::UseFlask(int _Index)
     HPBar_->Renderer_->SetUVData(HP);
 }
 
-void PlayerUI::FillFlask(int _Index) { Flasks_[_Index]->SetTexture("Full_Flask.png"); }
+void PlayerUI::FillFlask(int _Index) 
+{
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("FLASK_REFILL.wav");
+    Flasks_[_Index]->SetTexture("Full_Flask.png"); 
+}
 
 
 void PlayerUI::DamageCheck(float _DeltaTime)

@@ -110,10 +110,17 @@ void Stage21::Update(float _DeltaTime)
         case STAGEFLOW::BOSSAPPEAR:
             if ("Appear" != Pontiff_->GetState())
             {
+                BackgorundPlayer_ = GameEngineSound::SoundPlayControl("Pontiff.wav", -1);
+                BackgorundPlayer_.Volume(0.1f);
                 CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
             }
             break;
         case STAGEFLOW::BOSSCOMBAT:
+            if (true == Pontiff_->GetBossDeathEvent())
+            {
+                BackgorundPlayer_.Stop();
+            }
+
             if (true == Pontiff_->GetLose())
             {
                 CurrentFlow_ = STAGEFLOW::BOSSDEAD;
@@ -176,6 +183,9 @@ void Stage21::End() {}
 
 void Stage21::LevelStartEvent()
 {
+    StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Final Boss Wind.wav", -1);
+    StageSoundPlayer_.Volume(0.5f);
+
     if (nullptr == Penitent::GetMainPlayer())
     {
         Penitent_ = CreateActor<Penitent>(ACTORORDER::Player);
@@ -208,4 +218,8 @@ void Stage21::LevelStartEvent()
     IsLeftExit_  = false;
 }
 
-void Stage21::LevelEndEvent() { StageBase::LevelEndEvent(); }
+void Stage21::LevelEndEvent() 
+{
+    BackgorundPlayer_.Stop();
+    StageBase::LevelEndEvent(); 
+}

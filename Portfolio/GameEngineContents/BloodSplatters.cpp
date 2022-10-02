@@ -44,7 +44,7 @@ void BloodSplatters::Start()
                                 });
 
     Renderer_->ChangeFrameAnimation("BloodSplattersV4");
-    Renderer_->GetTransform().SetWorldScale({150, 150});
+    Renderer_->GetTransform().SetWorldScale({100, 100});
 
     Renderer_->SetPivot(PIVOTMODE::BOT);
 }

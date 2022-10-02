@@ -40,6 +40,16 @@ void ShieldMaiden::Start()
             "shieldMaiden_walking_anim",
             {"shieldMaiden_walking_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.1f, true},
             Data);
+
+        MetaRenderer_->AnimationBindFrame("shieldMaiden_walking_anim",
+                                          [&](const FrameAnimation_DESC& _Info)
+                                          {
+                                              if (0 == _Info.CurFrame % 5)
+                                              {
+                                                  SoundPlayer_
+                                                      = GameEngineSound::SoundPlayControl("SHIELD_ENEMY_WALK_1.wav");
+                                              }
+                                          });
     }
 
     {
@@ -56,6 +66,10 @@ void ShieldMaiden::Start()
                                           {
                                               if (5 == _Info.CurFrame)
                                               {
+                                                  SoundPlayer_
+                                                      = GameEngineSound::SoundPlayControl("SHIELD_ENEMY_ATTACK.wav");
+
+
                                                   AttackCollider_->On();
 
                                                   if (true == Penitent::GetMainPlayer()->GetParryOn())
@@ -217,6 +231,8 @@ void ShieldMaiden::Start()
 
     PatrolStart_ = true;
     PatrolEnd_   = false;
+
+    SoundPlayer_.Volume(0.05f);
 }
 
 void ShieldMaiden::Update(float _DeltaTime)
@@ -617,10 +633,15 @@ void ShieldMaiden::ExecutionStart(const StateInfo& _Info)
     DetectCollider_->Death();
     BodyCollider_->Death();
     AttackCollider_->Death();
+    BloodEffect_->Death();
+    MetaRenderer_->Death();
+    UIRenderer_->Death();
 
     Penitent::GetMainPlayer()->PlusTear(GetTear());
 
-    Death();
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("SHIELD_MAIDEN_EXECUTION.wav");
+
+    Death(10.f);
 }
 
 void ShieldMaiden::ExecutionUpdate(float _DeltaTime, const StateInfo& _Info) {}
@@ -634,6 +655,8 @@ void ShieldMaiden::DeathStart(const StateInfo& _Info)
     MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
 
     Penitent::GetMainPlayer()->PlusTear(GetTear());
+
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("SHIELD_ENEMY_DEATH.wav");
 }
 
 void ShieldMaiden::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}

@@ -59,6 +59,8 @@ private:
     class GameEngineUIRenderer*   Renderer_;
     class GameEngineFontRenderer* Font_;
 
+    GameEngineSoundPlayer SoundPlayer_;
+
     std::vector<std::string> Script_;
 
     //텍스트가 처음 출력되기 이전에 실행

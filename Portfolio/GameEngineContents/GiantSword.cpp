@@ -127,6 +127,8 @@ void GiantSword::TeleportINStart(const StateInfo& _Info)
 
     Renderer_->ChangeFrameAnimation("pontiff_giantSword_teleportIN");
 
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("SWORD_DISAPPEAR.wav");
+
     Pontiff_->ChangeMonsterState("Opening");
     BodyCollider_->Off();
 
@@ -144,6 +146,8 @@ void GiantSword::TeleportOutStart(const StateInfo& _Info)
     GetTransform().SetWorldRotation({0, 0, 0});
 
     Renderer_->ChangeFrameAnimation("pontiff_giantSword_teleportOUT");
+
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("SWORD_APPEAR.wav");
 
     if ("CloseIdle" != Pontiff_->GetState()
         && "Appear" != Pontiff_->GetState())
@@ -211,6 +215,8 @@ void GiantSword::AttackStart(const StateInfo& _Info)
     AttackCollider_->On();
 
     AttackSpectrum_->SetIsDraw(true);
+
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("SWORD_AIR_ATTACK.wav");
 }
 
 void GiantSword::AttackUpdate(float _DeltaTime, const StateInfo& _Info)

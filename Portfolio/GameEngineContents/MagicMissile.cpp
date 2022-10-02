@@ -1,8 +1,7 @@
 #include "PreCompile.h"
 #include "MagicMissile.h"
 
-MagicMissile::MagicMissile()
-{}
+MagicMissile::MagicMissile() {}
 
 MagicMissile::~MagicMissile() {}
 
@@ -54,13 +53,16 @@ void MagicMissile::Start()
     SetSpeed(200.f);
 }
 
-void MagicMissile::Update(float _DeltaTime) 
-{ State_.Update(_DeltaTime); }
+void MagicMissile::Update(float _DeltaTime) { State_.Update(_DeltaTime); }
 
 void MagicMissile::End() {}
 
 
-void MagicMissile::ShootStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("Shoot"); }
+void MagicMissile::ShootStart(const StateInfo& _Info)
+{
+    Renderer_->ChangeFrameAnimation("Shoot");
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("MAGIC_SHOT.wav");
+}
 
 void MagicMissile::ShootUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -88,10 +90,8 @@ void MagicMissile::ShootUpdate(float _DeltaTime, const StateInfo& _Info)
 void MagicMissile::ShootEnd(const StateInfo& _Info) {}
 
 
-void MagicMissile::ExplosionStart(const StateInfo& _Info) 
-{ Renderer_->ChangeFrameAnimation("Death"); }
+void MagicMissile::ExplosionStart(const StateInfo& _Info) { Renderer_->ChangeFrameAnimation("Death"); }
 
 void MagicMissile::ExplosionUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void MagicMissile::ExplosionEnd(const StateInfo& _Info) {}
-

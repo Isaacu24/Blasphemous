@@ -117,11 +117,18 @@ void Stage01::Update(float _DeltaTime)
         LoadingActor_->Exit("Stage02");
     }
 
-    if (true == GetLoadingEnd() && true == IsPlayerCreate_)
+    if (true == GetLoadingEnd())
     {
-        IsPlayerCreate_ = false;
-        Penitent_->SetIsRising(true);
         SetLoadingEnd(false);
+
+        StageSoundPlayer_.Volume(0.15f);
+        StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Brotherhood.wav", -1);
+
+        if (true == IsPlayerCreate_)
+        {
+            IsPlayerCreate_ = false;
+            Penitent_->SetIsRising(true);
+        }
     }
 }
 
@@ -171,6 +178,8 @@ void Stage01::LevelStartEvent()
 
 void Stage01::LevelEndEvent()
 {
+    StageSoundPlayer_.Stop();
+
     if (nullptr != LoadingActor_)
     {
         LoadingActor_->Death();

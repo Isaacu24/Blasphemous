@@ -3,15 +3,11 @@
 #include "MetaTextureRenderer.h"
 #include "MetaSpriteManager.h"
 
-BlockEffect::BlockEffect() 
-{
-}
+BlockEffect::BlockEffect() {}
 
-BlockEffect::~BlockEffect() 
-{
-}
+BlockEffect::~BlockEffect() {}
 
-void BlockEffect::Start() 
+void BlockEffect::Start()
 {
     Renderer_ = CreateComponent<MetaTextureRenderer>();
 
@@ -22,7 +18,17 @@ void BlockEffect::Start()
             "shieldmaiden_blockEffect",
             {"shieldmaiden_blockEffect.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, true},
             Data);
-            
+
+        Renderer_->AnimationBindFrame("shieldmaiden_blockEffect",
+                                      [&](const FrameAnimation_DESC& _Info)
+                                      {
+                                          if (1 == _Info.CurFrame)
+                                          {
+                                              SoundPlayer_
+                                                  = GameEngineSound::SoundPlayControl("SHIELD_ENEMY_HIT_SHIELD.wav");
+                                          }
+                                      });
+
         Renderer_->AnimationBindEnd("shieldmaiden_blockEffect",
                                     [&](const FrameAnimation_DESC& _Info) { Renderer_->Off(); });
     }

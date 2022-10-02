@@ -98,9 +98,12 @@ void Stage12::Update(float _DeltaTime)
     {
         SetLoadingEnd(false);
 
+        StageSoundPlayer_.Volume(0.15f);
+        StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Boss_Zone_Background.wav", -1);
+
         if (true == Penitent_->GetIsOutDoor())
         {
-            Penitent_->SetIsOutDoor(false); 
+            Penitent_->SetIsOutDoor(false);
             Penitent_->GetTransform().SetWorldPosition({1300, PlayerRightPos_.y, PlayerZ});
         }
     }

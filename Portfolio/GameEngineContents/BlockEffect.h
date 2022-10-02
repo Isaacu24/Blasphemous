@@ -21,6 +21,6 @@ protected:
 
 private:
     class MetaTextureRenderer* Renderer_;
-
+    GameEngineSoundPlayer      SoundPlayer_;
 };
 

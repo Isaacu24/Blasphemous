@@ -25,5 +25,7 @@ protected:
 
 private:
     class GameEngineTextureRenderer* Renderer_;
+
+	GameEngineSoundPlayer SoundPlayer_;
 };
 

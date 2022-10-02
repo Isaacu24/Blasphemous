@@ -828,6 +828,7 @@ void Inventory::CursorReset()
 void Inventory::Equip(const ItemInfo& _Info)
 {
     ButtonName_->SetText("Release", "Neo둥근모");
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("EQUIP_ITEM.wav");
 
     switch (InventoryType_)
     {
@@ -902,6 +903,7 @@ void Inventory::Equip(const ItemInfo& _Info)
 void Inventory::Release(const ItemInfo& _Info)
 {
     ButtonName_->SetText("Equip", "Neo둥근모");
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("EQUIP_BEAD.wav");
 
     switch (InventoryType_)
     {
