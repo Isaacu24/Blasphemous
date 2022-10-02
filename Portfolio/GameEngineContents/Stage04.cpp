@@ -109,8 +109,8 @@ void Stage04::Update(float _DeltaTime)
     {
         SetLoadingEnd(false);
 
-        StageSoundPlayer_.Volume(0.15f);
         StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Boss_Zone_Background.wav", -1);
+        StageSoundPlayer_.Volume(0.15f);
     }
 }
 
@@ -187,8 +187,8 @@ void Stage04::StageFlowUpdate(float _DeltaTime)
             {
                 StageSoundPlayer_.Stop();
 
-                CurrentFlow_      = STAGEFLOW::BOSSDEAD;
                 StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Brotherhood_Ambient.wav", -1);
+                CurrentFlow_      = STAGEFLOW::BOSSDEAD;
             }
             break;
         case STAGEFLOW::BOSSDEAD:

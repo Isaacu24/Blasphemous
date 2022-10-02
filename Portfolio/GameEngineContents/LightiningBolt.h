@@ -23,21 +23,28 @@ private:
 
     GameEngineCollision* Collider_;
 
+    GameEngineSoundPlayer SoundPlayer_;
+
     bool IsStrike_;
 
     void StrikeEnd(const FrameAnimation_DESC& _Info) { Death(); }
 
     void Strike(const FrameAnimation_DESC& _Info)
     {
+        if (35 == _Info.CurFrame)
+        {
+            SoundPlayer_ = GameEngineSound::SoundPlayControl("SAINT_THUNDER.wav");
+            SoundPlayer_.Volume(0.15f);
+        }
+
         if (68 == _Info.CurFrame)
         {
             Collider_->On();
         }
 
-        else if (76 == _Info.CurFrame)
+        if (76 == _Info.CurFrame)
         {
             Collider_->Off();
         }
     }
-
 };

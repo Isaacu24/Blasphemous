@@ -139,6 +139,11 @@ GameEngineSound* GameEngineSound::LoadRessource(const std::string& _Path, const 
 {
 	std::string UpperName = GameEngineString::ToUpperReturn(_Name);
 
+	if (AllRes.end() != AllRes.find(GameEngineString::ToUpperReturn(_Name)))
+	{
+		MsgBoxAssertString("같은 이름의 사운드를 또 생성했습니다." + _Name);
+	}
+
 	GameEngineSound* NewRes = new GameEngineSound();
 
 	if (false == NewRes->Load(_Path))
@@ -197,6 +202,11 @@ void GameEngineSoundPlayer::Volume(float _Value)
 	ControlHandle_->setVolume(_Value);
 }
 
+
+void GameEngineSoundPlayer::Pause(bool _Value)
+{
+	ControlHandle_->setPaused(_Value);
+}
 
 
 GameEngineSoundPlayer::GameEngineSoundPlayer()

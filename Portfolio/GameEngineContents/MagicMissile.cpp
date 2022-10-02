@@ -61,7 +61,9 @@ void MagicMissile::End() {}
 void MagicMissile::ShootStart(const StateInfo& _Info)
 {
     Renderer_->ChangeFrameAnimation("Shoot");
+
     SoundPlayer_ = GameEngineSound::SoundPlayControl("MAGIC_SHOT.wav");
+    SoundPlayer_.Volume(0.05f);
 }
 
 void MagicMissile::ShootUpdate(float _DeltaTime, const StateInfo& _Info)

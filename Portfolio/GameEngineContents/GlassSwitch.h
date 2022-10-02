@@ -1,7 +1,7 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
+#include "ObjectBase.h"
 
-class GlassSwitch : public GameEngineActor
+class GlassSwitch : public ObjectBase
 {
     friend class SideFence;
 

@@ -203,8 +203,8 @@ void Stage03::Update(float _DeltaTime)
     {
         SetLoadingEnd(false);
 
-        StageSoundPlayer_.Volume(0.15f);
         StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Brotherhood_Ambient.wav", -1);
+        StageSoundPlayer_.Volume(0.15f);
 
         if (false == Penitent_->IsUpdate())
         {

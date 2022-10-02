@@ -55,6 +55,7 @@ class GameEngineSoundPlayer
 	friend GameEngineSound;
 
 public:
+	void Pause(bool _Value);
 	void Stop();
 	void PlaySpeed(float _Speed);
 	void Volume(float _Value);

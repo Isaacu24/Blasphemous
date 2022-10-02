@@ -15,7 +15,7 @@ void FireBall::Start()
 
     Renderer_->ChangeFrameAnimation("pope_fireBall");
     Renderer_->GetTransform().SetWorldScale({300.f, 350.f, 1.f});
-
+    
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
@@ -54,6 +54,7 @@ void FireBall::End() {}
 void FireBall::ShootStart(const StateInfo& _Info)
 {
     SoundPlayer_ = GameEngineSound::SoundPlayControl("FIREBALL_FLY.wav");
+    SoundPlayer_.Volume(0.05f);
 }
 
 void FireBall::ShootUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -88,6 +89,7 @@ void FireBall::ShootUpdate(float _DeltaTime, const StateInfo& _Info)
 void FireBall::ExplosionStart(const StateInfo& _Info)
 {
     SoundPlayer_ = GameEngineSound::SoundPlayControl("FIRE_BALL_EXPLODE.wav");
+    SoundPlayer_.Volume(0.05f);
 
     Renderer_->Off();
     Collider_->Off();

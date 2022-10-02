@@ -18,7 +18,8 @@ void SymbolEffect::Start()
                                   {
                                       if (1 == _Info.CurFrame)
                                       {
-                                          SoundPlayer_ = GameEngineSound::SoundPlayControl("PONTIFF_CAST_SPELL.wav");
+                                          SoundPlayer_.Pause(false);
+                                          SoundPlayer_.Volume(0.03f);
                                       }
                                   });
 
@@ -38,8 +39,8 @@ void SymbolEffect::Start()
                                   {
                                       if (1 == _Info.CurFrame)
                                       {
-                                          SoundPlayer_ = GameEngineSound::SoundPlayControl("PONTIFF_SPELL_LOOP.wav");
-                                          SoundPlayer_.Volume(0.05f);
+                                          SoundPlayer_.Pause(false);
+                                          SoundPlayer_.Volume(0.03f);
                                       }
                                   });
 
@@ -60,8 +61,8 @@ void SymbolEffect::Start()
                                   {
                                       if (1 == _Info.CurFrame)
                                       {
-                                          SoundPlayer_ = GameEngineSound::SoundPlayControl("PONTIFF_CAST_SPELL.wav");
-                                          SoundPlayer_.Volume(0.05f);
+                                          SoundPlayer_.Pause(false);
+                                          SoundPlayer_.Volume(0.03f);
                                       }
                                   });
 
@@ -88,15 +89,21 @@ void SymbolEffect::SetColor(COLORTYPE _Type)
     {
         case COLORTYPE::RED:
             Renderer_->GetColorData().MulColor = float4::ONE;
+            SoundPlayer_                       = GameEngineSound::SoundPlayControl("PONTIFF_SPELL_FIRE.wav");
             break;
         case COLORTYPE::BLUE:
             Renderer_->GetColorData().MulColor = float4{0.1f, 0.75f, 1.0f, 1.f};
+            SoundPlayer_                       = GameEngineSound::SoundPlayControl("THUNDER_SPELL.wav.wav");
             break;
         case COLORTYPE::GREEN:
             Renderer_->GetColorData().MulColor = float4{0.1f, 0.95f, 0.3f, 1.f};
+            SoundPlayer_                       = GameEngineSound::SoundPlayControl("PURPLE_SPELL.wav");
             break;
         case COLORTYPE::PURPLE:
             Renderer_->GetColorData().MulColor = float4{0.46f, 0.0f, 1.0f, 1.f};
+            SoundPlayer_                       = GameEngineSound::SoundPlayControl("PURPLE_SPELL.wav");
             break;
     }
+
+    SoundPlayer_.Pause(true);
 }

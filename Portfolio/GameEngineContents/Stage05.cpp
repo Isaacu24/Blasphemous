@@ -67,6 +67,18 @@ void Stage05::SettingStage()
         NewFly->GetMetaRenderer()->CurAnimationSetStartPivotFrame(5);
     }
 
+    {
+        Lantern* NewLantern = CreateActor<Lantern>();
+        NewLantern->GetTransform().SetWorldPosition({0, 0, ObjectZ});
+        NewLantern->GetTransform().SetWorldMove({1008, -600});
+    }
+
+    {
+        Lantern* NewLantern = CreateActor<Lantern>();
+        NewLantern->GetTransform().SetWorldPosition({0, 0, ObjectZ});
+        NewLantern->GetTransform().SetWorldMove({1200, -600});
+    }
+
     float OffsetX = StageRenderer->GetTransform().GetLocalScale().x / 2;
     float OffsetY = StageRenderer->GetTransform().GetLocalScale().y / 2;
 
@@ -125,8 +137,8 @@ void Stage05::Update(float _DeltaTime)
     {
         SetLoadingEnd(false);
 
-        StageSoundPlayer_.Volume(0.15f);
         StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Brotherhood_Ambient.wav", -1);
+        StageSoundPlayer_.Volume(0.15f);
 
         if (nullptr != GEngine::GetPrevLevel())
         {

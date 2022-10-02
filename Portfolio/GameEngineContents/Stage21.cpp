@@ -184,7 +184,7 @@ void Stage21::End() {}
 void Stage21::LevelStartEvent()
 {
     StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Final Boss Wind.wav", -1);
-    StageSoundPlayer_.Volume(0.5f);
+    StageSoundPlayer_.Volume(0.05f);
 
     if (nullptr == Penitent::GetMainPlayer())
     {

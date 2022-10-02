@@ -12,11 +12,18 @@ BloodSplatters::~BloodSplatters() {}
 
 void BloodSplatters::Start()
 {
-    /// <summary>
-    /// 메타 텍스쳐 애니메이션으로 변경
-    /// </summary>
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
     Renderer_->CreateFrameAnimationCutTexture("BloodSplatters", {"BloodSplatters.png", 0, 23, 0.05f, true});
+
+    Renderer_->AnimationBindFrame("BloodSplatters",
+                                  [&](const FrameAnimation_DESC& _Info)
+                                  {
+                                      if (1 == _Info.CurFrame)
+                                      {
+                                          SoundPlayer_ = GameEngineSound::SoundPlayControl("Combat_Blood_1.wav");
+                                          SoundPlayer_.Volume(0.05f);
+                                      }
+                                  });
 
     Renderer_->AnimationBindEnd("BloodSplatters",
                                 [&](const FrameAnimation_DESC& _Info)
@@ -27,6 +34,16 @@ void BloodSplatters::Start()
 
     Renderer_->CreateFrameAnimationCutTexture("BloodSplattersV3", {"BloodSplattersV3.png", 0, 15, 0.05f, true});
 
+    Renderer_->AnimationBindFrame("BloodSplattersV3",
+                                  [&](const FrameAnimation_DESC& _Info)
+                                  {
+                                      if (1 == _Info.CurFrame)
+                                      {
+                                          SoundPlayer_ = GameEngineSound::SoundPlayControl("Combat_Blood_2.wav");
+                                          SoundPlayer_.Volume(0.05f);
+                                      }
+                                  });
+
     Renderer_->AnimationBindEnd("BloodSplattersV3",
                                 [&](const FrameAnimation_DESC& _Info)
                                 {
@@ -35,6 +52,16 @@ void BloodSplatters::Start()
                                 });
 
     Renderer_->CreateFrameAnimationCutTexture("BloodSplattersV4", {"BloodSplattersV4.png", 0, 15, 0.05f, true});
+
+    Renderer_->AnimationBindFrame("BloodSplattersV4",
+                                  [&](const FrameAnimation_DESC& _Info)
+                                  {
+                                      if (1 == _Info.CurFrame)
+                                      {
+                                          SoundPlayer_ = GameEngineSound::SoundPlayControl("Combat_Blood_3.wav");
+                                          SoundPlayer_.Volume(0.05f);
+                                      }
+                                  });
 
     Renderer_->AnimationBindEnd("BloodSplattersV4",
                                 [&](const FrameAnimation_DESC& _Info)

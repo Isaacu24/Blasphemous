@@ -217,6 +217,7 @@ void GiantSword::AttackStart(const StateInfo& _Info)
     AttackSpectrum_->SetIsDraw(true);
 
     SoundPlayer_ = GameEngineSound::SoundPlayControl("SWORD_AIR_ATTACK.wav");
+    SoundPlayer_.Volume(0.05f);
 }
 
 void GiantSword::AttackUpdate(float _DeltaTime, const StateInfo& _Info)

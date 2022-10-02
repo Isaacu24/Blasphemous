@@ -48,6 +48,7 @@ void ShieldMaiden::Start()
                                               {
                                                   SoundPlayer_
                                                       = GameEngineSound::SoundPlayControl("SHIELD_ENEMY_WALK_1.wav");
+                                                  SoundPlayer_.Volume(0.05f);
                                               }
                                           });
     }
@@ -68,7 +69,7 @@ void ShieldMaiden::Start()
                                               {
                                                   SoundPlayer_
                                                       = GameEngineSound::SoundPlayControl("SHIELD_ENEMY_ATTACK.wav");
-
+                                                  SoundPlayer_.Volume(0.05f);
 
                                                   AttackCollider_->On();
 
@@ -231,8 +232,6 @@ void ShieldMaiden::Start()
 
     PatrolStart_ = true;
     PatrolEnd_   = false;
-
-    SoundPlayer_.Volume(0.05f);
 }
 
 void ShieldMaiden::Update(float _DeltaTime)
@@ -640,6 +639,7 @@ void ShieldMaiden::ExecutionStart(const StateInfo& _Info)
     Penitent::GetMainPlayer()->PlusTear(GetTear());
 
     SoundPlayer_ = GameEngineSound::SoundPlayControl("SHIELD_MAIDEN_EXECUTION.wav");
+    SoundPlayer_.Volume(0.05f);
 
     Death(10.f);
 }
@@ -657,6 +657,7 @@ void ShieldMaiden::DeathStart(const StateInfo& _Info)
     Penitent::GetMainPlayer()->PlusTear(GetTear());
 
     SoundPlayer_ = GameEngineSound::SoundPlayControl("SHIELD_ENEMY_DEATH.wav");
+    SoundPlayer_.Volume(0.05f);
 }
 
 void ShieldMaiden::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}

@@ -11,6 +11,16 @@ void GlassSwitch::Start()
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
     Renderer_->CreateFrameAnimationCutTexture("glassSwitch", {"glassSwitch.png", 0, 0, 0.1f, false});
     Renderer_->CreateFrameAnimationCutTexture("glassSwitchBroken", {"glassSwitch.png", 0, 22, 0.1f, false});
+    Renderer_->AnimationBindFrame("glassSwitchBroken",
+                                  [&](const FrameAnimation_DESC& _Info)
+                                  {
+                                      if (1 == _Info.CurFrame)
+                                      {
+                                          SoundPlayer_
+                                              = GameEngineSound::SoundPlayControl("GLASS_PLATFORM_COLLAPSE.wav");
+                                          SoundPlayer_.Volume(0.1f);
+                                      }
+                                  });
     Renderer_->AnimationBindEnd("glassSwitchBroken", [&](const FrameAnimation_DESC& _Info) { Collider_->Off(); });
 
     Renderer_->GetTransform().SetWorldScale({180, 330});

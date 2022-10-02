@@ -115,8 +115,8 @@ void Stage20::Update(float _DeltaTime)
         case STAGEFLOW::NORMAL:
             if (true == GetLoadingEnd())
             {
-                StageSoundPlayer_.Volume(0.15f);
                 StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Gallery of Albores_Loop.wav", -1);
+                StageSoundPlayer_.Volume(0.15f);
             }
 
             PlayerCameraMove(_DeltaTime);

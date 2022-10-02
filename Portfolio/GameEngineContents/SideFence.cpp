@@ -27,6 +27,12 @@ void SideFence::Start()
     Rendrerer_->AnimationBindFrame("reja_lateral_invertedBell_descending",
                                    [&](const FrameAnimation_DESC& _Info)
                                    {
+                                       if (1 == _Info.CurFrame)
+                                       {
+                                           SoundPlayer_ = GameEngineSound::SoundPlayControl("GATE_OPEN.wav");
+                                           SoundPlayer_.Volume(0.1f);
+                                       }
+
                                        if (13 == _Info.CurFrame)
                                        {
                                            IsClose_ = false;
@@ -72,8 +78,6 @@ void SideFence::OpenStart(const StateInfo& _Info)
 {
     IsClose_ = false;
     Rendrerer_->ChangeFrameAnimation("reja_lateral_invertedBell_Open");
-
-    SoundPlayer_ = GameEngineSound::SoundPlayControl("GATE_OPEN.wav");
 }
 
 void SideFence::OpenUpdate(float _DeltaTime, const StateInfo& _Info) {}

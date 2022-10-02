@@ -20,7 +20,7 @@ void Pope::Start()
 
     GetTransform().SetWorldScale({2.f, 2.f, 1.f});
 
-    MetaRenderer_    = CreateComponent<MetaTextureRenderer>();
+    MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_idle");
@@ -80,6 +80,16 @@ void Pope::Start()
 
         MetaRenderer_->CreateMetaAnimation(
             "pope_spellCast", {"pope_spellCast.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, true}, Data);
+
+        MetaRenderer_->AnimationBindFrame("pope_spellCast",
+                                          [&](const FrameAnimation_DESC& _Info)
+                                          {
+                                              if (3 == _Info.CurFrame)
+                                              {
+                                                  SoundPlayer_
+                                                      = GameEngineSound::SoundPlayControl("PONTIFF_CAST_SPELL.wav");
+                                              }
+                                          });
 
         MetaRenderer_->AnimationBindEnd("pope_spellCast",
                                         [&](const FrameAnimation_DESC& _Info)
@@ -458,7 +468,7 @@ void Pope::SpellCastStart(const StateInfo& _Info)
             FireBallSpawner_->SetGround(ColMap_);
             FireBallSpawner_->GetTransform().SetWorldPosition(
                 {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y + 500});
-            break;  
+            break;
 
         case 1:  //µ¶¾È°³
             SpellType_ = SPELLTYPE::TOXICCLOUD;

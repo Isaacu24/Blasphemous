@@ -29,4 +29,6 @@ private:
     GameEngineStateManager State_;
 
     class GameEngineTextureRenderer* Renderer_;
+
+    GameEngineSoundPlayer SoundPlayer_;
 };

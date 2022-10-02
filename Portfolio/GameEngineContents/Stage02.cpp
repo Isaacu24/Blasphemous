@@ -270,8 +270,8 @@ void Stage02::Update(float _DeltaTime)
 
     if (true == GetLoadingEnd())
     {
-        StageSoundPlayer_.Volume(0.15f);
         StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Brotherhood_Ambient.wav", -1);
+        StageSoundPlayer_.Volume(0.15f);
         SetLoadingEnd(false);
     }
 }
