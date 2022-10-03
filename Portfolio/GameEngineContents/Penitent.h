@@ -309,14 +309,16 @@ private:
     GameEngineStateManager            State_;
     PlayerUI*                         PlayerUI_;
     class GravityComponent*           Gravity_;
+    class GameEngineFontRederer*      Font_;
+
     class GameEngineCollision*        BodyCollider_;
     GameEngineCollision*              AttackCollider_;  // 공격 범위
     GameEngineCollision*              PlatformCollider_;
     GameEngineCollision*              PlatformUpCollider_;
     std::vector<GameEngineCollision*> DebugColliders_;
-    GameEngineTextureRenderer*        ColMap_;
+
     float4                            ColScale_;
-    class GameEngineFontRederer*      Font_;
+    GameEngineTextureRenderer*        ColMap_;
 
     SpectrumComponent* SlideSpectrum_;
     SpectrumComponent* SlideAttackSpectrum_;
@@ -332,25 +334,22 @@ private:
     std::string LastSaveLevel_;
     std::string OutDoorLevel_;
 
+    float4 MoveDir_;
+
     int   HP_;
     int   MP_;
-    float Speed_;
-    float SlideForce_;
-
-    float RunTime_;  //달리기 시간 체크
-
-    float4 JumpForce_;
-
-    float FallTime_;
-
-    float4 MoveDir_;
-    float  RealDirX_;
-
-    float CilmbY_;
-
     int Tear_;
 
     int AttackStack_;
+
+    float Speed_;
+    float SlideForce_;
+    float4 JumpForce_;
+
+    float RunTime_;  //달리기 시간 체크
+    float FallTime_;
+
+    float CilmbY_;
 
     float JumpTime_;
     float SlideTime_;
@@ -382,7 +381,6 @@ private:
     bool IsKnockUp_;
     //넉백->낙하->착지(IsKnockBackGround_ = true)->이동->넉백
     bool IsKnockBackFall_;
-    bool IsDoorExit_;
 
     //게임 패드
     SHORT ThumbLX_;

@@ -34,7 +34,7 @@ void SpectrumComponent::Update(float _DeltaTime)
     {
         for (size_t i = 0; i < Spectrums_.size(); i++)
         {
-            Spectrums_[i]->GetColorData().MulColor.a -= _DeltaTime * 0.5f;
+            Spectrums_[i]->GetColorData().MulColor.a -= _DeltaTime;
 
             if (0.f >= Spectrums_[i]->GetColorData().MulColor.a)
             {
@@ -53,7 +53,7 @@ void SpectrumComponent::Update(float _DeltaTime)
     {
         for (size_t i = 0; i < MetaSpectrums_.size(); i++)
         {
-            MetaSpectrums_[i]->GetColorData().MulColor.a -= _DeltaTime * 0.5f;
+            MetaSpectrums_[i]->GetColorData().MulColor.a -= _DeltaTime;
 
             if (0.f >= MetaSpectrums_[i]->GetColorData().MulColor.a)
             {
@@ -72,7 +72,7 @@ void SpectrumComponent::DrawSpectrum(float _DeltaTime)
 {
     DrawTime_ += _DeltaTime;
 
-    if (0.07f < DrawTime_)
+    if (0.05f < DrawTime_)
     {
         DrawTime_ = 0.f;
 

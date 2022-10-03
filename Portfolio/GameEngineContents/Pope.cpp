@@ -356,6 +356,8 @@ void Pope::EventAppearStart(const StateInfo& _Info)
 {
     IsVanishing_ = true;
 
+    Symbol_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{-100, 0});
+
     MetaRenderer_->On();
     BodyCollider_->On();
     MetaRenderer_->ChangeMetaAnimation("pope_appear_Event");

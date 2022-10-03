@@ -34,6 +34,10 @@ public:
     void TrackUpdate(float _DeltaTime, const StateInfo& _Info);
     void TrackEnd(const StateInfo& _Info);
 
+    void DodgeStart(const StateInfo& _Info);
+    void DodgeUpdate(float _DeltaTime, const StateInfo& _Info);
+    void DodgeEnd(const StateInfo& _Info);
+
     bool LookAtPlayer(GameEngineCollision* _This, GameEngineCollision* _Other, float _DeltaTime);
     bool TrackToPlayer(float _StateTime);
 
@@ -49,6 +53,7 @@ private:
 
     float RotSpeed_;
     float AttSpeed_;
+    float DodgeSpeed_;
 
     float Alpha_;
 

@@ -94,11 +94,8 @@ void Merchant::Start()
         Item* NewItem = GetLevel()->CreateActor<Item>();
         NewItem->GetItemRenderer()->SetTexture("items-icons-spritesheet.png", 212);
         NewItem->GetItemRenderer()->ScaleToCutTexture(212);
-        NewItem->CreateItemInfo({212,
-                                 ItemType::Relics,
-                                 "진홍의 베헤리트",
-                                 "패왕의 알이라 불리우는 알.\n눈코입이 제멋대로 붙어있다.",
-                                 100});
+        NewItem->CreateItemInfo(
+            {212, ItemType::Relics, "진홍의 베헤리트", "패왕의 알이라 불리우는 알.\n눈코입이 제멋대로 붙어있다.", 100});
 
         NewItem->GetTransform().SetWorldPosition({830, -580, ObjectZ});
 
@@ -109,8 +106,11 @@ void Merchant::Start()
         Item* NewItem = GetLevel()->CreateActor<Item>();
         NewItem->GetItemRenderer()->SetTexture("items-icons-spritesheet.png", 106);
         NewItem->GetItemRenderer()->ScaleToCutTexture(106);
-        NewItem->CreateItemInfo(
-            {87, ItemType::Relics, "오레스테스의 변형된 가면", "꿈의 세계에서 죽은 대주교의\n손에서 발견된 유물.", 500});
+        NewItem->CreateItemInfo({106,
+                                 ItemType::Relics,
+                                 "오레스테스의 변형된 가면",
+                                 "꿈의 세계에서 죽은 대주교의\n손에서 발견된 유물.",
+                                 500});
 
         NewItem->GetTransform().SetWorldPosition({950, -580, ObjectZ});
         SellItemList_.push_back(NewItem);
@@ -121,7 +121,7 @@ void Merchant::Start()
         NewItem->GetItemRenderer()->SetTexture("items-icons-spritesheet.png", 112);
         NewItem->GetItemRenderer()->ScaleToCutTexture(112);
         NewItem->CreateItemInfo(
-            {64, ItemType::Relics, "잘린 손", "방울을 꼭 쥐고 있는 잘린 손.\n가끔 경미한 경련을 일으킨다.", 100});
+            {112, ItemType::Relics, "잘린 손", "방울을 꼭 쥐고 있는 잘린 손.\n가끔 경미한 경련을 일으킨다.", 100});
 
         NewItem->GetTransform().SetWorldPosition({1080, -580, ObjectZ});
         SellItemList_.push_back(NewItem);

@@ -39,6 +39,7 @@ void Crosscrawler::Start()
                                               {
                                                   SoundPlayer_
                                                       = GameEngineSound::SoundPlayControl("CROSSCRAWLER_WALK_1.wav");
+                                                  SoundPlayer_.Volume(0.03f);
                                               }
                                           });
     }
@@ -58,12 +59,14 @@ void Crosscrawler::Start()
                                               {
                                                   SoundPlayer_
                                                       = GameEngineSound::SoundPlayControl("CROSSCRAWLER_TURN.wav");
+                                                  SoundPlayer_.Volume(0.03f);
                                               }
 
                                               if (17 == _Info.CurFrame)
                                               {
                                                   SoundPlayer_
                                                       = GameEngineSound::SoundPlayControl("CROSSCRAWLER_TURN_END.wav");
+                                                  SoundPlayer_.Volume(0.03f);
                                               }
                                           });
 
@@ -97,11 +100,13 @@ void Crosscrawler::Start()
                 if (1 == _Info.CurFrame)
                 {
                     SoundPlayer_ = GameEngineSound::SoundPlayControl("CROSSCRAWLER_ATTACK_1.wav");
+                    SoundPlayer_.Volume(0.03f);
                 }
 
                 if (15 == _Info.CurFrame)
                 {
                     SoundPlayer_ = GameEngineSound::SoundPlayControl("CROSSCRAWLER_ATTACK_2.wav");
+                    SoundPlayer_.Volume(0.03f);
                 }
 
                 if (19 == _Info.CurFrame)
@@ -109,6 +114,7 @@ void Crosscrawler::Start()
                     AttackCollider_->On();
 
                     SoundPlayer_ = GameEngineSound::SoundPlayControl("CROSSCRAWLER_ATTACK_HIT.wav");
+                    SoundPlayer_.Volume(0.03f);
                 }
 
                 else if (20 == _Info.CurFrame)
@@ -260,8 +266,6 @@ void Crosscrawler::Start()
 
     PatrolStart_ = true;
     PatrolEnd_   = false;
-
-    SoundPlayer_.Volume(0.03f);
 }
 
 void Crosscrawler::Update(float _DeltaTime)

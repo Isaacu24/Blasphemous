@@ -83,7 +83,6 @@ void AttackEffect::Start()
                                     });
     }
 
-
     {
         std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_verticalattack_landing_effects_anim");
 
