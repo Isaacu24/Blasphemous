@@ -205,13 +205,15 @@ void GameEngineSoundPlayer::Volume(float _Value)
 
 void GameEngineSoundPlayer::Pause(bool _Value)
 {
-	ControlHandle_->setPaused(_Value);
+	IsPause_ = _Value;
+	ControlHandle_->setPaused(IsPause_);
 }
 
 
 GameEngineSoundPlayer::GameEngineSoundPlayer()
 	: Sound_(nullptr)
 	, ControlHandle_(nullptr)
+	, IsPause_(false)
 {
 
 }

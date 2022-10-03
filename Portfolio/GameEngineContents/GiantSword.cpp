@@ -128,6 +128,7 @@ void GiantSword::TeleportINStart(const StateInfo& _Info)
     Renderer_->ChangeFrameAnimation("pontiff_giantSword_teleportIN");
 
     SoundPlayer_ = GameEngineSound::SoundPlayControl("SWORD_DISAPPEAR.wav");
+    SoundPlayer_.Volume(0.05f);
 
     Pontiff_->ChangeMonsterState("Opening");
     BodyCollider_->Off();
@@ -148,9 +149,9 @@ void GiantSword::TeleportOutStart(const StateInfo& _Info)
     Renderer_->ChangeFrameAnimation("pontiff_giantSword_teleportOUT");
 
     SoundPlayer_ = GameEngineSound::SoundPlayControl("SWORD_APPEAR.wav");
+    SoundPlayer_.Volume(0.05f);
 
-    if ("CloseIdle" != Pontiff_->GetState()
-        && "Appear" != Pontiff_->GetState())
+    if ("CloseIdle" != Pontiff_->GetState() && "Appear" != Pontiff_->GetState())
     {
         Pontiff_->ChangeMonsterState("Closing");
     }
@@ -289,6 +290,9 @@ void GiantSword::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
         BloodEffect_->GetTransform().SetWorldPosition({BodyCollider_->GetTransform().GetWorldPosition().x,
                                                        BodyCollider_->GetTransform().GetWorldPosition().y,
                                                        PlayerEffectZ});
+
+        Dir_.Normalize();
+        GetTransform().SetWorldMove(float4{Dir_.x, Dir_.y} * 500.f * _DeltaTime);
     }
 
     if (true == BloodEffect_->IsUpdate())

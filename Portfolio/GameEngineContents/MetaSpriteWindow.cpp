@@ -65,7 +65,7 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
              Renderer->CreateFrameAnimationCutTexture(
                  AnimationName, {ImageName, 0, static_cast<unsigned int>(MetaDatas_.size() - 1), 0.1f, true});
 
-             Renderer->ChangeFrameAnimation(AnimationName);
+            //Renderer->ChangeFrameAnimation(AnimationName);
 
             Renderer->SetCurData(MetaDatas_);
 

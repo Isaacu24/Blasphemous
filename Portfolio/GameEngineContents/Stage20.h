@@ -38,4 +38,6 @@ private:
     void PlayerCameraMove(float _DeltaTime);
 
     float MassageTime_;
+
+    bool IsBGMStop_;
 };

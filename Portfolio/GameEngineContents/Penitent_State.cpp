@@ -376,12 +376,6 @@ void Penitent::FallUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
-    if (GameEngineInput::GetInst()->IsPressKey("PenitentDown") /* || -30000 > ThumbLY_*/)
-    {
-        JumpForce_.y -= _DeltaTime * 50.f;
-        FallTime_ += _DeltaTime / 2;
-    }
-
     if (true == IsGround_)
     {
         ChangeState("Landing");
@@ -1082,6 +1076,7 @@ void Penitent::SlideAttackEnd(const StateInfo& _Info)
 void Penitent::VerticalAttackStart(const StateInfo& _Info)
 {
     SoundPlayer_ = GameEngineSound::SoundPlayControl("VERTICAL_ATTACK_START.wav");
+    SoundPlayer_.Volume(0.25f);
 
     MetaRenderer_->ChangeMetaAnimation("penitent_verticalattack_start_anim");
     FallTime_ = 0;
@@ -1116,6 +1111,8 @@ void Penitent::VerticalAttackEnd(const StateInfo& _Info) {}
 
 void Penitent::VerticalAttackLandingStart(const StateInfo& _Info)
 {
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("VERTICAL_ATTACK_HIT.wav");
+
     AttackCollider_->GetTransform().SetLocalPosition({0.f, 0.f});
     AttackCollider_->On();
 

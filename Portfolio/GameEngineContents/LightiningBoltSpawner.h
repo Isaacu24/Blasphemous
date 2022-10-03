@@ -21,8 +21,6 @@ public:
     LightiningBoltSpawner& operator=(const LightiningBoltSpawner& _Other)     = delete;
     LightiningBoltSpawner& operator=(LightiningBoltSpawner&& _Other) noexcept = delete;
 
-    inline void SetTarget(GameEngineActor* _Target) { Target_ = _Target; }
-
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;
@@ -35,7 +33,6 @@ private:
 
     float PosY_;
 
-    GameEngineActor* Target_;
     class LightiningBolt*  Bolt_;
 
     float DelayTime_;

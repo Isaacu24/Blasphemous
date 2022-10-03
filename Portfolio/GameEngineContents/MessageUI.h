@@ -15,6 +15,8 @@ public:
     GameEngineUIRenderer* GetUIRenderer() { return Renderer_; }
 
     void CreateLine(const std::string& _Line);
+    
+    void AddSound(const std::string& _Sound);
 
     void ResetLine() { Script_.clear(); }
 
@@ -62,6 +64,7 @@ private:
     GameEngineSoundPlayer SoundPlayer_;
 
     std::vector<std::string> Script_;
+    std::vector<std::string> SoundList_;
 
     //텍스트가 처음 출력되기 이전에 실행
     std::function<void()> StartEvent_;
@@ -88,6 +91,8 @@ private:
 
     bool IsOn_;
     bool IsOff_;
+
+    bool IsSoundPlay_;
 
     float BackgroundAlpha_;
 };

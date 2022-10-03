@@ -51,7 +51,15 @@ void MessageUI::Update(float _DeltaTime)
         Font_->SetText(Script_[0], "NeoµÕ±Ù¸ð");
         Font_->SetColor({0.65f, 0.65f, 0.45f, Alpha_});
 
-        if (0.75f <= Renderer_->GetColorData().MulColor.a)
+        if (false == IsSoundPlay_)
+        {
+            IsSoundPlay_ = true;
+
+            SoundPlayer_ = GameEngineSound::SoundPlayControl(SoundList_[0]);
+            SoundPlayer_.Volume(0.5f);
+        }
+
+        if (BackgroundAlpha_ <= Renderer_->GetColorData().MulColor.a)
         {
             IsOn_  = false;
             Alpha_ = 1;
@@ -73,6 +81,7 @@ void MessageUI::Update(float _DeltaTime)
             || true == GameEngineInput::GetInst()->IsDownButton("PenitentA"))
         {
             ConstTime_ = 0.f;
+            SoundPlayer_.Stop();
         }
 
         if (ConstTime_ <= BreathTime_)
@@ -97,6 +106,9 @@ void MessageUI::Update(float _DeltaTime)
             }
 
             Font_->SetText(Script_[LineIndex_], "NeoµÕ±Ù¸ð");
+
+            SoundPlayer_ = GameEngineSound::SoundPlayControl(SoundList_[LineIndex_]);
+            SoundPlayer_.Volume(0.5f);
 
             ++LineIndex_;
         }
@@ -133,3 +145,5 @@ void MessageUI::LevelEndEvent() { Death(); }
 
 
 void MessageUI::CreateLine(const std::string& _Line) { Script_.push_back(_Line); }
+
+void MessageUI::AddSound(const std::string& _Sound) { SoundList_.push_back(_Sound); }

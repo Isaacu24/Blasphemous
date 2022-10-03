@@ -93,7 +93,7 @@ void SymbolEffect::SetColor(COLORTYPE _Type)
             break;
         case COLORTYPE::BLUE:
             Renderer_->GetColorData().MulColor = float4{0.1f, 0.75f, 1.0f, 1.f};
-            SoundPlayer_                       = GameEngineSound::SoundPlayControl("THUNDER_SPELL.wav.wav");
+            SoundPlayer_                       = GameEngineSound::SoundPlayControl("THUNDER_SPELL.wav");
             break;
         case COLORTYPE::GREEN:
             Renderer_->GetColorData().MulColor = float4{0.1f, 0.95f, 0.3f, 1.f};

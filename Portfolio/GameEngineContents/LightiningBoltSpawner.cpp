@@ -48,7 +48,7 @@ void LightiningBoltSpawner::Update(float _DeltaTime)
                 {
                     case BOLTTYPE::Pair:
                         {
-                            float4 TargetPos = Target_->GetTransform().GetWorldPosition();
+                            float4 TargetPos = Penitent::GetMainPlayer()->GetTransform().GetWorldPosition();
 
                             {
                                 LightiningBolt* Bolt = GetLevel()->CreateActor<LightiningBolt>();
@@ -70,7 +70,7 @@ void LightiningBoltSpawner::Update(float _DeltaTime)
                         break;
                     case BOLTTYPE::Alone:
                         {
-                            float4 TargetPos = Target_->GetTransform().GetWorldPosition();
+                            float4 TargetPos = Penitent::GetMainPlayer()->GetTransform().GetWorldPosition();
 
                             LightiningBolt* Bolt = GetLevel()->CreateActor<LightiningBolt>();
                             Bolt->GetTransform().SetWorldPosition(

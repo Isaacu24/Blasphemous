@@ -306,6 +306,7 @@ void Blasphemous::LoadResources()
         }
     }
 
+
     {
         GameEngineDirectory Dir;
         MovePath(Dir, {"ContentsResources", "Resources", "Sound", "Actor", "Monster", "Normal", "Fool"});
@@ -318,7 +319,7 @@ void Blasphemous::LoadResources()
         }
     }
 
-    
+
     {
         GameEngineDirectory Dir;
         MovePath(Dir, {"ContentsResources", "Resources", "Sound", "Actor", "Monster", "Normal", "LionHead"});
@@ -379,6 +380,29 @@ void Blasphemous::LoadResources()
         }
     }
 
+    {
+        GameEngineDirectory Dir;
+        MovePath(Dir, {"ContentsResources", "Resources", "Sound", "Voice", "Pope"});
+
+        std::vector<GameEngineFile> Sounds = Dir.GetAllFile();
+
+        for (size_t i = 0; i < Sounds.size(); i++)
+        {
+            GameEngineSound::LoadRessource(Sounds[i].GetFullPath());
+        }
+    }
+
+    {
+        GameEngineDirectory Dir;
+        MovePath(Dir, {"ContentsResources", "Resources", "Sound", "Voice", "Deogracis"});
+
+        std::vector<GameEngineFile> Sounds = Dir.GetAllFile();
+
+        for (size_t i = 0; i < Sounds.size(); i++)
+        {
+            GameEngineSound::LoadRessource(Sounds[i].GetFullPath());
+        }
+    }
 
     // UI ÀÌ¹ÌÁö
     {

@@ -95,6 +95,16 @@ void AttackEffect::Start()
                                         false},
                                        Data);
 
+        Renderer_->AnimationBindFrame("penitent_verticalattack_landing_effects_anim",
+                                      [&](const FrameAnimation_DESC& _Info)
+                                      {
+                                          if (1 == _Info.CurFrame)
+                                          {
+                                              SoundPlayer_ = GameEngineSound::SoundPlayControl("VERTICAL_ATTACK_FALL.wav");
+                                              SoundPlayer_.Volume(0.25f);
+                                          }
+                                      });
+
         Renderer_->AnimationBindEnd("penitent_verticalattack_landing_effects_anim",
                                     [&](const FrameAnimation_DESC& _Info)
                                     {

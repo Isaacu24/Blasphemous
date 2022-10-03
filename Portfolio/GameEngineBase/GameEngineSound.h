@@ -60,12 +60,18 @@ public:
 	void PlaySpeed(float _Speed);
 	void Volume(float _Value);
 
+	bool GetPause()
+	{
+		return IsPause_;
+	}	
+
 	GameEngineSoundPlayer(const GameEngineSoundPlayer& _Other);
 
 private:
 	GameEngineSound* Sound_;
 	FMOD::Channel* ControlHandle_;
 
+	bool IsPause_;
 
 	GameEngineSoundPlayer(GameEngineSound* Sound, FMOD::Channel* ControlHandle);
 
