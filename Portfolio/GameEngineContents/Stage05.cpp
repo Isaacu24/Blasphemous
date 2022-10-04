@@ -98,6 +98,12 @@ void Stage05::Start() { SettingStage(); }
 
 void Stage05::Update(float _DeltaTime)
 {
+    if (nullptr != LoadingActor_ && 0.f < LoadingActor_->GetAlpha())
+    {
+        float Ratio = 1.f - LoadingActor_->GetAlpha();
+        StageSoundPlayer_.Volume(Ratio);
+    }
+
     if (false == IsChangeCameraPos_)
     {
         GetMainCameraActor()->GetTransform().SetWorldMove({0, 0, CameraZPos_});
@@ -137,9 +143,6 @@ void Stage05::Update(float _DeltaTime)
     {
         SetLoadingEnd(false);
 
-        StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Brotherhood_Ambient.wav", -1);
-        StageSoundPlayer_.Volume(0.15f);
-
         if (nullptr != GEngine::GetPrevLevel())
         {
             if ("STAGE10" == GEngine::GetPrevLevel()->GetNameConstRef()
@@ -156,8 +159,6 @@ void Stage05::Update(float _DeltaTime)
             Penitent_->GetTransform().SetWorldPosition({1107.f, PlayerRightPos_.y, PlayerZ});
         }
     }
-
-    // GameEngineDebug::OutPutString("x : " + std::to_string(Penitent_->GetTransform().GetLocalPosition().x));
 }
 
 void Stage05::End() {}
@@ -200,6 +201,11 @@ void Stage05::LevelStartEvent()
 
     IsRightExit_ = false;
     IsLeftExit_  = false;
+
+    StageSoundPlayer_.Pause(false);
+
+    StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Brotherhood_Ambient.wav", -1);
+    StageSoundPlayer_.Volume(0.f);
 }
 
 void Stage05::LevelEndEvent() { StageBase::LevelEndEvent(); }

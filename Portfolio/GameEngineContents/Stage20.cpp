@@ -102,9 +102,10 @@ void Stage20::SettingStage()
                                        CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
                                        MessageUI_->Off();
 
+                                       StageSoundPlayer_.Stop();
                                        StageSoundPlayer_
                                            = GameEngineSound::SoundPlayControl("Final Boss_MASTER.wav", -1);
-                                       StageSoundPlayer_.Volume(0.2f);
+                                       StageSoundPlayer_.Volume(1.f);
                                    });
 }
 
@@ -128,24 +129,21 @@ void Stage20::Start()
 
 void Stage20::Update(float _DeltaTime)
 {
+    if (nullptr != LoadingActor_ && 0.f < LoadingActor_->GetAlpha())
+    {
+        float Ratio = 1.f - LoadingActor_->GetAlpha();
+        StageSoundPlayer_.Volume(Ratio);
+    }
+
     switch (CurrentFlow_)
     {
         case STAGEFLOW::NORMAL:
-            if (true == GetLoadingEnd())
-            {
-                SetLoadingEnd(false);
-
-                StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Gallery of Albores_Loop.wav", -1);
-                StageSoundPlayer_.Volume(0.15f);
-            }
-
             PlayerCameraMove(_DeltaTime);
 
             if (2000.f <= Penitent_->GetTransform().GetWorldPosition().x)
             {
                 Penitent_->ChangeState("Freeze");
                 CurrentFlow_ = STAGEFLOW::BOSSAPPEAR;
-                StageSoundPlayer_.Stop();
             }
             break;
 
@@ -196,6 +194,9 @@ void Stage20::Update(float _DeltaTime)
                 {
                     IsBGMStop_ = true;
                     StageSoundPlayer_.Stop();
+
+                    StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Prima Church Wind.wav", -1);
+                    StageSoundPlayer_.Volume(1.f);
                 }
 
                 if (true == Pope_->IsDeath())
@@ -219,9 +220,6 @@ void Stage20::Update(float _DeltaTime)
         case STAGEFLOW::BOSSDEAD:
             if (true == GetLoadingEnd())
             {
-                // StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Gallery of Albores_Loop.wav", -1);
-                // StageSoundPlayer_.Volume(0.15f);
-
                 SetLoadingEnd(false);
                 Penitent::GetMainPlayer()->BossDeathUIOn(0);
             }
@@ -276,11 +274,24 @@ void Stage20::LevelStartEvent()
             CurrentFlow_ = STAGEFLOW::BOSSDEAD;
             SetLoadingEnd(false);
             Penitent_->GetTransform().SetWorldPosition(PlayerReturnPos_);
+
+
+            StageSoundPlayer_.Pause(false);
+            StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Prima Church Wind.wav", -1);
+            StageSoundPlayer_.Volume(0.f);
         }
     }
 
     IsRightExit_ = false;
     IsLeftExit_  = false;
+
+
+    if (STAGEFLOW::BOSSCOMBAT != CurrentFlow_)
+    {
+        StageSoundPlayer_.Pause(false);
+        StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Prima Church.wav", -1);
+        StageSoundPlayer_.Volume(0.f);
+    }
 }
 
 void Stage20::LevelEndEvent() { StageBase::LevelEndEvent(); }

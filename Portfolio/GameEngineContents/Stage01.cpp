@@ -69,15 +69,17 @@ void Stage01::SettingStage()
     IsLeftExit_ = true;
 }
 
-void Stage01::Start()
-{
-    SettingStage();
-
-    GameEngineInput::GetInst()->CreateKey("TransUI", 'J');
-}
+void Stage01::Start() { SettingStage(); }
 
 void Stage01::Update(float _DeltaTime)
 {
+    if (nullptr != LoadingActor_&& 0.f < LoadingActor_->GetAlpha())
+    {
+        float Ratio = 1.f - LoadingActor_->GetAlpha();
+
+        StageSoundPlayer_.Volume(Ratio);
+    }
+
     if (false == IsChangeCameraPos_)
     {
         GetMainCameraActor()->GetTransform().SetWorldMove({0, 0, CameraZPos_});
@@ -120,9 +122,6 @@ void Stage01::Update(float _DeltaTime)
     if (true == GetLoadingEnd())
     {
         SetLoadingEnd(false);
-
-        StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Brotherhood.wav", -1);
-        StageSoundPlayer_.Volume(0.15f);
 
         if (true == IsPlayerCreate_)
         {
@@ -174,12 +173,15 @@ void Stage01::LevelStartEvent()
     GetMainCameraActor()->GetTransform().SetWorldPosition(float4{
         Penitent_->GetTransform().GetLocalPosition() + float4{0, CameraOffset_}
     });
+
+    StageSoundPlayer_.Pause(false);
+
+    StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Brotherhood.wav", -1);
+    StageSoundPlayer_.Volume(0.f);
 }
 
 void Stage01::LevelEndEvent()
 {
-    StageSoundPlayer_.Stop();
-
     if (nullptr != LoadingActor_)
     {
         LoadingActor_->Death();
@@ -217,4 +219,6 @@ void Stage01::LevelEndEvent()
     {
         IsRightExit_ = true;
     }
+
+    StageSoundPlayer_.Pause(true);
 }

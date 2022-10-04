@@ -77,10 +77,19 @@ void Stage30::SettingStage()
     Stage_->GetTransform().SetLocalMove(Offset);
 }
 
-void Stage30::Start() { SettingStage(); }
+void Stage30::Start()
+{
+    SettingStage();
+}
 
 void Stage30::Update(float _DeltaTime)
 {
+    if (nullptr != LoadingActor_ && 0.f < LoadingActor_->GetAlpha())
+    {
+        float Ratio = 1.f - LoadingActor_->GetAlpha();
+        StageSoundPlayer_.Volume(Ratio);
+    }
+
     if (false == IsChangeCameraPos_)
     {
         GetMainCameraActor()->GetTransform().SetWorldMove({0, 0, CameraZPos_});
@@ -147,6 +156,11 @@ void Stage30::LevelStartEvent()
     GetMainCameraActor()->GetTransform().SetWorldPosition(float4{
         Penitent_->GetTransform().GetLocalPosition() + float4{0, CameraOffset_}
     });
+
+    StageSoundPlayer_.Pause(false);
+
+    StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Safe Zone.wav", -1);
+    StageSoundPlayer_.Volume(0.f);
 }
 
 void Stage30::LevelEndEvent() { StageBase::LevelEndEvent(); }

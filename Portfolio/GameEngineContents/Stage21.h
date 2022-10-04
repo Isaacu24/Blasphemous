@@ -30,5 +30,7 @@ private:
     void PlayerCameraMove(float _DeltaTime);
 
     GameEngineSoundPlayer BackgorundPlayer_;
+
+    float SoundRatio_;
 };
 

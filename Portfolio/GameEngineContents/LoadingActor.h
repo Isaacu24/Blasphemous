@@ -17,6 +17,8 @@ public:
 
     void IsEntrance(bool _Value) { IsEntrance_ = _Value; }
 
+    float GetAlpha() { return Alpha_; }
+
     inline bool GetEntrance() { return IsEntrance_; }
 
 protected:

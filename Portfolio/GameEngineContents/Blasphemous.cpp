@@ -246,6 +246,31 @@ void Blasphemous::LoadResources()
 
     LoadMap("Shop", 15, 1);
 
+
+    {
+        GameEngineDirectory Dir;
+        MovePath(Dir, {"ContentsResources", "Resources", "Sprite", "CutScene", "001"});
+
+        std::vector<GameEngineFile> Textures = Dir.GetAllFile();
+
+        for (size_t i = 0; i < Textures.size(); i++)
+        {
+            GameEngineTexture::Load(Textures[i].GetFullPath());
+        }
+    }
+
+    //{
+    //    GameEngineDirectory Dir;
+    //    MovePath(Dir, {"ContentsResources", "Resources", "Sprite", "CutScene", "002"});
+
+    //    std::vector<GameEngineFile> Textures = Dir.GetAllFile();
+
+    //    for (size_t i = 0; i < Textures.size(); i++)
+    //    {
+    //        GameEngineTexture::Load(Textures[i].GetFullPath());
+    //    }
+    //}
+
     {
         GameEngineDirectory Dir;
         MovePath(Dir, {"ContentsResources", "Resources", "Sound", "Actor", "Player"});
@@ -472,18 +497,6 @@ void Blasphemous::LoadResources()
     {
         GameEngineDirectory Dir;
         MovePath(Dir, {"ContentsResources", "Resources", "Sprite", "NPC", "Deosgracias"});
-
-        std::vector<GameEngineFile> Textures = Dir.GetAllFile();
-
-        for (size_t i = 0; i < Textures.size(); i++)
-        {
-            GameEngineTexture::Load(Textures[i].GetFullPath());
-        }
-    }
-
-    {
-        GameEngineDirectory Dir;
-        MovePath(Dir, {"ContentsResources", "Resources", "Sprite", "CutScene", "001"});
 
         std::vector<GameEngineFile> Textures = Dir.GetAllFile();
 

@@ -128,11 +128,6 @@ void Stage03::SettingStage()
     PlayerLeftPos_  = float4{150, -1067, PlayerZ};
 
     IsLeftExit_ = true;
-
-    if (false == GameEngineInput::GetInst()->IsKey("Distortion"))
-    {
-        GameEngineInput::GetInst()->CreateKey("Distortion", 'U');
-    }
 }
 
 void Stage03::Start()
@@ -146,9 +141,10 @@ void Stage03::Start()
 
 void Stage03::Update(float _DeltaTime)
 {
-    if (true == GameEngineInput::GetInst()->IsDownKey("Distortion"))
+    if (nullptr != LoadingActor_ && 0.f < LoadingActor_->GetAlpha())
     {
-        Distortion_->On();
+        float Ratio = 1.f - LoadingActor_->GetAlpha();
+        StageSoundPlayer_.Volume(Ratio);
     }
 
     if (false == IsChangeCameraPos_)
@@ -203,9 +199,6 @@ void Stage03::Update(float _DeltaTime)
     {
         SetLoadingEnd(false);
 
-        StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Brotherhood_Ambient.wav", -1);
-        StageSoundPlayer_.Volume(0.15f);
-
         if (false == Penitent_->IsUpdate())
         {
             Penitent_->On();
@@ -258,6 +251,11 @@ void Stage03::LevelStartEvent()
     GetMainCameraActor()->GetTransform().SetWorldPosition(float4{
         Penitent_->GetTransform().GetLocalPosition() + float4{0, CameraOffset_}
     });
+
+    StageSoundPlayer_.Pause(false);
+
+    StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Brotherhood_Ambient.wav", -1);
+    StageSoundPlayer_.Volume(0.f);
 }
 
 void Stage03::LevelEndEvent() { StageBase::LevelEndEvent(); }

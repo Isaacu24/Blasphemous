@@ -246,6 +246,12 @@ void Stage10::Start()
 
 void Stage10::Update(float _DeltaTime)
 {
+    if (nullptr != LoadingActor_ && 0.f < LoadingActor_->GetAlpha())
+    {
+        float Ratio = 1.f - LoadingActor_->GetAlpha();
+        StageSoundPlayer_.Volume(Ratio);
+    }
+
     if (false == IsChangeCameraPos_)
     {
         GetMainCameraActor()->GetTransform().SetWorldMove({0, 0, CameraZPos_});
@@ -304,9 +310,6 @@ void Stage10::Update(float _DeltaTime)
     {
         SetLoadingEnd(false);
 
-        StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Bridge.wav", -1);
-        StageSoundPlayer_.Volume(0.15f);
-
         if (nullptr != GEngine::GetPrevLevel())
         {
             if ("STAGE05" == GEngine::GetPrevLevel()->GetNameConstRef())
@@ -357,6 +360,11 @@ void Stage10::LevelStartEvent()
     GetMainCameraActor()->GetTransform().SetWorldPosition(float4{
         Penitent_->GetTransform().GetLocalPosition() + float4{0, CameraOffset_}
     });
+
+    StageSoundPlayer_.Pause(false);
+
+    StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Bridge.wav", -1);
+    StageSoundPlayer_.Volume(0.f);
 }
 
 void Stage10::LevelEndEvent() { StageBase::LevelEndEvent(); }

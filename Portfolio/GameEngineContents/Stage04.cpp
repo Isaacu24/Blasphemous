@@ -97,6 +97,12 @@ void Stage04::Start()
 
 void Stage04::Update(float _DeltaTime)
 {
+    if (nullptr != LoadingActor_ && 0.f < LoadingActor_->GetAlpha())
+    {
+        float Ratio = 1.f - LoadingActor_->GetAlpha();
+        StageSoundPlayer_.Volume(Ratio);
+    }
+
     if (false == IsChangeCameraPos_)
     {
         GetMainCameraActor()->GetTransform().SetWorldMove({0, 0, CameraZPos_});
@@ -104,14 +110,6 @@ void Stage04::Update(float _DeltaTime)
     }
 
     StageFlowUpdate(_DeltaTime);
-
-    if (true == GetLoadingEnd())
-    {
-        SetLoadingEnd(false);
-
-        StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Boss_Zone_Background.wav", -1);
-        StageSoundPlayer_.Volume(0.15f);
-    }
 }
 
 void Stage04::BossStateCheck()
@@ -153,6 +151,7 @@ void Stage04::StageFlowUpdate(float _DeltaTime)
                 Penitent_->SetIsFreezeEnd(true);
                 CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
 
+                StageSoundPlayer_.Stop();
                 StageSoundPlayer_ = GameEngineSound::SoundPlayControl("ElderBrother.wav", -1);
             }
             break;
@@ -187,7 +186,7 @@ void Stage04::StageFlowUpdate(float _DeltaTime)
             {
                 StageSoundPlayer_.Stop();
 
-                StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Brotherhood_Ambient.wav", -1);
+                StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Boss_Zone_Background.wav", -1);
                 CurrentFlow_      = STAGEFLOW::BOSSDEAD;
             }
             break;
@@ -233,6 +232,11 @@ void Stage04::LevelStartEvent()
     GetMainCameraActor()->GetTransform().SetWorldPosition(float4{
         Penitent_->GetTransform().GetLocalPosition() + float4{0, CameraOffset_}
     });
+
+    StageSoundPlayer_.Pause(false);
+
+    StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Boss_Zone_Background.wav", -1);
+    StageSoundPlayer_.Volume(0.f);
 }
 
 void Stage04::LevelEndEvent()
@@ -271,6 +275,8 @@ void Stage04::LevelEndEvent()
     {
         IsLeftExit_ = true;
     }
+
+    StageSoundPlayer_.Pause(true);
 }
 
 void Stage04::PlayerCameraMove(float _DeltaTime)
