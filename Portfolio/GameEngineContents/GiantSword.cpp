@@ -228,9 +228,27 @@ void GiantSword::AttackStart(const StateInfo& _Info)
 
 void GiantSword::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    static bool IsTrun;
+    if (false == IsTrunAttack_)
+    {
+        if (0.75f <= _Info.StateTime)
+        {
+            IsTrunAttack_ = true;
+        }
 
-    if (false == IsTrun)
+        RotSpeed_ += _DeltaTime * 2.5f;
+
+        if (0 > -Dir_.x)
+        {
+            GetTransform().SetLocalRotate({0, 0, RotSpeed_});
+        }
+
+        else if (0 <= -Dir_.x)
+        {
+            GetTransform().SetLocalRotate({0, 0, -RotSpeed_});
+        }
+    }
+
+    else
     {
         RotSpeed_ += _DeltaTime * 5.f;
         AttSpeed_ += 1000 * _DeltaTime;
@@ -258,6 +276,14 @@ void GiantSword::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
         {
             GetTransform().SetLocalRotate({0, 0, -RotSpeed_});
 
+            if (-180.f >= GetTransform().GetLocalRotation().z)
+            {
+                if (0.f < RotSpeed_)
+                {
+                    RotSpeed_ -= _DeltaTime * 10.f;
+                }
+            }
+
             if (-360.f >= GetTransform().GetLocalRotation().z)
             {
                 State_.ChangeState("Track");
@@ -268,11 +294,24 @@ void GiantSword::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
         {
             GetTransform().SetLocalRotate({0, 0, RotSpeed_});
 
+            if (180.f <= GetTransform().GetLocalRotation().z)
+            {
+                if (0.f < RotSpeed_)
+                {
+                    RotSpeed_ -= _DeltaTime * 10.f;
+                }
+            }
+
             if (360.f <= GetTransform().GetLocalRotation().z)
             {
                 State_.ChangeState("Track");
             }
         }
+
+        /* if (true == Penitent::GetMainPlayer()->GetParryOn())
+         {
+             Penitent::GetMainPlayer()->ParrySlide();
+         }*/
     }
 }
 
@@ -280,6 +319,8 @@ void GiantSword::AttackEnd(const StateInfo& _Info)
 {
     AttackCollider_->Off();
     RotSpeed_ = 0.f;
+
+    IsTrunAttack_ = false;
 }
 
 
@@ -324,16 +365,13 @@ void GiantSword::TrackUpdate(float _DeltaTime, const StateInfo& _Info)
 void GiantSword::TrackEnd(const StateInfo& _Info) {}
 
 
-void GiantSword::DodgeStart(const StateInfo& _Info) 
-{ 
-    DodgeSpeed_ = 500.f;
-}
+void GiantSword::DodgeStart(const StateInfo& _Info) { DodgeSpeed_ = 500.f; }
 
-void GiantSword::DodgeUpdate(float _DeltaTime, const StateInfo& _Info) 
+void GiantSword::DodgeUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    DodgeSpeed_ -= _DeltaTime * 500.f;
+    DodgeSpeed_ -= _DeltaTime * 700.f;
 
-    Dir_.Normalize(); 
+    Dir_.Normalize();
     GetTransform().SetWorldMove(float4{Dir_.x, Dir_.y} * DodgeSpeed_ * _DeltaTime);
 
     if (0.f >= DodgeSpeed_)

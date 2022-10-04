@@ -323,6 +323,9 @@
     <ClInclude Include="GravityComponent.h">
       <Filter>Component</Filter>
     </ClInclude>
+    <ClInclude Include="MetaSpectrumComponent.h">
+      <Filter>Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blasphemous.cpp" />
@@ -648,6 +651,9 @@
       <Filter>Actor\PostEffect</Filter>
     </ClCompile>
     <ClCompile Include="GravityComponent.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="MetaSpectrumComponent.cpp">
       <Filter>Component</Filter>
     </ClCompile>
   </ItemGroup>

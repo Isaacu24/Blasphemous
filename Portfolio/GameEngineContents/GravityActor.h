@@ -39,6 +39,8 @@ public:
 
 		Alpha_ = 0.f;
 
+		CreateIndex_ = 0;
+
 		StartPos_ = GetTransform().GetWorldPosition();
 		EndPos_ = StartPos_ + float4{ Dir_.x * 800.f, 0.f };
 	}
@@ -56,6 +58,8 @@ public:
 		Speed_ = _Speed;
 	}
 
+	void CreateAttackEffect(float _Alpha);
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -63,7 +67,7 @@ protected:
 
 private:
 	GravityComponent* Gravity_;
-	GameEngineTextureRenderer* Renderer_;
+	//GameEngineTextureRenderer* Renderer_;
 
 	GameEngineTextureRenderer* ColMap_;
 
@@ -79,5 +83,8 @@ private:
 	float4 StartPos_;
 	float4 EndPos_;
 
+	class AttackCorpseEffecter* AttackEffecter_;
+
+	int CreateIndex_;
 };
 

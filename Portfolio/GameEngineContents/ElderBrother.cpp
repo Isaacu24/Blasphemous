@@ -132,30 +132,6 @@ void ElderBrother::Start()
                 CurStage_->SetForceY(5.f);
                 CurStage_->SetShake(true);
             }
-
-            if (17 < _Info.CurFrame)
-            {
-                if (nullptr == AffectChecker)
-                {
-                    return;
-                }
-
-                float DirX = Dir_.NormalizeReturn().x;
-
-                if (0 > DirX)
-                {
-                    AttackEffecter_->SetCreatePos(AffectChecker->GetTransform().GetWorldPosition() + float4{0, 0.f});
-                    AttackEffecter_->SetDir(-1);
-                    AttackEffecter_->CreateEffect();
-                }
-
-                else
-                {
-                    AttackEffecter_->SetCreatePos(AffectChecker->GetTransform().GetWorldPosition() + float4{0, 0.f});
-                    AttackEffecter_->SetDir(1);
-                    AttackEffecter_->CreateEffect();
-                }
-            }
         });
 
     Renderer_->AnimationBindEnd("elderBrother_attack", [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
@@ -226,7 +202,6 @@ void ElderBrother::Start()
     Renderer_->SetPivot(PIVOTMODE::BOT);
     GetTransform().PixLocalNegativeX();
 
-    AttackEffecter_ = GetLevel()->CreateActor<AttackCorpseEffecter>();
     JumpEffecter_   = GetLevel()->CreateActor<JumpCorpseEffecter>();
 
     AffectChecker = GetLevel()->CreateActor<GravityActor>(ACTORORDER::Monster);
@@ -647,7 +622,6 @@ void ElderBrother::DeathStart(const StateInfo& _Info)
     BossDeathEvent_ = true;
     BossDeathEvent();
 
-    AttackEffecter_->Death();
     JumpEffecter_->Death();
 }
 

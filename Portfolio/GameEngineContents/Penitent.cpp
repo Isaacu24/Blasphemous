@@ -487,7 +487,7 @@ void Penitent::SetAnimation()
                         MoveEffect_->GetTransform().PixLocalPositiveX();
                     }
 
-                    else 
+                    else
                     {
                         MoveEffect_->GetTransform().PixLocalNegativeX();
                     }
@@ -1112,12 +1112,12 @@ void Penitent::SetAnimation()
                 if (9 == _Info.CurFrame)
                 {
                     MoveEffect_->Renderer_->On();
+                    MoveEffect_->Renderer_->ChangeMetaAnimation("penitent_pushback_grounded_dust_effect_anim");
                 }
 
                 if (9 <= _Info.CurFrame)
                 {
                     MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
-                    MoveEffect_->Renderer_->ChangeMetaAnimation("penitent_pushback_grounded_dust_effect_anim");
                 }
             });
 
@@ -1132,6 +1132,17 @@ void Penitent::SetAnimation()
             "penitent_throwback_anim",
             {"penitent_throwback_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
             Data);
+
+        MetaRenderer_->AnimationBindFrame(
+            "penitent_throwback_anim",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                if (20 == _Info.CurFrame)
+                {
+                    MoveEffect_->Renderer_->On();
+                    MoveEffect_->Renderer_->ChangeMetaAnimation("penitent_throwback_ground_contact_dust_anim");
+                }
+            });
 
         MetaRenderer_->AnimationBindEnd("penitent_throwback_anim",
                                         [&](const FrameAnimation_DESC& _Info)
@@ -1179,6 +1190,19 @@ void Penitent::SetAnimation()
 
         MetaRenderer_->AnimationBindEnd("penitent_parry_success_animv3",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("ParryingAttack"); });
+    }
+
+    //패링 슬라이드
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_guardSlide_back_to_idle");
+
+        MetaRenderer_->CreateMetaAnimation(
+            "penitent_guardSlide_back_to_idle",
+            {"penitent_guardSlide_back_to_idle.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
+            Data);
+
+        MetaRenderer_->AnimationBindEnd("penitent_guardSlide_back_to_idle",
+                                        [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
     }
 
     //패링 공격
@@ -1731,6 +1755,12 @@ void Penitent::SetPlayerState()
         std::bind(&Penitent::CrouchAttackUpdate, this, std::placeholders::_1, std::placeholders::_2),
         std::bind(&Penitent::CrouchAttackStart, this, std::placeholders::_1),
         std::bind(&Penitent::CrouchAttackEnd, this, std::placeholders::_1));
+
+    State_.CreateStateMember(
+        "ParryingSlide",
+        std::bind(&Penitent::ParryingSlideUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&Penitent::ParryingSlideStart, this, std::placeholders::_1),
+        std::bind(&Penitent::ParryingSlideEnd, this, std::placeholders::_1));
 
     // State_.CreateStateMember("Pray",
     //                          std::bind(&Penitent::PrayUpdate, this, std::placeholders::_1,

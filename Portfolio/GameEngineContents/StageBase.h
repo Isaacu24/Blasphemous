@@ -59,6 +59,8 @@ protected:
 
     STAGEFLOW CurrentFlow_;
 
+    class CutScenePlayer* CutScenePlayer_;
+
     GameEngineActor* Stage_;
 
     float4 CurPos_;

@@ -97,7 +97,6 @@ private:
     float4 Target_;
     float4 JumpForce_;
 
-    AttackCorpseEffecter* AttackEffecter_;
     JumpCorpseEffecter*   JumpEffecter_;
     GravityActor*         AffectChecker;
 

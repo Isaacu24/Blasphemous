@@ -481,6 +481,18 @@ void Blasphemous::LoadResources()
         }
     }
 
+    {
+        GameEngineDirectory Dir;
+        MovePath(Dir, {"ContentsResources", "Resources", "Sprite", "CutScene", "001"});
+
+        std::vector<GameEngineFile> Textures = Dir.GetAllFile();
+
+        for (size_t i = 0; i < Textures.size(); i++)
+        {
+            GameEngineTexture::Load(Textures[i].GetFullPath());
+        }
+    }
+
     // Object
     {
         GameEngineDirectory Dir;

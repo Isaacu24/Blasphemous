@@ -589,6 +589,7 @@ void Penitent::KnockUpUpdate(float _DeltaTime, const StateInfo& _Info)
         GetTransform().SetWorldMove(float4{-(MoveDir_.x), 0} * 150.f * _DeltaTime);
     }
 
+    MoveEffect_->Renderer_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
     Gravity_->SetActive(!IsGround_);
 }
 
@@ -1301,6 +1302,13 @@ void Penitent::ParryingUpdate(float _DeltaTime, const StateInfo& _Info)
         MetaRenderer_->ChangeMetaAnimation("penitent_parry_success_animv3");
         ParryOn_ = false;
     }
+
+    else if (true == IsParrySlide_)
+    {
+        State_.ChangeState("ParryingSlide");
+
+        ParryOn_ = false;
+    }
 }
 
 void Penitent::ParryingEnd(const StateInfo& _Info) {}
@@ -1316,6 +1324,32 @@ void Penitent::ParryingAttackStart(const StateInfo& _Info)
 void Penitent::ParryingAttackUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void Penitent::ParryingAttackEnd(const StateInfo& _Info) {}
+
+
+void Penitent::ParryingSlideStart(const StateInfo& _Info)
+{
+    MetaRenderer_->ChangeMetaAnimation("penitent_guardSlide_back_to_idle");
+
+    MoveEffect_->Renderer_->On();
+
+    MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
+    MoveEffect_->Renderer_->ChangeMetaAnimation("penitent_pushback_grounded_dust_effect_anim");
+}
+
+void Penitent::ParryingSlideUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    if (0.f < -(MoveDir_.x) && true == RightObstacleCheck() || 0.f > -(MoveDir_.x) && true == LeftObstacleCheck())
+    {
+        return;
+    }
+
+    MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
+
+    GetTransform().SetWorldMove(float4{-(MoveDir_.x), 0} * 200.f * _DeltaTime);
+    Gravity_->SetActive(!IsGround_);
+}
+
+void Penitent::ParryingSlideEnd(const StateInfo& _Info) { IsParrySlide_ = false; }
 
 
 void Penitent::RecoveryStart(const StateInfo& _Info)
@@ -1363,10 +1397,6 @@ void Penitent::ReturnToPortStart(const StateInfo& _Info)
 {
     IsReturnToPort_ = false;
     MetaRenderer_->ChangeMetaAnimation("RegresoAPuerto-Prayer");
-
-    // AttackEffect_->Renderer_->On();
-    // AttackEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
-    // AttackEffect_->Renderer_->ChangeMetaAnimation("guardian_lady_protect_and_vanish");
 }
 
 void Penitent::ReturnToPortUpdate(float _DeltaTime, const StateInfo& _Info) {}

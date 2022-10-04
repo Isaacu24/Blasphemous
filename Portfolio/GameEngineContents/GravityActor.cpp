@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "GravityActor.h"
+#include "AttackCorpseEffecter.h"
 
 GravityActor::GravityActor()
     : Gravity_(nullptr)
@@ -13,17 +14,23 @@ GravityActor::~GravityActor() {}
 void GravityActor::Start()
 {
     Gravity_  = CreateComponent<GravityComponent>();
-    Renderer_ = CreateComponent<GameEngineTextureRenderer>();
-    Renderer_->GetTransform().SetWorldScale({100, 100});
-    Renderer_->SetPivot(PIVOTMODE::BOT);
+    //Renderer_ = CreateComponent<GameEngineTextureRenderer>();
+
+    AttackEffecter_ = GetLevel()->CreateActor<AttackCorpseEffecter>();
+
+    //Renderer_->GetTransform().SetWorldScale({100, 100});
+    //Renderer_->SetPivot(PIVOTMODE::BOT);
 }
 
 void GravityActor::Update(float _DeltaTime)
 {
     if (true == IsMove_)
     {
-        Alpha_ += _DeltaTime / 10;
-        float4 CurPos = float4::Lerp(GetTransform().GetWorldPosition(), EndPos_, Alpha_);
+        Alpha_ += _DeltaTime;
+
+        CreateAttackEffect(Alpha_);
+
+        float4 CurPos = float4::Lerp(StartPos_, EndPos_, Alpha_);
         GetTransform().SetWorldPosition({CurPos.x, CurPos.y, 0});
 
         if (0 > Dir_.x)
@@ -86,5 +93,84 @@ void GravityActor::UphillRoadCheck()
         {
             break;
         }
+    }
+}
+
+
+void GravityActor::CreateAttackEffect(float _Alpha)     
+{
+    if (0.3f <= Alpha_ && 0 == CreateIndex_)
+    {
+        ++CreateIndex_;
+
+        AttackEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{0, 0.f});
+        AttackEffecter_->SetDir(Dir_.x);
+        AttackEffecter_->CreateEffect();
+    }
+
+    if (0.4f <= Alpha_ && 1 == CreateIndex_)
+    {
+        ++CreateIndex_;
+
+        AttackEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{0, 0.f});
+        AttackEffecter_->SetDir(Dir_.x);
+        AttackEffecter_->CreateEffect();
+    }
+
+    if (0.5f <= Alpha_ && 2 == CreateIndex_)
+    {
+        ++CreateIndex_;
+
+        AttackEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{0, 0.f});
+        AttackEffecter_->SetDir(Dir_.x);
+        AttackEffecter_->CreateEffect();
+    }
+
+    if (0.6f <= Alpha_ && 3 == CreateIndex_)
+    {
+        ++CreateIndex_;
+
+        AttackEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{0, 0.f});
+        AttackEffecter_->SetDir(Dir_.x);
+        AttackEffecter_->CreateEffect();
+    }
+
+    if (0.7f <= Alpha_ && 4 == CreateIndex_)
+    {
+        ++CreateIndex_;
+
+        AttackEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{0, 0.f});
+        AttackEffecter_->SetDir(Dir_.x);
+        AttackEffecter_->CreateEffect();
+    }
+
+
+    if (0.8f <= Alpha_ && 5 == CreateIndex_)
+    {
+        ++CreateIndex_;
+
+        AttackEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{0, 0.f});
+        AttackEffecter_->SetDir(Dir_.x);
+        AttackEffecter_->CreateEffect();
+    }
+
+
+    if (0.9f <= Alpha_ && 6 == CreateIndex_)
+    {
+        ++CreateIndex_;
+
+        AttackEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{0, 0.f});
+        AttackEffecter_->SetDir(Dir_.x);
+        AttackEffecter_->CreateEffect();
+    }
+
+
+    if (1.0f <= Alpha_ && 7 == CreateIndex_)
+    {
+        ++CreateIndex_;
+
+        AttackEffecter_->SetCreatePos(GetTransform().GetWorldPosition() + float4{0, 0.f});
+        AttackEffecter_->SetDir(Dir_.x);
+        AttackEffecter_->CreateEffect();
     }
 }

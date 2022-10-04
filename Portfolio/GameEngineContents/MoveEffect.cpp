@@ -118,6 +118,25 @@ void MoveEffect::Start()
                                     });
     }
 
+    {
+        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_throwback_ground_contact_dust_anim");
+
+        Renderer_->CreateMetaAnimation("penitent_throwback_ground_contact_dust_anim",
+                                       {"penitent_throwback_ground_contact_dust_anim.png",
+                                        0,
+                                        static_cast<unsigned int>(Data.size() - 1),
+                                        0.07f,
+                                        true},
+                                       Data);
+
+        Renderer_->AnimationBindEnd("penitent_throwback_ground_contact_dust_anim",
+                                    [&](const FrameAnimation_DESC& _Info)
+                                    {
+                                        Renderer_->CurAnimationReset();
+                                        Renderer_->Off();
+                                    });
+    }
+
     Renderer_->SetPivot(PIVOTMODE::METABOT);
 }
 

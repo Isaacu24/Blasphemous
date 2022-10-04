@@ -1,63 +1,49 @@
 #include "PreCompile.h"
 #include "CutScenePlayer.h"
 
-CutScenePlayer::CutScenePlayer() 
-	: CutRenderer_(nullptr)
-	, CurrentType_(CutSceneType::Intro)
-	, PlayTime_(0.0f)
-	, CurrentFrame_(0)
-{
-}
+CutScenePlayer::CutScenePlayer()
+    : CutRenderer_(nullptr)
+    , PlayTime_(0.01f)
+    , CurrentFrame_(0)
+{}
 
-CutScenePlayer::~CutScenePlayer() 
-{
-}
+CutScenePlayer::~CutScenePlayer() {}
 
 
-void CutScenePlayer::Start()
-{
-	//CutRenderer_ = CreateComponent<GameEngineTextureRenderer>();
-	//CutRenderer_->GetTransform().SetWorldScale({GameEngineWindow::GetScale()});
-	//CutRenderer_->SetTexture("CutScene_0.png");
-
-	//CurrentType_ = CutSceneType::DeadBrotherhood;
-}
+void CutScenePlayer::Start() { CutRenderer_ = CreateComponent<GameEngineUIRenderer>(); }
 
 void CutScenePlayer::Update(float _DeltaTime)
 {
-	switch (CurrentType_)
-	{
-	case CutSceneType::Intro:
-		//PalyIntro(_DeltaTime);
-		break;
-	case CutSceneType::FallPenitent:
-		break;
-	case CutSceneType::DeadBrotherhood:
-		//PalyIntro(_DeltaTime);
-		break;
-	}
+    if (true == IsPlay_)
+    {
+        Speed_ += _DeltaTime;
+
+        if (PlayTime_ <= Speed_)
+        {
+            Speed_ = 0.f;
+
+            CutRenderer_->SetTexture(SceneFrameList_[CurrentFrame_] + ".png");
+            CutRenderer_->ScaleToTexture();
+            CutRenderer_->GetTransform().SetWorldScale(CutRenderer_->GetTransform().GetWorldScale() * 2.f);
+
+            ++CurrentFrame_;
+
+            if (MaxFrame_ - 1 == CurrentFrame_ && nullptr != EndFunc_)
+            {
+                EndFunc_();
+            }
+
+            if (MaxFrame_ == CurrentFrame_)
+            {
+                CurrentFrame_ = 0;
+                IsPlay_       = false;
+
+                CutRenderer_->Off();
+                Off();
+            }
+        }
+        // GetTransform().SetWorldPosition(GetLevel()->GetMainCamera()->GetMouseWorldPosition());
+    }
 }
 
-void CutScenePlayer::End()
-{
-}
-
-void CutScenePlayer::PalyIntro(float DeltaTime_)
-{
-	PlayTime_ += DeltaTime_;
-
-	if (0.02f <= PlayTime_)
-	{
-		PlayTime_ -= 0.02f;
-
-		++CurrentFrame_;
-
-		if (664 == CurrentFrame_)
-		{
-			Death();
-			return;
-		}
-
-		CutRenderer_->SetTexture("CutScene_" + std::to_string(CurrentFrame_) + ".png");
-	}
-}
+void CutScenePlayer::End() {}

@@ -52,23 +52,22 @@ void Crosscrawler::Start()
             {"crosscrawler_turnaround.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true},
             Data);
 
-        MetaRenderer_->AnimationBindFrame("crosscrawler_turnaround",
-                                          [&](const FrameAnimation_DESC& _Info)
-                                          {
-                                              if (1 == _Info.CurFrame)
-                                              {
-                                                  SoundPlayer_
-                                                      = GameEngineSound::SoundPlayControl("CROSSCRAWLER_TURN.wav");
-                                                  SoundPlayer_.Volume(0.03f);
-                                              }
+        MetaRenderer_->AnimationBindFrame(
+            "crosscrawler_turnaround",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                if (1 == _Info.CurFrame)
+                {
+                    SoundPlayer_ = GameEngineSound::SoundPlayControl("CROSSCRAWLER_TURN.wav");
+                    SoundPlayer_.Volume(0.03f);
+                }
 
-                                              if (17 == _Info.CurFrame)
-                                              {
-                                                  SoundPlayer_
-                                                      = GameEngineSound::SoundPlayControl("CROSSCRAWLER_TURN_END.wav");
-                                                  SoundPlayer_.Volume(0.03f);
-                                              }
-                                          });
+                if (17 == _Info.CurFrame)
+                {
+                    SoundPlayer_ = GameEngineSound::SoundPlayControl("CROSSCRAWLER_TURN_END.wav");
+                    SoundPlayer_.Volume(0.03f);
+                }
+            });
 
         MetaRenderer_->AnimationBindEnd("crosscrawler_turnaround",
                                         [&](const FrameAnimation_DESC& _Info)
@@ -115,6 +114,11 @@ void Crosscrawler::Start()
 
                     SoundPlayer_ = GameEngineSound::SoundPlayControl("CROSSCRAWLER_ATTACK_HIT.wav");
                     SoundPlayer_.Volume(0.03f);
+
+                    if (true == Penitent::GetMainPlayer()->GetParryOn())
+                    {
+                        Penitent::GetMainPlayer()->ParrySlide();
+                    }
                 }
 
                 else if (20 == _Info.CurFrame)

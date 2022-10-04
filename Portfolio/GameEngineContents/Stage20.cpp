@@ -121,6 +121,9 @@ void Stage20::Start()
 {
     SettingStage();
     SettingMonster();
+
+    CutScenePlayer_ = CreateActor<CutScenePlayer>();
+    CutScenePlayer_->SetCutScene("CutScene_05_", 301);
 }
 
 void Stage20::Update(float _DeltaTime)
@@ -216,8 +219,8 @@ void Stage20::Update(float _DeltaTime)
         case STAGEFLOW::BOSSDEAD:
             if (true == GetLoadingEnd())
             {
-                //StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Gallery of Albores_Loop.wav", -1);
-                //StageSoundPlayer_.Volume(0.15f);
+                // StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Gallery of Albores_Loop.wav", -1);
+                // StageSoundPlayer_.Volume(0.15f);
 
                 SetLoadingEnd(false);
                 Penitent::GetMainPlayer()->BossDeathUIOn(0);
@@ -235,6 +238,14 @@ void Stage20::LevelStartEvent()
 {
     LoadingActor_ = CreateActor<LoadingActor>();
     LoadingActor_->IsEntrance(true);
+
+    CutScenePlayer_->SetCutScenePlayEnd(
+        [&]()
+        {
+            LoadingActor_->On();
+            LoadingActor_->IsEntrance(false);
+            LoadingActor_->Exit("Stage30");
+        });
 
     if (nullptr == Penitent::GetMainPlayer())
     {
@@ -315,9 +326,6 @@ void Stage20::PlayerCameraMove(float _DeltaTime)
     if (4350 < Penitent_->GetTransform().GetWorldPosition().x && false == IsRightExit_)
     {
         IsRightExit_ = true;
-
-        LoadingActor_->On();
-        LoadingActor_->IsEntrance(false);
-        LoadingActor_->Exit("Stage30");
+        CutScenePlayer_->CutScenePlay();
     }
 }

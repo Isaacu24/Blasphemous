@@ -57,6 +57,8 @@ private:
 
     float Alpha_;
 
+    bool IsTrunAttack_;
+
     SpectrumComponent* AttackSpectrum_;
 
     GameEngineTextureRenderer* IrisRenderer_;  //µ¿°ø

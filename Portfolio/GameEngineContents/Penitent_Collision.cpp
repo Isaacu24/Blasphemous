@@ -223,7 +223,7 @@ bool Penitent::ObjectCheck(GameEngineCollision* _This, GameEngineCollision* _Oth
     {
         return false;
     }
-                
+
     if (true == GameEngineInput::GetInst()->IsDownKey("Interaction") && "Idle" == State_.GetCurStateStateName()
         || true == GameEngineInput::GetInst()->IsDownButton("PenitentY") && "Idle" == State_.GetCurStateStateName())
     {
@@ -354,7 +354,7 @@ void Penitent::CollisionCheck()
 
     //몬스터와의 상호작용을 위해 콜라이더를 끄기보단 충돌을 무시하는 편이 좋음
     if ("KnockBack" == State_.GetCurStateStateName() || "KnockUp" == State_.GetCurStateStateName()
-        || "Death" == State_.GetCurStateStateName() || true == IsParrySuccess_
+        || "Death" == State_.GetCurStateStateName() || true == IsParrySuccess_ || true == IsParrySlide_
         || "ParryingAttack" == State_.GetCurStateStateName() || "Execution" == State_.GetCurStateStateName()
         || "Slide" == State_.GetCurStateStateName() || "SlideAttack" == State_.GetCurStateStateName()
         || "VerticalAttack" == State_.GetCurStateStateName() || "VerticalAttackLanding" == State_.GetCurStateStateName()

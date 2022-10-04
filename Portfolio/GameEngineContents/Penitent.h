@@ -106,6 +106,8 @@ public:
 
     inline void ParrySuccess() { IsParrySuccess_ = true; }
 
+    inline void ParrySlide() { IsParrySlide_ = true; }
+
     inline bool GetParryOn() { return ParryOn_; }
 
     void BossKillEventOn();
@@ -251,6 +253,10 @@ protected:
     void ParryingAttackStart(const StateInfo& _Info);
     void ParryingAttackUpdate(float _DeltaTime, const StateInfo& _Info);
     void ParryingAttackEnd(const StateInfo& _Info);
+    
+    void ParryingSlideStart(const StateInfo& _Info);
+    void ParryingSlideUpdate(float _DeltaTime, const StateInfo& _Info);
+    void ParryingSlideEnd(const StateInfo& _Info);
 
     void RecoveryStart(const StateInfo& _Info);
     void RecoveryUpdate(float _DeltaTime, const StateInfo& _Info);
@@ -369,6 +375,7 @@ private:
     bool IsShake_;
     bool IsReturnToPort_;
     bool IsParrySuccess_;
+    bool IsParrySlide_;
     bool ParryOn_;
     bool IsFreezeEnd_;
     bool IsOutDoor_;
