@@ -302,43 +302,50 @@ void Penitent::SetAnimation()
             {"penitent_jumping_attack_noslashes.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
             Data);
 
-        MetaRenderer_->AnimationBindFrame("penitent_jumping_attack_noslashes",
-                                          [&](const FrameAnimation_DESC& _Info)
-                                          {
-                                              switch (_Info.CurFrame)
-                                              {
-                                                  case 2:
-                                                      AttackCollider_->On();
-                                                      break;
-                                                  case 3:
-                                                      if (true == IsHit_ || true == IsBossHit_)
-                                                      {
-                                                          CurStage_->SetForceX(5.f);
-                                                          CurStage_->SetForceY(0.f);
-                                                          CurStage_->SetShake(true);
-                                                          IsHit_ = false;
-                                                      }
-                                                      break;
-                                                  case 4:
-                                                      AttackCollider_->Off();
-                                                      break;
-                                                  case 7:
-                                                      AttackCollider_->On();
-                                                      break;
-                                                  case 8:
-                                                      if (true == IsHit_ || true == IsBossHit_)
-                                                      {
-                                                          CurStage_->SetForceX(15.f);
-                                                          CurStage_->SetForceY(0.f);
-                                                          CurStage_->SetShake(true);
-                                                          IsHit_ = false;
-                                                      }
-                                                      break;
-                                                  case 9:
-                                                      AttackCollider_->Off();
-                                                      break;
-                                              }
-                                          });
+        MetaRenderer_->AnimationBindFrame(
+            "penitent_jumping_attack_noslashes",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                switch (_Info.CurFrame)
+                {
+                    case 2:
+                        AttackCollider_->On();
+
+                        SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_SLASH_AIR_1.wav");
+                        SoundPlayer_.Volume(0.5f);
+                        break;
+                    case 3:
+                        if (true == IsHit_ || true == IsBossHit_)
+                        {
+                            CurStage_->SetForceX(5.f);
+                            CurStage_->SetForceY(0.f);
+                            CurStage_->SetShake(true);
+                            IsHit_ = false;
+                        }
+                        break;
+                    case 4:
+                        AttackCollider_->Off();
+                        break;
+                    case 7:
+                        AttackCollider_->On();
+
+                        SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_SLASH_AIR_2.wav");
+                        SoundPlayer_.Volume(0.5f);
+                        break;
+                    case 8:
+                        if (true == IsHit_ || true == IsBossHit_)
+                        {
+                            CurStage_->SetForceX(15.f);
+                            CurStage_->SetForceY(0.f);
+                            CurStage_->SetShake(true);
+                            IsHit_ = false;
+                        }
+                        break;
+                    case 9:
+                        AttackCollider_->Off();
+                        break;
+                }
+            });
 
         MetaRenderer_->AnimationBindEnd("penitent_jumping_attack_noslashes",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Fall"); });
@@ -361,6 +368,9 @@ void Penitent::SetAnimation()
                 {
                     case 1:
                         AttackCollider_->On();
+
+                        SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_SLASH_AIR_1.wav");
+                        SoundPlayer_.Volume(0.5f);
                         break;
 
                     case 2:
@@ -764,28 +774,34 @@ void Penitent::SetAnimation()
         SlideAttackSpectrum_->SetMetaSpectrumFrame(1, 5);
         SlideAttackSpectrum_->SpectrumLevelOn();
 
-        MetaRenderer_->AnimationBindFrame("penitent_dodge_attack_LVL3",
-                                          [&](const FrameAnimation_DESC& _Info)
-                                          {
-                                              switch (_Info.CurFrame)
-                                              {
-                                                  case 5:
-                                                      AttackCollider_->On();
-                                                      break;
+        MetaRenderer_->AnimationBindFrame(
+            "penitent_dodge_attack_LVL3",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                switch (_Info.CurFrame)
+                {
+                    case 3:
+                        SoundPlayer_ = GameEngineSound::SoundPlayControl("SWORD_VERTICAL_ATTACK.wav");
+                        SoundPlayer_.Volume(0.5f);
+                        break;
 
-                                                  case 18:
-                                                      AttackCollider_->Off();
-                                                      break;
-                                              }
+                    case 5:
+                        AttackCollider_->On();
+                        break;
 
-                                              if (true == IsHit_ || true == IsBossHit_)
-                                              {
-                                                  CurStage_->SetShake(true);
-                                                  CurStage_->SetForceX(10.f);
-                                                  CurStage_->SetForceY(0.f);
-                                                  IsHit_ = false;
-                                              }
-                                          });
+                    case 18:
+                        AttackCollider_->Off();
+                        break;
+                }
+
+                if (true == IsHit_ || true == IsBossHit_)
+                {
+                    CurStage_->SetShake(true);
+                    CurStage_->SetForceX(10.f);
+                    CurStage_->SetForceY(0.f);
+                    IsHit_ = false;
+                }
+            });
 
         MetaRenderer_->AnimationBindEnd("penitent_dodge_attack_LVL3",
                                         [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
@@ -881,6 +897,9 @@ void Penitent::SetAnimation()
                                                                             GetTransform().GetWorldPosition().y,
                                                                             PlayerEffectZ});
                             AttackEffect_->Renderer_->ChangeMetaAnimation("penitent_upward_attack_slash_lvl1");
+
+                            SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_SLASH_AIR_1.wav");
+                            SoundPlayer_.Volume(0.5f);
                         }
 
                         break;

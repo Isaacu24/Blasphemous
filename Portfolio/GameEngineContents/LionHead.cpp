@@ -40,11 +40,13 @@ void LionHead::Start()
                 if (1 == _Info.CurFrame)
                 {
                     SoundPlayer_ = GameEngineSound::SoundPlayControl("LEON_START_ATTACK.wav");
+                    SoundPlayer_.Volume(0.3f);
                 }
 
                 if (9 == _Info.CurFrame)
                 {
                     SoundPlayer_ = GameEngineSound::SoundPlayControl("LEON_PREATTACK.wav");
+                    SoundPlayer_.Volume(0.3f);
                 }
 
                 if (12 == _Info.CurFrame)
@@ -52,6 +54,7 @@ void LionHead::Start()
                     AttackCollider_->On();
 
                     SoundPlayer_ = GameEngineSound::SoundPlayControl("LEON_HIT.wav");
+                    SoundPlayer_.Volume(0.3f);
                 }
 
                 else if (13 == _Info.CurFrame)
@@ -156,8 +159,6 @@ void LionHead::Start()
 
     PatrolStart_ = true;
     PatrolEnd_   = false;
-
-    SoundPlayer_.Volume(0.05f);
 }
 
 void LionHead::Update(float _DeltaTime)
@@ -322,6 +323,7 @@ void LionHead::DeathStart(const StateInfo& _Info)
     MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
 
     SoundPlayer_ = GameEngineSound::SoundPlayControl("LEON_DEATH.wav");
+    SoundPlayer_.Volume(0.3f);
 
     Penitent::GetMainPlayer()->PlusTear(GetTear());
 }

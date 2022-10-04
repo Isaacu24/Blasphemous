@@ -15,7 +15,7 @@ void FireBall::Start()
 
     Renderer_->ChangeFrameAnimation("pope_fireBall");
     Renderer_->GetTransform().SetWorldScale({300.f, 350.f, 1.f});
-    
+
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
@@ -25,6 +25,15 @@ void FireBall::Start()
             "fireTrap_projectile_destroyed",
             {"fireTrap_projectile_destroyed.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true},
             Data);
+
+        MetaRenderer_->AnimationBindFrame("fireTrap_projectile_destroyed",
+                                          [&](const FrameAnimation_DESC& _Info)
+                                          {
+                                              if (1 == _Info.CurFrame)
+                                              {
+                                                  Collider_->Off();
+                                              }
+                                          });
 
         MetaRenderer_->AnimationBindEnd("fireTrap_projectile_destroyed",
                                         [&](const FrameAnimation_DESC& _Info) { Death(); });
@@ -92,7 +101,6 @@ void FireBall::ExplosionStart(const StateInfo& _Info)
     SoundPlayer_.Volume(0.05f);
 
     Renderer_->Off();
-    Collider_->Off();
 
     GetTransform().SetWorldScale({2.5f, 2.5f, 1});
     GetTransform().SetWorldRotation({0.f, 0.f, 0});

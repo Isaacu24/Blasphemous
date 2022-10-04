@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include <GameEngineBase/GameEngineSound.h>
 
 class MonsterHitEffect : public GameEngineActor
 {
@@ -38,4 +39,6 @@ private:
 
     class MetaTextureRenderer* Effect_;
     MetaTextureRenderer* RangeEffect_;
+
+    GameEngineSoundPlayer SoundPlayer_;
 };

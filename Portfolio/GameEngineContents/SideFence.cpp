@@ -30,7 +30,7 @@ void SideFence::Start()
                                        if (1 == _Info.CurFrame)
                                        {
                                            SoundPlayer_ = GameEngineSound::SoundPlayControl("GATE_OPEN.wav");
-                                           SoundPlayer_.Volume(0.1f);
+                                           SoundPlayer_.Volume(0.3f);
                                        }
 
                                        if (13 == _Info.CurFrame)

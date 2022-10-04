@@ -88,6 +88,7 @@ void Pope::Start()
                                               {
                                                   SoundPlayer_
                                                       = GameEngineSound::SoundPlayControl("PONTIFF_CAST_SPELL.wav");
+                                                  SoundPlayer_.Volume(0.5f);
                                               }
                                           });
 
@@ -334,6 +335,7 @@ void Pope::AppearStart(const StateInfo& _Info)
     Symbol_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{-100, 0});
 
     SoundPlayer_ = GameEngineSound::SoundPlayControl("PONTIFF_TELEPORT_IN.wav");
+    SoundPlayer_.Volume(0.5f);
 }
 
 void Pope::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -363,6 +365,7 @@ void Pope::EventAppearStart(const StateInfo& _Info)
     MetaRenderer_->ChangeMetaAnimation("pope_appear_Event");
 
     SoundPlayer_ = GameEngineSound::SoundPlayControl("PONTIFF_TELEPORT_IN.wav");
+    SoundPlayer_.Volume(0.5f);
 }
 
 void Pope::EventAppearUpdate(float _DeltaTime, const StateInfo& _Info) {}
@@ -385,6 +388,7 @@ void Pope::VanishingStart(const StateInfo& _Info)
     MetaRenderer_->ChangeMetaAnimation("pope_vanishing");
 
     SoundPlayer_ = GameEngineSound::SoundPlayControl("PONTIFF_TELEPORT_OUT.wav");
+    SoundPlayer_.Volume(0.5f);
 }
 
 void Pope::VanishingUpdate(float _DeltaTime, const StateInfo& _Info) {}

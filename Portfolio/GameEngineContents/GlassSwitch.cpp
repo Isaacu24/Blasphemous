@@ -18,7 +18,7 @@ void GlassSwitch::Start()
                                       {
                                           SoundPlayer_
                                               = GameEngineSound::SoundPlayControl("GLASS_PLATFORM_COLLAPSE.wav");
-                                          SoundPlayer_.Volume(0.1f);
+                                          SoundPlayer_.Volume(0.3f);
                                       }
                                   });
     Renderer_->AnimationBindEnd("glassSwitchBroken", [&](const FrameAnimation_DESC& _Info) { Collider_->Off(); });

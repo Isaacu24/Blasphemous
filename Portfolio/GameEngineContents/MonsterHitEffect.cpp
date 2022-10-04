@@ -121,15 +121,27 @@ void MonsterHitEffect::ShowHitEffet()
     {
         case 0:
             Effect_->ChangeMetaAnimation("penitent_attack_spark_1_revision_anim");
+
+            SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_ENEMY_HIT_2.wav");
+            SoundPlayer_.Volume(0.5f);
             break;
         case 1:
             Effect_->ChangeMetaAnimation("penitent_attack_spark_2_revision_anim");
+
+            SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_ENEMY_HIT_3.wav");
+            SoundPlayer_.Volume(0.5f);
             break;
         case 2:
             Effect_->ChangeMetaAnimation("penitent_attack_spark_3_revision_anim");
+
+            SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_ENEMY_HIT_4.wav");
+            SoundPlayer_.Volume(0.5f);
             break;
         default:
             Effect_->ChangeMetaAnimation("penitent_attack_spark_1_anim");
+
+            SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_ENEMY_HIT_1.wav");
+            SoundPlayer_.Volume(0.5f);
             break;
     }
 
@@ -139,7 +151,7 @@ void MonsterHitEffect::ShowHitEffet()
     {
         HitCount_ = 2;
     }
-}   
+}
 
 void MonsterHitEffect::ShowRangeHitEffect()
 {

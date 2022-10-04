@@ -51,9 +51,9 @@ void GiantSword::Start()
                                               {"pontiff_giantSword_swordSprite.png", 0, 0, 0.1f, false});
 
     AttackSpectrum_->CreateOnceSpectrum(
-        "pontiff_giantSword_swordSprite", {"pontiff_giantSword_swordSprite.png", 0, 0, 0.1f, false}, 16);
+        "pontiff_giantSword_swordSprite", {"pontiff_giantSword_swordSprite.png", 0, 0, 0.1f, false}, 21);
 
-    AttackSpectrum_->SetOnceSpectrumFrame(15);
+    AttackSpectrum_->SetOnceSpectrumFrame(20);
 
     Renderer_->GetTransform().SetLocalScale({125, 400});
     Renderer_->SetPivot(PIVOTMODE::TOP);
@@ -133,7 +133,7 @@ void GiantSword::TeleportINStart(const StateInfo& _Info)
     Renderer_->ChangeFrameAnimation("pontiff_giantSword_teleportIN");
 
     SoundPlayer_ = GameEngineSound::SoundPlayControl("SWORD_DISAPPEAR.wav");
-    SoundPlayer_.Volume(0.05f);
+    SoundPlayer_.Volume(0.5f);
 
     Pontiff_->ChangeMonsterState("Opening");
     BodyCollider_->Off();
@@ -154,7 +154,7 @@ void GiantSword::TeleportOutStart(const StateInfo& _Info)
     Renderer_->ChangeFrameAnimation("pontiff_giantSword_teleportOUT");
 
     SoundPlayer_ = GameEngineSound::SoundPlayControl("SWORD_APPEAR.wav");
-    SoundPlayer_.Volume(0.05f);
+    SoundPlayer_.Volume(0.5f);
 
     if ("CloseIdle" != Pontiff_->GetState() && "Appear" != Pontiff_->GetState())
     {
@@ -220,10 +220,8 @@ void GiantSword::AttackStart(const StateInfo& _Info)
 
     AttackCollider_->On();
 
-    AttackSpectrum_->SetIsDraw(true);
-
     SoundPlayer_ = GameEngineSound::SoundPlayControl("SWORD_AIR_ATTACK.wav");
-    SoundPlayer_.Volume(0.05f);
+    SoundPlayer_.Volume(0.5f);
 }
 
 void GiantSword::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -233,6 +231,7 @@ void GiantSword::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
         if (0.75f <= _Info.StateTime)
         {
             IsTrunAttack_ = true;
+            AttackSpectrum_->SetIsDraw(true);
         }
 
         RotSpeed_ += _DeltaTime * 2.5f;

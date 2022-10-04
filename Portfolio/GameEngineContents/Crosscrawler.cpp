@@ -39,7 +39,7 @@ void Crosscrawler::Start()
                                               {
                                                   SoundPlayer_
                                                       = GameEngineSound::SoundPlayControl("CROSSCRAWLER_WALK_1.wav");
-                                                  SoundPlayer_.Volume(0.03f);
+                                                  SoundPlayer_.Volume(0.3f);
                                               }
                                           });
     }
@@ -59,13 +59,13 @@ void Crosscrawler::Start()
                 if (1 == _Info.CurFrame)
                 {
                     SoundPlayer_ = GameEngineSound::SoundPlayControl("CROSSCRAWLER_TURN.wav");
-                    SoundPlayer_.Volume(0.03f);
+                    SoundPlayer_.Volume(0.3f);
                 }
 
                 if (17 == _Info.CurFrame)
                 {
                     SoundPlayer_ = GameEngineSound::SoundPlayControl("CROSSCRAWLER_TURN_END.wav");
-                    SoundPlayer_.Volume(0.03f);
+                    SoundPlayer_.Volume(0.3f);
                 }
             });
 
@@ -99,13 +99,13 @@ void Crosscrawler::Start()
                 if (1 == _Info.CurFrame)
                 {
                     SoundPlayer_ = GameEngineSound::SoundPlayControl("CROSSCRAWLER_ATTACK_1.wav");
-                    SoundPlayer_.Volume(0.03f);
+                    SoundPlayer_.Volume(0.3f);
                 }
 
                 if (15 == _Info.CurFrame)
                 {
                     SoundPlayer_ = GameEngineSound::SoundPlayControl("CROSSCRAWLER_ATTACK_2.wav");
-                    SoundPlayer_.Volume(0.03f);
+                    SoundPlayer_.Volume(0.3f);
                 }
 
                 if (19 == _Info.CurFrame)
@@ -113,7 +113,7 @@ void Crosscrawler::Start()
                     AttackCollider_->On();
 
                     SoundPlayer_ = GameEngineSound::SoundPlayControl("CROSSCRAWLER_ATTACK_HIT.wav");
-                    SoundPlayer_.Volume(0.03f);
+                    SoundPlayer_.Volume(0.3f);
 
                     if (true == Penitent::GetMainPlayer()->GetParryOn())
                     {
@@ -572,6 +572,7 @@ void Crosscrawler::ExecutionStart(const StateInfo& _Info)
     MetaRenderer_->Death();
 
     SoundPlayer_ = GameEngineSound::SoundPlayControl("CROSSCRAWLER_EXECUTION.wav");
+    SoundPlayer_.Volume(0.3f);
 
     Death(10.f);
 }
@@ -584,6 +585,7 @@ void Crosscrawler::ExecutionEnd(const StateInfo& _Info) {}
 void Crosscrawler::DeathStart(const StateInfo& _Info)
 {
     SoundPlayer_ = GameEngineSound::SoundPlayControl("CROSSCRAWLER_DEATH.wav");
+    SoundPlayer_.Volume(0.3f);
 
     MetaRenderer_->ChangeMetaAnimation("crosscrawler_death");
     MetaRenderer_->GetColorData().PlusColor = float4::ZERO;

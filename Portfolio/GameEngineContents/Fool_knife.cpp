@@ -36,7 +36,7 @@ void Fool_knife::Start()
                                       if (0 == _Info.CurFrame % 4)
                                       {
                                           SoundPlayer_ = GameEngineSound::SoundPlayControl("FOOL_FOOTSTEP_4.wav");
-                                          SoundPlayer_.Volume(0.15f);
+                                          SoundPlayer_.Volume(0.3f);
                                       }
                                   });
 
@@ -380,7 +380,7 @@ void Fool_knife::HurtStart(const StateInfo& _Info)
     Renderer_->ChangeFrameAnimation("Fool_hurt_knife");
 
     SoundPlayer_ = GameEngineSound::SoundPlayControl("FOOL_DEATH_2.wav");
-    SoundPlayer_.Volume(0.15f);
+    SoundPlayer_.Volume(0.3f);
 }
 
 void Fool_knife::HurtUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -432,6 +432,7 @@ void Fool_knife::TrackTurnEnd(const StateInfo& _Info)
 void Fool_knife::DeathStart(const StateInfo& _Info)
 {
     SoundPlayer_ = GameEngineSound::SoundPlayControl("FOOL_DEATH_1.wav");
+    SoundPlayer_.Volume(0.3f);
 
     BodyCollider_->Off();
     DetectCollider_->Off();

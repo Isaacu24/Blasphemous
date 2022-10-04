@@ -1,7 +1,7 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
+#include "ObjectBase.h"
 
-class Lantern : public GameEngineActor
+class Lantern : public ObjectBase
 {
 public:
 	Lantern();
