@@ -39,6 +39,7 @@ Penitent::~Penitent() {}
 void Penitent::BossKillEventOn()
 {
     SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_BOSS_DEATH_HIT.wav");
+    SoundPlayer_.Volume(0.5f);
 
     float4 PlayerPos = GetTransform().GetWorldPosition();
     GetTransform().SetWorldPosition({PlayerPos.x, PlayerPos.y, -150});
@@ -499,6 +500,7 @@ void Penitent::SetAnimation()
                 if (0 == _Info.CurFrame % 5)
                 {
                     SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_RUN_MARBLE_2.wav");
+                    SoundPlayer_.Volume(0.5f);
                 }
             });
     }
@@ -541,6 +543,7 @@ void Penitent::SetAnimation()
                                               {
                                                   SoundPlayer_
                                                       = GameEngineSound::SoundPlayControl("PENITENT_START_TALK.wav");
+                                                  SoundPlayer_.Volume(0.5f);
                                               }
                                           });
 
@@ -591,6 +594,7 @@ void Penitent::SetAnimation()
                                               {
                                                   SoundPlayer_
                                                       = GameEngineSound::SoundPlayControl("PENITENT_END_TALK.wav");
+                                                  SoundPlayer_.Volume(0.5f);
                                               }
                                           });
 
@@ -665,6 +669,7 @@ void Penitent::SetAnimation()
                 if (0 == _Info.CurFrame % 3)
                 {
                     SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_CLIMB_LADDER_3.wav");
+                    SoundPlayer_.Volume(0.5f);
                 }
             });
     }
@@ -928,6 +933,7 @@ void Penitent::SetAnimation()
 
                     case 5:
                         SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_SLASH_AIR_1.wav");
+                        SoundPlayer_.Volume(0.5f);
 
                         if (true == IsHit_ || true == IsBossHit_)
                         {
@@ -968,6 +974,7 @@ void Penitent::SetAnimation()
 
                     case 11:
                         SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_SLASH_AIR_2.wav");
+                        SoundPlayer_.Volume(0.5f);
 
                         if (true == IsHit_ || true == IsBossHit_)
                         {
@@ -1010,6 +1017,7 @@ void Penitent::SetAnimation()
 
                     case 20:
                         SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_SLASH_AIR_3.wav");
+                        SoundPlayer_.Volume(0.5f);
 
                         if (true == IsHit_ || true == IsBossHit_)
                         {
@@ -1036,6 +1044,7 @@ void Penitent::SetAnimation()
                     AttackStack_ = 0;
                     MetaRenderer_->ChangeMetaAnimation("penitent_parry_counterv2_old_anim");
                     SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_COMBO_FINAL_DOWN.wav");
+                    SoundPlayer_.Volume(0.5f);
                     return;
                 }
 
@@ -1066,6 +1075,8 @@ void Penitent::SetAnimation()
                     if (true == IsHit_ || true == IsBossHit_)
                     {
                         SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_CRITICAL_HIT_2.wav");
+                        SoundPlayer_.Volume(0.5f);
+
                         CurStage_->SetForceX(20.f);
                         CurStage_->SetForceY(0.f);
                         CurStage_->SetShake(true);
@@ -1439,6 +1450,7 @@ void Penitent::SetAnimation()
                                               {
                                                   SoundPlayer_
                                                       = GameEngineSound::SoundPlayControl("CHECKPOINT_KNEEL_DOWN.wav");
+                                                  SoundPlayer_.Volume(0.5f);
                                               }
                                           });
 
@@ -1480,6 +1492,7 @@ void Penitent::SetAnimation()
                                             MetaRenderer_->ChangeMetaAnimation("penitent_priedieu_stand_up_anim");
                                             SoundPlayer_
                                                 = GameEngineSound::SoundPlayControl("CHECKPOINT_KNEEL_DOWN_FINISH.wav");
+                                            SoundPlayer_.Volume(0.5f);
                                         });
     }
 

@@ -45,8 +45,10 @@ void ElderBrother::Start()
                                       if (0 == _Info.CurFrame)
                                       {
                                           SoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_JUMP.wav");
+                                          SoundPlayer_.Volume(0.5f);
                                           VoiceSoundPlayer_
                                               = GameEngineSound::SoundPlayControl("ELDER_BROTHER_JUMP_VOICE.wav");
+                                          VoiceSoundPlayer_.Volume(0.5f);
                                       }
                                   });
 
@@ -101,6 +103,7 @@ void ElderBrother::Start()
                                           CurStage_->SetShake(true);
 
                                           SoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_LANDING.wav");
+                                          SoundPlayer_.Volume(0.5f);
                                       }
                                   });
 
@@ -126,7 +129,9 @@ void ElderBrother::Start()
                 Distortion_->SetEffectLocalPos(GetScreenPos().x, GetScreenPos().y);
 
                 SoundPlayer_       = GameEngineSound::SoundPlayControl("ELDER_BROTHER_ATTACK.wav");
+                SoundPlayer_.Volume(0.5f);
                 AttackSoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_ATTACK_HIT.wav");
+                AttackSoundPlayer_.Volume(0.5f);
 
                 CurStage_->SetForceX(5.f);
                 CurStage_->SetForceY(5.f);
@@ -164,8 +169,11 @@ void ElderBrother::Start()
             if (16 == _Info.CurFrame)
             {
                 SoundPlayer_       = GameEngineSound::SoundPlayControl("ELDER_BROTHER_ATTACK.wav");
+                SoundPlayer_.Volume(0.5f);
                 AttackSoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_ATTACK_HIT.wav");
+                AttackSoundPlayer_.Volume(0.5f);
                 VoiceSoundPlayer_  = GameEngineSound::SoundPlayControl("ELDER_BROTHER_ATTACK_VOICE.wav");
+                VoiceSoundPlayer_.Volume(0.5f);
 
                 Distortion_->On();
                 Distortion_->SetEffectLocalPos(GetScreenPos().x, GetScreenPos().y);
@@ -194,7 +202,6 @@ void ElderBrother::Start()
                                 [&](const FrameAnimation_DESC& _Info)
                                 {
                                     Penitent::GetMainPlayer()->BossDeathUIOn(1);
-
                                     Penitent::GetMainPlayer()->PlusTear(300);
                                 });
 
@@ -503,7 +510,9 @@ void ElderBrother::IdleEnd(const StateInfo& _Info) { DecideTime_ = 0.f; }
 void ElderBrother::JumpStart(const StateInfo& _Info)
 {
     SoundPlayer_      = GameEngineSound::SoundPlayControl("ELDER_BROTHER_JUMP.wav");
+    SoundPlayer_.Volume(0.5f);
     VoiceSoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_JUMP_VOICE.wav");
+    VoiceSoundPlayer_.Volume(0.5f);
 
     IsJump_ = false;
 
@@ -580,6 +589,7 @@ void ElderBrother::FallEnd(const StateInfo& _Info) {}
 void ElderBrother::LandStart(const StateInfo& _Info)
 {
     SoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_LANDING.wav");
+    SoundPlayer_.Volume(0.5f);
 
     Renderer_->ChangeFrameAnimation("elderBrother_land");
 
@@ -596,6 +606,7 @@ void ElderBrother::LandEnd(const StateInfo& _Info) {}
 void ElderBrother::AttackStart(const StateInfo& _Info)
 {
     VoiceSoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_ATTACK_VOICE.wav");
+    VoiceSoundPlayer_.Volume(0.5f);
 
     Renderer_->ChangeFrameAnimation("elderBrother_attack");
 
@@ -613,7 +624,9 @@ void ElderBrother::AttackEnd(const StateInfo& _Info) {}
 void ElderBrother::DeathStart(const StateInfo& _Info)
 {
     SoundPlayer_      = GameEngineSound::SoundPlayControl("ELDER_BROTHER_DEATH.wav");
+    SoundPlayer_.Volume(0.5f); 
     VoiceSoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_DEATH_VOICE_2.wav");
+    VoiceSoundPlayer_.Volume(0.5f); 
 
     BossUI_->AllOff();
 

@@ -510,6 +510,7 @@ bool Penitent::Dangle(GameEngineCollision* _This, GameEngineCollision* _Other)
     ChangeState("Dangle");
 
     SoundPlayer_ = GameEngineSound::SoundPlayControl("Penitent_EdgeGrab.wav");
+    SoundPlayer_.Volume(0.5f);
 
     return true;
 }

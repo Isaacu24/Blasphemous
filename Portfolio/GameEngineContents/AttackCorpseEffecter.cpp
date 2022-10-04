@@ -15,8 +15,8 @@ AttackCorpseEffecter::AttackCorpseEffecter()
 
 AttackCorpseEffecter::~AttackCorpseEffecter() {}
 
-void AttackCorpseEffecter::CreateEffect() 
-    {
+void AttackCorpseEffecter::CreateEffect()
+{
     float FRandom = GameEngineRandom::MainRandom.RandomFloat(30, 80);
 
     CorpseGroundEffect* Effect = GetLevel()->CreateActor<CorpseGroundEffect>();
@@ -39,14 +39,17 @@ void AttackCorpseEffecter::CreateEffect()
     {
         case 0:
             SoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_CORPSE_WAVE.wav");
+            SoundPlayer_.Volume(0.5f);
             break;
 
         case 1:
             SoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_CORPSE_WAVE_2.wav");
+            SoundPlayer_.Volume(0.5f);
             break;
 
         case 2:
             SoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_CORPSE_WAVE_3.wav");
+            SoundPlayer_.Volume(0.5f);
             break;
     }
 
@@ -60,8 +63,6 @@ void AttackCorpseEffecter::CreateEffect()
 
 void AttackCorpseEffecter::Start() {}
 
-void AttackCorpseEffecter::Update(float _DeltaTime)
-{
-}
+void AttackCorpseEffecter::Update(float _DeltaTime) {}
 
 void AttackCorpseEffecter::End() {}

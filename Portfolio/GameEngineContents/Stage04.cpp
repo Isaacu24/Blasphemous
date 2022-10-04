@@ -112,15 +112,6 @@ void Stage04::Update(float _DeltaTime)
     StageFlowUpdate(_DeltaTime);
 }
 
-void Stage04::BossStateCheck()
-{
-    if (nullptr == BossMonster_)
-    {
-        return;
-    }
-}
-
-
 void Stage04::End() {}
 
 void Stage04::StageFlowUpdate(float _DeltaTime)
@@ -153,6 +144,7 @@ void Stage04::StageFlowUpdate(float _DeltaTime)
 
                 StageSoundPlayer_.Stop();
                 StageSoundPlayer_ = GameEngineSound::SoundPlayControl("ElderBrother.wav", -1);
+                StageSoundPlayer_.Volume(1.0f);
             }
             break;
         case STAGEFLOW::BOSSCOMBAT:
@@ -187,6 +179,8 @@ void Stage04::StageFlowUpdate(float _DeltaTime)
                 StageSoundPlayer_.Stop();
 
                 StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Boss_Zone_Background.wav", -1);
+                StageSoundPlayer_.Volume(1.f);
+
                 CurrentFlow_      = STAGEFLOW::BOSSDEAD;
             }
             break;
@@ -323,3 +317,4 @@ void Stage04::PlayerCameraMove(float _DeltaTime)
         LoadingActor_->Exit("Stage05");
     }
 }
+ 
