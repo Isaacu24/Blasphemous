@@ -277,7 +277,7 @@ void Stage20::LevelStartEvent()
 
 
             StageSoundPlayer_.Pause(false);
-            StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Prima Church Wind.wav", -1);
+            StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Prima Church.wav", -1);
             StageSoundPlayer_.Volume(0.f);
         }
     }
@@ -289,7 +289,7 @@ void Stage20::LevelStartEvent()
     if (STAGEFLOW::BOSSCOMBAT != CurrentFlow_)
     {
         StageSoundPlayer_.Pause(false);
-        StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Prima Church.wav", -1);
+        StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Prima Church Wind.wav", -1);
         StageSoundPlayer_.Volume(0.f);
     }
 }

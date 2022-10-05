@@ -129,6 +129,7 @@ void Stage21::Update(float _DeltaTime)
 
             if (true == Pontiff_->GetLose())
             {
+                BackgorundPlayer_.Stop();
                 CurrentFlow_ = STAGEFLOW::BOSSDEAD;
             }
             break;
@@ -230,5 +231,5 @@ void Stage21::LevelEndEvent()
 {
     StageBase::LevelEndEvent();
 
-    BackgorundPlayer_.Stop();
+    BackgorundPlayer_.Pause(true);
 }

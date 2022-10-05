@@ -55,8 +55,11 @@ void MessageUI::Update(float _DeltaTime)
         {
             IsSoundPlay_ = true;
 
-            SoundPlayer_ = GameEngineSound::SoundPlayControl(SoundList_[0]);
-            SoundPlayer_.Volume(0.5f);
+            if (0 != SoundList_.size())
+            {
+                SoundPlayer_ = GameEngineSound::SoundPlayControl(SoundList_[0]);
+                SoundPlayer_.Volume(0.5f);
+            }
         }
 
         if (BackgroundAlpha_ <= Renderer_->GetColorData().MulColor.a)

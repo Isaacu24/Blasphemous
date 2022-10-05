@@ -4,9 +4,7 @@
 #include "MetaTextureRenderer.h"
 
 
-SpectrumComponent::SpectrumComponent() 
-{ 
-}
+SpectrumComponent::SpectrumComponent() {}
 
 SpectrumComponent::~SpectrumComponent()
 {
@@ -30,40 +28,33 @@ void SpectrumComponent::Update(float _DeltaTime)
         DrawMetaSpectrum(_DeltaTime);
     }
 
-    if (true == IsDisAppear_)
+    for (size_t i = 0; i < Spectrums_.size(); i++)
     {
-        for (size_t i = 0; i < Spectrums_.size(); i++)
+        if (false == Spectrums_[i]->IsUpdate())
         {
-            Spectrums_[i]->GetColorData().MulColor.a -= _DeltaTime;
+            continue;
+        }
 
-            if (0.f >= Spectrums_[i]->GetColorData().MulColor.a)
-            {
-                if (i >= Spectrums_.size())
-                {
-                    IsDisAppear_ = false;
-                }
+        Spectrums_[i]->GetColorData().MulColor.a -= _DeltaTime;
 
-                Spectrums_[i]->Off();
-            }
+        if (0.f >= Spectrums_[i]->GetColorData().MulColor.a)
+        {
+            Spectrums_[i]->Off();
         }
     }
 
-
-    if (true == IsMetaDisAppear_)
+    for (size_t i = 0; i < MetaSpectrums_.size(); i++)
     {
-        for (size_t i = 0; i < MetaSpectrums_.size(); i++)
+        if (false == MetaSpectrums_[i]->IsUpdate())
         {
-            MetaSpectrums_[i]->GetColorData().MulColor.a -= _DeltaTime;
+            continue;
+        }
 
-            if (0.f >= MetaSpectrums_[i]->GetColorData().MulColor.a)
-            {
-                if (i >= MetaSpectrums_.size())
-                {
-                    IsMetaDisAppear_ = false;
-                }
+        MetaSpectrums_[i]->GetColorData().MulColor.a -= _DeltaTime;
 
-                MetaSpectrums_[i]->Off();
-            }
+        if (0.f >= MetaSpectrums_[i]->GetColorData().MulColor.a)
+        {
+            MetaSpectrums_[i]->Off();
         }
     }
 }
@@ -78,16 +69,15 @@ void SpectrumComponent::DrawSpectrum(float _DeltaTime)
 
         if (SpectrumSize_ <= Index_)
         {
-            Index_       = 0;
-            IsDraw_      = false;
-            IsDisAppear_ = true;
+            Index_  = 0;
+            IsDraw_ = false;
             return;
         }
 
         SpectrumActors_[Index_]->On();
         Spectrums_[Index_]->On();
 
-        Spectrums_[Index_]->GetColorData().MulColor = float4{0.15f, 0.5f, 0.98f, 0.5f};
+        Spectrums_[Index_]->GetColorData().MulColor = float4{0.15f, 0.5f, 0.98f, 0.65f};
 
         if (0.0f > GetActor()->GetTransform().GetLocalScale().x)
         {
@@ -131,16 +121,15 @@ void SpectrumComponent::DrawMetaSpectrum(float _DeltaTime)
 
         if (SpectrumSize_ <= Index_)
         {
-            Index_           = 0.f;
-            IsMetaDraw_      = false;
-            IsMetaDisAppear_ = true;
+            Index_      = 0.f;
+            IsMetaDraw_ = false;
             return;
         }
 
         SpectrumActors_[Index_]->On();
         MetaSpectrums_[Index_]->On();
 
-        MetaSpectrums_[Index_]->GetColorData().MulColor = float4{0.65f, 0.f, 1.0f, 0.5f};
+        MetaSpectrums_[Index_]->GetColorData().MulColor = float4{0.65f, 0.f, 1.0f, 0.65f};
 
         if (0.0f > GetActor()->GetTransform().GetLocalScale().x)
         {

@@ -114,30 +114,33 @@ void ElderBrother::Start()
 
     Renderer_->CreateFrameAnimationCutTexture("elderBrother_attack", {"elderBrother_attack.png", 0, 23, 0.07f, false});
 
-    Renderer_->AnimationBindFrame(
-        "elderBrother_attack",
-        [&](const FrameAnimation_DESC& _Info)
-        {
-            if (15 == _Info.CurFrame)
-            {
-                GameEngineInput::GetInst()->VibrationOn(0.75f);
+    Renderer_->AnimationBindFrame("elderBrother_attack",
+                                  [&](const FrameAnimation_DESC& _Info)
+                                  {
+                                      if (13 == _Info.CurFrame)
+                                      {
+                                          AffectChecker->Move();
+                                          AffectChecker->On();
+                                      }
 
-                AffectChecker->Move();
-                AffectChecker->On();
+                                      if (15 == _Info.CurFrame)
+                                      {
+                                          GameEngineInput::GetInst()->VibrationOn(0.75f);
 
-                Distortion_->On();
-                Distortion_->SetEffectLocalPos(GetScreenPos().x, GetScreenPos().y);
+                                          Distortion_->On();
+                                          Distortion_->SetEffectLocalPos(GetScreenPos().x, GetScreenPos().y);
 
-                SoundPlayer_       = GameEngineSound::SoundPlayControl("ELDER_BROTHER_ATTACK.wav");
-                SoundPlayer_.Volume(0.5f);
-                AttackSoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_ATTACK_HIT.wav");
-                AttackSoundPlayer_.Volume(0.5f);
+                                          SoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_ATTACK.wav");
+                                          SoundPlayer_.Volume(0.5f);
+                                          AttackSoundPlayer_
+                                              = GameEngineSound::SoundPlayControl("ELDER_BROTHER_ATTACK_HIT.wav");
+                                          AttackSoundPlayer_.Volume(0.5f);
 
-                CurStage_->SetForceX(5.f);
-                CurStage_->SetForceY(5.f);
-                CurStage_->SetShake(true);
-            }
-        });
+                                          CurStage_->SetForceX(5.f);
+                                          CurStage_->SetForceY(5.f);
+                                          CurStage_->SetShake(true);
+                                      }
+                                  });
 
     Renderer_->AnimationBindEnd("elderBrother_attack", [&](const FrameAnimation_DESC& _Info) { ChangeState("Idle"); });
 
@@ -168,11 +171,11 @@ void ElderBrother::Start()
         {
             if (16 == _Info.CurFrame)
             {
-                SoundPlayer_       = GameEngineSound::SoundPlayControl("ELDER_BROTHER_ATTACK.wav");
+                SoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_ATTACK.wav");
                 SoundPlayer_.Volume(0.5f);
                 AttackSoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_ATTACK_HIT.wav");
                 AttackSoundPlayer_.Volume(0.5f);
-                VoiceSoundPlayer_  = GameEngineSound::SoundPlayControl("ELDER_BROTHER_ATTACK_VOICE.wav");
+                VoiceSoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_ATTACK_VOICE.wav");
                 VoiceSoundPlayer_.Volume(0.5f);
 
                 Distortion_->On();
@@ -209,7 +212,7 @@ void ElderBrother::Start()
     Renderer_->SetPivot(PIVOTMODE::BOT);
     GetTransform().PixLocalNegativeX();
 
-    JumpEffecter_   = GetLevel()->CreateActor<JumpCorpseEffecter>();
+    JumpEffecter_ = GetLevel()->CreateActor<JumpCorpseEffecter>();
 
     AffectChecker = GetLevel()->CreateActor<GravityActor>(ACTORORDER::Monster);
     AffectChecker->Off();
@@ -445,7 +448,7 @@ void ElderBrother::AppearUpdate(float _DeltaTime, const StateInfo& _Info)
             if (true == IsGround_)
             {
                 Renderer_->ChangeFrameAnimation("elderBrother_land_event");
-                Flow_             = APPEARFLOW::Appear;
+                Flow_ = APPEARFLOW::Appear;
             }
             break;
         case APPEARFLOW::Appear:
@@ -509,7 +512,7 @@ void ElderBrother::IdleEnd(const StateInfo& _Info) { DecideTime_ = 0.f; }
 
 void ElderBrother::JumpStart(const StateInfo& _Info)
 {
-    SoundPlayer_      = GameEngineSound::SoundPlayControl("ELDER_BROTHER_JUMP.wav");
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_JUMP.wav");
     SoundPlayer_.Volume(0.5f);
     VoiceSoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_JUMP_VOICE.wav");
     VoiceSoundPlayer_.Volume(0.5f);
@@ -570,6 +573,7 @@ void ElderBrother::FallUpdate(float _DeltaTime, const StateInfo& _Info)
     if (true == IsGround_)
     {
         ChangeState("Land");
+        return;
     }
 
     if (false == IsJump_)
@@ -623,10 +627,10 @@ void ElderBrother::AttackEnd(const StateInfo& _Info) {}
 
 void ElderBrother::DeathStart(const StateInfo& _Info)
 {
-    SoundPlayer_      = GameEngineSound::SoundPlayControl("ELDER_BROTHER_DEATH.wav");
-    SoundPlayer_.Volume(0.5f); 
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_DEATH.wav");
+    SoundPlayer_.Volume(0.5f);
     VoiceSoundPlayer_ = GameEngineSound::SoundPlayControl("ELDER_BROTHER_DEATH_VOICE_2.wav");
-    VoiceSoundPlayer_.Volume(0.5f); 
+    VoiceSoundPlayer_.Volume(0.5f);
 
     BossUI_->AllOff();
 

@@ -1424,6 +1424,8 @@ void Penitent::ReturnToPortEnd(const StateInfo& _Info) {}
 
 void Penitent::RespawnStart(const StateInfo& _Info)
 {
+    IsPlayerDeath_ = false;
+
     BodyCollider_->Off();
 
     SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_RESPAWN.wav");
@@ -1532,6 +1534,8 @@ void Penitent::ChargeAttackUpdate(float _DeltaTime, const StateInfo& _Info)
     {
         ChangeState("Idle");
     }
+
+    Gravity_->SetActive(!IsGround_);
 }
 
 void Penitent::ChargeAttackEnd(const StateInfo& _Info) { AttackCollider_->Off(); }

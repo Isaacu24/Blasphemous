@@ -57,7 +57,4 @@ private:
 
     int SpectrumSize_;  //만들어지길 원하는 잔상의 수
     int Index_;
-
-    bool IsMetaDisAppear_;
-    bool IsDisAppear_;
 };

@@ -688,8 +688,10 @@ void Pontiff::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
             Face_->ChangeFrameAnimation("pontiff_openedIdle_face_DEATH");
 
             Distortion_->On();
-            Distortion_->SetDelayTime(0.25f);
+            Distortion_->SetDelayTime(0.15f);
             Distortion_->SetEffectLocalPos(0.5f, 1.f);
+
+            GameEngineInput::GetInst()->VibrationOn(1.f);
 
             BossDeathEvent_ = false;
         }
