@@ -23,7 +23,7 @@ void AttackCorpseEffecter::CreateEffect()
     Effect->GetTransform().SetWorldPosition(
         {CreatePos_.x + ((DirX_ * 30.f) * Index_), CreatePos_.y, BossMonsterEffectZ});
 
-    float IRandom = GameEngineRandom::MainRandom.RandomInt(0, 1);
+    int IRandom = GameEngineRandom::MainRandom.RandomInt(0, 1);
 
     Corpse* NewCorpse = GetLevel()->CreateActor<Corpse>();
     NewCorpse->SetCreatePos(CreatePos_ + float4{0, FRandom + (10.f * Index_)});

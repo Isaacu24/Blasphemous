@@ -31,7 +31,7 @@ void JumpCorpseEffecter::Update(float _DeltaTime)
 			DelayTime_ -= 0.15f;
 
 			float PosX = Random_.RandomFloat(-100.f, 100.f);
-            float RandomX = Random_.RandomInt(0, 1);
+            int RandomX = Random_.RandomInt(0, 1);
 
 			if (0 == RandomX)
             {

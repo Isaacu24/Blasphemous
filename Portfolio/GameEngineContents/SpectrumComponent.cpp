@@ -121,7 +121,7 @@ void SpectrumComponent::DrawMetaSpectrum(float _DeltaTime)
 
         if (SpectrumSize_ <= Index_)
         {
-            Index_      = 0.f;
+            Index_      = 0;
             IsMetaDraw_ = false;
             return;
         }

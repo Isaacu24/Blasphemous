@@ -55,6 +55,6 @@ private:
     float DrawTime_;
     float DisAppearTime_;
 
-    int SpectrumSize_;  //만들어지길 원하는 잔상의 수
+    size_t SpectrumSize_;  //만들어지길 원하는 잔상의 수
     int Index_;
 };

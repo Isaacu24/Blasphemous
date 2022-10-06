@@ -52,7 +52,7 @@ void Stage20::SettingStage()
     ReturnKey_ = UIActor_->CreateComponent<GameEngineTextureRenderer>();
     ReturnKey_->SetTexture("CT_B.png");
     ReturnKey_->GetTransform().SetWorldScale({30, 30, 1});
-    UIActor_->Off();
+    ReturnKey_->Off();
 
     MessageUI_ = CreateActor<MessageUI>();
     MessageUI_->SetSpeed(10.f);
@@ -125,6 +125,7 @@ void Stage20::Start()
 
     CutScenePlayer_ = CreateActor<CutScenePlayer>();
     CutScenePlayer_->SetCutScene("CutScene_05_", 301);
+    CutScenePlayer_->Off();
 }
 
 void Stage20::Update(float _DeltaTime)
@@ -197,21 +198,21 @@ void Stage20::Update(float _DeltaTime)
 
                     StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Prima Church Wind.wav", -1);
                     StageSoundPlayer_.Volume(1.f);
+
+                    Penitent_->SetReturnToPort(true);
                 }
 
                 if (true == Pope_->IsDeath())
                 {
-                    Penitent_->SetReturnToPort(true);
-
                     if ("ReturnToPort" == Penitent_->GetPenitentState())
                     {
-                        UIActor_->Off();
+                        ReturnKey_->Off();
                         return;
                     }
 
                     PlayerReturnPos_ = Penitent_->GetTransform().GetWorldPosition();
 
-                    UIActor_->On();
+                    ReturnKey_->On();
                     UIActor_->GetTransform().SetWorldPosition(
                         {PlayerReturnPos_.x, PlayerReturnPos_.y + 200.f, PlayerZ});
                 }
@@ -285,7 +286,6 @@ void Stage20::LevelStartEvent()
     IsRightExit_ = false;
     IsLeftExit_  = false;
 
-
     if (STAGEFLOW::BOSSCOMBAT != CurrentFlow_)
     {
         StageSoundPlayer_.Pause(false);
@@ -337,6 +337,8 @@ void Stage20::PlayerCameraMove(float _DeltaTime)
     if (4350 < Penitent_->GetTransform().GetWorldPosition().x && false == IsRightExit_)
     {
         IsRightExit_ = true;
+
+        CutScenePlayer_->On();
         CutScenePlayer_->CutScenePlay();
     }
 }

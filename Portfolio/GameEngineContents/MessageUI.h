@@ -57,6 +57,9 @@ protected:
 
     void LevelEndEvent() override;
 
+    void OnEvent() override;
+    void OffEvent() override;
+
 private:
     class GameEngineUIRenderer*   Renderer_;
     class GameEngineFontRenderer* Font_;

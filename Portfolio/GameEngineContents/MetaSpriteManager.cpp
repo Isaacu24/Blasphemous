@@ -20,7 +20,7 @@ std::vector<MetaData>& MetaSpriteManager::Insert(const std::string& _Name, std::
 
     if (MetaAnimations_.end() != MetaAnimations_.find(UpperName))
     {
-        return NewDatas;
+        return _Datas;
     }
 
     MetaAnimations_.insert(std::make_pair(UpperName, NewDatas));
@@ -28,10 +28,10 @@ std::vector<MetaData>& MetaSpriteManager::Insert(const std::string& _Name, std::
     if (0 == NewDatas.size())
     {
         MsgBoxAssert("잘못된 크기의 메타 데이터입니다.");
-        return NewDatas;
+        return _Datas;
     }
 
-    return NewDatas;
+    return _Datas;
 }
 
 std::vector<MetaData>& MetaSpriteManager::Find(const std::string& _Name) 
@@ -170,7 +170,7 @@ void MetaSpriteManager::MetaParsing(const std::string& _AllText)
             std::string XString
                 = CutDataString.substr(DataStartPos + FindString.size(), DataEndpos - DataStartPos + FindString.size());
 
-            StartX = atof(XString.c_str());
+            StartX = static_cast<float>(atof(XString.c_str()));
         }
 
         {
@@ -179,7 +179,8 @@ void MetaSpriteManager::MetaParsing(const std::string& _AllText)
             size_t      DataEndpos   = CutDataString.find("\n", DataStartPos);
             std::string XString
                 = CutDataString.substr(DataStartPos + FindString.size(), DataEndpos - DataStartPos + FindString.size());
-            StartY = atof(XString.c_str());
+
+            StartY = static_cast<float>(atof(XString.c_str()));
         }
 
         {
@@ -188,7 +189,8 @@ void MetaSpriteManager::MetaParsing(const std::string& _AllText)
             size_t      DataEndpos   = CutDataString.find("\n", DataStartPos);
             std::string XString
                 = CutDataString.substr(DataStartPos + FindString.size(), DataEndpos - DataStartPos + FindString.size());
-            SizeX = atof(XString.c_str());
+
+            SizeX = static_cast<float>(atof(XString.c_str()));
         }
 
         {
@@ -199,7 +201,7 @@ void MetaSpriteManager::MetaParsing(const std::string& _AllText)
             std::string XString
                 = CutDataString.substr(DataStartPos + FindString.size(), DataEndpos - DataStartPos + FindString.size());
 
-            SizeY = atof(XString.c_str());
+            SizeY = static_cast<float>(atof(XString.c_str()));
         }
 
         {
@@ -220,8 +222,8 @@ void MetaSpriteManager::MetaParsing(const std::string& _AllText)
 
             std::string YString = PivotString.substr(YStartPos + 3, PivotString.size() - YEndpos);
 
-            PivotX = atof(XString.c_str());
-            PivotY = atof(YString.c_str());
+            PivotX = static_cast<float>(atof(XString.c_str()));
+            PivotY = static_cast<float>(atof(YString.c_str()));
 
             MetaData Data = {Index, StartX, StartY, SizeX, SizeY, PivotX, PivotY};
 
@@ -246,10 +248,10 @@ void MetaSpriteManager::CutAllTexture()
 
         for (size_t j = 0; j < AllDatas_[i].size(); j++)
         {
-            TargetTexture->Cut(AllDatas_[i][j].PosX,
-                               TargetTexture->GetScale().y - AllDatas_[i][j].PosY - AllDatas_[i][j].Height,
-                               AllDatas_[i][j].Width,
-                               AllDatas_[i][j].Height);
+            TargetTexture->Cut(static_cast<size_t>(AllDatas_[i][j].PosX),
+                               static_cast<size_t>(TargetTexture->GetScale().y - AllDatas_[i][j].PosY - AllDatas_[i][j].Height),
+                               static_cast<size_t>(AllDatas_[i][j].Width),
+                               static_cast<size_t>(AllDatas_[i][j].Height));
         }
     }
 

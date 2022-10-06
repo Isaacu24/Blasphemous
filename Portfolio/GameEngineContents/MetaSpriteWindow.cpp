@@ -49,7 +49,10 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
             {
                 for (auto& [Index, PosX, PosY, Width, Height, PivotX, PivotY] : MetaDatas_)
                 {
-                    TargetTexture->Cut(PosX, TargetTexture->GetScale().y - PosY - Height, Width, Height);
+                    TargetTexture->Cut(static_cast<size_t>(PosX),
+                                       static_cast<size_t>(TargetTexture->GetScale().y - PosY - Height),
+                                       static_cast<size_t>(Width),
+                                       static_cast<size_t>(Height));
                 }
             }
 
@@ -62,10 +65,10 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
             std::string ImageName     = std::filesystem::path{FileName}.replace_extension("").string();  // Remove .meta
             std::string AnimationName = std::filesystem::path{ImageName}.replace_extension("").string();  // Remove .png
 
-             Renderer->CreateFrameAnimationCutTexture(
-                 AnimationName, {ImageName, 0, static_cast<unsigned int>(MetaDatas_.size() - 1), 0.1f, true});
+            Renderer->CreateFrameAnimationCutTexture(
+                AnimationName, {ImageName, 0, static_cast<unsigned int>(MetaDatas_.size() - 1), 0.1f, true});
 
-            //Renderer->ChangeFrameAnimation(AnimationName);
+            // Renderer->ChangeFrameAnimation(AnimationName);
 
             Renderer->SetCurData(MetaDatas_);
 
@@ -75,7 +78,7 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
 
     if (nullptr != Renderer && nullptr != TargetTexture && 0 != TargetTexture->GetCutCount())
     {
-        ImGui::SliderInt("ImageIndex", &CurFrame, 0, TargetTexture->GetCutCount() - 1);
+        ImGui::SliderInt("ImageIndex", &CurFrame, 0, static_cast<int>(TargetTexture->GetCutCount() - 1));
         Renderer->SetTexture(TargetTexture, CurFrame);
         Renderer->ScaleToCutTexture(CurFrame);
     }
@@ -89,7 +92,7 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
 
         GameEngineDebug::DrawTexture(TargetTexture, ImagePos);
 
-        for (size_t i = 0; i < static_cast<size_t>(TargetTexture->GetCutCount()); i++)
+        for (int i = 0; i < static_cast<int>(TargetTexture->GetCutCount()); i++)
         {
             float4 Pos   = TargetTexture->GetCutPos(i);
             float4 Scale = TargetTexture->GetCutScale(i);
@@ -265,7 +268,7 @@ void MetaSpriteWindow::MetaParsing(const std::string& _AllText)
             std::string XString
                 = CutDataString.substr(DataStartPos + FindString.size(), DataEndpos - DataStartPos + FindString.size());
 
-            StartX = atof(XString.c_str());
+            StartX = static_cast<float>(atof(XString.c_str()));
         }
 
         {
@@ -274,7 +277,7 @@ void MetaSpriteWindow::MetaParsing(const std::string& _AllText)
             size_t      DataEndpos   = CutDataString.find("\n", DataStartPos);
             std::string XString
                 = CutDataString.substr(DataStartPos + FindString.size(), DataEndpos - DataStartPos + FindString.size());
-            StartY = atof(XString.c_str());
+            StartY = static_cast<float>(atof(XString.c_str()));
         }
 
         {
@@ -283,7 +286,7 @@ void MetaSpriteWindow::MetaParsing(const std::string& _AllText)
             size_t      DataEndpos   = CutDataString.find("\n", DataStartPos);
             std::string XString
                 = CutDataString.substr(DataStartPos + FindString.size(), DataEndpos - DataStartPos + FindString.size());
-            SizeX = atof(XString.c_str());
+            SizeX = static_cast<float>(atof(XString.c_str()));
         }
 
         {
@@ -294,7 +297,7 @@ void MetaSpriteWindow::MetaParsing(const std::string& _AllText)
             std::string XString
                 = CutDataString.substr(DataStartPos + FindString.size(), DataEndpos - DataStartPos + FindString.size());
 
-            SizeY = atof(XString.c_str());
+            SizeY = static_cast<float>(atof(XString.c_str()));
         }
 
         {
@@ -315,8 +318,8 @@ void MetaSpriteWindow::MetaParsing(const std::string& _AllText)
 
             std::string YString = PivotString.substr(YStartPos + 3, PivotString.size() - YEndpos);
 
-            PivotX = atof(XString.c_str());
-            PivotY = atof(YString.c_str());
+            PivotX = static_cast<float>(atof(XString.c_str()));
+            PivotY = static_cast<float>(atof(YString.c_str()));
 
             MetaData Data = {Index, StartX, StartY, SizeX, SizeY, PivotX, PivotY};
 
@@ -357,10 +360,11 @@ void MetaSpriteWindow::CutAllTexture()
 
         for (size_t j = 0; j < AllDatas_[i].size(); j++)
         {
-            TargetTexture->Cut(AllDatas_[i][j].PosX,
-                               TargetTexture->GetScale().y - AllDatas_[i][j].PosY - AllDatas_[i][j].Height,
-                               AllDatas_[i][j].Width,
-                               AllDatas_[i][j].Height);
+            TargetTexture->Cut(
+                static_cast<size_t>(AllDatas_[i][j].PosX),
+                static_cast<size_t>(TargetTexture->GetScale().y - AllDatas_[i][j].PosY - AllDatas_[i][j].Height),
+                static_cast<size_t>(AllDatas_[i][j].Width),
+                static_cast<size_t>(AllDatas_[i][j].Height));
         }
     }
 
@@ -404,5 +408,3 @@ void MetaSpriteWindow::CutAllTexture()
 //         Renderer->GetTransform().SetLocalPosition({-(Width), (Height)});
 //     }
 // }
-
-

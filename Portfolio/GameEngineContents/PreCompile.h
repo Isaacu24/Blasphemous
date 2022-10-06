@@ -96,7 +96,7 @@ struct MetaData
     float PosY;
     float Width;
     float Height;
-    float PivotX;
+    float PivotX;   
     float PivotY;
 };
 

@@ -714,7 +714,7 @@ void Penitent::CrouchUpdate(float _DeltaTime, const StateInfo& _Info)
     }
 
     if (GameEngineInput::GetInst()->IsDownKey("PenitentAttack")
-        && GameEngineInput::GetInst()->IsDownButton("PenitentB"))
+        || GameEngineInput::GetInst()->IsDownButton("PenitentB"))
     {
         ChangeState("CrouchAttack");
     }

@@ -147,6 +147,19 @@ void MessageUI::End() {}
 void MessageUI::LevelEndEvent() { Death(); }
 
 
+void MessageUI::OnEvent() 
+{
+    Renderer_->On(); 
+    Font_->On();
+}
+
+void MessageUI::OffEvent() 
+{
+    Renderer_->Off();
+    Font_->Off();
+}
+
+
 void MessageUI::CreateLine(const std::string& _Line) { Script_.push_back(_Line); }
 
 void MessageUI::AddSound(const std::string& _Sound) { SoundList_.push_back(_Sound); }
