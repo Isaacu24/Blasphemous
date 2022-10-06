@@ -388,6 +388,7 @@ private:
     bool IsKnockUp_;
     //≥ÀπÈ->≥´«œ->¬¯¡ˆ(IsKnockBackGround_ = true)->¿Ãµø->≥ÀπÈ
     bool IsKnockBackFall_;
+    bool IsBossKill_;
 
     //∞‘¿” ∆–µÂ
     SHORT ThumbLX_;

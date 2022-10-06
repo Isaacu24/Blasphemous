@@ -38,6 +38,8 @@ Penitent::~Penitent() {}
 
 void Penitent::BossKillEventOn()
 {
+    IsBossKill_ = true;
+
     SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_BOSS_DEATH_HIT.wav");
     SoundPlayer_.Volume(0.5f);
 
@@ -61,6 +63,8 @@ void Penitent::BossKillEventOn()
 
 void Penitent::BossKillEventOff()
 {
+    IsBossKill_ = false;
+
     float4 PlayerPos = GetTransform().GetWorldPosition();
     GetTransform().SetWorldPosition({PlayerPos.x, PlayerPos.y, PlayerZ});
 

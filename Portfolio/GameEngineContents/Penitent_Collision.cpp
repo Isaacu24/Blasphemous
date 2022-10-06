@@ -360,7 +360,7 @@ void Penitent::CollisionCheck()
         || "ParryingAttack" == State_.GetCurStateStateName() || "Execution" == State_.GetCurStateStateName()
         || "Slide" == State_.GetCurStateStateName() || "SlideAttack" == State_.GetCurStateStateName()
         || "VerticalAttack" == State_.GetCurStateStateName() || "VerticalAttackLanding" == State_.GetCurStateStateName()
-        || "Respawn" == State_.GetCurStateStateName() || true == IsKnockBackFall_)
+        || "Respawn" == State_.GetCurStateStateName() || true == IsKnockBackFall_ || true == IsBossKill_)
     {
         return;
     }
