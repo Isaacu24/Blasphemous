@@ -39,10 +39,14 @@ public:
     void ExecutionStart(const StateInfo& _Info);
     void ExecutionUpdate(float _DeltaTime, const StateInfo& _Info);
     void ExecutionEnd(const StateInfo& _Info);
-    
+
     void DeathStart(const StateInfo& _Info);
     void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
     void DeathEnd(const StateInfo& _Info);
+
+    bool RangeAttackCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
+
+    GameEngineCollision* GetCollsition() { return BodyCollider_; }
 
 protected:
     void Start() override;
@@ -52,8 +56,6 @@ protected:
     void PatrolMoveX(float _DeltaTime) override;
 
     void DamageCheck() override;
-
-    bool RangeAttackCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
 
 private:
     float IdleTime_;

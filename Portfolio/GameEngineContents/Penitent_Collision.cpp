@@ -8,6 +8,8 @@
 #include "StageBase.h"
 #include "Door.h"
 #include "Deogracias.h"
+#include "PreCompile.h"
+#include "Projectile.h"
 
 void Penitent::GroundCheck()
 {
@@ -416,6 +418,13 @@ void Penitent::CollisionCheck()
 //피격 함수
 bool Penitent::KnockBack(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
+    Projectile* NewProjectile = dynamic_cast<Projectile*>(_Other->GetActor());
+
+    if (nullptr != NewProjectile)
+    {
+        NewProjectile->GetState().ChangeState("Explosion");
+    }
+
     float4 Dir = _This->GetTransform().GetWorldPosition() - _Other->GetActor()->GetTransform().GetWorldPosition();
     Dir.Normalize();
 

@@ -92,11 +92,6 @@ void ToxicCloud::ShootUpdate(float _DeltaTime, const StateInfo& _Info)
                            std::bind(&ToxicCloud::Explosion, this, std::placeholders::_1, std::placeholders::_2));
 
     Collider_->IsCollision(CollisionType::CT_OBB2D,
-                           COLLISIONORDER::Player,
-                           CollisionType::CT_OBB2D,
-                           std::bind(&ToxicCloud::Explosion, this, std::placeholders::_1, std::placeholders::_2));
-
-    Collider_->IsCollision(CollisionType::CT_OBB2D,
                            COLLISIONORDER::PlayerAttack,
                            CollisionType::CT_OBB2D,
                            [&](GameEngineCollision* _This, GameEngineCollision* _Other)

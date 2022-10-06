@@ -62,6 +62,8 @@ public:
 
     // inline GameEngineTextureRenderer* GetRenderer() { return Renderer_; }
 
+    void PlayerRangeAttackHit();
+
 protected:
     GameEngineStateManager State_;
 

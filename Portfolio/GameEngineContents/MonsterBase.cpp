@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "MonsterBase.h"
 #include "MetaTextureRenderer.h"
+#include "MonsterHitEffect.h"
 
 MonsterBase::MonsterBase() 
     : State_{}
@@ -184,4 +185,29 @@ void MonsterBase::DamageCheck(float _Damage, const std::string& _State)
     {
         State_.ChangeState(_State);
     }
+}
+
+
+void MonsterBase::PlayerRangeAttackHit()
+{
+    IsHit_ = true;
+
+    if (nullptr != MetaRenderer_)
+    {
+        MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
+    }
+
+    else if (nullptr != Renderer_)
+    {
+        Renderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
+    }
+
+    float4 HitPos = BodyCollider_->GetTransform().GetWorldPosition();
+
+    BloodEffect_->GetRenderer()->On();
+    BloodEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
+    BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
+
+    HitEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
+    HitEffect_->ShowRangeHitEffect();
 }

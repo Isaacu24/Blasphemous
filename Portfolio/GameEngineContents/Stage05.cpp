@@ -149,7 +149,7 @@ void Stage05::Update(float _DeltaTime)
                 || "STAGE11" == GEngine::GetPrevLevel()->GetNameConstRef())
             {
                 Milestone* MilestoneUI = CreateActor<Milestone>();
-                MilestoneUI->SetTownName("Brotherhood");
+                MilestoneUI->SetTownName("Ä§¹¬ÀÇ ºñÅº ÇüÁ¦´Ü");
             }
         }
 

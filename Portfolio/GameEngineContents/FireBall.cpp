@@ -26,15 +26,6 @@ void FireBall::Start()
             {"fireTrap_projectile_destroyed.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true},
             Data);
 
-        MetaRenderer_->AnimationBindFrame("fireTrap_projectile_destroyed",
-                                          [&](const FrameAnimation_DESC& _Info)
-                                          {
-                                              if (1 == _Info.CurFrame)
-                                              {
-                                                  Collider_->Off();
-                                              }
-                                          });
-
         MetaRenderer_->AnimationBindEnd("fireTrap_projectile_destroyed",
                                         [&](const FrameAnimation_DESC& _Info) { Death(); });
     }
@@ -78,14 +69,6 @@ void FireBall::ShootUpdate(float _DeltaTime, const StateInfo& _Info)
         State_.ChangeState("Explosion");
     }
 
-    if (false == IsExplosion_)
-    {
-        Collider_->IsCollision(CollisionType::CT_OBB2D,
-                               COLLISIONORDER::Player,
-                               CollisionType::CT_OBB2D,
-                               std::bind(&FireBall::Explosion, this, std::placeholders::_1, std::placeholders::_2));
-    }
-
     float4 Distance    = StartPos_ - GetTransform().GetWorldPosition();
     float4 ABSDistance = float4::ABS3DReturn(Distance);
 
@@ -100,6 +83,7 @@ void FireBall::ExplosionStart(const StateInfo& _Info)
     SoundPlayer_ = GameEngineSound::SoundPlayControl("FIRE_BALL_EXPLODE.wav");
     SoundPlayer_.Volume(0.05f);
 
+    Collider_->Off();
     Renderer_->Off();
 
     GetTransform().SetWorldScale({2.5f, 2.5f, 1});

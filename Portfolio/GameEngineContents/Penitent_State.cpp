@@ -691,7 +691,7 @@ void Penitent::CrouchStart(const StateInfo& _Info)
 
 void Penitent::CrouchUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    if (GameEngineInput::GetInst()->IsFreeKey("PenitentDown"))
+    if (0 == PacketNumber_ && GameEngineInput::GetInst()->IsFreeKey("PenitentDown") || 0 < ThumbLY_)
     {
         MetaRenderer_->ChangeMetaAnimation("penitent_crouch_up_anim");
     }
@@ -713,7 +713,8 @@ void Penitent::CrouchUpdate(float _DeltaTime, const StateInfo& _Info)
         GetTransform().PixLocalNegativeX();
     }
 
-    if (GameEngineInput::GetInst()->IsDownKey("PenitentAttack"))
+    if (GameEngineInput::GetInst()->IsDownKey("PenitentAttack")
+        && GameEngineInput::GetInst()->IsDownButton("PenitentB"))
     {
         ChangeState("CrouchAttack");
     }
@@ -886,7 +887,7 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
 {
     if (false == IsLadder_)
     {
-        if (GameEngineInput::GetInst()->IsPressKey("PenitentUp"))
+        if (GameEngineInput::GetInst()->IsPressKey("PenitentUp") || 30000.f < ThumbLY_)
         {
             CilmbY_ = 30.f;
 
@@ -899,7 +900,7 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
             GetTransform().SetWorldMove(GetTransform().GetUpVector() * Speed_ * _DeltaTime);
         }
 
-        if (GameEngineInput::GetInst()->IsPressKey("PenitentDown") || -30000 > ThumbLY_)
+        if (GameEngineInput::GetInst()->IsPressKey("PenitentDown") || -30000.f > ThumbLY_)
         {
             CilmbY_ = -50;
 
@@ -914,13 +915,13 @@ void Penitent::LadderClimbUpdate(float _DeltaTime, const StateInfo& _Info)
 
         if (GameEngineInput::GetInst()->IsPressKey("PenitentDown")
                 && GameEngineInput::GetInst()->IsPressKey("PenitentSlide")
-            || -30000 > ThumbLY_)
+            || -30000.f > ThumbLY_ && 254 < GameEngineInput::GetInst()->GetLeftTrigger())
         {
             ChangeState("LadderSlide");
         }
 
         if (GameEngineInput::GetInst()->IsUpKey("PenitentUp") || GameEngineInput::GetInst()->IsUpKey("PenitentDown")
-            || 5000.f > GameEngineInput::GetInst()->GetMagnitudeLY() && PacketNumber_)
+            || 10000.f > GameEngineInput::GetInst()->GetMagnitudeLY() && 0 != PacketNumber_)
         {
             //¾Ö´Ï¸ÞÀÌ¼Ç ¸ØÃã
             if (false == MetaRenderer_->IsCurAnimationPause())

@@ -315,7 +315,7 @@ void Stage10::Update(float _DeltaTime)
             if ("STAGE05" == GEngine::GetPrevLevel()->GetNameConstRef())
             {
                 Milestone* MilestoneUI = CreateActor<Milestone>();
-                MilestoneUI->SetTownName("Buried Churches");
+                MilestoneUI->SetTownName("거룩한 금지의 벽");
             }
         }
     }

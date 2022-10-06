@@ -359,6 +359,11 @@ void Crosscrawler::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
         State_.ChangeState("Patrol");
         return;
     }
+
+    else
+    {
+        State_.ChangeState("Attack");
+    }
 }
 
 void Crosscrawler::IdleEnd(const StateInfo& _Info) {}
@@ -520,6 +525,9 @@ void Crosscrawler::AttackEnd(const StateInfo& _Info) {}
 
 void Crosscrawler::StunStart(const StateInfo& _Info)
 {
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("ENEMY_STUNT.wav");
+    SoundPlayer_.Volume(0.3f);
+
     MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
     MetaRenderer_->ChangeMetaAnimation("crosscrawler_stun_anim");
 

@@ -48,6 +48,8 @@ protected:
     void VanishUpdate(float _DeltaTime, const StateInfo& _Info);
     void VanishEnd(const StateInfo& _Info);
 
+    void MonsterCheck();
+
 private:
     class MetaTextureRenderer* MetaRenderer_;
 

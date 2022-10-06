@@ -55,6 +55,8 @@ private:
     class MetaTextureRenderer* MetaRenderer_;
     class GameEngineCollision* Collider_;
 
+    GameEngineSoundPlayer SoundPlayer_;
+
     float4 StartPos_;
     float4 EndPos_;
 

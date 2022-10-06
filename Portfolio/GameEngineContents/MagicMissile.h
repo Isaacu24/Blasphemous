@@ -40,6 +40,10 @@ public:
     void ExplosionUpdate(float _DeltaTime, const StateInfo& _Info);
     void ExplosionEnd(const StateInfo& _Info);
 
+    void GroundExplosionStart(const StateInfo& _Info);
+    void GroundExplosionUpdate(float _DeltaTime, const StateInfo& _Info);
+    void GroundExplosionEnd(const StateInfo& _Info);
+
 protected:
     void Start() override;
     void Update(float _DeltaTime) override;

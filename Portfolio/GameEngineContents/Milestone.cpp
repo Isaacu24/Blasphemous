@@ -22,7 +22,7 @@ void Milestone::Start()
 
     Font_ = CreateComponent<GameEngineFontRenderer>();
     Font_->SetScreenPostion({640, 190, static_cast<int>(UIORDER::PlayerUI)});
-    Font_->SetSize(40);
+    Font_->SetSize(35);
     Font_->SetLeftAndRightSort(LeftAndRightSort::CENTER);
     Font_->SetColor(float4{0.65f, 0.65f, 0.45f, 0.f});
 

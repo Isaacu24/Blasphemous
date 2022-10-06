@@ -352,29 +352,6 @@ void ShieldMaiden::DamageCheck()
         MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
     }
 
-    if (true
-        == BodyCollider_->IsCollision(
-            CollisionType::CT_OBB2D,
-            COLLISIONORDER::PlayerRangeAttack,
-            CollisionType::CT_OBB2D,
-            std::bind(&ShieldMaiden::ReverseBloodEffect, this, std::placeholders::_1, std::placeholders::_2)))
-    {
-        IsHit_ = true;
-
-        MetaRenderer_->GetColorData().PlusColor = float4{1.0f, 1.0f, 1.0f, 0.0f};
-
-        float4 HitPos = BodyCollider_->GetTransform().GetWorldPosition();
-
-        BloodEffect_->GetRenderer()->On();
-        BloodEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
-        BloodEffect_->GetRenderer()->ChangeFrameAnimation("BloodSplattersV3");
-
-        HitEffect_->GetTransform().SetWorldPosition({HitPos.x, HitPos.y, BossMonsterEffectZ});
-        HitEffect_->ShowRangeHitEffect();
-
-        MinusHP(7.f);
-    }
-
     if (0 >= GetHP())
     {
         State_.ChangeState("Death");
@@ -590,6 +567,9 @@ void ShieldMaiden::StunStart(const StateInfo& _Info)
 {
     MetaRenderer_->ChangeMetaAnimation("shieldMaiden_stun");
     MetaRenderer_->GetColorData().PlusColor = float4{0.0f, 0.0f, 0.0f, 0.0f};
+
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("ENEMY_STUNT.wav");
+    SoundPlayer_.Volume(0.3f);
 
     BodyCollider_->ChangeOrder(COLLISIONORDER::MonsterBody);
 

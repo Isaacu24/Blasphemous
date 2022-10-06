@@ -2,6 +2,9 @@
 #include "BloodProjectile.h"
 #include "MetaSpriteManager.h"
 #include "MetaTextureRenderer.h"
+#include "NormalMonster.h"
+#include "ShieldMaiden.h"
+#include "BossMonster.h"
 
 BloodProjectile::BloodProjectile() {}
 
@@ -37,15 +40,6 @@ void BloodProjectile::Start()
                                             0.08f,
                                             true},
                                            Data);
-
-        MetaRenderer_->AnimationBindFrame("penitent_rangeAttack_projectile_explode_anim",
-                                          [&](const FrameAnimation_DESC& _Info)
-                                          {
-                                              if (1 == _Info.CurFrame)
-                                              {
-                                                  Collider_->Death();
-                                              }
-                                          });
 
         MetaRenderer_->AnimationBindEnd("penitent_rangeAttack_projectile_explode_anim",
                                         [&](const FrameAnimation_DESC& _Info) { Death(); });
@@ -118,25 +112,10 @@ void BloodProjectile::ShootUpdate(float _DeltaTime, const StateInfo& _Info)
         return;
     }
 
-    if (true
-            == Collider_->IsCollision(
-                CollisionType::CT_OBB2D, COLLISIONORDER::Monster, CollisionType::CT_OBB2D, nullptr)
-        || true
-               == Collider_->IsCollision(
-                   CollisionType::CT_OBB2D, COLLISIONORDER::BossMonster, CollisionType::CT_OBB2D, nullptr)
-        || true
-               == Collider_->IsCollision(
-                   CollisionType::CT_OBB2D, COLLISIONORDER::BossMonsterBody, CollisionType::CT_OBB2D, nullptr)
-        || true
-               == Collider_->IsCollision(
-                   CollisionType::CT_OBB2D, COLLISIONORDER::MonsterBody, CollisionType::CT_OBB2D, nullptr))
-    {
-        State_.ChangeState("Explode");
-        return;
-    }
-
     float4 MovePos = Dir_.x * 500 * _DeltaTime;
     GetTransform().SetWorldMove({MovePos.x, 0.f});
+
+    MonsterCheck();
 }
 
 void BloodProjectile::ShootEnd(const StateInfo& _Info) {}
@@ -144,6 +123,8 @@ void BloodProjectile::ShootEnd(const StateInfo& _Info) {}
 
 void BloodProjectile::ExplodeStart(const StateInfo& _Info)
 {
+    Collider_->Death();
+
     SoundPlayer_ = GameEngineSound::SoundPlayControl("RANGE_ATTACK_EXPLODE.wav");
     MetaRenderer_->ChangeMetaAnimation("penitent_rangeAttack_projectile_explode_anim");
 }
@@ -155,6 +136,8 @@ void BloodProjectile::ExplodeEnd(const StateInfo& _Info) {}
 
 void BloodProjectile::VanishStart(const StateInfo& _Info)
 {
+    Collider_->Death();
+
     SoundPlayer_ = GameEngineSound::SoundPlayControl("RANGE_ATTACK_DISSAPEAR.wav");
     MetaRenderer_->ChangeMetaAnimation("penitent_rangeAttack_projectile_vanish_anim");
 }
@@ -162,3 +145,84 @@ void BloodProjectile::VanishStart(const StateInfo& _Info)
 void BloodProjectile::VanishUpdate(float _DeltaTime, const StateInfo& _Info) {}
 
 void BloodProjectile::VanishEnd(const StateInfo& _Info) {}
+
+
+void BloodProjectile::MonsterCheck()
+{
+    Collider_->IsCollision(CollisionType::CT_OBB2D,
+                           COLLISIONORDER::Monster,
+                           CollisionType::CT_OBB2D,
+                           [&](GameEngineCollision* _This, GameEngineCollision* _Other)
+                           {
+                               NormalMonster* Monster = dynamic_cast<NormalMonster*>(_Other->GetActor());
+
+                               if (nullptr != Monster)
+                               {
+                                   ShieldMaiden* Maiden = dynamic_cast<ShieldMaiden*>(_Other->GetActor());
+
+                                   if (nullptr != Maiden && Maiden->)
+                                   {
+
+                                   }
+
+                                   Monster->MinusHP(30.f);
+                                   Monster->PlayerRangeAttackHit();
+                               }
+
+                               State_.ChangeState("Explode");
+                               return false;
+                           });
+
+
+    Collider_->IsCollision(CollisionType::CT_OBB2D,
+                           COLLISIONORDER::MonsterBody,
+                           CollisionType::CT_OBB2D,
+                           [&](GameEngineCollision* _This, GameEngineCollision* _Other)
+                           {
+                               NormalMonster* Monster = dynamic_cast<NormalMonster*>(_Other->GetActor());
+
+                               if (nullptr != Monster)
+                               {
+                                   Monster->MinusHP(30.f);
+                                   Monster->PlayerRangeAttackHit();
+                               }
+
+                               State_.ChangeState("Explode");
+                               return false;
+                           });
+
+
+    Collider_->IsCollision(CollisionType::CT_OBB2D,
+                           COLLISIONORDER::BossMonster,
+                           CollisionType::CT_OBB2D,
+                           [&](GameEngineCollision* _This, GameEngineCollision* _Other)
+                           {
+                               BossMonster* Monster = dynamic_cast<BossMonster*>(_Other->GetActor());
+
+                               if (nullptr != Monster)
+                               {
+                                   Monster->MinusHP(30.f);
+                                   Monster->PlayerRangeAttackHit();
+                               }
+
+                               State_.ChangeState("Explode");
+                               return false;
+                           });
+
+
+    Collider_->IsCollision(CollisionType::CT_OBB2D,
+                           COLLISIONORDER::BossMonsterBody,
+                           CollisionType::CT_OBB2D,
+                           [&](GameEngineCollision* _This, GameEngineCollision* _Other)
+                           {
+                               BossMonster* Monster = dynamic_cast<BossMonster*>(_Other->GetActor());
+
+                               if (nullptr != Monster)
+                               {
+                                   Monster->MinusHP(30.f);
+                               }
+
+                               State_.ChangeState("Explode");
+                               return false;
+                           });
+}

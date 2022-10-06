@@ -50,15 +50,6 @@ void VioletProjectile::Update(float _DeltaTime)
     {
         State_.ChangeState("Explosion");
     }
-
-    if (false == IsExplosion_)
-    {
-        Collider_->IsCollision(
-            CollisionType::CT_OBB2D,
-            COLLISIONORDER::Player,
-            CollisionType::CT_OBB2D,
-            std::bind(&VioletProjectile::Explosion, this, std::placeholders::_1, std::placeholders::_2));
-    }
 }
 
 
@@ -75,7 +66,7 @@ void VioletProjectile::ExplosionStart(const StateInfo& _Info)
     Renderer_->GetTransform().SetWorldScale({200.f, 200.f, 1.f});
     Renderer_->ChangeFrameAnimation("TakeBackProyectileExplosion");
 
-    Collider_->Death(0.1f);
+    Collider_->Death();
 }
 
 void VioletProjectile::ExplosionUpdate(float _DeltaTime, const StateInfo& _Info) {}

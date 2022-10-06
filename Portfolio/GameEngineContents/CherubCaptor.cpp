@@ -40,6 +40,17 @@ void CherubCaptor::Start()
             {"cherubCaptor_death.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.06f, true},
             Data);
 
+        MetaRenderer_->AnimationBindFrame(
+            "cherubCaptor_death",
+            [&](const FrameAnimation_DESC& _Info)
+            {
+                if (18 == _Info.CurFrame)
+                {
+                    SoundPlayer_ = GameEngineSound::SoundPlayControl("MIRIAM_PRAYER_GLASS-002.wav");
+                    SoundPlayer_.Volume(0.5f);
+                }
+            });
+
         MetaRenderer_->AnimationBindEnd("cherubCaptor_death",
                                         [&](const FrameAnimation_DESC& _Info)
                                         {
@@ -68,7 +79,6 @@ void CherubCaptor::Start()
 void CherubCaptor::Update(float _DeltaTime) { State_.Update(_DeltaTime); }
 
 void CherubCaptor::End() {}
-
 
 
 void CherubCaptor::PatrolXMove(float _DeltaTime)
@@ -139,10 +149,13 @@ void CherubCaptor::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 void CherubCaptor::IdleEnd(const StateInfo& _Info) {}
 
 
-void CherubCaptor::DeathStart(const StateInfo& _Info) 
+void CherubCaptor::DeathStart(const StateInfo& _Info)
 {
     Count_++;
-    MetaRenderer_->ChangeMetaAnimation("cherubCaptor_death"); 
+    MetaRenderer_->ChangeMetaAnimation("cherubCaptor_death");
+
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("GLASS_PLATFORM_COLLAPSE_C.wav");
+    SoundPlayer_.Volume(0.5f);
 }
 
 void CherubCaptor::DeathUpdate(float _DeltaTime, const StateInfo& _Info) {}
