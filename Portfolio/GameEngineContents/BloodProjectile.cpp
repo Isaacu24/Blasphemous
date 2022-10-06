@@ -158,13 +158,6 @@ void BloodProjectile::MonsterCheck()
 
                                if (nullptr != Monster)
                                {
-                                   ShieldMaiden* Maiden = dynamic_cast<ShieldMaiden*>(_Other->GetActor());
-
-                                   if (nullptr != Maiden && Maiden->)
-                                   {
-
-                                   }
-
                                    Monster->MinusHP(30.f);
                                    Monster->PlayerRangeAttackHit();
                                }

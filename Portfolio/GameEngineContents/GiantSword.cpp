@@ -234,24 +234,24 @@ void GiantSword::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
             AttackSpectrum_->SetIsDraw(true);
         }
 
-        RotSpeed_ += _DeltaTime * 2.5f;
+        RotSpeed_ += _DeltaTime * 250.f;
 
         if (0 > -Dir_.x)
         {
-            GetTransform().SetLocalRotate({0, 0, RotSpeed_});
+            GetTransform().SetLocalRotate({0, 0, RotSpeed_ * _DeltaTime});
         }
 
         else if (0 <= -Dir_.x)
         {
-            GetTransform().SetLocalRotate({0, 0, -RotSpeed_});
+            GetTransform().SetLocalRotate({0, 0, -RotSpeed_ * _DeltaTime});
         }
     }
 
     else
     {
-        RotSpeed_ += _DeltaTime * 5.f;
+        RotSpeed_ += _DeltaTime * 500.f;
         AttSpeed_ += 1000 * _DeltaTime;
-
+        
         if (500.f <= AttSpeed_)
         {
             AttSpeed_ = 500.f;
@@ -273,7 +273,7 @@ void GiantSword::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 
         if (0 > -Dir_.x)
         {
-            GetTransform().SetLocalRotate({0, 0, -RotSpeed_});
+            GetTransform().SetLocalRotate({0, 0, -RotSpeed_ * _DeltaTime});
 
             if (-180.f >= GetTransform().GetLocalRotation().z)
             {
@@ -291,7 +291,7 @@ void GiantSword::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 
         else if (0 <= -Dir_.x)
         {
-            GetTransform().SetLocalRotate({0, 0, RotSpeed_});
+            GetTransform().SetLocalRotate({0, 0, RotSpeed_ * _DeltaTime});
 
             if (180.f <= GetTransform().GetLocalRotation().z)
             {
