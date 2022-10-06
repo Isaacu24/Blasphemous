@@ -1373,6 +1373,9 @@ void Penitent::ParryingSlideEnd(const StateInfo& _Info) { IsParrySlide_ = false;
 
 void Penitent::RecoveryStart(const StateInfo& _Info)
 {
+    SoundPlayer_ = GameEngineSound::SoundPlayControl("USE_FLASK.wav");
+    SoundPlayer_.Volume(0.5f);    
+
     int Size = static_cast<int>(Flasks_.size() - 1);
 
     for (int i = Size; i >= 0; --i)
