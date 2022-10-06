@@ -385,6 +385,8 @@ void Inventory::Update(float _DeltaTime)
     if (GameEngineInput::GetInst()->IsDownButton("InventoryLeftButton")
         || GameEngineInput::GetInst()->IsDownKey("InventoryLeftKey"))
     {
+        SoundPlayer_ = GameEngineSound::SoundPlayControl("EQUIP_ITEM.wav");
+
         if (1 == InventoryIndex_)
         {
             InventoryIndex_ = 7;
@@ -399,6 +401,8 @@ void Inventory::Update(float _DeltaTime)
     if (GameEngineInput::GetInst()->IsDownButton("InventoryRightButton")
         || GameEngineInput::GetInst()->IsDownKey("InventoryRightKey"))
     {
+        SoundPlayer_ = GameEngineSound::SoundPlayControl("EQUIP_ITEM.wav");
+
         if (7 == InventoryIndex_)
         {
             InventoryIndex_ = 1;
@@ -687,8 +691,6 @@ void Inventory::CursorMove()
     else if (true == GameEngineInput::GetInst()->IsDownKey("CursorEnter")
              || true == GameEngineInput::GetInst()->IsDownButton("PenitentA"))
     {
-        SoundPlayer_ = GameEngineSound::SoundPlayControl("Relic.wav");
-
         switch (InventoryType_)
         {
             case InventoryType::RosaryBeads:

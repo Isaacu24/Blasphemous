@@ -55,6 +55,11 @@ void LionHead::Start()
 
                     SoundPlayer_ = GameEngineSound::SoundPlayControl("LEON_HIT.wav");
                     SoundPlayer_.Volume(0.3f);
+
+                    if (true == Penitent::GetMainPlayer()->GetParryOn())
+                    {
+                        Penitent::GetMainPlayer()->ParrySlide();
+                    }
                 }
 
                 else if (13 == _Info.CurFrame)
@@ -129,7 +134,7 @@ void LionHead::Start()
     AttackCollider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{1.0f, 0.0f, 0.0f, 0.25f});
     AttackCollider_->GetTransform().SetWorldScale({250.0f, 100.0f, 1.0f});
     AttackCollider_->GetTransform().SetWorldMove({150.f, 0.f});
-    AttackCollider_->Off(); 
+    AttackCollider_->Off();
 
     State_.CreateStateMember("Idle",
                              std::bind(&LionHead::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2),

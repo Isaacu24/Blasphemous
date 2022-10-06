@@ -220,5 +220,5 @@ void Stage01::LevelEndEvent()
         IsRightExit_ = true;
     }
 
-    StageSoundPlayer_.Pause(true);
+     StageSoundPlayer_.Stop();
 }

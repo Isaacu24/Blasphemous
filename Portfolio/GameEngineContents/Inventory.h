@@ -13,6 +13,7 @@ enum class InventoryType
     Collectibles     //¼öÁýÇ°
 };
 
+class ItemSlot;
 class GameEngineTextureRenderer;
 class Inventory : public GameEngineActor
 {
@@ -69,7 +70,7 @@ private:
     
     int InventoryIndex_;
 
-    std::vector<std::vector<class ItemSlot*>> ItemSlotLists_;
+    std::vector<std::vector<ItemSlot*>> ItemSlotLists_;
 
     std::vector<std::vector<ItemSlot*>> EquipSlotLists_;
 

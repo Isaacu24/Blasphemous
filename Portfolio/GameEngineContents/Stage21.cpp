@@ -231,5 +231,5 @@ void Stage21::LevelEndEvent()
 {
     StageBase::LevelEndEvent();
 
-    BackgorundPlayer_.Pause(true);
+    BackgorundPlayer_.Stop();
 }

@@ -181,7 +181,7 @@ void Stage04::StageFlowUpdate(float _DeltaTime)
                 StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Boss_Zone_Background.wav", -1);
                 StageSoundPlayer_.Volume(1.f);
 
-                CurrentFlow_      = STAGEFLOW::BOSSDEAD;
+                CurrentFlow_ = STAGEFLOW::BOSSDEAD;
             }
             break;
         case STAGEFLOW::BOSSDEAD:
@@ -270,7 +270,7 @@ void Stage04::LevelEndEvent()
         IsLeftExit_ = true;
     }
 
-    StageSoundPlayer_.Pause(true);
+    StageSoundPlayer_.Stop();
 }
 
 void Stage04::PlayerCameraMove(float _DeltaTime)
@@ -317,4 +317,3 @@ void Stage04::PlayerCameraMove(float _DeltaTime)
         LoadingActor_->Exit("Stage05");
     }
 }
- 

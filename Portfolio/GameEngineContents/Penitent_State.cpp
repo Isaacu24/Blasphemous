@@ -160,9 +160,6 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
             MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()
                                                          + float4{MoveDir_.x * 50.f, 0});
             MoveEffect_->Renderer_->ChangeMetaAnimation("penitent-stop-running-dust");
-
-            SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_RUNSTOP_MARBLE.wav");
-            SoundPlayer_.Volume(0.5);
         }
 
         else
@@ -199,9 +196,6 @@ void Penitent::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
             MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition()
                                                          + float4{MoveDir_.x * 50.f, 0});
             MoveEffect_->Renderer_->ChangeMetaAnimation("penitent-stop-running-dust");
-
-            SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_RUNSTOP_MARBLE.wav");
-            SoundPlayer_.Volume(0.5f);
         }
 
         else
@@ -1374,7 +1368,7 @@ void Penitent::ParryingSlideEnd(const StateInfo& _Info) { IsParrySlide_ = false;
 void Penitent::RecoveryStart(const StateInfo& _Info)
 {
     SoundPlayer_ = GameEngineSound::SoundPlayControl("USE_FLASK.wav");
-    SoundPlayer_.Volume(0.5f);    
+    SoundPlayer_.Volume(0.5f);
 
     int Size = static_cast<int>(Flasks_.size() - 1);
 
@@ -1455,7 +1449,20 @@ void Penitent::RespawnUpdate(float _DeltaTime, const StateInfo& _Info)
     Gravity_->SetActive(!IsGround_);
 }
 
-void Penitent::RespawnEnd(const StateInfo& _Info) { BodyCollider_->On(); }
+void Penitent::RespawnEnd(const StateInfo& _Info)
+{
+    BodyCollider_->On();
+
+    if (0.f < GetTransform().GetWorldScale().x)
+    {
+        MoveDir_ = float4::RIGHT;
+    }
+
+    else
+    {
+        MoveDir_ = float4::LEFT;
+    }
+}
 
 
 // void Penitent::PrayStart(const StateInfo& _Info)
@@ -1610,4 +1617,15 @@ void Penitent::RisingUpdate(float _DeltaTime, const StateInfo& _Info)
     Gravity_->SetActive(!IsGround_);
 }
 
-void Penitent::RisingEnd(const StateInfo& _Info) {}
+void Penitent::RisingEnd(const StateInfo& _Info)
+{
+    if (0.f < GetTransform().GetWorldScale().x)
+    {
+        MoveDir_ = float4::RIGHT;
+    }
+
+    else
+    {
+        MoveDir_ = float4::LEFT;
+    }
+}

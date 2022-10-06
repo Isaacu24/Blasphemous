@@ -208,4 +208,7 @@ void Stage05::LevelStartEvent()
     StageSoundPlayer_.Volume(0.f);
 }
 
-void Stage05::LevelEndEvent() { StageBase::LevelEndEvent(); }
+void Stage05::LevelEndEvent() 
+{
+    StageBase::LevelEndEvent(); 
+}

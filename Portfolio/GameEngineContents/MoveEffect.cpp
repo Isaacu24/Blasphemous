@@ -35,6 +35,17 @@ void MoveEffect::Start()
             {"penitent-stop-running-dust.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, true},
             Data);
 
+        Renderer_->AnimationBindFrame("penitent-stop-running-dust",
+                                      [&](const FrameAnimation_DESC& _Info)
+                                      {
+                                          if (1 == _Info.CurFrame)
+                                          {
+                                              SoundPlayer_
+                                                  = GameEngineSound::SoundPlayControl("PENITENT_RUNSTOP_MARBLE.wav");
+                                              SoundPlayer_.Volume(0.5);
+                                          }
+                                      });
+
         Renderer_->AnimationBindEnd("penitent-stop-running-dust",
                                     [&](const FrameAnimation_DESC& _Info)
                                     {

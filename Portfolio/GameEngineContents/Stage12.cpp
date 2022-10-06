@@ -153,4 +153,7 @@ void Stage12::LevelStartEvent()
     }
 }
 
-void Stage12::LevelEndEvent() { StageBase::LevelEndEvent(); }
+void Stage12::LevelEndEvent() 
+{
+    StageBase::LevelEndEvent(); 
+}
