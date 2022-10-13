@@ -153,6 +153,8 @@ void Blasphemous::Start()
         GameEngineInput::GetInst()->CreateKey("InventoryOn", 'I');
     }
 
+    GameEngineInput::GetInst()->CreateKey("ColMapDebugKey", 'N'); 
+
     GameEngineGUI::CreateGUIWindow<GameEngineStatusWindow>("EngineStatus", nullptr);
 }
 

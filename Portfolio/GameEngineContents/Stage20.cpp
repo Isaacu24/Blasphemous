@@ -130,6 +130,8 @@ void Stage20::Start()
 
 void Stage20::Update(float _DeltaTime)
 {
+    StageBase::Update(_DeltaTime);
+
     if (nullptr != LoadingActor_ && 0.f < LoadingActor_->GetAlpha())
     {
         float Ratio = 1.f - LoadingActor_->GetAlpha();
@@ -298,12 +300,6 @@ void Stage20::LevelEndEvent() { StageBase::LevelEndEvent(); }
 
 void Stage20::PlayerCameraMove(float _DeltaTime)
 {
-    if (false == IsChangeCameraPos_)
-    {
-        GetMainCameraActor()->GetTransform().SetWorldMove({0, 0, CameraZPos_});
-        IsChangeCameraPos_ = true;
-    }
-
     float4 CamPos    = GetMainCameraActor()->GetTransform().GetWorldPosition();
     float4 PlayerPos = Penitent_->GetTransform().GetWorldPosition() + float4{0, CameraOffset_};
     float4 CurPos    = float4::LerpLimit(CamPos, PlayerPos, _DeltaTime * 3);

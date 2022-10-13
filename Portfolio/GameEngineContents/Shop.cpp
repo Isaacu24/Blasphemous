@@ -89,11 +89,7 @@ void Shop::SettingStage() {}
 
 void Shop::Update(float _DeltaTime)
 {
-    if (false == IsChangeCameraPos_)
-    {
-        GetMainCameraActor()->GetTransform().SetWorldMove({0, 0, CameraZPos_});
-        IsChangeCameraPos_ = true;
-    }
+    StageBase::Update(_DeltaTime);
 
     GetMainCameraActor()->GetTransform().SetWorldPosition({925, -500, CameraZPos_});
 

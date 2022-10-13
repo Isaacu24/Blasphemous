@@ -84,3 +84,12 @@ void CherubPopUp::Update(float _DeltaTime)
 }
 
 void CherubPopUp::End() {}
+
+
+void CherubPopUp::LevelEndEvent()
+{
+    PopUp_->Death();
+    MaxFont_->Death();
+    CountFont_->Death();
+    Death();
+}

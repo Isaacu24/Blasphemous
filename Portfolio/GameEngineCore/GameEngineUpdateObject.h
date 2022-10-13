@@ -197,9 +197,6 @@ protected:
 
 	std::list<GameEngineUpdateObject*> Childs;
 
-
-
-
 private:
 	int Order_;
 	bool IsReleaseUpdate_;

@@ -69,21 +69,20 @@ void Stage01::SettingStage()
     IsLeftExit_ = true;
 }
 
-void Stage01::Start() { SettingStage(); }
+void Stage01::Start() 
+{
+    SettingStage(); 
+}
 
 void Stage01::Update(float _DeltaTime)
 {
+    StageBase::Update(_DeltaTime);
+
     if (nullptr != LoadingActor_&& 0.f < LoadingActor_->GetAlpha())
     {
         float Ratio = 1.f - LoadingActor_->GetAlpha();
 
         StageSoundPlayer_.Volume(Ratio);
-    }
-
-    if (false == IsChangeCameraPos_)
-    {
-        GetMainCameraActor()->GetTransform().SetWorldMove({0, 0, CameraZPos_});
-        IsChangeCameraPos_ = true;
     }
 
     float4 CamPos    = GetMainCameraActor()->GetTransform().GetWorldPosition();

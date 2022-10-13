@@ -335,9 +335,6 @@
     <ClCompile Include="MainMenu.cpp">
       <Filter>Level\MainMenu</Filter>
     </ClCompile>
-    <ClCompile Include="PreCompile.cpp">
-      <Filter>PreCompile</Filter>
-    </ClCompile>
     <ClCompile Include="ElderBrother.cpp">
       <Filter>Actor\BossMonster</Filter>
     </ClCompile>

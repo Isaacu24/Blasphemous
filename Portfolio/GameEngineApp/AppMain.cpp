@@ -15,7 +15,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 {
 	new int();
 
-	GameEngineCore::Start<Blasphemous>();
+	GameEngineCore::Start<Blasphemous> ();
 
 	return 0;
 }

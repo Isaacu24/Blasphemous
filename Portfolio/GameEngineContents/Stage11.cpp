@@ -55,11 +55,7 @@ void Stage11::Start() { SettingStage(); }
 
 void Stage11::Update(float _DeltaTime)
 {
-    if (false == IsChangeCameraPos_)
-    {
-        GetMainCameraActor()->GetTransform().SetWorldMove({0, 0, CameraZPos_});
-        IsChangeCameraPos_ = true;
-    }
+    StageBase::Update(_DeltaTime);
 
     float4 CamPos    = GetMainCameraActor()->GetTransform().GetWorldPosition();
     float4 PlayerPos = Penitent_->GetTransform().GetWorldPosition() + float4{0, CameraOffset_};

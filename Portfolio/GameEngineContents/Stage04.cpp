@@ -97,16 +97,12 @@ void Stage04::Start()
 
 void Stage04::Update(float _DeltaTime)
 {
+    StageBase::Update(_DeltaTime);
+
     if (nullptr != LoadingActor_ && 0.f < LoadingActor_->GetAlpha())
     {
         float Ratio = 1.f - LoadingActor_->GetAlpha();
         StageSoundPlayer_.Volume(Ratio);
-    }
-
-    if (false == IsChangeCameraPos_)
-    {
-        GetMainCameraActor()->GetTransform().SetWorldMove({0, 0, CameraZPos_});
-        IsChangeCameraPos_ = true;
     }
 
     StageFlowUpdate(_DeltaTime);

@@ -103,6 +103,8 @@ void Stage21::Start()
 
 void Stage21::Update(float _DeltaTime)
 {
+    StageBase::Update(_DeltaTime);
+
     if (1.f >= SoundRatio_)
     {
         SoundRatio_ += _DeltaTime;

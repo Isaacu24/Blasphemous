@@ -92,9 +92,34 @@ void StageBase::CameraShakingOneWay(float _DeltaTime)
     }
 }
 
-void StageBase::Start() {}
+void StageBase::Start() 
+{
+}
 
-void StageBase::Update(float _DeltaTime) {}
+void StageBase::Update(float _DeltaTime) 
+{ 
+    if (false == IsChangeCameraPos_)
+    {
+        GetMainCameraActor()->GetTransform().SetWorldMove({0, 0, CameraZPos_});
+        IsChangeCameraPos_ = true;
+    }
+
+    if (true == GameEngineInput::GetInst()->IsPressKey("ColMapDebugKey"))
+    {
+        if (nullptr != ColMap_)
+        {
+            ColMap_->GetTransform().SetLocalPosition({0, 0, AfterParallax5Z}); 
+        }
+    }
+
+    else 
+    {
+        if (nullptr != ColMap_)
+        {
+            ColMap_->GetTransform().SetLocalPosition({0, 0, ColmapZ});
+        }
+    }
+}
 
 void StageBase::End() {}
 

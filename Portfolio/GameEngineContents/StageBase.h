@@ -83,11 +83,8 @@ protected:
     class LoadingActor* LoadingActor_;
 
     virtual void SettingStage() = 0;
-
     virtual void SettingMonster(){};
-
     virtual void SettingLedge(){};
-
     virtual void StageFlowUpdate(float _DeltaTime){};
 
     float4 PlayerLeftPos_;
