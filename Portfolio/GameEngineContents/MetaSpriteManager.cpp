@@ -3,14 +3,9 @@
 
 MetaSpriteManager* MetaSpriteManager::Inst_ = new MetaSpriteManager();
 
-MetaSpriteManager::MetaSpriteManager() 
-{
-}
+MetaSpriteManager::MetaSpriteManager() {}
 
-MetaSpriteManager::~MetaSpriteManager() 
-{
-
-}
+MetaSpriteManager::~MetaSpriteManager() {}
 
 std::vector<MetaData>& MetaSpriteManager::Insert(const std::string& _Name, std::vector<MetaData>& _Datas)
 {
@@ -34,7 +29,7 @@ std::vector<MetaData>& MetaSpriteManager::Insert(const std::string& _Name, std::
     return _Datas;
 }
 
-std::vector<MetaData>& MetaSpriteManager::Find(const std::string& _Name) 
+std::vector<MetaData>& MetaSpriteManager::Find(const std::string& _Name)
 {
     std::string UpperName = GameEngineString::ToUpperReturn(_Name);
 
@@ -98,7 +93,7 @@ void MetaSpriteManager::Load(GameEngineDirectory _Dir)
     CutAllTexture();
 }
 
-void MetaSpriteManager::MetaParsing(const std::string& _AllText) 
+void MetaSpriteManager::MetaParsing(const std::string& _AllText)
 {
     MetaDatas_.clear();
 
@@ -139,11 +134,11 @@ void MetaSpriteManager::MetaParsing(const std::string& _AllText)
 
         std::string CutDataString = _AllText.substr(StartPos, EndPos - StartPos);
 
-        int  Index  = 0;
+        int   Index  = 0;
         float StartX = 0;
-        float  StartY = 0;
-        float  SizeX  = 0;
-        float  SizeY  = 0;
+        float StartY = 0;
+        float SizeX  = 0;
+        float SizeY  = 0;
         float PivotX = 0;
         float PivotY = 0;
 
@@ -235,7 +230,7 @@ void MetaSpriteManager::MetaParsing(const std::string& _AllText)
     }
 }
 
-void MetaSpriteManager::CutAllTexture() 
+void MetaSpriteManager::CutAllTexture()
 {
     for (size_t i = 0; i < Textures_.size(); i++)
     {
@@ -248,14 +243,14 @@ void MetaSpriteManager::CutAllTexture()
 
         for (size_t j = 0; j < AllDatas_[i].size(); j++)
         {
-            TargetTexture->Cut(static_cast<size_t>(AllDatas_[i][j].PosX),
-                               static_cast<size_t>(TargetTexture->GetScale().y - AllDatas_[i][j].PosY - AllDatas_[i][j].Height),
-                               static_cast<size_t>(AllDatas_[i][j].Width),
-                               static_cast<size_t>(AllDatas_[i][j].Height));
+            TargetTexture->Cut(
+                static_cast<size_t>(AllDatas_[i][j].PosX),
+                static_cast<size_t>(TargetTexture->GetScale().y - AllDatas_[i][j].PosY - AllDatas_[i][j].Height),
+                static_cast<size_t>(AllDatas_[i][j].Width),
+                static_cast<size_t>(AllDatas_[i][j].Height));
         }
     }
 
     Textures_.clear();
     AllDatas_.clear();
 }
-

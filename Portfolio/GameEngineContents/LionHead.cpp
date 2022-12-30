@@ -17,7 +17,7 @@ void LionHead::Start()
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("Lionhead_idle_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("Lionhead_idle_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "Lionhead_idle_anim",
@@ -26,7 +26,7 @@ void LionHead::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("Lionhead_attack_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("Lionhead_attack_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "Lionhead_attack_anim",
@@ -73,7 +73,7 @@ void LionHead::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("Lionhead_walk_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("Lionhead_walk_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "Lionhead_walk_anim",
@@ -82,7 +82,7 @@ void LionHead::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("Lionhead_walk_backward_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("Lionhead_walk_backward_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "Lionhead_walk_backward_anim",
@@ -91,7 +91,7 @@ void LionHead::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("Lionhead_death_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("Lionhead_death_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "Lionhead_death_anim",

@@ -24,7 +24,7 @@ void CherubCaptor::Start()
     Collider_->GetTransform().SetWorldMove({0.f, -50.f, 1.f});
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("cherubCaptor_idle");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("cherubCaptor_idle");
 
         MetaRenderer_->CreateMetaAnimation(
             "cherubCaptor_idle",
@@ -33,7 +33,7 @@ void CherubCaptor::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("cherubCaptor_death");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("cherubCaptor_death");
 
         MetaRenderer_->CreateMetaAnimation(
             "cherubCaptor_death",

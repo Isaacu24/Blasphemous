@@ -421,8 +421,17 @@ void Pontiff::AnguishBeam()
 
 SPELLTYPE Pontiff::RandomSpell()
 {
-    int       Random = Random_.RandomInt(0, static_cast<int>(SPELLTYPE::ANGUISHBEAM));
-    SPELLTYPE Spell  = static_cast<SPELLTYPE>(Random);
+    // int       Random = Random_.RandomInt(0, static_cast<int>(SPELLTYPE::ANGUISHBEAM));
+
+    static int Random = 0;
+    Random++;
+
+    if (4 < Random)
+    {
+        Random = 0;
+    }
+
+    SPELLTYPE Spell = static_cast<SPELLTYPE>(Random);
 
     IsOnceCasting_ = false;
 

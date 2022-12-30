@@ -16,7 +16,7 @@ void PrieDieu::Start()
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("priedieu_stand_and_liton_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("priedieu_stand_and_liton_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "priedieu_stand_and_liton_anim",
@@ -25,7 +25,7 @@ void PrieDieu::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("priedieu_upgrade2_stand_and_liton_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("priedieu_upgrade2_stand_and_liton_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "priedieu_upgrade2_stand_and_liton_anim",

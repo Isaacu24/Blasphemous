@@ -83,7 +83,7 @@ void MetaTextureRenderer::ChangeMetaAnimation(const std::string& _AnimationName)
 
     if (FindIter == AllMetaData_.end())
     {
-        MsgBoxAssert("메타 애니메이션의 해당 메타 정보가 존재하지 않습니다.");
+        MsgBoxAssert("해당 메타 애니메이션의 정보가 존재하지 않습니다.");
         return;
     }
 

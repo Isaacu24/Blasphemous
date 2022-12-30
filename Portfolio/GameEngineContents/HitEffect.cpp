@@ -13,7 +13,7 @@ void HitEffect::Start()
 
     //ÇÇ°Ý
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pushback_sparks_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("pushback_sparks_anim");
 
         Renderer_->CreateMetaAnimation(
             "pushback_sparks_anim",

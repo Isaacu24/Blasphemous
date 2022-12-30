@@ -25,7 +25,7 @@ void ShieldMaiden::Start()
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("shieldandsword_idle");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("shieldandsword_idle");
 
         MetaRenderer_->CreateMetaAnimation(
             "shieldandsword_idle",
@@ -34,7 +34,7 @@ void ShieldMaiden::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("shieldMaiden_walking_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("shieldMaiden_walking_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "shieldMaiden_walking_anim",
@@ -54,7 +54,7 @@ void ShieldMaiden::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("shieldMaiden_attack");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("shieldMaiden_attack");
 
         MetaRenderer_->CreateMetaAnimation(
             "shieldMaiden_attack",
@@ -98,7 +98,7 @@ void ShieldMaiden::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("shieldMaiden_parryReaction");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("shieldMaiden_parryReaction");
 
         MetaRenderer_->CreateMetaAnimation(
             "shieldMaiden_parryReaction",
@@ -111,7 +111,7 @@ void ShieldMaiden::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("shieldMaiden_parryReactionToIdle");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("shieldMaiden_parryReactionToIdle");
 
         MetaRenderer_->CreateMetaAnimation(
             "shieldMaiden_parryReactionToIdle",
@@ -124,7 +124,7 @@ void ShieldMaiden::Start()
 
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("shieldMaiden_stun");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("shieldMaiden_stun");
 
         MetaRenderer_->CreateMetaAnimation(
             "shieldMaiden_stun",
@@ -133,7 +133,7 @@ void ShieldMaiden::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("shieldandsword_death");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("shieldandsword_death");
 
         MetaRenderer_->CreateMetaAnimation(
             "shieldandsword_death",

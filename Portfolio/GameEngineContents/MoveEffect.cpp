@@ -12,7 +12,7 @@ void MoveEffect::Start()
     Renderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_running_dust_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_running_dust_anim");
 
         Renderer_->CreateMetaAnimation(
             "penitent_running_dust_anim",
@@ -28,7 +28,7 @@ void MoveEffect::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent-stop-running-dust");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent-stop-running-dust");
 
         Renderer_->CreateMetaAnimation(
             "penitent-stop-running-dust",
@@ -55,7 +55,7 @@ void MoveEffect::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent-jumping-landing-dust-anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent-jumping-landing-dust-anim");
 
         Renderer_->CreateMetaAnimation(
             "penitent-jumping-dust-anim", {"penitent-jumping-landing-dust-anim.png", 0, 3, 0.07f, false}, Data);
@@ -79,7 +79,7 @@ void MoveEffect::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_start_dodge_dust_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_start_dodge_dust_anim");
 
         Renderer_->CreateMetaAnimation(
             "penitent_start_dodge_dust_anim",
@@ -95,7 +95,7 @@ void MoveEffect::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_stop_dodge_dust_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_stop_dodge_dust_anim");
 
         Renderer_->CreateMetaAnimation(
             "penitent_stop_dodge_dust_anim",
@@ -111,7 +111,7 @@ void MoveEffect::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_pushback_grounded_dust_effect_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_pushback_grounded_dust_effect_anim");
 
         Renderer_->CreateMetaAnimation("penitent_pushback_grounded_dust_effect_anim",
                                        {"penitent_pushback_grounded_dust_effect_anim.png",
@@ -130,7 +130,7 @@ void MoveEffect::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_throwback_ground_contact_dust_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_throwback_ground_contact_dust_anim");
 
         Renderer_->CreateMetaAnimation("penitent_throwback_ground_contact_dust_anim",
                                        {"penitent_throwback_ground_contact_dust_anim.png",

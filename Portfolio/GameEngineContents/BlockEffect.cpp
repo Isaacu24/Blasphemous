@@ -12,7 +12,7 @@ void BlockEffect::Start()
     Renderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("shieldmaiden_blockEffect");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("shieldmaiden_blockEffect");
 
         Renderer_->CreateMetaAnimation(
             "shieldmaiden_blockEffect",

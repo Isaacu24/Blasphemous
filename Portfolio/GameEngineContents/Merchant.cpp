@@ -25,7 +25,7 @@ void Merchant::Start()
 
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("ladrona_idle_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("ladrona_idle_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "ladrona_idle_anim",
@@ -34,7 +34,7 @@ void Merchant::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("ladrona_death_anim_0");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("ladrona_death_anim_0");
 
         MetaRenderer_->CreateMetaAnimation(
             "ladrona_death_anim_0",
@@ -52,7 +52,7 @@ void Merchant::Start()
 
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("ladrona_hit_reaction_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("ladrona_hit_reaction_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "ladrona_hit_reaction_anim",

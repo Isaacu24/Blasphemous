@@ -49,7 +49,7 @@ void PenitentGuilt::Start()
     }
 
     UIRenderer_->GetTransform().SetWorldScale({30, 30, 1});
-    UIRenderer_->GetTransform().SetWorldPosition({0, 0, AfterParallaxZ});
+    UIRenderer_->GetTransform().SetWorldPosition({0, 0, AfterLayerZ});
     UIRenderer_->GetTransform().SetWorldMove({0, 220});
     UIRenderer_->Off();
 }

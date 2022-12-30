@@ -19,7 +19,7 @@ void FireBall::Start()
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("fireTrap_projectile_destroyed");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("fireTrap_projectile_destroyed");
 
         MetaRenderer_->CreateMetaAnimation(
             "fireTrap_projectile_destroyed",

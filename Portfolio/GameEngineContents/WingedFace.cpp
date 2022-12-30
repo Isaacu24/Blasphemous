@@ -20,7 +20,7 @@ void WingedFace::Start()
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("bigpatrollinFlyingEnemy_idle");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("bigpatrollinFlyingEnemy_idle");
 
         MetaRenderer_->CreateMetaAnimation(
             "bigpatrollinFlyingEnemy_idle",
@@ -29,7 +29,7 @@ void WingedFace::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("bigpatrollinFlyingEnemy_death");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("bigpatrollinFlyingEnemy_death");
 
         MetaRenderer_->CreateMetaAnimation(
             "bigpatrollinFlyingEnemy_death",

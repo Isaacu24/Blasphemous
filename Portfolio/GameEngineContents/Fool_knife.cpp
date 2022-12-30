@@ -55,6 +55,15 @@ void Fool_knife::Start()
                                 });
 
     Renderer_->CreateFrameAnimationCutTexture("Fool_death_knife", {"Fool_death_knife.png", 0, 13, 0.07f, false});
+    Renderer_->AnimationBindFrame("Fool_death_knife",
+                                  [&](const FrameAnimation_DESC& _Info)
+                                  {
+                                      if (1 == _Info.CurFrame)
+                                      {
+                                          BodyCollider_->Off();
+                                      }
+                                  });
+
     Renderer_->AnimationBindEnd("Fool_death_knife", [&](const FrameAnimation_DESC& _Info) { Death(); });
 
     Renderer_->ChangeFrameAnimation("fool_idle_knife");
@@ -434,7 +443,6 @@ void Fool_knife::DeathStart(const StateInfo& _Info)
     SoundPlayer_ = GameEngineSound::SoundPlayControl("FOOL_DEATH_1.wav");
     SoundPlayer_.Volume(0.3f);
 
-    BodyCollider_->Off();
     DetectCollider_->Off();
     AttackCollider_->Off();
 

@@ -13,7 +13,7 @@ void AttackEffect::Start()
     Renderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_jumping_attack_slasheslvl2");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_jumping_attack_slasheslvl2");
 
         Renderer_->CreateMetaAnimation(
             "penitent_jumping_attack_slasheslvl2",
@@ -29,7 +29,7 @@ void AttackEffect::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_upward_attack_slash_lvl1");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_upward_attack_slash_lvl1");
 
         Renderer_->CreateMetaAnimation(
             "penitent_upward_attack_slash_lvl1",
@@ -45,7 +45,7 @@ void AttackEffect::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("three_hits_attack_slashes_lvl1_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("three_hits_attack_slashes_lvl1_anim");
 
         Renderer_->CreateMetaAnimation("three_hits_attack_slashes_lvl1_anim_0",
                                        {"three_hits_attack_slashes_lvl1_anim.png", 0, 2, 0.1f, true},
@@ -84,7 +84,7 @@ void AttackEffect::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_verticalattack_landing_effects_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_verticalattack_landing_effects_anim");
 
         Renderer_->CreateMetaAnimation("penitent_verticalattack_landing_effects_anim",
                                        {"penitent_verticalattack_landing_effects_anim.png",
@@ -113,7 +113,7 @@ void AttackEffect::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_healthpotion_consuming_aura_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_healthpotion_consuming_aura_anim");
 
         Renderer_->CreateMetaAnimation("penitent_healthpotion_consuming_aura_anim",
                                        {"penitent_healthpotion_consuming_aura_anim.png",
@@ -142,7 +142,7 @@ void AttackEffect::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("guardian_lady_protect_and_vanish");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("guardian_lady_protect_and_vanish");
 
         Renderer_->CreateMetaAnimation(
             "guardian_lady_protect_and_vanish",
@@ -158,7 +158,7 @@ void AttackEffect::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_respawning_anim_querubs");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_respawning_anim_querubs");
 
         Renderer_->CreateMetaAnimation(
             "penitent_respawning_anim_querubs",
@@ -174,7 +174,7 @@ void AttackEffect::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("threeAnguishBigBeamBlue");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("threeAnguishBigBeamBlue");
 
         Renderer_->CreateMetaAnimation(
             "threeAnguishBigBeamBlue",
@@ -190,7 +190,7 @@ void AttackEffect::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_pickUpGuiltFx");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_pickUpGuiltFx");
 
         Renderer_->CreateMetaAnimation(
             "penitent_pickUpGuiltFx",
@@ -207,7 +207,7 @@ void AttackEffect::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_crouch_slashes_lvl2");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_crouch_slashes_lvl2");
 
         Renderer_->CreateMetaAnimation(
             "penitent_crouch_slashes_lvl2",

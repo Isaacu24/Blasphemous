@@ -14,7 +14,7 @@ void Platform::Start()
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("bloodsand_platform_64x64_novisible_to_visible");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("bloodsand_platform_64x64_novisible_to_visible");
 
         MetaRenderer_->CreateMetaAnimation("bloodsand_platform_64x64_novisible_to_visible",
                                            {"bloodsand_platform_64x64_novisible_to_visible.png",
@@ -26,7 +26,7 @@ void Platform::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("ashplatform_64x64_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("ashplatform_64x64_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "ashplatform_64x64_anim",
@@ -35,7 +35,8 @@ void Platform::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("bloodsand_platform_64x64_visible_to_novisible");
+        std::vector<MetaData> Data
+            = MetaSpriteManager::GetInst()->Find("bloodsand_platform_64x64_visible_to_novisible");
 
         MetaRenderer_->CreateMetaAnimation("bloodsand_platform_64x64_visible_to_novisible",
                                            {"bloodsand_platform_64x64_visible_to_novisible.png",

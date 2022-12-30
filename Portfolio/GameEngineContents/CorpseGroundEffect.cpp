@@ -14,7 +14,7 @@ void CorpseGroundEffect::Start()
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("burntFace_rayBeam_impact");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("burntFace_rayBeam_impact");
 
         MetaRenderer_->CreateMetaAnimation(
             "burntFace_rayBeam_impact",

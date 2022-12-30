@@ -162,18 +162,20 @@ void Blasphemous::Update(float _DeltaTime)
 {
     if (true == GameEngineInput::GetInst()->IsDownKey("GotoTitle"))
     {
-        ChangeLevel("Title");
+        GameEngineInput::GetInst()->SetEditMode(true);
+
+     /*   ChangeLevel("Title");
 
         float4 _Scale = {1980, 1080};
 
         RECT Rc = {0, 0, _Scale.ix(), _Scale.iy()};
 
-        AdjustWindowRect(&Rc, WS_OVERLAPPEDWINDOW, TRUE);
+        AdjustWindowRect(&Rc, WS_OVERLAPPEDWINDOW, TRUE);*/
     }
 
     if (true == GameEngineInput::GetInst()->IsDownKey("GotoMainMenu"))
     {
-        ChangeLevel("MainMenu");
+        GEngine::CollisionDebugSwitch();
     }
 
     if (true == GameEngineInput::GetInst()->IsDownKey("GotoStage0"))
@@ -524,13 +526,13 @@ void Blasphemous::LoadResources()
     {
         GameEngineDirectory Dir;
         MovePath(Dir, {"ContentsResources", "Resources", "MetaAtlas", "MetaObject"});
-        MetaSpriteManager::Inst_->Load(Dir);
+        MetaSpriteManager::GetInst()->Load(Dir);
     }
 
     {
         GameEngineDirectory Dir;
         MovePath(Dir, {"ContentsResources", "Resources", "MetaAtlas", "MetaUI"});
-        MetaSpriteManager::Inst_->Load(Dir);
+        MetaSpriteManager::GetInst()->Load(Dir);
     }
 
 
@@ -544,7 +546,7 @@ void Blasphemous::LoadResources()
     {
         GameEngineDirectory Dir;
         MovePath(Dir, {"ContentsResources", "Resources", "MetaAtlas", "Penitent"});
-        MetaSpriteManager::Inst_->Load(Dir);
+        MetaSpriteManager::GetInst()->Load(Dir);
     }
 }
 
@@ -572,7 +574,7 @@ void Blasphemous::LoadBossMonster()
     {
         GameEngineDirectory Dir;
         MovePath(Dir, {"ContentsResources", "Resources", "MetaAtlas", "MetaMonster", "Boss", "Pope"});
-        MetaSpriteManager::Inst_->Load(Dir);
+        MetaSpriteManager::GetInst()->Load(Dir);
     }
 
     {
@@ -605,25 +607,25 @@ void Blasphemous::LoadNormalMonster()
     {
         GameEngineDirectory Dir;
         MovePath(Dir, {"ContentsResources", "Resources", "MetaAtlas", "MetaMonster", "Normal", "ShieldMaiden"});
-        MetaSpriteManager::Inst_->Load(Dir);
+        MetaSpriteManager::GetInst()->Load(Dir);
     }
 
     {
         GameEngineDirectory Dir;
         MovePath(Dir, {"ContentsResources", "Resources", "MetaAtlas", "MetaMonster", "Normal", "Crosscrawler"});
-        MetaSpriteManager::Inst_->Load(Dir);
+        MetaSpriteManager::GetInst()->Load(Dir);
     }
 
     {
         GameEngineDirectory Dir;
         MovePath(Dir, {"ContentsResources", "Resources", "MetaAtlas", "MetaMonster", "Normal", "LionHead"});
-        MetaSpriteManager::Inst_->Load(Dir);
+        MetaSpriteManager::GetInst()->Load(Dir);
     }
 
     {
         GameEngineDirectory Dir;
         MovePath(Dir, {"ContentsResources", "Resources", "MetaAtlas", "MetaMonster", "Normal", "WingedFace"});
-        MetaSpriteManager::Inst_->Load(Dir);
+        MetaSpriteManager::GetInst()->Load(Dir);
     }
 
     {

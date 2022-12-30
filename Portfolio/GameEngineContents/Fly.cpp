@@ -18,7 +18,7 @@ void Fly::Start()
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("ashplatform_32x32_deactivev_brightbackground");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("ashplatform_32x32_deactivev_brightbackground");
 
         MetaRenderer_->CreateMetaAnimation(
             "ashplatform_32x32_deactivev_brightbackground",

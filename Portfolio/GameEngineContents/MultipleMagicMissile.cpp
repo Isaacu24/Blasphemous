@@ -14,7 +14,7 @@ void MultipleMagicMissile::Start()
 {
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
-    std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("BurntFaceHandShootingEffectBeam");
+    std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("BurntFaceHandShootingEffectBeam");
 
     {
         MetaRenderer_->CreateMetaAnimation(

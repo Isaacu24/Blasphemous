@@ -22,7 +22,7 @@ void BloodProjectile::Start()
     Collider_->SetDebugSetting(CollisionType::CT_OBB2D, float4{0.0f, 0.0f, 1.0f, 0.5f});
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_rangeAttack_projectile_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_rangeAttack_projectile_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_rangeAttack_projectile_anim",
@@ -31,7 +31,7 @@ void BloodProjectile::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_rangeAttack_projectile_explode_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_rangeAttack_projectile_explode_anim");
 
         MetaRenderer_->CreateMetaAnimation("penitent_rangeAttack_projectile_explode_anim",
                                            {"penitent_rangeAttack_projectile_explode_anim.png",
@@ -46,7 +46,7 @@ void BloodProjectile::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_rangeAttack_projectile_vanish_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_rangeAttack_projectile_vanish_anim");
 
         MetaRenderer_->CreateMetaAnimation("penitent_rangeAttack_projectile_vanish_anim",
                                            {"penitent_rangeAttack_projectile_vanish_anim.png",

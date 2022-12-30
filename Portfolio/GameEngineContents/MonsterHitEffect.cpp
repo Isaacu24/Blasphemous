@@ -19,7 +19,7 @@ void MonsterHitEffect::Start()
     RangeEffect_->Off();
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_attack_spark_1_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_attack_spark_1_anim");
 
         Effect_->CreateMetaAnimation(
             "penitent_attack_spark_1_anim",
@@ -31,7 +31,7 @@ void MonsterHitEffect::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_attack_spark_1_revision_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_attack_spark_1_revision_anim");
 
         Effect_->CreateMetaAnimation(
             "penitent_attack_spark_1_revision_anim",
@@ -48,7 +48,7 @@ void MonsterHitEffect::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_attack_spark_2_revision_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_attack_spark_2_revision_anim");
 
         Effect_->CreateMetaAnimation(
             "penitent_attack_spark_2_revision_anim",
@@ -64,7 +64,7 @@ void MonsterHitEffect::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_attack_spark_3_revision_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_attack_spark_3_revision_anim");
 
         Effect_->CreateMetaAnimation(
             "penitent_attack_spark_3_revision_anim",
@@ -80,7 +80,7 @@ void MonsterHitEffect::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("ranged_attack_hit_effect");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("ranged_attack_hit_effect");
 
         RangeEffect_->CreateMetaAnimation(
             "ranged_attack_hit_effect",

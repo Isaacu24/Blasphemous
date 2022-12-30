@@ -19,7 +19,6 @@ void MetaSpriteWindow::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 {
     AtlasFileButton(_Level);
     MetaFileButton(_Level);
-
     AllFolderButton(_Level);
 }
 
@@ -43,7 +42,7 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
 
             std::string AllText = LoadFile.GetString();
 
-            MetaParsing(AllText);
+            MetaSpriteManager::GetInst()->MetaParsing(AllText);
 
             if (0 == TargetTexture->GetCutCount())
             {
@@ -68,20 +67,19 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
             Renderer->CreateFrameAnimationCutTexture(
                 AnimationName, {ImageName, 0, static_cast<unsigned int>(MetaDatas_.size() - 1), 0.1f, true});
 
-            // Renderer->ChangeFrameAnimation(AnimationName);
-
+            Renderer->ChangeFrameAnimation(AnimationName);
             Renderer->SetCurData(MetaDatas_);
 
-            MetaSpriteManager::Inst_->Insert(AnimationName, MetaDatas_);
+            MetaSpriteManager::GetInst()->Insert(AnimationName, MetaDatas_);
         }
     }
 
-    if (nullptr != Renderer && nullptr != TargetTexture && 0 != TargetTexture->GetCutCount())
-    {
-        ImGui::SliderInt("ImageIndex", &CurFrame, 0, static_cast<int>(TargetTexture->GetCutCount() - 1));
-        Renderer->SetTexture(TargetTexture, CurFrame);
-        Renderer->ScaleToCutTexture(CurFrame);
-    }
+    //if (nullptr != Renderer && nullptr != TargetTexture && 0 != TargetTexture->GetCutCount())
+    //{
+    //    ImGui::SliderInt("ImageIndex", &CurFrame, 0, static_cast<int>(TargetTexture->GetCutCount() - 1));
+    //    Renderer->SetTexture(TargetTexture, CurFrame);
+    //    Renderer->ScaleToCutTexture(CurFrame);
+    //}
 
     //디버깅 렌더
     if (nullptr != TargetTexture)
@@ -174,7 +172,7 @@ void MetaSpriteWindow::AllFolderButton(GameEngineLevel* _Level)
 
                     std::string AllText = Textures[i].GetString();
 
-                    MetaSpriteManager::Inst_->MetaParsing(AllText);
+                    MetaSpriteManager::GetInst()->MetaParsing(AllText);
 
                     std::string FileName      = std::filesystem::path{Textures[i].GetFileName()}.filename().string();
                     std::string ImageName     = std::filesystem::path{FileName}.replace_extension("").string();
@@ -185,226 +183,14 @@ void MetaSpriteWindow::AllFolderButton(GameEngineLevel* _Level)
                         int a = 0;
                     }
 
-                    MetaSpriteManager::Inst_->Insert(AnimationName, MetaSpriteManager::Inst_->MetaDatas_);
+                    MetaSpriteManager::GetInst()->Insert(AnimationName, MetaSpriteManager::GetInst()->MetaDatas_);
 
                     AllDatas_.push_back(MetaDatas_);
                 }
             }
 
-            CutAllTexture();
+            MetaSpriteManager::GetInst()->CutAllTexture();
         }
     }
 }
 
-void MetaSpriteWindow::MetaParsing(const std::string& _AllText)
-{
-    MetaDatas_.clear();
-
-    size_t StartPos       = 0;
-    size_t AnimationStart = 0;
-
-    while (true)
-    {
-        AnimationStart = _AllText.find("second:", AnimationStart);
-
-        if (AnimationStart == std::string::npos)
-        {
-            break;
-        }
-
-        size_t AnimationEnd = _AllText.find("externalObjects", AnimationStart);
-
-        if (AnimationEnd == std::string::npos)
-        {
-            break;
-        }
-
-        std::string AnimationString = _AllText.substr(AnimationStart, AnimationEnd - AnimationStart);
-
-        StartPos = _AllText.find("rect:", StartPos);
-
-        if (StartPos == std::string::npos)
-        {
-            break;
-        }
-
-        size_t EndPos = _AllText.find("outline:", StartPos);
-
-        if (EndPos == std::string::npos)
-        {
-            break;
-        }
-
-        std::string CutDataString = _AllText.substr(StartPos, EndPos - StartPos);
-
-        int   Index  = 0;
-        float StartX = 0;
-        float StartY = 0;
-        float SizeX  = 0;
-        float SizeY  = 0;
-        float PivotX = 0;
-        float PivotY = 0;
-
-        {
-            std::string FindString   = "second:";
-            size_t      DataStartPos = AnimationString.find(FindString);
-            size_t      DataEndpos   = AnimationString.find("\n", DataStartPos);
-
-            std::string IndexString = AnimationString.substr(DataStartPos, DataEndpos);
-
-            size_t UnderBarPos = IndexString.rfind("_");
-
-            size_t Size = IndexString.size();
-
-            IndexString = IndexString.substr(UnderBarPos + 1, IndexString.size() - UnderBarPos);
-
-            Index = atoi(IndexString.c_str());
-        }
-
-        {
-            std::string FindString   = "x:";
-            size_t      DataStartPos = CutDataString.find(FindString);
-            size_t      DataEndpos   = CutDataString.find("\n", DataStartPos);
-            std::string XString
-                = CutDataString.substr(DataStartPos + FindString.size(), DataEndpos - DataStartPos + FindString.size());
-
-            StartX = static_cast<float>(atof(XString.c_str()));
-        }
-
-        {
-            std::string FindString   = "y:";
-            size_t      DataStartPos = CutDataString.find(FindString);
-            size_t      DataEndpos   = CutDataString.find("\n", DataStartPos);
-            std::string XString
-                = CutDataString.substr(DataStartPos + FindString.size(), DataEndpos - DataStartPos + FindString.size());
-            StartY = static_cast<float>(atof(XString.c_str()));
-        }
-
-        {
-            std::string FindString   = "width:";
-            size_t      DataStartPos = CutDataString.find(FindString);
-            size_t      DataEndpos   = CutDataString.find("\n", DataStartPos);
-            std::string XString
-                = CutDataString.substr(DataStartPos + FindString.size(), DataEndpos - DataStartPos + FindString.size());
-            SizeX = static_cast<float>(atof(XString.c_str()));
-        }
-
-        {
-            std::string FindString   = "height:";
-            size_t      DataStartPos = CutDataString.find(FindString);
-            size_t      DataEndpos   = CutDataString.find("\n", DataStartPos);
-
-            std::string XString
-                = CutDataString.substr(DataStartPos + FindString.size(), DataEndpos - DataStartPos + FindString.size());
-
-            SizeY = static_cast<float>(atof(XString.c_str()));
-        }
-
-        {
-            std::string FindString   = "pivot:";
-            size_t      DataStartPos = CutDataString.find(FindString);
-            size_t      DataEndpos   = CutDataString.find("}", DataStartPos);
-
-            std::string PivotString
-                = CutDataString.substr(DataStartPos + FindString.size(), DataEndpos - DataStartPos + FindString.size());
-
-            size_t XStartPos = PivotString.find("x: ");
-            size_t XEndpos   = PivotString.find(", ");
-
-            std::string XString = PivotString.substr(XStartPos + 3, XEndpos - 5);
-
-            size_t YStartPos = PivotString.find("y: ");
-            size_t YEndpos   = PivotString.find("}");
-
-            std::string YString = PivotString.substr(YStartPos + 3, PivotString.size() - YEndpos);
-
-            PivotX = static_cast<float>(atof(XString.c_str()));
-            PivotY = static_cast<float>(atof(YString.c_str()));
-
-            MetaData Data = {Index, StartX, StartY, SizeX, SizeY, PivotX, PivotY};
-
-            MetaDatas_.push_back(Data);
-        }
-
-        std::string DebugText;
-        DebugText += "Animation : " + std::to_string(Index) + ",";
-        DebugText += "StartX : " + std::to_string(StartX) + ",";
-        DebugText += "StartY : " + std::to_string(StartY) + ",";
-        DebugText += "SizeX : " + std::to_string(SizeX) + ",";
-        DebugText += "SizeY : " + std::to_string(SizeY) + ",";
-        DebugText += "PivotX : " + std::to_string(PivotX) + ",";
-        DebugText += "PivotY : " + std::to_string(PivotY) + ",";
-        DebugText += "\n";
-
-        GameEngineDebug::OutPutString(DebugText.c_str());
-        StartPos += 1;
-        AnimationStart += 1;
-    }
-
-    // Renderer->SetTexture(TargetTexture, 0);
-    // Renderer->SetSamplingModePoint();
-    // Renderer->ScaleToCutTexture(0);
-}
-
-//퐅더 전용 Texture Cut 함수
-void MetaSpriteWindow::CutAllTexture()
-{
-    for (size_t i = 0; i < Textures_.size(); i++)
-    {
-        TargetTexture = Textures_[i];
-
-        if (nullptr == TargetTexture)
-        {
-            continue;
-        }
-
-        for (size_t j = 0; j < AllDatas_[i].size(); j++)
-        {
-            TargetTexture->Cut(
-                static_cast<size_t>(AllDatas_[i][j].PosX),
-                static_cast<size_t>(TargetTexture->GetScale().y - AllDatas_[i][j].PosY - AllDatas_[i][j].Height),
-                static_cast<size_t>(AllDatas_[i][j].Width),
-                static_cast<size_t>(AllDatas_[i][j].Height));
-        }
-    }
-
-    Textures_.clear();
-}
-
-
-// void MetaSpriteWindow::MetaSetPivot()
-//{
-//     float X = Vectors_[CurFrame].x - 0.5f;
-//     float Y = (1 - Vectors_[CurFrame].y) - 0.5f;
-//
-//     float SizeX = TargetTexture->GetCutScale(CurFrame).x;
-//     float SizeY = TargetTexture->GetCutScale(CurFrame).y;
-//
-//     float Width = abs(X * SizeX);
-//     float Height = abs(Y * SizeY);
-//
-//     //1사분면일 때
-//     if (0.f < X &&
-//         0.f > Y)
-//     {
-//         Renderer->GetTransform().SetLocalPosition({-(Width), -(Height)});
-//     }
-//     // 2사분면일 때
-//     else if (0.f > X
-//         && 0.0f > Y)
-//     {
-//         Renderer->GetTransform().SetLocalPosition({(Width), -(Height)});
-//     }
-//     // 3사분면일 때
-//     else if (0.f > X
-//         && 0.f < Y)
-//     {
-//         Renderer->GetTransform().SetLocalPosition({(Width), (Height)});
-//     }
-//     // 4사분면일 때
-//
-//     else if (0.f < X && 0.f < Y)
-//     {
-//         Renderer->GetTransform().SetLocalPosition({-(Width), (Height)});
-//     }
-// }

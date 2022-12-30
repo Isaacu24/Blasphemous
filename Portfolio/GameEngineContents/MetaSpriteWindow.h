@@ -36,10 +36,6 @@ private:
 
     void AllFolderButton(GameEngineLevel* _Level);
 
-    void MetaParsing(const std::string& _AllText);
-
-    void CutAllTexture();
-
     std::vector<MetaData> MetaDatas_;
 
     std::vector<GameEngineTexture*> Textures_;

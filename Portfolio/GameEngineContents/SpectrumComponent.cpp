@@ -191,7 +191,7 @@ void SpectrumComponent::CreateMetaSpectrum(const std::string& _Name, const Frame
     for (size_t i = 0; i < _Info.Frames.size() - 1; i++)
     {
         MetaTextureRenderer*  Spectrum = SpectrumActors_[i]->CreateComponent<MetaTextureRenderer>();
-        std::vector<MetaData> Data     = MetaSpriteManager::Inst_->Find(_Name);
+        std::vector<MetaData> Data     = MetaSpriteManager::GetInst()->Find(_Name);
         Spectrum->CreateMetaAnimation(_Name + "_Spectrum", _Info, Data);
         Spectrum->ChangeMetaAnimation(_Name + "_Spectrum");
         Spectrum->Off();

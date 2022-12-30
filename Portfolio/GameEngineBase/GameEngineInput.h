@@ -190,7 +190,17 @@ public:
 
 	inline XINPUT_STATE GetInputState()
 	{
+		if (true == IsEditMode_)
+		{
+			InputState_.dwPacketNumber = 1;
+		}
+
 		return InputState_;
+	}
+
+	inline void SetEditMode(bool _Value)
+	{
+		IsEditMode_ = _Value;
 	}
 
 protected:
@@ -205,6 +215,8 @@ private:
 	bool IsVibration_;
 	float VibrationTime_;
 	float LitmitVibrationTime_;
+
+	bool IsEditMode_;
 
 	SHORT ThumbLX_;
 	SHORT ThumbLY_;

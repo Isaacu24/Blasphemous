@@ -21,7 +21,7 @@ void AnguishBeam::Start()
     Collider_->Off();
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("threeAnguishBigBeam");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("threeAnguishBigBeam");
 
         MetaRenderer_->CreateMetaAnimation(
             "threeAnguishBigBeam",

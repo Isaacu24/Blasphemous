@@ -13,7 +13,7 @@ void HardLandingEffect::Start()
     Renderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_hardlanding_effects");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_hardlanding_effects");
 
         Renderer_->CreateMetaAnimation(
             "penitent_hardlanding_effects",

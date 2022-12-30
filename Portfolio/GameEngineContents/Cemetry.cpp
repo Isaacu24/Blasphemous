@@ -13,7 +13,7 @@ void Cemetry::Start()
 
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
-    std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("breakableSymbolStatue01");
+    std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("breakableSymbolStatue01");
 
     {
         MetaRenderer_->CreateMetaAnimation(

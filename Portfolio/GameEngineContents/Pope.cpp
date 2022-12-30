@@ -23,7 +23,7 @@ void Pope::Start()
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_idle");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("pope_idle");
 
         MetaRenderer_->CreateMetaAnimation(
             "pope_idle", {"pope_idle.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, true}, Data);
@@ -33,7 +33,7 @@ void Pope::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_idle");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("pope_idle");
 
         MetaRenderer_->CreateMetaAnimation(
             "pope_idle_Event", {"pope_idle.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, true}, Data);
@@ -41,7 +41,7 @@ void Pope::Start()
 
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_appear");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("pope_appear");
 
         MetaRenderer_->CreateMetaAnimation(
             "pope_appear", {"pope_appear.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false}, Data);
@@ -51,7 +51,7 @@ void Pope::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_appear");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("pope_appear");
 
         MetaRenderer_->CreateMetaAnimation(
             "pope_appear_Event",
@@ -64,7 +64,7 @@ void Pope::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_hitReaction");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("pope_hitReaction");
 
         MetaRenderer_->CreateMetaAnimation(
             "pope_hitReaction",
@@ -76,7 +76,7 @@ void Pope::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_spellCast");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("pope_spellCast");
 
         MetaRenderer_->CreateMetaAnimation(
             "pope_spellCast", {"pope_spellCast.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, true}, Data);
@@ -98,7 +98,7 @@ void Pope::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_vanishing");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("pope_vanishing");
 
         MetaRenderer_->CreateMetaAnimation(
             "pope_vanishing",
@@ -110,7 +110,7 @@ void Pope::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_death");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("pope_death");
 
         MetaRenderer_->CreateMetaAnimation(
             "pope_death", {"pope_death.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.08f, false}, Data);
@@ -123,7 +123,7 @@ void Pope::Start()
     MetaFXSRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("pope_spellCast_FXS");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("pope_spellCast_FXS");
 
         MetaFXSRenderer_->CreateMetaAnimation(
             "pope_spellCast_FXS",
@@ -145,7 +145,7 @@ void Pope::Start()
     DustEffectRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_parrysuccess_dust_effect_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_parrysuccess_dust_effect_anim");
 
         DustEffectRenderer_->CreateMetaAnimation(
             "penitent_parrysuccess_dust_effect_anim",
@@ -450,16 +450,13 @@ void Pope::SpellCastStart(const StateInfo& _Info)
 
     MetaRenderer_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition());
 
-    int Spell = Random_.RandomInt(0, 3);
+    //int Spell = Random_.RandomInt(0, 3);
+    static int Spell = 0;
+    Spell++;
 
-    if (Spell == static_cast<int>(SpellType_))
+    if (3 < Spell)
     {
-        Spell++;
-
-        if (3 < Spell)
-        {
-            Spell = 0;
-        }
+        Spell = 0;
     }
 
     switch (Spell)

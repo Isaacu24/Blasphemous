@@ -14,7 +14,7 @@ void ShopObejct::Start()
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("merchantTent_censer01");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("merchantTent_censer01");
 
         MetaRenderer_->CreateMetaAnimation(
             "merchantTent_censer01",
@@ -23,7 +23,7 @@ void ShopObejct::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("merchantTent_lamp01");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("merchantTent_lamp01");
 
         MetaRenderer_->CreateMetaAnimation(
             "merchantTent_lamp01",
@@ -32,7 +32,7 @@ void ShopObejct::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("merchantTent_pennant01");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("merchantTent_pennant01");
 
         MetaRenderer_->CreateMetaAnimation(
             "merchantTent_pennant01",
@@ -41,7 +41,7 @@ void ShopObejct::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("merchantTent_pennant02");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("merchantTent_pennant02");
 
         MetaRenderer_->CreateMetaAnimation(
             "merchantTent_pennant02",
@@ -50,7 +50,7 @@ void ShopObejct::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("merchantTent_pennant03");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("merchantTent_pennant03");
 
         MetaRenderer_->CreateMetaAnimation(
             "merchantTent_pennant03",

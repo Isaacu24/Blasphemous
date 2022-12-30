@@ -13,7 +13,7 @@ void Lantern::Start()
 
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
-    std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("BreakableLantern01");
+    std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("BreakableLantern01");
 
     {
         MetaRenderer_->CreateMetaAnimation("BreakableLantern01", {"BreakableLantern01.png", 0, 5, 0.1f, true}, Data);

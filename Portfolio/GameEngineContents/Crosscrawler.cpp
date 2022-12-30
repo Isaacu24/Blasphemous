@@ -16,7 +16,7 @@ void Crosscrawler::Start()
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("crosscrawler_idle");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("crosscrawler_idle");
 
         MetaRenderer_->CreateMetaAnimation(
             "crosscrawler_idle",
@@ -25,7 +25,7 @@ void Crosscrawler::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("crosscrawler_walking");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("crosscrawler_walking");
 
         MetaRenderer_->CreateMetaAnimation(
             "crosscrawler_walking",
@@ -45,7 +45,7 @@ void Crosscrawler::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("crosscrawler_turnaround");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("crosscrawler_turnaround");
 
         MetaRenderer_->CreateMetaAnimation(
             "crosscrawler_turnaround",
@@ -85,7 +85,7 @@ void Crosscrawler::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("crosscrawler_attack");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("crosscrawler_attack");
 
         MetaRenderer_->CreateMetaAnimation(
             "crosscrawler_attack",
@@ -132,7 +132,7 @@ void Crosscrawler::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("crosscrawler_death");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("crosscrawler_death");
 
         MetaRenderer_->CreateMetaAnimation(
             "crosscrawler_death",
@@ -148,7 +148,7 @@ void Crosscrawler::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("crosscrawler_stun_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("crosscrawler_stun_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "crosscrawler_stun_anim",
@@ -157,7 +157,7 @@ void Crosscrawler::Start()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("crosscrawler_execution");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("crosscrawler_execution");
 
         MetaRenderer_->CreateMetaAnimation(
             "crosscrawler_execution",
@@ -357,13 +357,12 @@ void Crosscrawler::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
             std::bind(&Crosscrawler::DetectPlayer, this, std::placeholders::_1, std::placeholders::_2)))
     {
         State_.ChangeState("Patrol");
-        return;
     }
 
-    else
-    {
-        State_.ChangeState("Attack");
-    }
+    //else
+    //{
+    //    State_.ChangeState("Attack");
+    //}
 }
 
 void Crosscrawler::IdleEnd(const StateInfo& _Info) {}

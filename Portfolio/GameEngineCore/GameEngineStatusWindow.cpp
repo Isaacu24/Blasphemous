@@ -56,7 +56,7 @@ void GameEngineStatusWindow::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 
 	if (true == ImGui::Button("CollisionDebugSwtich"))
 	{
-		GEngine::CollisionDebugSwitch();
+		//GEngine::CollisionDebugSwitch();
 	}
 
 	if (true == ImGui::Button("FreeCameaOnOff"))

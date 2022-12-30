@@ -147,17 +147,6 @@ void Penitent::Start()
         DebugColliders_[i]->Off();
     }
 
-    // DebugColliders_[0]->On();
-    // DebugColliders_[0]->GetTransform().SetWorldPosition(
-    //     {GetTransform().GetWorldPosition().x,
-    //      (GetTransform().GetWorldPosition().y + CilmbY_)});  //사다리 타기 시 땅 감지
-    // DebugColliders_[0]->SetDebugSetting(CollisionType::CT_AABB, float4{0.8f, 0.2f, 0.95f, 0.5f});
-
-    // DebugColliders_[1]->On();
-    // DebugColliders_[1]->GetTransform().SetWorldPosition(
-    //     {GetTransform().GetWorldPosition().x + 20, (GetTransform().GetWorldPosition().y + 30)});
-    // DebugColliders_[1]->SetDebugSetting(CollisionType::CT_AABB, float4{1.0f, 0.5f, 0.25f, 0.5f});
-
     DebugColliders_[2]->On();
     DebugColliders_[2]->GetTransform().SetWorldPosition(
         {GetTransform().GetWorldPosition().x, GetTransform().GetWorldPosition().y - 15.f});
@@ -253,7 +242,7 @@ void Penitent::SetAnimation()
     MetaRenderer_ = CreateComponent<MetaTextureRenderer>();
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penintent_idle_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penintent_idle_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penintent_idle_anim",
@@ -262,7 +251,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_jump_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_jump_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_jump_anim",
@@ -274,7 +263,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_jum_forward_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_jum_forward_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_jum_forward_anim",
@@ -286,7 +275,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_jum_forward_fall_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_jum_forward_fall_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_jum_forward_fall_anim",
@@ -299,7 +288,7 @@ void Penitent::SetAnimation()
 
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_jumping_attack_noslashes");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_jumping_attack_noslashes");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_jumping_attack_noslashes",
@@ -357,7 +346,7 @@ void Penitent::SetAnimation()
 
     //점프 업 공격
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_upward_attack_jump");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_upward_attack_jump");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_upward_attack_jump",
@@ -399,7 +388,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penintent_standing_up");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penintent_standing_up");
 
         MetaRenderer_->CreateMetaAnimation(
             "penintent_standing_up",
@@ -411,7 +400,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_hardlanding_rocks_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_hardlanding_rocks_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_hardlanding_rocks_anim",
@@ -436,7 +425,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_dodge_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_dodge_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_dodge_anim",
@@ -468,7 +457,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penintent_start_run_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penintent_start_run_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penintent_start_run_anim",
@@ -481,7 +470,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_running_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_running_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_running_anim",
@@ -520,7 +509,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penintent_stop_run_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penintent_stop_run_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penintent_stop_run_anim",
@@ -545,7 +534,7 @@ void Penitent::SetAnimation()
 
     // Freeze
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_sheathedIdle");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_sheathedIdle");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_sheathedIdle_Start", {"penitent_sheathedIdle.png", 0, 23, 0.08f, false}, Data);
@@ -568,7 +557,7 @@ void Penitent::SetAnimation()
 
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_risingFromFallen_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_risingFromFallen_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_risingFromFallen_anim",
@@ -580,7 +569,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_sheathedIdle");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_sheathedIdle");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_sheathedIdle_Loop", {"penitent_sheathedIdle.png", 24, 32, 0.07f, true}, Data);
@@ -596,7 +585,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_sheathedIdle");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_sheathedIdle");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_sheathedIdle_End", {"penitent_sheathedIdle.png", 33, 45, 0.07f, false}, Data);
@@ -618,7 +607,7 @@ void Penitent::SetAnimation()
 
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_falling_loop_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_falling_loop_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_falling_loop_anim",
@@ -627,7 +616,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_crouch_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_crouch_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_crouch_anim",
@@ -636,7 +625,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_crouch_up_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_crouch_up_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_crouch_up_anim",
@@ -648,7 +637,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_hangonledge_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_hangonledge_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_hangonledge_anim",
@@ -657,7 +646,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_climbledge_reviewed");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_climbledge_reviewed");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_climbledge_reviewed",
@@ -669,7 +658,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penintent_ladder_climb_loop_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penintent_ladder_climb_loop_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penintent_ladder_climb_loop_anim",
@@ -689,7 +678,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penintent_ladder_up_from_ground");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penintent_ladder_up_from_ground");
 
         MetaRenderer_->CreateMetaAnimation(
             "penintent_ladder_up_from_ground",
@@ -701,7 +690,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_ladder_down_from_ground_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_ladder_down_from_ground_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_ladder_down_from_ground_anim",
@@ -721,7 +710,7 @@ void Penitent::SetAnimation()
 
     //스킬
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_charged_attack_v2_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_charged_attack_v2_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_charged_attack_v2_anim",
@@ -764,7 +753,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_dodge_attack_LVL3");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_dodge_attack_LVL3");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_dodge_attack_LVL3",
@@ -812,7 +801,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_verticalattack_start_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_verticalattack_start_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_verticalattack_start_anim",
@@ -828,7 +817,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_verticalattack_falling_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_verticalattack_falling_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_verticalattack_falling_anim",
@@ -837,7 +826,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_verticalattack_landing");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_verticalattack_landing");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_verticalattack_landing",
@@ -866,7 +855,7 @@ void Penitent::SetAnimation()
 
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_verticalattack_landing_effects_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_verticalattack_landing_effects_anim");
 
         MetaRenderer_->CreateMetaAnimation("penitent_verticalattack_landing_effects_anim",
                                            {"penitent_verticalattack_landing_effects_anim.png",
@@ -879,7 +868,7 @@ void Penitent::SetAnimation()
 
     //기본 공격
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_upward_attack_clamped_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_upward_attack_clamped_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_upward_attack_clamped_anim",
@@ -930,7 +919,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_three_hits_attack_combo_no_slashes");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_three_hits_attack_combo_no_slashes");
 
         MetaRenderer_->CreateMetaAnimation("penitent_three_hits_attack_combo_no_slashes",
                                            {"penitent_three_hits_attack_combo_no_slashes.png",
@@ -1077,7 +1066,7 @@ void Penitent::SetAnimation()
 
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_parry_counterv2_old_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_parry_counterv2_old_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_parry_counterv2_old_anim",
@@ -1119,7 +1108,7 @@ void Penitent::SetAnimation()
 
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_getting_up_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_getting_up_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_getting_up_anim",
@@ -1132,7 +1121,7 @@ void Penitent::SetAnimation()
 
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("Penitent_pushback_grounded");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("Penitent_pushback_grounded");
 
         MetaRenderer_->CreateMetaAnimation(
             "Penitent_pushback_grounded",
@@ -1160,7 +1149,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_throwback_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_throwback_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_throwback_anim",
@@ -1188,7 +1177,7 @@ void Penitent::SetAnimation()
 
     //패링
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_parry_failed");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_parry_failed");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_parry_failed",
@@ -1215,7 +1204,7 @@ void Penitent::SetAnimation()
 
     //패링 성공
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_parry_success_animv3");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_parry_success_animv3");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_parry_success_animv3",
@@ -1228,7 +1217,7 @@ void Penitent::SetAnimation()
 
     //패링 슬라이드
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_guardSlide_back_to_idle");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_guardSlide_back_to_idle");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_guardSlide_back_to_idle",
@@ -1241,7 +1230,7 @@ void Penitent::SetAnimation()
 
     //패링 공격
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_parry_counter_v2_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_parry_counter_v2_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_parry_counter_v2_anim",
@@ -1281,7 +1270,7 @@ void Penitent::SetAnimation()
 
     //회복
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_healthpotion_consuming_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_healthpotion_consuming_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_healthpotion_consuming_anim",
@@ -1294,7 +1283,7 @@ void Penitent::SetAnimation()
 
     //죽음
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("death_anim_blood");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("death_anim_blood");
 
         MetaRenderer_->CreateMetaAnimation(
             "death_anim_blood",
@@ -1308,7 +1297,7 @@ void Penitent::SetAnimation()
 
     //리스폰
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_respawning_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_respawning_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_respawning_anim",
@@ -1321,7 +1310,7 @@ void Penitent::SetAnimation()
 
     //텔레포트
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("RegresoAPuerto-Prayer");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("RegresoAPuerto-Prayer");
 
         MetaRenderer_->CreateMetaAnimation(
             "RegresoAPuerto-Prayer",
@@ -1334,7 +1323,7 @@ void Penitent::SetAnimation()
 
     //기도 공격
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_aura_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_aura_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_aura_anim",
@@ -1376,7 +1365,7 @@ void Penitent::SetAnimation()
 
     //원거리 공격
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_rangeAttack_shoot_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_rangeAttack_shoot_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_rangeAttack_shoot_anim",
@@ -1403,7 +1392,7 @@ void Penitent::SetAnimation()
 
     //점프 원거리 공격
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_rangeAttack_symbol_midair_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_rangeAttack_symbol_midair_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_rangeAttack_symbol_midair_anim",
@@ -1431,7 +1420,7 @@ void Penitent::SetAnimation()
 
     //처형
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("crosscrawler_execution");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("crosscrawler_execution");
 
         MetaRenderer_->CreateMetaAnimation(
             "crosscrawler_execution",
@@ -1445,7 +1434,7 @@ void Penitent::SetAnimation()
 
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("shieldMaiden_execution");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("shieldMaiden_execution");
 
         MetaRenderer_->CreateMetaAnimation(
             "shieldMaiden_execution",
@@ -1459,7 +1448,7 @@ void Penitent::SetAnimation()
 
     //기도
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_priedieu_kneeling_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_priedieu_kneeling_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_priedieu_kneeling_anim",
@@ -1484,7 +1473,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_priedieu_bended_knee_with_aura");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_priedieu_bended_knee_with_aura");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_priedieu_bended_knee_with_aura",
@@ -1499,7 +1488,7 @@ void Penitent::SetAnimation()
 
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_priedieu_bended_knee_aura_turnoff");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_priedieu_bended_knee_aura_turnoff");
 
         MetaRenderer_->CreateMetaAnimation("penitent_priedieu_bended_knee_aura_turnoff",
                                            {"penitent_priedieu_bended_knee_aura_turnoff.png",
@@ -1520,7 +1509,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_priedieu_stand_up_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_priedieu_stand_up_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_priedieu_stand_up_anim",
@@ -1534,7 +1523,7 @@ void Penitent::SetAnimation()
 
     //문 이동
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_crossing_opendoor_out_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_crossing_opendoor_out_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_crossing_opendoor_out_anim",
@@ -1546,7 +1535,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_crossing_teleportVortex_in");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_crossing_teleportVortex_in");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_crossing_teleportVortex_in",
@@ -1558,7 +1547,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_ladder_sliding");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_ladder_sliding");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_ladder_sliding",
@@ -1567,7 +1556,7 @@ void Penitent::SetAnimation()
     }
 
     {
-        std::vector<MetaData> Data = MetaSpriteManager::Inst_->Find("penitent_crouchslash_noslashes_anim");
+        std::vector<MetaData> Data = MetaSpriteManager::GetInst()->Find("penitent_crouchslash_noslashes_anim");
 
         MetaRenderer_->CreateMetaAnimation(
             "penitent_crouchslash_noslashes_anim",
