@@ -13,12 +13,12 @@ public:
     NPCBase& operator=(NPCBase&& _Other) noexcept = delete;
 
     void SetIsSpeech(bool _Value) { IsSpeech_ = true; }
-    bool GetIsSpeech() { return MessageUI_->GetSpeechEnd(); }
+    bool GetIsSpeech() { return LineUI_->GetSpeechEnd(); }
 
 protected:
     bool IsSpeech_;
 
-    class MessageUI* MessageUI_;
+    class LineUI* LineUI_;
 
     void Start() = 0;
     void Update(float _DeltaTime) override;

@@ -9,7 +9,7 @@ enum class EXECUTIONTYPE
     ShieldMaiden
 };
 
-class SpectrumComponent;
+class AfterimageComponent;
 class MetaTextureRenderer;
 class Penitent : public GameEngineActor
 {
@@ -326,8 +326,8 @@ private:
     float4                            ColScale_;
     GameEngineTextureRenderer*        ColMap_;
 
-    SpectrumComponent* SlideSpectrum_;
-    SpectrumComponent* SlideAttackSpectrum_;
+    AfterimageComponent* SlideAfterimage_;
+    AfterimageComponent* SlideAttackAfterimage_;
 
     MetaTextureRenderer* MetaRenderer_;
 

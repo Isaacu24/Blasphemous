@@ -23,7 +23,7 @@ void GiantSword::Start()
     IrisRenderer_->SetPivot(PIVOTMODE::TOP);
     IrisRenderer_->Off();
 
-    AttackSpectrum_ = CreateComponent<SpectrumComponent>();
+    AttackAfterimage_ = CreateComponent<AfterimageComponent>();
 
     Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 
@@ -50,10 +50,10 @@ void GiantSword::Start()
     Renderer_->CreateFrameAnimationCutTexture("pontiff_giantSword_swordSprite",
                                               {"pontiff_giantSword_swordSprite.png", 0, 0, 0.1f, false});
 
-    AttackSpectrum_->CreateOnceSpectrum(
+    AttackAfterimage_->CreateOnceAfterimage(
         "pontiff_giantSword_swordSprite", {"pontiff_giantSword_swordSprite.png", 0, 0, 0.1f, false}, 21);
 
-    AttackSpectrum_->SetOnceSpectrumFrame(20);
+    AttackAfterimage_->SetOnceAfterimageFrame(20);
 
     Renderer_->GetTransform().SetLocalScale({125, 400});
     Renderer_->SetPivot(PIVOTMODE::TOP);
@@ -231,7 +231,7 @@ void GiantSword::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
         if (0.75f <= _Info.StateTime)
         {
             IsTrunAttack_ = true;
-            AttackSpectrum_->SetIsDraw(true);
+            AttackAfterimage_->SetIsDraw(true);
         }
 
         RotSpeed_ += _DeltaTime * 250.f;

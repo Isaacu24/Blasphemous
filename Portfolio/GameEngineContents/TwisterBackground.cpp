@@ -13,6 +13,9 @@ void TwisterBackground::Start()
     Renderer_->SetSamplingModePointMirror();
 }
 
-void TwisterBackground::Update(float _DeltaTime) { Renderer_->PlusTimeData(_DeltaTime * 1.5f); }
+void TwisterBackground::Update(float _DeltaTime) 
+{
+    Renderer_->PlusTimeData(_DeltaTime * 1.5f); 
+}
 
 void TwisterBackground::End() {}

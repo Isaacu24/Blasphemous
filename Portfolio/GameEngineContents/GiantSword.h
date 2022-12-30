@@ -59,7 +59,7 @@ private:
 
     bool IsTrunAttack_;
 
-    SpectrumComponent* AttackSpectrum_;
+    AfterimageComponent* AttackAfterimage_;
 
     GameEngineTextureRenderer* IrisRenderer_;  //µ¿°ø
     GameEngineTextureRenderer* EyeRenderer_;   //´«

@@ -1,16 +1,16 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 
-class MessageUI : public GameEngineActor
+class LineUI : public GameEngineActor
 {
 public:
-    MessageUI();
-    ~MessageUI();
+    LineUI();
+    ~LineUI();
 
-    MessageUI(const MessageUI& _Other)                = delete;
-    MessageUI(MessageUI&& _Other) noexcept            = delete;
-    MessageUI& operator=(const MessageUI& _Other)     = delete;
-    MessageUI& operator=(MessageUI&& _Other) noexcept = delete;
+    LineUI(const LineUI& _Other)                = delete;
+    LineUI(LineUI&& _Other) noexcept            = delete;
+    LineUI& operator=(const LineUI& _Other)     = delete;
+    LineUI& operator=(LineUI&& _Other) noexcept = delete;
 
     GameEngineUIRenderer* GetUIRenderer() { return Renderer_; }
 

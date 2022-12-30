@@ -54,38 +54,38 @@ void Stage20::SettingStage()
     ReturnKey_->GetTransform().SetWorldScale({30, 30, 1});
     ReturnKey_->Off();
 
-    MessageUI_ = CreateActor<MessageUI>();
-    MessageUI_->SetSpeed(10.f);
-    MessageUI_->CreateLine("꿈 속에서 나는 다가오는 그대의 발소리를 들었다. \n꿈 속에서 나는 그대에게 말을 걸고 "
+    LineUI_ = CreateActor<LineUI>();
+    LineUI_->SetSpeed(10.f);
+    LineUI_->CreateLine("꿈 속에서 나는 다가오는 그대의 발소리를 들었다. \n꿈 속에서 나는 그대에게 말을 걸고 "
                            "인사를 하려 했다.");
-    MessageUI_->AddSound("DLG_2501_0.wav");
-    MessageUI_->CreateLine("기적의 수호자이자, 기적의 깃발을 지키는 수호자인 나는 \n큰 고통을 짊어지고 아버지의 "
+    LineUI_->AddSound("DLG_2501_0.wav");
+    LineUI_->CreateLine("기적의 수호자이자, 기적의 깃발을 지키는 수호자인 나는 \n큰 고통을 짊어지고 아버지의 "
                            "문장을 지니고 있음이라.");
-    MessageUI_->AddSound("DLG_2501_1.wav");
-    MessageUI_->CreateLine("나는 피투성이로 덮인 두 손이며, \n성모님의 시선을 향하는 두 눈이니라.");
-    MessageUI_->AddSound("DLG_2501_2.wav");
-    MessageUI_->CreateLine("그러나 그 차가운 이름 없는 모습 외에는, 그대를 모른다.");
-    MessageUI_->AddSound("DLG_2501_3.wav");
-    MessageUI_->CreateLine("그대의 상처투성이 굳은 살 박힌 손을 경계하라. \n그대의 죽음의 신음을 경계하라.");
-    MessageUI_->AddSound("DLG_2501_4.wav");
-    MessageUI_->CreateLine("아니, 그대를 아는 건 기적 뿐이니");
-    MessageUI_->AddSound("DLG_2501_5.wav");
-    MessageUI_->CreateLine("죄를 가득 짊어진 그대의 칼과, \n황금에 빛나는 나의 칼을 맞부딪히도록 하지.");
-    MessageUI_->AddSound("DLG_2503_0.wav");
-    MessageUI_->CreateLine("상처를 입히고, 걷게 하리라.");
-    MessageUI_->AddSound("DLG_2503_1.wav");
-    MessageUI_->CreateLine("그대의 이름을 나는 영원히 저주하리라.");
-    MessageUI_->AddSound("DLG_2503_2.wav");
-    MessageUI_->CreateLine("그대의 죽음을 나는 영원히 축복하리라.");
-    MessageUI_->AddSound("DLG_2503_3.wav");
-    MessageUI_->SetFontColor(float4{0.63f, 0.6f, 0.55f});
-    MessageUI_->SetBackgroudAlpha(0.5f);
-    MessageUI_->SetSpeed(5.f);
-    MessageUI_->Off();
+    LineUI_->AddSound("DLG_2501_1.wav");
+    LineUI_->CreateLine("나는 피투성이로 덮인 두 손이며, \n성모님의 시선을 향하는 두 눈이니라.");
+    LineUI_->AddSound("DLG_2501_2.wav");
+    LineUI_->CreateLine("그러나 그 차가운 이름 없는 모습 외에는, 그대를 모른다.");
+    LineUI_->AddSound("DLG_2501_3.wav");
+    LineUI_->CreateLine("그대의 상처투성이 굳은 살 박힌 손을 경계하라. \n그대의 죽음의 신음을 경계하라.");
+    LineUI_->AddSound("DLG_2501_4.wav");
+    LineUI_->CreateLine("아니, 그대를 아는 건 기적 뿐이니");
+    LineUI_->AddSound("DLG_2501_5.wav");
+    LineUI_->CreateLine("죄를 가득 짊어진 그대의 칼과, \n황금에 빛나는 나의 칼을 맞부딪히도록 하지.");
+    LineUI_->AddSound("DLG_2503_0.wav");
+    LineUI_->CreateLine("상처를 입히고, 걷게 하리라.");
+    LineUI_->AddSound("DLG_2503_1.wav");
+    LineUI_->CreateLine("그대의 이름을 나는 영원히 저주하리라.");
+    LineUI_->AddSound("DLG_2503_2.wav");
+    LineUI_->CreateLine("그대의 죽음을 나는 영원히 축복하리라.");
+    LineUI_->AddSound("DLG_2503_3.wav");
+    LineUI_->SetFontColor(float4{0.63f, 0.6f, 0.55f});
+    LineUI_->SetBackgroudAlpha(0.5f);
+    LineUI_->SetSpeed(5.f);
+    LineUI_->Off();
 
-    MessageUI_->SetMassageStartEvent(0, [&]() { Penitent_->SetIsFreezeEnd(false); });
+    LineUI_->SetMassageStartEvent(0, [&]() { Penitent_->SetIsFreezeEnd(false); });
 
-    MessageUI_->SetMassageStartEvent(5,
+    LineUI_->SetMassageStartEvent(5,
                                      [&]()
                                      {
                                          Pope_->On();
@@ -94,13 +94,13 @@ void Stage20::SettingStage()
                                          Pope_->SetTarget(Penitent_);
                                      });
 
-    MessageUI_->SetMassageEndEvent(10,
+    LineUI_->SetMassageEndEvent(10,
                                    [&]()
                                    {
                                        Penitent_->SetIsFreezeEnd(true);
                                        Pope_->ChangeMonsterState("Idle");
                                        CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
-                                       MessageUI_->Off();
+                                       LineUI_->Off();
 
                                        StageSoundPlayer_.Stop();
                                        StageSoundPlayer_
@@ -165,10 +165,10 @@ void Stage20::Update(float _DeltaTime)
                     return;
                 }
 
-                if (false == MessageUI_->IsUpdate())
+                if (false == LineUI_->IsUpdate())
                 {
-                    MessageUI_->On();
-                    MessageUI_->SpeechStart();
+                    LineUI_->On();
+                    LineUI_->SpeechStart();
                 }
             }
             break;

@@ -1,6 +1,6 @@
 #include "PreCompile.h"
 #include "PenitentGuilt.h"
-#include "MessageUI.h"
+#include "LineUI.h"
 
 PenitentGuilt::PenitentGuilt() {}
 
@@ -92,7 +92,7 @@ void PenitentGuilt::DestroyGuilt()
     UIRenderer_->Off();
     Renderer_->ChangeFrameAnimation("guiltDropVanish");
 
-    MessageUI* UI = GetLevel()->CreateActor<MessageUI>();
+    LineUI* UI = GetLevel()->CreateActor<LineUI>();
     UI->GetTransform().SetWorldMove({0, 500});
     UI->GetUIRenderer()->GetColorData().MulColor.a = 1.0f;
     UI->SetFontSize(35);

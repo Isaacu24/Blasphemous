@@ -163,7 +163,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="MetaSpectrumComponent.h">
+    <ClInclude Include="MetaAfterimageComponent.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -235,7 +235,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="MessageUI.h">
+    <ClInclude Include="LineUI.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -352,7 +352,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="SpectrumComponent.h">
+    <ClInclude Include="AfterimageComponent.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -594,7 +594,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="MetaSpectrumComponent.cpp">
+    <ClCompile Include="MetaAfterimageComponent.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -666,7 +666,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="MessageUI.cpp">
+    <ClCompile Include="LineUI.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -780,7 +780,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="SpectrumComponent.cpp">
+    <ClCompile Include="AfterimageComponent.cpp">
       <SubType>
       </SubType>
     </ClCompile>

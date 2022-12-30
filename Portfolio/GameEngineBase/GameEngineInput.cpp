@@ -94,6 +94,7 @@ GameEngineInput::GameEngineInput()
 	, IsVibration_(false)
 	, VibrationTime_(0.f)
 	, LitmitVibrationTime_(1.f)
+	, Intensity_(5000)
 	, ThumbLX_(0)
 	, ThumbLY_(0)
 	, ThumbRX_(0)
@@ -202,8 +203,8 @@ void GameEngineInput::VibrationUpdate()
 			return;
 		}
 
-		Vibration.wLeftMotorSpeed = 5000;	// 0 ~ 65535 사이의 수
-		Vibration.wRightMotorSpeed = 5000;		// 0 ~ 65535 사이의 수
+		Vibration.wLeftMotorSpeed = Intensity_;	    // 0 ~ 65535 사이의 수
+		Vibration.wRightMotorSpeed = Intensity_;	// 0 ~ 65535 사이의 수
 		XInputSetState(0, &Vibration);
 	}
 }
@@ -429,7 +430,6 @@ void GameEngineInput::GameEngineButton::Update(float _DeltaTime)
 			}
 		}
 
-		//Sleep(30); //Cpu 점유율 100% 방지
 		DwResult = XInputGetState(0, &State_); //다음 상태 얻어오기
 	}
 }

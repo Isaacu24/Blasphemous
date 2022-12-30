@@ -107,8 +107,8 @@ void Penitent::Start()
     }
 
     Gravity_             = CreateComponent<GravityComponent>();
-    SlideSpectrum_       = CreateComponent<SpectrumComponent>();
-    SlideAttackSpectrum_ = CreateComponent<SpectrumComponent>();
+    SlideAfterimage_       = CreateComponent<AfterimageComponent>();
+    SlideAttackAfterimage_ = CreateComponent<AfterimageComponent>();
 
     BodyCollider_ = CreateComponent<GameEngineCollision>();
     BodyCollider_->GetTransform().SetWorldScale({40.f, 80.f, 1.f});
@@ -432,12 +432,12 @@ void Penitent::SetAnimation()
             {"penitent_dodge_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
             Data);
 
-        SlideSpectrum_->CreateMetaSpectrum(
+        SlideAfterimage_->CreateMetaAfterimage(
             "penitent_dodge_anim",
             {"penitent_dodge_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false});
 
-        SlideSpectrum_->SetMetaSpectrumFrame(0, 5);
-        SlideSpectrum_->SpectrumLevelOn();
+        SlideAfterimage_->SetMetaAfterimageFrame(0, 5);
+        SlideAfterimage_->AfterimageLevelOn();
 
         MetaRenderer_->AnimationBindEnd(
             "penitent_dodge_anim",
@@ -760,12 +760,12 @@ void Penitent::SetAnimation()
             {"penitent_dodge_attack_LVL3.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
             Data);
 
-        SlideAttackSpectrum_->CreateMetaSpectrum(
+        SlideAttackAfterimage_->CreateMetaAfterimage(
             "penitent_dodge_attack_LVL3",
             {"penitent_dodge_attack_LVL3.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false});
 
-        SlideAttackSpectrum_->SetMetaSpectrumFrame(1, 5);
-        SlideAttackSpectrum_->SpectrumLevelOn();
+        SlideAttackAfterimage_->SetMetaAfterimageFrame(1, 5);
+        SlideAttackAfterimage_->AfterimageLevelOn();
 
         MetaRenderer_->AnimationBindFrame(
             "penitent_dodge_attack_LVL3",

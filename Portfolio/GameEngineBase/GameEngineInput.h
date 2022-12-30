@@ -215,8 +215,10 @@ private:
 	bool IsVibration_;
 	float VibrationTime_;
 	float LitmitVibrationTime_;
+	WORD Intensity_;
 
 	bool IsEditMode_;
+
 
 	SHORT ThumbLX_;
 	SHORT ThumbLY_;

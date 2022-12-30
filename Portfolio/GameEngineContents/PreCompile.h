@@ -58,7 +58,7 @@
 // Contents
 #include <GameEngineContents/StageActor.h>
 #include "GravityComponent.h"
-#include "SpectrumComponent.h"
+#include "AfterimageComponent.h"
 #include "CutScenePlayer.h"
 #include "GlobalValue.h"
 #include "LoadingActor.h"
@@ -67,7 +67,7 @@
 
 #include "Penitent.h"
 
-#include "MessageUI.h"
+#include "LineUI.h"
 #include "Milestone.h"
 
 #include "Candle.h"

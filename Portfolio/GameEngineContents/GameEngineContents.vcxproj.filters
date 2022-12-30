@@ -245,7 +245,7 @@
     <ClInclude Include="PenitentGuilt.h">
       <Filter>Actor\Object</Filter>
     </ClInclude>
-    <ClInclude Include="SpectrumComponent.h">
+    <ClInclude Include="AfterimageComponent.h">
       <Filter>Component</Filter>
     </ClInclude>
     <ClInclude Include="Shop.h">
@@ -257,7 +257,7 @@
     <ClInclude Include="BloodProjectile.h">
       <Filter>Actor\Effect\Player</Filter>
     </ClInclude>
-    <ClInclude Include="MessageUI.h">
+    <ClInclude Include="LineUI.h">
       <Filter>Actor\UI</Filter>
     </ClInclude>
     <ClInclude Include="Merchant.h">
@@ -323,7 +323,7 @@
     <ClInclude Include="GravityComponent.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="MetaSpectrumComponent.h">
+    <ClInclude Include="MetaAfterimageComponent.h">
       <Filter>Component</Filter>
     </ClInclude>
   </ItemGroup>
@@ -575,7 +575,7 @@
     <ClCompile Include="PenitentGuilt.cpp">
       <Filter>Actor\Object</Filter>
     </ClCompile>
-    <ClCompile Include="SpectrumComponent.cpp">
+    <ClCompile Include="AfterimageComponent.cpp">
       <Filter>Component</Filter>
     </ClCompile>
     <ClCompile Include="Shop.cpp">
@@ -587,7 +587,7 @@
     <ClCompile Include="BloodProjectile.cpp">
       <Filter>Actor\Effect\Player</Filter>
     </ClCompile>
-    <ClCompile Include="MessageUI.cpp">
+    <ClCompile Include="LineUI.cpp">
       <Filter>Actor\UI</Filter>
     </ClCompile>
     <ClCompile Include="Merchant.cpp">
@@ -650,7 +650,7 @@
     <ClCompile Include="GravityComponent.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="MetaSpectrumComponent.cpp">
+    <ClCompile Include="MetaAfterimageComponent.cpp">
       <Filter>Component</Filter>
     </ClCompile>
   </ItemGroup>
