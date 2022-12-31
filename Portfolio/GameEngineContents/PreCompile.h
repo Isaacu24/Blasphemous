@@ -67,7 +67,7 @@
 
 #include "Penitent.h"
 
-#include "LineUI.h"
+#include "LineUIActor.h"
 #include "Milestone.h"
 
 #include "Candle.h"

@@ -1,7 +1,7 @@
 #include "PreCompile.h"
-#include "LineUI.h"
+#include "LineUIActor.h"
 
-LineUI::LineUI()
+LineUIActor::LineUIActor()
     : Alpha_(0.f)
     , StartEventIndex_(-1)
     , EndEventIndex_(-1)
@@ -9,10 +9,10 @@ LineUI::LineUI()
     , BackgroundAlpha_(0.75f)
 {}
 
-LineUI::~LineUI() { Script_.clear(); }
+LineUIActor::~LineUIActor() { Script_.clear(); }
 
 
-void LineUI::Start()
+void LineUIActor::Start()
 {
     GetTransform().SetWorldScale({2, 2, 1});
     GetTransform().SetWorldMove({0, -320});
@@ -35,7 +35,7 @@ void LineUI::Start()
     IsOn_ = true;
 }
 
-void LineUI::Update(float _DeltaTime)
+void LineUIActor::Update(float _DeltaTime)
 {
     if (true == IsOn_)
     {
@@ -141,25 +141,25 @@ void LineUI::Update(float _DeltaTime)
     }
 }
 
-void LineUI::End() {}
+void LineUIActor::End() {}
 
 
-void LineUI::LevelEndEvent() { Death(); }
+void LineUIActor::LevelEndEvent() { Death(); }
 
 
-void LineUI::OnEvent() 
+void LineUIActor::OnEvent() 
 {
     Renderer_->On(); 
     Font_->On();
 }
 
-void LineUI::OffEvent() 
+void LineUIActor::OffEvent() 
 {
     Renderer_->Off();
     Font_->Off();
 }
 
 
-void LineUI::CreateLine(const std::string& _Line) { Script_.push_back(_Line); }
+void LineUIActor::CreateLine(const std::string& _Line) { Script_.push_back(_Line); }
 
-void LineUI::AddSound(const std::string& _Sound) { SoundList_.push_back(_Sound); }
+void LineUIActor::AddSound(const std::string& _Sound) { SoundList_.push_back(_Sound); }

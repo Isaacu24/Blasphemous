@@ -235,7 +235,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="LineUI.h">
+    <ClInclude Include="LineUIActor.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -666,7 +666,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="LineUI.cpp">
+    <ClCompile Include="LineUIActor.cpp">
       <SubType>
       </SubType>
     </ClCompile>

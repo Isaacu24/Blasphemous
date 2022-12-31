@@ -257,7 +257,7 @@
     <ClInclude Include="BloodProjectile.h">
       <Filter>Actor\Effect\Player</Filter>
     </ClInclude>
-    <ClInclude Include="LineUI.h">
+    <ClInclude Include="LineUIActor.h">
       <Filter>Actor\UI</Filter>
     </ClInclude>
     <ClInclude Include="Merchant.h">
@@ -587,7 +587,7 @@
     <ClCompile Include="BloodProjectile.cpp">
       <Filter>Actor\Effect\Player</Filter>
     </ClCompile>
-    <ClCompile Include="LineUI.cpp">
+    <ClCompile Include="LineUIActor.cpp">
       <Filter>Actor\UI</Filter>
     </ClCompile>
     <ClCompile Include="Merchant.cpp">

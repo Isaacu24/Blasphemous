@@ -7,16 +7,21 @@ enum class STAGEFLOW
     NORMAL,
     BOSSAPPEAR,
     BOSSCOMBAT,
-    BOSSDEAD,
-    STAGECLEAR
+    BOSSDEAD
 };
 
+class Penitent;
+class MonsterBase;
+class BossMonster;
+class LoadingActor;
+class PenitentGuilt;
+class CutScenePlayer;
 class GameEngineCollision;
 class StageBase : public GameEngineLevel
 {
 public:
     StageBase();
-    ~StageBase();
+    ~StageBase() = 0;
 
     StageBase(const StageBase& _Other)                = delete;
     StageBase(StageBase&& _Other) noexcept            = delete;
@@ -59,57 +64,47 @@ protected:
 
     STAGEFLOW CurrentFlow_;
 
-    class CutScenePlayer* CutScenePlayer_;
+    GameEngineActor*      Stage_;
+    LoadingActor*         LoadingActor_;
+    CutScenePlayer*       CutScenePlayer_;
+    GameEngineSoundPlayer StageSoundPlayer_;
 
-    GameEngineActor* Stage_;
+    Penitent*      Penitent_;
+    PenitentGuilt* Guilt_;
+
+    BossMonster*            BossMonster_;
+    std::list<MonsterBase*> MonsterList_;
+
+    GameEngineTextureRenderer*        ColMap_;
+    std::vector<GameEngineCollision*> DangleColiders_;
 
     float4 CurPos_;
     float4 PrevPos_;
 
+    float4 PlayerLeftPos_;
+    float4 PlayerRightPos_;
+
     int ShakeCount_;
     int MaxShakeCount_;
 
-    GameEngineTextureRenderer* ColMap_;
+    float CameraZPos_;
+    float CameraOffset_;
+    float ShakeTime_;
 
-    GameEngineSoundPlayer StageSoundPlayer_;
+    float ForceX_;
+    float ForceY_;
 
-    std::vector<GameEngineCollision*> DangleColiders_;
-
-    class Penitent* Penitent_;
-
-    class BossMonster*            BossMonster_;
-    std::list<class MonsterBase*> MonsterList_;
-
-    class LoadingActor* LoadingActor_;
+    bool IsLeftExit_;
+    bool IsRightExit_;
+    bool IsShaking_;
+    bool IsChangeCameraPos_;
+    bool IsOneWayShaking_;
+    bool IsLoadingEnd_;
 
     virtual void SettingStage() = 0;
     virtual void SettingMonster(){};
     virtual void SettingLedge(){};
     virtual void StageFlowUpdate(float _DeltaTime){};
-
-    float4 PlayerLeftPos_;
-    float4 PlayerRightPos_;
-
-    bool IsLeftExit_;
-    bool IsRightExit_;
-
-    float CameraZPos_;
-
-    bool IsChangeCameraPos_;
-
-    float CameraOffset_;
-
-    float ForceX_;
-    float ForceY_;
-
-    class PenitentGuilt* Guilt_;
-
-    float ShakeTime_;
-
-    bool IsShaking_;
-    bool IsOneWayShaking_;
-
-    bool IsLoadingEnd_;
 
 private:
 };

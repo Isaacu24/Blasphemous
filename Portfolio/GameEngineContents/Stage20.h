@@ -30,7 +30,7 @@ private:
 
     float4 PlayerReturnPos_;
 
-    class LineUI* LineUI_;
+    class LineUIActor* LineUIActor_;
 
     GameEngineActor*           UIActor_;
     GameEngineTextureRenderer* ReturnKey_;
