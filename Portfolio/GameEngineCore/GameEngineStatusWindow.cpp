@@ -33,7 +33,6 @@ GameEngineStatusWindow::~GameEngineStatusWindow()
 
 void GameEngineStatusWindow::Initialize(class GameEngineLevel* _Level)
 {
-
 }
 
 void GameEngineStatusWindow::AddDebugRenderTarget(const std::string& _DebugName, GameEngineRenderTarget* _RenderTarget)
@@ -56,7 +55,7 @@ void GameEngineStatusWindow::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 
 	if (true == ImGui::Button("CollisionDebugSwtich"))
 	{
-		//GEngine::CollisionDebugSwitch();
+		GEngine::CollisionDebugSwitch();
 	}
 
 	if (true == ImGui::Button("FreeCameaOnOff"))

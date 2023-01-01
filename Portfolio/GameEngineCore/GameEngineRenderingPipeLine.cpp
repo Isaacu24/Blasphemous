@@ -276,3 +276,8 @@ void GameEngineRenderingPipeLine::Copy(GameEngineRenderingPipeLine* _Original)
 	Blend = _Original->Blend;
 
 }
+
+void GameEngineRenderingPipeLine::SetWireFrame()
+{
+	Rasterizer = GameEngineRasterizer::Find("EngineRasterizer_Wire");
+}

@@ -66,6 +66,8 @@ public:
 
 	void Copy(GameEngineRenderingPipeLine* _Original);
 
+	void SetWireFrame();
+
 protected:
 
 

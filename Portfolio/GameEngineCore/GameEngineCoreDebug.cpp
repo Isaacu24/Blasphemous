@@ -146,6 +146,7 @@ namespace GameEngineDebug
 
 		DebugRenderingPipeLine = GameEngineRenderingPipeLine::Find("3DDebug");
 		DebugShaderResources.ResourcesCheck(DebugRenderingPipeLine);
+		DebugRenderingPipeLine->SetWireFrame();
 
 		TextureRenderingPipeLine = GameEngineRenderingPipeLine::Find("DebugTexture");
 		TextureShaderResources.ResourcesCheck(TextureRenderingPipeLine);

@@ -89,6 +89,12 @@ void EngineSubSetting()
 	}
 
 	{
+		D3D11_RASTERIZER_DESC Desc = { D3D11_FILL_WIREFRAME, D3D11_CULL_NONE };
+
+		GameEngineRasterizer::Create("EngineRasterizer_Wire", Desc);
+	}
+
+	{
 		D3D11_DEPTH_STENCIL_DESC Desc = {0};
 
 		Desc.DepthEnable = true;
