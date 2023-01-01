@@ -776,7 +776,7 @@ void Penitent::SlideStart(const StateInfo& _Info)
     MoveEffect_->GetTransform().SetWorldPosition(GetTransform().GetWorldPosition() + float4{MoveDir_.x * 50.f, 0});
     MoveEffect_->Renderer_->ChangeMetaAnimation("penitent_start_dodge_dust_anim");
 
-    SlideAfterimage_->SetIsMetaDraw(true);
+    SlideAfterimage_->SetIsDraw(true);
 }
 
 void Penitent::SlideUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -1055,7 +1055,7 @@ void Penitent::SlideAttackStart(const StateInfo& _Info)
     AttackCollider_->GetTransform().SetWorldMove({MoveDir_.x * 100.f, 50.f});
     // AttackCollider_->ChangeOrder(COLLISIONORDER::PlayerSkill);
 
-    SlideAttackAfterimage_->SetIsMetaDraw(true);
+    SlideAttackAfterimage_->SetIsDraw(true);
 }
 
 void Penitent::SlideAttackUpdate(float _DeltaTime, const StateInfo& _Info)

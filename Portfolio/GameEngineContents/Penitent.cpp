@@ -107,8 +107,8 @@ void Penitent::Start()
     }
 
     Gravity_             = CreateComponent<GravityComponent>();
-    SlideAfterimage_       = CreateComponent<AfterimageComponent>();
-    SlideAttackAfterimage_ = CreateComponent<AfterimageComponent>();
+    SlideAfterimage_       = CreateComponent<MetaAfterimageComponent>();
+    SlideAttackAfterimage_ = CreateComponent<MetaAfterimageComponent>();
 
     BodyCollider_ = CreateComponent<GameEngineCollision>();
     BodyCollider_->GetTransform().SetWorldScale({40.f, 80.f, 1.f});
@@ -432,11 +432,11 @@ void Penitent::SetAnimation()
             {"penitent_dodge_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false},
             Data);
 
-        SlideAfterimage_->CreateMetaAfterimage(
+        SlideAfterimage_->CreateAfterimage(
             "penitent_dodge_anim",
             {"penitent_dodge_anim.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false});
 
-        SlideAfterimage_->SetMetaAfterimageFrame(0, 5);
+        SlideAfterimage_->SetAfterimageFrame(0, 5);
         SlideAfterimage_->AfterimageLevelOn();
 
         MetaRenderer_->AnimationBindEnd(
@@ -760,11 +760,11 @@ void Penitent::SetAnimation()
             {"penitent_dodge_attack_LVL3.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.05f, false},
             Data);
 
-        SlideAttackAfterimage_->CreateMetaAfterimage(
+        SlideAttackAfterimage_->CreateAfterimage(
             "penitent_dodge_attack_LVL3",
             {"penitent_dodge_attack_LVL3.png", 0, static_cast<unsigned int>(Data.size() - 1), 0.07f, false});
 
-        SlideAttackAfterimage_->SetMetaAfterimageFrame(1, 5);
+        SlideAttackAfterimage_->SetAfterimageFrame(1, 5);
         SlideAttackAfterimage_->AfterimageLevelOn();
 
         MetaRenderer_->AnimationBindFrame(

@@ -59,6 +59,7 @@
 #include <GameEngineContents/StageActor.h>
 #include "GravityComponent.h"
 #include "AfterimageComponent.h"
+#include "MetaAfterimageComponent.h"
 #include "CutScenePlayer.h"
 #include "GlobalValue.h"
 #include "LoadingActor.h"
