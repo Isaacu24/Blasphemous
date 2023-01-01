@@ -94,7 +94,11 @@ void Stage05::SettingStage()
     IsLeftExit_ = true;
 }
 
-void Stage05::Start() { SettingStage(); }
+void Stage05::Start() 
+{
+    StageBase::Start();
+    SettingStage(); 
+}
 
 void Stage05::Update(float _DeltaTime)
 {

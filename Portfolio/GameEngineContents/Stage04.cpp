@@ -91,6 +91,8 @@ void Stage04::SettingMonster()
 
 void Stage04::Start()
 {
+    StageBase::Start();
+
     SettingStage();
     SettingMonster();
 }
@@ -104,87 +106,9 @@ void Stage04::Update(float _DeltaTime)
         float Ratio = 1.f - LoadingActor_->GetAlpha();
         StageSoundPlayer_.Volume(Ratio);
     }
-
-    StageFlowUpdate(_DeltaTime);
 }
 
 void Stage04::End() {}
-
-void Stage04::StageFlowUpdate(float _DeltaTime)
-{
-    switch (CurrentFlow_)
-    {
-        case STAGEFLOW::NORMAL:
-            PlayerCameraMove(_DeltaTime);
-
-            if (1350 < Penitent_->GetTransform().GetWorldPosition().x)
-            {
-                Penitent_->ChangeState("Freeze");
-                ElderBrother_->EventOn();
-
-                StageSoundPlayer_.Stop();
-
-                CurrentFlow_ = STAGEFLOW::BOSSAPPEAR;
-            }
-            break;
-        case STAGEFLOW::BOSSAPPEAR:
-            if (1850.f > GetMainCameraActor()->GetTransform().GetWorldPosition().x)
-            {
-                GetMainCameraActor()->GetTransform().SetWorldRightMove(75.f, _DeltaTime);
-            }
-
-            if (true == ElderBrother_->GetBossEvent())
-            {
-                Penitent_->SetIsFreezeEnd(true);
-                CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
-
-                StageSoundPlayer_.Stop();
-                StageSoundPlayer_ = GameEngineSound::SoundPlayControl("ElderBrother.wav", -1);
-                StageSoundPlayer_.Volume(1.0f);
-            }
-            break;
-        case STAGEFLOW::BOSSCOMBAT:
-            PlayerCameraMove(_DeltaTime);
-
-            if (400 > Penitent_->GetTransform().GetWorldPosition().x)
-            {
-                Penitent_->GetTransform().SetWorldPosition(
-                    float4{400, Penitent_->GetTransform().GetWorldPosition().y, PlayerZ});
-            }
-
-            else if (2500 < Penitent_->GetTransform().GetWorldPosition().x)
-            {
-                Penitent_->GetTransform().SetWorldPosition(
-                    float4{2500, Penitent_->GetTransform().GetWorldPosition().y, PlayerZ});
-            }
-
-            if (1000 > GetMainCameraActor()->GetTransform().GetLocalPosition().x)
-            {
-                GetMainCameraActor()->GetTransform().SetWorldPosition(
-                    float4{1000, GetMainCameraActor()->GetTransform().GetLocalPosition().y, CameraZPos_});
-            }
-
-            if (1850 < GetMainCameraActor()->GetTransform().GetLocalPosition().x)
-            {
-                GetMainCameraActor()->GetTransform().SetWorldPosition(
-                    float4{1850, GetMainCameraActor()->GetTransform().GetLocalPosition().y, CameraZPos_});
-            }
-
-            if (true == ElderBrother_->GetBossDeathEvent())
-            {
-                StageSoundPlayer_.Stop();
-
-                StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Boss_Zone_Background.wav", -1);
-                StageSoundPlayer_.Volume(1.f);
-
-                CurrentFlow_ = STAGEFLOW::BOSSDEAD;
-            }
-            break;
-        case STAGEFLOW::BOSSDEAD:
-            PlayerCameraMove(_DeltaTime);
-            break;
-    }
-}
 
 void Stage04::LevelStartEvent()
 {
@@ -313,3 +237,100 @@ void Stage04::PlayerCameraMove(float _DeltaTime)
         LoadingActor_->Exit("Stage05");
     }
 }
+
+
+void Stage04::NormallyStart(const StateInfo& _Info) {}
+
+void Stage04::NormallyUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    PlayerCameraMove(_DeltaTime);
+
+    if (1350 < Penitent_->GetTransform().GetWorldPosition().x)
+    {
+        StageFlow_.ChangeState("BossAppear");
+    }
+}
+
+void Stage04::NormallyEnd(const StateInfo& _Info)
+{
+    Penitent_->ChangeState("Freeze");
+    ElderBrother_->EventOn();
+    StageSoundPlayer_.Stop();
+}
+
+
+void Stage04::BossAppearStart(const StateInfo& _Info) {}
+
+void Stage04::BossAppearUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    if (1850.f > GetMainCameraActor()->GetTransform().GetWorldPosition().x)
+    {
+        GetMainCameraActor()->GetTransform().SetWorldRightMove(75.f, _DeltaTime);
+    }
+
+    if (true == ElderBrother_->GetBossEvent())
+    {
+        StageFlow_.ChangeState("BossCombat");
+    }
+}
+
+void Stage04::BossAppearEnd(const StateInfo& _Info)
+{
+    Penitent_->SetIsFreezeEnd(true);
+
+    StageSoundPlayer_.Stop();
+    StageSoundPlayer_ = GameEngineSound::SoundPlayControl("ElderBrother.wav", -1);
+    StageSoundPlayer_.Volume(1.0f);
+}
+
+
+void Stage04::BossCombatStart(const StateInfo& _Info) {}
+
+void Stage04::BossCombatUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    PlayerCameraMove(_DeltaTime);
+
+    if (400 > Penitent_->GetTransform().GetWorldPosition().x)
+    {
+        Penitent_->GetTransform().SetWorldPosition(
+            float4{400, Penitent_->GetTransform().GetWorldPosition().y, PlayerZ});
+    }
+
+    else if (2500 < Penitent_->GetTransform().GetWorldPosition().x)
+    {
+        Penitent_->GetTransform().SetWorldPosition(
+            float4{2500, Penitent_->GetTransform().GetWorldPosition().y, PlayerZ});
+    }
+
+    if (1000 > GetMainCameraActor()->GetTransform().GetLocalPosition().x)
+    {
+        GetMainCameraActor()->GetTransform().SetWorldPosition(
+            float4{1000, GetMainCameraActor()->GetTransform().GetLocalPosition().y, CameraZPos_});
+    }
+
+    if (1850 < GetMainCameraActor()->GetTransform().GetLocalPosition().x)
+    {
+        GetMainCameraActor()->GetTransform().SetWorldPosition(
+            float4{1850, GetMainCameraActor()->GetTransform().GetLocalPosition().y, CameraZPos_});
+    }
+
+    if (true == ElderBrother_->GetBossDeathEvent())
+    {
+        StageFlow_.ChangeState("BossDead");
+    }
+}
+
+void Stage04::BossCombatEnd(const StateInfo& _Info)
+{
+    StageSoundPlayer_.Stop();
+
+    StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Boss_Zone_Background.wav", -1);
+    StageSoundPlayer_.Volume(1.f);
+}
+
+
+void Stage04::BossDeadStart(const StateInfo& _Info) {}
+
+void Stage04::BossDeadUpdate(float _DeltaTime, const StateInfo& _Info) { PlayerCameraMove(_DeltaTime); }
+
+void Stage04::BossDeadEnd(const StateInfo& _Info) {}

@@ -95,10 +95,12 @@ void Stage21::SettingMonster()
 
 void Stage21::Start()
 {
+    StageBase::Start();
+
     SettingStage();
     SettingMonster();
 
-    CurrentFlow_ = STAGEFLOW::BOSSAPPEAR;
+    StageFlow_.ChangeState("BossAppear");
 }
 
 void Stage21::Update(float _DeltaTime)
@@ -109,42 +111,6 @@ void Stage21::Update(float _DeltaTime)
     {
         SoundRatio_ += _DeltaTime;
         StageSoundPlayer_.Volume(SoundRatio_);
-    }
-
-    switch (CurrentFlow_)
-    {
-        case STAGEFLOW::NORMAL:
-            break;
-        case STAGEFLOW::BOSSAPPEAR:
-            if ("Appear" != Pontiff_->GetState())
-            {
-                BackgorundPlayer_ = GameEngineSound::SoundPlayControl("Pontiff.wav", -1);
-                BackgorundPlayer_.Volume(1.f);
-                CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
-            }
-            break;
-        case STAGEFLOW::BOSSCOMBAT:
-            if (true == Pontiff_->GetBossDeathEvent())
-            {
-                BackgorundPlayer_.Stop();
-            }
-
-            if (true == Pontiff_->GetLose())
-            {
-                BackgorundPlayer_.Stop();
-                CurrentFlow_ = STAGEFLOW::BOSSDEAD;
-            }
-            break;
-        case STAGEFLOW::BOSSDEAD:
-            ChangeTime_ += _DeltaTime;
-
-            if (1.5f <= ChangeTime_)
-            {
-                ChangeTime_ = 0.f;
-                GEngine::ChangeLevel("Stage20");
-                CurrentFlow_ = STAGEFLOW::NORMAL;
-            }
-            break;
     }
 
     PlayerCameraMove(_DeltaTime);
@@ -235,3 +201,63 @@ void Stage21::LevelEndEvent()
 
     BackgorundPlayer_.Stop();
 }
+
+void Stage21::NormallyStart(const StateInfo& _Info) {}
+
+void Stage21::NormallyUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void Stage21::NormallyEnd(const StateInfo& _Info) {}
+
+
+void Stage21::BossAppearStart(const StateInfo& _Info) {}
+
+void Stage21::BossAppearUpdate(float _DeltaTime, const StateInfo& _Info) 
+{
+    if ("Appear" != Pontiff_->GetState())
+    {
+        StageFlow_.ChangeState("BossCombat");
+    }
+}
+
+void Stage21::BossAppearEnd(const StateInfo& _Info) 
+{
+    BackgorundPlayer_ = GameEngineSound::SoundPlayControl("Pontiff.wav", -1);
+    BackgorundPlayer_.Volume(1.f);
+}
+
+
+void Stage21::BossCombatStart(const StateInfo& _Info) {}
+
+void Stage21::BossCombatUpdate(float _DeltaTime, const StateInfo& _Info) 
+{
+    if (true == Pontiff_->GetBossDeathEvent())
+    {
+        BackgorundPlayer_.Stop();
+    }
+
+    if (true == Pontiff_->GetLose())
+    {
+        StageFlow_.ChangeState("BossDead");
+        BackgorundPlayer_.Stop();
+    }
+}
+
+void Stage21::BossCombatEnd(const StateInfo& _Info) {}
+
+
+void Stage21::BossDeadStart(const StateInfo& _Info) {}
+
+void Stage21::BossDeadUpdate(float _DeltaTime, const StateInfo& _Info) 
+{
+    ChangeTime_ += _DeltaTime;
+
+    if (1.5f <= ChangeTime_)
+    {
+        ChangeTime_ = 0.f;
+        GEngine::ChangeLevel("Stage20");
+
+        StageFlow_.ChangeState("Normally");
+    }
+}
+
+void Stage21::BossDeadEnd(const StateInfo& _Info) {}

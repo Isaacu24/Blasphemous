@@ -132,6 +132,7 @@ void Stage03::SettingStage()
 
 void Stage03::Start()
 {
+    StageBase::Start();
     SettingStage();
 
     Distortion_ = GetMainCamera()->GetCameraRenderTarget()->AddEffect<DistortionEffect>();

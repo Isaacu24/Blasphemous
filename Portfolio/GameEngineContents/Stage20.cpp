@@ -57,10 +57,10 @@ void Stage20::SettingStage()
     LineUIActor_ = CreateActor<LineUIActor>();
     LineUIActor_->SetSpeed(10.f);
     LineUIActor_->CreateLine("꿈 속에서 나는 다가오는 그대의 발소리를 들었다. \n꿈 속에서 나는 그대에게 말을 걸고 "
-                           "인사를 하려 했다.");
+                             "인사를 하려 했다.");
     LineUIActor_->AddSound("DLG_2501_0.wav");
     LineUIActor_->CreateLine("기적의 수호자이자, 기적의 깃발을 지키는 수호자인 나는 \n큰 고통을 짊어지고 아버지의 "
-                           "문장을 지니고 있음이라.");
+                             "문장을 지니고 있음이라.");
     LineUIActor_->AddSound("DLG_2501_1.wav");
     LineUIActor_->CreateLine("나는 피투성이로 덮인 두 손이며, \n성모님의 시선을 향하는 두 눈이니라.");
     LineUIActor_->AddSound("DLG_2501_2.wav");
@@ -86,27 +86,28 @@ void Stage20::SettingStage()
     LineUIActor_->SetMassageStartEvent(0, [&]() { Penitent_->SetIsFreezeEnd(false); });
 
     LineUIActor_->SetMassageStartEvent(5,
-                                     [&]()
-                                     {
-                                         Pope_->On();
-                                         Pope_->GetTransform().PixLocalNegativeX();
-                                         Pope_->ChangeMonsterState("AppearEvent");
-                                         Pope_->SetTarget(Penitent_);
-                                     });
+                                       [&]()
+                                       {
+                                           Pope_->On();
+                                           Pope_->GetTransform().PixLocalNegativeX();
+                                           Pope_->ChangeMonsterState("AppearEvent");
+                                           Pope_->SetTarget(Penitent_);
+                                       });
 
     LineUIActor_->SetMassageEndEvent(10,
-                                   [&]()
-                                   {
-                                       Penitent_->SetIsFreezeEnd(true);
-                                       Pope_->ChangeMonsterState("Idle");
-                                       CurrentFlow_ = STAGEFLOW::BOSSCOMBAT;
-                                       LineUIActor_->Off();
+                                     [&]()
+                                     {
+                                         StageFlow_.ChangeState("BossCombat");
 
-                                       StageSoundPlayer_.Stop();
-                                       StageSoundPlayer_
-                                           = GameEngineSound::SoundPlayControl("Final Boss_MASTER.wav", -1);
-                                       StageSoundPlayer_.Volume(1.f);
-                                   });
+                                         Penitent_->SetIsFreezeEnd(true);
+                                         Pope_->ChangeMonsterState("Idle");
+                                         LineUIActor_->Off();
+
+                                         StageSoundPlayer_.Stop();
+                                         StageSoundPlayer_
+                                             = GameEngineSound::SoundPlayControl("Final Boss_MASTER.wav", -1);
+                                         StageSoundPlayer_.Volume(1.f);
+                                     });
 }
 
 void Stage20::SettingMonster()
@@ -120,6 +121,8 @@ void Stage20::SettingMonster()
 
 void Stage20::Start()
 {
+    StageBase::Start();
+
     SettingStage();
     SettingMonster();
 
@@ -136,99 +139,6 @@ void Stage20::Update(float _DeltaTime)
     {
         float Ratio = 1.f - LoadingActor_->GetAlpha();
         StageSoundPlayer_.Volume(Ratio);
-    }
-
-    switch (CurrentFlow_)
-    {
-        case STAGEFLOW::NORMAL:
-            PlayerCameraMove(_DeltaTime);
-
-            if (2000.f <= Penitent_->GetTransform().GetWorldPosition().x)
-            {
-                Penitent_->ChangeState("Freeze");
-                CurrentFlow_ = STAGEFLOW::BOSSAPPEAR;
-            }
-            break;
-
-        case STAGEFLOW::BOSSAPPEAR:
-            if (2275.f > GetMainCameraActor()->GetTransform().GetWorldPosition().x)
-            {
-                GetMainCameraActor()->GetTransform().SetWorldRightMove(300, _DeltaTime);
-            }
-
-            else
-            {
-                MassageTime_ += _DeltaTime;
-
-                if (2.0f > MassageTime_)
-                {
-                    return;
-                }
-
-                if (false == LineUIActor_->IsUpdate())
-                {
-                    LineUIActor_->On();
-                    LineUIActor_->SpeechStart();
-                }
-            }
-            break;
-        case STAGEFLOW::BOSSCOMBAT:
-            {
-                if (1700.f > Penitent_->GetTransform().GetLocalPosition().x)
-                {
-                    Penitent_->GetTransform().SetWorldPosition(
-                        {1700.f, Penitent_->GetTransform().GetWorldPosition().y, PlayerZ});
-                }
-
-                else if (2900.f < Penitent_->GetTransform().GetLocalPosition().x)
-                {
-                    Penitent_->GetTransform().SetWorldPosition(
-                        {2900.f, Penitent_->GetTransform().GetWorldPosition().y, PlayerZ});
-                }
-
-                float4 CamPos = GetMainCameraActor()->GetTransform().GetLocalPosition();
-
-                if (-1550 < CamPos.y)
-                {
-                    GetMainCameraActor()->GetTransform().SetWorldPosition({CamPos.x, -1550, CameraZPos_});
-                }
-
-                if (true == Pope_->GetLose() && false == IsBGMStop_)
-                {
-                    IsBGMStop_ = true;
-                    StageSoundPlayer_.Stop();
-
-                    StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Prima Church Wind.wav", -1);
-                    StageSoundPlayer_.Volume(1.f);
-
-                    Penitent_->SetReturnToPort(true);
-                }
-
-                if (true == Pope_->IsDeath())
-                {
-                    if ("ReturnToPort" == Penitent_->GetPenitentState())
-                    {
-                        ReturnKey_->Off();
-                        return;
-                    }
-
-                    PlayerReturnPos_ = Penitent_->GetTransform().GetWorldPosition();
-
-                    ReturnKey_->On();
-                    UIActor_->GetTransform().SetWorldPosition(
-                        {PlayerReturnPos_.x, PlayerReturnPos_.y + 200.f, PlayerZ});
-                }
-            }
-            break;
-        case STAGEFLOW::BOSSDEAD:
-            if (true == GetLoadingEnd())
-            {
-                SetLoadingEnd(false);
-                Penitent::GetMainPlayer()->BossDeathUIOn(0);
-            }
-
-            PlayerCameraMove(_DeltaTime);
-            break;
     }
 }
 
@@ -272,9 +182,9 @@ void Stage20::LevelStartEvent()
             Penitent_->GetTransform().SetWorldPosition(PlayerLeftPos_);
         }
 
-        if (STAGEFLOW::BOSSCOMBAT == CurrentFlow_)
+        if (StageFlow_.GetCurStateStateName() == "BossCombat")
         {
-            CurrentFlow_ = STAGEFLOW::BOSSDEAD;
+            StageFlow_.ChangeState("BossDead");
             SetLoadingEnd(false);
             Penitent_->GetTransform().SetWorldPosition(PlayerReturnPos_);
 
@@ -288,7 +198,7 @@ void Stage20::LevelStartEvent()
     IsRightExit_ = false;
     IsLeftExit_  = false;
 
-    if (STAGEFLOW::BOSSCOMBAT != CurrentFlow_)
+    if (StageFlow_.GetCurStateStateName() != "BossCombat")
     {
         StageSoundPlayer_.Pause(false);
         StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Prima Church Wind.wav", -1);
@@ -338,3 +248,113 @@ void Stage20::PlayerCameraMove(float _DeltaTime)
         CutScenePlayer_->CutScenePlay();
     }
 }
+
+
+void Stage20::NormallyStart(const StateInfo& _Info) {}
+
+void Stage20::NormallyUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    PlayerCameraMove(_DeltaTime);
+
+    if (2000.f <= Penitent_->GetTransform().GetWorldPosition().x)
+    {
+        StageFlow_.ChangeState("BossAppear");
+    }
+}
+
+void Stage20::NormallyEnd(const StateInfo& _Info) { Penitent_->ChangeState("Freeze"); }
+
+
+void Stage20::BossAppearStart(const StateInfo& _Info) {}
+
+void Stage20::BossAppearUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    if (2275.f > GetMainCameraActor()->GetTransform().GetWorldPosition().x)
+    {
+        GetMainCameraActor()->GetTransform().SetWorldRightMove(300, _DeltaTime);
+    }
+
+    else
+    {
+        MassageTime_ += _DeltaTime;
+
+        if (2.0f > MassageTime_)
+        {
+            return;
+        }
+
+        if (false == LineUIActor_->IsUpdate())
+        {
+            LineUIActor_->On();
+            LineUIActor_->SpeechStart();
+        }
+    }
+}
+
+void Stage20::BossAppearEnd(const StateInfo& _Info) {}
+
+
+void Stage20::BossCombatStart(const StateInfo& _Info) {}
+
+void Stage20::BossCombatUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    if (1700.f > Penitent_->GetTransform().GetLocalPosition().x)
+    {
+        Penitent_->GetTransform().SetWorldPosition({1700.f, Penitent_->GetTransform().GetWorldPosition().y, PlayerZ});
+    }
+
+    else if (2900.f < Penitent_->GetTransform().GetLocalPosition().x)
+    {
+        Penitent_->GetTransform().SetWorldPosition({2900.f, Penitent_->GetTransform().GetWorldPosition().y, PlayerZ});
+    }
+
+    float4 CamPos = GetMainCameraActor()->GetTransform().GetLocalPosition();
+
+    if (-1550 < CamPos.y)
+    {
+        GetMainCameraActor()->GetTransform().SetWorldPosition({CamPos.x, -1550, CameraZPos_});
+    }
+
+    if (true == Pope_->GetLose() && false == IsBGMStop_)
+    {
+        IsBGMStop_ = true;
+        StageSoundPlayer_.Stop();
+
+        StageSoundPlayer_ = GameEngineSound::SoundPlayControl("Prima Church Wind.wav", -1);
+        StageSoundPlayer_.Volume(1.f);
+
+        Penitent_->SetReturnToPort(true);
+    }
+
+    if (true == Pope_->IsDeath())
+    {
+        if ("ReturnToPort" == Penitent_->GetPenitentState())
+        {
+            ReturnKey_->Off();
+            return;
+        }
+
+        PlayerReturnPos_ = Penitent_->GetTransform().GetWorldPosition();
+
+        ReturnKey_->On();
+        UIActor_->GetTransform().SetWorldPosition({PlayerReturnPos_.x, PlayerReturnPos_.y + 200.f, PlayerZ});
+    }
+}
+
+void Stage20::BossCombatEnd(const StateInfo& _Info) {}
+
+
+void Stage20::BossDeadStart(const StateInfo& _Info) {}
+
+void Stage20::BossDeadUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+    PlayerCameraMove(_DeltaTime);
+
+    if (true == GetLoadingEnd())
+    {
+        SetLoadingEnd(false);
+        Penitent::GetMainPlayer()->BossDeathUIOn(0);
+    }
+}
+
+void Stage20::BossDeadEnd(const StateInfo& _Info) {}

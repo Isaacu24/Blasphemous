@@ -52,7 +52,11 @@ void Stage12::SettingStage()
     IsRightExit_ = true;
 }
 
-void Stage12::Start() { SettingStage(); }
+void Stage12::Start() 
+{ 
+    StageBase::Start();
+    SettingStage(); 
+}
 
 void Stage12::Update(float _DeltaTime)
 {

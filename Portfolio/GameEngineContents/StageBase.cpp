@@ -21,83 +21,39 @@ StageBase::StageBase()
 
 StageBase::~StageBase() {}
 
-
-void StageBase::CameraShaking(float _DeltaTime)
+void StageBase::Start()
 {
-    if (true == IsShaking_)
-    {
-        ShakeTime_ += _DeltaTime;
+    StageFlow_.CreateStateMember(
+        "Normally",
+        std::bind(&StageBase::NormallyUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&StageBase::NormallyStart, this, std::placeholders::_1),
+        std::bind(&StageBase::NormallyEnd, this, std::placeholders::_1));
 
-        if (0.05f <= ShakeTime_)
-        {
-            ShakeTime_ = 0.f;
+    StageFlow_.CreateStateMember(
+        "BossAppear",
+        std::bind(&StageBase::BossAppearUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&StageBase::BossAppearStart, this, std::placeholders::_1),
+        std::bind(&StageBase::BossAppearEnd, this, std::placeholders::_1));
 
-            if (0 == ShakeCount_ % 2)
-            {
-                GetMainCameraActor()->GetTransform().SetWorldMove({ForceX_, ForceY_});
-                --ShakeCount_;
-            }
+    StageFlow_.CreateStateMember(
+        "BossCombat",
+        std::bind(&StageBase::BossCombatUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&StageBase::BossCombatStart, this, std::placeholders::_1),
+        std::bind(&StageBase::BossCombatEnd, this, std::placeholders::_1));
 
-            else
-            {
-                GetMainCameraActor()->GetTransform().SetWorldMove({-ForceX_, ForceY_});
-                --ShakeCount_;
-            }
-        }
+    StageFlow_.CreateStateMember(
+        "BossDead",
+        std::bind(&StageBase::BossDeadUpdate, this, std::placeholders::_1, std::placeholders::_2),
+        std::bind(&StageBase::BossDeadStart, this, std::placeholders::_1),
+        std::bind(&StageBase::BossDeadEnd, this, std::placeholders::_1));
 
-        if (0 >= ShakeCount_)
-        {
-            ShakeCount_ = MaxShakeCount_;
-
-            ForceY_ = 0.f;
-
-            IsShaking_  = false;
-        }
-    }
+    StageFlow_.ChangeState("Normally");
 }
 
-
-
-void StageBase::CameraShakingOneWay(float _DeltaTime)
+void StageBase::Update(float _DeltaTime)
 {
-    if (true == IsOneWayShaking_)
-    {
-        ShakeTime_ += _DeltaTime;
+    StageFlow_.Update(_DeltaTime);
 
-        if (0.05f <= ShakeTime_)
-        {
-            ShakeTime_ = 0.f;
-
-            if (0 == ShakeCount_ % 2)
-            {
-                GetMainCameraActor()->GetTransform().SetWorldMove({ForceX_, ForceY_});
-                --ShakeCount_;
-            }
-
-            else
-            {
-                GetMainCameraActor()->GetTransform().SetWorldMove({ForceX_, ForceY_});
-                --ShakeCount_;
-            }
-        }
-
-        if (0 >= ShakeCount_)
-        {
-            ShakeCount_ = MaxShakeCount_;
-
-            ForceY_ = 0.f;
-
-            IsOneWayShaking_ = false;
-        }
-    }
-}
-
-void StageBase::Start() 
-{
-}
-
-void StageBase::Update(float _DeltaTime) 
-{ 
     if (false == IsChangeCameraPos_)
     {
         GetMainCameraActor()->GetTransform().SetWorldMove({0, 0, CameraZPos_});
@@ -108,11 +64,11 @@ void StageBase::Update(float _DeltaTime)
     {
         if (nullptr != ColMap_)
         {
-            ColMap_->GetTransform().SetLocalPosition({0, 0, AfterParallax5Z}); 
+            ColMap_->GetTransform().SetLocalPosition({0, 0, AfterParallax5Z});
         }
     }
 
-    else 
+    else
     {
         if (nullptr != ColMap_)
         {
@@ -126,7 +82,7 @@ void StageBase::End() {}
 
 void StageBase::LevelStartEvent() {}
 
-void StageBase::LevelEndEvent() 
+void StageBase::LevelEndEvent()
 {
     if (nullptr != LoadingActor_)
     {
@@ -169,4 +125,102 @@ void StageBase::LevelEndEvent()
     }
 
     StageSoundPlayer_.Stop();
+}
+
+
+void StageBase::NormallyStart(const StateInfo& _Info) {}
+
+void StageBase::NormallyUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void StageBase::NormallyEnd(const StateInfo& _Info) {}
+
+
+void StageBase::BossAppearStart(const StateInfo& _Info) {}
+
+void StageBase::BossAppearUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void StageBase::BossAppearEnd(const StateInfo& _Info) {}
+
+
+void StageBase::BossCombatStart(const StateInfo& _Info) {}
+
+void StageBase::BossCombatUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void StageBase::BossCombatEnd(const StateInfo& _Info) {}
+
+
+void StageBase::BossDeadStart(const StateInfo& _Info) {}
+
+void StageBase::BossDeadUpdate(float _DeltaTime, const StateInfo& _Info) {}
+
+void StageBase::BossDeadEnd(const StateInfo& _Info) {}
+
+
+
+void StageBase::CameraShaking(float _DeltaTime)
+{
+    if (true == IsShaking_)
+    {
+        ShakeTime_ += _DeltaTime;
+
+        if (0.05f <= ShakeTime_)
+        {
+            ShakeTime_ = 0.f;
+
+            if (0 == ShakeCount_ % 2)
+            {
+                GetMainCameraActor()->GetTransform().SetWorldMove({ForceX_, ForceY_});
+                --ShakeCount_;
+            }
+
+            else
+            {
+                GetMainCameraActor()->GetTransform().SetWorldMove({-ForceX_, ForceY_});
+                --ShakeCount_;
+            }
+        }
+
+        if (0 >= ShakeCount_)
+        {
+            ShakeCount_ = MaxShakeCount_;
+
+            ForceY_ = 0.f;
+
+            IsShaking_ = false;
+        }
+    }
+}
+
+void StageBase::CameraShakingOneWay(float _DeltaTime)
+{
+    if (true == IsOneWayShaking_)
+    {
+        ShakeTime_ += _DeltaTime;
+
+        if (0.05f <= ShakeTime_)
+        {
+            ShakeTime_ = 0.f;
+
+            if (0 == ShakeCount_ % 2)
+            {
+                GetMainCameraActor()->GetTransform().SetWorldMove({ForceX_, ForceY_});
+                --ShakeCount_;
+            }
+
+            else
+            {
+                GetMainCameraActor()->GetTransform().SetWorldMove({ForceX_, ForceY_});
+                --ShakeCount_;
+            }
+        }
+
+        if (0 >= ShakeCount_)
+        {
+            ShakeCount_ = MaxShakeCount_;
+
+            ForceY_ = 0.f;
+
+            IsOneWayShaking_ = false;
+        }
+    }
 }

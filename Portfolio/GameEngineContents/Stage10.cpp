@@ -240,6 +240,8 @@ void Stage10::SettingLedge()
 
 void Stage10::Start()
 {
+    StageBase::Start();
+
     SettingStage();
     SettingLedge();
 }

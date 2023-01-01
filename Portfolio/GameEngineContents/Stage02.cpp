@@ -136,7 +136,6 @@ void Stage02::SettingStage()
         NewCemetry->GetTransform().SetWorldPosition({720, -1510, TileZ});
     }
 
-
     {
         Candle* NewCandle = CreateActor<Candle>();
         NewCandle->GetTransform().SetWorldPosition({3230, -1235, TileZ});
@@ -214,6 +213,8 @@ void Stage02::SettingLedge()
 
 void Stage02::Start()
 {
+    StageBase::Start();
+
     SettingStage();
     SettingLedge();
 }

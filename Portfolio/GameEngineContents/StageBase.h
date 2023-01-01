@@ -2,14 +2,6 @@
 #include "PenitentGuilt.h"
 #include <GameEngineCore/GameEngineLevel.h>
 
-enum class STAGEFLOW
-{
-    NORMAL,
-    BOSSAPPEAR,
-    BOSSCOMBAT,
-    BOSSDEAD
-};
-
 class Penitent;
 class MonsterBase;
 class BossMonster;
@@ -27,10 +19,6 @@ public:
     StageBase(StageBase&& _Other) noexcept            = delete;
     StageBase& operator=(const StageBase& _Other)     = delete;
     StageBase& operator=(StageBase&& _Other) noexcept = delete;
-
-    inline void SetFlow(STAGEFLOW _State) { CurrentFlow_ = _State; }
-
-    inline STAGEFLOW GetFlow() { return CurrentFlow_; }
 
     void CameraShaking(float _DeltaTime);
 
@@ -62,7 +50,23 @@ protected:
     void LevelStartEvent() override;
     void LevelEndEvent() override;
 
-    STAGEFLOW CurrentFlow_;
+    virtual void NormallyStart(const StateInfo& _Info);
+    virtual void NormallyUpdate(float _DeltaTime, const StateInfo& _Info);
+    virtual void NormallyEnd(const StateInfo& _Info);
+
+    virtual void BossAppearStart(const StateInfo& _Info);
+    virtual void BossAppearUpdate(float _DeltaTime, const StateInfo& _Info);
+    virtual void BossAppearEnd(const StateInfo& _Info);
+
+    virtual void BossCombatStart(const StateInfo& _Info);
+    virtual void BossCombatUpdate(float _DeltaTime, const StateInfo& _Info);
+    virtual void BossCombatEnd(const StateInfo& _Info);
+    
+    virtual void BossDeadStart(const StateInfo& _Info);
+    virtual void BossDeadUpdate(float _DeltaTime, const StateInfo& _Info);
+    virtual void BossDeadEnd(const StateInfo& _Info);
+
+    GameEngineStateManager StageFlow_;
 
     GameEngineActor*      Stage_;
     LoadingActor*         LoadingActor_;
@@ -104,7 +108,6 @@ protected:
     virtual void SettingStage() = 0;
     virtual void SettingMonster(){};
     virtual void SettingLedge(){};
-    virtual void StageFlowUpdate(float _DeltaTime){};
 
 private:
 };

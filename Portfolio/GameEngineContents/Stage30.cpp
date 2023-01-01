@@ -79,6 +79,7 @@ void Stage30::SettingStage()
 
 void Stage30::Start()
 {
+    StageBase::Start();
     SettingStage();
 }
 

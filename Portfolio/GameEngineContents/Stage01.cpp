@@ -69,16 +69,17 @@ void Stage01::SettingStage()
     IsLeftExit_ = true;
 }
 
-void Stage01::Start() 
+void Stage01::Start()
 {
-    SettingStage(); 
+    StageBase::Start();
+    SettingStage();
 }
 
 void Stage01::Update(float _DeltaTime)
 {
     StageBase::Update(_DeltaTime);
 
-    if (nullptr != LoadingActor_&& 0.f < LoadingActor_->GetAlpha())
+    if (nullptr != LoadingActor_ && 0.f < LoadingActor_->GetAlpha())
     {
         float Ratio = 1.f - LoadingActor_->GetAlpha();
 
@@ -131,6 +132,7 @@ void Stage01::Update(float _DeltaTime)
 }
 
 void Stage01::End() {}
+
 
 void Stage01::LevelStartEvent()
 {
@@ -219,5 +221,5 @@ void Stage01::LevelEndEvent()
         IsRightExit_ = true;
     }
 
-     StageSoundPlayer_.Stop();
+    StageSoundPlayer_.Stop();
 }

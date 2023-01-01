@@ -25,6 +25,7 @@ protected:
     void LevelStartEvent() override;
     void LevelEndEvent() override;
 
+
 private:
     bool IsPlayerCreate_;
 };
