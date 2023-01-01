@@ -34,13 +34,13 @@ public:
 
     void SetFontSize(float _Value) { Font_->SetSize(_Value); }
 
-    void SetMassageStartEvent(int Index, std::function<void()> _Fuction)
+    void SetLineStartEvent(int Index, std::function<void()> _Fuction)
     {
         StartEventIndex_ = Index;
         StartEvent_      = _Fuction;
     }
 
-    void SetMassageEndEvent(int Index, std::function<void()> _Fuction)
+    void SetLineEndEvent(int Index, std::function<void()> _Fuction)
     {
         EndEventIndex_ = Index;
         EndEvent_      = _Fuction;

@@ -83,9 +83,9 @@ void Stage20::SettingStage()
     LineUIActor_->SetSpeed(5.f);
     LineUIActor_->Off();
 
-    LineUIActor_->SetMassageStartEvent(0, [&]() { Penitent_->SetIsFreezeEnd(false); });
+    LineUIActor_->SetLineStartEvent(0, [&]() { Penitent_->SetIsFreezeEnd(false); });
 
-    LineUIActor_->SetMassageStartEvent(5,
+    LineUIActor_->SetLineStartEvent(5,
                                        [&]()
                                        {
                                            Pope_->On();
@@ -94,7 +94,7 @@ void Stage20::SettingStage()
                                            Pope_->SetTarget(Penitent_);
                                        });
 
-    LineUIActor_->SetMassageEndEvent(10,
+    LineUIActor_->SetLineEndEvent(10,
                                      [&]()
                                      {
                                          StageFlow_.ChangeState("BossCombat");

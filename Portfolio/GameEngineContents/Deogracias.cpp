@@ -60,7 +60,7 @@ void Deogracias::Start()
     LineUIActor_->SetSpeed(10.f);
     LineUIActor_->Off();
 
-    LineUIActor_->SetMassageEndEvent(6, [&]() { Penitent::GetMainPlayer()->SetIsFreezeEnd(true); });
+    LineUIActor_->SetLineEndEvent(6, [&]() { Penitent::GetMainPlayer()->SetIsFreezeEnd(true); });
 }
 
 void Deogracias::Update(float _DeltaTime)
