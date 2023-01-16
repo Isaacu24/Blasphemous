@@ -92,9 +92,6 @@ void GameEngineSound::SoundPlayOneShot(const std::string& _Name, int LoopCount /
 	SoundSystem_->playSound(FindSound->Sound, nullptr, false, &PlayControl);
 
 	PlayControl->setLoopCount(LoopCount);
-
-
-
 }
 
 void GameEngineSound::Update()
@@ -103,6 +100,7 @@ void GameEngineSound::Update()
 	{
 		return;
 	}
+	
 	SoundSystem_->update();
 }
 

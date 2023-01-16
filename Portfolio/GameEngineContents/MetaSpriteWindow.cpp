@@ -44,9 +44,11 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
 
             MetaSpriteManager::GetInst()->MetaParsing(AllText);
 
+            std::vector<MetaData>& Datas = MetaSpriteManager::GetInst()->MetaDatas_;
+
             if (0 == TargetTexture->GetCutCount())
             {
-                for (auto& [Index, PosX, PosY, Width, Height, PivotX, PivotY] : MetaDatas_)
+                for (auto& [Index, PosX, PosY, Width, Height, PivotX, PivotY] : Datas)
                 {
                     TargetTexture->Cut(static_cast<size_t>(PosX),
                                        static_cast<size_t>(TargetTexture->GetScale().y - PosY - Height),
@@ -65,12 +67,12 @@ void MetaSpriteWindow::MetaFileButton(GameEngineLevel* _Level)
             std::string AnimationName = std::filesystem::path{ImageName}.replace_extension("").string();  // Remove .png
 
             Renderer->CreateFrameAnimationCutTexture(
-                AnimationName, {ImageName, 0, static_cast<unsigned int>(MetaDatas_.size() - 1), 0.1f, true});
+                AnimationName, {ImageName, 0, static_cast<unsigned int>(Datas.size() - 1), 0.1f, true});
 
             Renderer->ChangeFrameAnimation(AnimationName);
-            Renderer->SetCurData(MetaDatas_);
+            Renderer->SetCurData(Datas);
 
-            MetaSpriteManager::GetInst()->Insert(AnimationName, MetaDatas_);
+            MetaSpriteManager::GetInst()->Insert(AnimationName, Datas);
         }
     }
 
@@ -184,8 +186,6 @@ void MetaSpriteWindow::AllFolderButton(GameEngineLevel* _Level)
                     }
 
                     MetaSpriteManager::GetInst()->Insert(AnimationName, MetaSpriteManager::GetInst()->MetaDatas_);
-
-                    AllDatas_.push_back(MetaDatas_);
                 }
             }
 

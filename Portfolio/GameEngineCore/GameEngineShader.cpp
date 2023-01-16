@@ -115,7 +115,7 @@ void GameEngineShader::ShaderResCheck()
 		reinterpret_cast<void**>(&CompileInfo)
 	))
 	{
-		MsgBoxAssert("쉐이더 쉐이더 리플렉션이 잘못 돼었습니다.");
+		MsgBoxAssert("쉐이더 리플렉션이 잘못 되었습니다.");
 		return;
 	}
 

@@ -60,6 +60,14 @@ public:
 	void PlaySpeed(float _Speed);
 	void Volume(float _Value);
 
+	bool GetIsPlaying()
+	{
+		bool IsPlay = false;
+		ControlHandle_->isPlaying(&IsPlay);
+
+		return IsPlay;
+	}
+
 	bool GetPause()
 	{
 		return IsPause_;

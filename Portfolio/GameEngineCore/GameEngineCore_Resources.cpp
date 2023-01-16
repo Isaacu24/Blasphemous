@@ -150,6 +150,7 @@ void EngineTextureLoad()
 		D3D11_SAMPLER_DESC Desc = { D3D11_FILTER::D3D11_FILTER_MIN_MAG_MIP_POINT };
 		Desc.AddressU = D3D11_TEXTURE_ADDRESS_MIRROR;
 		Desc.AddressV = D3D11_TEXTURE_ADDRESS_MIRROR;
+
 		Desc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
 		Desc.MipLODBias = 0.0f;
 		Desc.MaxAnisotropy = 1;

@@ -12,8 +12,6 @@ public:
     Stage04& operator=(const Stage04& _Other)     = delete;
     Stage04& operator=(Stage04&& _Other) noexcept = delete;
 
-    void BossStateCheck();
-
 protected:
     void SettingStage() override;
     void SettingMonster() override;

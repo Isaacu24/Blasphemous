@@ -58,9 +58,10 @@ void AfterimageComponent::DrawAfterimage(float _DeltaTime)
         if (0.0f > GetActor()->GetTransform().GetLocalScale().x)
         {
             AfterimageActors_[Index_]->GetTransform().PixLocalNegativeX();
-            AfterimageActors_[Index_]->GetTransform().SetWorldPosition({GetActor()->GetTransform().GetWorldPosition().x,
-                                                                      GetActor()->GetTransform().GetWorldPosition().y,
-                                                                      ObjectZ});
+            AfterimageActors_[Index_]->GetTransform().SetWorldPosition({
+                GetActor()->GetTransform().GetWorldPosition().x,
+                GetActor()->GetTransform().GetWorldPosition().y,
+                ObjectZ});
 
             AfterimageActors_[Index_]->GetTransform().SetWorldRotation({
                 GetActor()->GetTransform().GetWorldRotation().x,

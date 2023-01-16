@@ -36,8 +36,5 @@ private:
 
     void AllFolderButton(GameEngineLevel* _Level);
 
-    std::vector<MetaData> MetaDatas_;
-
     std::vector<GameEngineTexture*> Textures_;
-    std::vector<std::vector<MetaData>> AllDatas_;
 };

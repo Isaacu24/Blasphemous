@@ -23,7 +23,7 @@ void MetaTextureRenderer::Update(float _Delta)
     }
 }
 
-void MetaTextureRenderer::End() { GameEngineTextureRenderer::End(); }
+void MetaTextureRenderer::End() { GameEngineTextureRenderer::End();}
 
 void MetaTextureRenderer::MetaSetPivot()
 {
