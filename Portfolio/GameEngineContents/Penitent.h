@@ -376,6 +376,7 @@ private:
     bool IsReturnToPort_;
     bool IsParrySuccess_;
     bool IsParrySlide_;
+    bool IsParryCollide_;
     bool ParryOn_;
     bool IsFreezeEnd_;
     bool IsOutDoor_;

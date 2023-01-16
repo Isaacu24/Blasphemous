@@ -1304,9 +1304,10 @@ void Penitent::ParryingStart(const StateInfo& _Info)
 
 void Penitent::ParryingUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-    if (true == IsParrySuccess_)
+    if (true == IsParrySuccess_ && true == IsParryCollide_)
     {
         IsParrySuccess_ = false;
+        IsParryCollide_ = false;
 
         SoundPlayer_ = GameEngineSound::SoundPlayControl("PENITENT_GUARD.wav");
         SoundPlayer_.Volume(0.5f);
@@ -1315,11 +1316,12 @@ void Penitent::ParryingUpdate(float _DeltaTime, const StateInfo& _Info)
         ParryOn_ = false;
     }
 
-    else if (true == IsParrySlide_)
+    else if (true == IsParrySlide_ && true == IsParryCollide_)
     {
         State_.ChangeState("ParryingSlide");
 
         ParryOn_ = false;
+        IsParryCollide_ = false;
     }
 }
 

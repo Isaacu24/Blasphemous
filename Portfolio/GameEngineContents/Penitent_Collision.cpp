@@ -321,6 +321,11 @@ void Penitent::CollisionCheck()
                == AttackCollider_->IsCollision(
                    CollisionType::CT_OBB2D, COLLISIONORDER::MonsterBody, CollisionType::CT_OBB2D, nullptr))
     {
+        if ("Parrying" == State_.GetCurStateStateName())
+        {
+            IsParryCollide_ = true;
+        }
+
         IsHit_ = true;
     }
 
