@@ -1,6 +1,12 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 
+struct Line
+{
+    std::string Text;
+    std::string Sound;
+};
+
 class LineUIActor : public GameEngineActor
 {
 public:
@@ -13,10 +19,8 @@ public:
     LineUIActor& operator=(LineUIActor&& _Other) noexcept = delete;
 
     GameEngineUIRenderer* GetUIRenderer() { return Renderer_; }
-
-    void CreateLine(const std::string& _Line);
     
-    void AddSound(const std::string& _Sound);
+    void AddLine(const std::string& _Line, const std::string& _Sound);
 
     void ResetLine() { Script_.clear(); }
 
@@ -65,9 +69,8 @@ private:
     class GameEngineFontRenderer* Font_;
 
     GameEngineSoundPlayer SoundPlayer_;
-
-    std::vector<std::string> Script_;
-    std::vector<std::string> SoundList_;
+    
+    std::vector<Line> Script_;
 
     //텍스트가 처음 출력되기 이전에 실행
     std::function<void()> StartEvent_;

@@ -56,28 +56,22 @@ void Stage20::SettingStage()
 
     LineUIActor_ = CreateActor<LineUIActor>();
     LineUIActor_->SetSpeed(10.f);
-    LineUIActor_->CreateLine("꿈 속에서 나는 다가오는 그대의 발소리를 들었다. \n꿈 속에서 나는 그대에게 말을 걸고 "
-                             "인사를 하려 했다.");
-    LineUIActor_->AddSound("DLG_2501_0.wav");
-    LineUIActor_->CreateLine("기적의 수호자이자, 기적의 깃발을 지키는 수호자인 나는 \n큰 고통을 짊어지고 아버지의 "
-                             "문장을 지니고 있음이라.");
-    LineUIActor_->AddSound("DLG_2501_1.wav");
-    LineUIActor_->CreateLine("나는 피투성이로 덮인 두 손이며, \n성모님의 시선을 향하는 두 눈이니라.");
-    LineUIActor_->AddSound("DLG_2501_2.wav");
-    LineUIActor_->CreateLine("그러나 그 차가운 이름 없는 모습 외에는, 그대를 모른다.");
-    LineUIActor_->AddSound("DLG_2501_3.wav");
-    LineUIActor_->CreateLine("그대의 상처투성이 굳은 살 박힌 손을 경계하라. \n그대의 죽음의 신음을 경계하라.");
-    LineUIActor_->AddSound("DLG_2501_4.wav");
-    LineUIActor_->CreateLine("아니, 그대를 아는 건 기적 뿐이니");
-    LineUIActor_->AddSound("DLG_2501_5.wav");
-    LineUIActor_->CreateLine("죄를 가득 짊어진 그대의 칼과, \n황금에 빛나는 나의 칼을 맞부딪히도록 하지.");
-    LineUIActor_->AddSound("DLG_2503_0.wav");
-    LineUIActor_->CreateLine("상처를 입히고, 걷게 하리라.");
-    LineUIActor_->AddSound("DLG_2503_1.wav");
-    LineUIActor_->CreateLine("그대의 이름을 나는 영원히 저주하리라.");
-    LineUIActor_->AddSound("DLG_2503_2.wav");
-    LineUIActor_->CreateLine("그대의 죽음을 나는 영원히 축복하리라.");
-    LineUIActor_->AddSound("DLG_2503_3.wav");
+    LineUIActor_->AddLine("꿈 속에서 나는 다가오는 그대의 발소리를 들었다. \n꿈 속에서 나는 그대에게 말을 걸고 "
+                          "인사를 하려 했다.",
+                          "DLG_2501_0.wav");
+    LineUIActor_->AddLine("기적의 수호자이자, 기적의 깃발을 지키는 수호자인 나는 \n큰 고통을 짊어지고 아버지의 "
+                          "문장을 지니고 있음이라.",
+                          "DLG_2501_1.wav");
+    LineUIActor_->AddLine("나는 피투성이로 덮인 두 손이며, \n성모님의 시선을 향하는 두 눈이니라.", "DLG_2501_2.wav");
+    LineUIActor_->AddLine("그러나 그 차가운 이름 없는 모습 외에는, 그대를 모른다.", "DLG_2501_3.wav");
+    LineUIActor_->AddLine("그대의 상처투성이 굳은 살 박힌 손을 경계하라. \n그대의 죽음의 신음을 경계하라.",
+                          "DLG_2501_4.wav");
+    LineUIActor_->AddLine("아니, 그대를 아는 건 기적 뿐이니", "DLG_2501_5.wav");
+    LineUIActor_->AddLine("죄를 가득 짊어진 그대의 칼과, \n황금에 빛나는 나의 칼을 맞부딪히도록 하지.",
+                          "DLG_2503_0.wav");
+    LineUIActor_->AddLine("상처를 입히고, 걷게 하리라.", "DLG_2503_1.wav");
+    LineUIActor_->AddLine("그대의 이름을 나는 영원히 저주하리라.", "DLG_2503_2.wav");
+    LineUIActor_->AddLine("그대의 죽음을 나는 영원히 축복하리라.", "DLG_2503_3.wav");
     LineUIActor_->SetFontColor(float4{0.63f, 0.6f, 0.55f});
     LineUIActor_->SetBackgroudAlpha(0.5f);
     LineUIActor_->SetSpeed(5.f);

@@ -48,16 +48,16 @@ void LineUIActor::Update(float _DeltaTime)
             Alpha_ = 1.f;
         }
 
-        Font_->SetText(Script_[0], "NeoµÕ±Ù¸ð");
+        Font_->SetText(Script_[0].Text, "NeoµÕ±Ù¸ð");
         Font_->SetColor({0.65f, 0.65f, 0.45f, Alpha_});
 
         if (false == IsSoundPlay_)
         {
             IsSoundPlay_ = true;
 
-            if (0 != SoundList_.size())
+            if (0 != Script_.size())
             {
-                SoundPlayer_ = GameEngineSound::SoundPlayControl(SoundList_[0]);
+                SoundPlayer_ = GameEngineSound::SoundPlayControl(Script_[0].Sound);
                 SoundPlayer_.Volume(0.5f);
             }
         }
@@ -77,7 +77,7 @@ void LineUIActor::Update(float _DeltaTime)
     {
         BreathTime_ += _DeltaTime;
 
-        ConstTime_ = static_cast<float>(Script_[LineIndex_ - 1].size());
+        ConstTime_ = static_cast<float>(Script_[0].Sound.size());
         ConstTime_ /= Speed_;
 
         if (true == GameEngineInput::GetInst()->IsDownKey("ScriptSkip")
@@ -108,9 +108,9 @@ void LineUIActor::Update(float _DeltaTime)
                 StartEvent_();
             }
 
-            Font_->SetText(Script_[LineIndex_], "NeoµÕ±Ù¸ð");
+            Font_->SetText(Script_[LineIndex_].Text, "NeoµÕ±Ù¸ð");
 
-            SoundPlayer_ = GameEngineSound::SoundPlayControl(SoundList_[LineIndex_]);
+            SoundPlayer_ = GameEngineSound::SoundPlayControl(Script_[LineIndex_].Sound);
             SoundPlayer_.Volume(0.5f);
 
             ++LineIndex_;
@@ -160,6 +160,7 @@ void LineUIActor::OffEvent()
 }
 
 
-void LineUIActor::CreateLine(const std::string& _Line) { Script_.push_back(_Line); }
-
-void LineUIActor::AddSound(const std::string& _Sound) { SoundList_.push_back(_Sound); }
+void LineUIActor::AddLine(const std::string& _Line, const std::string& _Sound)
+{
+    Script_.emplace_back(Line(_Line, _Sound));
+}

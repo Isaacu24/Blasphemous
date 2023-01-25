@@ -13,6 +13,7 @@ Shop::~Shop() {}
 
 void Shop::Start()
 {
+    StageBase::Start();
     Stage_ = CreateActor<StageActor>();
 
     ColMap_ = Stage_->CreateComponent<GameEngineTextureRenderer>();
