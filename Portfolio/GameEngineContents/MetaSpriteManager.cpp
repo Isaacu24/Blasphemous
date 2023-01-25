@@ -46,16 +46,16 @@ std::vector<MetaData>& MetaSpriteManager::Find(const std::string& _Name)
 
 void MetaSpriteManager::Load(GameEngineDirectory _Dir)
 {
-    std::vector<GameEngineFile> Textures = _Dir.GetAllFile();
+    std::vector<GameEngineFile> Files = _Dir.GetAllFile();
 
-    for (size_t i = 0; i < Textures.size(); i++)
+    for (size_t i = 0; i < Files.size(); i++)
     {
-        std::string FileName  = Textures[i].GetFileName();
-        std::string extension = std::filesystem::path{FileName}.extension().string();
+        std::string FileName  = Files[i].GetFileName();
+        std::string Extension = std::filesystem::path{FileName}.extension().string();
 
-        if (".png" == extension)
+        if (".png" == Extension)
         {
-            GameEngineTexture* NewTexture = GameEngineRes<GameEngineTexture>::Find(Textures[i].GetFullPath());
+            GameEngineTexture* NewTexture = GameEngineRes<GameEngineTexture>::Find(Files[i].GetFullPath());
 
             if (nullptr != NewTexture)
             {
@@ -63,25 +63,25 @@ void MetaSpriteManager::Load(GameEngineDirectory _Dir)
                 continue;
             }
 
-            NewTexture = GameEngineTexture::Load(Textures[i].GetFullPath());
+            NewTexture = GameEngineTexture::Load(Files[i].GetFullPath());
             Textures_.push_back(NewTexture);
         }
 
-        else if (".meta" == extension)
+        else if (".meta" == Extension)
         {
-            Textures[i].Open(OpenMode::Read, FileMode::Text);
+            Files[i].Open(OpenMode::Read, FileMode::Text);
 
-            std::string AllText = Textures[i].GetString();
+            std::string AllText = Files[i].GetString();
 
             MetaParsing(AllText);
 
-            std::string FileName      = std::filesystem::path{Textures[i].GetFileName()}.filename().string();
+            std::string FileName      = std::filesystem::path{Files[i].GetFileName()}.filename().string();
             std::string ImageName     = std::filesystem::path{FileName}.replace_extension("").string();
             std::string AnimationName = std::filesystem::path{ImageName}.replace_extension("").string();
 
             if (0 == MetaDatas_.size())
             {
-                int a = 0;
+                MsgBoxAssert("메타 데이터가 없습니다.");
             }
 
             Insert(AnimationName, MetaDatas_);
