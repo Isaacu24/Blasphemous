@@ -41,10 +41,10 @@ void GameEngineRenderer::PushRendererToUICamera()
 	GetActor()->GetLevel()->PushRendererToUICamera(this);
 }
 
-GameEngineRenderingPipeLine* GameEngineRenderer::GetClonePipeLine(GameEngineRenderingPipeLine* _Rendering)
+GameEngineRenderingpipeline* GameEngineRenderer::GetClonePipeLine(GameEngineRenderingpipeline* _Rendering)
 {
 	// 이름없는 녀석으로 만든다.
-	GameEngineRenderingPipeLine* Clone = GameEngineRenderingPipeLine::Create();
+	GameEngineRenderingpipeline* Clone = GameEngineRenderingpipeline::Create();
 	Clone->Copy(_Rendering);
 	return Clone;
 }

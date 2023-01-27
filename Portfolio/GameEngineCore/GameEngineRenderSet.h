@@ -20,9 +20,9 @@ public:
 
 	void Render();
 
-	GameEngineRenderingPipeLine* GetPipeLine();
+	GameEngineRenderingpipeline* GetPipeLine();
 
-	GameEngineRenderingPipeLine* PipeLine;
+	GameEngineRenderingpipeline* PipeLine;
 	GameEngineShaderResourcesHelper ShaderResources;
 
 };

@@ -75,9 +75,9 @@ bool GameEngineCollision::IsCollision(CollisionType _ThisType, int _GroupOrder
 		MsgBoxAssert("아직 만들어지지 않은 콜리전 처리입니다");
 	}
 
-	std::map<int, std::list<GameEngineCollision*>>& AllCollisions = GetActor()->GetLevel()->AllCollisions;
+	std::map<int, std::list<GameEngineCollision*>>& AllColliders = GetActor()->GetLevel()->AllColliders;
 
-	std::list<GameEngineCollision*>& Collisions = AllCollisions[_GroupOrder];
+	std::list<GameEngineCollision*>& Collisions = AllColliders[_GroupOrder];
 
 	for (GameEngineCollision* Collision : Collisions)
 	{

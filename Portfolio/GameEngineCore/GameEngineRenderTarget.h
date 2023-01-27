@@ -91,7 +91,7 @@ public:
 
 	void Merge(GameEngineRenderTarget* _Other, int _Index = 0);
 
-	void Effect(GameEngineRenderingPipeLine* _Other, GameEngineShaderResourcesHelper* _ShaderResourcesHelper);
+	void Effect(GameEngineRenderingpipeline* _Other, GameEngineShaderResourcesHelper* _ShaderResourcesHelper);
 
 	void Effect(class GameEngineRenderSet& _RenderSet);
 
@@ -109,7 +109,7 @@ protected:
 	ID3D11DepthStencilView* DepthStencilView;
 
 	GameEngineShaderResourcesHelper MergeShaderResourcesHelper;
-	GameEngineRenderingPipeLine* MergePipeLine;
+	GameEngineRenderingpipeline* MergePipeLine;
 
 	GameEngineTexture* DepthTexture;
 

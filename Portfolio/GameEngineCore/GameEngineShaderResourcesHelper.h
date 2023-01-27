@@ -20,7 +20,7 @@ public:
 
 	void AllResourcesReset();
 
-	void ResourcesCheck(GameEngineRenderingPipeLine* _Line);
+	void ResourcesCheck(GameEngineRenderingpipeline* _Line);
 
 	bool IsConstantBuffer(const std::string& _Name);
 

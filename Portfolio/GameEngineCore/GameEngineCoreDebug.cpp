@@ -129,10 +129,10 @@ namespace GameEngineDebug
 
 
 	GameEngineShaderResourcesHelper DebugShaderResources;
-	GameEngineRenderingPipeLine* DebugRenderingPipeLine;
+	GameEngineRenderingpipeline* DebugRenderingPipeLine;
 
 	GameEngineShaderResourcesHelper TextureShaderResources;
-	GameEngineRenderingPipeLine* TextureRenderingPipeLine;
+	GameEngineRenderingpipeline* TextureRenderingPipeLine;
 
 	void Debug3DInitialize()
 	{
@@ -144,11 +144,11 @@ namespace GameEngineDebug
 		}
 
 
-		DebugRenderingPipeLine = GameEngineRenderingPipeLine::Find("3DDebug");
+		DebugRenderingPipeLine = GameEngineRenderingpipeline::Find("3DDebug");
 		DebugShaderResources.ResourcesCheck(DebugRenderingPipeLine);
 		DebugRenderingPipeLine->SetWireFrame();
 
-		TextureRenderingPipeLine = GameEngineRenderingPipeLine::Find("DebugTexture");
+		TextureRenderingPipeLine = GameEngineRenderingpipeline::Find("DebugTexture");
 		TextureShaderResources.ResourcesCheck(TextureRenderingPipeLine);
 
 		IsOnce = true;

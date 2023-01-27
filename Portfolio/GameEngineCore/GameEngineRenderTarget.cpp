@@ -8,7 +8,7 @@ ID3D11DepthStencilView* GameEngineRenderTarget::PrevDepthStencilView = nullptr;
 GameEngineRenderTarget::GameEngineRenderTarget()
 	: DepthStencilView(nullptr)
 {
-	MergePipeLine = GameEngineRenderingPipeLine::Find("TargetMerge");
+	MergePipeLine = GameEngineRenderingpipeline::Find("TargetMerge");
 	MergeShaderResourcesHelper.ResourcesCheck(MergePipeLine);
 }
 
@@ -74,14 +74,14 @@ void GameEngineRenderTarget::Copy(GameEngineRenderTarget* _Other, int _Index)
 
 	MergeShaderResourcesHelper.SetTexture("Tex", _Other->GetRenderTargetTexture(_Index));
 
-	Effect(GameEngineRenderingPipeLine::Find("TargetMerge"), &MergeShaderResourcesHelper);
+	Effect(GameEngineRenderingpipeline::Find("TargetMerge"), &MergeShaderResourcesHelper);
 }
 
 void GameEngineRenderTarget::Merge(GameEngineRenderTarget* _Other, int _Index)
 {
 	MergeShaderResourcesHelper.SetTexture("Tex", _Other->GetRenderTargetTexture(_Index));
 
-	Effect(GameEngineRenderingPipeLine::Find("TargetMerge"), &MergeShaderResourcesHelper);
+	Effect(GameEngineRenderingpipeline::Find("TargetMerge"), &MergeShaderResourcesHelper);
 }
 
 void GameEngineRenderTarget::Effect(GameEngineRenderSet& _RenderSet)
@@ -89,7 +89,7 @@ void GameEngineRenderTarget::Effect(GameEngineRenderSet& _RenderSet)
 	Effect(_RenderSet.PipeLine, &_RenderSet.ShaderResources);
 }
 
-void GameEngineRenderTarget::Effect(GameEngineRenderingPipeLine* _Other, GameEngineShaderResourcesHelper* _ShaderResourcesHelper)
+void GameEngineRenderTarget::Effect(GameEngineRenderingpipeline* _Other, GameEngineShaderResourcesHelper* _ShaderResourcesHelper)
 {
 	Setting();
 	_ShaderResourcesHelper->AllResourcesSetting();

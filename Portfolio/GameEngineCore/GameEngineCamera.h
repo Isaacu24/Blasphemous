@@ -19,7 +19,7 @@ class RenderingInstancing
 class GameEngineLevel;
 class GameEngineCamera;
 class GameEngineRenderTarget;
-class GameEngineRenderingPipeLine;
+class GameEngineRenderingpipeline;
 class GameEngineCamera : public GameEngineTransformComponent
 {
 	friend GameEngineLevel;

@@ -2,7 +2,7 @@
 #include "GameEngineRenderer.h"
 #include "GameEngineShaderResourcesHelper.h"
 
-class GameEngineRenderingPipeLine;
+class GameEngineRenderingpipeline;
 class GameEngineDefaultRenderer : public GameEngineRenderer
 {
 public:
@@ -21,7 +21,7 @@ public:
 
 	void SetPipeLine(const std::string& _Name);
 
-	GameEngineRenderingPipeLine* GetPipeLine();
+	GameEngineRenderingpipeline* GetPipeLine();
 
 	void InstanceOn();
 
@@ -34,7 +34,7 @@ protected:
 
 private:
 	// 공통적인 메모리 공유하는 메로리들을 들고 있고
-	GameEngineRenderingPipeLine* PipeLine;
+	GameEngineRenderingpipeline* PipeLine;
 
 	bool IsInstancing;
 };

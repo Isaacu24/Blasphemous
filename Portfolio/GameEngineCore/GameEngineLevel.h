@@ -183,10 +183,10 @@ private:
 private:
 	std::map<int, std::list<GameEngineActor*>> AllActors;
 
-	std::list<GameEngineUpdateObject*> DeleteObject;
+	std::list<GameEngineUpdateObject*> DeleteObjects;
 
 	std::vector<GameEngineCamera*> Cameras;
 
-	std::map<int, std::list<GameEngineCollision*>> AllCollisions;
+	std::map<int, std::list<GameEngineCollision*>> AllColliders;
 };
 

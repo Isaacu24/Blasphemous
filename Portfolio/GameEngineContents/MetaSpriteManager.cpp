@@ -200,12 +200,15 @@ void MetaSpriteManager::MetaParsing(const std::string& _AllText)
         }
 
         {
+            //...
+
             std::string FindString   = "pivot:";
             size_t      DataStartPos = CutDataString.find(FindString);
             size_t      DataEndpos   = CutDataString.find("}", DataStartPos);
 
             std::string PivotString
-                = CutDataString.substr(DataStartPos + FindString.size(), DataEndpos - DataStartPos + FindString.size());
+                = CutDataString.substr(DataStartPos + FindString.size(), 
+                    DataEndpos - DataStartPos + FindString.size());
 
             size_t XStartPos = PivotString.find("x: ");
             size_t XEndpos   = PivotString.find(", ");
@@ -223,6 +226,8 @@ void MetaSpriteManager::MetaParsing(const std::string& _AllText)
             MetaData Data = {Index, StartX, StartY, SizeX, SizeY, PivotX, PivotY};
 
             MetaDatas_.push_back(Data);
+
+            //...
         }
 
         StartPos += 1;
@@ -245,7 +250,8 @@ void MetaSpriteManager::CutAllTexture()
         {
             TargetTexture->Cut(
                 static_cast<size_t>(AllDatas_[i][j].PosX),
-                static_cast<size_t>(TargetTexture->GetScale().y - AllDatas_[i][j].PosY - AllDatas_[i][j].Height),
+                static_cast<size_t>(TargetTexture->GetScale().y 
+                    - AllDatas_[i][j].PosY - AllDatas_[i][j].Height),
                 static_cast<size_t>(AllDatas_[i][j].Width),
                 static_cast<size_t>(AllDatas_[i][j].Height));
         }

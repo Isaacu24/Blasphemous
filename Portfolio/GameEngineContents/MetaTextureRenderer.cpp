@@ -30,7 +30,7 @@ void MetaTextureRenderer::MetaSetPivot()
     int Index_ = GetCurAniInfo().Frames[GetCurAniInfo().CurFrame];
 
     float X = CurData_[Index_].PivotX - 0.5f;
-    float Y = (1 - CurData_[Index_].PivotY) - 0.5f;
+    float Y = (1.f - CurData_[Index_].PivotY) - 0.5f;
 
     float Width  = abs(X * CurData_[Index_].Width);
     float Height = abs(Y * CurData_[Index_].Height);

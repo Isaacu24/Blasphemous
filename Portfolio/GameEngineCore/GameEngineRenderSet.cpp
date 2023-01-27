@@ -12,7 +12,7 @@ GameEngineRenderSet::~GameEngineRenderSet()
 
 void GameEngineRenderSet::SetPipeLine(const std::string& _Name)
 {
-	PipeLine = GameEngineRenderingPipeLine::Find(_Name);
+	PipeLine = GameEngineRenderingpipeline::Find(_Name);
 
 	if (nullptr == PipeLine)
 	{
@@ -47,14 +47,14 @@ void GameEngineRenderSet::Render()
 	ShaderResources.AllResourcesReset();
 }
 
-GameEngineRenderingPipeLine* GameEngineRenderSet::GetPipeLine()
+GameEngineRenderingpipeline* GameEngineRenderSet::GetPipeLine()
 {
 	if (false == PipeLine->IsOriginal())
 	{
 		return PipeLine;
 	}
 
-	GameEngineRenderingPipeLine* Clone = GameEngineRenderingPipeLine::Create();
+	GameEngineRenderingpipeline* Clone = GameEngineRenderingpipeline::Create();
 	Clone->Copy(PipeLine);
 	PipeLine = Clone;
 	return PipeLine;

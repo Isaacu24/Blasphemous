@@ -40,7 +40,7 @@ void GameEngineShaderResourcesHelper::AllResourcesReset()
 	}
 }
 
-void GameEngineShaderResourcesHelper::ResourcesCheck(GameEngineRenderingPipeLine* _Line)
+void GameEngineShaderResourcesHelper::ResourcesCheck(GameEngineRenderingpipeline* _Line)
 {
 	if (nullptr == _Line)
 	{

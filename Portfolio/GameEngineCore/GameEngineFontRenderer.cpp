@@ -63,7 +63,7 @@ void GameEngineFontRenderer::Render(float _DeltaTime)
 
 	Font->FontDraw(Text, FontSize, Pos, Color, static_cast<int>(LR) | static_cast<int>(TB));
 
-	GameEngineRenderingPipeLine::AllShaderReset();
+	GameEngineRenderingpipeline::AllShaderReset();
 
 	Camera->GetCameraRenderTarget()->Merge(FontTarget);
 }

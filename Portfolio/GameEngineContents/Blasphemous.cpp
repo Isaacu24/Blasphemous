@@ -36,7 +36,7 @@ Blasphemous::~Blasphemous() {}
 void Blasphemous::Start()
 {
     {
-        GameEngineRenderingPipeLine* NewPipe = GameEngineRenderingPipeLine::Create("Distortion");
+        GameEngineRenderingpipeline* NewPipe = GameEngineRenderingpipeline::Create("Distortion");
         NewPipe->SetInputAssembler1VertexBuffer("FullRect");
         NewPipe->SetInputAssembler2IndexBuffer("FullRect");
         NewPipe->SetVertexShader("Distortion.hlsl");
@@ -44,7 +44,7 @@ void Blasphemous::Start()
     }
 
     {
-        GameEngineRenderingPipeLine* NewPipe = GameEngineRenderingPipeLine::Create("SinWave");
+        GameEngineRenderingpipeline* NewPipe = GameEngineRenderingpipeline::Create("SinWave");
         NewPipe->SetInputAssembler1VertexBuffer("FullRect");
         NewPipe->SetInputAssembler2IndexBuffer("FullRect");
         NewPipe->SetVertexShader("SinWave.hlsl");

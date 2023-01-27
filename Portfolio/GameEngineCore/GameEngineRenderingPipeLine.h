@@ -11,25 +11,25 @@ class GameEngineRasterizer;
 class GameEnginePixelShader;
 class GameEngineDepthStencil;
 class GameEngineBlend;
-class GameEngineRenderingPipeLine : public GameEngineRes<GameEngineRenderingPipeLine>
+class GameEngineRenderingpipeline : public GameEngineRes<GameEngineRenderingpipeline>
 {
 public:
 	static void AllShaderReset();
 
-	static GameEngineRenderingPipeLine* Create();
+	static GameEngineRenderingpipeline* Create();
 
-	static GameEngineRenderingPipeLine* Create(const std::string& _Name);
+	static GameEngineRenderingpipeline* Create(const std::string& _Name);
 
 public:
 	// constrcuter destructer
-	GameEngineRenderingPipeLine();
-	~GameEngineRenderingPipeLine();
+	GameEngineRenderingpipeline();
+	~GameEngineRenderingpipeline();
 
 	// delete Function
-	GameEngineRenderingPipeLine(const GameEngineRenderingPipeLine& _Other) = delete;
-	GameEngineRenderingPipeLine(GameEngineRenderingPipeLine&& _Other) noexcept = delete;
-	GameEngineRenderingPipeLine& operator=(const GameEngineRenderingPipeLine& _Other) = delete;
-	GameEngineRenderingPipeLine& operator=(GameEngineRenderingPipeLine&& _Other) noexcept = delete;
+	GameEngineRenderingpipeline(const GameEngineRenderingpipeline& _Other) = delete;
+	GameEngineRenderingpipeline(GameEngineRenderingpipeline&& _Other) noexcept = delete;
+	GameEngineRenderingpipeline& operator=(const GameEngineRenderingpipeline& _Other) = delete;
+	GameEngineRenderingpipeline& operator=(GameEngineRenderingpipeline&& _Other) noexcept = delete;
 
 	// void SetInputAssembler1InputLayOutSetting(const std::string& _Name);
 
@@ -64,7 +64,7 @@ public:
 		return PixelShader;
 	}
 
-	void Copy(GameEngineRenderingPipeLine* _Original);
+	void Copy(GameEngineRenderingpipeline* _Original);
 
 	void SetWireFrame();
 

@@ -31,12 +31,12 @@ GameEngineLevel::GameEngineLevel()
 
 GameEngineLevel::~GameEngineLevel()
 {
-	for (GameEngineUpdateObject* Object : DeleteObject)
+	for (GameEngineUpdateObject* Object : DeleteObjects)
 	{
 		Object->ReleaseHierarchy();
 	}
 
-	DeleteObject.clear();
+	DeleteObjects.clear();
 
 	for (const std::pair<int, std::list<GameEngineActor*>>& Group : AllActors)
 	{
@@ -152,8 +152,8 @@ void GameEngineLevel::Render(float _DelataTime)
 	{
 		if (true == GEngine::IsCollisionDebug())
 		{
-			std::map<int, std::list<GameEngineCollision*>>::iterator StartGroupIter = AllCollisions.begin();
-			std::map<int, std::list<GameEngineCollision*>>::iterator EndGroupIter = AllCollisions.end();
+			std::map<int, std::list<GameEngineCollision*>>::iterator StartGroupIter = AllColliders.begin();
+			std::map<int, std::list<GameEngineCollision*>>::iterator EndGroupIter = AllColliders.end();
 			for (; StartGroupIter != EndGroupIter; ++StartGroupIter)
 			{
 				std::list<GameEngineCollision*>& Group = StartGroupIter->second;
@@ -229,12 +229,13 @@ void GameEngineLevel::PushActor(GameEngineActor* _Actor, int _ObjectGroupIndex)
 
 void GameEngineLevel::Release(float _DelataTime)
 {
-	for (GameEngineUpdateObject* Object : DeleteObject)
+	for (GameEngineUpdateObject* Object : DeleteObjects)
 	{
 		Object->ReleaseHierarchy();
 	}
 
-	DeleteObject.clear();
+	//내가 가르킨 애가 죽었는지를 한번 체크해야 되야 하므로 IsDeath가 컨텐츠단에도 체크가 되겠끔 만든다.
+	DeleteObjects.clear();
 
 	for (size_t i = 0; i < Cameras.size(); i++)
 	{
@@ -246,8 +247,8 @@ void GameEngineLevel::Release(float _DelataTime)
 		Cameras[i]->Release(_DelataTime);
 	}
 	{
-		std::map<int, std::list<GameEngineCollision*>>::iterator StartGroupIter = AllCollisions.begin();
-		std::map<int, std::list<GameEngineCollision*>>::iterator EndGroupIter = AllCollisions.end();
+		std::map<int, std::list<GameEngineCollision*>>::iterator StartGroupIter = AllColliders.begin();
+		std::map<int, std::list<GameEngineCollision*>>::iterator EndGroupIter = AllColliders.end();
 
 		for (; StartGroupIter != EndGroupIter; ++StartGroupIter)
 		{
@@ -280,7 +281,7 @@ void GameEngineLevel::Release(float _DelataTime)
 			
 		for (; GroupStart != GroupEnd; )
 		{
-			(*GroupStart)->ReleaseObject(DeleteObject);
+			(*GroupStart)->ReleaseObject(DeleteObjects);
 
 			if (true == (*GroupStart)->IsDeath())
 			{
@@ -320,13 +321,13 @@ void GameEngineLevel::RemoveActor(GameEngineActor* _Actor)
 void GameEngineLevel::PushCollision(GameEngineCollision* _Collision, int _Order)
 {
 	// 기존에 자신이 존재하는 그룹에서 삭제한다.
-	AllCollisions[_Collision->GetOrder()].remove(_Collision);
+	AllColliders[_Collision->GetOrder()].remove(_Collision);
 
 	// 나의 오더를 바꾸고.
 	_Collision->SetOrder(_Order);
 
 	// 새로운 그룹에 편입된다.
-	AllCollisions[_Collision->GetOrder()].push_back(_Collision);
+	AllColliders[_Collision->GetOrder()].push_back(_Collision);
 }
 
 void GameEngineLevel::OverChildMove(GameEngineLevel* _NextLevel)
@@ -388,8 +389,8 @@ void GameEngineLevel::OverChildMove(GameEngineLevel* _NextLevel)
 	}
 
 	{
-		std::map<int, std::list<GameEngineCollision*>>::iterator StartGroupIter = AllCollisions.begin();
-		std::map<int, std::list<GameEngineCollision*>>::iterator EndGroupIter = AllCollisions.end();
+		std::map<int, std::list<GameEngineCollision*>>::iterator StartGroupIter = AllColliders.begin();
+		std::map<int, std::list<GameEngineCollision*>>::iterator EndGroupIter = AllColliders.end();
 
 		std::list<GameEngineCollision*> OverList;
 
@@ -418,7 +419,7 @@ void GameEngineLevel::OverChildMove(GameEngineLevel* _NextLevel)
 		// 오브젝트를 넘기고
 		for (GameEngineCollision* OverActor : OverList)
 		{
-			_NextLevel->AllCollisions[OverActor->GetOrder()].push_back(OverActor);
+			_NextLevel->AllColliders[OverActor->GetOrder()].push_back(OverActor);
 		}
 	}
 }
@@ -447,6 +448,6 @@ void GameEngineLevel::AllClear()
 
 	Cameras.clear();
 
-	AllCollisions.clear();
+	AllColliders.clear();
 }
 

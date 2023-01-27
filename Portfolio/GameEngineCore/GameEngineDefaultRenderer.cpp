@@ -19,7 +19,7 @@ void GameEngineDefaultRenderer::Start()
 
 void GameEngineDefaultRenderer::SetPipeLine(const std::string& _Name)
 {
-	PipeLine = GameEngineRenderingPipeLine::Find(_Name);
+	PipeLine = GameEngineRenderingpipeline::Find(_Name);
 
 	if (nullptr == PipeLine)
 	{
@@ -56,7 +56,7 @@ void GameEngineDefaultRenderer::Render(float _DeltaTime)
 
 
 
-GameEngineRenderingPipeLine* GameEngineDefaultRenderer::GetPipeLine()
+GameEngineRenderingpipeline* GameEngineDefaultRenderer::GetPipeLine()
 {
 	if (false == PipeLine->IsOriginal())
 	{
