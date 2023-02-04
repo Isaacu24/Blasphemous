@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngineBase/GameEngineNameObject.h>
 #include "GameEngineUpdateObject.h"
+#include "GameEngineActor.h"
 #include <list>
 #include <map>
 
@@ -19,7 +20,6 @@ enum class CAMERAORDER
 };
 
 class GameEngineCore;
-class GameEngineActor;
 class GameEngineCamera;
 class GameEngineRenderer;
 class GameEngineTransform;
