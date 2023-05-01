@@ -178,7 +178,7 @@ void Penitent::Start()
 
     CurStage_ = dynamic_cast<StageBase*>(GetLevel());
 
-    PlayerUI_->UIAllOff();
+    //PlayerUI_->UIAllOff();
 }
 
 void Penitent::Update(float _DeltaTime)
